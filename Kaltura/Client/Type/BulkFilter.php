@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-abstract class Kaltura_Client_Type_BulkUploadResult extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_BulkFilter extends Kaltura_Client_Type_PersistedFilter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBulkUploadResult';
+		return 'KalturaBulkFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,76 +45,15 @@ abstract class Kaltura_Client_Type_BulkUploadResult extends Kaltura_Client_Objec
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->objectId))
-			$this->objectId = (string)$xml->objectId;
-		if(count($xml->index))
-			$this->index = (int)$xml->index;
-		if(count($xml->bulkUploadId))
-			$this->bulkUploadId = (string)$xml->bulkUploadId;
-		if(count($xml->status))
-			$this->status = (string)$xml->status;
-		if(count($xml->errors))
-		{
-			if(empty($xml->errors))
-				$this->errors = array();
-			else
-				$this->errors = Kaltura_Client_ParseUtils::unmarshalArray($xml->errors, "KalturaMessage");
-		}
-		if(count($xml->warnings))
-		{
-			if(empty($xml->warnings))
-				$this->warnings = array();
-			else
-				$this->warnings = Kaltura_Client_ParseUtils::unmarshalArray($xml->warnings, "KalturaMessage");
-		}
+		if(count($xml->statusEqual))
+			$this->statusEqual = (string)$xml->statusEqual;
 	}
 	/**
-	 * the result ObjectId (assetId, userId etc)
+	 * dynamicOrderBy - order by Meta
 	 *
-	 * @var bigint
-	 * @readonly
+	 * @var Kaltura_Client_Enum_BatchJobStatus
 	 */
-	public $objectId = null;
-
-	/**
-	 * result index
-	 *
-	 * @var int
-	 * @readonly
-	 */
-	public $index = null;
-
-	/**
-	 * Bulk upload identifier
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $bulkUploadId = null;
-
-	/**
-	 * status
-	 *
-	 * @var Kaltura_Client_Enum_BulkUploadResultStatus
-	 * @readonly
-	 */
-	public $status = null;
-
-	/**
-	 * A list of errors
-	 *
-	 * @var array of KalturaMessage
-	 * @readonly
-	 */
-	public $errors;
-
-	/**
-	 * A list of warnings
-	 *
-	 * @var array of KalturaMessage
-	 * @readonly
-	 */
-	public $warnings;
+	public $statusEqual = null;
 
 
 }

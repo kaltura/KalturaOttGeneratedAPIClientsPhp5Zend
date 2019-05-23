@@ -47,8 +47,6 @@ class Kaltura_Client_Type_SingleSegmentValue extends Kaltura_Client_Type_BaseSeg
 		
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->affectedUsers))
-			$this->affectedUsers = (int)$xml->affectedUsers;
 	}
 	/**
 	 * Id of segment
@@ -57,14 +55,6 @@ class Kaltura_Client_Type_SingleSegmentValue extends Kaltura_Client_Type_BaseSeg
 	 * @readonly
 	 */
 	public $id = null;
-
-	/**
-	 * The amount of users that are being affected by this Segmentation type
-	 *
-	 * @var int
-	 * @readonly
-	 */
-	public $affectedUsers = null;
 
 
 }

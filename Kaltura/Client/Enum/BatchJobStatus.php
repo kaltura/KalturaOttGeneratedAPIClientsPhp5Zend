@@ -31,21 +31,20 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_SmsDispatcher extends Kaltura_Client_Type_Dispatcher
+class Kaltura_Client_Enum_BatchJobStatus extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaSmsDispatcher';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-	}
-
+	const PENDING = "PENDING";
+	const QUEUED = "QUEUED";
+	const PROCESSING = "PROCESSING";
+	const PROCESSED = "PROCESSED";
+	const MOVEFILE = "MOVEFILE";
+	const FINISHED = "FINISHED";
+	const FAILED = "FAILED";
+	const ABORTED = "ABORTED";
+	const ALMOST_DONE = "ALMOST_DONE";
+	const RETRY = "RETRY";
+	const FATAL = "FATAL";
+	const DONT_PROCESS = "DONT_PROCESS";
+	const FINISHED_PARTIALLY = "FINISHED_PARTIALLY";
 }
 

@@ -55,8 +55,8 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 			$this->deleteMediaPolicy = (string)$xml->deleteMediaPolicy;
 		if(count($xml->mainCurrency))
 			$this->mainCurrency = (int)$xml->mainCurrency;
-		if(count($xml->secondaryCurrencies))
-			$this->secondaryCurrencies = (string)$xml->secondaryCurrencies;
+		if(count($xml->secondaryCurrencys))
+			$this->secondaryCurrencys = (string)$xml->secondaryCurrencys;
 		if(count($xml->downgradePolicy))
 			$this->downgradePolicy = (string)$xml->downgradePolicy;
 		if(count($xml->mailSettings))
@@ -102,11 +102,11 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 	public $mainCurrency = null;
 
 	/**
-	 * A list of comma separated currency ids.
+	 * A list of comma separated currencys ids.
 	 *
 	 * @var string
 	 */
-	public $secondaryCurrencies = null;
+	public $secondaryCurrencys = null;
 
 	/**
 	 * Downgrade policy

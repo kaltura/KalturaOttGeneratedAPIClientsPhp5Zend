@@ -103,6 +103,7 @@ class Kaltura_Client_Type_Recording extends Kaltura_Client_ObjectBase
 	 * Specifies until when the recording is available for viewing. Date and time represented as epoch.
 	 *
 	 * @var bigint
+	 * @readonly
 	 */
 	public $viewableUntilDate = null;
 

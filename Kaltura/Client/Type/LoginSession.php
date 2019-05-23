@@ -47,8 +47,6 @@ class Kaltura_Client_Type_LoginSession extends Kaltura_Client_ObjectBase
 		
 		if(count($xml->ks))
 			$this->ks = (string)$xml->ks;
-		if(count($xml->expiry))
-			$this->expiry = (string)$xml->expiry;
 	}
 	/**
 	 * Access token in a KS format
@@ -56,13 +54,6 @@ class Kaltura_Client_Type_LoginSession extends Kaltura_Client_ObjectBase
 	 * @var string
 	 */
 	public $ks = null;
-
-	/**
-	 * Expiration
-	 *
-	 * @var bigint
-	 */
-	public $expiry = null;
 
 
 }

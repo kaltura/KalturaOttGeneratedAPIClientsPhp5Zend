@@ -51,13 +51,6 @@ class Kaltura_Client_Type_PlaybackContextOptions extends Kaltura_Client_ObjectBa
 			$this->streamerType = (string)$xml->streamerType;
 		if(count($xml->assetFileIds))
 			$this->assetFileIds = (string)$xml->assetFileIds;
-		if(count($xml->adapterData))
-		{
-			if(empty($xml->adapterData))
-				$this->adapterData = array();
-			else
-				$this->adapterData = Kaltura_Client_ParseUtils::unmarshalMap($xml->adapterData, "KalturaStringValue");
-		}
 		if(count($xml->context))
 			$this->context = (string)$xml->context;
 		if(count($xml->urlType))
@@ -71,7 +64,7 @@ class Kaltura_Client_Type_PlaybackContextOptions extends Kaltura_Client_ObjectBa
 	public $mediaProtocol = null;
 
 	/**
-	 * Playback streamer type: applehttp, mpegdash, url, smothstreaming, none
+	 * Playback streamer type: applehttp, mpegdash, url.
 	 *
 	 * @var string
 	 */
@@ -83,13 +76,6 @@ class Kaltura_Client_Type_PlaybackContextOptions extends Kaltura_Client_ObjectBa
 	 * @var string
 	 */
 	public $assetFileIds = null;
-
-	/**
-	 * key/value map field for extra data
-	 *
-	 * @var map
-	 */
-	public $adapterData;
 
 	/**
 	 * Playback context type

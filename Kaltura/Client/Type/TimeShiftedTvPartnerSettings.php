@@ -132,13 +132,6 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 			$this->protectionPolicy = (string)$xml->protectionPolicy;
 		if(count($xml->recoveryGracePeriod))
 			$this->recoveryGracePeriod = (int)$xml->recoveryGracePeriod;
-		if(count($xml->privateCopyEnabled))
-		{
-			if(!empty($xml->privateCopyEnabled) && ((int) $xml->privateCopyEnabled === 1 || strtolower((string)$xml->privateCopyEnabled) === 'true'))
-				$this->privateCopyEnabled = true;
-			else
-				$this->privateCopyEnabled = false;
-		}
 	}
 	/**
 	 * Is catch-up enabled
@@ -286,13 +279,6 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 	 * @var int
 	 */
 	public $recoveryGracePeriod = null;
-
-	/**
-	 * Is private copy enabled for the account
-	 *
-	 * @var bool
-	 */
-	public $privateCopyEnabled = null;
 
 
 }

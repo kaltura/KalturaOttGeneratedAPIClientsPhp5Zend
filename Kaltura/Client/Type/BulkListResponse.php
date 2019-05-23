@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BulkUploadFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_BulkListResponse extends Kaltura_Client_Type_ListResponse
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBulkUploadFilter';
+		return 'KalturaBulkListResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,47 +45,20 @@ class Kaltura_Client_Type_BulkUploadFilter extends Kaltura_Client_Type_Filter
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->bulkObjectTypeEqual))
-			$this->bulkObjectTypeEqual = (string)$xml->bulkObjectTypeEqual;
-		if(count($xml->createDateGreaterThanOrEqual))
-			$this->createDateGreaterThanOrEqual = (string)$xml->createDateGreaterThanOrEqual;
-		if(count($xml->uploadedByUserIdEqualCurrent))
+		if(count($xml->objects))
 		{
-			if(!empty($xml->uploadedByUserIdEqualCurrent) && ((int) $xml->uploadedByUserIdEqualCurrent === 1 || strtolower((string)$xml->uploadedByUserIdEqualCurrent) === 'true'))
-				$this->uploadedByUserIdEqualCurrent = true;
+			if(empty($xml->objects))
+				$this->objects = array();
 			else
-				$this->uploadedByUserIdEqualCurrent = false;
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaBulk");
 		}
-		if(count($xml->statusIn))
-			$this->statusIn = (string)$xml->statusIn;
 	}
 	/**
-	 * bulk objects Type name (must be type of KalturaOTTObject)
+	 * bulk items
 	 *
-	 * @var string
+	 * @var array of KalturaBulk
 	 */
-	public $bulkObjectTypeEqual = null;
-
-	/**
-	 * upload date to search within (search in the last 60 days)
-	 *
-	 * @var bigint
-	 */
-	public $createDateGreaterThanOrEqual = null;
-
-	/**
-	 * Indicates if to get the BulkUpload list that created by current user or by the entire group.
-	 *
-	 * @var bool
-	 */
-	public $uploadedByUserIdEqualCurrent = null;
-
-	/**
-	 * Comma separated list of BulkUpload Statuses to search\filter
-	 *
-	 * @var string
-	 */
-	public $statusIn = null;
+	public $objects;
 
 
 }

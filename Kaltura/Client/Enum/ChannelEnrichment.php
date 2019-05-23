@@ -40,6 +40,10 @@ class Kaltura_Client_Enum_ChannelEnrichment extends Kaltura_Client_EnumBase
 	const DEVICETYPE = "DeviceType";
 	const UTCOFFSET = "UTCOffset";
 	const LANGUAGE = "Language";
+	const NPVRSUPPORT = "NPVRSupport";
+	const CATCHUP = "Catchup";
+	const PARENTAL = "Parental";
 	const DTTREGION = "DTTRegion";
+	const ATHOME = "AtHome";
 }
 

@@ -31,9 +31,8 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_AssetRuleStatus extends Kaltura_Client_EnumBase
+class Kaltura_Client_Enum_BulkOrderBy extends Kaltura_Client_EnumBase
 {
-	const READY = "READY";
-	const IN_PROGRESS = "IN_PROGRESS";
+	const NONE = "NONE";
 }
 

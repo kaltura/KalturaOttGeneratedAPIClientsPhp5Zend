@@ -113,9 +113,9 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_BulkUploadService
+	 * @var Kaltura_Client_BulkService
 	 */
-	public $bulkUpload = null;
+	public $bulk = null;
 
 	/**
 	 * 
@@ -350,12 +350,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	 * @var Kaltura_Client_InboxMessageService
 	 */
 	public $inboxMessage = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_IngestProfileService
-	 */
-	public $IngestProfile = null;
 
 	/**
 	 * 
@@ -653,18 +647,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_TopicNotificationService
-	 */
-	public $topicNotification = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_TopicNotificationMessageService
-	 */
-	public $topicNotificationMessage = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_TransactionService
 	 */
 	public $transaction = null;
@@ -739,7 +721,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		parent::__construct($config);
 		
 		$this->setClientTag('php5:19-05-23');
-		$this->setApiVersion('5.2.0.43029');
+		$this->setApiVersion('5.1.2.18400');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -754,7 +736,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->assetStructMeta = new Kaltura_Client_AssetStructMetaService($this);
 		$this->assetUserRule = new Kaltura_Client_AssetUserRuleService($this);
 		$this->bookmark = new Kaltura_Client_BookmarkService($this);
-		$this->bulkUpload = new Kaltura_Client_BulkUploadService($this);
+		$this->bulk = new Kaltura_Client_BulkService($this);
 		$this->businessModuleRule = new Kaltura_Client_BusinessModuleRuleService($this);
 		$this->cdnAdapterProfile = new Kaltura_Client_CdnAdapterProfileService($this);
 		$this->cdnPartnerSettings = new Kaltura_Client_CdnPartnerSettingsService($this);
@@ -794,7 +776,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->image = new Kaltura_Client_ImageService($this);
 		$this->imageType = new Kaltura_Client_ImageTypeService($this);
 		$this->inboxMessage = new Kaltura_Client_InboxMessageService($this);
-		$this->IngestProfile = new Kaltura_Client_IngestProfileService($this);
 		$this->language = new Kaltura_Client_LanguageService($this);
 		$this->licensedUrl = new Kaltura_Client_LicensedUrlService($this);
 		$this->mediaConcurrencyRule = new Kaltura_Client_MediaConcurrencyRuleService($this);
@@ -844,8 +825,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->tag = new Kaltura_Client_TagService($this);
 		$this->timeShiftedTvPartnerSettings = new Kaltura_Client_TimeShiftedTvPartnerSettingsService($this);
 		$this->topic = new Kaltura_Client_TopicService($this);
-		$this->topicNotification = new Kaltura_Client_TopicNotificationService($this);
-		$this->topicNotificationMessage = new Kaltura_Client_TopicNotificationMessageService($this);
 		$this->transaction = new Kaltura_Client_TransactionService($this);
 		$this->transactionHistory = new Kaltura_Client_TransactionHistoryService($this);
 		$this->tvmRule = new Kaltura_Client_TvmRuleService($this);
@@ -904,6 +883,31 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		if(isset($this->clientConfiguration['apiVersion']))
 		{
 			return $this->clientConfiguration['apiVersion'];
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Abort the Multireuqset call if any error occurs in one of the requests
+	 * 
+	 * @param bool $abortOnError
+	 */
+	public function setAbortOnError($abortOnError)
+	{
+		$this->clientConfiguration['abortOnError'] = $abortOnError;
+	}
+	
+	/**
+	 * Abort the Multireuqset call if any error occurs in one of the requests
+	 * 
+	 * @return bool
+	 */
+	public function getAbortOnError()
+	{
+		if(isset($this->clientConfiguration['abortOnError']))
+		{
+			return $this->clientConfiguration['abortOnError'];
 		}
 		
 		return null;
@@ -1079,31 +1083,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		if(isset($this->requestConfiguration['responseProfile']))
 		{
 			return $this->requestConfiguration['responseProfile'];
-		}
-		
-		return null;
-	}
-	
-	/**
-	 * Abort the Multireuqset call if any error occurs in one of the requests
-	 * 
-	 * @param bool $abortOnError
-	 */
-	public function setAbortOnError($abortOnError)
-	{
-		$this->requestConfiguration['abortOnError'] = $abortOnError;
-	}
-	
-	/**
-	 * Abort the Multireuqset call if any error occurs in one of the requests
-	 * 
-	 * @return bool
-	 */
-	public function getAbortOnError()
-	{
-		if(isset($this->requestConfiguration['abortOnError']))
-		{
-			return $this->requestConfiguration['abortOnError'];
 		}
 		
 		return null;

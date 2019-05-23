@@ -59,8 +59,6 @@ class Kaltura_Client_Type_AssetRule extends Kaltura_Client_Type_AssetRuleBase
 			else
 				$this->actions = Kaltura_Client_ParseUtils::unmarshalArray($xml->actions, "KalturaAssetRuleAction");
 		}
-		if(count($xml->status))
-			$this->status = (string)$xml->status;
 	}
 	/**
 	 * List of conditions for the rule
@@ -75,14 +73,6 @@ class Kaltura_Client_Type_AssetRule extends Kaltura_Client_Type_AssetRuleBase
 	 * @var array of KalturaAssetRuleAction
 	 */
 	public $actions;
-
-	/**
-	 * List of actions for the rule
-	 *
-	 * @var Kaltura_Client_Enum_AssetRuleStatus
-	 * @readonly
-	 */
-	public $status = null;
 
 
 }

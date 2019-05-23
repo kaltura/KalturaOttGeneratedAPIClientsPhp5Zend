@@ -82,8 +82,6 @@ class Kaltura_Client_Type_BillingTransaction extends Kaltura_Client_ObjectBase
 			$this->remarks = (string)$xml->remarks;
 		if(count($xml->billingPriceType))
 			$this->billingPriceType = (string)$xml->billingPriceType;
-		if(count($xml->externalTransactionId))
-			$this->externalTransactionId = (string)$xml->externalTransactionId;
 	}
 	/**
 	 * Reciept Code
@@ -212,14 +210,6 @@ class Kaltura_Client_Type_BillingTransaction extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $billingPriceType = null;
-
-	/**
-	 * External Transaction Id
-	 *
-	 * @var string
-	 * @readonly
-	 */
-	public $externalTransactionId = null;
 
 
 }

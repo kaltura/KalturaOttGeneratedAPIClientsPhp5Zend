@@ -32,7 +32,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_BulkUploadService extends Kaltura_Client_ServiceBase
+class Kaltura_Client_BulkService extends Kaltura_Client_ServiceBase
 {
 	function __construct(Kaltura_Client_Client $client = null)
 	{
@@ -40,42 +40,43 @@ class Kaltura_Client_BulkUploadService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_BulkUpload
+	 * @return Kaltura_Client_Type_BulkListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function get($id)
+	function listAction(Kaltura_Client_Type_BulkFilter $filter = null, Kaltura_Client_Type_FilterPager $pager = null)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "id", $id);
-		$this->client->queueServiceActionCall("bulkupload", "get", "KalturaBulkUpload", $kparams);
+		if ($filter !== null)
+			$this->client->addParam($kparams, "filter", $filter->toParams());
+		if ($pager !== null)
+			$this->client->addParam($kparams, "pager", $pager->toParams());
+		$this->client->queueServiceActionCall("bulk", "list", "KalturaBulkListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaBulkUpload");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_BulkUpload");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaBulkListResponse");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_BulkListResponse");
 		return $resultObject;
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_BulkUploadListResponse
+	 * @return Kaltura_Client_Type_Bulk
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function listAction(Kaltura_Client_Type_BulkUploadFilter $filter, Kaltura_Client_Type_FilterPager $pager = null)
+	function serveLog($id)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "filter", $filter->toParams());
-		if ($pager !== null)
-			$this->client->addParam($kparams, "pager", $pager->toParams());
-		$this->client->queueServiceActionCall("bulkupload", "list", "KalturaBulkUploadListResponse", $kparams);
+		$this->client->addParam($kparams, "id", $id);
+		$this->client->queueServiceActionCall("bulk", "serveLog", "KalturaBulk", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaBulkUploadListResponse");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_BulkUploadListResponse");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaBulk");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Bulk");
 		return $resultObject;
 	}
 }

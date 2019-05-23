@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BulkUpload extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_Bulk extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBulkUpload';
+		return 'KalturaBulk';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -47,27 +47,12 @@ class Kaltura_Client_Type_BulkUpload extends Kaltura_Client_ObjectBase
 		
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->fileName))
-			$this->fileName = (string)$xml->fileName;
 		if(count($xml->status))
 			$this->status = (string)$xml->status;
-		if(count($xml->action))
-			$this->action = (string)$xml->action;
-		if(count($xml->numOfObjects))
-			$this->numOfObjects = (int)$xml->numOfObjects;
 		if(count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
 		if(count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
-		if(count($xml->uploadedByUserId))
-			$this->uploadedByUserId = (string)$xml->uploadedByUserId;
-		if(count($xml->results))
-		{
-			if(empty($xml->results))
-				$this->results = array();
-			else
-				$this->results = Kaltura_Client_ParseUtils::unmarshalArray($xml->results, "KalturaBulkUploadResult");
-		}
 	}
 	/**
 	 * Bulk identifier
@@ -78,36 +63,12 @@ class Kaltura_Client_Type_BulkUpload extends Kaltura_Client_ObjectBase
 	public $id = null;
 
 	/**
-	 * File Name
-	 *
-	 * @var string
-	 * @readonly
-	 */
-	public $fileName = null;
-
-	/**
 	 * Status
 	 *
-	 * @var Kaltura_Client_Enum_BulkUploadJobStatus
+	 * @var Kaltura_Client_Enum_BatchJobStatus
 	 * @readonly
 	 */
 	public $status = null;
-
-	/**
-	 * Action
-	 *
-	 * @var Kaltura_Client_Enum_BulkUploadJobAction
-	 * @readonly
-	 */
-	public $action = null;
-
-	/**
-	 * Total number of objects in file
-	 *
-	 * @var int
-	 * @readonly
-	 */
-	public $numOfObjects = null;
 
 	/**
 	 * Specifies when was the bulk action created. Date and time represented as epoch
@@ -124,22 +85,6 @@ class Kaltura_Client_Type_BulkUpload extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $updateDate = null;
-
-	/**
-	 * The user who uploaded this bulk
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $uploadedByUserId = null;
-
-	/**
-	 * A list of results
-	 *
-	 * @var array of KalturaBulkUploadResult
-	 * @readonly
-	 */
-	public $results;
 
 
 }

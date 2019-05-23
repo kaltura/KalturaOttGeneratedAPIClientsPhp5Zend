@@ -59,28 +59,6 @@ class Kaltura_Client_AssetService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_BulkUpload
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function addFromBulkUpload($fileData, Kaltura_Client_Type_BulkUploadJobData $bulkUploadJobData, Kaltura_Client_Type_BulkUploadAssetData $bulkUploadAssetData)
-	{
-		$kparams = array();
-		$kfiles = array();
-		$this->client->addParam($kfiles, "fileData", $fileData);
-		$this->client->addParam($kparams, "bulkUploadJobData", $bulkUploadJobData->toParams());
-		$this->client->addParam($kparams, "bulkUploadAssetData", $bulkUploadAssetData->toParams());
-		$this->client->queueServiceActionCall("asset", "addFromBulkUpload",  "KalturaBulkUpload", $kparams, $kfiles);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaBulkUpload");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_BulkUpload");
-		return $resultObject;
-	}
-
-	/**
 	 * @return Kaltura_Client_Type_AssetCount
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */

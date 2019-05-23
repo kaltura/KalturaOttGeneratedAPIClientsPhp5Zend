@@ -95,13 +95,6 @@ abstract class Kaltura_Client_Type_Asset extends Kaltura_Client_ObjectBase
 			else
 				$this->tags = Kaltura_Client_ParseUtils::unmarshalMap($xml->tags, "KalturaMultilingualStringValueArray");
 		}
-		if(count($xml->relatedEntities))
-		{
-			if(empty($xml->relatedEntities))
-				$this->relatedEntities = array();
-			else
-				$this->relatedEntities = Kaltura_Client_ParseUtils::unmarshalMap($xml->relatedEntities, "KalturaRelatedEntityArray");
-		}
 		if(count($xml->startDate))
 			$this->startDate = (string)$xml->startDate;
 		if(count($xml->endDate))
@@ -189,13 +182,6 @@ abstract class Kaltura_Client_Type_Asset extends Kaltura_Client_ObjectBase
 	 * @var map
 	 */
 	public $tags;
-
-	/**
-	 * Dynamic collection of key-value pairs according to the related entity defined in the system
-	 *
-	 * @var map
-	 */
-	public $relatedEntities;
 
 	/**
 	 * Date and time represented as epoch. For VOD – since when the asset is available in the catalog. For EPG/Linear – when the program is aired (can be in the future).

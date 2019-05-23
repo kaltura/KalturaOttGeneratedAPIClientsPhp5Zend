@@ -52,8 +52,6 @@ class Kaltura_Client_Type_AssetUserRuleFilter extends Kaltura_Client_Type_Filter
 			else
 				$this->attachedUserIdEqualCurrent = false;
 		}
-		if(count($xml->actionsContainType))
-			$this->actionsContainType = (string)$xml->actionsContainType;
 	}
 	/**
 	 * Indicates if to get the asset user rule list for the attached user or for the entire group
@@ -61,13 +59,6 @@ class Kaltura_Client_Type_AssetUserRuleFilter extends Kaltura_Client_Type_Filter
 	 * @var bool
 	 */
 	public $attachedUserIdEqualCurrent = null;
-
-	/**
-	 * Indicates which asset rule list to return by this KalturaRuleActionType.
-	 *
-	 * @var Kaltura_Client_Enum_RuleActionType
-	 */
-	public $actionsContainType = null;
 
 
 }

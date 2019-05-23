@@ -38,6 +38,5 @@ class Kaltura_Client_Enum_MetaDataType extends Kaltura_Client_EnumBase
 	const NUMBER = "NUMBER";
 	const BOOLEAN = "BOOLEAN";
 	const DATE = "DATE";
-	const RELEATED_ENTITY = "RELEATED_ENTITY";
 }
 

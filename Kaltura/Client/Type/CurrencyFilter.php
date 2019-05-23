@@ -47,13 +47,6 @@ class Kaltura_Client_Type_CurrencyFilter extends Kaltura_Client_Type_Filter
 		
 		if(count($xml->codeIn))
 			$this->codeIn = (string)$xml->codeIn;
-		if(count($xml->excludePartner))
-		{
-			if(!empty($xml->excludePartner) && ((int) $xml->excludePartner === 1 || strtolower((string)$xml->excludePartner) === 'true'))
-				$this->excludePartner = true;
-			else
-				$this->excludePartner = false;
-		}
 	}
 	/**
 	 * Currency codes
@@ -61,13 +54,6 @@ class Kaltura_Client_Type_CurrencyFilter extends Kaltura_Client_Type_Filter
 	 * @var string
 	 */
 	public $codeIn = null;
-
-	/**
-	 * Exclude partner
-	 *
-	 * @var bool
-	 */
-	public $excludePartner = null;
 
 
 }

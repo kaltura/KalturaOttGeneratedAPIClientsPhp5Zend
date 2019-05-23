@@ -69,15 +69,6 @@ class Kaltura_Client_Type_ExternalChannelProfile extends Kaltura_Client_ObjectBa
 			else
 				$this->enrichments = Kaltura_Client_ParseUtils::unmarshalArray($xml->enrichments, "KalturaChannelEnrichmentHolder");
 		}
-		if(count($xml->assetUserRuleId))
-			$this->assetUserRuleId = (string)$xml->assetUserRuleId;
-		if(count($xml->metaData))
-		{
-			if(empty($xml->metaData))
-				$this->metaData = array();
-			else
-				$this->metaData = Kaltura_Client_ParseUtils::unmarshalMap($xml->metaData, "KalturaStringValue");
-		}
 	}
 	/**
 	 * External channel id
@@ -128,20 +119,6 @@ class Kaltura_Client_Type_ExternalChannelProfile extends Kaltura_Client_ObjectBa
 	 * @var array of KalturaChannelEnrichmentHolder
 	 */
 	public $enrichments;
-
-	/**
-	 * Asset user rule identifier
-	 *
-	 * @var bigint
-	 */
-	public $assetUserRuleId = null;
-
-	/**
-	 * key/value map field for extra data
-	 *
-	 * @var map
-	 */
-	public $metaData;
 
 
 }

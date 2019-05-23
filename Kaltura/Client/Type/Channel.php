@@ -89,15 +89,6 @@ class Kaltura_Client_Type_Channel extends Kaltura_Client_Type_BaseChannel
 			else
 				$this->supportSegmentBasedOrdering = false;
 		}
-		if(count($xml->assetUserRuleId))
-			$this->assetUserRuleId = (string)$xml->assetUserRuleId;
-		if(count($xml->metaData))
-		{
-			if(empty($xml->metaData))
-				$this->metaData = array();
-			else
-				$this->metaData = Kaltura_Client_ParseUtils::unmarshalMap($xml->metaData, "KalturaStringValue");
-		}
 	}
 	/**
 	 * Channel name
@@ -186,20 +177,6 @@ class Kaltura_Client_Type_Channel extends Kaltura_Client_Type_BaseChannel
 	 * @var bool
 	 */
 	public $supportSegmentBasedOrdering = null;
-
-	/**
-	 * Asset user rule identifier
-	 *
-	 * @var bigint
-	 */
-	public $assetUserRuleId = null;
-
-	/**
-	 * key/value map field for extra data
-	 *
-	 * @var map
-	 */
-	public $metaData;
 
 
 }

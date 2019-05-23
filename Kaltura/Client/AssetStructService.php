@@ -77,25 +77,6 @@ class Kaltura_Client_AssetStructService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_AssetStruct
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function get($id)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "id", $id);
-		$this->client->queueServiceActionCall("assetstruct", "get", "KalturaAssetStruct", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaAssetStruct");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_AssetStruct");
-		return $resultObject;
-	}
-
-	/**
 	 * @return Kaltura_Client_Type_AssetStructListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
