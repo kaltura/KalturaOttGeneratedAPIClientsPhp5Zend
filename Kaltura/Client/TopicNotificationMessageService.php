@@ -78,11 +78,13 @@ class Kaltura_Client_TopicNotificationMessageService extends Kaltura_Client_Serv
 	 * @return Kaltura_Client_Type_TopicNotificationMessageListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function listAction(Kaltura_Client_Type_TopicNotificationMessageFilter $filter = null)
+	function listAction(Kaltura_Client_Type_TopicNotificationMessageFilter $filter = null, Kaltura_Client_Type_FilterPager $pager = null)
 	{
 		$kparams = array();
 		if ($filter !== null)
 			$this->client->addParam($kparams, "filter", $filter->toParams());
+		if ($pager !== null)
+			$this->client->addParam($kparams, "pager", $pager->toParams());
 		$this->client->queueServiceActionCall("topicnotificationmessage", "list", "KalturaTopicNotificationMessageListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
