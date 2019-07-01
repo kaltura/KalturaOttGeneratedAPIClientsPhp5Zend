@@ -57,7 +57,7 @@ class Kaltura_Client_Type_BusinessModuleRule extends Kaltura_Client_Type_Rule
 			if(empty($xml->actions))
 				$this->actions = array();
 			else
-				$this->actions = Kaltura_Client_ParseUtils::unmarshalArray($xml->actions, "KalturaApplyDiscountModuleAction");
+				$this->actions = Kaltura_Client_ParseUtils::unmarshalArray($xml->actions, "KalturaBusinessModuleRuleAction");
 		}
 		if(count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
@@ -74,7 +74,7 @@ class Kaltura_Client_Type_BusinessModuleRule extends Kaltura_Client_Type_Rule
 	/**
 	 * List of actions for the rule
 	 *
-	 * @var array of KalturaApplyDiscountModuleAction
+	 * @var array of KalturaBusinessModuleRuleAction
 	 */
 	public $actions;
 
