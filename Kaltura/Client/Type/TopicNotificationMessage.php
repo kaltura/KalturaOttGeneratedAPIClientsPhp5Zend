@@ -62,6 +62,8 @@ class Kaltura_Client_Type_TopicNotificationMessage extends Kaltura_Client_Object
 			else
 				$this->dispatchers = Kaltura_Client_ParseUtils::unmarshalArray($xml->dispatchers, "KalturaDispatcher");
 		}
+		if(count($xml->status))
+			$this->status = (string)$xml->status;
 	}
 	/**
 	 * Topic notification message ID
@@ -105,6 +107,14 @@ class Kaltura_Client_Type_TopicNotificationMessage extends Kaltura_Client_Object
 	 * @var array of KalturaDispatcher
 	 */
 	public $dispatchers;
+
+	/**
+	 * Message status
+	 *
+	 * @var Kaltura_Client_Enum_AnnouncementStatus
+	 * @readonly
+	 */
+	public $status = null;
 
 
 }

@@ -52,6 +52,7 @@ class Kaltura_Client_Type_GroupPermission extends Kaltura_Client_Type_Permission
 	 * Permission identifier
 	 *
 	 * @var string
+	 * @readonly
 	 */
 	public $group = null;
 
