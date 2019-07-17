@@ -43,6 +43,5 @@ class Kaltura_Client_Enum_RuleActionType extends Kaltura_Client_EnumBase
 	const APPLY_PLAYBACK_ADAPTER = "APPLY_PLAYBACK_ADAPTER";
 	const FILTER = "FILTER";
 	const ASSET_LIFE_CYCLE_TRANSITION = "ASSET_LIFE_CYCLE_TRANSITION";
-	const APPLY_FREE_PLAYBACK = "APPLY_FREE_PLAYBACK";
 }
 

@@ -42,8 +42,5 @@ class Kaltura_Client_Enum_RuleConditionType extends Kaltura_Client_EnumBase
 	const DATE = "DATE";
 	const OR = "OR";
 	const HEADER = "HEADER";
-	const USER_SUBSCRIPTION = "USER_SUBSCRIPTION";
-	const ASSET_SUBSCRIPTION = "ASSET_SUBSCRIPTION";
-	const USER_ROLE = "USER_ROLE";
 }
 
