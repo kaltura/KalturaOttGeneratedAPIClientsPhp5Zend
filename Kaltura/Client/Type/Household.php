@@ -146,7 +146,6 @@ class Kaltura_Client_Type_Household extends Kaltura_Client_ObjectBase
 	 * The households region identifier
 	 *
 	 * @var int
-	 * @readonly
 	 */
 	public $regionId = null;
 

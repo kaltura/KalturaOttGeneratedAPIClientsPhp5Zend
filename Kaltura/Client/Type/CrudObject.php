@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_Coupon extends Kaltura_Client_ObjectBase
+abstract class Kaltura_Client_Type_CrudObject extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaCoupon';
+		return 'KalturaCrudObject';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,57 +45,7 @@ class Kaltura_Client_Type_Coupon extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->couponsGroup) && !empty($xml->couponsGroup))
-			$this->couponsGroup = Kaltura_Client_ParseUtils::unmarshalObject($xml->couponsGroup, "KalturaCouponsGroup");
-		if(count($xml->status))
-			$this->status = (string)$xml->status;
-		if(count($xml->totalUses))
-			$this->totalUses = (int)$xml->totalUses;
-		if(count($xml->leftUses))
-			$this->leftUses = (int)$xml->leftUses;
-		if(count($xml->couponCode))
-			$this->couponCode = (string)$xml->couponCode;
 	}
-	/**
-	 * Coupons group details
-	 *
-	 * @var Kaltura_Client_Type_CouponsGroup
-	 * @readonly
-	 */
-	public $couponsGroup;
-
-	/**
-	 * Coupon status
-	 *
-	 * @var Kaltura_Client_Enum_CouponStatus
-	 * @readonly
-	 */
-	public $status = null;
-
-	/**
-	 * Total available coupon uses
-	 *
-	 * @var int
-	 * @readonly
-	 */
-	public $totalUses = null;
-
-	/**
-	 * Left coupon uses
-	 *
-	 * @var int
-	 * @readonly
-	 */
-	public $leftUses = null;
-
-	/**
-	 * Coupon code
-	 *
-	 * @var string
-	 * @readonly
-	 */
-	public $couponCode = null;
-
 
 }
 
