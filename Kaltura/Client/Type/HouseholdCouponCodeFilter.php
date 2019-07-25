@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_HouseoldCouponCodeFilter extends Kaltura_Client_Type_RelatedObjectFilter
+class Kaltura_Client_Type_HouseholdCouponCodeFilter extends Kaltura_Client_Type_RelatedObjectFilter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaHouseoldCouponCodeFilter';
+		return 'KalturaHouseholdCouponCodeFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
