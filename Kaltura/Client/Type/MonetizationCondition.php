@@ -55,8 +55,6 @@ class Kaltura_Client_Type_MonetizationCondition extends Kaltura_Client_Type_Base
 			$this->type = (string)$xml->type;
 		if(count($xml->operator))
 			$this->operator = (string)$xml->operator;
-		if(count($xml->businessModuleIdIn))
-			$this->businessModuleIdIn = (string)$xml->businessModuleIdIn;
 	}
 	/**
 	 * The minimum value to be met
@@ -92,13 +90,6 @@ class Kaltura_Client_Type_MonetizationCondition extends Kaltura_Client_Type_Base
 	 * @var Kaltura_Client_Enum_MathemticalOperatorType
 	 */
 	public $operator = null;
-
-	/**
-	 * Comma saperated list of business module IDs
-	 *
-	 * @var string
-	 */
-	public $businessModuleIdIn = null;
 
 
 }

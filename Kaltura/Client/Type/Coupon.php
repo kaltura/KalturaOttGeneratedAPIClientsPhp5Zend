@@ -53,8 +53,6 @@ class Kaltura_Client_Type_Coupon extends Kaltura_Client_ObjectBase
 			$this->totalUses = (int)$xml->totalUses;
 		if(count($xml->leftUses))
 			$this->leftUses = (int)$xml->leftUses;
-		if(count($xml->couponCode))
-			$this->couponCode = (string)$xml->couponCode;
 	}
 	/**
 	 * Coupons group details
@@ -87,14 +85,6 @@ class Kaltura_Client_Type_Coupon extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $leftUses = null;
-
-	/**
-	 * Coupon code
-	 *
-	 * @var string
-	 * @readonly
-	 */
-	public $couponCode = null;
 
 
 }

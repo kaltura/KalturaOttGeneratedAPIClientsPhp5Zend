@@ -40,23 +40,6 @@ class Kaltura_Client_EntitlementService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return 
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function applyCoupon($purchaseId, $couponCode)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "purchaseId", $purchaseId);
-		$this->client->addParam($kparams, "couponCode", $couponCode);
-		$this->client->queueServiceActionCall("entitlement", "applyCoupon", null, $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-	}
-
-	/**
 	 * @return bool
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
