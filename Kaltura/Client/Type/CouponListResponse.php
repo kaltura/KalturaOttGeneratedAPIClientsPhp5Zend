@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_CloudRecordingFilter extends Kaltura_Client_Type_ExternalRecordingFilter
+class Kaltura_Client_Type_CouponListResponse extends Kaltura_Client_Type_ListResponse
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaCloudRecordingFilter';
+		return 'KalturaCouponListResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,20 +45,20 @@ class Kaltura_Client_Type_CloudRecordingFilter extends Kaltura_Client_Type_Exter
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->adapterData))
+		if(count($xml->objects))
 		{
-			if(empty($xml->adapterData))
-				$this->adapterData = array();
+			if(empty($xml->objects))
+				$this->objects = array();
 			else
-				$this->adapterData = Kaltura_Client_ParseUtils::unmarshalMap($xml->adapterData, "KalturaStringValue");
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaCoupon");
 		}
 	}
 	/**
-	 * Adapter Data
+	 * Coupons
 	 *
-	 * @var map
+	 * @var array of KalturaCoupon
 	 */
-	public $adapterData;
+	public $objects;
 
 
 }

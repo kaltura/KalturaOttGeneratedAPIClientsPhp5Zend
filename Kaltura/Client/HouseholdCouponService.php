@@ -32,7 +32,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_CouponService extends Kaltura_Client_ServiceBase
+class Kaltura_Client_HouseholdCouponService extends Kaltura_Client_ServiceBase
 {
 	function __construct(Kaltura_Client_Client $client = null)
 	{
@@ -40,40 +40,57 @@ class Kaltura_Client_CouponService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_Coupon
+	 * @return Kaltura_Client_Type_HouseholdCoupon
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function get($code)
+	function add(Kaltura_Client_Type_HouseholdCoupon $objectToAdd)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "code", $code);
-		$this->client->queueServiceActionCall("coupon", "get", "KalturaCoupon", $kparams);
+		$this->client->addParam($kparams, "objectToAdd", $objectToAdd->toParams());
+		$this->client->queueServiceActionCall("householdcoupon", "add", "KalturaHouseholdCoupon", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCoupon");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Coupon");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaHouseholdCoupon");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_HouseholdCoupon");
 		return $resultObject;
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_CouponListResponse
+	 * @return 
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function listAction(Kaltura_Client_Type_CouponFilter $filter)
+	function delete($id)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "filter", $filter->toParams());
-		$this->client->queueServiceActionCall("coupon", "list", "KalturaCouponListResponse", $kparams);
+		$this->client->addParam($kparams, "id", $id);
+		$this->client->queueServiceActionCall("householdcoupon", "delete", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCouponListResponse");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CouponListResponse");
+	}
+
+	/**
+	 * @return Kaltura_Client_Type_HouseholdCouponListResponse
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function listAction(Kaltura_Client_Type_HouseholdCouponFilter $filter = null)
+	{
+		$kparams = array();
+		if ($filter !== null)
+			$this->client->addParam($kparams, "filter", $filter->toParams());
+		$this->client->queueServiceActionCall("householdcoupon", "list", "KalturaHouseholdCouponListResponse", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaHouseholdCouponListResponse");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_HouseholdCouponListResponse");
 		return $resultObject;
 	}
 }

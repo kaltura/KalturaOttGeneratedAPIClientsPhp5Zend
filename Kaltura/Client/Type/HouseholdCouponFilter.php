@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_CloudRecordingFilter extends Kaltura_Client_Type_ExternalRecordingFilter
+class Kaltura_Client_Type_HouseholdCouponFilter extends Kaltura_Client_Type_CrudFilter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaCloudRecordingFilter';
+		return 'KalturaHouseholdCouponFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,20 +45,24 @@ class Kaltura_Client_Type_CloudRecordingFilter extends Kaltura_Client_Type_Exter
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->adapterData))
-		{
-			if(empty($xml->adapterData))
-				$this->adapterData = array();
-			else
-				$this->adapterData = Kaltura_Client_ParseUtils::unmarshalMap($xml->adapterData, "KalturaStringValue");
-		}
+		if(count($xml->businessModuleTypeEqual))
+			$this->businessModuleTypeEqual = (string)$xml->businessModuleTypeEqual;
+		if(count($xml->businessModuleIdEqual))
+			$this->businessModuleIdEqual = (string)$xml->businessModuleIdEqual;
 	}
 	/**
-	 * Adapter Data
+	 * Indicates which household coupons list to return by their business module type.
 	 *
-	 * @var map
+	 * @var Kaltura_Client_Enum_TransactionType
 	 */
-	public $adapterData;
+	public $businessModuleTypeEqual = null;
+
+	/**
+	 * Indicates which household coupons list to return by their business module ID.
+	 *
+	 * @var bigint
+	 */
+	public $businessModuleIdEqual = null;
 
 
 }

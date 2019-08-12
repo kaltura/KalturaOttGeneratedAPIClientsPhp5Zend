@@ -46,14 +46,19 @@ class Kaltura_Client_Type_CloudSeriesRecordingFilter extends Kaltura_Client_Type
 			return;
 		
 		if(count($xml->adapterData))
-			$this->adapterData = (string)$xml->adapterData;
+		{
+			if(empty($xml->adapterData))
+				$this->adapterData = array();
+			else
+				$this->adapterData = Kaltura_Client_ParseUtils::unmarshalMap($xml->adapterData, "KalturaStringValue");
+		}
 	}
 	/**
 	 * Adapter Data
 	 *
-	 * @var string
+	 * @var map
 	 */
-	public $adapterData = null;
+	public $adapterData;
 
 
 }
