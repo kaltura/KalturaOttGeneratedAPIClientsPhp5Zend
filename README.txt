@@ -1,2 +1,2 @@
 Kaltura PHP API Client Library for Zend framework.
-Compatible with Kaltura server version 5.2.6.13444 and above.
+Compatible with Kaltura server version 5.2.6.13454 and above.
