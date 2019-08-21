@@ -40,6 +40,41 @@ class Kaltura_Client_PermissionService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
+	 * @return Kaltura_Client_Type_Permission
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function add(Kaltura_Client_Type_Permission $permission)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "permission", $permission->toParams());
+		$this->client->queueServiceActionCall("permission", "add", "KalturaPermission", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaPermission");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Permission");
+		return $resultObject;
+	}
+
+	/**
+	 * @return 
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function delete($id)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "id", $id);
+		$this->client->queueServiceActionCall("permission", "delete", null, $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+	}
+
+	/**
 	 * @return string
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */

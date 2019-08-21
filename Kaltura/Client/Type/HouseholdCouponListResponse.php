@@ -31,19 +31,35 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_RuleConditionType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_HouseholdCouponListResponse extends Kaltura_Client_Type_ListResponse
 {
-	const ASSET = "ASSET";
-	const COUNTRY = "COUNTRY";
-	const CONCURRENCY = "CONCURRENCY";
-	const IP_RANGE = "IP_RANGE";
-	const BUSINESS_MODULE = "BUSINESS_MODULE";
-	const SEGMENTS = "SEGMENTS";
-	const DATE = "DATE";
-	const OR = "OR";
-	const HEADER = "HEADER";
-	const USER_SUBSCRIPTION = "USER_SUBSCRIPTION";
-	const ASSET_SUBSCRIPTION = "ASSET_SUBSCRIPTION";
-	const USER_ROLE = "USER_ROLE";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaHouseholdCouponListResponse';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->objects))
+		{
+			if(empty($xml->objects))
+				$this->objects = array();
+			else
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaHouseholdCoupon");
+		}
+	}
+	/**
+	 * A list of objects
+	 *
+	 * @var array of KalturaHouseholdCoupon
+	 */
+	public $objects;
+
+
 }
 

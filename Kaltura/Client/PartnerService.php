@@ -27,23 +27,33 @@
 // @ignore
 // ===================================================================================================
 
+
 /**
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_RuleConditionType extends Kaltura_Client_EnumBase
+class Kaltura_Client_PartnerService extends Kaltura_Client_ServiceBase
 {
-	const ASSET = "ASSET";
-	const COUNTRY = "COUNTRY";
-	const CONCURRENCY = "CONCURRENCY";
-	const IP_RANGE = "IP_RANGE";
-	const BUSINESS_MODULE = "BUSINESS_MODULE";
-	const SEGMENTS = "SEGMENTS";
-	const DATE = "DATE";
-	const OR = "OR";
-	const HEADER = "HEADER";
-	const USER_SUBSCRIPTION = "USER_SUBSCRIPTION";
-	const ASSET_SUBSCRIPTION = "ASSET_SUBSCRIPTION";
-	const USER_ROLE = "USER_ROLE";
-}
+	function __construct(Kaltura_Client_Client $client = null)
+	{
+		parent::__construct($client);
+	}
 
+	/**
+	 * @return Kaltura_Client_Type_LoginSession
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function externalLogin()
+	{
+		$kparams = array();
+		$this->client->queueServiceActionCall("partner", "externalLogin", "KalturaLoginSession", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLoginSession");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LoginSession");
+		return $resultObject;
+	}
+}
