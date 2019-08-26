@@ -653,18 +653,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_TopicNotificationService
-	 */
-	public $topicNotification = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_TopicNotificationMessageService
-	 */
-	public $topicNotificationMessage = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_TransactionService
 	 */
 	public $transaction = null;
@@ -738,8 +726,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:19-06-06');
-		$this->setApiVersion('5.2.0.16354');
+		$this->setClientTag('php5:19-08-26');
+		$this->setApiVersion('5.2.2.5493');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -844,8 +832,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->tag = new Kaltura_Client_TagService($this);
 		$this->timeShiftedTvPartnerSettings = new Kaltura_Client_TimeShiftedTvPartnerSettingsService($this);
 		$this->topic = new Kaltura_Client_TopicService($this);
-		$this->topicNotification = new Kaltura_Client_TopicNotificationService($this);
-		$this->topicNotificationMessage = new Kaltura_Client_TopicNotificationMessageService($this);
 		$this->transaction = new Kaltura_Client_TransactionService($this);
 		$this->transactionHistory = new Kaltura_Client_TransactionHistoryService($this);
 		$this->tvmRule = new Kaltura_Client_TvmRuleService($this);

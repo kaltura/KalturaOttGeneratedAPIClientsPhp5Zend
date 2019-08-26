@@ -167,8 +167,6 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 			else
 				$this->isCancellationBlocked = false;
 		}
-		if(count($xml->preSaleDate))
-			$this->preSaleDate = (string)$xml->preSaleDate;
 	}
 	/**
 	 * Subscription identifier
@@ -388,13 +386,6 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 	 * @var bool
 	 */
 	public $isCancellationBlocked = null;
-
-	/**
-	 * The Pre-Sale date the subscription is available for purchasing
-	 *
-	 * @var bigint
-	 */
-	public $preSaleDate = null;
 
 
 }

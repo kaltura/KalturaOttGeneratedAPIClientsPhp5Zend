@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_SmsDispatcher extends Kaltura_Client_Type_Dispatcher
+abstract class Kaltura_Client_Type_BusinessModuleRuleAction extends Kaltura_Client_Type_RuleAction
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaSmsDispatcher';
+		return 'KalturaBusinessModuleRuleAction';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
