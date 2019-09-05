@@ -49,8 +49,8 @@ class Kaltura_Client_Type_EventNotificationFilter extends Kaltura_Client_Type_Cr
 			$this->idEqual = (string)$xml->idEqual;
 		if(count($xml->objectIdEqual))
 			$this->objectIdEqual = (string)$xml->objectIdEqual;
-		if(count($xml->objectTypeEqual))
-			$this->objectTypeEqual = (string)$xml->objectTypeEqual;
+		if(count($xml->eventObjectTypeEqual))
+			$this->eventObjectTypeEqual = (string)$xml->eventObjectTypeEqual;
 	}
 	/**
 	 * Indicates which event notification to return by their event notifications Id.
@@ -71,7 +71,7 @@ class Kaltura_Client_Type_EventNotificationFilter extends Kaltura_Client_Type_Cr
 	 *
 	 * @var string
 	 */
-	public $objectTypeEqual = null;
+	public $eventObjectTypeEqual = null;
 
 
 }
