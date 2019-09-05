@@ -257,6 +257,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_EventNotificationService
+	 */
+	public $eventNotification = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_ExportTaskService
 	 */
 	public $exportTask = null;
@@ -750,8 +756,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:19-08-28');
-		$this->setApiVersion('5.2.6.13467');
+		$this->setClientTag('php5:19-09-05');
+		$this->setApiVersion('5.2.6.13530');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -790,6 +796,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->engagementAdapter = new Kaltura_Client_EngagementAdapterService($this);
 		$this->engagement = new Kaltura_Client_EngagementService($this);
 		$this->entitlement = new Kaltura_Client_EntitlementService($this);
+		$this->eventNotification = new Kaltura_Client_EventNotificationService($this);
 		$this->exportTask = new Kaltura_Client_ExportTaskService($this);
 		$this->externalChannelProfile = new Kaltura_Client_ExternalChannelProfileService($this);
 		$this->favorite = new Kaltura_Client_FavoriteService($this);

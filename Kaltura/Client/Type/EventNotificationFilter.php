@@ -31,12 +31,48 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_LinearChannelType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_EventNotificationFilter extends Kaltura_Client_Type_CrudFilter
 {
-	const UNKNOWN = "UNKNOWN";
-	const DTT = "DTT";
-	const OTT = "OTT";
-	const DTT_AND_OTT = "DTT_AND_OTT";
-	const VRM_EXPORT = "VRM_EXPORT";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaEventNotificationFilter';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->idEqual))
+			$this->idEqual = (string)$xml->idEqual;
+		if(count($xml->objectIdEqual))
+			$this->objectIdEqual = (string)$xml->objectIdEqual;
+		if(count($xml->objectTypeEqual))
+			$this->objectTypeEqual = (string)$xml->objectTypeEqual;
+	}
+	/**
+	 * Indicates which event notification to return by their event notifications Id.
+	 *
+	 * @var string
+	 */
+	public $idEqual = null;
+
+	/**
+	 * Indicates which objectId to return by their event notifications.
+	 *
+	 * @var bigint
+	 */
+	public $objectIdEqual = null;
+
+	/**
+	 * Indicates which objectType to return by their event notifications.
+	 *
+	 * @var string
+	 */
+	public $objectTypeEqual = null;
+
+
 }
 

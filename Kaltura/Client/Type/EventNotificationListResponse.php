@@ -31,12 +31,35 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_LinearChannelType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_EventNotificationListResponse extends Kaltura_Client_Type_ListResponse
 {
-	const UNKNOWN = "UNKNOWN";
-	const DTT = "DTT";
-	const OTT = "OTT";
-	const DTT_AND_OTT = "DTT_AND_OTT";
-	const VRM_EXPORT = "VRM_EXPORT";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaEventNotificationListResponse';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->objects))
+		{
+			if(empty($xml->objects))
+				$this->objects = array();
+			else
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaEventNotification");
+		}
+	}
+	/**
+	 * A list of objects
+	 *
+	 * @var array of KalturaEventNotification
+	 */
+	public $objects;
+
+
 }
 
