@@ -467,6 +467,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_PasswordPolicyService
+	 */
+	public $passwordPolicy = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_PaymentGatewayProfileService
 	 */
 	public $paymentGatewayProfile = null;
@@ -757,7 +763,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		parent::__construct($config);
 		
 		$this->setClientTag('php5:19-09-11');
-		$this->setApiVersion('5.2.6.5959');
+		$this->setApiVersion('5.2.6.5982');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -831,6 +837,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->parentalRule = new Kaltura_Client_ParentalRuleService($this);
 		$this->partnerConfiguration = new Kaltura_Client_PartnerConfigurationService($this);
 		$this->partner = new Kaltura_Client_PartnerService($this);
+		$this->passwordPolicy = new Kaltura_Client_PasswordPolicyService($this);
 		$this->paymentGatewayProfile = new Kaltura_Client_PaymentGatewayProfileService($this);
 		$this->paymentMethodProfile = new Kaltura_Client_PaymentMethodProfileService($this);
 		$this->permission = new Kaltura_Client_PermissionService($this);
