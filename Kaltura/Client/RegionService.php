@@ -40,41 +40,6 @@ class Kaltura_Client_RegionService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_Region
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function add(Kaltura_Client_Type_Region $region)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "region", $region->toParams());
-		$this->client->queueServiceActionCall("region", "add", "KalturaRegion", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaRegion");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Region");
-		return $resultObject;
-	}
-
-	/**
-	 * @return 
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function delete($id)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "id", $id);
-		$this->client->queueServiceActionCall("region", "delete", null, $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-	}
-
-	/**
 	 * @return Kaltura_Client_Type_RegionListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -90,26 +55,6 @@ class Kaltura_Client_RegionService extends Kaltura_Client_ServiceBase
 		$this->client->checkIfError($resultXmlObject->result);
 		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaRegionListResponse");
 		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_RegionListResponse");
-		return $resultObject;
-	}
-
-	/**
-	 * @return Kaltura_Client_Type_Region
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function update($id, Kaltura_Client_Type_Region $region)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "id", $id);
-		$this->client->addParam($kparams, "region", $region->toParams());
-		$this->client->queueServiceActionCall("region", "update", "KalturaRegion", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaRegion");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Region");
 		return $resultObject;
 	}
 }
