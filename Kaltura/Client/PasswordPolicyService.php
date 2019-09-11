@@ -32,7 +32,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_RegionService extends Kaltura_Client_ServiceBase
+class Kaltura_Client_PasswordPolicyService extends Kaltura_Client_ServiceBase
 {
 	function __construct(Kaltura_Client_Client $client = null)
 	{
@@ -40,21 +40,41 @@ class Kaltura_Client_RegionService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_Region
+	 * @return Kaltura_Client_Type_PasswordPolicy
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function add(Kaltura_Client_Type_Region $region)
+	function add(Kaltura_Client_Type_PasswordPolicy $objectToAdd)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "region", $region->toParams());
-		$this->client->queueServiceActionCall("region", "add", "KalturaRegion", $kparams);
+		$this->client->addParam($kparams, "objectToAdd", $objectToAdd->toParams());
+		$this->client->queueServiceActionCall("passwordpolicy", "add", "KalturaPasswordPolicy", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaRegion");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Region");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaPasswordPolicy");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_PasswordPolicy");
+		return $resultObject;
+	}
+
+	/**
+	 * @return Kaltura_Client_Type_PasswordPolicy
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function update($id, Kaltura_Client_Type_PasswordPolicy $objectToUpdate)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "id", $id);
+		$this->client->addParam($kparams, "objectToUpdate", $objectToUpdate->toParams());
+		$this->client->queueServiceActionCall("passwordpolicy", "update", "KalturaPasswordPolicy", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaPasswordPolicy");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_PasswordPolicy");
 		return $resultObject;
 	}
 
@@ -66,7 +86,7 @@ class Kaltura_Client_RegionService extends Kaltura_Client_ServiceBase
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "id", $id);
-		$this->client->queueServiceActionCall("region", "delete", null, $kparams);
+		$this->client->queueServiceActionCall("passwordpolicy", "delete", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
@@ -75,41 +95,21 @@ class Kaltura_Client_RegionService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_RegionListResponse
+	 * @return Kaltura_Client_Type_PasswordPolicyListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function listAction(Kaltura_Client_Type_RegionFilter $filter)
+	function listAction(Kaltura_Client_Type_PasswordPolicyFilter $filter)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "filter", $filter->toParams());
-		$this->client->queueServiceActionCall("region", "list", "KalturaRegionListResponse", $kparams);
+		$this->client->queueServiceActionCall("passwordpolicy", "list", "KalturaPasswordPolicyListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaRegionListResponse");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_RegionListResponse");
-		return $resultObject;
-	}
-
-	/**
-	 * @return Kaltura_Client_Type_Region
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function update($id, Kaltura_Client_Type_Region $region)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "id", $id);
-		$this->client->addParam($kparams, "region", $region->toParams());
-		$this->client->queueServiceActionCall("region", "update", "KalturaRegion", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaRegion");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Region");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaPasswordPolicyListResponse");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_PasswordPolicyListResponse");
 		return $resultObject;
 	}
 }

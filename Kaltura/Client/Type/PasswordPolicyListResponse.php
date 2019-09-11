@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_Region extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_PasswordPolicyListResponse extends Kaltura_Client_Type_ListResponse
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRegion';
+		return 'KalturaPasswordPolicyListResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,71 +45,20 @@ class Kaltura_Client_Type_Region extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (int)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->externalId))
-			$this->externalId = (string)$xml->externalId;
-		if(count($xml->isDefault))
+		if(count($xml->objects))
 		{
-			if(!empty($xml->isDefault) && ((int) $xml->isDefault === 1 || strtolower((string)$xml->isDefault) === 'true'))
-				$this->isDefault = true;
+			if(empty($xml->objects))
+				$this->objects = array();
 			else
-				$this->isDefault = false;
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaPasswordPolicy");
 		}
-		if(count($xml->linearChannels))
-		{
-			if(empty($xml->linearChannels))
-				$this->linearChannels = array();
-			else
-				$this->linearChannels = Kaltura_Client_ParseUtils::unmarshalArray($xml->linearChannels, "KalturaRegionalChannel");
-		}
-		if(count($xml->parentId))
-			$this->parentId = (string)$xml->parentId;
 	}
 	/**
-	 * Region identifier
+	 * A list of objects
 	 *
-	 * @var int
+	 * @var array of KalturaPasswordPolicy
 	 */
-	public $id = null;
-
-	/**
-	 * Region name
-	 *
-	 * @var string
-	 */
-	public $name = null;
-
-	/**
-	 * Region external identifier
-	 *
-	 * @var string
-	 */
-	public $externalId = null;
-
-	/**
-	 * Indicates whether this is the default region for the partner
-	 *
-	 * @var bool
-	 * @readonly
-	 */
-	public $isDefault = null;
-
-	/**
-	 * List of associated linear channels
-	 *
-	 * @var array of KalturaRegionalChannel
-	 */
-	public $linearChannels;
-
-	/**
-	 * Parent region ID
-	 *
-	 * @var bigint
-	 */
-	public $parentId = null;
+	public $objects;
 
 
 }

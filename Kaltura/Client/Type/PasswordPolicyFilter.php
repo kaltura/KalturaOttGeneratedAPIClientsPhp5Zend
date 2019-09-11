@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_Region extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_PasswordPolicyFilter extends Kaltura_Client_Type_CrudFilter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRegion';
+		return 'KalturaPasswordPolicyFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,71 +45,15 @@ class Kaltura_Client_Type_Region extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (int)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->externalId))
-			$this->externalId = (string)$xml->externalId;
-		if(count($xml->isDefault))
-		{
-			if(!empty($xml->isDefault) && ((int) $xml->isDefault === 1 || strtolower((string)$xml->isDefault) === 'true'))
-				$this->isDefault = true;
-			else
-				$this->isDefault = false;
-		}
-		if(count($xml->linearChannels))
-		{
-			if(empty($xml->linearChannels))
-				$this->linearChannels = array();
-			else
-				$this->linearChannels = Kaltura_Client_ParseUtils::unmarshalArray($xml->linearChannels, "KalturaRegionalChannel");
-		}
-		if(count($xml->parentId))
-			$this->parentId = (string)$xml->parentId;
+		if(count($xml->userRoleIdIn))
+			$this->userRoleIdIn = (string)$xml->userRoleIdIn;
 	}
 	/**
-	 * Region identifier
-	 *
-	 * @var int
-	 */
-	public $id = null;
-
-	/**
-	 * Region name
+	 * Comma separated list of role Ids.
 	 *
 	 * @var string
 	 */
-	public $name = null;
-
-	/**
-	 * Region external identifier
-	 *
-	 * @var string
-	 */
-	public $externalId = null;
-
-	/**
-	 * Indicates whether this is the default region for the partner
-	 *
-	 * @var bool
-	 * @readonly
-	 */
-	public $isDefault = null;
-
-	/**
-	 * List of associated linear channels
-	 *
-	 * @var array of KalturaRegionalChannel
-	 */
-	public $linearChannels;
-
-	/**
-	 * Parent region ID
-	 *
-	 * @var bigint
-	 */
-	public $parentId = null;
+	public $userRoleIdIn = null;
 
 
 }

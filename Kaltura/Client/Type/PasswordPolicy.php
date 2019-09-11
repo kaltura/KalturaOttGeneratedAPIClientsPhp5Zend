@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_Region extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_PasswordPolicy extends Kaltura_Client_Type_CrudObject
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRegion';
+		return 'KalturaPasswordPolicy';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -46,70 +46,74 @@ class Kaltura_Client_Type_Region extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->id))
-			$this->id = (int)$xml->id;
+			$this->id = (string)$xml->id;
 		if(count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->externalId))
-			$this->externalId = (string)$xml->externalId;
-		if(count($xml->isDefault))
+		if(count($xml->userRoleIds))
+			$this->userRoleIds = (string)$xml->userRoleIds;
+		if(count($xml->historyCount))
+			$this->historyCount = (int)$xml->historyCount;
+		if(count($xml->expiration))
+			$this->expiration = (int)$xml->expiration;
+		if(count($xml->complexities))
 		{
-			if(!empty($xml->isDefault) && ((int) $xml->isDefault === 1 || strtolower((string)$xml->isDefault) === 'true'))
-				$this->isDefault = true;
+			if(empty($xml->complexities))
+				$this->complexities = array();
 			else
-				$this->isDefault = false;
+				$this->complexities = Kaltura_Client_ParseUtils::unmarshalArray($xml->complexities, "KalturaRegex");
 		}
-		if(count($xml->linearChannels))
-		{
-			if(empty($xml->linearChannels))
-				$this->linearChannels = array();
-			else
-				$this->linearChannels = Kaltura_Client_ParseUtils::unmarshalArray($xml->linearChannels, "KalturaRegionalChannel");
-		}
-		if(count($xml->parentId))
-			$this->parentId = (string)$xml->parentId;
+		if(count($xml->lockoutFailuresCount))
+			$this->lockoutFailuresCount = (int)$xml->lockoutFailuresCount;
 	}
 	/**
-	 * Region identifier
+	 * id
 	 *
-	 * @var int
+	 * @var bigint
+	 * @readonly
 	 */
 	public $id = null;
 
 	/**
-	 * Region name
+	 * Name
 	 *
 	 * @var string
 	 */
 	public $name = null;
 
 	/**
-	 * Region external identifier
+	 * Comma separated UserRole Ids list which the policy is applied on
 	 *
 	 * @var string
 	 */
-	public $externalId = null;
+	public $userRoleIds = null;
 
 	/**
-	 * Indicates whether this is the default region for the partner
+	 * The number of passwords that should be remembered for each user so that they cannot be reused.
 	 *
-	 * @var bool
-	 * @readonly
+	 * @var int
 	 */
-	public $isDefault = null;
+	public $historyCount = null;
 
 	/**
-	 * List of associated linear channels
+	 * When should the password expire (will represent time as days).
 	 *
-	 * @var array of KalturaRegionalChannel
+	 * @var int
 	 */
-	public $linearChannels;
+	public $expiration = null;
 
 	/**
-	 * Parent region ID
+	 * array of  KalturaRegex
 	 *
-	 * @var bigint
+	 * @var array of KalturaRegex
 	 */
-	public $parentId = null;
+	public $complexities;
+
+	/**
+	 * the number of passwords failures before the account is locked.
+	 *
+	 * @var int
+	 */
+	public $lockoutFailuresCount = null;
 
 
 }
