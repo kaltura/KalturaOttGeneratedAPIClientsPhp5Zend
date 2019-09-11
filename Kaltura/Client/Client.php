@@ -257,6 +257,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_EventNotificationService
+	 */
+	public $eventNotification = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_ExportTaskService
 	 */
 	public $exportTask = null;
@@ -290,6 +296,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	 * @var Kaltura_Client_HouseholdService
 	 */
 	public $household = null;
+
+	/**
+	 * 
+	 * @var Kaltura_Client_HouseholdCouponService
+	 */
+	public $householdCoupon = null;
 
 	/**
 	 * 
@@ -446,6 +458,18 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	 * @var Kaltura_Client_PartnerConfigurationService
 	 */
 	public $partnerConfiguration = null;
+
+	/**
+	 * 
+	 * @var Kaltura_Client_PartnerService
+	 */
+	public $partner = null;
+
+	/**
+	 * 
+	 * @var Kaltura_Client_PasswordPolicyService
+	 */
+	public $passwordPolicy = null;
 
 	/**
 	 * 
@@ -738,8 +762,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:19-06-06');
-		$this->setApiVersion('5.2.0.16354');
+		$this->setClientTag('php5:19-09-11');
+		$this->setApiVersion('5.2.6.13605');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -778,12 +802,14 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->engagementAdapter = new Kaltura_Client_EngagementAdapterService($this);
 		$this->engagement = new Kaltura_Client_EngagementService($this);
 		$this->entitlement = new Kaltura_Client_EntitlementService($this);
+		$this->eventNotification = new Kaltura_Client_EventNotificationService($this);
 		$this->exportTask = new Kaltura_Client_ExportTaskService($this);
 		$this->externalChannelProfile = new Kaltura_Client_ExternalChannelProfileService($this);
 		$this->favorite = new Kaltura_Client_FavoriteService($this);
 		$this->followTvSeries = new Kaltura_Client_FollowTvSeriesService($this);
 		$this->homeNetwork = new Kaltura_Client_HomeNetworkService($this);
 		$this->household = new Kaltura_Client_HouseholdService($this);
+		$this->householdCoupon = new Kaltura_Client_HouseholdCouponService($this);
 		$this->householdDevice = new Kaltura_Client_HouseholdDeviceService($this);
 		$this->householdLimitations = new Kaltura_Client_HouseholdLimitationsService($this);
 		$this->householdPaymentGateway = new Kaltura_Client_HouseholdPaymentGatewayService($this);
@@ -810,6 +836,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->ottUser = new Kaltura_Client_OttUserService($this);
 		$this->parentalRule = new Kaltura_Client_ParentalRuleService($this);
 		$this->partnerConfiguration = new Kaltura_Client_PartnerConfigurationService($this);
+		$this->partner = new Kaltura_Client_PartnerService($this);
+		$this->passwordPolicy = new Kaltura_Client_PasswordPolicyService($this);
 		$this->paymentGatewayProfile = new Kaltura_Client_PaymentGatewayProfileService($this);
 		$this->paymentMethodProfile = new Kaltura_Client_PaymentMethodProfileService($this);
 		$this->permission = new Kaltura_Client_PermissionService($this);

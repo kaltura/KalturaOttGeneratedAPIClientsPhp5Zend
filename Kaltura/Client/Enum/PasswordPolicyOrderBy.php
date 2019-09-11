@@ -31,19 +31,8 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_RuleConditionType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Enum_PasswordPolicyOrderBy extends Kaltura_Client_EnumBase
 {
-	const ASSET = "ASSET";
-	const COUNTRY = "COUNTRY";
-	const CONCURRENCY = "CONCURRENCY";
-	const IP_RANGE = "IP_RANGE";
-	const BUSINESS_MODULE = "BUSINESS_MODULE";
-	const SEGMENTS = "SEGMENTS";
-	const DATE = "DATE";
-	const OR = "OR";
-	const HEADER = "HEADER";
-	const USER_SUBSCRIPTION = "USER_SUBSCRIPTION";
-	const ASSET_SUBSCRIPTION = "ASSET_SUBSCRIPTION";
-	const USER_ROLE = "USER_ROLE";
+	const NONE = "NONE";
 }
 

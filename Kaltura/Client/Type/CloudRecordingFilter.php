@@ -31,19 +31,35 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_RuleConditionType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_CloudRecordingFilter extends Kaltura_Client_Type_ExternalRecordingFilter
 {
-	const ASSET = "ASSET";
-	const COUNTRY = "COUNTRY";
-	const CONCURRENCY = "CONCURRENCY";
-	const IP_RANGE = "IP_RANGE";
-	const BUSINESS_MODULE = "BUSINESS_MODULE";
-	const SEGMENTS = "SEGMENTS";
-	const DATE = "DATE";
-	const OR = "OR";
-	const HEADER = "HEADER";
-	const USER_SUBSCRIPTION = "USER_SUBSCRIPTION";
-	const ASSET_SUBSCRIPTION = "ASSET_SUBSCRIPTION";
-	const USER_ROLE = "USER_ROLE";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaCloudRecordingFilter';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->adapterData))
+		{
+			if(empty($xml->adapterData))
+				$this->adapterData = array();
+			else
+				$this->adapterData = Kaltura_Client_ParseUtils::unmarshalMap($xml->adapterData, "KalturaStringValue");
+		}
+	}
+	/**
+	 * Adapter Data
+	 *
+	 * @var map
+	 */
+	public $adapterData;
+
+
 }
 

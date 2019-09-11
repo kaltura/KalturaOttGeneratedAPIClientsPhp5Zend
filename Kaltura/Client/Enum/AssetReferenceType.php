@@ -36,5 +36,6 @@ class Kaltura_Client_Enum_AssetReferenceType extends Kaltura_Client_EnumBase
 	const MEDIA = "media";
 	const EPG_INTERNAL = "epg_internal";
 	const EPG_EXTERNAL = "epg_external";
+	const NPVR = "npvr";
 }
 

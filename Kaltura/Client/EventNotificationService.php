@@ -32,7 +32,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_CouponService extends Kaltura_Client_ServiceBase
+class Kaltura_Client_EventNotificationService extends Kaltura_Client_ServiceBase
 {
 	function __construct(Kaltura_Client_Client $client = null)
 	{
@@ -40,40 +40,41 @@ class Kaltura_Client_CouponService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_Coupon
+	 * @return Kaltura_Client_Type_EventNotification
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function get($code)
+	function update($id, Kaltura_Client_Type_EventNotification $objectToUpdate)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "code", $code);
-		$this->client->queueServiceActionCall("coupon", "get", "KalturaCoupon", $kparams);
+		$this->client->addParam($kparams, "id", $id);
+		$this->client->addParam($kparams, "objectToUpdate", $objectToUpdate->toParams());
+		$this->client->queueServiceActionCall("eventnotification", "update", "KalturaEventNotification", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCoupon");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Coupon");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaEventNotification");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_EventNotification");
 		return $resultObject;
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_CouponListResponse
+	 * @return Kaltura_Client_Type_EventNotificationListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function listAction(Kaltura_Client_Type_CouponFilter $filter)
+	function listAction(Kaltura_Client_Type_EventNotificationFilter $filter)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "filter", $filter->toParams());
-		$this->client->queueServiceActionCall("coupon", "list", "KalturaCouponListResponse", $kparams);
+		$this->client->queueServiceActionCall("eventnotification", "list", "KalturaEventNotificationListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCouponListResponse");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CouponListResponse");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaEventNotificationListResponse");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_EventNotificationListResponse");
 		return $resultObject;
 	}
 }

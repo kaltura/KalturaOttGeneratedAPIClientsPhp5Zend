@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_GroupPermission extends Kaltura_Client_Type_Permission
+class Kaltura_Client_Type_PasswordPolicy extends Kaltura_Client_Type_CrudObject
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaGroupPermission';
+		return 'KalturaPasswordPolicy';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,16 +45,75 @@ class Kaltura_Client_Type_GroupPermission extends Kaltura_Client_Type_Permission
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->group))
-			$this->group = (string)$xml->group;
+		if(count($xml->id))
+			$this->id = (string)$xml->id;
+		if(count($xml->name))
+			$this->name = (string)$xml->name;
+		if(count($xml->userRoleIds))
+			$this->userRoleIds = (string)$xml->userRoleIds;
+		if(count($xml->historyCount))
+			$this->historyCount = (int)$xml->historyCount;
+		if(count($xml->expiration))
+			$this->expiration = (int)$xml->expiration;
+		if(count($xml->complexities))
+		{
+			if(empty($xml->complexities))
+				$this->complexities = array();
+			else
+				$this->complexities = Kaltura_Client_ParseUtils::unmarshalArray($xml->complexities, "KalturaRegex");
+		}
+		if(count($xml->lockoutFailuresCount))
+			$this->lockoutFailuresCount = (int)$xml->lockoutFailuresCount;
 	}
 	/**
-	 * Permission identifier
+	 * id
 	 *
-	 * @var string
+	 * @var bigint
 	 * @readonly
 	 */
-	public $group = null;
+	public $id = null;
+
+	/**
+	 * Name
+	 *
+	 * @var string
+	 */
+	public $name = null;
+
+	/**
+	 * Comma separated UserRole Ids list which the policy is applied on
+	 *
+	 * @var string
+	 */
+	public $userRoleIds = null;
+
+	/**
+	 * The number of passwords that should be remembered for each user so that they cannot be reused.
+	 *
+	 * @var int
+	 */
+	public $historyCount = null;
+
+	/**
+	 * When should the password expire (will represent time as days).
+	 *
+	 * @var int
+	 */
+	public $expiration = null;
+
+	/**
+	 * array of  KalturaRegex
+	 *
+	 * @var array of KalturaRegex
+	 */
+	public $complexities;
+
+	/**
+	 * the number of passwords failures before the account is locked.
+	 *
+	 * @var int
+	 */
+	public $lockoutFailuresCount = null;
 
 
 }

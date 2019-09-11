@@ -31,19 +31,21 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_RuleConditionType extends Kaltura_Client_EnumBase
+abstract class Kaltura_Client_Type_CrudFilter extends Kaltura_Client_Type_Filter
 {
-	const ASSET = "ASSET";
-	const COUNTRY = "COUNTRY";
-	const CONCURRENCY = "CONCURRENCY";
-	const IP_RANGE = "IP_RANGE";
-	const BUSINESS_MODULE = "BUSINESS_MODULE";
-	const SEGMENTS = "SEGMENTS";
-	const DATE = "DATE";
-	const OR = "OR";
-	const HEADER = "HEADER";
-	const USER_SUBSCRIPTION = "USER_SUBSCRIPTION";
-	const ASSET_SUBSCRIPTION = "ASSET_SUBSCRIPTION";
-	const USER_ROLE = "USER_ROLE";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaCrudFilter';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+	}
+
 }
 

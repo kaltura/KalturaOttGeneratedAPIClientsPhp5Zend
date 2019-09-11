@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_ApplyDiscountModuleAction extends Kaltura_Client_Type_RuleAction
+class Kaltura_Client_Type_ApplyDiscountModuleAction extends Kaltura_Client_Type_BusinessModuleRuleAction
 {
 	public function getKalturaObjectType()
 	{
