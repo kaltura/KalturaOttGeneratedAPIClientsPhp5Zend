@@ -64,6 +64,7 @@ class Kaltura_Client_TypeMap
 		'KalturaAssetFilePpvFilter' => 'Kaltura_Client_Type_AssetFilePpvFilter',
 		'KalturaAssetFilePpvListResponse' => 'Kaltura_Client_Type_AssetFilePpvListResponse',
 		'KalturaAssetFilter' => 'Kaltura_Client_Type_AssetFilter',
+		'KalturaAssetFirstImagePerRatioFilter' => 'Kaltura_Client_Type_AssetFirstImagePerRatioFilter',
 		'KalturaAssetGroupBy' => 'Kaltura_Client_Type_AssetGroupBy',
 		'KalturaAssetHistory' => 'Kaltura_Client_Type_AssetHistory',
 		'KalturaAssetHistoryFilter' => 'Kaltura_Client_Type_AssetHistoryFilter',
