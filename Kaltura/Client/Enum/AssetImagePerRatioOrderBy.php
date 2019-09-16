@@ -31,21 +31,8 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_AssetFirstImagePerRatioFilter extends Kaltura_Client_Type_RelatedObjectFilter
+class Kaltura_Client_Enum_AssetImagePerRatioOrderBy extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaAssetFirstImagePerRatioFilter';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-	}
-
+	const NONE = "NONE";
 }
 
