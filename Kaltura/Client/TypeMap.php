@@ -426,7 +426,7 @@ class Kaltura_Client_TypeMap
 		'KalturaRecordingContextFilter' => 'Kaltura_Client_Type_RecordingContextFilter',
 		'KalturaRecordingFilter' => 'Kaltura_Client_Type_RecordingFilter',
 		'KalturaRecordingListResponse' => 'Kaltura_Client_Type_RecordingListResponse',
-		'KalturaRegex' => 'Kaltura_Client_Type_Regex',
+		'KalturaRegexExpression' => 'Kaltura_Client_Type_RegexExpression',
 		'KalturaRegion' => 'Kaltura_Client_Type_Region',
 		'KalturaRegionFilter' => 'Kaltura_Client_Type_RegionFilter',
 		'KalturaRegionListResponse' => 'Kaltura_Client_Type_RegionListResponse',

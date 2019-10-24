@@ -60,7 +60,7 @@ class Kaltura_Client_Type_PasswordPolicy extends Kaltura_Client_Type_CrudObject
 			if(empty($xml->complexities))
 				$this->complexities = array();
 			else
-				$this->complexities = Kaltura_Client_ParseUtils::unmarshalArray($xml->complexities, "KalturaRegex");
+				$this->complexities = Kaltura_Client_ParseUtils::unmarshalArray($xml->complexities, "KalturaRegexExpression");
 		}
 		if(count($xml->lockoutFailuresCount))
 			$this->lockoutFailuresCount = (int)$xml->lockoutFailuresCount;
@@ -104,7 +104,7 @@ class Kaltura_Client_Type_PasswordPolicy extends Kaltura_Client_Type_CrudObject
 	/**
 	 * array of  KalturaRegex
 	 *
-	 * @var array of KalturaRegex
+	 * @var array of KalturaRegexExpression
 	 */
 	public $complexities;
 
