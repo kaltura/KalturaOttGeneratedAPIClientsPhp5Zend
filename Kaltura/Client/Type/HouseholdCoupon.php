@@ -47,6 +47,8 @@ class Kaltura_Client_Type_HouseholdCoupon extends Kaltura_Client_Type_CrudObject
 		
 		if(count($xml->code))
 			$this->code = (string)$xml->code;
+		if(count($xml->lastUsageDate))
+			$this->lastUsageDate = (string)$xml->lastUsageDate;
 	}
 	/**
 	 * Coupon code
@@ -54,6 +56,13 @@ class Kaltura_Client_Type_HouseholdCoupon extends Kaltura_Client_Type_CrudObject
 	 * @var string
 	 */
 	public $code = null;
+
+	/**
+	 * Last Usage Date
+	 *
+	 * @var bigint
+	 */
+	public $lastUsageDate = null;
 
 
 }

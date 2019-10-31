@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_HouseholdCouponFilter extends Kaltura_Client_Type_CrudFilter
+class Kaltura_Client_Type_AssetOrderSegmentAction extends Kaltura_Client_Type_BaseSegmentAction
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaHouseholdCouponFilter';
+		return 'KalturaAssetOrderSegmentAction';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,42 +45,29 @@ class Kaltura_Client_Type_HouseholdCouponFilter extends Kaltura_Client_Type_Crud
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->businessModuleTypeEqual))
-			$this->businessModuleTypeEqual = (string)$xml->businessModuleTypeEqual;
-		if(count($xml->businessModuleIdEqual))
-			$this->businessModuleIdEqual = (string)$xml->businessModuleIdEqual;
-		if(count($xml->couponCode))
-			$this->couponCode = (string)$xml->couponCode;
-		if(count($xml->status))
-			$this->status = (string)$xml->status;
+		if(count($xml->name))
+			$this->name = (string)$xml->name;
+		if(count($xml->values))
+		{
+			if(empty($xml->values))
+				$this->values = array();
+			else
+				$this->values = Kaltura_Client_ParseUtils::unmarshalArray($xml->values, "KalturaStringValue");
+		}
 	}
 	/**
-	 * Indicates which household coupons list to return by their business module type.
-	 *
-	 * @var Kaltura_Client_Enum_TransactionType
-	 */
-	public $businessModuleTypeEqual = null;
-
-	/**
-	 * Indicates which household coupons list to return by their business module ID.
-	 *
-	 * @var bigint
-	 */
-	public $businessModuleIdEqual = null;
-
-	/**
-	 * Allow clients to inquiry if a specific coupon is part of an HH’s wallet or not
+	 * Action name
 	 *
 	 * @var string
 	 */
-	public $couponCode = null;
+	public $name = null;
 
 	/**
-	 * Allow clients to filter out coupons which are valid/invalid
+	 * Action values
 	 *
-	 * @var Kaltura_Client_Enum_CouponStatus
+	 * @var array of KalturaStringValue
 	 */
-	public $status = null;
+	public $values;
 
 
 }

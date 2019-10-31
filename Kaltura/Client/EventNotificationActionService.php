@@ -27,61 +27,33 @@
 // @ignore
 // ===================================================================================================
 
+
 /**
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_HouseholdCouponFilter extends Kaltura_Client_Type_CrudFilter
+class Kaltura_Client_EventNotificationActionService extends Kaltura_Client_ServiceBase
 {
-	public function getKalturaObjectType()
+	function __construct(Kaltura_Client_Client $client = null)
 	{
-		return 'KalturaHouseholdCouponFilter';
+		parent::__construct($client);
 	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
+
+	/**
+	 * @return bool
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function dispatch(Kaltura_Client_Type_EventNotificationScope $scope)
 	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->businessModuleTypeEqual))
-			$this->businessModuleTypeEqual = (string)$xml->businessModuleTypeEqual;
-		if(count($xml->businessModuleIdEqual))
-			$this->businessModuleIdEqual = (string)$xml->businessModuleIdEqual;
-		if(count($xml->couponCode))
-			$this->couponCode = (string)$xml->couponCode;
-		if(count($xml->status))
-			$this->status = (string)$xml->status;
+		$kparams = array();
+		$this->client->addParam($kparams, "scope", $scope->toParams());
+		$this->client->queueServiceActionCall("eventnotificationaction", "dispatch", null, $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
+		return $resultObject;
 	}
-	/**
-	 * Indicates which household coupons list to return by their business module type.
-	 *
-	 * @var Kaltura_Client_Enum_TransactionType
-	 */
-	public $businessModuleTypeEqual = null;
-
-	/**
-	 * Indicates which household coupons list to return by their business module ID.
-	 *
-	 * @var bigint
-	 */
-	public $businessModuleIdEqual = null;
-
-	/**
-	 * Allow clients to inquiry if a specific coupon is part of an HH’s wallet or not
-	 *
-	 * @var string
-	 */
-	public $couponCode = null;
-
-	/**
-	 * Allow clients to filter out coupons which are valid/invalid
-	 *
-	 * @var Kaltura_Client_Enum_CouponStatus
-	 */
-	public $status = null;
-
-
 }
-

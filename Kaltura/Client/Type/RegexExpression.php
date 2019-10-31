@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_HouseholdCouponFilter extends Kaltura_Client_Type_CrudFilter
+class Kaltura_Client_Type_RegexExpression extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaHouseholdCouponFilter';
+		return 'KalturaRegexExpression';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,42 +45,24 @@ class Kaltura_Client_Type_HouseholdCouponFilter extends Kaltura_Client_Type_Crud
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->businessModuleTypeEqual))
-			$this->businessModuleTypeEqual = (string)$xml->businessModuleTypeEqual;
-		if(count($xml->businessModuleIdEqual))
-			$this->businessModuleIdEqual = (string)$xml->businessModuleIdEqual;
-		if(count($xml->couponCode))
-			$this->couponCode = (string)$xml->couponCode;
-		if(count($xml->status))
-			$this->status = (string)$xml->status;
+		if(count($xml->expression))
+			$this->expression = (string)$xml->expression;
+		if(count($xml->description))
+			$this->description = (string)$xml->description;
 	}
 	/**
-	 * Indicates which household coupons list to return by their business module type.
-	 *
-	 * @var Kaltura_Client_Enum_TransactionType
-	 */
-	public $businessModuleTypeEqual = null;
-
-	/**
-	 * Indicates which household coupons list to return by their business module ID.
-	 *
-	 * @var bigint
-	 */
-	public $businessModuleIdEqual = null;
-
-	/**
-	 * Allow clients to inquiry if a specific coupon is part of an HH’s wallet or not
+	 * regex expression
 	 *
 	 * @var string
 	 */
-	public $couponCode = null;
+	public $expression = null;
 
 	/**
-	 * Allow clients to filter out coupons which are valid/invalid
+	 * description
 	 *
-	 * @var Kaltura_Client_Enum_CouponStatus
+	 * @var string
 	 */
-	public $status = null;
+	public $description = null;
 
 
 }

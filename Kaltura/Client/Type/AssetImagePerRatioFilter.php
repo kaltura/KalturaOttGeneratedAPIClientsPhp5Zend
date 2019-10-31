@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_Regex extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_AssetImagePerRatioFilter extends Kaltura_Client_Type_RelatedObjectFilter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRegex';
+		return 'KalturaAssetImagePerRatioFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,25 +45,7 @@ class Kaltura_Client_Type_Regex extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->expression))
-			$this->expression = (string)$xml->expression;
-		if(count($xml->description))
-			$this->description = (string)$xml->description;
 	}
-	/**
-	 * regex expression
-	 *
-	 * @var string
-	 */
-	public $expression = null;
-
-	/**
-	 * description
-	 *
-	 * @var string
-	 */
-	public $description = null;
-
 
 }
 

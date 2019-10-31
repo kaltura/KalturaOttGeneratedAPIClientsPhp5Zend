@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_HouseholdCouponFilter extends Kaltura_Client_Type_CrudFilter
+class Kaltura_Client_Type_ConcurrencyViolation extends Kaltura_Client_Type_EventObject
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaHouseholdCouponFilter';
+		return 'KalturaConcurrencyViolation';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,42 +45,60 @@ class Kaltura_Client_Type_HouseholdCouponFilter extends Kaltura_Client_Type_Crud
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->businessModuleTypeEqual))
-			$this->businessModuleTypeEqual = (string)$xml->businessModuleTypeEqual;
-		if(count($xml->businessModuleIdEqual))
-			$this->businessModuleIdEqual = (string)$xml->businessModuleIdEqual;
-		if(count($xml->couponCode))
-			$this->couponCode = (string)$xml->couponCode;
-		if(count($xml->status))
-			$this->status = (string)$xml->status;
+		if(count($xml->timestamp))
+			$this->timestamp = (string)$xml->timestamp;
+		if(count($xml->udid))
+			$this->udid = (string)$xml->udid;
+		if(count($xml->assetId))
+			$this->assetId = (string)$xml->assetId;
+		if(count($xml->violationRule))
+			$this->violationRule = (string)$xml->violationRule;
+		if(count($xml->householdId))
+			$this->householdId = (string)$xml->householdId;
+		if(count($xml->userId))
+			$this->userId = (string)$xml->userId;
 	}
 	/**
-	 * Indicates which household coupons list to return by their business module type.
-	 *
-	 * @var Kaltura_Client_Enum_TransactionType
-	 */
-	public $businessModuleTypeEqual = null;
-
-	/**
-	 * Indicates which household coupons list to return by their business module ID.
+	 * Timestamp
 	 *
 	 * @var bigint
 	 */
-	public $businessModuleIdEqual = null;
+	public $timestamp = null;
 
 	/**
-	 * Allow clients to inquiry if a specific coupon is part of an HH’s wallet or not
+	 * UDID
 	 *
 	 * @var string
 	 */
-	public $couponCode = null;
+	public $udid = null;
 
 	/**
-	 * Allow clients to filter out coupons which are valid/invalid
+	 * Asset Id
 	 *
-	 * @var Kaltura_Client_Enum_CouponStatus
+	 * @var string
 	 */
-	public $status = null;
+	public $assetId = null;
+
+	/**
+	 * Violation Rule
+	 *
+	 * @var string
+	 */
+	public $violationRule = null;
+
+	/**
+	 * Household Id
+	 *
+	 * @var string
+	 */
+	public $householdId = null;
+
+	/**
+	 * User Id
+	 *
+	 * @var string
+	 */
+	public $userId = null;
 
 
 }
