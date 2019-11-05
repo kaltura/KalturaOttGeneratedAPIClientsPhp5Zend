@@ -47,6 +47,8 @@ class Kaltura_Client_Type_PpvFilter extends Kaltura_Client_Type_Filter
 		
 		if(count($xml->idIn))
 			$this->idIn = (string)$xml->idIn;
+		if(count($xml->couponGroupIdEqual))
+			$this->couponGroupIdEqual = (int)$xml->couponGroupIdEqual;
 	}
 	/**
 	 * Comma separated identifiers
@@ -54,6 +56,13 @@ class Kaltura_Client_Type_PpvFilter extends Kaltura_Client_Type_Filter
 	 * @var string
 	 */
 	public $idIn = null;
+
+	/**
+	 * couponGroupIdEqual
+	 *
+	 * @var int
+	 */
+	public $couponGroupIdEqual = null;
 
 
 }

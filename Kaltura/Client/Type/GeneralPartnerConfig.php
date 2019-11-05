@@ -65,6 +65,15 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 			$this->dateFormat = (string)$xml->dateFormat;
 		if(count($xml->householdLimitationModule))
 			$this->householdLimitationModule = (int)$xml->householdLimitationModule;
+		if(count($xml->enableRegionFiltering))
+		{
+			if(!empty($xml->enableRegionFiltering) && ((int) $xml->enableRegionFiltering === 1 || strtolower((string)$xml->enableRegionFiltering) === 'true'))
+				$this->enableRegionFiltering = true;
+			else
+				$this->enableRegionFiltering = false;
+		}
+		if(count($xml->defaultRegion))
+			$this->defaultRegion = (int)$xml->defaultRegion;
 	}
 	/**
 	 * Partner name
@@ -135,6 +144,20 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 	 * @var int
 	 */
 	public $householdLimitationModule = null;
+
+	/**
+	 * Enable Region Filtering
+	 *
+	 * @var bool
+	 */
+	public $enableRegionFiltering = null;
+
+	/**
+	 * Default Region
+	 *
+	 * @var int
+	 */
+	public $defaultRegion = null;
 
 
 }

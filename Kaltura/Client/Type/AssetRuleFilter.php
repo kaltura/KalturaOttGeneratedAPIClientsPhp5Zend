@@ -51,6 +51,8 @@ class Kaltura_Client_Type_AssetRuleFilter extends Kaltura_Client_Type_Filter
 			$this->assetApplied = Kaltura_Client_ParseUtils::unmarshalObject($xml->assetApplied, "KalturaSlimAsset");
 		if(count($xml->actionsContainType))
 			$this->actionsContainType = (string)$xml->actionsContainType;
+		if(count($xml->assetRuleIdEqual))
+			$this->assetRuleIdEqual = (string)$xml->assetRuleIdEqual;
 	}
 	/**
 	 * Indicates which asset rule list to return by it KalturaRuleConditionType.
@@ -73,6 +75,13 @@ class Kaltura_Client_Type_AssetRuleFilter extends Kaltura_Client_Type_Filter
 	 * @var Kaltura_Client_Enum_RuleActionType
 	 */
 	public $actionsContainType = null;
+
+	/**
+	 * Asset rule id
+	 *
+	 * @var bigint
+	 */
+	public $assetRuleIdEqual = null;
 
 
 }

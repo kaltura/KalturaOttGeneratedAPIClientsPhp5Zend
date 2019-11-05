@@ -112,6 +112,8 @@ abstract class Kaltura_Client_Type_Asset extends Kaltura_Client_ObjectBase
 			$this->updateDate = (string)$xml->updateDate;
 		if(count($xml->externalId))
 			$this->externalId = (string)$xml->externalId;
+		if(count($xml->indexStatus))
+			$this->indexStatus = (string)$xml->indexStatus;
 	}
 	/**
 	 * Unique identifier for the asset
@@ -233,6 +235,14 @@ abstract class Kaltura_Client_Type_Asset extends Kaltura_Client_ObjectBase
 	 * @var string
 	 */
 	public $externalId = null;
+
+	/**
+	 * The media asset index status
+	 *
+	 * @var Kaltura_Client_Enum_AssetIndexStatus
+	 * @readonly
+	 */
+	public $indexStatus = null;
 
 
 }
