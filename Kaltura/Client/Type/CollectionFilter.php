@@ -49,6 +49,8 @@ class Kaltura_Client_Type_CollectionFilter extends Kaltura_Client_Type_Filter
 			$this->collectionIdIn = (string)$xml->collectionIdIn;
 		if(count($xml->mediaFileIdEqual))
 			$this->mediaFileIdEqual = (int)$xml->mediaFileIdEqual;
+		if(count($xml->couponGroupIdEqual))
+			$this->couponGroupIdEqual = (int)$xml->couponGroupIdEqual;
 	}
 	/**
 	 * Comma separated collection IDs
@@ -63,6 +65,13 @@ class Kaltura_Client_Type_CollectionFilter extends Kaltura_Client_Type_Filter
 	 * @var int
 	 */
 	public $mediaFileIdEqual = null;
+
+	/**
+	 * couponGroupIdEqual
+	 *
+	 * @var int
+	 */
+	public $couponGroupIdEqual = null;
 
 
 }

@@ -65,6 +65,8 @@ class Kaltura_Client_Type_Region extends Kaltura_Client_ObjectBase
 			else
 				$this->linearChannels = Kaltura_Client_ParseUtils::unmarshalArray($xml->linearChannels, "KalturaRegionalChannel");
 		}
+		if(count($xml->parentId))
+			$this->parentId = (string)$xml->parentId;
 	}
 	/**
 	 * Region identifier
@@ -91,6 +93,7 @@ class Kaltura_Client_Type_Region extends Kaltura_Client_ObjectBase
 	 * Indicates whether this is the default region for the partner
 	 *
 	 * @var bool
+	 * @readonly
 	 */
 	public $isDefault = null;
 
@@ -100,6 +103,13 @@ class Kaltura_Client_Type_Region extends Kaltura_Client_ObjectBase
 	 * @var array of KalturaRegionalChannel
 	 */
 	public $linearChannels;
+
+	/**
+	 * Parent region ID
+	 *
+	 * @var bigint
+	 */
+	public $parentId = null;
 
 
 }

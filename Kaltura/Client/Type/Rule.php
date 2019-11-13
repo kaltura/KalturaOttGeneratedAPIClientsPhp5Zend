@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-abstract class Kaltura_Client_Type_Rule extends Kaltura_Client_ObjectBase
+abstract class Kaltura_Client_Type_Rule extends Kaltura_Client_Type_OTTObjectSupportNullable
 {
 	public function getKalturaObjectType()
 	{
