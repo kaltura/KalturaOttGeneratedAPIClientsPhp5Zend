@@ -164,12 +164,13 @@ class Kaltura_Client_AssetService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_PlaybackContext
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function getPlaybackContext($assetId, $assetType, Kaltura_Client_Type_PlaybackContextOptions $contextDataParams)
+	function getPlaybackContext($assetId, $assetType, Kaltura_Client_Type_PlaybackContextOptions $contextDataParams, $sourceType = null)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "assetId", $assetId);
 		$this->client->addParam($kparams, "assetType", $assetType);
 		$this->client->addParam($kparams, "contextDataParams", $contextDataParams->toParams());
+		$this->client->addParam($kparams, "sourceType", $sourceType);
 		$this->client->queueServiceActionCall("asset", "getPlaybackContext", "KalturaPlaybackContext", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
