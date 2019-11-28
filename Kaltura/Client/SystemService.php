@@ -40,25 +40,6 @@ class Kaltura_Client_SystemService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return bool
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function clearLocalServerCache($action = null, $key = null)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "action", $action);
-		$this->client->addParam($kparams, "key", $key);
-		$this->client->queueServiceActionCall("system", "clearLocalServerCache", null, $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
-		return $resultObject;
-	}
-
-	/**
 	 * @return string
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -106,24 +87,6 @@ class Kaltura_Client_SystemService extends Kaltura_Client_ServiceBase
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
 		$resultObject = (string)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
-		return $resultObject;
-	}
-
-	/**
-	 * @return bool
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function incrementLayeredCacheGroupConfigVersion($groupId = 0)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "groupId", $groupId);
-		$this->client->queueServiceActionCall("system", "incrementLayeredCacheGroupConfigVersion", null, $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
 		return $resultObject;
 	}
 
