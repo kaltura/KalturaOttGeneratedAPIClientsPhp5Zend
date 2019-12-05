@@ -47,6 +47,8 @@ class Kaltura_Client_Type_SegmentationTypeFilter extends Kaltura_Client_Type_Fil
 		
 		if(count($xml->idIn))
 			$this->idIn = (string)$xml->idIn;
+		if(count($xml->kSql))
+			$this->kSql = (string)$xml->kSql;
 	}
 	/**
 	 * Comma separated segmentation types identifieridentifiers
@@ -54,6 +56,13 @@ class Kaltura_Client_Type_SegmentationTypeFilter extends Kaltura_Client_Type_Fil
 	 * @var string
 	 */
 	public $idIn = null;
+
+	/**
+	 * KSQL expression
+	 *
+	 * @var string
+	 */
+	public $kSql = null;
 
 
 }

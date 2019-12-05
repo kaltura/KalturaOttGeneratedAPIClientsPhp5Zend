@@ -31,13 +31,35 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_PartnerConfigurationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_ObjectVirtualAssetPartnerConfig extends Kaltura_Client_Type_PartnerConfiguration
 {
-	const DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway";
-	const ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection";
-	const OSSADAPTER = "OSSAdapter";
-	const CONCURRENCY = "Concurrency";
-	const GENERAL = "General";
-	const OBJECTVIRTUALASSET = "ObjectVirtualAsset";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaObjectVirtualAssetPartnerConfig';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->objectVirtualAssets))
+		{
+			if(empty($xml->objectVirtualAssets))
+				$this->objectVirtualAssets = array();
+			else
+				$this->objectVirtualAssets = Kaltura_Client_ParseUtils::unmarshalArray($xml->objectVirtualAssets, "KalturaObjectVirtualAssetInfo");
+		}
+	}
+	/**
+	 * List of object virtual asset info
+	 *
+	 * @var array of KalturaObjectVirtualAssetInfo
+	 */
+	public $objectVirtualAssets;
+
+
 }
 

@@ -31,13 +31,48 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_PartnerConfigurationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_ObjectVirtualAssetInfo extends Kaltura_Client_ObjectBase
 {
-	const DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway";
-	const ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection";
-	const OSSADAPTER = "OSSAdapter";
-	const CONCURRENCY = "Concurrency";
-	const GENERAL = "General";
-	const OBJECTVIRTUALASSET = "ObjectVirtualAsset";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaObjectVirtualAssetInfo';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->assetStructId))
+			$this->assetStructId = (int)$xml->assetStructId;
+		if(count($xml->metaId))
+			$this->metaId = (int)$xml->metaId;
+		if(count($xml->type))
+			$this->type = (string)$xml->type;
+	}
+	/**
+	 * Asset struct identifier
+	 *
+	 * @var int
+	 */
+	public $assetStructId = null;
+
+	/**
+	 * Meta identifier
+	 *
+	 * @var int
+	 */
+	public $metaId = null;
+
+	/**
+	 * Object virtual asset info type
+	 *
+	 * @var Kaltura_Client_Enum_ObjectVirtualAssetInfoType
+	 */
+	public $type = null;
+
+
 }
 
