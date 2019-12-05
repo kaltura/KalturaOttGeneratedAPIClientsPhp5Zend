@@ -78,12 +78,10 @@ class Kaltura_Client_RegionService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_RegionListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function listAction(Kaltura_Client_Type_RegionFilter $filter, Kaltura_Client_Type_FilterPager $pager = null)
+	function listAction(Kaltura_Client_Type_RegionFilter $filter)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "filter", $filter->toParams());
-		if ($pager !== null)
-			$this->client->addParam($kparams, "pager", $pager->toParams());
 		$this->client->queueServiceActionCall("region", "list", "KalturaRegionListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
