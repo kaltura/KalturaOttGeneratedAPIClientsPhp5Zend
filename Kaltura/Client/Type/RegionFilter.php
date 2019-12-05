@@ -53,6 +53,13 @@ class Kaltura_Client_Type_RegionFilter extends Kaltura_Client_Type_Filter
 			$this->parentIdEqual = (int)$xml->parentIdEqual;
 		if(count($xml->liveAssetIdEqual))
 			$this->liveAssetIdEqual = (int)$xml->liveAssetIdEqual;
+		if(count($xml->parentOnly))
+		{
+			if(!empty($xml->parentOnly) && ((int) $xml->parentOnly === 1 || strtolower((string)$xml->parentOnly) === 'true'))
+				$this->parentOnly = true;
+			else
+				$this->parentOnly = false;
+		}
 	}
 	/**
 	 * List of comma separated regions external IDs
@@ -81,6 +88,13 @@ class Kaltura_Client_Type_RegionFilter extends Kaltura_Client_Type_Filter
 	 * @var int
 	 */
 	public $liveAssetIdEqual = null;
+
+	/**
+	 * Parent region to filter by
+	 *
+	 * @var bool
+	 */
+	public $parentOnly = null;
 
 
 }
