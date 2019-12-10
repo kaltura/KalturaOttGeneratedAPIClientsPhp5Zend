@@ -124,6 +124,7 @@ class Kaltura_Client_TypeMap
 		'KalturaBulkUploadIngestJobData' => 'Kaltura_Client_Type_BulkUploadIngestJobData',
 		'KalturaBulkUploadJobData' => 'Kaltura_Client_Type_BulkUploadJobData',
 		'KalturaBulkUploadListResponse' => 'Kaltura_Client_Type_BulkUploadListResponse',
+		'KalturaBulkUploadLiveAssetData' => 'Kaltura_Client_Type_BulkUploadLiveAssetData',
 		'KalturaBulkUploadLiveAssetResult' => 'Kaltura_Client_Type_BulkUploadLiveAssetResult',
 		'KalturaBulkUploadMediaAssetData' => 'Kaltura_Client_Type_BulkUploadMediaAssetData',
 		'KalturaBulkUploadMediaAssetResult' => 'Kaltura_Client_Type_BulkUploadMediaAssetResult',
