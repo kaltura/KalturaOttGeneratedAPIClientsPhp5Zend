@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BulkUploadLiveAssetResult extends Kaltura_Client_Type_BulkUploadMediaAssetResult
+class Kaltura_Client_Type_BulkUploadLiveAssetData extends Kaltura_Client_Type_BulkUploadMediaAssetData
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBulkUploadLiveAssetResult';
+		return 'KalturaBulkUploadLiveAssetData';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
