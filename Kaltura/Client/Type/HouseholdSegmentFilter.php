@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_HouseholdSegment extends Kaltura_Client_Type_CrudObject
+class Kaltura_Client_Type_HouseholdSegmentFilter extends Kaltura_Client_Type_CrudFilter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaHouseholdSegment';
+		return 'KalturaHouseholdSegmentFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,24 +45,15 @@ class Kaltura_Client_Type_HouseholdSegment extends Kaltura_Client_Type_CrudObjec
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->segmentId))
-			$this->segmentId = (string)$xml->segmentId;
-		if(count($xml->householdId))
-			$this->householdId = (string)$xml->householdId;
+		if(count($xml->kSql))
+			$this->kSql = (string)$xml->kSql;
 	}
 	/**
-	 * Segment Id
+	 * KSQL expression
 	 *
-	 * @var bigint
+	 * @var string
 	 */
-	public $segmentId = null;
-
-	/**
-	 * Segment Id
-	 *
-	 * @var bigint
-	 */
-	public $householdId = null;
+	public $kSql = null;
 
 
 }

@@ -31,39 +31,8 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_HouseholdSegment extends Kaltura_Client_Type_CrudObject
+class Kaltura_Client_Enum_HouseholdSegmentOrderBy extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaHouseholdSegment';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->segmentId))
-			$this->segmentId = (string)$xml->segmentId;
-		if(count($xml->householdId))
-			$this->householdId = (string)$xml->householdId;
-	}
-	/**
-	 * Segment Id
-	 *
-	 * @var bigint
-	 */
-	public $segmentId = null;
-
-	/**
-	 * Segment Id
-	 *
-	 * @var bigint
-	 */
-	public $householdId = null;
-
-
+	const NONE = "NONE";
 }
 

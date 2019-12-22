@@ -289,6 +289,7 @@ class Kaltura_Client_TypeMap
 		'KalturaHouseholdPremiumServiceListResponse' => 'Kaltura_Client_Type_HouseholdPremiumServiceListResponse',
 		'KalturaHouseholdQuota' => 'Kaltura_Client_Type_HouseholdQuota',
 		'KalturaHouseholdSegment' => 'Kaltura_Client_Type_HouseholdSegment',
+		'KalturaHouseholdSegmentFilter' => 'Kaltura_Client_Type_HouseholdSegmentFilter',
 		'KalturaHouseholdSegmentListResponse' => 'Kaltura_Client_Type_HouseholdSegmentListResponse',
 		'KalturaHouseholdUser' => 'Kaltura_Client_Type_HouseholdUser',
 		'KalturaHouseholdUserFilter' => 'Kaltura_Client_Type_HouseholdUserFilter',

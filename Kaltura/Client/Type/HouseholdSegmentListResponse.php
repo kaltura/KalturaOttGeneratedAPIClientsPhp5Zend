@@ -54,7 +54,7 @@ class Kaltura_Client_Type_HouseholdSegmentListResponse extends Kaltura_Client_Ty
 		}
 	}
 	/**
-	 * Segmentation Types
+	 * A list of objects
 	 *
 	 * @var array of KalturaHouseholdSegment
 	 */
