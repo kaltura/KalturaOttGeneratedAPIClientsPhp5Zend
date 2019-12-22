@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_SegementAssetFilterSubscriptionAction extends Kaltura_Client_Type_SegementAssetFilterAction
+class Kaltura_Client_Type_SegementAssetFilterSubscriptionAction extends Kaltura_Client_Type_SegmentAssetFilterAction
 {
 	public function getKalturaObjectType()
 	{

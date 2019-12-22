@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_SegementAssetFilterSegmentAction extends Kaltura_Client_Type_SegementAssetFilterAction
+class Kaltura_Client_Type_SegmentAssetFilterSegmentAction extends Kaltura_Client_Type_SegmentAssetFilterAction
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaSegementAssetFilterSegmentAction';
+		return 'KalturaSegmentAssetFilterSegmentAction';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
