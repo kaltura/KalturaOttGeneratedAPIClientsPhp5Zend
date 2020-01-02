@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_HouseholdDevice extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_HouseholdDevice extends Kaltura_Client_Type_OTTObjectSupportNullable
 {
 	public function getKalturaObjectType()
 	{
@@ -61,6 +61,8 @@ class Kaltura_Client_Type_HouseholdDevice extends Kaltura_Client_ObjectBase
 			$this->deviceFamilyId = (string)$xml->deviceFamilyId;
 		if(count($xml->drm) && !empty($xml->drm))
 			$this->drm = Kaltura_Client_ParseUtils::unmarshalObject($xml->drm, "KalturaCustomDrmPlaybackPluginData");
+		if(count($xml->externalId))
+			$this->externalId = (string)$xml->externalId;
 	}
 	/**
 	 * Household identifier
@@ -121,6 +123,13 @@ class Kaltura_Client_Type_HouseholdDevice extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $drm;
+
+	/**
+	 * external Id
+	 *
+	 * @var string
+	 */
+	public $externalId = null;
 
 
 }
