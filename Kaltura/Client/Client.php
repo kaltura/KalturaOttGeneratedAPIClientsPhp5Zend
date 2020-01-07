@@ -347,6 +347,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_HouseholdSegmentService
+	 */
+	public $householdSegment = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_HouseholdUserService
 	 */
 	public $householdUser = null;
@@ -769,7 +775,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		parent::__construct($config);
 		
 		$this->setClientTag('php5:20-01-07');
-		$this->setApiVersion('5.3.0.14378');
+		$this->setApiVersion('5.3.0.14446');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -823,6 +829,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->householdPaymentMethod = new Kaltura_Client_HouseholdPaymentMethodService($this);
 		$this->householdPremiumService = new Kaltura_Client_HouseholdPremiumServiceService($this);
 		$this->householdQuota = new Kaltura_Client_HouseholdQuotaService($this);
+		$this->householdSegment = new Kaltura_Client_HouseholdSegmentService($this);
 		$this->householdUser = new Kaltura_Client_HouseholdUserService($this);
 		$this->image = new Kaltura_Client_ImageService($this);
 		$this->imageType = new Kaltura_Client_ImageTypeService($this);
