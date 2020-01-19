@@ -57,6 +57,10 @@ class Kaltura_Client_Type_BookmarkEvent extends Kaltura_Client_Type_EventObject
 			$this->position = (int)$xml->position;
 		if(count($xml->action))
 			$this->action = (string)$xml->action;
+		if(count($xml->productType))
+			$this->productType = (string)$xml->productType;
+		if(count($xml->productId))
+			$this->productId = (int)$xml->productId;
 	}
 	/**
 	 * User Id
@@ -99,6 +103,20 @@ class Kaltura_Client_Type_BookmarkEvent extends Kaltura_Client_Type_EventObject
 	 * @var Kaltura_Client_Enum_BookmarkActionType
 	 */
 	public $action = null;
+
+	/**
+	 * Product Type
+	 *
+	 * @var Kaltura_Client_Enum_TransactionType
+	 */
+	public $productType = null;
+
+	/**
+	 * Product Id
+	 *
+	 * @var int
+	 */
+	public $productId = null;
 
 
 }
