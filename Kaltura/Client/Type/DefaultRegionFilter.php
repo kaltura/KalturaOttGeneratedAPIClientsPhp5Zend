@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RegionFilter extends Kaltura_Client_Type_BaseRegionFilter
+class Kaltura_Client_Type_DefaultRegionFilter extends Kaltura_Client_Type_BaseRegionFilter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRegionFilter';
+		return 'KalturaDefaultRegionFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,43 +45,7 @@ class Kaltura_Client_Type_RegionFilter extends Kaltura_Client_Type_BaseRegionFil
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->externalIdIn))
-			$this->externalIdIn = (string)$xml->externalIdIn;
-		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
-		if(count($xml->parentIdEqual))
-			$this->parentIdEqual = (int)$xml->parentIdEqual;
-		if(count($xml->liveAssetIdEqual))
-			$this->liveAssetIdEqual = (int)$xml->liveAssetIdEqual;
 	}
-	/**
-	 * List of comma separated regions external IDs
-	 *
-	 * @var string
-	 */
-	public $externalIdIn = null;
-
-	/**
-	 * List of comma separated regions Ids
-	 *
-	 * @var string
-	 */
-	public $idIn = null;
-
-	/**
-	 * Region parent ID to filter by
-	 *
-	 * @var int
-	 */
-	public $parentIdEqual = null;
-
-	/**
-	 * Region parent ID to filter by
-	 *
-	 * @var int
-	 */
-	public $liveAssetIdEqual = null;
-
 
 }
 
