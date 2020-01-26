@@ -183,6 +183,28 @@ class Kaltura_Client_AssetService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
+	 * @return Kaltura_Client_Type_PlaybackContext
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function getPlaybackManifest($assetId, $assetType, Kaltura_Client_Type_PlaybackContextOptions $contextDataParams, $sourceType = null)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "assetId", $assetId);
+		$this->client->addParam($kparams, "assetType", $assetType);
+		$this->client->addParam($kparams, "contextDataParams", $contextDataParams->toParams());
+		$this->client->addParam($kparams, "sourceType", $sourceType);
+		$this->client->queueServiceActionCall("asset", "getPlaybackManifest", "KalturaPlaybackContext", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaPlaybackContext");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_PlaybackContext");
+		return $resultObject;
+	}
+
+	/**
 	 * @return Kaltura_Client_Type_AssetListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
