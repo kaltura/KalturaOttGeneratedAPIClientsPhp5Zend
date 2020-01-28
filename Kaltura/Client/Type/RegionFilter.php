@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RegionFilter extends Kaltura_Client_Type_BaseRegionFilter
+class Kaltura_Client_Type_RegionFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{

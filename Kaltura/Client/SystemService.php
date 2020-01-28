@@ -43,10 +43,10 @@ class Kaltura_Client_SystemService extends Kaltura_Client_ServiceBase
 	 * @return bool
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function clearLocalServerCache($clearCacheAction = null, $key = null)
+	function clearLocalServerCache($action = null, $key = null)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "clearCacheAction", $clearCacheAction);
+		$this->client->addParam($kparams, "action", $action);
 		$this->client->addParam($kparams, "key", $key);
 		$this->client->queueServiceActionCall("system", "clearLocalServerCache", null, $kparams);
 		if ($this->client->isMultiRequest())
