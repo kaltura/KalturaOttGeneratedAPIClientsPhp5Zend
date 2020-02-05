@@ -47,8 +47,6 @@ class Kaltura_Client_Type_UserSegmentFilter extends Kaltura_Client_Type_Filter
 		
 		if(count($xml->userIdEqual))
 			$this->userIdEqual = (string)$xml->userIdEqual;
-		if(count($xml->kSql))
-			$this->kSql = (string)$xml->kSql;
 	}
 	/**
 	 * User ID
@@ -56,13 +54,6 @@ class Kaltura_Client_Type_UserSegmentFilter extends Kaltura_Client_Type_Filter
 	 * @var string
 	 */
 	public $userIdEqual = null;
-
-	/**
-	 * KSQL expression
-	 *
-	 * @var string
-	 */
-	public $kSql = null;
 
 
 }

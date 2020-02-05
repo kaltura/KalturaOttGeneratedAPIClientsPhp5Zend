@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_SegmentationTypeFilter extends Kaltura_Client_Type_BaseSegmentationTypeFilter
+class Kaltura_Client_Type_SegmentationTypeFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
@@ -51,7 +51,7 @@ class Kaltura_Client_Type_SegmentationTypeFilter extends Kaltura_Client_Type_Bas
 			$this->kSql = (string)$xml->kSql;
 	}
 	/**
-	 * Comma separated segmentation types identifiers
+	 * Comma separated segmentation types identifieridentifiers
 	 *
 	 * @var string
 	 */
