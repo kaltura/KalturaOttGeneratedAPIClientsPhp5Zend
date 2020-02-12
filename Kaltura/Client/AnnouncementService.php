@@ -94,6 +94,25 @@ class Kaltura_Client_AnnouncementService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
+	 * @return Kaltura_Client_Type_Announcement
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function get($id)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "id", $id);
+		$this->client->queueServiceActionCall("announcement", "get", "KalturaAnnouncement", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaAnnouncement");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Announcement");
+		return $resultObject;
+	}
+
+	/**
 	 * @return Kaltura_Client_Type_AnnouncementListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
