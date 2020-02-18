@@ -31,10 +31,35 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_ObjectVirtualAssetInfoType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_CategoryItemListResponse extends Kaltura_Client_Type_ListResponse
 {
-	const SUBSCRIPTION = "Subscription";
-	const SEGMENT = "Segment";
-	const CATEGORY = "Category";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaCategoryItemListResponse';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->objects))
+		{
+			if(empty($xml->objects))
+				$this->objects = array();
+			else
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaCategoryItem");
+		}
+	}
+	/**
+	 * A list of objects
+	 *
+	 * @var array of KalturaCategoryItem
+	 */
+	public $objects;
+
+
 }
 

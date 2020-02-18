@@ -31,10 +31,30 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_ObjectVirtualAssetInfoType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_UnifiedChannelInfo extends Kaltura_Client_Type_UnifiedChannel
 {
-	const SUBSCRIPTION = "Subscription";
-	const SEGMENT = "Segment";
-	const CATEGORY = "Category";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaUnifiedChannelInfo';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->name))
+			$this->name = (string)$xml->name;
+	}
+	/**
+	 * Channel&#160;name
+	 *
+	 * @var string
+	 */
+	public $name = null;
+
+
 }
 

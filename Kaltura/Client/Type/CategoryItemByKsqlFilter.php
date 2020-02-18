@@ -31,10 +31,30 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_ObjectVirtualAssetInfoType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_CategoryItemByKsqlFilter extends Kaltura_Client_Type_CategoryItemFilter
 {
-	const SUBSCRIPTION = "Subscription";
-	const SEGMENT = "Segment";
-	const CATEGORY = "Category";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaCategoryItemByKsqlFilter';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->kSql))
+			$this->kSql = (string)$xml->kSql;
+	}
+	/**
+	 * KSQL expression
+	 *
+	 * @var string
+	 */
+	public $kSql = null;
+
+
 }
 
