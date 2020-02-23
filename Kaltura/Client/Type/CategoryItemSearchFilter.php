@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_CategoryItemByKsqlFilter extends Kaltura_Client_Type_CategoryItemFilter
+class Kaltura_Client_Type_CategoryItemSearchFilter extends Kaltura_Client_Type_CategoryItemFilter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaCategoryItemByKsqlFilter';
+		return 'KalturaCategoryItemSearchFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -47,6 +47,13 @@ class Kaltura_Client_Type_CategoryItemByKsqlFilter extends Kaltura_Client_Type_C
 		
 		if(count($xml->kSql))
 			$this->kSql = (string)$xml->kSql;
+		if(count($xml->rootOnly))
+		{
+			if(!empty($xml->rootOnly) && ((int) $xml->rootOnly === 1 || strtolower((string)$xml->rootOnly) === 'true'))
+				$this->rootOnly = true;
+			else
+				$this->rootOnly = false;
+		}
 	}
 	/**
 	 * KSQL expression
@@ -54,6 +61,13 @@ class Kaltura_Client_Type_CategoryItemByKsqlFilter extends Kaltura_Client_Type_C
 	 * @var string
 	 */
 	public $kSql = null;
+
+	/**
+	 * Root only
+	 *
+	 * @var bool
+	 */
+	public $rootOnly = null;
 
 
 }

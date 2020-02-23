@@ -33,6 +33,9 @@
  */
 class Kaltura_Client_Enum_CategoryItemOrderBy extends Kaltura_Client_EnumBase
 {
-	const NONE = "NONE";
+	const NAME_ASC = "NAME_ASC";
+	const NAME_DESC = "NAME_DESC";
+	const CREATE_DATE_ASC = "CREATE_DATE_ASC";
+	const CREATE_DATE_DESC = "CREATE_DATE_DESC";
 }
 

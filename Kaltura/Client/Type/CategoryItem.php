@@ -87,6 +87,7 @@ class Kaltura_Client_Type_CategoryItem extends Kaltura_Client_Type_CrudObject
 	 * Category parent identifier
 	 *
 	 * @var bigint
+	 * @readonly
 	 */
 	public $parentCategoryId = null;
 
@@ -94,7 +95,6 @@ class Kaltura_Client_Type_CategoryItem extends Kaltura_Client_Type_CrudObject
 	 * Comma separated list of child categories&#39; Ids.
 	 *
 	 * @var string
-	 * @readonly
 	 */
 	public $childCategoriesIds = null;
 
