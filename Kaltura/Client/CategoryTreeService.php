@@ -43,10 +43,11 @@ class Kaltura_Client_CategoryTreeService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_CategoryTree
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function duplicate($categoryItemId)
+	function duplicate($categoryItemId, $name)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "categoryItemId", $categoryItemId);
+		$this->client->addParam($kparams, "name", $name);
 		$this->client->queueServiceActionCall("categorytree", "duplicate", "KalturaCategoryTree", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();

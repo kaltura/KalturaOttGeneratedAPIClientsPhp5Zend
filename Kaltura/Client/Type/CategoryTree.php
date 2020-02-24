@@ -75,7 +75,7 @@ class Kaltura_Client_Type_CategoryTree extends Kaltura_Client_ObjectBase
 			if(empty($xml->images))
 				$this->images = array();
 			else
-				$this->images = Kaltura_Client_ParseUtils::unmarshalArray($xml->images, "KalturaMediaImage");
+				$this->images = Kaltura_Client_ParseUtils::unmarshalArray($xml->images, "KalturaImage");
 		}
 	}
 	/**
@@ -118,7 +118,7 @@ class Kaltura_Client_Type_CategoryTree extends Kaltura_Client_ObjectBase
 	/**
 	 * Category images
 	 *
-	 * @var array of KalturaMediaImage
+	 * @var array of KalturaImage
 	 */
 	public $images;
 
