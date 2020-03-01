@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_CategoryItem extends Kaltura_Client_Type_CrudObject
+class Kaltura_Client_Type_CategoryItemAncestorsFilter extends Kaltura_Client_Type_CategoryItemFilter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaCategoryItem';
+		return 'KalturaCategoryItemAncestorsFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -47,70 +47,13 @@ class Kaltura_Client_Type_CategoryItem extends Kaltura_Client_Type_CrudObject
 		
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->parentId))
-			$this->parentId = (string)$xml->parentId;
-		if(count($xml->childrenIds))
-			$this->childrenIds = (string)$xml->childrenIds;
-		if(count($xml->unifiedChannels))
-		{
-			if(empty($xml->unifiedChannels))
-				$this->unifiedChannels = array();
-			else
-				$this->unifiedChannels = Kaltura_Client_ParseUtils::unmarshalArray($xml->unifiedChannels, "KalturaUnifiedChannel");
-		}
-		if(count($xml->dynamicData))
-		{
-			if(empty($xml->dynamicData))
-				$this->dynamicData = array();
-			else
-				$this->dynamicData = Kaltura_Client_ParseUtils::unmarshalMap($xml->dynamicData, "KalturaStringValue");
-		}
 	}
 	/**
-	 * Unique identifier for the category
+	 * KSQL expression
 	 *
 	 * @var bigint
-	 * @readonly
 	 */
 	public $id = null;
-
-	/**
-	 * Category name
-	 *
-	 * @var string
-	 */
-	public $name = null;
-
-	/**
-	 * Category parent identifier
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $parentId = null;
-
-	/**
-	 * Comma separated list of child categories&#39; Ids.
-	 *
-	 * @var string
-	 */
-	public $childrenIds = null;
-
-	/**
-	 * List of unified Channels.
-	 *
-	 * @var array of KalturaUnifiedChannel
-	 */
-	public $unifiedChannels;
-
-	/**
-	 * Dynamic data
-	 *
-	 * @var map
-	 */
-	public $dynamicData;
 
 
 }

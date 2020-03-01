@@ -152,6 +152,7 @@ class Kaltura_Client_TypeMap
 		'KalturaCDVRAdapterProfileListResponse' => 'Kaltura_Client_Type_CDVRAdapterProfileListResponse',
 		'KalturaCaptionPlaybackPluginData' => 'Kaltura_Client_Type_CaptionPlaybackPluginData',
 		'KalturaCategoryItem' => 'Kaltura_Client_Type_CategoryItem',
+		'KalturaCategoryItemAncestorsFilter' => 'Kaltura_Client_Type_CategoryItemAncestorsFilter',
 		'KalturaCategoryItemByIdInFilter' => 'Kaltura_Client_Type_CategoryItemByIdInFilter',
 		'KalturaCategoryItemFilter' => 'Kaltura_Client_Type_CategoryItemFilter',
 		'KalturaCategoryItemListResponse' => 'Kaltura_Client_Type_CategoryItemListResponse',
