@@ -49,6 +49,13 @@ class Kaltura_Client_Type_CategoryItem extends Kaltura_Client_Type_CrudObject
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
 			$this->name = (string)$xml->name;
+		if(count($xml->multilingualName))
+		{
+			if(empty($xml->multilingualName))
+				$this->multilingualName = array();
+			else
+				$this->multilingualName = Kaltura_Client_ParseUtils::unmarshalArray($xml->multilingualName, "KalturaTranslationToken");
+		}
 		if(count($xml->parentId))
 			$this->parentId = (string)$xml->parentId;
 		if(count($xml->childrenIds))
@@ -80,8 +87,16 @@ class Kaltura_Client_Type_CategoryItem extends Kaltura_Client_Type_CrudObject
 	 * Category name
 	 *
 	 * @var string
+	 * @readonly
 	 */
 	public $name = null;
+
+	/**
+	 * Category name
+	 *
+	 * @var array of KalturaTranslationToken
+	 */
+	public $multilingualName;
 
 	/**
 	 * Category parent identifier
