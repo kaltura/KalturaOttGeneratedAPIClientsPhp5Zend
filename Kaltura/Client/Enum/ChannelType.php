@@ -31,10 +31,9 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_ObjectVirtualAssetInfoType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Enum_ChannelType extends Kaltura_Client_EnumBase
 {
-	const SUBSCRIPTION = "Subscription";
-	const SEGMENT = "Segment";
-	const CATEGORY = "Category";
+	const INTERNAL = "Internal";
+	const EXTERNAL = "External";
 }
 
