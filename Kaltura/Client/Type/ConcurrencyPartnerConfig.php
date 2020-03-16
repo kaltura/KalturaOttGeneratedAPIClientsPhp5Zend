@@ -49,6 +49,8 @@ class Kaltura_Client_Type_ConcurrencyPartnerConfig extends Kaltura_Client_Type_P
 			$this->deviceFamilyIds = (string)$xml->deviceFamilyIds;
 		if(count($xml->evictionPolicy))
 			$this->evictionPolicy = (string)$xml->evictionPolicy;
+		if(count($xml->devicePlayDataExpirationTTL))
+			$this->devicePlayDataExpirationTTL = (string)$xml->devicePlayDataExpirationTTL;
 	}
 	/**
 	 * Comma separated list of device Family Ids order by their priority.
@@ -63,6 +65,13 @@ class Kaltura_Client_Type_ConcurrencyPartnerConfig extends Kaltura_Client_Type_P
 	 * @var Kaltura_Client_Enum_EvictionPolicyType
 	 */
 	public $evictionPolicy = null;
+
+	/**
+	 * Device play data expiration TTL
+	 *
+	 * @var bigint
+	 */
+	public $devicePlayDataExpirationTTL = null;
 
 
 }
