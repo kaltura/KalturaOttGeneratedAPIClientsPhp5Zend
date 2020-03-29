@@ -472,6 +472,7 @@ class Kaltura_Client_TypeMap
 		'KalturaReportFilter' => 'Kaltura_Client_Type_ReportFilter',
 		'KalturaReportListResponse' => 'Kaltura_Client_Type_ReportListResponse',
 		'KalturaRequestConfiguration' => 'Kaltura_Client_Type_RequestConfiguration',
+		'KalturaRollingDeviceRemovalData' => 'Kaltura_Client_Type_RollingDeviceRemovalData',
 		'KalturaRule' => 'Kaltura_Client_Type_Rule',
 		'KalturaRuleAction' => 'Kaltura_Client_Type_RuleAction',
 		'KalturaSSOAdapterProfile' => 'Kaltura_Client_Type_SSOAdapterProfile',
