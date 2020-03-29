@@ -59,8 +59,6 @@ class Kaltura_Client_Type_IotProfileAws extends Kaltura_Client_Type_CrudObject
 			$this->accessKeyId = (string)$xml->accessKeyId;
 		if(count($xml->secretAccessKey))
 			$this->secretAccessKey = (string)$xml->secretAccessKey;
-		if(count($xml->tTL))
-			$this->tTL = (string)$xml->tTL;
 		if(count($xml->iotPolicyName))
 			$this->iotPolicyName = (string)$xml->iotPolicyName;
 		if(count($xml->userPoolId))
@@ -122,13 +120,6 @@ class Kaltura_Client_Type_IotProfileAws extends Kaltura_Client_Type_CrudObject
 	 * @var string
 	 */
 	public $secretAccessKey = null;
-
-	/**
-	 * tTL
-	 *
-	 * @var string
-	 */
-	public $tTL = null;
 
 	/**
 	 * iotPolicyName
