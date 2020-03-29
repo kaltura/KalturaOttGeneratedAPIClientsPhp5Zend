@@ -31,75 +31,8 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PushMessage extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Enum_IotProfileOrderBy extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaPushMessage';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->message))
-			$this->message = (string)$xml->message;
-		if(count($xml->sound))
-			$this->sound = (string)$xml->sound;
-		if(count($xml->action))
-			$this->action = (string)$xml->action;
-		if(count($xml->url))
-			$this->url = (string)$xml->url;
-		if(count($xml->udid))
-			$this->udid = (string)$xml->udid;
-		if(count($xml->pushChannels))
-			$this->pushChannels = (string)$xml->pushChannels;
-	}
-	/**
-	 * The message that will be presented to the user.
-	 *
-	 * @var string
-	 */
-	public $message = null;
-
-	/**
-	 * Optional. Can be used to change the default push sound on the user device.
-	 *
-	 * @var string
-	 */
-	public $sound = null;
-
-	/**
-	 * Optional. Used to change the default action of the application when a push is received.
-	 *
-	 * @var string
-	 */
-	public $action = null;
-
-	/**
-	 * Optional. Used to direct the application to the relevant page.
-	 *
-	 * @var string
-	 */
-	public $url = null;
-
-	/**
-	 * Device unique identifier
-	 *
-	 * @var string
-	 */
-	public $udid = null;
-
-	/**
-	 * PushChannels - separated with comma
-	 *
-	 * @var string
-	 */
-	public $pushChannels = null;
-
-
+	const NONE = "NONE";
 }
 
