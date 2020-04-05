@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PushMessage extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_IotClientConfiguration extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaPushMessage';
+		return 'KalturaIotClientConfiguration';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,60 +45,42 @@ class Kaltura_Client_Type_PushMessage extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->message))
-			$this->message = (string)$xml->message;
-		if(count($xml->sound))
-			$this->sound = (string)$xml->sound;
-		if(count($xml->action))
-			$this->action = (string)$xml->action;
-		if(count($xml->url))
-			$this->url = (string)$xml->url;
-		if(count($xml->udid))
-			$this->udid = (string)$xml->udid;
-		if(count($xml->pushChannels))
-			$this->pushChannels = (string)$xml->pushChannels;
+		if(count($xml->announcementTopic))
+			$this->announcementTopic = (string)$xml->announcementTopic;
+		if(count($xml->credentialsProvider) && !empty($xml->credentialsProvider))
+			$this->credentialsProvider = Kaltura_Client_ParseUtils::unmarshalObject($xml->credentialsProvider, "KalturaCredentialsProvider");
+		if(count($xml->cognitoUserPool) && !empty($xml->cognitoUserPool))
+			$this->cognitoUserPool = Kaltura_Client_ParseUtils::unmarshalObject($xml->cognitoUserPool, "KalturaCognitoUserPool");
+		if(count($xml->json))
+			$this->json = (string)$xml->json;
 	}
 	/**
-	 * The message that will be presented to the user.
+	 * announcementTopic
 	 *
 	 * @var string
 	 */
-	public $message = null;
+	public $announcementTopic = null;
 
 	/**
-	 * Optional. Can be used to change the default push sound on the user device.
+	 * KalturaCredentialsProvider
 	 *
-	 * @var string
+	 * @var Kaltura_Client_Type_CredentialsProvider
 	 */
-	public $sound = null;
+	public $credentialsProvider;
 
 	/**
-	 * Optional. Used to change the default action of the application when a push is received.
+	 * CognitoUserPool
 	 *
-	 * @var string
+	 * @var Kaltura_Client_Type_CognitoUserPool
 	 */
-	public $action = null;
+	public $cognitoUserPool;
 
 	/**
-	 * Optional. Used to direct the application to the relevant page.
+	 * json
 	 *
 	 * @var string
 	 */
-	public $url = null;
-
-	/**
-	 * Device unique identifier
-	 *
-	 * @var string
-	 */
-	public $udid = null;
-
-	/**
-	 * PushChannels - separated with comma
-	 *
-	 * @var string
-	 */
-	public $pushChannels = null;
+	public $json = null;
 
 
 }
