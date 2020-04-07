@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_Default extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_IotDefault extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDefault';
+		return 'KalturaIotDefault';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
