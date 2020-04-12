@@ -45,15 +45,15 @@ class Kaltura_Client_Type_CognitoUserPool extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->default) && !empty($xml->default))
-			$this->default = Kaltura_Client_ParseUtils::unmarshalObject($xml->default, "KalturaDefault");
+		if(count($xml->iotDefault) && !empty($xml->iotDefault))
+			$this->iotDefault = Kaltura_Client_ParseUtils::unmarshalObject($xml->iotDefault, "KalturaIotDefault");
 	}
 	/**
 	 * Default
 	 *
-	 * @var Kaltura_Client_Type_Default
+	 * @var Kaltura_Client_Type_IotDefault
 	 */
-	public $default;
+	public $iotDefault;
 
 
 }
