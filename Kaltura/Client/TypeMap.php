@@ -267,6 +267,7 @@ class Kaltura_Client_TypeMap
 		'KalturaExternalReceipt' => 'Kaltura_Client_Type_ExternalReceipt',
 		'KalturaExternalRecording' => 'Kaltura_Client_Type_ExternalRecording',
 		'KalturaExternalRecordingFilter' => 'Kaltura_Client_Type_ExternalRecordingFilter',
+		'KalturaExternalRecordingResponseProfileFilter' => 'Kaltura_Client_Type_ExternalRecordingResponseProfileFilter',
 		'KalturaExternalSeriesRecording' => 'Kaltura_Client_Type_ExternalSeriesRecording',
 		'KalturaFacebookPost' => 'Kaltura_Client_Type_FacebookPost',
 		'KalturaFacebookSocial' => 'Kaltura_Client_Type_FacebookSocial',
