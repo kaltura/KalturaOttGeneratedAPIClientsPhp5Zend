@@ -488,6 +488,7 @@ class Kaltura_Client_TypeMap
 		'KalturaRule' => 'Kaltura_Client_Type_Rule',
 		'KalturaRuleAction' => 'Kaltura_Client_Type_RuleAction',
 		'KalturaSSOAdapterProfile' => 'Kaltura_Client_Type_SSOAdapterProfile',
+		'KalturaSSOAdapterProfileInvoke' => 'Kaltura_Client_Type_SSOAdapterProfileInvoke',
 		'KalturaSSOAdapterProfileListResponse' => 'Kaltura_Client_Type_SSOAdapterProfileListResponse',
 		'KalturaScheduledRecordingProgramFilter' => 'Kaltura_Client_Type_ScheduledRecordingProgramFilter',
 		'KalturaSearchAssetFilter' => 'Kaltura_Client_Type_SearchAssetFilter',

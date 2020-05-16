@@ -96,6 +96,29 @@ class Kaltura_Client_SsoAdapterProfileService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
+	 * @return Kaltura_Client_Type_SSOAdapterProfileInvoke
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function invoke($intent, array $adapterData)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "intent", $intent);
+		foreach($adapterData as $index => $obj)
+		{
+			$this->client->addParam($kparams, "adapterData:$index", $obj->toParams());
+		}
+		$this->client->queueServiceActionCall("ssoadapterprofile", "invoke", "KalturaSSOAdapterProfileInvoke", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSSOAdapterProfileInvoke");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SSOAdapterProfileInvoke");
+		return $resultObject;
+	}
+
+	/**
 	 * @return Kaltura_Client_Type_SSOAdapterProfileListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
