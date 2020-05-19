@@ -76,6 +76,17 @@ class Kaltura_Client_Type_CategoryItem extends Kaltura_Client_Type_CrudObject
 		}
 		if(count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
+		if(count($xml->isActive))
+		{
+			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))
+				$this->isActive = true;
+			else
+				$this->isActive = false;
+		}
+		if(count($xml->startDateInSeconds))
+			$this->startDateInSeconds = (string)$xml->startDateInSeconds;
+		if(count($xml->endDateInSeconds))
+			$this->endDateInSeconds = (string)$xml->endDateInSeconds;
 	}
 	/**
 	 * Unique identifier for the category
@@ -136,6 +147,27 @@ class Kaltura_Client_Type_CategoryItem extends Kaltura_Client_Type_CrudObject
 	 * @readonly
 	 */
 	public $updateDate = null;
+
+	/**
+	 * Category active status
+	 *
+	 * @var bool
+	 */
+	public $isActive = null;
+
+	/**
+	 * Start date in seconds
+	 *
+	 * @var bigint
+	 */
+	public $startDateInSeconds = null;
+
+	/**
+	 * End date in seconds
+	 *
+	 * @var bigint
+	 */
+	public $endDateInSeconds = null;
 
 
 }
