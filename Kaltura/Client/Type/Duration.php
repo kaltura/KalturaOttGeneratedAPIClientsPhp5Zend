@@ -31,16 +31,39 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_PartnerConfigurationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_Duration extends Kaltura_Client_ObjectBase
 {
-	const DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway";
-	const ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection";
-	const OSSADAPTER = "OSSAdapter";
-	const CONCURRENCY = "Concurrency";
-	const GENERAL = "General";
-	const OBJECTVIRTUALASSET = "ObjectVirtualAsset";
-	const COMMERCE = "Commerce";
-	const PLAYBACK = "Playback";
-	const PAYMENT = "Payment";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaDuration';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->unit))
+			$this->unit = (string)$xml->unit;
+		if(count($xml->value))
+			$this->value = (int)$xml->value;
+	}
+	/**
+	 * duration unit
+	 *
+	 * @var Kaltura_Client_Enum_DurationUnit
+	 */
+	public $unit = null;
+
+	/**
+	 * duration value
+	 *
+	 * @var int
+	 */
+	public $value = null;
+
+
 }
 
