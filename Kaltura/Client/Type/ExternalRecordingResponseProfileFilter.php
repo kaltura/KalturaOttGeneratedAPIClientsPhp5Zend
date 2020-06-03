@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-abstract class Kaltura_Client_Type_CrudObject extends Kaltura_Client_Type_OTTObjectSupportNullable
+class Kaltura_Client_Type_ExternalRecordingResponseProfileFilter extends Kaltura_Client_Type_RelatedObjectFilter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaCrudObject';
+		return 'KalturaExternalRecordingResponseProfileFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)

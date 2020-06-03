@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-abstract class Kaltura_Client_Type_CrudObject extends Kaltura_Client_Type_OTTObjectSupportNullable
+class Kaltura_Client_Type_ExternalChannelProfileByIdInFilter extends Kaltura_Client_Type_ExternalChannelProfileFilter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaCrudObject';
+		return 'KalturaExternalChannelProfileByIdInFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,7 +45,16 @@ abstract class Kaltura_Client_Type_CrudObject extends Kaltura_Client_Type_OTTObj
 		if(is_null($xml))
 			return;
 		
+		if(count($xml->idIn))
+			$this->idIn = (string)$xml->idIn;
 	}
+	/**
+	 * Comma separated external channel profile ids
+	 *
+	 * @var string
+	 */
+	public $idIn = null;
+
 
 }
 

@@ -31,21 +31,8 @@
  * @package Kaltura
  * @subpackage Client
  */
-abstract class Kaltura_Client_Type_CrudObject extends Kaltura_Client_Type_OTTObjectSupportNullable
+class Kaltura_Client_Enum_ExternalChannelProfileOrderBy extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaCrudObject';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-	}
-
+	const NONE = "NONE";
 }
 

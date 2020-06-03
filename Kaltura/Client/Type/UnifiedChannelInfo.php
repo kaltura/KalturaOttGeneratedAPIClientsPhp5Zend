@@ -47,6 +47,10 @@ class Kaltura_Client_Type_UnifiedChannelInfo extends Kaltura_Client_Type_Unified
 		
 		if(count($xml->name))
 			$this->name = (string)$xml->name;
+		if(count($xml->startDateInSeconds))
+			$this->startDateInSeconds = (string)$xml->startDateInSeconds;
+		if(count($xml->endDateInSeconds))
+			$this->endDateInSeconds = (string)$xml->endDateInSeconds;
 	}
 	/**
 	 * Channel&#160;name
@@ -54,6 +58,20 @@ class Kaltura_Client_Type_UnifiedChannelInfo extends Kaltura_Client_Type_Unified
 	 * @var string
 	 */
 	public $name = null;
+
+	/**
+	 * Start date in seconds
+	 *
+	 * @var bigint
+	 */
+	public $startDateInSeconds = null;
+
+	/**
+	 * End date in seconds
+	 *
+	 * @var bigint
+	 */
+	public $endDateInSeconds = null;
 
 
 }

@@ -84,6 +84,17 @@ class Kaltura_Client_Type_CategoryTree extends Kaltura_Client_ObjectBase
 			else
 				$this->images = Kaltura_Client_ParseUtils::unmarshalArray($xml->images, "KalturaImage");
 		}
+		if(count($xml->isActive))
+		{
+			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))
+				$this->isActive = true;
+			else
+				$this->isActive = false;
+		}
+		if(count($xml->startDateInSeconds))
+			$this->startDateInSeconds = (string)$xml->startDateInSeconds;
+		if(count($xml->endDateInSeconds))
+			$this->endDateInSeconds = (string)$xml->endDateInSeconds;
 	}
 	/**
 	 * Unique identifier for the category item
@@ -136,6 +147,27 @@ class Kaltura_Client_Type_CategoryTree extends Kaltura_Client_ObjectBase
 	 * @var array of KalturaImage
 	 */
 	public $images;
+
+	/**
+	 * Category active status
+	 *
+	 * @var bool
+	 */
+	public $isActive = null;
+
+	/**
+	 * Start date in seconds
+	 *
+	 * @var bigint
+	 */
+	public $startDateInSeconds = null;
+
+	/**
+	 * End date in seconds
+	 *
+	 * @var bigint
+	 */
+	public $endDateInSeconds = null;
 
 
 }
