@@ -67,7 +67,7 @@ class Kaltura_Client_Type_UnifiedBillingCycle extends Kaltura_Client_ObjectBase
 	public $duration;
 
 	/**
-	 * paymentGateway Id
+	 * Payment Gateway Id
 	 *
 	 * @var int
 	 */

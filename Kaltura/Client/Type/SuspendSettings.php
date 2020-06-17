@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_HouseholdPaymentGateway extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_SuspendSettings extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaHouseholdPaymentGateway';
+		return 'KalturaSuspendSettings';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,58 +45,34 @@ class Kaltura_Client_Type_HouseholdPaymentGateway extends Kaltura_Client_ObjectB
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (int)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->isDefault))
+		if(count($xml->revokeEntitlements))
 		{
-			if(!empty($xml->isDefault) && ((int) $xml->isDefault === 1 || strtolower((string)$xml->isDefault) === 'true'))
-				$this->isDefault = true;
+			if(!empty($xml->revokeEntitlements) && ((int) $xml->revokeEntitlements === 1 || strtolower((string)$xml->revokeEntitlements) === 'true'))
+				$this->revokeEntitlements = true;
 			else
-				$this->isDefault = false;
+				$this->revokeEntitlements = false;
 		}
-		if(count($xml->selectedBy))
-			$this->selectedBy = (string)$xml->selectedBy;
-		if(count($xml->suspendSettings) && !empty($xml->suspendSettings))
-			$this->suspendSettings = Kaltura_Client_ParseUtils::unmarshalObject($xml->suspendSettings, "KalturaSuspendSettings");
+		if(count($xml->stopRenew))
+		{
+			if(!empty($xml->stopRenew) && ((int) $xml->stopRenew === 1 || strtolower((string)$xml->stopRenew) === 'true'))
+				$this->stopRenew = true;
+			else
+				$this->stopRenew = false;
+		}
 	}
 	/**
-	 * payment gateway id
-	 *
-	 * @var int
-	 * @readonly
-	 */
-	public $id = null;
-
-	/**
-	 * payment gateway name
-	 *
-	 * @var string
-	 */
-	public $name = null;
-
-	/**
-	 * Payment gateway default (true/false)
+	 * revoke entitlements
 	 *
 	 * @var bool
 	 */
-	public $isDefault = null;
+	public $revokeEntitlements = null;
 
 	/**
-	 * distinction payment gateway selected by account or household
+	 * stop renew
 	 *
-	 * @var Kaltura_Client_Enum_HouseholdPaymentGatewaySelectedBy
+	 * @var bool
 	 */
-	public $selectedBy = null;
-
-	/**
-	 * suspend settings
-	 *
-	 * @var Kaltura_Client_Type_SuspendSettings
-	 * @readonly
-	 */
-	public $suspendSettings;
+	public $stopRenew = null;
 
 
 }
