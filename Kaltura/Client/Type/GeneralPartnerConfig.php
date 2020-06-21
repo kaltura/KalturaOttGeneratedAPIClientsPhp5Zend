@@ -76,6 +76,8 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 			$this->defaultRegion = (int)$xml->defaultRegion;
 		if(count($xml->rollingDeviceData) && !empty($xml->rollingDeviceData))
 			$this->rollingDeviceData = Kaltura_Client_ParseUtils::unmarshalObject($xml->rollingDeviceData, "KalturaRollingDeviceRemovalData");
+		if(count($xml->finishedPercentThreshold))
+			$this->finishedPercentThreshold = (int)$xml->finishedPercentThreshold;
 	}
 	/**
 	 * Partner name
@@ -167,6 +169,13 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 	 * @var Kaltura_Client_Type_RollingDeviceRemovalData
 	 */
 	public $rollingDeviceData;
+
+	/**
+	 * Finished PercentThreshold
+	 *
+	 * @var int
+	 */
+	public $finishedPercentThreshold = null;
 
 
 }
