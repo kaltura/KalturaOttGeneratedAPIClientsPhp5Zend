@@ -68,6 +68,7 @@ class Kaltura_Client_TypeMap
 		'KalturaAssetHistory' => 'Kaltura_Client_Type_AssetHistory',
 		'KalturaAssetHistoryFilter' => 'Kaltura_Client_Type_AssetHistoryFilter',
 		'KalturaAssetHistoryListResponse' => 'Kaltura_Client_Type_AssetHistoryListResponse',
+		'KalturaAssetHistorySuppressFilter' => 'Kaltura_Client_Type_AssetHistorySuppressFilter',
 		'KalturaAssetImagePerRatioFilter' => 'Kaltura_Client_Type_AssetImagePerRatioFilter',
 		'KalturaAssetLifeCycleBuisnessModuleTransitionAction' => 'Kaltura_Client_Type_AssetLifeCycleBuisnessModuleTransitionAction',
 		'KalturaAssetLifeCycleTagTransitionAction' => 'Kaltura_Client_Type_AssetLifeCycleTagTransitionAction',
