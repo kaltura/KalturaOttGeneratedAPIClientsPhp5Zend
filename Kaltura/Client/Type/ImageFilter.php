@@ -58,8 +58,6 @@ class Kaltura_Client_Type_ImageFilter extends Kaltura_Client_Type_Filter
 			else
 				$this->isDefaultEqual = false;
 		}
-		if(count($xml->imageObjectIdIn))
-			$this->imageObjectIdIn = (string)$xml->imageObjectIdIn;
 	}
 	/**
 	 * IDs to filter by
@@ -88,13 +86,6 @@ class Kaltura_Client_Type_ImageFilter extends Kaltura_Client_Type_Filter
 	 * @var bool
 	 */
 	public $isDefaultEqual = null;
-
-	/**
-	 * Comma separated imageObject ids list
-	 *
-	 * @var string
-	 */
-	public $imageObjectIdIn = null;
 
 
 }
