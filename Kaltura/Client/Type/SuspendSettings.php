@@ -31,16 +31,49 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_PartnerConfigurationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_SuspendSettings extends Kaltura_Client_ObjectBase
 {
-	const DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway";
-	const ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection";
-	const OSSADAPTER = "OSSAdapter";
-	const CONCURRENCY = "Concurrency";
-	const GENERAL = "General";
-	const OBJECTVIRTUALASSET = "ObjectVirtualAsset";
-	const COMMERCE = "Commerce";
-	const PLAYBACK = "Playback";
-	const PAYMENT = "Payment";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaSuspendSettings';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->revokeEntitlements))
+		{
+			if(!empty($xml->revokeEntitlements) && ((int) $xml->revokeEntitlements === 1 || strtolower((string)$xml->revokeEntitlements) === 'true'))
+				$this->revokeEntitlements = true;
+			else
+				$this->revokeEntitlements = false;
+		}
+		if(count($xml->stopRenew))
+		{
+			if(!empty($xml->stopRenew) && ((int) $xml->stopRenew === 1 || strtolower((string)$xml->stopRenew) === 'true'))
+				$this->stopRenew = true;
+			else
+				$this->stopRenew = false;
+		}
+	}
+	/**
+	 * revoke entitlements
+	 *
+	 * @var bool
+	 */
+	public $revokeEntitlements = null;
+
+	/**
+	 * stop renew
+	 *
+	 * @var bool
+	 */
+	public $stopRenew = null;
+
+
 }
 

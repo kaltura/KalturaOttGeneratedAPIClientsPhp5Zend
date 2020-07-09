@@ -63,6 +63,8 @@ class Kaltura_Client_Type_HouseholdDevice extends Kaltura_Client_Type_OTTObjectS
 			$this->drm = Kaltura_Client_ParseUtils::unmarshalObject($xml->drm, "KalturaCustomDrmPlaybackPluginData");
 		if(count($xml->externalId))
 			$this->externalId = (string)$xml->externalId;
+		if(count($xml->macAddress))
+			$this->macAddress = (string)$xml->macAddress;
 	}
 	/**
 	 * Household identifier
@@ -130,6 +132,13 @@ class Kaltura_Client_Type_HouseholdDevice extends Kaltura_Client_Type_OTTObjectS
 	 * @var string
 	 */
 	public $externalId = null;
+
+	/**
+	 * mac address
+	 *
+	 * @var string
+	 */
+	public $macAddress = null;
 
 
 }

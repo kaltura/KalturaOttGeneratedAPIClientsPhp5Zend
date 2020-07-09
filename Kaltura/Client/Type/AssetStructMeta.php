@@ -71,6 +71,13 @@ class Kaltura_Client_Type_AssetStructMeta extends Kaltura_Client_ObjectBase
 			else
 				$this->isInherited = false;
 		}
+		if(count($xml->isLocationTag))
+		{
+			if(!empty($xml->isLocationTag) && ((int) $xml->isLocationTag === 1 || strtolower((string)$xml->isLocationTag) === 'true'))
+				$this->isLocationTag = true;
+			else
+				$this->isLocationTag = false;
+		}
 	}
 	/**
 	 * Asset Struct id (template_id)
@@ -131,6 +138,13 @@ class Kaltura_Client_Type_AssetStructMeta extends Kaltura_Client_ObjectBase
 	 * @var bool
 	 */
 	public $isInherited = null;
+
+	/**
+	 * Is Location Tag
+	 *
+	 * @var bool
+	 */
+	public $isLocationTag = null;
 
 
 }

@@ -58,6 +58,8 @@ class Kaltura_Client_Type_HouseholdPaymentGateway extends Kaltura_Client_ObjectB
 		}
 		if(count($xml->selectedBy))
 			$this->selectedBy = (string)$xml->selectedBy;
+		if(count($xml->suspendSettings) && !empty($xml->suspendSettings))
+			$this->suspendSettings = Kaltura_Client_ParseUtils::unmarshalObject($xml->suspendSettings, "KalturaSuspendSettings");
 	}
 	/**
 	 * payment gateway id
@@ -87,6 +89,14 @@ class Kaltura_Client_Type_HouseholdPaymentGateway extends Kaltura_Client_ObjectB
 	 * @var Kaltura_Client_Enum_HouseholdPaymentGatewaySelectedBy
 	 */
 	public $selectedBy = null;
+
+	/**
+	 * suspend settings
+	 *
+	 * @var Kaltura_Client_Type_SuspendSettings
+	 * @readonly
+	 */
+	public $suspendSettings;
 
 
 }

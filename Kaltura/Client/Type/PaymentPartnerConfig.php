@@ -31,16 +31,35 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_PartnerConfigurationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_PaymentPartnerConfig extends Kaltura_Client_Type_PartnerConfiguration
 {
-	const DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway";
-	const ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection";
-	const OSSADAPTER = "OSSAdapter";
-	const CONCURRENCY = "Concurrency";
-	const GENERAL = "General";
-	const OBJECTVIRTUALASSET = "ObjectVirtualAsset";
-	const COMMERCE = "Commerce";
-	const PLAYBACK = "Playback";
-	const PAYMENT = "Payment";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaPaymentPartnerConfig';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->unifiedBillingCycles))
+		{
+			if(empty($xml->unifiedBillingCycles))
+				$this->unifiedBillingCycles = array();
+			else
+				$this->unifiedBillingCycles = Kaltura_Client_ParseUtils::unmarshalArray($xml->unifiedBillingCycles, "KalturaUnifiedBillingCycle");
+		}
+	}
+	/**
+	 * configuration for unified billing cycles.
+	 *
+	 * @var array of KalturaUnifiedBillingCycle
+	 */
+	public $unifiedBillingCycles;
+
+
 }
 

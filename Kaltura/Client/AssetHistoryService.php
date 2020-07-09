@@ -57,6 +57,25 @@ class Kaltura_Client_AssetHistoryService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
+	 * @return Kaltura_Client_Type_AssetHistory
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function getNextEpisode($assetId)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "assetId", $assetId);
+		$this->client->queueServiceActionCall("assethistory", "getNextEpisode", "KalturaAssetHistory", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaAssetHistory");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_AssetHistory");
+		return $resultObject;
+	}
+
+	/**
 	 * @return Kaltura_Client_Type_AssetHistoryListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
