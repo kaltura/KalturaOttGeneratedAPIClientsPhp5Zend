@@ -41,6 +41,5 @@ class Kaltura_Client_Enum_PartnerConfigurationType extends Kaltura_Client_EnumBa
 	const OBJECTVIRTUALASSET = "ObjectVirtualAsset";
 	const COMMERCE = "Commerce";
 	const PLAYBACK = "Playback";
-	const PAYMENT = "Payment";
 }
 
