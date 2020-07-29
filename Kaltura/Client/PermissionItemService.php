@@ -27,66 +27,37 @@
 // @ignore
 // ===================================================================================================
 
+
 /**
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_UserRoleFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_PermissionItemService extends Kaltura_Client_ServiceBase
 {
-	public function getKalturaObjectType()
+	function __construct(Kaltura_Client_Client $client = null)
 	{
-		return 'KalturaUserRoleFilter';
+		parent::__construct($client);
 	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
+
+	/**
+	 * @return Kaltura_Client_Type_PermissionItemListResponse
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function listAction(Kaltura_Client_Type_PermissionItemFilter $filter = null, Kaltura_Client_Type_FilterPager $pager = null)
 	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
-		if(count($xml->currentUserRoleIdsContains))
-		{
-			if(!empty($xml->currentUserRoleIdsContains) && ((int) $xml->currentUserRoleIdsContains === 1 || strtolower((string)$xml->currentUserRoleIdsContains) === 'true'))
-				$this->currentUserRoleIdsContains = true;
-			else
-				$this->currentUserRoleIdsContains = false;
-		}
-		if(count($xml->typeEqual))
-			$this->typeEqual = (string)$xml->typeEqual;
-		if(count($xml->profileEqual))
-			$this->profileEqual = (string)$xml->profileEqual;
+		$kparams = array();
+		if ($filter !== null)
+			$this->client->addParam($kparams, "filter", $filter->toParams());
+		if ($pager !== null)
+			$this->client->addParam($kparams, "pager", $pager->toParams());
+		$this->client->queueServiceActionCall("permissionitem", "list", "KalturaPermissionItemListResponse", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaPermissionItemListResponse");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_PermissionItemListResponse");
+		return $resultObject;
 	}
-	/**
-	 * Comma separated roles identifiers
-	 *
-	 * @var string
-	 */
-	public $idIn = null;
-
-	/**
-	 * Indicates whether the results should be filtered by userId using the current
-	 *
-	 * @var bool
-	 */
-	public $currentUserRoleIdsContains = null;
-
-	/**
-	 * User role type
-	 *
-	 * @var Kaltura_Client_Enum_UserRoleType
-	 */
-	public $typeEqual = null;
-
-	/**
-	 * User role profile
-	 *
-	 * @var Kaltura_Client_Enum_UserRoleProfile
-	 */
-	public $profileEqual = null;
-
-
 }
-
