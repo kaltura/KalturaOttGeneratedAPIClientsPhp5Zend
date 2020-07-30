@@ -43,10 +43,12 @@ class Kaltura_Client_UserLoginPinService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_UserLoginPin
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function add($secret = null)
+	function add($secret = null, $pinUsages = null, $pinDuration = null)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "secret", $secret);
+		$this->client->addParam($kparams, "pinUsages", $pinUsages);
+		$this->client->addParam($kparams, "pinDuration", $pinDuration);
 		$this->client->queueServiceActionCall("userloginpin", "add", "KalturaUserLoginPin", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
@@ -97,11 +99,13 @@ class Kaltura_Client_UserLoginPinService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_UserLoginPin
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function update($pinCode, $secret = null)
+	function update($pinCode, $secret = null, $pinUsages = null, $pinDuration = null)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "pinCode", $pinCode);
 		$this->client->addParam($kparams, "secret", $secret);
+		$this->client->addParam($kparams, "pinUsages", $pinUsages);
+		$this->client->addParam($kparams, "pinDuration", $pinDuration);
 		$this->client->queueServiceActionCall("userloginpin", "update", "KalturaUserLoginPin", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();

@@ -95,6 +95,8 @@ class Kaltura_Client_Type_CategoryTree extends Kaltura_Client_ObjectBase
 			$this->startDateInSeconds = (string)$xml->startDateInSeconds;
 		if(count($xml->endDateInSeconds))
 			$this->endDateInSeconds = (string)$xml->endDateInSeconds;
+		if(count($xml->type))
+			$this->type = (string)$xml->type;
 	}
 	/**
 	 * Unique identifier for the category item
@@ -168,6 +170,14 @@ class Kaltura_Client_Type_CategoryTree extends Kaltura_Client_ObjectBase
 	 * @var bigint
 	 */
 	public $endDateInSeconds = null;
+
+	/**
+	 * Category type
+	 *
+	 * @var string
+	 * @insertonly
+	 */
+	public $type = null;
 
 
 }

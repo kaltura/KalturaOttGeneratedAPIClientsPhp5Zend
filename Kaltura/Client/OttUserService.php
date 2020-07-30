@@ -221,9 +221,11 @@ class Kaltura_Client_OttUserService extends Kaltura_Client_ServiceBase
 	 * @return bool
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function logout()
+	function logout(array $adapterData = null)
 	{
 		$kparams = array();
+		if ($adapterData !== null)
+			$this->client->addParam($kparams, "adapterData", $adapterData->toParams());
 		$this->client->queueServiceActionCall("ottuser", "logout", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
