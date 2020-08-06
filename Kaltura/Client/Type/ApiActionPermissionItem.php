@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_UserRoleFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_ApiActionPermissionItem extends Kaltura_Client_Type_PermissionItem
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaUserRoleFilter';
+		return 'KalturaApiActionPermissionItem';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,47 +45,24 @@ class Kaltura_Client_Type_UserRoleFilter extends Kaltura_Client_Type_Filter
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
-		if(count($xml->currentUserRoleIdsContains))
-		{
-			if(!empty($xml->currentUserRoleIdsContains) && ((int) $xml->currentUserRoleIdsContains === 1 || strtolower((string)$xml->currentUserRoleIdsContains) === 'true'))
-				$this->currentUserRoleIdsContains = true;
-			else
-				$this->currentUserRoleIdsContains = false;
-		}
-		if(count($xml->typeEqual))
-			$this->typeEqual = (string)$xml->typeEqual;
-		if(count($xml->profileEqual))
-			$this->profileEqual = (string)$xml->profileEqual;
+		if(count($xml->service))
+			$this->service = (string)$xml->service;
+		if(count($xml->action))
+			$this->action = (string)$xml->action;
 	}
 	/**
-	 * Comma separated roles identifiers
+	 * API service name
 	 *
 	 * @var string
 	 */
-	public $idIn = null;
+	public $service = null;
 
 	/**
-	 * Indicates whether the results should be filtered by userId using the current
+	 * API action name
 	 *
-	 * @var bool
+	 * @var string
 	 */
-	public $currentUserRoleIdsContains = null;
-
-	/**
-	 * User role type
-	 *
-	 * @var Kaltura_Client_Enum_UserRoleType
-	 */
-	public $typeEqual = null;
-
-	/**
-	 * User role profile
-	 *
-	 * @var Kaltura_Client_Enum_UserRoleProfile
-	 */
-	public $profileEqual = null;
+	public $action = null;
 
 
 }
