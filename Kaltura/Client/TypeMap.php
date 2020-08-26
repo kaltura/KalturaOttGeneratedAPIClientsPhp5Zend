@@ -394,6 +394,7 @@ class Kaltura_Client_TypeMap
 		'KalturaOTTUserType' => 'Kaltura_Client_Type_OTTUserType',
 		'KalturaObjectVirtualAssetInfo' => 'Kaltura_Client_Type_ObjectVirtualAssetInfo',
 		'KalturaObjectVirtualAssetPartnerConfig' => 'Kaltura_Client_Type_ObjectVirtualAssetPartnerConfig',
+		'KalturaOnDemandResponseProfile' => 'Kaltura_Client_Type_OnDemandResponseProfile',
 		'KalturaOrCondition' => 'Kaltura_Client_Type_OrCondition',
 		'KalturaPPVItemPriceDetails' => 'Kaltura_Client_Type_PPVItemPriceDetails',
 		'KalturaParentalRule' => 'Kaltura_Client_Type_ParentalRule',

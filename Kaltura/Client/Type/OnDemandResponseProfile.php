@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_UnifiedBillingCycle extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_OnDemandResponseProfile extends Kaltura_Client_Type_DetachedResponseProfile
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaUnifiedBillingCycle';
+		return 'KalturaOnDemandResponseProfile';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,47 +45,15 @@ class Kaltura_Client_Type_UnifiedBillingCycle extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->duration) && !empty($xml->duration))
-			$this->duration = Kaltura_Client_ParseUtils::unmarshalObject($xml->duration, "KalturaDuration");
-		if(count($xml->paymentGatewayId))
-			$this->paymentGatewayId = (int)$xml->paymentGatewayId;
-		if(count($xml->ignorePartialBilling))
-		{
-			if(!empty($xml->ignorePartialBilling) && ((int) $xml->ignorePartialBilling === 1 || strtolower((string)$xml->ignorePartialBilling) === 'true'))
-				$this->ignorePartialBilling = true;
-			else
-				$this->ignorePartialBilling = false;
-		}
+		if(count($xml->retrievedProperties))
+			$this->retrievedProperties = (string)$xml->retrievedProperties;
 	}
 	/**
-	 * UnifiedBillingCycle name
+	 * Comma seperated properties names
 	 *
 	 * @var string
 	 */
-	public $name = null;
-
-	/**
-	 * cycle duration
-	 *
-	 * @var Kaltura_Client_Type_Duration
-	 */
-	public $duration;
-
-	/**
-	 * Payment Gateway Id
-	 *
-	 * @var int
-	 */
-	public $paymentGatewayId = null;
-
-	/**
-	 * Define if partial billing shall be calculated or not
-	 *
-	 * @var bool
-	 */
-	public $ignorePartialBilling = null;
+	public $retrievedProperties = null;
 
 
 }
