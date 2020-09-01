@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_OnDemandResponseProfile extends Kaltura_Client_Type_DetachedResponseProfile
+class Kaltura_Client_Type_SmsAdapterProfileListResponse extends Kaltura_Client_Type_ListResponse
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaOnDemandResponseProfile';
+		return 'KalturaSmsAdapterProfileListResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,15 +45,20 @@ class Kaltura_Client_Type_OnDemandResponseProfile extends Kaltura_Client_Type_De
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->retrievedProperties))
-			$this->retrievedProperties = (string)$xml->retrievedProperties;
+		if(count($xml->objects))
+		{
+			if(empty($xml->objects))
+				$this->objects = array();
+			else
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaSmsAdapterProfile");
+		}
 	}
 	/**
-	 * Comma seperated properties names
+	 * A list of objects
 	 *
-	 * @var string
+	 * @var array of KalturaSmsAdapterProfile
 	 */
-	public $retrievedProperties = null;
+	public $objects;
 
 
 }

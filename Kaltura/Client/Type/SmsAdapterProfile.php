@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_UnifiedBillingCycle extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_SmsAdapterProfile extends Kaltura_Client_Type_CrudObject
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaUnifiedBillingCycle';
+		return 'KalturaSmsAdapterProfile';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,33 +45,75 @@ class Kaltura_Client_Type_UnifiedBillingCycle extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
+		if(count($xml->id))
+			$this->id = (string)$xml->id;
+		if(count($xml->adapterUrl))
+			$this->adapterUrl = (string)$xml->adapterUrl;
+		if(count($xml->sharedSecret))
+			$this->sharedSecret = (string)$xml->sharedSecret;
+		if(count($xml->isActive))
+			$this->isActive = (int)$xml->isActive;
+		if(count($xml->settings))
+		{
+			if(empty($xml->settings))
+				$this->settings = array();
+			else
+				$this->settings = Kaltura_Client_ParseUtils::unmarshalMap($xml->settings, "KalturaStringValue");
+		}
+		if(count($xml->externalIdentifier))
+			$this->externalIdentifier = (string)$xml->externalIdentifier;
 		if(count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->duration) && !empty($xml->duration))
-			$this->duration = Kaltura_Client_ParseUtils::unmarshalObject($xml->duration, "KalturaDuration");
-		if(count($xml->paymentGatewayId))
-			$this->paymentGatewayId = (int)$xml->paymentGatewayId;
 	}
 	/**
-	 * UnifiedBillingCycle name
+	 * id
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $id = null;
+
+	/**
+	 * adapter url
+	 *
+	 * @var string
+	 */
+	public $adapterUrl = null;
+
+	/**
+	 * Shared Secret
+	 *
+	 * @var string
+	 */
+	public $sharedSecret = null;
+
+	/**
+	 * SSO Adapter is active status
+	 *
+	 * @var int
+	 */
+	public $isActive = null;
+
+	/**
+	 * SSO Adapter extra parameters
+	 *
+	 * @var map
+	 */
+	public $settings;
+
+	/**
+	 * SSO Adapter external identifier
+	 *
+	 * @var string
+	 */
+	public $externalIdentifier = null;
+
+	/**
+	 * Name
 	 *
 	 * @var string
 	 */
 	public $name = null;
-
-	/**
-	 * cycle duration
-	 *
-	 * @var Kaltura_Client_Type_Duration
-	 */
-	public $duration;
-
-	/**
-	 * Payment Gateway Id
-	 *
-	 * @var int
-	 */
-	public $paymentGatewayId = null;
 
 
 }

@@ -82,10 +82,13 @@ class Kaltura_Client_NotificationService extends Kaltura_Client_ServiceBase
 	 * @return bool
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function sendSms($message)
+	function sendSms($message, $phoneNumber = null, array $adapterData = null)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "message", $message);
+		$this->client->addParam($kparams, "phoneNumber", $phoneNumber);
+		if ($adapterData !== null)
+			$this->client->addParam($kparams, "adapterData", $adapterData->toParams());
 		$this->client->queueServiceActionCall("notification", "sendSms", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();

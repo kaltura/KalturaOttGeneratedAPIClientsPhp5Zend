@@ -31,48 +31,8 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_UnifiedBillingCycle extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Enum_SmsAdapterProfileOrderBy extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaUnifiedBillingCycle';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->duration) && !empty($xml->duration))
-			$this->duration = Kaltura_Client_ParseUtils::unmarshalObject($xml->duration, "KalturaDuration");
-		if(count($xml->paymentGatewayId))
-			$this->paymentGatewayId = (int)$xml->paymentGatewayId;
-	}
-	/**
-	 * UnifiedBillingCycle name
-	 *
-	 * @var string
-	 */
-	public $name = null;
-
-	/**
-	 * cycle duration
-	 *
-	 * @var Kaltura_Client_Type_Duration
-	 */
-	public $duration;
-
-	/**
-	 * Payment Gateway Id
-	 *
-	 * @var int
-	 */
-	public $paymentGatewayId = null;
-
-
+	const NONE = "NONE";
 }
 
