@@ -527,12 +527,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_PermissionItemService
-	 */
-	public $permissionItem = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_PersonalFeedService
 	 */
 	public $personalFeed = null;
@@ -804,8 +798,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:20-08-26');
-		$this->setApiVersion('5.5.0.28283');
+		$this->setClientTag('php5:20-08-31');
+		$this->setApiVersion('5.4.0.28228');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -889,7 +883,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->paymentGatewayProfile = new Kaltura_Client_PaymentGatewayProfileService($this);
 		$this->paymentMethodProfile = new Kaltura_Client_PaymentMethodProfileService($this);
 		$this->permission = new Kaltura_Client_PermissionService($this);
-		$this->permissionItem = new Kaltura_Client_PermissionItemService($this);
 		$this->personalFeed = new Kaltura_Client_PersonalFeedService($this);
 		$this->personalList = new Kaltura_Client_PersonalListService($this);
 		$this->pin = new Kaltura_Client_PinService($this);
