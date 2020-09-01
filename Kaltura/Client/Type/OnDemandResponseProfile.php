@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseChannel extends Kaltura_Client_Type_OTTObjectSupportNullable
+class Kaltura_Client_Type_OnDemandResponseProfile extends Kaltura_Client_Type_DetachedResponseProfile
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBaseChannel';
+		return 'KalturaOnDemandResponseProfile';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,16 +45,15 @@ class Kaltura_Client_Type_BaseChannel extends Kaltura_Client_Type_OTTObjectSuppo
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
+		if(count($xml->retrievedProperties))
+			$this->retrievedProperties = (string)$xml->retrievedProperties;
 	}
 	/**
-	 * Unique identifier for the channel
+	 * Comma seperated properties names
 	 *
-	 * @var bigint
-	 * @readonly
+	 * @var string
 	 */
-	public $id = null;
+	public $retrievedProperties = null;
 
 
 }

@@ -51,6 +51,13 @@ class Kaltura_Client_Type_UnifiedBillingCycle extends Kaltura_Client_ObjectBase
 			$this->duration = Kaltura_Client_ParseUtils::unmarshalObject($xml->duration, "KalturaDuration");
 		if(count($xml->paymentGatewayId))
 			$this->paymentGatewayId = (int)$xml->paymentGatewayId;
+		if(count($xml->ignorePartialBilling))
+		{
+			if(!empty($xml->ignorePartialBilling) && ((int) $xml->ignorePartialBilling === 1 || strtolower((string)$xml->ignorePartialBilling) === 'true'))
+				$this->ignorePartialBilling = true;
+			else
+				$this->ignorePartialBilling = false;
+		}
 	}
 	/**
 	 * UnifiedBillingCycle name
@@ -72,6 +79,13 @@ class Kaltura_Client_Type_UnifiedBillingCycle extends Kaltura_Client_ObjectBase
 	 * @var int
 	 */
 	public $paymentGatewayId = null;
+
+	/**
+	 * Define if partial billing shall be calculated or not
+	 *
+	 * @var bool
+	 */
+	public $ignorePartialBilling = null;
 
 
 }
