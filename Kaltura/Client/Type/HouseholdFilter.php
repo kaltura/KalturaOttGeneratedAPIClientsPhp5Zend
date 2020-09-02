@@ -31,10 +31,30 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_HouseholdDeviceOrderBy extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_HouseholdFilter extends Kaltura_Client_Type_Filter
 {
-	const NONE = "NONE";
-	const CREATED_DATE_ASC = "CREATED_DATE_ASC";
-	const CREATED_DATE_DESC = "CREATED_DATE_DESC";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaHouseholdFilter';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->externalIdEqual))
+			$this->externalIdEqual = (string)$xml->externalIdEqual;
+	}
+	/**
+	 * Household external identifier to search by
+	 *
+	 * @var string
+	 */
+	public $externalIdEqual = null;
+
+
 }
 

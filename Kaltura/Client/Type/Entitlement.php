@@ -107,7 +107,6 @@ class Kaltura_Client_Type_Entitlement extends Kaltura_Client_ObjectBase
 	 * The end date of the entitlement
 	 *
 	 * @var bigint
-	 * @readonly
 	 */
 	public $endDate = null;
 

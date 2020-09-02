@@ -31,10 +31,8 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_HouseholdDeviceOrderBy extends Kaltura_Client_EnumBase
+class Kaltura_Client_Enum_HouseholdOrderBy extends Kaltura_Client_EnumBase
 {
-	const NONE = "NONE";
-	const CREATED_DATE_ASC = "CREATED_DATE_ASC";
-	const CREATED_DATE_DESC = "CREATED_DATE_DESC";
+	const CREATE_DATE_DESC = "CREATE_DATE_DESC";
 }
 
