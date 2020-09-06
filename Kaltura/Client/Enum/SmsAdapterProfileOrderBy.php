@@ -31,31 +31,8 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseChannel extends Kaltura_Client_Type_OTTObjectSupportNullable
+class Kaltura_Client_Enum_SmsAdapterProfileOrderBy extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaBaseChannel';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-	}
-	/**
-	 * Unique identifier for the channel
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $id = null;
-
-
+	const NONE = "NONE";
 }
 

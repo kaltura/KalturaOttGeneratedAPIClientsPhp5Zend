@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseChannel extends Kaltura_Client_Type_OTTObjectSupportNullable
+class Kaltura_Client_Type_HouseholdFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBaseChannel';
+		return 'KalturaHouseholdFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,16 +45,15 @@ class Kaltura_Client_Type_BaseChannel extends Kaltura_Client_Type_OTTObjectSuppo
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
+		if(count($xml->externalIdEqual))
+			$this->externalIdEqual = (string)$xml->externalIdEqual;
 	}
 	/**
-	 * Unique identifier for the channel
+	 * Household external identifier to search by
 	 *
-	 * @var bigint
-	 * @readonly
+	 * @var string
 	 */
-	public $id = null;
+	public $externalIdEqual = null;
 
 
 }
