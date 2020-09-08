@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_SmsAdapterProfile extends Kaltura_Client_Type_CrudObject
+class Kaltura_Client_Type_DeviceReferenceDataListResponse extends Kaltura_Client_Type_ListResponse
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaSmsAdapterProfile';
+		return 'KalturaDeviceReferenceDataListResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,75 +45,20 @@ class Kaltura_Client_Type_SmsAdapterProfile extends Kaltura_Client_Type_CrudObje
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->adapterUrl))
-			$this->adapterUrl = (string)$xml->adapterUrl;
-		if(count($xml->sharedSecret))
-			$this->sharedSecret = (string)$xml->sharedSecret;
-		if(count($xml->isActive))
-			$this->isActive = (int)$xml->isActive;
-		if(count($xml->settings))
+		if(count($xml->objects))
 		{
-			if(empty($xml->settings))
-				$this->settings = array();
+			if(empty($xml->objects))
+				$this->objects = array();
 			else
-				$this->settings = Kaltura_Client_ParseUtils::unmarshalMap($xml->settings, "KalturaStringValue");
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaDeviceReferenceData");
 		}
-		if(count($xml->externalIdentifier))
-			$this->externalIdentifier = (string)$xml->externalIdentifier;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
 	}
 	/**
-	 * id
+	 * A list of objects
 	 *
-	 * @var bigint
-	 * @readonly
+	 * @var array of KalturaDeviceReferenceData
 	 */
-	public $id = null;
-
-	/**
-	 * adapter url
-	 *
-	 * @var string
-	 */
-	public $adapterUrl = null;
-
-	/**
-	 * Shared Secret
-	 *
-	 * @var string
-	 */
-	public $sharedSecret = null;
-
-	/**
-	 * SSO Adapter is active status
-	 *
-	 * @var int
-	 */
-	public $isActive = null;
-
-	/**
-	 * SSO Adapter extra parameters
-	 *
-	 * @var map
-	 */
-	public $settings;
-
-	/**
-	 * SSO Adapter external identifier
-	 *
-	 * @var string
-	 */
-	public $externalIdentifier = null;
-
-	/**
-	 * Name
-	 *
-	 * @var string
-	 */
-	public $name = null;
+	public $objects;
 
 
 }

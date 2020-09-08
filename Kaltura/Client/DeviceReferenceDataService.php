@@ -32,7 +32,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_NotificationService extends Kaltura_Client_ServiceBase
+class Kaltura_Client_DeviceReferenceDataService extends Kaltura_Client_ServiceBase
 {
 	function __construct(Kaltura_Client_Client $client = null)
 	{
@@ -40,77 +40,77 @@ class Kaltura_Client_NotificationService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_RegistryResponse
+	 * @return Kaltura_Client_Type_DeviceReferenceData
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function register($identifier, $type)
+	function add(Kaltura_Client_Type_DeviceReferenceData $objectToAdd)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "identifier", $identifier);
-		$this->client->addParam($kparams, "type", $type);
-		$this->client->queueServiceActionCall("notification", "register", "KalturaRegistryResponse", $kparams);
+		$this->client->addParam($kparams, "objectToAdd", $objectToAdd->toParams());
+		$this->client->queueServiceActionCall("devicereferencedata", "add", "KalturaDeviceReferenceData", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaRegistryResponse");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_RegistryResponse");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaDeviceReferenceData");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_DeviceReferenceData");
 		return $resultObject;
 	}
 
 	/**
-	 * @return bool
+	 * @return Kaltura_Client_Type_DeviceReferenceData
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function sendPush($userId, Kaltura_Client_Type_PushMessage $pushMessage)
+	function update($id, Kaltura_Client_Type_DeviceReferenceData $objectToUpdate)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "userId", $userId);
-		$this->client->addParam($kparams, "pushMessage", $pushMessage->toParams());
-		$this->client->queueServiceActionCall("notification", "sendPush", null, $kparams);
+		$this->client->addParam($kparams, "id", $id);
+		$this->client->addParam($kparams, "objectToUpdate", $objectToUpdate->toParams());
+		$this->client->queueServiceActionCall("devicereferencedata", "update", "KalturaDeviceReferenceData", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaDeviceReferenceData");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_DeviceReferenceData");
 		return $resultObject;
 	}
 
 	/**
-	 * @return bool
+	 * @return 
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function sendSms($message)
+	function delete($id)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "message", $message);
-		$this->client->queueServiceActionCall("notification", "sendSms", null, $kparams);
+		$this->client->addParam($kparams, "id", $id);
+		$this->client->queueServiceActionCall("devicereferencedata", "delete", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
-		return $resultObject;
 	}
 
 	/**
-	 * @return bool
+	 * @return Kaltura_Client_Type_DeviceReferenceDataListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function setDevicePushToken($pushToken)
+	function listAction(Kaltura_Client_Type_DeviceReferenceDataFilter $filter = null)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "pushToken", $pushToken);
-		$this->client->queueServiceActionCall("notification", "setDevicePushToken", null, $kparams);
+		if ($filter !== null)
+			$this->client->addParam($kparams, "filter", $filter->toParams());
+		$this->client->queueServiceActionCall("devicereferencedata", "list", "KalturaDeviceReferenceDataListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaDeviceReferenceDataListResponse");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_DeviceReferenceDataListResponse");
 		return $resultObject;
 	}
 }

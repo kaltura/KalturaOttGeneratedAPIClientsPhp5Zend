@@ -65,6 +65,10 @@ class Kaltura_Client_Type_HouseholdDevice extends Kaltura_Client_Type_OTTObjectS
 			$this->externalId = (string)$xml->externalId;
 		if(count($xml->macAddress))
 			$this->macAddress = (string)$xml->macAddress;
+		if(count($xml->model))
+			$this->model = (string)$xml->model;
+		if(count($xml->manufacturerId))
+			$this->manufacturerId = (string)$xml->manufacturerId;
 	}
 	/**
 	 * Household identifier
@@ -139,6 +143,20 @@ class Kaltura_Client_Type_HouseholdDevice extends Kaltura_Client_Type_OTTObjectS
 	 * @var string
 	 */
 	public $macAddress = null;
+
+	/**
+	 * model
+	 *
+	 * @var string
+	 */
+	public $model = null;
+
+	/**
+	 * manufacturer
+	 *
+	 * @var bigint
+	 */
+	public $manufacturerId = null;
 
 
 }

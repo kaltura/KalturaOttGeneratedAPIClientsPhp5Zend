@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_SmsAdapterProfileFilter extends Kaltura_Client_Type_CrudFilter
+class Kaltura_Client_Type_DeviceManufacturersReferenceDataFilter extends Kaltura_Client_Type_DeviceReferenceDataFilter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaSmsAdapterProfileFilter';
+		return 'KalturaDeviceManufacturersReferenceDataFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)

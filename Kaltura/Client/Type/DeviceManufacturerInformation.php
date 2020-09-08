@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_HouseholdFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_DeviceManufacturerInformation extends Kaltura_Client_Type_DeviceReferenceData
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaHouseholdFilter';
+		return 'KalturaDeviceManufacturerInformation';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,16 +45,7 @@ class Kaltura_Client_Type_HouseholdFilter extends Kaltura_Client_Type_Filter
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->externalIdEqual))
-			$this->externalIdEqual = (string)$xml->externalIdEqual;
 	}
-	/**
-	 * Household external identifier to search by
-	 *
-	 * @var string
-	 */
-	public $externalIdEqual = null;
-
 
 }
 

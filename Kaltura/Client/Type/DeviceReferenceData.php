@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_HouseholdListResponse extends Kaltura_Client_Type_ListResponse
+class Kaltura_Client_Type_DeviceReferenceData extends Kaltura_Client_Type_CrudObject
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaHouseholdListResponse';
+		return 'KalturaDeviceReferenceData';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,20 +45,39 @@ class Kaltura_Client_Type_HouseholdListResponse extends Kaltura_Client_Type_List
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->objects))
+		if(count($xml->id))
+			$this->id = (string)$xml->id;
+		if(count($xml->name))
+			$this->name = (string)$xml->name;
+		if(count($xml->status))
 		{
-			if(empty($xml->objects))
-				$this->objects = array();
+			if(!empty($xml->status) && ((int) $xml->status === 1 || strtolower((string)$xml->status) === 'true'))
+				$this->status = true;
 			else
-				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaHousehold");
+				$this->status = false;
 		}
 	}
 	/**
-	 * A list of objects
+	 * id
 	 *
-	 * @var array of KalturaHousehold
+	 * @var bigint
+	 * @readonly
 	 */
-	public $objects;
+	public $id = null;
+
+	/**
+	 * Name
+	 *
+	 * @var string
+	 */
+	public $name = null;
+
+	/**
+	 * Status
+	 *
+	 * @var bool
+	 */
+	public $status = null;
 
 
 }
