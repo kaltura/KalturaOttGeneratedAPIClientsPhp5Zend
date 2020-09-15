@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-abstract class Kaltura_Client_Type_CrudObject extends Kaltura_Client_Type_OTTObjectSupportNullable
+abstract class Kaltura_Client_Type_CrudObject extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{

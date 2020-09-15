@@ -125,18 +125,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_CategoryItemService
-	 */
-	public $categoryItem = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_CategoryTreeService
-	 */
-	public $categoryTree = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_CdnAdapterProfileService
 	 */
 	public $cdnAdapterProfile = null;
@@ -395,18 +383,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_IotService
-	 */
-	public $iot = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_IotProfileService
-	 */
-	public $iotProfile = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_LanguageService
 	 */
 	public $language = null;
@@ -527,12 +503,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_PermissionItemService
-	 */
-	public $permissionItem = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_PersonalFeedService
 	 */
 	public $personalFeed = null;
@@ -650,12 +620,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	 * @var Kaltura_Client_SessionService
 	 */
 	public $session = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_SmsAdapterProfileService
-	 */
-	public $smsAdapterProfile = null;
 
 	/**
 	 * 
@@ -810,8 +774,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:20-09-06');
-		$this->setApiVersion('5.5.1.28355');
+		$this->setClientTag('php5:20-09-15');
+		$this->setApiVersion('5.3.2.27544');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -828,8 +792,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->bookmark = new Kaltura_Client_BookmarkService($this);
 		$this->bulkUpload = new Kaltura_Client_BulkUploadService($this);
 		$this->businessModuleRule = new Kaltura_Client_BusinessModuleRuleService($this);
-		$this->categoryItem = new Kaltura_Client_CategoryItemService($this);
-		$this->categoryTree = new Kaltura_Client_CategoryTreeService($this);
 		$this->cdnAdapterProfile = new Kaltura_Client_CdnAdapterProfileService($this);
 		$this->cdnPartnerSettings = new Kaltura_Client_CdnPartnerSettingsService($this);
 		$this->cDVRAdapterProfile = new Kaltura_Client_CDVRAdapterProfileService($this);
@@ -873,8 +835,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->imageType = new Kaltura_Client_ImageTypeService($this);
 		$this->inboxMessage = new Kaltura_Client_InboxMessageService($this);
 		$this->IngestProfile = new Kaltura_Client_IngestProfileService($this);
-		$this->iot = new Kaltura_Client_IotService($this);
-		$this->iotProfile = new Kaltura_Client_IotProfileService($this);
 		$this->language = new Kaltura_Client_LanguageService($this);
 		$this->licensedUrl = new Kaltura_Client_LicensedUrlService($this);
 		$this->mediaConcurrencyRule = new Kaltura_Client_MediaConcurrencyRuleService($this);
@@ -895,7 +855,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->paymentGatewayProfile = new Kaltura_Client_PaymentGatewayProfileService($this);
 		$this->paymentMethodProfile = new Kaltura_Client_PaymentMethodProfileService($this);
 		$this->permission = new Kaltura_Client_PermissionService($this);
-		$this->permissionItem = new Kaltura_Client_PermissionItemService($this);
 		$this->personalFeed = new Kaltura_Client_PersonalFeedService($this);
 		$this->personalList = new Kaltura_Client_PersonalListService($this);
 		$this->pin = new Kaltura_Client_PinService($this);
@@ -916,7 +875,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->segmentationType = new Kaltura_Client_SegmentationTypeService($this);
 		$this->seriesRecording = new Kaltura_Client_SeriesRecordingService($this);
 		$this->session = new Kaltura_Client_SessionService($this);
-		$this->smsAdapterProfile = new Kaltura_Client_SmsAdapterProfileService($this);
 		$this->socialAction = new Kaltura_Client_SocialActionService($this);
 		$this->socialComment = new Kaltura_Client_SocialCommentService($this);
 		$this->social = new Kaltura_Client_SocialService($this);
