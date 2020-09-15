@@ -31,12 +31,53 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_InboxMessageType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_TriggerCampaign extends Kaltura_Client_Type_Campaign
 {
-	const SYSTEMANNOUNCEMENT = "SystemAnnouncement";
-	const FOLLOWED = "Followed";
-	const ENGAGEMENT = "Engagement";
-	const INTEREST = "Interest";
-	const CAMPAIGN = "Campaign";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaTriggerCampaign';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->service))
+			$this->service = (string)$xml->service;
+		if(count($xml->action))
+			$this->action = (string)$xml->action;
+		if(count($xml->triggerConditions))
+		{
+			if(empty($xml->triggerConditions))
+				$this->triggerConditions = array();
+			else
+				$this->triggerConditions = Kaltura_Client_ParseUtils::unmarshalArray($xml->triggerConditions, "KalturaCondition");
+		}
+	}
+	/**
+	 * service
+	 *
+	 * @var Kaltura_Client_Enum_ApiService
+	 */
+	public $service = null;
+
+	/**
+	 * action
+	 *
+	 * @var Kaltura_Client_Enum_ApiAction
+	 */
+	public $action = null;
+
+	/**
+	 * List of conditions for the trigger (conditions on the object)
+	 *
+	 * @var array of KalturaCondition
+	 */
+	public $triggerConditions;
+
+
 }
 

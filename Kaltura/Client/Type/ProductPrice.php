@@ -51,8 +51,12 @@ abstract class Kaltura_Client_Type_ProductPrice extends Kaltura_Client_ObjectBas
 			$this->productType = (string)$xml->productType;
 		if(count($xml->price) && !empty($xml->price))
 			$this->price = Kaltura_Client_ParseUtils::unmarshalObject($xml->price, "KalturaPrice");
+		if(count($xml->fullPrice) && !empty($xml->fullPrice))
+			$this->fullPrice = Kaltura_Client_ParseUtils::unmarshalObject($xml->fullPrice, "KalturaPrice");
 		if(count($xml->purchaseStatus))
 			$this->purchaseStatus = (string)$xml->purchaseStatus;
+		if(count($xml->promotionInfo) && !empty($xml->promotionInfo))
+			$this->promotionInfo = Kaltura_Client_ParseUtils::unmarshalObject($xml->promotionInfo, "KalturaPromotionInfo");
 	}
 	/**
 	 * Product identifier
@@ -76,11 +80,25 @@ abstract class Kaltura_Client_Type_ProductPrice extends Kaltura_Client_ObjectBas
 	public $price;
 
 	/**
+	 * The full price of the item (with no discounts)
+	 *
+	 * @var Kaltura_Client_Type_Price
+	 */
+	public $fullPrice;
+
+	/**
 	 * Product purchase status
 	 *
 	 * @var Kaltura_Client_Enum_PurchaseStatus
 	 */
 	public $purchaseStatus = null;
+
+	/**
+	 * Promotion Info
+	 *
+	 * @var Kaltura_Client_Type_PromotionInfo
+	 */
+	public $promotionInfo;
 
 
 }

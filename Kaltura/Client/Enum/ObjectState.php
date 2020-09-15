@@ -31,12 +31,10 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_InboxMessageType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Enum_ObjectState extends Kaltura_Client_EnumBase
 {
-	const SYSTEMANNOUNCEMENT = "SystemAnnouncement";
-	const FOLLOWED = "Followed";
-	const ENGAGEMENT = "Engagement";
-	const INTEREST = "Interest";
-	const CAMPAIGN = "Campaign";
+	const INACTIVE = "INACTIVE";
+	const ACTIVE = "ACTIVE";
+	const ARCHIVE = "ARCHIVE";
 }
 

@@ -31,12 +31,30 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_InboxMessageType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_DynamicListSearchFilter extends Kaltura_Client_Type_DynamicListFilter
 {
-	const SYSTEMANNOUNCEMENT = "SystemAnnouncement";
-	const FOLLOWED = "Followed";
-	const ENGAGEMENT = "Engagement";
-	const INTEREST = "Interest";
-	const CAMPAIGN = "Campaign";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaDynamicListSearchFilter';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->valueIn))
+			$this->valueIn = (string)$xml->valueIn;
+	}
+	/**
+	 * Comma-separated String which represent List of objects that is in the dynamicList.
+	 *
+	 * @var string
+	 */
+	public $valueIn = null;
+
+
 }
 
