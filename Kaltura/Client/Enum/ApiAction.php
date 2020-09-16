@@ -33,7 +33,6 @@
  */
 class Kaltura_Client_Enum_ApiAction extends Kaltura_Client_EnumBase
 {
-	const INSERT = "INSERT";
-	const UPDATE = "UPDATE";
+	const ADD = "ADD";
 }
 
