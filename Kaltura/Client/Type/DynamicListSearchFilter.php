@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DynamicListSearchFilter extends Kaltura_Client_Type_DynamicListFilter
+abstract class Kaltura_Client_Type_DynamicListSearchFilter extends Kaltura_Client_Type_DynamicListFilter
 {
 	public function getKalturaObjectType()
 	{
@@ -45,15 +45,24 @@ class Kaltura_Client_Type_DynamicListSearchFilter extends Kaltura_Client_Type_Dy
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->valueIn))
-			$this->valueIn = (string)$xml->valueIn;
+		if(count($xml->idEqual))
+			$this->idEqual = (string)$xml->idEqual;
+		if(count($xml->valueEqual))
+			$this->valueEqual = (string)$xml->valueEqual;
 	}
 	/**
-	 * Comma-separated String which represent List of objects that is in the dynamicList.
+	 * DynamicList id to search by
+	 *
+	 * @var bigint
+	 */
+	public $idEqual = null;
+
+	/**
+	 * udid value that should be in the DynamicList
 	 *
 	 * @var string
 	 */
-	public $valueIn = null;
+	public $valueEqual = null;
 
 
 }

@@ -49,6 +49,6 @@ class Kaltura_Client_Enum_RuleConditionType extends Kaltura_Client_EnumBase
 	const DEVICE_FAMILY = "DEVICE_FAMILY";
 	const DEVICE_MANUFACTURER = "DEVICE_MANUFACTURER";
 	const DEVICE_MODEL = "DEVICE_MODEL";
-	const DEVICE_UDID = "DEVICE_UDID";
+	const DEVICE_UDID_DYNAMIC_LIST = "DEVICE_UDID_DYNAMIC_LIST";
 }
 

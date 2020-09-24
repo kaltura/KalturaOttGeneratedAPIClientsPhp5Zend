@@ -33,6 +33,6 @@
  */
 class Kaltura_Client_Enum_CampaignOrderBy extends Kaltura_Client_EnumBase
 {
-	const NONE = "NONE";
+	const START_DATE_DESC = "START_DATE_DESC";
 }
 

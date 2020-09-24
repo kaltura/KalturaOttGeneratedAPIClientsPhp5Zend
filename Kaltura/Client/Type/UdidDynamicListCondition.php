@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceUdidCondition extends Kaltura_Client_Type_Condition
+class Kaltura_Client_Type_UdidDynamicListCondition extends Kaltura_Client_Type_Condition
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceUdidCondition';
+		return 'KalturaUdidDynamicListCondition';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,15 +45,15 @@ class Kaltura_Client_Type_DeviceUdidCondition extends Kaltura_Client_Type_Condit
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->udidIn))
-			$this->udidIn = (string)$xml->udidIn;
+		if(count($xml->id))
+			$this->id = (string)$xml->id;
 	}
 	/**
-	 * Comma separated Device Udid IDs list
+	 * KalturaUdidDynamicList.id
 	 *
-	 * @var string
+	 * @var bigint
 	 */
-	public $udidIn = null;
+	public $id = null;
 
 
 }

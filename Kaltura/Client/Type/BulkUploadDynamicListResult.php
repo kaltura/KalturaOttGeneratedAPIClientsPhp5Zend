@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_UdidDynamicListSearchFilter extends Kaltura_Client_Type_DynamicListSearchFilter
+abstract class Kaltura_Client_Type_BulkUploadDynamicListResult extends Kaltura_Client_Type_BulkUploadResult
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaUdidDynamicListSearchFilter';
+		return 'KalturaBulkUploadDynamicListResult';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)

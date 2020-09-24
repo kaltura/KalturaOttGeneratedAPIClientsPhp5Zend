@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_UdidDynamicListSearchFilter extends Kaltura_Client_Type_DynamicListSearchFilter
+abstract class Kaltura_Client_Type_BulkUploadDynamicListData extends Kaltura_Client_Type_BulkUploadObjectData
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaUdidDynamicListSearchFilter';
+		return 'KalturaBulkUploadDynamicListData';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,7 +45,16 @@ class Kaltura_Client_Type_UdidDynamicListSearchFilter extends Kaltura_Client_Typ
 		if(is_null($xml))
 			return;
 		
+		if(count($xml->dynamicListId))
+			$this->dynamicListId = (string)$xml->dynamicListId;
 	}
+	/**
+	 * Identifies the dynamicList Id
+	 *
+	 * @var bigint
+	 */
+	public $dynamicListId = null;
+
 
 }
 
