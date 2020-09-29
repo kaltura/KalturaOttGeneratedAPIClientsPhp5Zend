@@ -81,6 +81,13 @@ class Kaltura_Client_Type_PaymentGatewayProfile extends Kaltura_Client_Type_Paym
 			else
 				$this->externalVerification = false;
 		}
+		if(count($xml->isAsyncPolicy))
+		{
+			if(!empty($xml->isAsyncPolicy) && ((int) $xml->isAsyncPolicy === 1 || strtolower((string)$xml->isAsyncPolicy) === 'true'))
+				$this->isAsyncPolicy = true;
+			else
+				$this->isAsyncPolicy = false;
+		}
 	}
 	/**
 	 * Payment gateway is active status
@@ -172,6 +179,13 @@ class Kaltura_Client_Type_PaymentGatewayProfile extends Kaltura_Client_Type_Paym
 	 * @var bool
 	 */
 	public $externalVerification = null;
+
+	/**
+	 * Payment gateway - Support asynchronous purchase
+	 *
+	 * @var bool
+	 */
+	public $isAsyncPolicy = null;
 
 
 }
