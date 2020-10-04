@@ -98,10 +98,12 @@ class Kaltura_Client_CampaignService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_CampaignListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function listAction(Kaltura_Client_Type_CampaignFilter $filter)
+	function listAction(Kaltura_Client_Type_CampaignFilter $filter, Kaltura_Client_Type_FilterPager $pager = null)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "filter", $filter->toParams());
+		if ($pager !== null)
+			$this->client->addParam($kparams, "pager", $pager->toParams());
 		$this->client->queueServiceActionCall("campaign", "list", "KalturaCampaignListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();

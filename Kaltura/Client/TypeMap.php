@@ -167,6 +167,7 @@ class Kaltura_Client_TypeMap
 		'KalturaCampaignListResponse' => 'Kaltura_Client_Type_CampaignListResponse',
 		'KalturaCampaignSearchFilter' => 'Kaltura_Client_Type_CampaignSearchFilter',
 		'KalturaCaptionPlaybackPluginData' => 'Kaltura_Client_Type_CaptionPlaybackPluginData',
+		'KalturaCatalogPartnerConfig' => 'Kaltura_Client_Type_CatalogPartnerConfig',
 		'KalturaCategoryItem' => 'Kaltura_Client_Type_CategoryItem',
 		'KalturaCategoryItemAncestorsFilter' => 'Kaltura_Client_Type_CategoryItemAncestorsFilter',
 		'KalturaCategoryItemByIdInFilter' => 'Kaltura_Client_Type_CategoryItemByIdInFilter',

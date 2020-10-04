@@ -67,6 +67,8 @@ class Kaltura_Client_Type_HouseholdDevice extends Kaltura_Client_Type_OTTObjectS
 			$this->macAddress = (string)$xml->macAddress;
 		if(count($xml->model))
 			$this->model = (string)$xml->model;
+		if(count($xml->manufacturer))
+			$this->manufacturer = (string)$xml->manufacturer;
 		if(count($xml->manufacturerId))
 			$this->manufacturerId = (string)$xml->manufacturerId;
 	}
@@ -154,7 +156,15 @@ class Kaltura_Client_Type_HouseholdDevice extends Kaltura_Client_Type_OTTObjectS
 	/**
 	 * manufacturer
 	 *
+	 * @var string
+	 */
+	public $manufacturer = null;
+
+	/**
+	 * manufacturer Id, read only
+	 *
 	 * @var bigint
+	 * @readonly
 	 */
 	public $manufacturerId = null;
 

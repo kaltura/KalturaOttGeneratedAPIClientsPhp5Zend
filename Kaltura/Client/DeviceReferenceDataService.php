@@ -98,11 +98,12 @@ class Kaltura_Client_DeviceReferenceDataService extends Kaltura_Client_ServiceBa
 	 * @return Kaltura_Client_Type_DeviceReferenceDataListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function listAction(Kaltura_Client_Type_DeviceReferenceDataFilter $filter = null)
+	function listAction(Kaltura_Client_Type_DeviceReferenceDataFilter $filter, Kaltura_Client_Type_FilterPager $pager = null)
 	{
 		$kparams = array();
-		if ($filter !== null)
-			$this->client->addParam($kparams, "filter", $filter->toParams());
+		$this->client->addParam($kparams, "filter", $filter->toParams());
+		if ($pager !== null)
+			$this->client->addParam($kparams, "pager", $pager->toParams());
 		$this->client->queueServiceActionCall("devicereferencedata", "list", "KalturaDeviceReferenceDataListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();

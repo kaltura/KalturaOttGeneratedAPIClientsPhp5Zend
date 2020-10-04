@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceManufacturersReferenceDataFilter extends Kaltura_Client_Type_DeviceReferenceDataFilter
+class Kaltura_Client_Type_CatalogPartnerConfig extends Kaltura_Client_Type_PartnerConfiguration
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceManufacturersReferenceDataFilter';
+		return 'KalturaCatalogPartnerConfig';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,15 +45,20 @@ class Kaltura_Client_Type_DeviceManufacturersReferenceDataFilter extends Kaltura
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->nameEqual))
-			$this->nameEqual = (string)$xml->nameEqual;
+		if(count($xml->singleMultilingualMode))
+		{
+			if(!empty($xml->singleMultilingualMode) && ((int) $xml->singleMultilingualMode === 1 || strtolower((string)$xml->singleMultilingualMode) === 'true'))
+				$this->singleMultilingualMode = true;
+			else
+				$this->singleMultilingualMode = false;
+		}
 	}
 	/**
-	 * name equal
+	 * Single multilingual mode
 	 *
-	 * @var string
+	 * @var bool
 	 */
-	public $nameEqual = null;
+	public $singleMultilingualMode = null;
 
 
 }
