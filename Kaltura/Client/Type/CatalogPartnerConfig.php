@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_TriggerCampaignSearchFilter extends Kaltura_Client_Type_CampaignSearchFilter
+class Kaltura_Client_Type_CatalogPartnerConfig extends Kaltura_Client_Type_PartnerConfiguration
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaTriggerCampaignSearchFilter';
+		return 'KalturaCatalogPartnerConfig';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,7 +45,21 @@ class Kaltura_Client_Type_TriggerCampaignSearchFilter extends Kaltura_Client_Typ
 		if(is_null($xml))
 			return;
 		
+		if(count($xml->singleMultilingualMode))
+		{
+			if(!empty($xml->singleMultilingualMode) && ((int) $xml->singleMultilingualMode === 1 || strtolower((string)$xml->singleMultilingualMode) === 'true'))
+				$this->singleMultilingualMode = true;
+			else
+				$this->singleMultilingualMode = false;
+		}
 	}
+	/**
+	 * Single multilingual mode
+	 *
+	 * @var bool
+	 */
+	public $singleMultilingualMode = null;
+
 
 }
 
