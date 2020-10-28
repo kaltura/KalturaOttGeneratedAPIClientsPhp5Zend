@@ -31,12 +31,30 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_InboxMessageType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_DynamicListIdInFilter extends Kaltura_Client_Type_DynamicListFilter
 {
-	const SYSTEMANNOUNCEMENT = "SystemAnnouncement";
-	const FOLLOWED = "Followed";
-	const ENGAGEMENT = "Engagement";
-	const INTEREST = "Interest";
-	const CAMPAIGN = "Campaign";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaDynamicListIdInFilter';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->idIn))
+			$this->idIn = (string)$xml->idIn;
+	}
+	/**
+	 * DynamicList identifiers
+	 *
+	 * @var string
+	 */
+	public $idIn = null;
+
+
 }
 

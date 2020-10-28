@@ -31,12 +31,30 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_InboxMessageType extends Kaltura_Client_EnumBase
+abstract class Kaltura_Client_Type_BulkUploadDynamicListData extends Kaltura_Client_Type_BulkUploadObjectData
 {
-	const SYSTEMANNOUNCEMENT = "SystemAnnouncement";
-	const FOLLOWED = "Followed";
-	const ENGAGEMENT = "Engagement";
-	const INTEREST = "Interest";
-	const CAMPAIGN = "Campaign";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaBulkUploadDynamicListData';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->dynamicListId))
+			$this->dynamicListId = (string)$xml->dynamicListId;
+	}
+	/**
+	 * Identifies the dynamicList Id
+	 *
+	 * @var bigint
+	 */
+	public $dynamicListId = null;
+
+
 }
 

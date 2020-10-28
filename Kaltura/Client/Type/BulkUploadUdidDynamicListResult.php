@@ -31,12 +31,31 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_InboxMessageType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_BulkUploadUdidDynamicListResult extends Kaltura_Client_Type_BulkUploadDynamicListResult
 {
-	const SYSTEMANNOUNCEMENT = "SystemAnnouncement";
-	const FOLLOWED = "Followed";
-	const ENGAGEMENT = "Engagement";
-	const INTEREST = "Interest";
-	const CAMPAIGN = "Campaign";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaBulkUploadUdidDynamicListResult';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->udid))
+			$this->udid = (string)$xml->udid;
+	}
+	/**
+	 * The udid from the excel to add to DynamicLis values
+	 *
+	 * @var string
+	 * @readonly
+	 */
+	public $udid = null;
+
+
 }
 

@@ -31,12 +31,53 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_InboxMessageType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_Promotion extends Kaltura_Client_ObjectBase
 {
-	const SYSTEMANNOUNCEMENT = "SystemAnnouncement";
-	const FOLLOWED = "Followed";
-	const ENGAGEMENT = "Engagement";
-	const INTEREST = "Interest";
-	const CAMPAIGN = "Campaign";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaPromotion';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->discountModuleId))
+			$this->discountModuleId = (string)$xml->discountModuleId;
+		if(count($xml->conditions))
+		{
+			if(empty($xml->conditions))
+				$this->conditions = array();
+			else
+				$this->conditions = Kaltura_Client_ParseUtils::unmarshalArray($xml->conditions, "KalturaCondition");
+		}
+		if(count($xml->numberOfRecurring))
+			$this->numberOfRecurring = (int)$xml->numberOfRecurring;
+	}
+	/**
+	 * The discount module id that is promoted to the user
+	 *
+	 * @var bigint
+	 */
+	public $discountModuleId = null;
+
+	/**
+	 * These conditions define the Promotion that applies on
+	 *
+	 * @var array of KalturaCondition
+	 */
+	public $conditions;
+
+	/**
+	 * the numer of recurring for this promotion
+	 *
+	 * @var int
+	 */
+	public $numberOfRecurring = null;
+
+
 }
 

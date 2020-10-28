@@ -31,12 +31,30 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_InboxMessageType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_DeviceManufacturersReferenceDataFilter extends Kaltura_Client_Type_DeviceReferenceDataFilter
 {
-	const SYSTEMANNOUNCEMENT = "SystemAnnouncement";
-	const FOLLOWED = "Followed";
-	const ENGAGEMENT = "Engagement";
-	const INTEREST = "Interest";
-	const CAMPAIGN = "Campaign";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaDeviceManufacturersReferenceDataFilter';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->nameEqual))
+			$this->nameEqual = (string)$xml->nameEqual;
+	}
+	/**
+	 * name equal
+	 *
+	 * @var string
+	 */
+	public $nameEqual = null;
+
+
 }
 

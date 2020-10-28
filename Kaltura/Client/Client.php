@@ -125,6 +125,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_CampaignService
+	 */
+	public $campaign = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_CategoryItemService
 	 */
 	public $categoryItem = null;
@@ -233,6 +239,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_DeviceReferenceDataService
+	 */
+	public $deviceReferenceData = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_DiscountDetailsService
 	 */
 	public $discountDetails = null;
@@ -242,6 +254,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	 * @var Kaltura_Client_DrmProfileService
 	 */
 	public $drmProfile = null;
+
+	/**
+	 * 
+	 * @var Kaltura_Client_DynamicListService
+	 */
+	public $dynamicList = null;
 
 	/**
 	 * 
@@ -810,8 +828,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:20-10-05');
-		$this->setApiVersion('5.6.0.28388');
+		$this->setClientTag('php5:20-10-28');
+		$this->setApiVersion('5.7.0.28654');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -828,6 +846,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->bookmark = new Kaltura_Client_BookmarkService($this);
 		$this->bulkUpload = new Kaltura_Client_BulkUploadService($this);
 		$this->businessModuleRule = new Kaltura_Client_BusinessModuleRuleService($this);
+		$this->campaign = new Kaltura_Client_CampaignService($this);
 		$this->categoryItem = new Kaltura_Client_CategoryItemService($this);
 		$this->categoryTree = new Kaltura_Client_CategoryTreeService($this);
 		$this->cdnAdapterProfile = new Kaltura_Client_CdnAdapterProfileService($this);
@@ -846,8 +865,10 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->currency = new Kaltura_Client_CurrencyService($this);
 		$this->deviceBrand = new Kaltura_Client_DeviceBrandService($this);
 		$this->deviceFamily = new Kaltura_Client_DeviceFamilyService($this);
+		$this->deviceReferenceData = new Kaltura_Client_DeviceReferenceDataService($this);
 		$this->discountDetails = new Kaltura_Client_DiscountDetailsService($this);
 		$this->drmProfile = new Kaltura_Client_DrmProfileService($this);
+		$this->dynamicList = new Kaltura_Client_DynamicListService($this);
 		$this->email = new Kaltura_Client_EmailService($this);
 		$this->engagementAdapter = new Kaltura_Client_EngagementAdapterService($this);
 		$this->engagement = new Kaltura_Client_EngagementService($this);
