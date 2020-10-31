@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PlaybackSource extends Kaltura_Client_Type_MediaFile
+class Kaltura_Client_Type_BusinessModuleDetails extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaPlaybackSource';
+		return 'KalturaBusinessModuleDetails';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,70 +45,22 @@ class Kaltura_Client_Type_PlaybackSource extends Kaltura_Client_Type_MediaFile
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->format))
-			$this->format = (string)$xml->format;
-		if(count($xml->protocols))
-			$this->protocols = (string)$xml->protocols;
-		if(count($xml->drm))
-		{
-			if(empty($xml->drm))
-				$this->drm = array();
-			else
-				$this->drm = Kaltura_Client_ParseUtils::unmarshalArray($xml->drm, "KalturaDrmPlaybackPluginData");
-		}
-		if(count($xml->isTokenized))
-		{
-			if(!empty($xml->isTokenized) && ((int) $xml->isTokenized === 1 || strtolower((string)$xml->isTokenized) === 'true'))
-				$this->isTokenized = true;
-			else
-				$this->isTokenized = false;
-		}
 		if(count($xml->businessModuleId))
 			$this->businessModuleId = (int)$xml->businessModuleId;
 		if(count($xml->businessModuleType))
 			$this->businessModuleType = (string)$xml->businessModuleType;
 	}
 	/**
-	 * Source format according to delivery profile streamer type (applehttp, mpegdash etc.)
-	 *
-	 * @var string
-	 */
-	public $format = null;
-
-	/**
-	 * Comma separated string according to deliveryProfile media protocols (&#39;http,https&#39; etc.)
-	 *
-	 * @var string
-	 */
-	public $protocols = null;
-
-	/**
-	 * DRM data object containing relevant license URL ,scheme name and certificate
-	 *
-	 * @var array of KalturaDrmPlaybackPluginData
-	 */
-	public $drm;
-
-	/**
-	 * Is Tokenized
-	 *
-	 * @var bool
-	 */
-	public $isTokenized = null;
-
-	/**
-	 * Business Module Id
+	 * BusinessModuleId
 	 *
 	 * @var int
-	 * @readonly
 	 */
 	public $businessModuleId = null;
 
 	/**
-	 * Business Module Type
+	 * BusinessModuleType
 	 *
 	 * @var Kaltura_Client_Enum_TransactionType
-	 * @readonly
 	 */
 	public $businessModuleType = null;
 

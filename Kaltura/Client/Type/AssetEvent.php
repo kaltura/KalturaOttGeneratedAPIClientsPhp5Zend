@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PlaybackSource extends Kaltura_Client_Type_MediaFile
+class Kaltura_Client_Type_AssetEvent extends Kaltura_Client_Type_EventObject
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaPlaybackSource';
+		return 'KalturaAssetEvent';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,72 +45,47 @@ class Kaltura_Client_Type_PlaybackSource extends Kaltura_Client_Type_MediaFile
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->format))
-			$this->format = (string)$xml->format;
-		if(count($xml->protocols))
-			$this->protocols = (string)$xml->protocols;
-		if(count($xml->drm))
-		{
-			if(empty($xml->drm))
-				$this->drm = array();
-			else
-				$this->drm = Kaltura_Client_ParseUtils::unmarshalArray($xml->drm, "KalturaDrmPlaybackPluginData");
-		}
-		if(count($xml->isTokenized))
-		{
-			if(!empty($xml->isTokenized) && ((int) $xml->isTokenized === 1 || strtolower((string)$xml->isTokenized) === 'true'))
-				$this->isTokenized = true;
-			else
-				$this->isTokenized = false;
-		}
-		if(count($xml->businessModuleId))
-			$this->businessModuleId = (int)$xml->businessModuleId;
-		if(count($xml->businessModuleType))
-			$this->businessModuleType = (string)$xml->businessModuleType;
+		if(count($xml->userId))
+			$this->userId = (string)$xml->userId;
+		if(count($xml->assetId))
+			$this->assetId = (string)$xml->assetId;
+		if(count($xml->type))
+			$this->type = (int)$xml->type;
+		if(count($xml->externalId))
+			$this->externalId = (string)$xml->externalId;
 	}
 	/**
-	 * Source format according to delivery profile streamer type (applehttp, mpegdash etc.)
+	 * User Id
 	 *
-	 * @var string
+	 * @var bigint
+	 * @readonly
 	 */
-	public $format = null;
+	public $userId = null;
 
 	/**
-	 * Comma separated string according to deliveryProfile media protocols (&#39;http,https&#39; etc.)
+	 * Asset Id
 	 *
-	 * @var string
+	 * @var bigint
+	 * @readonly
 	 */
-	public $protocols = null;
+	public $assetId = null;
 
 	/**
-	 * DRM data object containing relevant license URL ,scheme name and certificate
-	 *
-	 * @var array of KalturaDrmPlaybackPluginData
-	 */
-	public $drm;
-
-	/**
-	 * Is Tokenized
-	 *
-	 * @var bool
-	 */
-	public $isTokenized = null;
-
-	/**
-	 * Business Module Id
+	 * Identifies the asset type (EPG, Recording, Movie, TV Series, etc). 
+	 *             Possible values: 0 – EPG linear programs, 1 - Recording; or any asset type ID according to the asset types IDs defined in the system.
 	 *
 	 * @var int
 	 * @readonly
 	 */
-	public $businessModuleId = null;
+	public $type = null;
 
 	/**
-	 * Business Module Type
+	 * External identifier for the asset
 	 *
-	 * @var Kaltura_Client_Enum_TransactionType
+	 * @var string
 	 * @readonly
 	 */
-	public $businessModuleType = null;
+	public $externalId = null;
 
 
 }
