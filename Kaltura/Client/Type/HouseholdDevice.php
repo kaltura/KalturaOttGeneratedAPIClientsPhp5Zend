@@ -71,6 +71,8 @@ class Kaltura_Client_Type_HouseholdDevice extends Kaltura_Client_Type_OTTObjectS
 			$this->manufacturer = (string)$xml->manufacturer;
 		if(count($xml->manufacturerId))
 			$this->manufacturerId = (string)$xml->manufacturerId;
+		if(count($xml->lastActivityTime))
+			$this->lastActivityTime = (string)$xml->lastActivityTime;
 	}
 	/**
 	 * Household identifier
@@ -167,6 +169,14 @@ class Kaltura_Client_Type_HouseholdDevice extends Kaltura_Client_Type_OTTObjectS
 	 * @readonly
 	 */
 	public $manufacturerId = null;
+
+	/**
+	 * Last Activity Time, read only
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $lastActivityTime = null;
 
 
 }
