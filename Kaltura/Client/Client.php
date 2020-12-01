@@ -707,6 +707,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_StreamingDeviceService
+	 */
+	public $streamingDevice = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_SubscriptionService
 	 */
 	public $subscription = null;
@@ -828,8 +834,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:20-11-19');
-		$this->setApiVersion('5.8.0.28728');
+		$this->setClientTag('php5:20-12-01');
+		$this->setApiVersion('5.8.0.28736');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -943,6 +949,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->social = new Kaltura_Client_SocialService($this);
 		$this->socialFriendActivity = new Kaltura_Client_SocialFriendActivityService($this);
 		$this->ssoAdapterProfile = new Kaltura_Client_SsoAdapterProfileService($this);
+		$this->streamingDevice = new Kaltura_Client_StreamingDeviceService($this);
 		$this->subscription = new Kaltura_Client_SubscriptionService($this);
 		$this->subscriptionSet = new Kaltura_Client_SubscriptionSetService($this);
 		$this->system = new Kaltura_Client_SystemService($this);

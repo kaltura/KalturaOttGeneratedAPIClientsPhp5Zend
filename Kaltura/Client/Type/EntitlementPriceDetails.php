@@ -31,18 +31,46 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_PartnerConfigurationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_EntitlementPriceDetails extends Kaltura_Client_ObjectBase
 {
-	const DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway";
-	const ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection";
-	const OSSADAPTER = "OSSAdapter";
-	const CONCURRENCY = "Concurrency";
-	const GENERAL = "General";
-	const OBJECTVIRTUALASSET = "ObjectVirtualAsset";
-	const COMMERCE = "Commerce";
-	const PLAYBACK = "Playback";
-	const PAYMENT = "Payment";
-	const CATALOG = "Catalog";
-	const SECURITY = "Security";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaEntitlementPriceDetails';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->fullPrice) && !empty($xml->fullPrice))
+			$this->fullPrice = Kaltura_Client_ParseUtils::unmarshalObject($xml->fullPrice, "KalturaPrice");
+		if(count($xml->discountDetails))
+		{
+			if(empty($xml->discountDetails))
+				$this->discountDetails = array();
+			else
+				$this->discountDetails = Kaltura_Client_ParseUtils::unmarshalArray($xml->discountDetails, "KalturaEntitlementDiscountDetails");
+		}
+	}
+	/**
+	 * Full price
+	 *
+	 * @var Kaltura_Client_Type_Price
+	 * @readonly
+	 */
+	public $fullPrice;
+
+	/**
+	 * List of the season numbers to exclude.
+	 *
+	 * @var array of KalturaEntitlementDiscountDetails
+	 * @readonly
+	 */
+	public $discountDetails;
+
+
 }
 

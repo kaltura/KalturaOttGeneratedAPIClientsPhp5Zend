@@ -31,18 +31,30 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_PartnerConfigurationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_StreamingDeviceFilter extends Kaltura_Client_Type_Filter
 {
-	const DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway";
-	const ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection";
-	const OSSADAPTER = "OSSAdapter";
-	const CONCURRENCY = "Concurrency";
-	const GENERAL = "General";
-	const OBJECTVIRTUALASSET = "ObjectVirtualAsset";
-	const COMMERCE = "Commerce";
-	const PLAYBACK = "Playback";
-	const PAYMENT = "Payment";
-	const CATALOG = "Catalog";
-	const SECURITY = "Security";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaStreamingDeviceFilter';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->assetTypeEqual))
+			$this->assetTypeEqual = (string)$xml->assetTypeEqual;
+	}
+	/**
+	 * filter by asset type
+	 *
+	 * @var Kaltura_Client_Enum_AssetType
+	 */
+	public $assetTypeEqual = null;
+
+
 }
 

@@ -31,18 +31,30 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_PartnerConfigurationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_SecurityPartnerConfig extends Kaltura_Client_Type_PartnerConfiguration
 {
-	const DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway";
-	const ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection";
-	const OSSADAPTER = "OSSAdapter";
-	const CONCURRENCY = "Concurrency";
-	const GENERAL = "General";
-	const OBJECTVIRTUALASSET = "ObjectVirtualAsset";
-	const COMMERCE = "Commerce";
-	const PLAYBACK = "Playback";
-	const PAYMENT = "Payment";
-	const CATALOG = "Catalog";
-	const SECURITY = "Security";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaSecurityPartnerConfig';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->encryption) && !empty($xml->encryption))
+			$this->encryption = Kaltura_Client_ParseUtils::unmarshalObject($xml->encryption, "KalturaDataEncryption");
+	}
+	/**
+	 * Encryption config
+	 *
+	 * @var Kaltura_Client_Type_DataEncryption
+	 */
+	public $encryption;
+
+
 }
 

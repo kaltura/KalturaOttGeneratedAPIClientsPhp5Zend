@@ -31,18 +31,51 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_PartnerConfigurationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_StreamingDevice extends Kaltura_Client_ObjectBase
 {
-	const DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway";
-	const ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection";
-	const OSSADAPTER = "OSSAdapter";
-	const CONCURRENCY = "Concurrency";
-	const GENERAL = "General";
-	const OBJECTVIRTUALASSET = "ObjectVirtualAsset";
-	const COMMERCE = "Commerce";
-	const PLAYBACK = "Playback";
-	const PAYMENT = "Payment";
-	const CATALOG = "Catalog";
-	const SECURITY = "Security";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaStreamingDevice';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->asset) && !empty($xml->asset))
+			$this->asset = Kaltura_Client_ParseUtils::unmarshalObject($xml->asset, "KalturaSlimAsset");
+		if(count($xml->userId))
+			$this->userId = (string)$xml->userId;
+		if(count($xml->udid))
+			$this->udid = (string)$xml->udid;
+	}
+	/**
+	 * Asset
+	 *
+	 * @var Kaltura_Client_Type_SlimAsset
+	 * @readonly
+	 */
+	public $asset;
+
+	/**
+	 * User identifier
+	 *
+	 * @var string
+	 * @readonly
+	 */
+	public $userId = null;
+
+	/**
+	 * Device UDID
+	 *
+	 * @var string
+	 * @insertonly
+	 */
+	public $udid = null;
+
+
 }
 

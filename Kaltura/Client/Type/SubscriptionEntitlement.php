@@ -83,6 +83,8 @@ class Kaltura_Client_Type_SubscriptionEntitlement extends Kaltura_Client_Type_En
 			else
 				$this->isSuspended = false;
 		}
+		if(count($xml->priceDetails) && !empty($xml->priceDetails))
+			$this->priceDetails = Kaltura_Client_ParseUtils::unmarshalObject($xml->priceDetails, "KalturaEntitlementPriceDetails");
 	}
 	/**
 	 * The date of the next renewal (only for subscription)
@@ -153,6 +155,14 @@ class Kaltura_Client_Type_SubscriptionEntitlement extends Kaltura_Client_Type_En
 	 * @readonly
 	 */
 	public $isSuspended = null;
+
+	/**
+	 * Price details
+	 *
+	 * @var Kaltura_Client_Type_EntitlementPriceDetails
+	 * @readonly
+	 */
+	public $priceDetails;
 
 
 }
