@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_IotClientConfiguration extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_EpgNotificationSettings extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaIotClientConfiguration';
+		return 'KalturaEpgNotificationSettings';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,51 +45,48 @@ class Kaltura_Client_Type_IotClientConfiguration extends Kaltura_Client_ObjectBa
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->announcementTopic))
-			$this->announcementTopic = (string)$xml->announcementTopic;
-		if(count($xml->credentialsProvider) && !empty($xml->credentialsProvider))
-			$this->credentialsProvider = Kaltura_Client_ParseUtils::unmarshalObject($xml->credentialsProvider, "KalturaCredentialsProvider");
-		if(count($xml->cognitoUserPool) && !empty($xml->cognitoUserPool))
-			$this->cognitoUserPool = Kaltura_Client_ParseUtils::unmarshalObject($xml->cognitoUserPool, "KalturaCognitoUserPool");
-		if(count($xml->json))
-			$this->json = (string)$xml->json;
-		if(count($xml->topics))
-			$this->topics = (string)$xml->topics;
+		if(count($xml->enabled))
+		{
+			if(!empty($xml->enabled) && ((int) $xml->enabled === 1 || strtolower((string)$xml->enabled) === 'true'))
+				$this->enabled = true;
+			else
+				$this->enabled = false;
+		}
+		if(count($xml->deviceFamilyIds))
+			$this->deviceFamilyIds = (string)$xml->deviceFamilyIds;
+		if(count($xml->liveAssetIds))
+			$this->liveAssetIds = (string)$xml->liveAssetIds;
+		if(count($xml->timeRange))
+			$this->timeRange = (int)$xml->timeRange;
 	}
 	/**
-	 * announcementTopic
+	 * EPG notification capability is enabled for the account
+	 *
+	 * @var bool
+	 */
+	public $enabled = null;
+
+	/**
+	 * Specify which devices should receive notifications
 	 *
 	 * @var string
 	 */
-	public $announcementTopic = null;
+	public $deviceFamilyIds = null;
 
 	/**
-	 * KalturaCredentialsProvider
-	 *
-	 * @var Kaltura_Client_Type_CredentialsProvider
-	 */
-	public $credentialsProvider;
-
-	/**
-	 * CognitoUserPool
-	 *
-	 * @var Kaltura_Client_Type_CognitoUserPool
-	 */
-	public $cognitoUserPool;
-
-	/**
-	 * json
+	 * Specify which live assets should fire notifications
 	 *
 	 * @var string
 	 */
-	public $json = null;
+	public $liveAssetIds = null;
 
 	/**
-	 * topics
+	 * The range (in hours), in which, EPG updates triggers a notification,
+	 *             every program that is updated and it’s starts time falls within this range shall trigger a notification
 	 *
-	 * @var string
+	 * @var int
 	 */
-	public $topics = null;
+	public $timeRange = null;
 
 
 }

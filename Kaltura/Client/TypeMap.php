@@ -296,6 +296,7 @@ class Kaltura_Client_TypeMap
 		'KalturaEntitlementPriceDetails' => 'Kaltura_Client_Type_EntitlementPriceDetails',
 		'KalturaEntitlementRenewal' => 'Kaltura_Client_Type_EntitlementRenewal',
 		'KalturaEntitlementRenewalBase' => 'Kaltura_Client_Type_EntitlementRenewalBase',
+		'KalturaEpgNotificationSettings' => 'Kaltura_Client_Type_EpgNotificationSettings',
 		'KalturaEventNotification' => 'Kaltura_Client_Type_EventNotification',
 		'KalturaEventNotificationFilter' => 'Kaltura_Client_Type_EventNotificationFilter',
 		'KalturaEventNotificationListResponse' => 'Kaltura_Client_Type_EventNotificationListResponse',
