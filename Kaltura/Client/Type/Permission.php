@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2020  Kaltura Inc.
+// Copyright (C) 2006-2021  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -55,8 +55,6 @@ class Kaltura_Client_Type_Permission extends Kaltura_Client_ObjectBase
 			$this->dependsOnPermissionNames = (string)$xml->dependsOnPermissionNames;
 		if(count($xml->type))
 			$this->type = (string)$xml->type;
-		if(count($xml->permissionItemsIds))
-			$this->permissionItemsIds = (string)$xml->permissionItemsIds;
 	}
 	/**
 	 * Permission identifier
@@ -94,14 +92,6 @@ class Kaltura_Client_Type_Permission extends Kaltura_Client_ObjectBase
 	 * @var Kaltura_Client_Enum_PermissionType
 	 */
 	public $type = null;
-
-	/**
-	 * Comma separated assosiated permission items IDs
-	 *
-	 * @var string
-	 * @readonly
-	 */
-	public $permissionItemsIds = null;
 
 
 }

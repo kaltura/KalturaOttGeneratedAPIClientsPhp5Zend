@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2020  Kaltura Inc.
+// Copyright (C) 2006-2021  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -57,8 +57,6 @@ class Kaltura_Client_Type_InboxMessage extends Kaltura_Client_ObjectBase
 			$this->createdAt = (string)$xml->createdAt;
 		if(count($xml->url))
 			$this->url = (string)$xml->url;
-		if(count($xml->campaignId))
-			$this->campaignId = (string)$xml->campaignId;
 	}
 	/**
 	 * message id
@@ -104,14 +102,6 @@ class Kaltura_Client_Type_InboxMessage extends Kaltura_Client_ObjectBase
 	 * @var string
 	 */
 	public $url = null;
-
-	/**
-	 * campaignId
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $campaignId = null;
 
 
 }

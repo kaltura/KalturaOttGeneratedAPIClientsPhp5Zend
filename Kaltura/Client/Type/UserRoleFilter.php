@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2020  Kaltura Inc.
+// Copyright (C) 2006-2021  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -54,10 +54,6 @@ class Kaltura_Client_Type_UserRoleFilter extends Kaltura_Client_Type_Filter
 			else
 				$this->currentUserRoleIdsContains = false;
 		}
-		if(count($xml->typeEqual))
-			$this->typeEqual = (string)$xml->typeEqual;
-		if(count($xml->profileEqual))
-			$this->profileEqual = (string)$xml->profileEqual;
 	}
 	/**
 	 * Comma separated roles identifiers
@@ -72,20 +68,6 @@ class Kaltura_Client_Type_UserRoleFilter extends Kaltura_Client_Type_Filter
 	 * @var bool
 	 */
 	public $currentUserRoleIdsContains = null;
-
-	/**
-	 * User role type
-	 *
-	 * @var Kaltura_Client_Enum_UserRoleType
-	 */
-	public $typeEqual = null;
-
-	/**
-	 * User role profile
-	 *
-	 * @var Kaltura_Client_Enum_UserRoleProfile
-	 */
-	public $profileEqual = null;
 
 
 }

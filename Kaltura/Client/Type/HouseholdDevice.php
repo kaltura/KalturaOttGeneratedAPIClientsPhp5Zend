@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2020  Kaltura Inc.
+// Copyright (C) 2006-2021  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -65,14 +65,6 @@ class Kaltura_Client_Type_HouseholdDevice extends Kaltura_Client_Type_OTTObjectS
 			$this->externalId = (string)$xml->externalId;
 		if(count($xml->macAddress))
 			$this->macAddress = (string)$xml->macAddress;
-		if(count($xml->model))
-			$this->model = (string)$xml->model;
-		if(count($xml->manufacturer))
-			$this->manufacturer = (string)$xml->manufacturer;
-		if(count($xml->manufacturerId))
-			$this->manufacturerId = (string)$xml->manufacturerId;
-		if(count($xml->lastActivityTime))
-			$this->lastActivityTime = (string)$xml->lastActivityTime;
 	}
 	/**
 	 * Household identifier
@@ -147,36 +139,6 @@ class Kaltura_Client_Type_HouseholdDevice extends Kaltura_Client_Type_OTTObjectS
 	 * @var string
 	 */
 	public $macAddress = null;
-
-	/**
-	 * model
-	 *
-	 * @var string
-	 */
-	public $model = null;
-
-	/**
-	 * manufacturer
-	 *
-	 * @var string
-	 */
-	public $manufacturer = null;
-
-	/**
-	 * manufacturer Id, read only
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $manufacturerId = null;
-
-	/**
-	 * Last Activity Time, read only
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $lastActivityTime = null;
 
 
 }

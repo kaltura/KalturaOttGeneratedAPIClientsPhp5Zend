@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2020  Kaltura Inc.
+// Copyright (C) 2006-2021  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -78,13 +78,6 @@ class Kaltura_Client_Type_Entitlement extends Kaltura_Client_ObjectBase
 			$this->userId = (string)$xml->userId;
 		if(count($xml->householdId))
 			$this->householdId = (string)$xml->householdId;
-		if(count($xml->isPending))
-		{
-			if(!empty($xml->isPending) && ((int) $xml->isPending === 1 || strtolower((string)$xml->isPending) === 'true'))
-				$this->isPending = true;
-			else
-				$this->isPending = false;
-		}
 	}
 	/**
 	 * Purchase identifier (for subscriptions and collections only)
@@ -114,6 +107,7 @@ class Kaltura_Client_Type_Entitlement extends Kaltura_Client_ObjectBase
 	 * The end date of the entitlement
 	 *
 	 * @var bigint
+	 * @readonly
 	 */
 	public $endDate = null;
 
@@ -196,13 +190,6 @@ class Kaltura_Client_Type_Entitlement extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $householdId = null;
-
-	/**
-	 * Indicates whether the asynchronous purchase is pending
-	 *
-	 * @var bool
-	 */
-	public $isPending = null;
 
 
 }

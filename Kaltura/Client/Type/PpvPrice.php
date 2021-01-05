@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2020  Kaltura Inc.
+// Copyright (C) 2006-2021  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -56,6 +56,8 @@ class Kaltura_Client_Type_PpvPrice extends Kaltura_Client_Type_ProductPrice
 			else
 				$this->isSubscriptionOnly = false;
 		}
+		if(count($xml->fullPrice) && !empty($xml->fullPrice))
+			$this->fullPrice = Kaltura_Client_ParseUtils::unmarshalObject($xml->fullPrice, "KalturaPrice");
 		if(count($xml->subscriptionId))
 			$this->subscriptionId = (string)$xml->subscriptionId;
 		if(count($xml->collectionId))
@@ -118,6 +120,13 @@ class Kaltura_Client_Type_PpvPrice extends Kaltura_Client_Type_ProductPrice
 	 * @var bool
 	 */
 	public $isSubscriptionOnly = null;
+
+	/**
+	 * The full price of the item (with no discounts)
+	 *
+	 * @var Kaltura_Client_Type_Price
+	 */
+	public $fullPrice;
 
 	/**
 	 * The identifier of the relevant subscription
