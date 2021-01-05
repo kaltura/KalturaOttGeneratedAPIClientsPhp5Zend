@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_Favorite extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_EpgNotificationSettings extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaFavorite';
+		return 'KalturaEpgNotificationSettings';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,34 +45,48 @@ class Kaltura_Client_Type_Favorite extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->assetId))
-			$this->assetId = (string)$xml->assetId;
-		if(count($xml->extraData))
-			$this->extraData = (string)$xml->extraData;
-		if(count($xml->createDate))
-			$this->createDate = (string)$xml->createDate;
+		if(count($xml->enabled))
+		{
+			if(!empty($xml->enabled) && ((int) $xml->enabled === 1 || strtolower((string)$xml->enabled) === 'true'))
+				$this->enabled = true;
+			else
+				$this->enabled = false;
+		}
+		if(count($xml->deviceFamilyIds))
+			$this->deviceFamilyIds = (string)$xml->deviceFamilyIds;
+		if(count($xml->liveAssetIds))
+			$this->liveAssetIds = (string)$xml->liveAssetIds;
+		if(count($xml->timeRange))
+			$this->timeRange = (int)$xml->timeRange;
 	}
 	/**
-	 * AssetInfo Model
+	 * EPG notification capability is enabled for the account
 	 *
-	 * @var bigint
+	 * @var bool
 	 */
-	public $assetId = null;
+	public $enabled = null;
 
 	/**
-	 * Extra Value
+	 * Specify which devices should receive notifications
 	 *
 	 * @var string
 	 */
-	public $extraData = null;
+	public $deviceFamilyIds = null;
 
 	/**
-	 * Specifies when was the favorite created. Date and time represented as epoch.
+	 * Specify which live assets should fire notifications
 	 *
-	 * @var bigint
-	 * @readonly
+	 * @var string
 	 */
-	public $createDate = null;
+	public $liveAssetIds = null;
+
+	/**
+	 * The range (in hours), in which, EPG updates triggers a notification,
+	 *             every program that is updated and it’s starts time falls within this range shall trigger a notification
+	 *
+	 * @var int
+	 */
+	public $timeRange = null;
 
 
 }
