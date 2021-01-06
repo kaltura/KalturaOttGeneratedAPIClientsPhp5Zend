@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2020  Kaltura Inc.
+// Copyright (C) 2006-2021  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -51,6 +51,13 @@ class Kaltura_Client_Type_ConcurrencyPartnerConfig extends Kaltura_Client_Type_P
 			$this->evictionPolicy = (string)$xml->evictionPolicy;
 		if(count($xml->concurrencyThresholdInSeconds))
 			$this->concurrencyThresholdInSeconds = (string)$xml->concurrencyThresholdInSeconds;
+		if(count($xml->revokeOnDeviceDelete))
+		{
+			if(!empty($xml->revokeOnDeviceDelete) && ((int) $xml->revokeOnDeviceDelete === 1 || strtolower((string)$xml->revokeOnDeviceDelete) === 'true'))
+				$this->revokeOnDeviceDelete = true;
+			else
+				$this->revokeOnDeviceDelete = false;
+		}
 	}
 	/**
 	 * Comma separated list of device Family Ids order by their priority.
@@ -72,6 +79,13 @@ class Kaltura_Client_Type_ConcurrencyPartnerConfig extends Kaltura_Client_Type_P
 	 * @var bigint
 	 */
 	public $concurrencyThresholdInSeconds = null;
+
+	/**
+	 * Revoke on device delete
+	 *
+	 * @var bool
+	 */
+	public $revokeOnDeviceDelete = null;
 
 
 }
