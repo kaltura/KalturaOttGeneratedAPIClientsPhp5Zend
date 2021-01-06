@@ -78,4 +78,23 @@ class Kaltura_Client_CategoryTreeService extends Kaltura_Client_ServiceBase
 		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CategoryTree");
 		return $resultObject;
 	}
+
+	/**
+	 * @return Kaltura_Client_Type_CategoryTree
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function getByVersion ($versionId = null)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "versionId", $versionId);
+		$this->client->queueServiceActionCall("categorytree", "getByVersion ", "KalturaCategoryTree", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCategoryTree");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CategoryTree");
+		return $resultObject;
+	}
 }

@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BulkUploadIngestJobData extends Kaltura_Client_Type_BulkUploadJobData
+class Kaltura_Client_Type_CategoryManagement extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBulkUploadIngestJobData';
+		return 'KalturaCategoryManagement';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,16 +45,29 @@ class Kaltura_Client_Type_BulkUploadIngestJobData extends Kaltura_Client_Type_Bu
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->ingestProfileId))
-			$this->ingestProfileId = (int)$xml->ingestProfileId;
+		if(count($xml->defaultTreeId))
+			$this->defaultTreeId = (string)$xml->defaultTreeId;
+		if(count($xml->deviceFamilyToCategoryTree))
+		{
+			if(empty($xml->deviceFamilyToCategoryTree))
+				$this->deviceFamilyToCategoryTree = array();
+			else
+				$this->deviceFamilyToCategoryTree = Kaltura_Client_ParseUtils::unmarshalMap($xml->deviceFamilyToCategoryTree, "KalturaLongValue");
+		}
 	}
 	/**
-	 * Identifies the ingest profile that will handle the ingest of programs
-	 *             Ingest profiles are created separately using the ingest profile service
+	 * Default CategoryVersion tree id
 	 *
-	 * @var int
+	 * @var bigint
 	 */
-	public $ingestProfileId = null;
+	public $defaultTreeId = null;
+
+	/**
+	 * Device family to Category TreeId mapping
+	 *
+	 * @var map
+	 */
+	public $deviceFamilyToCategoryTree;
 
 
 }

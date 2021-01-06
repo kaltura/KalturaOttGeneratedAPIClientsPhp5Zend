@@ -31,31 +31,9 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BulkUploadIngestJobData extends Kaltura_Client_Type_BulkUploadJobData
+class Kaltura_Client_Enum_CategoryVersionOrderBy extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaBulkUploadIngestJobData';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->ingestProfileId))
-			$this->ingestProfileId = (int)$xml->ingestProfileId;
-	}
-	/**
-	 * Identifies the ingest profile that will handle the ingest of programs
-	 *             Ingest profiles are created separately using the ingest profile service
-	 *
-	 * @var int
-	 */
-	public $ingestProfileId = null;
-
-
+	const UPDATE_DATE_DESC = "UPDATE_DATE_DESC";
+	const NONE = "NONE";
 }
 

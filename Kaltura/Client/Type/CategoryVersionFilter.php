@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BulkUploadIngestJobData extends Kaltura_Client_Type_BulkUploadJobData
+class Kaltura_Client_Type_CategoryVersionFilter extends Kaltura_Client_Type_CrudFilter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBulkUploadIngestJobData';
+		return 'KalturaCategoryVersionFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,17 +45,7 @@ class Kaltura_Client_Type_BulkUploadIngestJobData extends Kaltura_Client_Type_Bu
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->ingestProfileId))
-			$this->ingestProfileId = (int)$xml->ingestProfileId;
 	}
-	/**
-	 * Identifies the ingest profile that will handle the ingest of programs
-	 *             Ingest profiles are created separately using the ingest profile service
-	 *
-	 * @var int
-	 */
-	public $ingestProfileId = null;
-
 
 }
 

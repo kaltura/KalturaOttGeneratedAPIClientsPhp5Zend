@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_EpgNotificationSettings extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_CategoryVersionListResponse extends Kaltura_Client_Type_ListResponse
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaEpgNotificationSettings';
+		return 'KalturaCategoryVersionListResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,48 +45,20 @@ class Kaltura_Client_Type_EpgNotificationSettings extends Kaltura_Client_ObjectB
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->enabled))
+		if(count($xml->objects))
 		{
-			if(!empty($xml->enabled) && ((int) $xml->enabled === 1 || strtolower((string)$xml->enabled) === 'true'))
-				$this->enabled = true;
+			if(empty($xml->objects))
+				$this->objects = array();
 			else
-				$this->enabled = false;
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaCategoryVersion");
 		}
-		if(count($xml->deviceFamilyIds))
-			$this->deviceFamilyIds = (string)$xml->deviceFamilyIds;
-		if(count($xml->liveAssetIds))
-			$this->liveAssetIds = (string)$xml->liveAssetIds;
-		if(count($xml->timeRange))
-			$this->timeRange = (int)$xml->timeRange;
 	}
 	/**
-	 * EPG notification capability is enabled for the account
+	 * A list of objects
 	 *
-	 * @var bool
+	 * @var array of KalturaCategoryVersion
 	 */
-	public $enabled = null;
-
-	/**
-	 * Specify which devices should receive notifications
-	 *
-	 * @var string
-	 */
-	public $deviceFamilyIds = null;
-
-	/**
-	 * Specify which live assets should fire notifications
-	 *
-	 * @var string
-	 */
-	public $liveAssetIds = null;
-
-	/**
-	 * The range (in hours), in which, EPG updates triggers a notification,
-	 *             every program that is updated and it’s starts time falls within this range shall trigger a notification
-	 *
-	 * @var int
-	 */
-	public $timeRange = null;
+	public $objects;
 
 
 }
