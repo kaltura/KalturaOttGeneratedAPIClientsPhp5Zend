@@ -143,12 +143,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_CategoryVersionService
-	 */
-	public $categoryVersion = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_CdnAdapterProfileService
 	 */
 	public $cdnAdapterProfile = null;
@@ -840,8 +834,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:21-01-06');
-		$this->setApiVersion('5.9.0.28773');
+		$this->setClientTag('php5:21-01-08');
+		$this->setApiVersion('6.0.0.28792');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -861,7 +855,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->campaign = new Kaltura_Client_CampaignService($this);
 		$this->categoryItem = new Kaltura_Client_CategoryItemService($this);
 		$this->categoryTree = new Kaltura_Client_CategoryTreeService($this);
-		$this->categoryVersion = new Kaltura_Client_CategoryVersionService($this);
 		$this->cdnAdapterProfile = new Kaltura_Client_CdnAdapterProfileService($this);
 		$this->cdnPartnerSettings = new Kaltura_Client_CdnPartnerSettingsService($this);
 		$this->cDVRAdapterProfile = new Kaltura_Client_CDVRAdapterProfileService($this);
