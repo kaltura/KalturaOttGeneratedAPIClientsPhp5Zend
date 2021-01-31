@@ -31,19 +31,53 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_PartnerConfigurationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_ResetPasswordPartnerConfigTemplate extends Kaltura_Client_ObjectBase
 {
-	const DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway";
-	const ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection";
-	const OSSADAPTER = "OSSAdapter";
-	const CONCURRENCY = "Concurrency";
-	const GENERAL = "General";
-	const OBJECTVIRTUALASSET = "ObjectVirtualAsset";
-	const COMMERCE = "Commerce";
-	const PLAYBACK = "Playback";
-	const PAYMENT = "Payment";
-	const CATALOG = "Catalog";
-	const SECURITY = "Security";
-	const OPC = "Opc";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaResetPasswordPartnerConfigTemplate';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->id))
+			$this->id = (string)$xml->id;
+		if(count($xml->label))
+			$this->label = (string)$xml->label;
+		if(count($xml->isDefault))
+		{
+			if(!empty($xml->isDefault) && ((int) $xml->isDefault === 1 || strtolower((string)$xml->isDefault) === 'true'))
+				$this->isDefault = true;
+			else
+				$this->isDefault = false;
+		}
+	}
+	/**
+	 * id
+	 *
+	 * @var string
+	 */
+	public $id = null;
+
+	/**
+	 * label
+	 *
+	 * @var string
+	 */
+	public $label = null;
+
+	/**
+	 * is Default
+	 *
+	 * @var bool
+	 */
+	public $isDefault = null;
+
+
 }
 
