@@ -52,6 +52,8 @@ class Kaltura_Client_Type_CatalogPartnerConfig extends Kaltura_Client_Type_Partn
 			else
 				$this->singleMultilingualMode = false;
 		}
+		if(count($xml->categoryManagement) && !empty($xml->categoryManagement))
+			$this->categoryManagement = Kaltura_Client_ParseUtils::unmarshalObject($xml->categoryManagement, "KalturaCategoryManagement");
 	}
 	/**
 	 * Single multilingual mode
@@ -59,6 +61,13 @@ class Kaltura_Client_Type_CatalogPartnerConfig extends Kaltura_Client_Type_Partn
 	 * @var bool
 	 */
 	public $singleMultilingualMode = null;
+
+	/**
+	 * Category management
+	 *
+	 * @var Kaltura_Client_Type_CategoryManagement
+	 */
+	public $categoryManagement;
 
 
 }

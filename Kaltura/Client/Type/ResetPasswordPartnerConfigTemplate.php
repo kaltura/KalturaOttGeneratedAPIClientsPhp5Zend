@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_OTTUserFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_ResetPasswordPartnerConfigTemplate extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaOTTUserFilter';
+		return 'KalturaResetPasswordPartnerConfigTemplate';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,51 +45,38 @@ class Kaltura_Client_Type_OTTUserFilter extends Kaltura_Client_Type_Filter
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->usernameEqual))
-			$this->usernameEqual = (string)$xml->usernameEqual;
-		if(count($xml->externalIdEqual))
-			$this->externalIdEqual = (string)$xml->externalIdEqual;
-		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
-		if(count($xml->roleIdsIn))
-			$this->roleIdsIn = (string)$xml->roleIdsIn;
-		if(count($xml->emailEqual))
-			$this->emailEqual = (string)$xml->emailEqual;
+		if(count($xml->id))
+			$this->id = (string)$xml->id;
+		if(count($xml->label))
+			$this->label = (string)$xml->label;
+		if(count($xml->isDefault))
+		{
+			if(!empty($xml->isDefault) && ((int) $xml->isDefault === 1 || strtolower((string)$xml->isDefault) === 'true'))
+				$this->isDefault = true;
+			else
+				$this->isDefault = false;
+		}
 	}
 	/**
-	 * Username
+	 * id
 	 *
 	 * @var string
 	 */
-	public $usernameEqual = null;
+	public $id = null;
 
 	/**
-	 * User external identifier
+	 * label
 	 *
 	 * @var string
 	 */
-	public $externalIdEqual = null;
+	public $label = null;
 
 	/**
-	 * List of user identifiers separated by &#39;,&#39;
+	 * is Default
 	 *
-	 * @var string
+	 * @var bool
 	 */
-	public $idIn = null;
-
-	/**
-	 * Comma separated list of role Ids.
-	 *
-	 * @var string
-	 */
-	public $roleIdsIn = null;
-
-	/**
-	 * User email
-	 *
-	 * @var string
-	 */
-	public $emailEqual = null;
+	public $isDefault = null;
 
 
 }

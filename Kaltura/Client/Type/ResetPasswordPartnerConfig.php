@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_OTTUserFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_ResetPasswordPartnerConfig extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaOTTUserFilter';
+		return 'KalturaResetPasswordPartnerConfig';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,51 +45,29 @@ class Kaltura_Client_Type_OTTUserFilter extends Kaltura_Client_Type_Filter
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->usernameEqual))
-			$this->usernameEqual = (string)$xml->usernameEqual;
-		if(count($xml->externalIdEqual))
-			$this->externalIdEqual = (string)$xml->externalIdEqual;
-		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
-		if(count($xml->roleIdsIn))
-			$this->roleIdsIn = (string)$xml->roleIdsIn;
-		if(count($xml->emailEqual))
-			$this->emailEqual = (string)$xml->emailEqual;
+		if(count($xml->templateListLabel))
+			$this->templateListLabel = (string)$xml->templateListLabel;
+		if(count($xml->templates))
+		{
+			if(empty($xml->templates))
+				$this->templates = array();
+			else
+				$this->templates = Kaltura_Client_ParseUtils::unmarshalArray($xml->templates, "KalturaResetPasswordPartnerConfigTemplate");
+		}
 	}
 	/**
-	 * Username
+	 * template List Label
 	 *
 	 * @var string
 	 */
-	public $usernameEqual = null;
+	public $templateListLabel = null;
 
 	/**
-	 * User external identifier
+	 * templates
 	 *
-	 * @var string
+	 * @var array of KalturaResetPasswordPartnerConfigTemplate
 	 */
-	public $externalIdEqual = null;
-
-	/**
-	 * List of user identifiers separated by &#39;,&#39;
-	 *
-	 * @var string
-	 */
-	public $idIn = null;
-
-	/**
-	 * Comma separated list of role Ids.
-	 *
-	 * @var string
-	 */
-	public $roleIdsIn = null;
-
-	/**
-	 * User email
-	 *
-	 * @var string
-	 */
-	public $emailEqual = null;
+	public $templates;
 
 
 }
