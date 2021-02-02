@@ -57,8 +57,6 @@ class Kaltura_Client_Type_InboxMessage extends Kaltura_Client_ObjectBase
 			$this->createdAt = (string)$xml->createdAt;
 		if(count($xml->url))
 			$this->url = (string)$xml->url;
-		if(count($xml->campaignId))
-			$this->campaignId = (string)$xml->campaignId;
 	}
 	/**
 	 * message id
@@ -104,14 +102,6 @@ class Kaltura_Client_Type_InboxMessage extends Kaltura_Client_ObjectBase
 	 * @var string
 	 */
 	public $url = null;
-
-	/**
-	 * campaignId
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $campaignId = null;
 
 
 }
