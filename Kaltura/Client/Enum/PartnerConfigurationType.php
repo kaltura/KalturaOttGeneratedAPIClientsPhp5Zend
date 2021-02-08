@@ -44,6 +44,5 @@ class Kaltura_Client_Enum_PartnerConfigurationType extends Kaltura_Client_EnumBa
 	const PAYMENT = "Payment";
 	const CATALOG = "Catalog";
 	const SECURITY = "Security";
-	const OPC = "Opc";
 }
 
