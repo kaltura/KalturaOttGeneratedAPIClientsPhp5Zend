@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PermissionFilter extends Kaltura_Client_Type_BasePermissionFilter
+class Kaltura_Client_Type_BasePermissionFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaPermissionFilter';
+		return 'KalturaBasePermissionFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,30 +45,7 @@ class Kaltura_Client_Type_PermissionFilter extends Kaltura_Client_Type_BasePermi
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->currentUserPermissionsContains))
-		{
-			if(!empty($xml->currentUserPermissionsContains) && ((int) $xml->currentUserPermissionsContains === 1 || strtolower((string)$xml->currentUserPermissionsContains) === 'true'))
-				$this->currentUserPermissionsContains = true;
-			else
-				$this->currentUserPermissionsContains = false;
-		}
-		if(count($xml->roleIdIn))
-			$this->roleIdIn = (string)$xml->roleIdIn;
 	}
-	/**
-	 * Indicates whether the results should be filtered by userId using the current
-	 *
-	 * @var bool
-	 */
-	public $currentUserPermissionsContains = null;
-
-	/**
-	 * Return permissions by role ID
-	 *
-	 * @var bigint
-	 */
-	public $roleIdIn = null;
-
 
 }
 

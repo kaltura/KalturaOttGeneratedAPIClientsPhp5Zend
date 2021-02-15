@@ -31,13 +31,30 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_LogLevel extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_PermissionByIdInFilter extends Kaltura_Client_Type_BasePermissionFilter
 {
-	const TRACE = "TRACE";
-	const DEBUG = "DEBUG";
-	const INFO = "INFO";
-	const WARN = "WARN";
-	const ERROR = "ERROR";
-	const ALL = "ALL";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaPermissionByIdInFilter';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->idIn))
+			$this->idIn = (string)$xml->idIn;
+	}
+	/**
+	 * Category item identifiers
+	 *
+	 * @var string
+	 */
+	public $idIn = null;
+
+
 }
 
