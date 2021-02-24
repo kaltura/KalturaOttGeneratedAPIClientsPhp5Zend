@@ -232,7 +232,6 @@ class Kaltura_Client_TypeMap
 		'KalturaCouponEntitlementDiscountDetails' => 'Kaltura_Client_Type_CouponEntitlementDiscountDetails',
 		'KalturaCouponFilter' => 'Kaltura_Client_Type_CouponFilter',
 		'KalturaCouponGenerationOptions' => 'Kaltura_Client_Type_CouponGenerationOptions',
-		'KalturaCouponListResponse' => 'Kaltura_Client_Type_CouponListResponse',
 		'KalturaCouponsGroup' => 'Kaltura_Client_Type_CouponsGroup',
 		'KalturaCouponsGroupListResponse' => 'Kaltura_Client_Type_CouponsGroupListResponse',
 		'KalturaCredentialsProvider' => 'Kaltura_Client_Type_CredentialsProvider',

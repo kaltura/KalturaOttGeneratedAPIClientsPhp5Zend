@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_Epg extends Kaltura_Client_Type_Asset
+class Kaltura_Client_Type_Epg extends Kaltura_Client_Type_ProgramAsset
 {
 	public function getKalturaObjectType()
 	{
