@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_CatalogPartnerConfig extends Kaltura_Client_Type_PartnerConfiguration
+class Kaltura_Client_Type_EpgFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaCatalogPartnerConfig';
+		return 'KalturaEpgFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,43 +45,24 @@ class Kaltura_Client_Type_CatalogPartnerConfig extends Kaltura_Client_Type_Partn
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->singleMultilingualMode))
-		{
-			if(!empty($xml->singleMultilingualMode) && ((int) $xml->singleMultilingualMode === 1 || strtolower((string)$xml->singleMultilingualMode) === 'true'))
-				$this->singleMultilingualMode = true;
-			else
-				$this->singleMultilingualMode = false;
-		}
-		if(count($xml->categoryManagement) && !empty($xml->categoryManagement))
-			$this->categoryManagement = Kaltura_Client_ParseUtils::unmarshalObject($xml->categoryManagement, "KalturaCategoryManagement");
-		if(count($xml->epgMultilingualFallbackSupport))
-		{
-			if(!empty($xml->epgMultilingualFallbackSupport) && ((int) $xml->epgMultilingualFallbackSupport === 1 || strtolower((string)$xml->epgMultilingualFallbackSupport) === 'true'))
-				$this->epgMultilingualFallbackSupport = true;
-			else
-				$this->epgMultilingualFallbackSupport = false;
-		}
+		if(count($xml->dateEqual))
+			$this->dateEqual = (string)$xml->dateEqual;
+		if(count($xml->liveAssetIdEqual))
+			$this->liveAssetIdEqual = (string)$xml->liveAssetIdEqual;
 	}
 	/**
-	 * Single multilingual mode
+	 * date in unix timestamp, e.g. 1610928000(January 18, 2021 0:00:00), 1611014400(January 19, 2021 0:00:00)
 	 *
-	 * @var bool
+	 * @var bigint
 	 */
-	public $singleMultilingualMode = null;
+	public $dateEqual = null;
 
 	/**
-	 * Category management
+	 * EPG live asset identifier
 	 *
-	 * @var Kaltura_Client_Type_CategoryManagement
+	 * @var bigint
 	 */
-	public $categoryManagement;
-
-	/**
-	 * EPG Multilingual Fallback Support
-	 *
-	 * @var bool
-	 */
-	public $epgMultilingualFallbackSupport = null;
+	public $liveAssetIdEqual = null;
 
 
 }

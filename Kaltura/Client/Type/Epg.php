@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_CatalogPartnerConfig extends Kaltura_Client_Type_PartnerConfiguration
+class Kaltura_Client_Type_Epg extends Kaltura_Client_Type_ProgramAsset
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaCatalogPartnerConfig';
+		return 'KalturaEpg';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,44 +45,7 @@ class Kaltura_Client_Type_CatalogPartnerConfig extends Kaltura_Client_Type_Partn
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->singleMultilingualMode))
-		{
-			if(!empty($xml->singleMultilingualMode) && ((int) $xml->singleMultilingualMode === 1 || strtolower((string)$xml->singleMultilingualMode) === 'true'))
-				$this->singleMultilingualMode = true;
-			else
-				$this->singleMultilingualMode = false;
-		}
-		if(count($xml->categoryManagement) && !empty($xml->categoryManagement))
-			$this->categoryManagement = Kaltura_Client_ParseUtils::unmarshalObject($xml->categoryManagement, "KalturaCategoryManagement");
-		if(count($xml->epgMultilingualFallbackSupport))
-		{
-			if(!empty($xml->epgMultilingualFallbackSupport) && ((int) $xml->epgMultilingualFallbackSupport === 1 || strtolower((string)$xml->epgMultilingualFallbackSupport) === 'true'))
-				$this->epgMultilingualFallbackSupport = true;
-			else
-				$this->epgMultilingualFallbackSupport = false;
-		}
 	}
-	/**
-	 * Single multilingual mode
-	 *
-	 * @var bool
-	 */
-	public $singleMultilingualMode = null;
-
-	/**
-	 * Category management
-	 *
-	 * @var Kaltura_Client_Type_CategoryManagement
-	 */
-	public $categoryManagement;
-
-	/**
-	 * EPG Multilingual Fallback Support
-	 *
-	 * @var bool
-	 */
-	public $epgMultilingualFallbackSupport = null;
-
 
 }
 

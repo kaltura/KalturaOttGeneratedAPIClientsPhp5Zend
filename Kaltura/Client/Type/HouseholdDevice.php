@@ -65,6 +65,13 @@ class Kaltura_Client_Type_HouseholdDevice extends Kaltura_Client_Type_OTTObjectS
 			$this->externalId = (string)$xml->externalId;
 		if(count($xml->macAddress))
 			$this->macAddress = (string)$xml->macAddress;
+		if(count($xml->dynamicData))
+		{
+			if(empty($xml->dynamicData))
+				$this->dynamicData = array();
+			else
+				$this->dynamicData = Kaltura_Client_ParseUtils::unmarshalMap($xml->dynamicData, "KalturaStringValue");
+		}
 		if(count($xml->model))
 			$this->model = (string)$xml->model;
 		if(count($xml->manufacturer))
@@ -147,6 +154,13 @@ class Kaltura_Client_Type_HouseholdDevice extends Kaltura_Client_Type_OTTObjectS
 	 * @var string
 	 */
 	public $macAddress = null;
+
+	/**
+	 * Dynamic data
+	 *
+	 * @var map
+	 */
+	public $dynamicData;
 
 	/**
 	 * model
