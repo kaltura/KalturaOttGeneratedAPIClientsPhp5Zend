@@ -27,81 +27,35 @@
 // @ignore
 // ===================================================================================================
 
+
 /**
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_Permission extends Kaltura_Client_ObjectBase
+class Kaltura_Client_EpgService extends Kaltura_Client_ServiceBase
 {
-	public function getKalturaObjectType()
+	function __construct(Kaltura_Client_Client $client = null)
 	{
-		return 'KalturaPermission';
+		parent::__construct($client);
 	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
+
+	/**
+	 * @return Kaltura_Client_Type_EpgListResponse
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function listAction(Kaltura_Client_Type_EpgFilter $filter = null)
 	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->friendlyName))
-			$this->friendlyName = (string)$xml->friendlyName;
-		if(count($xml->dependsOnPermissionNames))
-			$this->dependsOnPermissionNames = (string)$xml->dependsOnPermissionNames;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
-		if(count($xml->permissionItemsIds))
-			$this->permissionItemsIds = (string)$xml->permissionItemsIds;
+		$kparams = array();
+		if ($filter !== null)
+			$this->client->addParam($kparams, "filter", $filter->toParams());
+		$this->client->queueServiceActionCall("epg", "list", "KalturaEpgListResponse", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaEpgListResponse");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_EpgListResponse");
+		return $resultObject;
 	}
-	/**
-	 * Permission identifier
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $id = null;
-
-	/**
-	 * Permission name
-	 *
-	 * @var string
-	 */
-	public $name = null;
-
-	/**
-	 * Permission friendly name
-	 *
-	 * @var string
-	 */
-	public $friendlyName = null;
-
-	/**
-	 * Comma separated permissions names from type SPECIAL_FEATURE
-	 *
-	 * @var string
-	 * @readonly
-	 */
-	public $dependsOnPermissionNames = null;
-
-	/**
-	 * Permission type
-	 *
-	 * @var Kaltura_Client_Enum_PermissionType
-	 */
-	public $type = null;
-
-	/**
-	 * Comma separated associated permission items IDs
-	 *
-	 * @var string
-	 */
-	public $permissionItemsIds = null;
-
-
 }
-
