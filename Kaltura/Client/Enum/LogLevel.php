@@ -31,30 +31,13 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DataEncryption extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Enum_LogLevel extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaDataEncryption';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->username) && !empty($xml->username))
-			$this->username = Kaltura_Client_ParseUtils::unmarshalObject($xml->username, "KalturaEncryption");
-	}
-	/**
-	 * Username encryption config
-	 *
-	 * @var Kaltura_Client_Type_Encryption
-	 */
-	public $username;
-
-
+	const TRACE = "TRACE";
+	const DEBUG = "DEBUG";
+	const INFO = "INFO";
+	const WARN = "WARN";
+	const ERROR = "ERROR";
+	const ALL = "ALL";
 }
 

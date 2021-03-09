@@ -89,10 +89,6 @@ class Kaltura_Client_Type_CategoryItem extends Kaltura_Client_Type_CrudObject
 			$this->endDateInSeconds = (string)$xml->endDateInSeconds;
 		if(count($xml->type))
 			$this->type = (string)$xml->type;
-		if(count($xml->versionId))
-			$this->versionId = (string)$xml->versionId;
-		if(count($xml->virtualAssetId))
-			$this->virtualAssetId = (string)$xml->virtualAssetId;
 	}
 	/**
 	 * Unique identifier for the category
@@ -182,22 +178,6 @@ class Kaltura_Client_Type_CategoryItem extends Kaltura_Client_Type_CrudObject
 	 * @insertonly
 	 */
 	public $type = null;
-
-	/**
-	 * Unique identifier for the category version
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $versionId = null;
-
-	/**
-	 * Virtual asset id
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $virtualAssetId = null;
 
 
 }

@@ -64,8 +64,6 @@ class Kaltura_Client_Type_MediaImage extends Kaltura_Client_ObjectBase
 			else
 				$this->isDefault = false;
 		}
-		if(count($xml->imageTypeId))
-			$this->imageTypeId = (string)$xml->imageTypeId;
 	}
 	/**
 	 * Image aspect ratio
@@ -116,13 +114,6 @@ class Kaltura_Client_Type_MediaImage extends Kaltura_Client_ObjectBase
 	 * @var bool
 	 */
 	public $isDefault = null;
-
-	/**
-	 * Image type identifier
-	 *
-	 * @var bigint
-	 */
-	public $imageTypeId = null;
 
 
 }

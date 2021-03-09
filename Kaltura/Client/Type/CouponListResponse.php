@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_EntitlementDiscountDetails extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_CouponListResponse extends Kaltura_Client_Type_ListResponse
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaEntitlementDiscountDetails';
+		return 'KalturaCouponListResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,36 +45,20 @@ class Kaltura_Client_Type_EntitlementDiscountDetails extends Kaltura_Client_Obje
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->amount))
-			$this->amount = (float)$xml->amount;
-		if(count($xml->startDate))
-			$this->startDate = (string)$xml->startDate;
-		if(count($xml->endDate))
-			$this->endDate = (string)$xml->endDate;
+		if(count($xml->objects))
+		{
+			if(empty($xml->objects))
+				$this->objects = array();
+			else
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaCoupon");
+		}
 	}
 	/**
-	 * Amount
+	 * Coupons
 	 *
-	 * @var float
-	 * @readonly
+	 * @var array of KalturaCoupon
 	 */
-	public $amount = null;
-
-	/**
-	 * Start date
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $startDate = null;
-
-	/**
-	 * End date
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $endDate = null;
+	public $objects;
 
 
 }
