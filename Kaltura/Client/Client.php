@@ -293,6 +293,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_EpgService
+	 */
+	public $epg = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_EventNotificationActionService
 	 */
 	public $eventNotificationAction = null;
@@ -840,8 +846,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:21-02-24');
-		$this->setApiVersion('6.1.0.28909');
+		$this->setClientTag('php5:21-03-15');
+		$this->setApiVersion('6.2.0.28984');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -886,6 +892,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->engagementAdapter = new Kaltura_Client_EngagementAdapterService($this);
 		$this->engagement = new Kaltura_Client_EngagementService($this);
 		$this->entitlement = new Kaltura_Client_EntitlementService($this);
+		$this->epg = new Kaltura_Client_EpgService($this);
 		$this->eventNotificationAction = new Kaltura_Client_EventNotificationActionService($this);
 		$this->eventNotification = new Kaltura_Client_EventNotificationService($this);
 		$this->exportTask = new Kaltura_Client_ExportTaskService($this);
