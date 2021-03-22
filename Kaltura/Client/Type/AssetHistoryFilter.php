@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -53,6 +53,8 @@ class Kaltura_Client_Type_AssetHistoryFilter extends Kaltura_Client_Type_Filter
 			$this->statusEqual = (string)$xml->statusEqual;
 		if(count($xml->daysLessThanOrEqual))
 			$this->daysLessThanOrEqual = (int)$xml->daysLessThanOrEqual;
+		if(count($xml->kSql))
+			$this->kSql = (string)$xml->kSql;
 	}
 	/**
 	 * Comma separated list of asset types to search within.
@@ -85,6 +87,13 @@ class Kaltura_Client_Type_AssetHistoryFilter extends Kaltura_Client_Type_Filter
 	 * @var int
 	 */
 	public $daysLessThanOrEqual = null;
+
+	/**
+	 * KSQL expression
+	 *
+	 * @var string
+	 */
+	public $kSql = null;
 
 
 }
