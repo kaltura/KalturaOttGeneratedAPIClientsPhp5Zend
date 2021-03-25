@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -170,8 +170,6 @@ class Kaltura_Client_Type_LiveAsset extends Kaltura_Client_Type_MediaAsset
 
 	/**
 	 * Is CDVR enabled for this asset
-	 *             Please, note that value of this property is strictly connected with CDV-R setting on Partner level.
-	 *             In order to enable CDV-R for KalturaLiveAsset, Partner CDV-R setting should be enabled.
 	 *
 	 * @var bool
 	 * @readonly
@@ -180,8 +178,6 @@ class Kaltura_Client_Type_LiveAsset extends Kaltura_Client_Type_MediaAsset
 
 	/**
 	 * Is catch-up enabled for this asset
-	 *             Please, note that value of this property is strictly connected with Catch Up setting on Partner level.
-	 *             In order to enable Catch Up for KalturaLiveAsset, Partner Catch Up setting should be enabled.
 	 *
 	 * @var bool
 	 * @readonly
@@ -190,8 +186,6 @@ class Kaltura_Client_Type_LiveAsset extends Kaltura_Client_Type_MediaAsset
 
 	/**
 	 * Is start over enabled for this asset
-	 *             Please, note that value of this property is strictly connected with Start Over setting on Partner level.
-	 *             In order to enable Start Over for KalturaLiveAsset, Partner Start Over setting should be enabled.
 	 *
 	 * @var bool
 	 * @readonly
@@ -224,8 +218,6 @@ class Kaltura_Client_Type_LiveAsset extends Kaltura_Client_Type_MediaAsset
 
 	/**
 	 * Is trick-play enabled for this asset
-	 *             Please, note that value of this property is strictly connected with Trick Play setting on Partner level.
-	 *             In order to enable Trick Play for KalturaLiveAsset, Partner Trick Play setting should be enabled.
 	 *
 	 * @var bool
 	 * @readonly

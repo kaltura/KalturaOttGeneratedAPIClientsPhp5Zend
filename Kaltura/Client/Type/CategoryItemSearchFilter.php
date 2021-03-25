@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -54,8 +54,6 @@ class Kaltura_Client_Type_CategoryItemSearchFilter extends Kaltura_Client_Type_C
 			else
 				$this->rootOnly = false;
 		}
-		if(count($xml->typeEqual))
-			$this->typeEqual = (string)$xml->typeEqual;
 	}
 	/**
 	 * KSQL expression
@@ -70,13 +68,6 @@ class Kaltura_Client_Type_CategoryItemSearchFilter extends Kaltura_Client_Type_C
 	 * @var bool
 	 */
 	public $rootOnly = null;
-
-	/**
-	 * Indicates which category to return by their type.
-	 *
-	 * @var string
-	 */
-	public $typeEqual = null;
 
 
 }

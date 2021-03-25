@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -31,30 +31,13 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DataEncryption extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Enum_LogLevel extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaDataEncryption';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->username) && !empty($xml->username))
-			$this->username = Kaltura_Client_ParseUtils::unmarshalObject($xml->username, "KalturaEncryption");
-	}
-	/**
-	 * Username encryption config
-	 *
-	 * @var Kaltura_Client_Type_Encryption
-	 */
-	public $username;
-
-
+	const TRACE = "TRACE";
+	const DEBUG = "DEBUG";
+	const INFO = "INFO";
+	const WARN = "WARN";
+	const ERROR = "ERROR";
+	const ALL = "ALL";
 }
 

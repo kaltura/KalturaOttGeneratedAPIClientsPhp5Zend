@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -45,10 +45,5 @@ class Kaltura_Client_Enum_RuleConditionType extends Kaltura_Client_EnumBase
 	const USER_SUBSCRIPTION = "USER_SUBSCRIPTION";
 	const ASSET_SUBSCRIPTION = "ASSET_SUBSCRIPTION";
 	const USER_ROLE = "USER_ROLE";
-	const DEVICE_BRAND = "DEVICE_BRAND";
-	const DEVICE_FAMILY = "DEVICE_FAMILY";
-	const DEVICE_MANUFACTURER = "DEVICE_MANUFACTURER";
-	const DEVICE_MODEL = "DEVICE_MODEL";
-	const DEVICE_UDID_DYNAMIC_LIST = "DEVICE_UDID_DYNAMIC_LIST";
 }
 

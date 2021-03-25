@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -39,6 +39,5 @@ class Kaltura_Client_Enum_BillingAction extends Kaltura_Client_EnumBase
 	const RENEW_CANCELED_SUBSCRIPTION = "renew_canceled_subscription";
 	const CANCEL_SUBSCRIPTION_ORDER = "cancel_subscription_order";
 	const SUBSCRIPTION_DATE_CHANGED = "subscription_date_changed";
-	const PENDING = "pending";
 }
 

@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -78,13 +78,6 @@ class Kaltura_Client_Type_Entitlement extends Kaltura_Client_ObjectBase
 			$this->userId = (string)$xml->userId;
 		if(count($xml->householdId))
 			$this->householdId = (string)$xml->householdId;
-		if(count($xml->isPending))
-		{
-			if(!empty($xml->isPending) && ((int) $xml->isPending === 1 || strtolower((string)$xml->isPending) === 'true'))
-				$this->isPending = true;
-			else
-				$this->isPending = false;
-		}
 	}
 	/**
 	 * Purchase identifier (for subscriptions and collections only)
@@ -114,6 +107,7 @@ class Kaltura_Client_Type_Entitlement extends Kaltura_Client_ObjectBase
 	 * The end date of the entitlement
 	 *
 	 * @var bigint
+	 * @readonly
 	 */
 	public $endDate = null;
 
@@ -196,13 +190,6 @@ class Kaltura_Client_Type_Entitlement extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $householdId = null;
-
-	/**
-	 * Indicates whether the asynchronous purchase is pending
-	 *
-	 * @var bool
-	 */
-	public $isPending = null;
 
 
 }

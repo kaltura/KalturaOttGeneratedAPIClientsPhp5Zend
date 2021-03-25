@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -116,8 +116,6 @@ class Kaltura_Client_Type_NotificationsPartnerSettings extends Kaltura_Client_Ob
 			else
 				$this->iotEnabled = false;
 		}
-		if(count($xml->epgNotification) && !empty($xml->epgNotification))
-			$this->epgNotification = Kaltura_Client_ParseUtils::unmarshalObject($xml->epgNotification, "KalturaEpgNotificationSettings");
 	}
 	/**
 	 * Push notification capability is enabled for the account
@@ -244,13 +242,6 @@ class Kaltura_Client_Type_NotificationsPartnerSettings extends Kaltura_Client_Ob
 	 * @var bool
 	 */
 	public $iotEnabled = null;
-
-	/**
-	 * Settings for epg notifications
-	 *
-	 * @var Kaltura_Client_Type_EpgNotificationSettings
-	 */
-	public $epgNotification;
 
 
 }

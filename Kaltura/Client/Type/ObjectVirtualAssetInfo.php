@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -51,13 +51,6 @@ class Kaltura_Client_Type_ObjectVirtualAssetInfo extends Kaltura_Client_ObjectBa
 			$this->metaId = (int)$xml->metaId;
 		if(count($xml->type))
 			$this->type = (string)$xml->type;
-		if(count($xml->extendedTypes))
-		{
-			if(empty($xml->extendedTypes))
-				$this->extendedTypes = array();
-			else
-				$this->extendedTypes = Kaltura_Client_ParseUtils::unmarshalMap($xml->extendedTypes, "KalturaLongValue");
-		}
 	}
 	/**
 	 * Asset struct identifier
@@ -79,13 +72,6 @@ class Kaltura_Client_Type_ObjectVirtualAssetInfo extends Kaltura_Client_ObjectBa
 	 * @var Kaltura_Client_Enum_ObjectVirtualAssetInfoType
 	 */
 	public $type = null;
-
-	/**
-	 * Extended types mapping
-	 *
-	 * @var map
-	 */
-	public $extendedTypes;
 
 
 }

@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -53,8 +53,6 @@ class Kaltura_Client_Type_IotClientConfiguration extends Kaltura_Client_ObjectBa
 			$this->cognitoUserPool = Kaltura_Client_ParseUtils::unmarshalObject($xml->cognitoUserPool, "KalturaCognitoUserPool");
 		if(count($xml->json))
 			$this->json = (string)$xml->json;
-		if(count($xml->topics))
-			$this->topics = (string)$xml->topics;
 	}
 	/**
 	 * announcementTopic
@@ -83,13 +81,6 @@ class Kaltura_Client_Type_IotClientConfiguration extends Kaltura_Client_ObjectBa
 	 * @var string
 	 */
 	public $json = null;
-
-	/**
-	 * topics
-	 *
-	 * @var string
-	 */
-	public $topics = null;
 
 
 }

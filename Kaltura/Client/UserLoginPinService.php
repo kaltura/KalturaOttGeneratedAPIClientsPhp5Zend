@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -43,12 +43,10 @@ class Kaltura_Client_UserLoginPinService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_UserLoginPin
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function add($secret = null, $pinUsages = null, $pinDuration = null)
+	function add($secret = null)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "secret", $secret);
-		$this->client->addParam($kparams, "pinUsages", $pinUsages);
-		$this->client->addParam($kparams, "pinDuration", $pinDuration);
 		$this->client->queueServiceActionCall("userloginpin", "add", "KalturaUserLoginPin", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
@@ -99,13 +97,11 @@ class Kaltura_Client_UserLoginPinService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_UserLoginPin
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function update($pinCode, $secret = null, $pinUsages = null, $pinDuration = null)
+	function update($pinCode, $secret = null)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "pinCode", $pinCode);
 		$this->client->addParam($kparams, "secret", $secret);
-		$this->client->addParam($kparams, "pinUsages", $pinUsages);
-		$this->client->addParam($kparams, "pinDuration", $pinDuration);
 		$this->client->queueServiceActionCall("userloginpin", "update", "KalturaUserLoginPin", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();

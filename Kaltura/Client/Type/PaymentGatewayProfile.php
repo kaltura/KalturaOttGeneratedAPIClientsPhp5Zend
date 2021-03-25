@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -80,13 +80,6 @@ class Kaltura_Client_Type_PaymentGatewayProfile extends Kaltura_Client_Type_Paym
 				$this->externalVerification = true;
 			else
 				$this->externalVerification = false;
-		}
-		if(count($xml->isAsyncPolicy))
-		{
-			if(!empty($xml->isAsyncPolicy) && ((int) $xml->isAsyncPolicy === 1 || strtolower((string)$xml->isAsyncPolicy) === 'true'))
-				$this->isAsyncPolicy = true;
-			else
-				$this->isAsyncPolicy = false;
 		}
 	}
 	/**
@@ -179,13 +172,6 @@ class Kaltura_Client_Type_PaymentGatewayProfile extends Kaltura_Client_Type_Paym
 	 * @var bool
 	 */
 	public $externalVerification = null;
-
-	/**
-	 * Payment gateway - Support asynchronous purchase
-	 *
-	 * @var bool
-	 */
-	public $isAsyncPolicy = null;
 
 
 }

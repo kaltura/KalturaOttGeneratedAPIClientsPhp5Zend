@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -97,10 +97,6 @@ class Kaltura_Client_Type_MediaFile extends Kaltura_Client_Type_AssetFile
 		}
 		if(count($xml->catalogEndDate))
 			$this->catalogEndDate = (string)$xml->catalogEndDate;
-		if(count($xml->opl))
-			$this->opl = (string)$xml->opl;
-		if(count($xml->businessModuleDetails) && !empty($xml->businessModuleDetails))
-			$this->businessModuleDetails = Kaltura_Client_ParseUtils::unmarshalObject($xml->businessModuleDetails, "KalturaBusinessModuleDetails");
 	}
 	/**
 	 * Unique identifier for the asset
@@ -250,20 +246,6 @@ class Kaltura_Client_Type_MediaFile extends Kaltura_Client_Type_AssetFile
 	 * @var bigint
 	 */
 	public $catalogEndDate = null;
-
-	/**
-	 * OPL
-	 *
-	 * @var string
-	 */
-	public $opl = null;
-
-	/**
-	 * businessModuleDetails
-	 *
-	 * @var Kaltura_Client_Type_BusinessModuleDetails
-	 */
-	public $businessModuleDetails;
 
 
 }

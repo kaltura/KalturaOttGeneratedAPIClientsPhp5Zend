@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -65,21 +65,6 @@ class Kaltura_Client_Type_HouseholdDevice extends Kaltura_Client_Type_OTTObjectS
 			$this->externalId = (string)$xml->externalId;
 		if(count($xml->macAddress))
 			$this->macAddress = (string)$xml->macAddress;
-		if(count($xml->dynamicData))
-		{
-			if(empty($xml->dynamicData))
-				$this->dynamicData = array();
-			else
-				$this->dynamicData = Kaltura_Client_ParseUtils::unmarshalMap($xml->dynamicData, "KalturaStringValue");
-		}
-		if(count($xml->model))
-			$this->model = (string)$xml->model;
-		if(count($xml->manufacturer))
-			$this->manufacturer = (string)$xml->manufacturer;
-		if(count($xml->manufacturerId))
-			$this->manufacturerId = (string)$xml->manufacturerId;
-		if(count($xml->lastActivityTime))
-			$this->lastActivityTime = (string)$xml->lastActivityTime;
 	}
 	/**
 	 * Household identifier
@@ -154,43 +139,6 @@ class Kaltura_Client_Type_HouseholdDevice extends Kaltura_Client_Type_OTTObjectS
 	 * @var string
 	 */
 	public $macAddress = null;
-
-	/**
-	 * Dynamic data
-	 *
-	 * @var map
-	 */
-	public $dynamicData;
-
-	/**
-	 * model
-	 *
-	 * @var string
-	 */
-	public $model = null;
-
-	/**
-	 * manufacturer
-	 *
-	 * @var string
-	 */
-	public $manufacturer = null;
-
-	/**
-	 * manufacturer Id, read only
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $manufacturerId = null;
-
-	/**
-	 * Last Activity Time, read only
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $lastActivityTime = null;
 
 
 }

@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -47,13 +47,6 @@ class Kaltura_Client_Type_BulkUploadIngestJobData extends Kaltura_Client_Type_Bu
 		
 		if(count($xml->ingestProfileId))
 			$this->ingestProfileId = (int)$xml->ingestProfileId;
-		if(count($xml->disableEpgNotification))
-		{
-			if(!empty($xml->disableEpgNotification) && ((int) $xml->disableEpgNotification === 1 || strtolower((string)$xml->disableEpgNotification) === 'true'))
-				$this->disableEpgNotification = true;
-			else
-				$this->disableEpgNotification = false;
-		}
 	}
 	/**
 	 * Identifies the ingest profile that will handle the ingest of programs
@@ -62,14 +55,6 @@ class Kaltura_Client_Type_BulkUploadIngestJobData extends Kaltura_Client_Type_Bu
 	 * @var int
 	 */
 	public $ingestProfileId = null;
-
-	/**
-	 * By default, after the successful ingest, devices will be notified about changes in epg channels.
-	 *             This parameter disables this notification.
-	 *
-	 * @var bool
-	 */
-	public $disableEpgNotification = null;
 
 
 }
