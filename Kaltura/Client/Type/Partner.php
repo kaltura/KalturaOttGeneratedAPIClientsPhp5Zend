@@ -31,20 +31,57 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_PartnerConfigurationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_Partner extends Kaltura_Client_ObjectBase
 {
-	const DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway";
-	const ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection";
-	const OSSADAPTER = "OSSAdapter";
-	const CONCURRENCY = "Concurrency";
-	const GENERAL = "General";
-	const OBJECTVIRTUALASSET = "ObjectVirtualAsset";
-	const COMMERCE = "Commerce";
-	const PLAYBACK = "Playback";
-	const PAYMENT = "Payment";
-	const CATALOG = "Catalog";
-	const SECURITY = "Security";
-	const OPC = "Opc";
-	const BASE = "Base";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaPartner';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->id))
+			$this->id = (int)$xml->id;
+		if(count($xml->name))
+			$this->name = (string)$xml->name;
+		if(count($xml->creatDate))
+			$this->creatDate = (string)$xml->creatDate;
+		if(count($xml->updateDate))
+			$this->updateDate = (string)$xml->updateDate;
+	}
+	/**
+	 * PartnerId
+	 *
+	 * @var int
+	 */
+	public $id = null;
+
+	/**
+	 * PartnerName
+	 *
+	 * @var string
+	 */
+	public $name = null;
+
+	/**
+	 * Creat date represented as epoch
+	 *
+	 * @var bigint
+	 */
+	public $creatDate = null;
+
+	/**
+	 * Update date represented as epoch
+	 *
+	 * @var bigint
+	 */
+	public $updateDate = null;
+
+
 }
 

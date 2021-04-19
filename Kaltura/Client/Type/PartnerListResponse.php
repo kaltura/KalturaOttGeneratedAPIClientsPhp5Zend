@@ -31,10 +31,35 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_SuspensionProfileInheritanceType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_PartnerListResponse extends Kaltura_Client_Type_ListResponse
 {
-	const ALWAYS = "ALWAYS";
-	const NEVER = "NEVER";
-	const DEFAULT = "DEFAULT";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaPartnerListResponse';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->objects))
+		{
+			if(empty($xml->objects))
+				$this->objects = array();
+			else
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaPartner");
+		}
+	}
+	/**
+	 * A list of Partners
+	 *
+	 * @var array of KalturaPartner
+	 */
+	public $objects;
+
+
 }
 
