@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -56,8 +56,6 @@ abstract class Kaltura_Client_Type_BaseSearchAssetFilter extends Kaltura_Client_
 		}
 		if(count($xml->groupOrderBy))
 			$this->groupOrderBy = (string)$xml->groupOrderBy;
-		if(count($xml->groupingOptionEqual))
-			$this->groupingOptionEqual = (string)$xml->groupingOptionEqual;
 	}
 	/**
 	 * Search assets using dynamic criteria. Provided collection of nested expressions with key, comparison operators, value, and logical conjunction.
@@ -92,13 +90,6 @@ abstract class Kaltura_Client_Type_BaseSearchAssetFilter extends Kaltura_Client_
 	 * @var Kaltura_Client_Enum_GroupByOrder
 	 */
 	public $groupOrderBy = null;
-
-	/**
-	 * Grouping Option, Omit if not specified otherwise
-	 *
-	 * @var Kaltura_Client_Enum_GroupingOption
-	 */
-	public $groupingOptionEqual = null;
 
 
 }
