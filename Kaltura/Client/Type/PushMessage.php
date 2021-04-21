@@ -53,10 +53,6 @@ class Kaltura_Client_Type_PushMessage extends Kaltura_Client_ObjectBase
 			$this->action = (string)$xml->action;
 		if(count($xml->url))
 			$this->url = (string)$xml->url;
-		if(count($xml->udid))
-			$this->udid = (string)$xml->udid;
-		if(count($xml->pushChannels))
-			$this->pushChannels = (string)$xml->pushChannels;
 	}
 	/**
 	 * The message that will be presented to the user.
@@ -85,20 +81,6 @@ class Kaltura_Client_Type_PushMessage extends Kaltura_Client_ObjectBase
 	 * @var string
 	 */
 	public $url = null;
-
-	/**
-	 * Device unique identifier
-	 *
-	 * @var string
-	 */
-	public $udid = null;
-
-	/**
-	 * PushChannels - separated with comma
-	 *
-	 * @var string
-	 */
-	public $pushChannels = null;
 
 
 }

@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PermissionFilter extends Kaltura_Client_Type_BasePermissionFilter
+class Kaltura_Client_Type_PermissionFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{

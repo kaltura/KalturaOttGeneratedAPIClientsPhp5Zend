@@ -31,39 +31,13 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_CategoryVersionFilterByTree extends Kaltura_Client_Type_CategoryVersionFilter
+class Kaltura_Client_Enum_LogLevel extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaCategoryVersionFilterByTree';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->treeIdEqual))
-			$this->treeIdEqual = (string)$xml->treeIdEqual;
-		if(count($xml->stateEqual))
-			$this->stateEqual = (string)$xml->stateEqual;
-	}
-	/**
-	 * Category version tree identifier
-	 *
-	 * @var bigint
-	 */
-	public $treeIdEqual = null;
-
-	/**
-	 * Category version state
-	 *
-	 * @var Kaltura_Client_Enum_CategoryVersionState
-	 */
-	public $stateEqual = null;
-
-
+	const TRACE = "TRACE";
+	const DEBUG = "DEBUG";
+	const INFO = "INFO";
+	const WARN = "WARN";
+	const ERROR = "ERROR";
+	const ALL = "ALL";
 }
 

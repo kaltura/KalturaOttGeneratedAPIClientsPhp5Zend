@@ -39,6 +39,5 @@ class Kaltura_Client_Enum_BillingAction extends Kaltura_Client_EnumBase
 	const RENEW_CANCELED_SUBSCRIPTION = "renew_canceled_subscription";
 	const CANCEL_SUBSCRIPTION_ORDER = "cancel_subscription_order";
 	const SUBSCRIPTION_DATE_CHANGED = "subscription_date_changed";
-	const PENDING = "pending";
 }
 

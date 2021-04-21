@@ -45,16 +45,7 @@ class Kaltura_Client_Type_AnnouncementFilter extends Kaltura_Client_Type_Filter
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
 	}
-	/**
-	 * A list of comma separated announcement ids.
-	 *
-	 * @var string
-	 */
-	public $idIn = null;
-
 
 }
 

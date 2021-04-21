@@ -86,13 +86,6 @@ class Kaltura_Client_Type_Announcement extends Kaltura_Client_ObjectBase
 			else
 				$this->includeSms = false;
 		}
-		if(count($xml->includeIot))
-		{
-			if(!empty($xml->includeIot) && ((int) $xml->includeIot === 1 || strtolower((string)$xml->includeIot) === 'true'))
-				$this->includeIot = true;
-			else
-				$this->includeIot = false;
-		}
 	}
 	/**
 	 * Announcement name
@@ -186,13 +179,6 @@ class Kaltura_Client_Type_Announcement extends Kaltura_Client_ObjectBase
 	 * @var bool
 	 */
 	public $includeSms = null;
-
-	/**
-	 * Include IOT
-	 *
-	 * @var bool
-	 */
-	public $includeIot = null;
 
 
 }

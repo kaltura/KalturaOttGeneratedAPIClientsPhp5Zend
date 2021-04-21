@@ -53,8 +53,6 @@ class Kaltura_Client_Type_AssetHistoryFilter extends Kaltura_Client_Type_Filter
 			$this->statusEqual = (string)$xml->statusEqual;
 		if(count($xml->daysLessThanOrEqual))
 			$this->daysLessThanOrEqual = (int)$xml->daysLessThanOrEqual;
-		if(count($xml->kSql))
-			$this->kSql = (string)$xml->kSql;
 	}
 	/**
 	 * Comma separated list of asset types to search within.
@@ -87,13 +85,6 @@ class Kaltura_Client_Type_AssetHistoryFilter extends Kaltura_Client_Type_Filter
 	 * @var int
 	 */
 	public $daysLessThanOrEqual = null;
-
-	/**
-	 * KSQL expression
-	 *
-	 * @var string
-	 */
-	public $kSql = null;
 
 
 }

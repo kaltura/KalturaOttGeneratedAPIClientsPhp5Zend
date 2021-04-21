@@ -139,15 +139,10 @@ class Kaltura_Client_HouseholdPaymentGatewayService extends Kaltura_Client_Servi
 	 * @return 
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function resume($paymentGatewayId, array $adapterData = null)
+	function resume($paymentGatewayId)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "paymentGatewayId", $paymentGatewayId);
-		if ($adapterData !== null)
-			foreach($adapterData as $index => $obj)
-			{
-				$this->client->addParam($kparams, "adapterData:$index", $obj->toParams());
-			}
 		$this->client->queueServiceActionCall("householdpaymentgateway", "resume", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
@@ -179,12 +174,10 @@ class Kaltura_Client_HouseholdPaymentGatewayService extends Kaltura_Client_Servi
 	 * @return 
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function suspend($paymentGatewayId, Kaltura_Client_Type_SuspendSettings $suspendSettings = null)
+	function suspend($paymentGatewayId)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "paymentGatewayId", $paymentGatewayId);
-		if ($suspendSettings !== null)
-			$this->client->addParam($kparams, "suspendSettings", $suspendSettings->toParams());
 		$this->client->queueServiceActionCall("householdpaymentgateway", "suspend", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();

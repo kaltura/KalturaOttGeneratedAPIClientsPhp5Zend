@@ -80,11 +80,9 @@ class Kaltura_Client_ExternalChannelProfileService extends Kaltura_Client_Servic
 	 * @return Kaltura_Client_Type_ExternalChannelProfileListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function listAction(Kaltura_Client_Type_ExternalChannelProfileFilter $filter = null)
+	function listAction()
 	{
 		$kparams = array();
-		if ($filter !== null)
-			$this->client->addParam($kparams, "filter", $filter->toParams());
 		$this->client->queueServiceActionCall("externalchannelprofile", "list", "KalturaExternalChannelProfileListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();

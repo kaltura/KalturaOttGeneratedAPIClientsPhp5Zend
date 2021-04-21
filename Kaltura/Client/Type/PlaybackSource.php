@@ -63,10 +63,6 @@ class Kaltura_Client_Type_PlaybackSource extends Kaltura_Client_Type_MediaFile
 			else
 				$this->isTokenized = false;
 		}
-		if(count($xml->businessModuleId))
-			$this->businessModuleId = (int)$xml->businessModuleId;
-		if(count($xml->businessModuleType))
-			$this->businessModuleType = (string)$xml->businessModuleType;
 	}
 	/**
 	 * Source format according to delivery profile streamer type (applehttp, mpegdash etc.)
@@ -95,22 +91,6 @@ class Kaltura_Client_Type_PlaybackSource extends Kaltura_Client_Type_MediaFile
 	 * @var bool
 	 */
 	public $isTokenized = null;
-
-	/**
-	 * Business Module Id
-	 *
-	 * @var int
-	 * @readonly
-	 */
-	public $businessModuleId = null;
-
-	/**
-	 * Business Module Type
-	 *
-	 * @var Kaltura_Client_Enum_TransactionType
-	 * @readonly
-	 */
-	public $businessModuleType = null;
 
 
 }

@@ -125,30 +125,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_CampaignService
-	 */
-	public $campaign = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_CategoryItemService
-	 */
-	public $categoryItem = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_CategoryTreeService
-	 */
-	public $categoryTree = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_CategoryVersionService
-	 */
-	public $categoryVersion = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_CdnAdapterProfileService
 	 */
 	public $cdnAdapterProfile = null;
@@ -245,12 +221,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_DeviceReferenceDataService
-	 */
-	public $deviceReferenceData = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_DiscountDetailsService
 	 */
 	public $discountDetails = null;
@@ -260,12 +230,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	 * @var Kaltura_Client_DrmProfileService
 	 */
 	public $drmProfile = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_DynamicListService
-	 */
-	public $dynamicList = null;
 
 	/**
 	 * 
@@ -290,12 +254,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	 * @var Kaltura_Client_EntitlementService
 	 */
 	public $entitlement = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_EpgService
-	 */
-	public $epg = null;
 
 	/**
 	 * 
@@ -425,18 +383,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_IotService
-	 */
-	public $iot = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_IotProfileService
-	 */
-	public $iotProfile = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_LanguageService
 	 */
 	public $language = null;
@@ -554,12 +500,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	 * @var Kaltura_Client_PermissionService
 	 */
 	public $permission = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_PermissionItemService
-	 */
-	public $permissionItem = null;
 
 	/**
 	 * 
@@ -683,12 +623,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_SmsAdapterProfileService
-	 */
-	public $smsAdapterProfile = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_SocialActionService
 	 */
 	public $socialAction = null;
@@ -716,12 +650,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	 * @var Kaltura_Client_SsoAdapterProfileService
 	 */
 	public $ssoAdapterProfile = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_StreamingDeviceService
-	 */
-	public $streamingDevice = null;
 
 	/**
 	 * 
@@ -846,8 +774,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:21-04-19');
-		$this->setApiVersion('6.3.0.29047');
+		$this->setClientTag('php5:21-04-21');
+		$this->setApiVersion('5.3.2.27581');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -864,10 +792,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->bookmark = new Kaltura_Client_BookmarkService($this);
 		$this->bulkUpload = new Kaltura_Client_BulkUploadService($this);
 		$this->businessModuleRule = new Kaltura_Client_BusinessModuleRuleService($this);
-		$this->campaign = new Kaltura_Client_CampaignService($this);
-		$this->categoryItem = new Kaltura_Client_CategoryItemService($this);
-		$this->categoryTree = new Kaltura_Client_CategoryTreeService($this);
-		$this->categoryVersion = new Kaltura_Client_CategoryVersionService($this);
 		$this->cdnAdapterProfile = new Kaltura_Client_CdnAdapterProfileService($this);
 		$this->cdnPartnerSettings = new Kaltura_Client_CdnPartnerSettingsService($this);
 		$this->cDVRAdapterProfile = new Kaltura_Client_CDVRAdapterProfileService($this);
@@ -884,15 +808,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->currency = new Kaltura_Client_CurrencyService($this);
 		$this->deviceBrand = new Kaltura_Client_DeviceBrandService($this);
 		$this->deviceFamily = new Kaltura_Client_DeviceFamilyService($this);
-		$this->deviceReferenceData = new Kaltura_Client_DeviceReferenceDataService($this);
 		$this->discountDetails = new Kaltura_Client_DiscountDetailsService($this);
 		$this->drmProfile = new Kaltura_Client_DrmProfileService($this);
-		$this->dynamicList = new Kaltura_Client_DynamicListService($this);
 		$this->email = new Kaltura_Client_EmailService($this);
 		$this->engagementAdapter = new Kaltura_Client_EngagementAdapterService($this);
 		$this->engagement = new Kaltura_Client_EngagementService($this);
 		$this->entitlement = new Kaltura_Client_EntitlementService($this);
-		$this->epg = new Kaltura_Client_EpgService($this);
 		$this->eventNotificationAction = new Kaltura_Client_EventNotificationActionService($this);
 		$this->eventNotification = new Kaltura_Client_EventNotificationService($this);
 		$this->exportTask = new Kaltura_Client_ExportTaskService($this);
@@ -914,8 +835,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->imageType = new Kaltura_Client_ImageTypeService($this);
 		$this->inboxMessage = new Kaltura_Client_InboxMessageService($this);
 		$this->IngestProfile = new Kaltura_Client_IngestProfileService($this);
-		$this->iot = new Kaltura_Client_IotService($this);
-		$this->iotProfile = new Kaltura_Client_IotProfileService($this);
 		$this->language = new Kaltura_Client_LanguageService($this);
 		$this->licensedUrl = new Kaltura_Client_LicensedUrlService($this);
 		$this->mediaConcurrencyRule = new Kaltura_Client_MediaConcurrencyRuleService($this);
@@ -936,7 +855,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->paymentGatewayProfile = new Kaltura_Client_PaymentGatewayProfileService($this);
 		$this->paymentMethodProfile = new Kaltura_Client_PaymentMethodProfileService($this);
 		$this->permission = new Kaltura_Client_PermissionService($this);
-		$this->permissionItem = new Kaltura_Client_PermissionItemService($this);
 		$this->personalFeed = new Kaltura_Client_PersonalFeedService($this);
 		$this->personalList = new Kaltura_Client_PersonalListService($this);
 		$this->pin = new Kaltura_Client_PinService($this);
@@ -957,13 +875,11 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->segmentationType = new Kaltura_Client_SegmentationTypeService($this);
 		$this->seriesRecording = new Kaltura_Client_SeriesRecordingService($this);
 		$this->session = new Kaltura_Client_SessionService($this);
-		$this->smsAdapterProfile = new Kaltura_Client_SmsAdapterProfileService($this);
 		$this->socialAction = new Kaltura_Client_SocialActionService($this);
 		$this->socialComment = new Kaltura_Client_SocialCommentService($this);
 		$this->social = new Kaltura_Client_SocialService($this);
 		$this->socialFriendActivity = new Kaltura_Client_SocialFriendActivityService($this);
 		$this->ssoAdapterProfile = new Kaltura_Client_SsoAdapterProfileService($this);
-		$this->streamingDevice = new Kaltura_Client_StreamingDeviceService($this);
 		$this->subscription = new Kaltura_Client_SubscriptionService($this);
 		$this->subscriptionSet = new Kaltura_Client_SubscriptionSetService($this);
 		$this->system = new Kaltura_Client_SystemService($this);

@@ -49,15 +49,6 @@ class Kaltura_Client_Type_ConcurrencyPartnerConfig extends Kaltura_Client_Type_P
 			$this->deviceFamilyIds = (string)$xml->deviceFamilyIds;
 		if(count($xml->evictionPolicy))
 			$this->evictionPolicy = (string)$xml->evictionPolicy;
-		if(count($xml->concurrencyThresholdInSeconds))
-			$this->concurrencyThresholdInSeconds = (string)$xml->concurrencyThresholdInSeconds;
-		if(count($xml->revokeOnDeviceDelete))
-		{
-			if(!empty($xml->revokeOnDeviceDelete) && ((int) $xml->revokeOnDeviceDelete === 1 || strtolower((string)$xml->revokeOnDeviceDelete) === 'true'))
-				$this->revokeOnDeviceDelete = true;
-			else
-				$this->revokeOnDeviceDelete = false;
-		}
 	}
 	/**
 	 * Comma separated list of device Family Ids order by their priority.
@@ -72,20 +63,6 @@ class Kaltura_Client_Type_ConcurrencyPartnerConfig extends Kaltura_Client_Type_P
 	 * @var Kaltura_Client_Enum_EvictionPolicyType
 	 */
 	public $evictionPolicy = null;
-
-	/**
-	 * Concurrency threshold in seconds
-	 *
-	 * @var bigint
-	 */
-	public $concurrencyThresholdInSeconds = null;
-
-	/**
-	 * Revoke on device delete
-	 *
-	 * @var bool
-	 */
-	public $revokeOnDeviceDelete = null;
 
 
 }

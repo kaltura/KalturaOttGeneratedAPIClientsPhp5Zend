@@ -109,15 +109,6 @@ class Kaltura_Client_Type_NotificationsPartnerSettings extends Kaltura_Client_Ob
 			else
 				$this->smsEnabled = false;
 		}
-		if(count($xml->iotEnabled))
-		{
-			if(!empty($xml->iotEnabled) && ((int) $xml->iotEnabled === 1 || strtolower((string)$xml->iotEnabled) === 'true'))
-				$this->iotEnabled = true;
-			else
-				$this->iotEnabled = false;
-		}
-		if(count($xml->epgNotification) && !empty($xml->epgNotification))
-			$this->epgNotification = Kaltura_Client_ParseUtils::unmarshalObject($xml->epgNotification, "KalturaEpgNotificationSettings");
 	}
 	/**
 	 * Push notification capability is enabled for the account
@@ -237,20 +228,6 @@ class Kaltura_Client_Type_NotificationsPartnerSettings extends Kaltura_Client_Ob
 	 * @var bool
 	 */
 	public $smsEnabled = null;
-
-	/**
-	 * IOT capability is enabled for the account
-	 *
-	 * @var bool
-	 */
-	public $iotEnabled = null;
-
-	/**
-	 * Settings for epg notifications
-	 *
-	 * @var Kaltura_Client_Type_EpgNotificationSettings
-	 */
-	public $epgNotification;
 
 
 }

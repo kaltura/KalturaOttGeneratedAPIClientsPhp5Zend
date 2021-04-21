@@ -59,6 +59,47 @@ class Kaltura_Client_RegionService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
+	 * @return bool
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function linearchannelbulkadd($linearChannelId, array $regionChannelNumbers)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "linearChannelId", $linearChannelId);
+		foreach($regionChannelNumbers as $index => $obj)
+		{
+			$this->client->addParam($kparams, "regionChannelNumbers:$index", $obj->toParams());
+		}
+		$this->client->queueServiceActionCall("region", "linearchannelbulkadd", null, $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
+		return $resultObject;
+	}
+
+	/**
+	 * @return bool
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function linearchannelbulkdelete($linearChannelId, $regionIds)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "linearChannelId", $linearChannelId);
+		$this->client->addParam($kparams, "regionIds", $regionIds);
+		$this->client->queueServiceActionCall("region", "linearchannelbulkdelete", null, $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
+		return $resultObject;
+	}
+
+	/**
 	 * @return 
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
