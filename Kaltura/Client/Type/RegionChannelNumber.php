@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -31,10 +31,39 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_SuspensionProfileInheritanceType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_RegionChannelNumber extends Kaltura_Client_ObjectBase
 {
-	const ALWAYS = "ALWAYS";
-	const NEVER = "NEVER";
-	const DEFAULT = "DEFAULT";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaRegionChannelNumber';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->regionId))
+			$this->regionId = (int)$xml->regionId;
+		if(count($xml->channelNumber))
+			$this->channelNumber = (int)$xml->channelNumber;
+	}
+	/**
+	 * The identifier of the region
+	 *
+	 * @var int
+	 */
+	public $regionId = null;
+
+	/**
+	 * The number of channel
+	 *
+	 * @var int
+	 */
+	public $channelNumber = null;
+
+
 }
 
