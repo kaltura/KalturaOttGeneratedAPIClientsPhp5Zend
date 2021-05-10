@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -37,6 +37,7 @@ class Kaltura_Client_Enum_MediaFileStreamerType extends Kaltura_Client_EnumBase
 	const MPEG_DASH = "MPEG_DASH";
 	const URL = "URL";
 	const SMOOTH_STREAMING = "SMOOTH_STREAMING";
+	const MULTICAST = "MULTICAST";
 	const NONE = "NONE";
 }
 

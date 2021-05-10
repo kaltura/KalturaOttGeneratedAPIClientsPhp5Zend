@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -60,6 +60,10 @@ class Kaltura_Client_Type_DiscountDetails extends Kaltura_Client_ObjectBase
 			$this->startDate = (string)$xml->startDate;
 		if(count($xml->endDate))
 			$this->endDate = (string)$xml->endDate;
+		if(count($xml->whenAlgoTimes))
+			$this->whenAlgoTimes = (int)$xml->whenAlgoTimes;
+		if(count($xml->whenAlgoType))
+			$this->whenAlgoType = (int)$xml->whenAlgoType;
 	}
 	/**
 	 * The discount ID
@@ -96,6 +100,20 @@ class Kaltura_Client_Type_DiscountDetails extends Kaltura_Client_ObjectBase
 	 * @var bigint
 	 */
 	public $endDate = null;
+
+	/**
+	 * End date represented as epoch
+	 *
+	 * @var int
+	 */
+	public $whenAlgoTimes = null;
+
+	/**
+	 * End date represented as epoch
+	 *
+	 * @var int
+	 */
+	public $whenAlgoType = null;
 
 
 }
