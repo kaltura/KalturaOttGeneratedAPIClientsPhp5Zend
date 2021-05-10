@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_CouponsGroup extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_Partner extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaCouponsGroup';
+		return 'KalturaPartner';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -46,86 +46,41 @@ class Kaltura_Client_Type_CouponsGroup extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->id))
-			$this->id = (string)$xml->id;
+			$this->id = (int)$xml->id;
 		if(count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->startDate))
-			$this->startDate = (string)$xml->startDate;
-		if(count($xml->endDate))
-			$this->endDate = (string)$xml->endDate;
-		if(count($xml->maxUsesNumber))
-			$this->maxUsesNumber = (int)$xml->maxUsesNumber;
-		if(count($xml->maxUsesNumberOnRenewableSub))
-			$this->maxUsesNumberOnRenewableSub = (int)$xml->maxUsesNumberOnRenewableSub;
-		if(count($xml->couponGroupType))
-			$this->couponGroupType = (string)$xml->couponGroupType;
-		if(count($xml->maxHouseholdUses))
-			$this->maxHouseholdUses = (int)$xml->maxHouseholdUses;
-		if(count($xml->discountId))
-			$this->discountId = (string)$xml->discountId;
+		if(count($xml->createDate))
+			$this->createDate = (string)$xml->createDate;
+		if(count($xml->updateDate))
+			$this->updateDate = (string)$xml->updateDate;
 	}
 	/**
-	 * Coupon group identifier
+	 * PartnerId
 	 *
-	 * @var string
+	 * @var int
 	 */
 	public $id = null;
 
 	/**
-	 * Coupon group name
+	 * PartnerName
 	 *
 	 * @var string
 	 */
 	public $name = null;
 
 	/**
-	 * The first date the coupons in this coupons group are valid
+	 * Creat date represented as epoch
 	 *
 	 * @var bigint
 	 */
-	public $startDate = null;
+	public $createDate = null;
 
 	/**
-	 * The last date the coupons in this coupons group are valid
+	 * Update date represented as epoch
 	 *
 	 * @var bigint
 	 */
-	public $endDate = null;
-
-	/**
-	 * Maximum number of uses for each coupon in the group
-	 *
-	 * @var int
-	 */
-	public $maxUsesNumber = null;
-
-	/**
-	 * Maximum number of uses for each coupon in the group on a renewable subscription
-	 *
-	 * @var int
-	 */
-	public $maxUsesNumberOnRenewableSub = null;
-
-	/**
-	 * Type of the coupon group
-	 *
-	 * @var Kaltura_Client_Enum_CouponGroupType
-	 */
-	public $couponGroupType = null;
-
-	/**
-	 * Maximum number of uses per household for each coupon in the group
-	 *
-	 * @var int
-	 */
-	public $maxHouseholdUses = null;
-
-	/**
-	 * Discount ID
-	 *
-	 * @var bigint
-	 */
-	public $discountId = null;
+	public $updateDate = null;
 
 
 }

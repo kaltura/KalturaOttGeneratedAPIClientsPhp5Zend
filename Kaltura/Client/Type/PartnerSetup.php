@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_Discount extends Kaltura_Client_Type_Price
+class Kaltura_Client_Type_PartnerSetup extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDiscount';
+		return 'KalturaPartnerSetup';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,15 +45,33 @@ class Kaltura_Client_Type_Discount extends Kaltura_Client_Type_Price
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->percentage))
-			$this->percentage = (int)$xml->percentage;
+		if(count($xml->adminUsername))
+			$this->adminUsername = (string)$xml->adminUsername;
+		if(count($xml->adminPassword))
+			$this->adminPassword = (string)$xml->adminPassword;
+		if(count($xml->basePartnerConfiguration) && !empty($xml->basePartnerConfiguration))
+			$this->basePartnerConfiguration = Kaltura_Client_ParseUtils::unmarshalObject($xml->basePartnerConfiguration, "KalturaBasePartnerConfiguration");
 	}
 	/**
-	 * The discount percentage
+	 * admin Username
 	 *
-	 * @var int
+	 * @var string
 	 */
-	public $percentage = null;
+	public $adminUsername = null;
+
+	/**
+	 * admin Password
+	 *
+	 * @var string
+	 */
+	public $adminPassword = null;
+
+	/**
+	 * basePartnerConfiguration
+	 *
+	 * @var Kaltura_Client_Type_BasePartnerConfiguration
+	 */
+	public $basePartnerConfiguration;
 
 
 }

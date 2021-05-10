@@ -32,7 +32,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_PartnerService extends Kaltura_Client_ServiceBase
+class Kaltura_Client_UsageModuleService extends Kaltura_Client_ServiceBase
 {
 	function __construct(Kaltura_Client_Client $client = null)
 	{
@@ -40,60 +40,57 @@ class Kaltura_Client_PartnerService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_Partner
+	 * @return Kaltura_Client_Type_UsageModule
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function add(Kaltura_Client_Type_Partner $partner, Kaltura_Client_Type_PartnerSetup $partnerSetup)
+	function add(Kaltura_Client_Type_UsageModule $usageModule)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "partner", $partner->toParams());
-		$this->client->addParam($kparams, "partnerSetup", $partnerSetup->toParams());
-		$this->client->queueServiceActionCall("partner", "add", "KalturaPartner", $kparams);
+		$this->client->addParam($kparams, "usageModule", $usageModule->toParams());
+		$this->client->queueServiceActionCall("usagemodule", "add", "KalturaUsageModule", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaPartner");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Partner");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaUsageModule");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_UsageModule");
 		return $resultObject;
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_LoginSession
+	 * @return bool
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function externalLogin()
+	function delete($id)
 	{
 		$kparams = array();
-		$this->client->queueServiceActionCall("partner", "externalLogin", "KalturaLoginSession", $kparams);
+		$this->client->addParam($kparams, "id", $id);
+		$this->client->queueServiceActionCall("usagemodule", "delete", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLoginSession");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LoginSession");
+		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
 		return $resultObject;
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_PartnerListResponse
+	 * @return Kaltura_Client_Type_UsageModuleListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function listAction(Kaltura_Client_Type_PartnerFilter $filter = null)
+	function listAction()
 	{
 		$kparams = array();
-		if ($filter !== null)
-			$this->client->addParam($kparams, "filter", $filter->toParams());
-		$this->client->queueServiceActionCall("partner", "list", "KalturaPartnerListResponse", $kparams);
+		$this->client->queueServiceActionCall("usagemodule", "list", "KalturaUsageModuleListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaPartnerListResponse");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_PartnerListResponse");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaUsageModuleListResponse");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_UsageModuleListResponse");
 		return $resultObject;
 	}
 }
