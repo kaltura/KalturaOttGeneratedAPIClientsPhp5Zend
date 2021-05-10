@@ -40,26 +40,6 @@ class Kaltura_Client_PartnerService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_Partner
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function add(Kaltura_Client_Type_Partner $partner, Kaltura_Client_Type_PartnerSetup $partnerSetup)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "partner", $partner->toParams());
-		$this->client->addParam($kparams, "partnerSetup", $partnerSetup->toParams());
-		$this->client->queueServiceActionCall("partner", "add", "KalturaPartner", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaPartner");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Partner");
-		return $resultObject;
-	}
-
-	/**
 	 * @return Kaltura_Client_Type_LoginSession
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -74,26 +54,6 @@ class Kaltura_Client_PartnerService extends Kaltura_Client_ServiceBase
 		$this->client->checkIfError($resultXmlObject->result);
 		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLoginSession");
 		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LoginSession");
-		return $resultObject;
-	}
-
-	/**
-	 * @return Kaltura_Client_Type_PartnerListResponse
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function listAction(Kaltura_Client_Type_PartnerFilter $filter = null)
-	{
-		$kparams = array();
-		if ($filter !== null)
-			$this->client->addParam($kparams, "filter", $filter->toParams());
-		$this->client->queueServiceActionCall("partner", "list", "KalturaPartnerListResponse", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaPartnerListResponse");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_PartnerListResponse");
 		return $resultObject;
 	}
 }

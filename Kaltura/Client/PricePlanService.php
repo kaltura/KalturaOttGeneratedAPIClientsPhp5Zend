@@ -40,43 +40,6 @@ class Kaltura_Client_PricePlanService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_PricePlan
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function add(Kaltura_Client_Type_PricePlan $pricePlan)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "pricePlan", $pricePlan->toParams());
-		$this->client->queueServiceActionCall("priceplan", "add", "KalturaPricePlan", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaPricePlan");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_PricePlan");
-		return $resultObject;
-	}
-
-	/**
-	 * @return bool
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function delete($id)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "id", $id);
-		$this->client->queueServiceActionCall("priceplan", "delete", null, $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
-		return $resultObject;
-	}
-
-	/**
 	 * @return Kaltura_Client_Type_PricePlanListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
