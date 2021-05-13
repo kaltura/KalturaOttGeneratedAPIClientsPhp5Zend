@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -59,46 +59,6 @@ class Kaltura_Client_SystemService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_LongValue
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function getInvalidationKeyValue($invalidationKey, $layeredCacheConfigName = null, $groupId = 0)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "invalidationKey", $invalidationKey);
-		$this->client->addParam($kparams, "layeredCacheConfigName", $layeredCacheConfigName);
-		$this->client->addParam($kparams, "groupId", $groupId);
-		$this->client->queueServiceActionCall("system", "getInvalidationKeyValue", "KalturaLongValue", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLongValue");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LongValue");
-		return $resultObject;
-	}
-
-	/**
-	 * @return Kaltura_Client_Type_StringValue
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function getLayeredCacheGroupConfig($groupId = 0)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "groupId", $groupId);
-		$this->client->queueServiceActionCall("system", "getLayeredCacheGroupConfig", "KalturaStringValue", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaStringValue");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_StringValue");
-		return $resultObject;
-	}
-
-	/**
 	 * @return bigint
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -141,24 +101,6 @@ class Kaltura_Client_SystemService extends Kaltura_Client_ServiceBase
 		$kparams = array();
 		$this->client->addParam($kparams, "groupId", $groupId);
 		$this->client->queueServiceActionCall("system", "incrementLayeredCacheGroupConfigVersion", null, $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
-		return $resultObject;
-	}
-
-	/**
-	 * @return bool
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function invalidateLayeredCacheInvalidationKey($key)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "key", $key);
-		$this->client->queueServiceActionCall("system", "invalidateLayeredCacheInvalidationKey", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();

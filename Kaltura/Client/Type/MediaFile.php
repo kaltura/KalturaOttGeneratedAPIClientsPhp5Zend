@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -53,8 +53,6 @@ class Kaltura_Client_Type_MediaFile extends Kaltura_Client_Type_AssetFile
 			$this->type = (string)$xml->type;
 		if(count($xml->typeId))
 			$this->typeId = (int)$xml->typeId;
-		if(count($xml->altUrl))
-			$this->altUrl = (string)$xml->altUrl;
 		if(count($xml->duration))
 			$this->duration = (string)$xml->duration;
 		if(count($xml->externalId))
@@ -133,13 +131,6 @@ class Kaltura_Client_Type_MediaFile extends Kaltura_Client_Type_AssetFile
 	 * @var int
 	 */
 	public $typeId = null;
-
-	/**
-	 * URL of the media file to be played
-	 *
-	 * @var string
-	 */
-	public $altUrl = null;
 
 	/**
 	 * Duration of the media file
