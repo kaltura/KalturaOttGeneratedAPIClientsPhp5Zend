@@ -593,12 +593,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_PreviewModuleService
-	 */
-	public $previewModule = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_PriceDetailsService
 	 */
 	public $priceDetails = null;
@@ -809,12 +803,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_UsageModuleService
-	 */
-	public $usageModule = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_UserAssetRuleService
 	 */
 	public $userAssetRule = null;
@@ -858,8 +846,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:21-05-11');
-		$this->setApiVersion('6.4.0.29298');
+		$this->setClientTag('php5:21-05-13');
+		$this->setApiVersion('6.4.0.29137');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -954,7 +942,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->pin = new Kaltura_Client_PinService($this);
 		$this->playbackProfile = new Kaltura_Client_PlaybackProfileService($this);
 		$this->ppv = new Kaltura_Client_PpvService($this);
-		$this->previewModule = new Kaltura_Client_PreviewModuleService($this);
 		$this->priceDetails = new Kaltura_Client_PriceDetailsService($this);
 		$this->pricePlan = new Kaltura_Client_PricePlanService($this);
 		$this->productPrice = new Kaltura_Client_ProductPriceService($this);
@@ -990,7 +977,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->tvmRule = new Kaltura_Client_TvmRuleService($this);
 		$this->unifiedPayment = new Kaltura_Client_UnifiedPaymentService($this);
 		$this->uploadToken = new Kaltura_Client_UploadTokenService($this);
-		$this->usageModule = new Kaltura_Client_UsageModuleService($this);
 		$this->userAssetRule = new Kaltura_Client_UserAssetRuleService($this);
 		$this->userAssetsListItem = new Kaltura_Client_UserAssetsListItemService($this);
 		$this->userInterest = new Kaltura_Client_UserInterestService($this);
