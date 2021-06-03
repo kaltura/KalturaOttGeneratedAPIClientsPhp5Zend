@@ -116,6 +116,24 @@ class Kaltura_Client_OttUserService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
+	 * @return bool
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function deleteDynamicData($key)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "key", $key);
+		$this->client->queueServiceActionCall("ottuser", "deleteDynamicData", null, $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
+		return $resultObject;
+	}
+
+	/**
 	 * @return Kaltura_Client_Type_OTTUser
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -392,5 +410,25 @@ class Kaltura_Client_OttUserService extends Kaltura_Client_ServiceBase
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
+	}
+
+	/**
+	 * @return Kaltura_Client_Type_DynamicData
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function upsertDynamicData($key, Kaltura_Client_Type_StringValue $value)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "key", $key);
+		$this->client->addParam($kparams, "value", $value->toParams());
+		$this->client->queueServiceActionCall("ottuser", "upsertDynamicData", "KalturaDynamicData", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaDynamicData");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_DynamicData");
+		return $resultObject;
 	}
 }

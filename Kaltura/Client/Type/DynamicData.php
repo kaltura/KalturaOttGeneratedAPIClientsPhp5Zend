@@ -6,10 +6,10 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2021  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -26,47 +26,44 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Configuration
+class Kaltura_Client_Type_DynamicData extends Kaltura_Client_ObjectBase
 {
-	private $logger;
-
-	public $serviceUrl    				= "http://www.kaltura.com/";
-	public $format        				= Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_XML;
-	public $curlTimeout   				= 120;
-	public $startZendDebuggerSession 	= false;
-	public $userAgent					= '';
-	public $proxyHost                   = null;
-	public $proxyPort                   = null;
-	public $proxyType                   = 'HTTP';
-	public $proxyTunnel                 = true;
-	public $proxyUser                   = null;
-	public $proxyPassword               = '';
-	public $verifySSL 					= true;
-	public $sslCertificatePath			= null;
-	public $requestHeaders				= array();
-	public $internalServiceUrl			= null;
+	public function getKalturaObjectType()
+	{
+		return 'KalturaDynamicData';
+	}
 	
-	/**
-	 * Set logger to get kaltura client debug logs
-	 *
-	 * @param Kaltura_Client_ILogger $log
-	 */
-	public function setLogger(Kaltura_Client_ILogger $log)
+	public function __construct(SimpleXMLElement $xml = null)
 	{
-		$this->logger = $log;
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->key))
+			$this->key = (string)$xml->key;
+		if(count($xml->value) && !empty($xml->value))
+			$this->value = Kaltura_Client_ParseUtils::unmarshalObject($xml->value, "KalturaValue");
 	}
+	/**
+	 * Key
+	 *
+	 * @var string
+	 */
+	public $key = null;
 
 	/**
-	 * Gets the logger (Internal client use)
+	 * Value
 	 *
-	 * @return Kaltura_Client_ILogger
+	 * @var Kaltura_Client_Type_Value
 	 */
-	public function getLogger()
-	{
-		return $this->logger;
-	}
+	public $value;
+
+
 }
+
