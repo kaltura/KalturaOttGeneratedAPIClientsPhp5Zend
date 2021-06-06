@@ -54,7 +54,6 @@ class Kaltura_Client_Type_DeviceFamilyBase extends Kaltura_Client_ObjectBase
 	 * Device family identifier
 	 *
 	 * @var bigint
-	 * @readonly
 	 */
 	public $id = null;
 
@@ -62,6 +61,7 @@ class Kaltura_Client_Type_DeviceFamilyBase extends Kaltura_Client_ObjectBase
 	 * Device family name
 	 *
 	 * @var string
+	 * @readonly
 	 */
 	public $name = null;
 

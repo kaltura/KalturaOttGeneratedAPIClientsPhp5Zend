@@ -281,6 +281,7 @@ class Kaltura_Client_TypeMap
 		'KalturaDrmProfileListResponse' => 'Kaltura_Client_Type_DrmProfileListResponse',
 		'KalturaDuration' => 'Kaltura_Client_Type_Duration',
 		'KalturaDynamicChannel' => 'Kaltura_Client_Type_DynamicChannel',
+		'KalturaDynamicData' => 'Kaltura_Client_Type_DynamicData',
 		'KalturaDynamicList' => 'Kaltura_Client_Type_DynamicList',
 		'KalturaDynamicListFilter' => 'Kaltura_Client_Type_DynamicListFilter',
 		'KalturaDynamicListIdInFilter' => 'Kaltura_Client_Type_DynamicListIdInFilter',
