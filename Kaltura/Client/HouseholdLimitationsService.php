@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -37,6 +37,43 @@ class Kaltura_Client_HouseholdLimitationsService extends Kaltura_Client_ServiceB
 	function __construct(Kaltura_Client_Client $client = null)
 	{
 		parent::__construct($client);
+	}
+
+	/**
+	 * @return Kaltura_Client_Type_HouseholdLimitations
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function add(Kaltura_Client_Type_HouseholdLimitations $householdLimitations)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "householdLimitations", $householdLimitations->toParams());
+		$this->client->queueServiceActionCall("householdlimitations", "add", "KalturaHouseholdLimitations", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaHouseholdLimitations");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_HouseholdLimitations");
+		return $resultObject;
+	}
+
+	/**
+	 * @return bool
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function delete($householdLimitationsId)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "householdLimitationsId", $householdLimitationsId);
+		$this->client->queueServiceActionCall("householdlimitations", "delete", null, $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
+		return $resultObject;
 	}
 
 	/**
