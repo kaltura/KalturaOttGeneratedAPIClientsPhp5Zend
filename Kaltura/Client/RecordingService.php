@@ -59,27 +59,6 @@ class Kaltura_Client_RecordingService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return array
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function bulkdelete($recordingIds)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "recordingIds", $recordingIds);
-		$this->client->queueServiceActionCall("recording", "bulkdelete", "KalturaActionResult", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalArray($resultXmlObject->result, "KalturaActionResult");
-		foreach($resultObject as $resultObjectItem){
-			$this->client->validateObjectType($resultObjectItem, "Kaltura_Client_Type_ActionResult");
-		}
-		return $resultObject;
-	}
-
-	/**
 	 * @return Kaltura_Client_Type_Recording
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
