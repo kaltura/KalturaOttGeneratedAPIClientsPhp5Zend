@@ -85,6 +85,7 @@ class Kaltura_Client_Type_HouseholdLimitations extends Kaltura_Client_ObjectBase
 	 * Household limitation module name
 	 *
 	 * @var string
+	 * @readonly
 	 */
 	public $name = null;
 
@@ -92,6 +93,7 @@ class Kaltura_Client_Type_HouseholdLimitations extends Kaltura_Client_ObjectBase
 	 * Max number of streams allowed for the household
 	 *
 	 * @var int
+	 * @readonly
 	 */
 	public $concurrentLimit = null;
 
@@ -99,6 +101,7 @@ class Kaltura_Client_Type_HouseholdLimitations extends Kaltura_Client_ObjectBase
 	 * Max number of devices allowed for the household
 	 *
 	 * @var int
+	 * @readonly
 	 */
 	public $deviceLimit = null;
 
@@ -106,6 +109,7 @@ class Kaltura_Client_Type_HouseholdLimitations extends Kaltura_Client_ObjectBase
 	 * Allowed device change frequency code
 	 *
 	 * @var int
+	 * @readonly
 	 */
 	public $deviceFrequency = null;
 
@@ -121,6 +125,7 @@ class Kaltura_Client_Type_HouseholdLimitations extends Kaltura_Client_ObjectBase
 	 * Allowed user change frequency code
 	 *
 	 * @var int
+	 * @readonly
 	 */
 	public $userFrequency = null;
 
@@ -144,6 +149,7 @@ class Kaltura_Client_Type_HouseholdLimitations extends Kaltura_Client_ObjectBase
 	 * Max number of users allowed for the household
 	 *
 	 * @var int
+	 * @readonly
 	 */
 	public $usersLimit = null;
 
@@ -151,6 +157,7 @@ class Kaltura_Client_Type_HouseholdLimitations extends Kaltura_Client_ObjectBase
 	 * Device families limitations
 	 *
 	 * @var array of KalturaHouseholdDeviceFamilyLimitations
+	 * @readonly
 	 */
 	public $deviceFamiliesLimitations;
 

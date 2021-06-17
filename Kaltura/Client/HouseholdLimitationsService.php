@@ -43,43 +43,6 @@ class Kaltura_Client_HouseholdLimitationsService extends Kaltura_Client_ServiceB
 	 * @return Kaltura_Client_Type_HouseholdLimitations
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function add(Kaltura_Client_Type_HouseholdLimitations $householdLimitations)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "householdLimitations", $householdLimitations->toParams());
-		$this->client->queueServiceActionCall("householdlimitations", "add", "KalturaHouseholdLimitations", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaHouseholdLimitations");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_HouseholdLimitations");
-		return $resultObject;
-	}
-
-	/**
-	 * @return bool
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function delete($householdLimitationsId)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "householdLimitationsId", $householdLimitationsId);
-		$this->client->queueServiceActionCall("householdlimitations", "delete", null, $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
-		return $resultObject;
-	}
-
-	/**
-	 * @return Kaltura_Client_Type_HouseholdLimitations
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
 	function get($id)
 	{
 		$kparams = array();
