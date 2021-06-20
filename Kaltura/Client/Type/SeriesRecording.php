@@ -68,6 +68,8 @@ class Kaltura_Client_Type_SeriesRecording extends Kaltura_Client_ObjectBase
 			else
 				$this->excludedSeasons = Kaltura_Client_ParseUtils::unmarshalArray($xml->excludedSeasons, "KalturaIntegerValue");
 		}
+		if(count($xml->seriesRecordingOption))
+			$this->seriesRecordingOption = (string)$xml->seriesRecordingOption;
 	}
 	/**
 	 * Kaltura unique ID representing the series recording identifier
@@ -135,6 +137,14 @@ class Kaltura_Client_Type_SeriesRecording extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $excludedSeasons;
+
+	/**
+	 * Series Recording Option
+	 *
+	 * @var Kaltura_Client_Enum_SeriesRecordingOption
+	 * @readonly
+	 */
+	public $seriesRecordingOption = null;
 
 
 }

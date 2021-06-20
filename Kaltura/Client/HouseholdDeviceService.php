@@ -97,25 +97,6 @@ class Kaltura_Client_HouseholdDeviceService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return bool
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function deleteDynamicData($udid, $key)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "udid", $udid);
-		$this->client->addParam($kparams, "key", $key);
-		$this->client->queueServiceActionCall("householddevice", "deleteDynamicData", null, $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
-		return $resultObject;
-	}
-
-	/**
 	 * @return Kaltura_Client_Type_DevicePin
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -231,27 +212,6 @@ class Kaltura_Client_HouseholdDeviceService extends Kaltura_Client_ServiceBase
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
 		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
-		return $resultObject;
-	}
-
-	/**
-	 * @return Kaltura_Client_Type_DynamicData
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function upsertDynamicData($udid, $key, Kaltura_Client_Type_StringValue $value)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "udid", $udid);
-		$this->client->addParam($kparams, "key", $key);
-		$this->client->addParam($kparams, "value", $value->toParams());
-		$this->client->queueServiceActionCall("householddevice", "upsertDynamicData", "KalturaDynamicData", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaDynamicData");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_DynamicData");
 		return $resultObject;
 	}
 }
