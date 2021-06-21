@@ -31,14 +31,48 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_ChannelsOrderBy extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_PartnerSetup extends Kaltura_Client_ObjectBase
 {
-	const NONE = "NONE";
-	const NAME_ASC = "NAME_ASC";
-	const NAME_DESC = "NAME_DESC";
-	const CREATE_DATE_ASC = "CREATE_DATE_ASC";
-	const CREATE_DATE_DESC = "CREATE_DATE_DESC";
-	const UPDATE_DATE_ASC = "UPDATE_DATE_ASC";
-	const UPDATE_DATE_DESC = "UPDATE_DATE_DESC";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaPartnerSetup';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->adminUsername))
+			$this->adminUsername = (string)$xml->adminUsername;
+		if(count($xml->adminPassword))
+			$this->adminPassword = (string)$xml->adminPassword;
+		if(count($xml->basePartnerConfiguration) && !empty($xml->basePartnerConfiguration))
+			$this->basePartnerConfiguration = Kaltura_Client_ParseUtils::unmarshalObject($xml->basePartnerConfiguration, "KalturaBasePartnerConfiguration");
+	}
+	/**
+	 * admin Username
+	 *
+	 * @var string
+	 */
+	public $adminUsername = null;
+
+	/**
+	 * admin Password
+	 *
+	 * @var string
+	 */
+	public $adminPassword = null;
+
+	/**
+	 * basePartnerConfiguration
+	 *
+	 * @var Kaltura_Client_Type_BasePartnerConfiguration
+	 */
+	public $basePartnerConfiguration;
+
+
 }
 

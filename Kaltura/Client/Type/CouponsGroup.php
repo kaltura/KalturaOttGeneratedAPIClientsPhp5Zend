@@ -68,7 +68,6 @@ class Kaltura_Client_Type_CouponsGroup extends Kaltura_Client_ObjectBase
 	 * Coupon group identifier
 	 *
 	 * @var string
-	 * @readonly
 	 */
 	public $id = null;
 

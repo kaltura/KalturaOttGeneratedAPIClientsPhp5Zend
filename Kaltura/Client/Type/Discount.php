@@ -52,7 +52,6 @@ class Kaltura_Client_Type_Discount extends Kaltura_Client_Type_Price
 	 * The discount percentage
 	 *
 	 * @var int
-	 * @readonly
 	 */
 	public $percentage = null;
 

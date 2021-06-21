@@ -31,14 +31,57 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_ChannelsOrderBy extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_Partner extends Kaltura_Client_ObjectBase
 {
-	const NONE = "NONE";
-	const NAME_ASC = "NAME_ASC";
-	const NAME_DESC = "NAME_DESC";
-	const CREATE_DATE_ASC = "CREATE_DATE_ASC";
-	const CREATE_DATE_DESC = "CREATE_DATE_DESC";
-	const UPDATE_DATE_ASC = "UPDATE_DATE_ASC";
-	const UPDATE_DATE_DESC = "UPDATE_DATE_DESC";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaPartner';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->id))
+			$this->id = (int)$xml->id;
+		if(count($xml->name))
+			$this->name = (string)$xml->name;
+		if(count($xml->createDate))
+			$this->createDate = (string)$xml->createDate;
+		if(count($xml->updateDate))
+			$this->updateDate = (string)$xml->updateDate;
+	}
+	/**
+	 * PartnerId
+	 *
+	 * @var int
+	 */
+	public $id = null;
+
+	/**
+	 * PartnerName
+	 *
+	 * @var string
+	 */
+	public $name = null;
+
+	/**
+	 * Creat date represented as epoch
+	 *
+	 * @var bigint
+	 */
+	public $createDate = null;
+
+	/**
+	 * Update date represented as epoch
+	 *
+	 * @var bigint
+	 */
+	public $updateDate = null;
+
+
 }
 

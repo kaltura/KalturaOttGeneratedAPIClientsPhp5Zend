@@ -32,7 +32,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_PricePlanService extends Kaltura_Client_ServiceBase
+class Kaltura_Client_PreviewModuleService extends Kaltura_Client_ServiceBase
 {
 	function __construct(Kaltura_Client_Client $client = null)
 	{
@@ -40,21 +40,21 @@ class Kaltura_Client_PricePlanService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_PricePlan
+	 * @return Kaltura_Client_Type_PreviewModule
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function add(Kaltura_Client_Type_PricePlan $pricePlan)
+	function add(Kaltura_Client_Type_PreviewModule $previewModule)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "pricePlan", $pricePlan->toParams());
-		$this->client->queueServiceActionCall("priceplan", "add", "KalturaPricePlan", $kparams);
+		$this->client->addParam($kparams, "previewModule", $previewModule->toParams());
+		$this->client->queueServiceActionCall("previewmodule", "add", "KalturaPreviewModule", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaPricePlan");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_PricePlan");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaPreviewModule");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_PreviewModule");
 		return $resultObject;
 	}
 
@@ -66,7 +66,7 @@ class Kaltura_Client_PricePlanService extends Kaltura_Client_ServiceBase
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "id", $id);
-		$this->client->queueServiceActionCall("priceplan", "delete", null, $kparams);
+		$this->client->queueServiceActionCall("previewmodule", "delete", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
@@ -77,42 +77,20 @@ class Kaltura_Client_PricePlanService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_PricePlanListResponse
+	 * @return Kaltura_Client_Type_PreviewModuleListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function listAction(Kaltura_Client_Type_PricePlanFilter $filter = null)
+	function listAction()
 	{
 		$kparams = array();
-		if ($filter !== null)
-			$this->client->addParam($kparams, "filter", $filter->toParams());
-		$this->client->queueServiceActionCall("priceplan", "list", "KalturaPricePlanListResponse", $kparams);
+		$this->client->queueServiceActionCall("previewmodule", "list", "KalturaPreviewModuleListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaPricePlanListResponse");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_PricePlanListResponse");
-		return $resultObject;
-	}
-
-	/**
-	 * @return Kaltura_Client_Type_PricePlan
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function update($id, Kaltura_Client_Type_PricePlan $pricePlan)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "id", $id);
-		$this->client->addParam($kparams, "pricePlan", $pricePlan->toParams());
-		$this->client->queueServiceActionCall("priceplan", "update", "KalturaPricePlan", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaPricePlan");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_PricePlan");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaPreviewModuleListResponse");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_PreviewModuleListResponse");
 		return $resultObject;
 	}
 }

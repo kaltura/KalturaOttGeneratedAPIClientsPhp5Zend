@@ -31,14 +31,39 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_ChannelsOrderBy extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_SeriesRecordingOption extends Kaltura_Client_ObjectBase
 {
-	const NONE = "NONE";
-	const NAME_ASC = "NAME_ASC";
-	const NAME_DESC = "NAME_DESC";
-	const CREATE_DATE_ASC = "CREATE_DATE_ASC";
-	const CREATE_DATE_DESC = "CREATE_DATE_DESC";
-	const UPDATE_DATE_ASC = "UPDATE_DATE_ASC";
-	const UPDATE_DATE_DESC = "UPDATE_DATE_DESC";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaSeriesRecordingOption';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->minSeasonNumber))
+			$this->minSeasonNumber = (int)$xml->minSeasonNumber;
+		if(count($xml->minEpisodeNumber))
+			$this->minEpisodeNumber = (int)$xml->minEpisodeNumber;
+	}
+	/**
+	 * min Season Number
+	 *
+	 * @var int
+	 */
+	public $minSeasonNumber = null;
+
+	/**
+	 * min Season Number
+	 *
+	 * @var int
+	 */
+	public $minEpisodeNumber = null;
+
+
 }
 

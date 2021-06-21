@@ -52,7 +52,6 @@ class Kaltura_Client_Type_BaseChannel extends Kaltura_Client_Type_OTTObjectSuppo
 	 * Unique identifier for the channel
 	 *
 	 * @var bigint
-	 * @readonly
 	 */
 	public $id = null;
 
