@@ -40,43 +40,6 @@ class Kaltura_Client_SubscriptionService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_SubscriptionInternal
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function add(Kaltura_Client_Type_SubscriptionInternal $subscription)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "subscription", $subscription->toParams());
-		$this->client->queueServiceActionCall("subscription", "add", "KalturaSubscriptionInternal", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSubscriptionInternal");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SubscriptionInternal");
-		return $resultObject;
-	}
-
-	/**
-	 * @return bool
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function delete($id)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "id", $id);
-		$this->client->queueServiceActionCall("subscription", "delete", null, $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
-		return $resultObject;
-	}
-
-	/**
 	 * @return Kaltura_Client_Type_SubscriptionListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
