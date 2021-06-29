@@ -90,19 +90,6 @@ class Kaltura_Client_Type_SubscriptionInternal extends Kaltura_Client_ObjectBase
 			else
 				$this->premiumServices = Kaltura_Client_ParseUtils::unmarshalArray($xml->premiumServices, "KalturaPremiumService");
 		}
-		if(count($xml->maxViewsNumber))
-			$this->maxViewsNumber = (int)$xml->maxViewsNumber;
-		if(count($xml->viewLifeCycle))
-			$this->viewLifeCycle = (int)$xml->viewLifeCycle;
-		if(count($xml->waiverPeriod))
-			$this->waiverPeriod = (int)$xml->waiverPeriod;
-		if(count($xml->isWaiverEnabled))
-		{
-			if(!empty($xml->isWaiverEnabled) && ((int) $xml->isWaiverEnabled === 1 || strtolower((string)$xml->isWaiverEnabled) === 'true'))
-				$this->isWaiverEnabled = true;
-			else
-				$this->isWaiverEnabled = false;
-		}
 		if(count($xml->couponsGroups))
 		{
 			if(empty($xml->couponsGroups))
@@ -134,6 +121,13 @@ class Kaltura_Client_Type_SubscriptionInternal extends Kaltura_Client_ObjectBase
 			$this->adsPolicy = (string)$xml->adsPolicy;
 		if(count($xml->adsParam))
 			$this->adsParam = (string)$xml->adsParam;
+		if(count($xml->isActive))
+		{
+			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))
+				$this->isActive = true;
+			else
+				$this->isActive = false;
+		}
 	}
 	/**
 	 * Comma separated channels Ids associated with this subscription
@@ -243,34 +237,6 @@ class Kaltura_Client_Type_SubscriptionInternal extends Kaltura_Client_ObjectBase
 	public $premiumServices;
 
 	/**
-	 * The maximum number of times an item in this usage module can be viewed
-	 *
-	 * @var int
-	 */
-	public $maxViewsNumber = null;
-
-	/**
-	 * The amount time an item is available for viewing since a user started watching the item
-	 *
-	 * @var int
-	 */
-	public $viewLifeCycle = null;
-
-	/**
-	 * Time period during which the end user can waive his rights to cancel a purchase. When the time period is passed, the purchase can no longer be cancelled
-	 *
-	 * @var int
-	 */
-	public $waiverPeriod = null;
-
-	/**
-	 * Indicates whether or not the end user has the right to waive his rights to cancel a purchase
-	 *
-	 * @var bool
-	 */
-	public $isWaiverEnabled = null;
-
-	/**
 	 * List of Coupons group
 	 *
 	 * @var array of KalturaSubscriptionCouponGroup
@@ -325,6 +291,13 @@ class Kaltura_Client_Type_SubscriptionInternal extends Kaltura_Client_ObjectBase
 	 * @var string
 	 */
 	public $adsParam = null;
+
+	/**
+	 * Is active subscription
+	 *
+	 * @var bool
+	 */
+	public $isActive = null;
 
 
 }
