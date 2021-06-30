@@ -43,11 +43,11 @@ class Kaltura_Client_SubscriptionService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_SubscriptionInternal
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function add(Kaltura_Client_Type_SubscriptionInternal $subscription)
+	function addInternal(Kaltura_Client_Type_SubscriptionInternal $subscription)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "subscription", $subscription->toParams());
-		$this->client->queueServiceActionCall("subscription", "add", "KalturaSubscriptionInternal", $kparams);
+		$this->client->queueServiceActionCall("subscription", "addInternal", "KalturaSubscriptionInternal", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
