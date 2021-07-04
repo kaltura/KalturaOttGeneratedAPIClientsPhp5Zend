@@ -40,21 +40,21 @@ class Kaltura_Client_SubscriptionService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_SubscriptionInternal
+	 * @return Kaltura_Client_Type_Subscription
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function addInternal(Kaltura_Client_Type_SubscriptionInternal $subscription)
+	function add(Kaltura_Client_Type_Subscription $subscription)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "subscription", $subscription->toParams());
-		$this->client->queueServiceActionCall("subscription", "addInternal", "KalturaSubscriptionInternal", $kparams);
+		$this->client->queueServiceActionCall("subscription", "add", "KalturaSubscription", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSubscriptionInternal");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SubscriptionInternal");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSubscription");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Subscription");
 		return $resultObject;
 	}
 

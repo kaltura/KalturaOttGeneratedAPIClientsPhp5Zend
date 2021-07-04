@@ -645,7 +645,6 @@ class Kaltura_Client_TypeMap
 		'KalturaSubscriptionDependencySetFilter' => 'Kaltura_Client_Type_SubscriptionDependencySetFilter',
 		'KalturaSubscriptionEntitlement' => 'Kaltura_Client_Type_SubscriptionEntitlement',
 		'KalturaSubscriptionFilter' => 'Kaltura_Client_Type_SubscriptionFilter',
-		'KalturaSubscriptionInternal' => 'Kaltura_Client_Type_SubscriptionInternal',
 		'KalturaSubscriptionListResponse' => 'Kaltura_Client_Type_SubscriptionListResponse',
 		'KalturaSubscriptionPrice' => 'Kaltura_Client_Type_SubscriptionPrice',
 		'KalturaSubscriptionSet' => 'Kaltura_Client_Type_SubscriptionSet',
