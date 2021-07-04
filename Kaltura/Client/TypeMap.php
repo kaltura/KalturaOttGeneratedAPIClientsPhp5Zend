@@ -602,6 +602,7 @@ class Kaltura_Client_TypeMap
 		'KalturaSeriesRecording' => 'Kaltura_Client_Type_SeriesRecording',
 		'KalturaSeriesRecordingFilter' => 'Kaltura_Client_Type_SeriesRecordingFilter',
 		'KalturaSeriesRecordingListResponse' => 'Kaltura_Client_Type_SeriesRecordingListResponse',
+		'KalturaSeriesRecordingOption' => 'Kaltura_Client_Type_SeriesRecordingOption',
 		'KalturaSeriesReminder' => 'Kaltura_Client_Type_SeriesReminder',
 		'KalturaSeriesReminderFilter' => 'Kaltura_Client_Type_SeriesReminderFilter',
 		'KalturaSession' => 'Kaltura_Client_Type_Session',
