@@ -641,6 +641,7 @@ class Kaltura_Client_TypeMap
 		'KalturaSubscribeReference' => 'Kaltura_Client_Type_SubscribeReference',
 		'KalturaSubscription' => 'Kaltura_Client_Type_Subscription',
 		'KalturaSubscriptionCondition' => 'Kaltura_Client_Type_SubscriptionCondition',
+		'KalturaSubscriptionCouponGroup' => 'Kaltura_Client_Type_SubscriptionCouponGroup',
 		'KalturaSubscriptionDependencySet' => 'Kaltura_Client_Type_SubscriptionDependencySet',
 		'KalturaSubscriptionDependencySetFilter' => 'Kaltura_Client_Type_SubscriptionDependencySetFilter',
 		'KalturaSubscriptionEntitlement' => 'Kaltura_Client_Type_SubscriptionEntitlement',
