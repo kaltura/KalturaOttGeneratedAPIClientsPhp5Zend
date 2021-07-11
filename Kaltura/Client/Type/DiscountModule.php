@@ -45,8 +45,6 @@ class Kaltura_Client_Type_DiscountModule extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
 		if(count($xml->percent))
 			$this->percent = (float)$xml->percent;
 		if(count($xml->startDate))
@@ -54,13 +52,6 @@ class Kaltura_Client_Type_DiscountModule extends Kaltura_Client_ObjectBase
 		if(count($xml->endDate))
 			$this->endDate = (string)$xml->endDate;
 	}
-	/**
-	 * Discount module identifier
-	 *
-	 * @var bigint
-	 */
-	public $id = null;
-
 	/**
 	 * The discount percentage
 	 *

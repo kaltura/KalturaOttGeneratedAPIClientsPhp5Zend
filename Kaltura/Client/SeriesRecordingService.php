@@ -175,23 +175,4 @@ class Kaltura_Client_SeriesRecordingService extends Kaltura_Client_ServiceBase
 		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SeriesRecordingListResponse");
 		return $resultObject;
 	}
-
-	/**
-	 * @return Kaltura_Client_Type_SeriesRecording
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function rebookCanceledByEpgId($epgId)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "epgId", $epgId);
-		$this->client->queueServiceActionCall("seriesrecording", "rebookCanceledByEpgId", "KalturaSeriesRecording", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSeriesRecording");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SeriesRecording");
-		return $resultObject;
-	}
 }

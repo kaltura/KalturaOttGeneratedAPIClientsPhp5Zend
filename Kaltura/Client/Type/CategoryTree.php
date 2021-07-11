@@ -101,8 +101,6 @@ class Kaltura_Client_Type_CategoryTree extends Kaltura_Client_ObjectBase
 			$this->versionId = (string)$xml->versionId;
 		if(count($xml->virtualAssetId))
 			$this->virtualAssetId = (string)$xml->virtualAssetId;
-		if(count($xml->referenceId))
-			$this->referenceId = (string)$xml->referenceId;
 	}
 	/**
 	 * Unique identifier for the category item
@@ -200,14 +198,6 @@ class Kaltura_Client_Type_CategoryTree extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $virtualAssetId = null;
-
-	/**
-	 * Category reference identifier
-	 *
-	 * @var string
-	 * @readonly
-	 */
-	public $referenceId = null;
 
 
 }
