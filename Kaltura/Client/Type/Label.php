@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PremiumService extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_Label extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaPremiumService';
+		return 'KalturaLabel';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -47,22 +47,33 @@ class Kaltura_Client_Type_PremiumService extends Kaltura_Client_ObjectBase
 		
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		if(count($xml->value))
+			$this->value = (string)$xml->value;
+		if(count($xml->entityAttribute))
+			$this->entityAttribute = (string)$xml->entityAttribute;
 	}
 	/**
-	 * Service identifier
+	 * Label identifier
 	 *
 	 * @var bigint
+	 * @readonly
 	 */
 	public $id = null;
 
 	/**
-	 * Service name / description
+	 * Label value. It must be unique in the context of entityAttribute
 	 *
 	 * @var string
 	 */
-	public $name = null;
+	public $value = null;
+
+	/**
+	 * Identifier of entity to which label belongs
+	 *
+	 * @var Kaltura_Client_Enum_EntityAttribute
+	 * @insertonly
+	 */
+	public $entityAttribute = null;
 
 
 }

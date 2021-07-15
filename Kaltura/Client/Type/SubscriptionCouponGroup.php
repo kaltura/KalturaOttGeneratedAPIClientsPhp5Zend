@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PremiumService extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_SubscriptionCouponGroup extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaPremiumService';
+		return 'KalturaSubscriptionCouponGroup';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -47,22 +47,31 @@ class Kaltura_Client_Type_PremiumService extends Kaltura_Client_ObjectBase
 		
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		if(count($xml->startDate))
+			$this->startDate = (string)$xml->startDate;
+		if(count($xml->endDate))
+			$this->endDate = (string)$xml->endDate;
 	}
 	/**
-	 * Service identifier
+	 * Coupon group identifier
 	 *
 	 * @var bigint
 	 */
 	public $id = null;
 
 	/**
-	 * Service name / description
+	 * The first date the coupons in this coupons group are valid
 	 *
-	 * @var string
+	 * @var bigint
 	 */
-	public $name = null;
+	public $startDate = null;
+
+	/**
+	 * The last date the coupons in this coupons group are valid
+	 *
+	 * @var bigint
+	 */
+	public $endDate = null;
 
 
 }

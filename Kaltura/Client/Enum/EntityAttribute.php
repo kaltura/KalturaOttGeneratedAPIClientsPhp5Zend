@@ -31,39 +31,8 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PremiumService extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Enum_EntityAttribute extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaPremiumService';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-	}
-	/**
-	 * Service identifier
-	 *
-	 * @var bigint
-	 */
-	public $id = null;
-
-	/**
-	 * Service name / description
-	 *
-	 * @var string
-	 */
-	public $name = null;
-
-
+	const MEDIA_FILE_LABELS = "MEDIA_FILE_LABELS";
 }
 

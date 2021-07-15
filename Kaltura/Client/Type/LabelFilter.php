@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PremiumService extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_LabelFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaPremiumService';
+		return 'KalturaLabelFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,24 +45,42 @@ class Kaltura_Client_Type_PremiumService extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		if(count($xml->idIn))
+			$this->idIn = (string)$xml->idIn;
+		if(count($xml->labelEqual))
+			$this->labelEqual = (string)$xml->labelEqual;
+		if(count($xml->labelStartsWith))
+			$this->labelStartsWith = (string)$xml->labelStartsWith;
+		if(count($xml->entityAttributeEqual))
+			$this->entityAttributeEqual = (string)$xml->entityAttributeEqual;
 	}
 	/**
-	 * Service identifier
-	 *
-	 * @var bigint
-	 */
-	public $id = null;
-
-	/**
-	 * Service name / description
+	 * Comma-separated identifiers of labels
 	 *
 	 * @var string
 	 */
-	public $name = null;
+	public $idIn = null;
+
+	/**
+	 * Filter the label with this value
+	 *
+	 * @var string
+	 */
+	public $labelEqual = null;
+
+	/**
+	 * Filter labels which start with this value
+	 *
+	 * @var string
+	 */
+	public $labelStartsWith = null;
+
+	/**
+	 * Type of entity that labels are associated with
+	 *
+	 * @var Kaltura_Client_Enum_EntityAttribute
+	 */
+	public $entityAttributeEqual = null;
 
 
 }

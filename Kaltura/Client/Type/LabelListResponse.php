@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PremiumService extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_LabelListResponse extends Kaltura_Client_Type_ListResponse
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaPremiumService';
+		return 'KalturaLabelListResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,24 +45,20 @@ class Kaltura_Client_Type_PremiumService extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		if(count($xml->objects))
+		{
+			if(empty($xml->objects))
+				$this->objects = array();
+			else
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaLabel");
+		}
 	}
 	/**
-	 * Service identifier
+	 * List of labels
 	 *
-	 * @var bigint
+	 * @var array of KalturaLabel
 	 */
-	public $id = null;
-
-	/**
-	 * Service name / description
-	 *
-	 * @var string
-	 */
-	public $name = null;
+	public $objects;
 
 
 }
