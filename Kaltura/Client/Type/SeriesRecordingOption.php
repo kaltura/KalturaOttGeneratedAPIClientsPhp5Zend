@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PremiumService extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_SeriesRecordingOption extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaPremiumService';
+		return 'KalturaSeriesRecordingOption';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,24 +45,24 @@ class Kaltura_Client_Type_PremiumService extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		if(count($xml->minSeasonNumber))
+			$this->minSeasonNumber = (int)$xml->minSeasonNumber;
+		if(count($xml->minEpisodeNumber))
+			$this->minEpisodeNumber = (int)$xml->minEpisodeNumber;
 	}
 	/**
-	 * Service identifier
+	 * min Season Number
 	 *
-	 * @var bigint
+	 * @var int
 	 */
-	public $id = null;
+	public $minSeasonNumber = null;
 
 	/**
-	 * Service name / description
+	 * min Season Number
 	 *
-	 * @var string
+	 * @var int
 	 */
-	public $name = null;
+	public $minEpisodeNumber = null;
 
 
 }
