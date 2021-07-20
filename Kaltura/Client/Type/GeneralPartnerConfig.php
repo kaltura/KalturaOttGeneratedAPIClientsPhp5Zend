@@ -80,6 +80,13 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 			$this->finishedPercentThreshold = (int)$xml->finishedPercentThreshold;
 		if(count($xml->suspensionProfileInheritanceType))
 			$this->suspensionProfileInheritanceType = (string)$xml->suspensionProfileInheritanceType;
+		if(count($xml->allowDeviceMobility))
+		{
+			if(!empty($xml->allowDeviceMobility) && ((int) $xml->allowDeviceMobility === 1 || strtolower((string)$xml->allowDeviceMobility) === 'true'))
+				$this->allowDeviceMobility = true;
+			else
+				$this->allowDeviceMobility = false;
+		}
 	}
 	/**
 	 * Partner name
@@ -185,6 +192,13 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 	 * @var Kaltura_Client_Enum_SuspensionProfileInheritanceType
 	 */
 	public $suspensionProfileInheritanceType = null;
+
+	/**
+	 * Allow Device Mobility
+	 *
+	 * @var bool
+	 */
+	public $allowDeviceMobility = null;
 
 
 }
