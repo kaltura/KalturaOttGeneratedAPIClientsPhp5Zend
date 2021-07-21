@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -280,6 +280,7 @@ class Kaltura_Client_TypeMap
 		'KalturaDrmProfile' => 'Kaltura_Client_Type_DrmProfile',
 		'KalturaDrmProfileListResponse' => 'Kaltura_Client_Type_DrmProfileListResponse',
 		'KalturaDuration' => 'Kaltura_Client_Type_Duration',
+		'KalturaDurationListResponse' => 'Kaltura_Client_Type_DurationListResponse',
 		'KalturaDynamicChannel' => 'Kaltura_Client_Type_DynamicChannel',
 		'KalturaDynamicData' => 'Kaltura_Client_Type_DynamicData',
 		'KalturaDynamicList' => 'Kaltura_Client_Type_DynamicList',
@@ -602,6 +603,7 @@ class Kaltura_Client_TypeMap
 		'KalturaSeriesRecording' => 'Kaltura_Client_Type_SeriesRecording',
 		'KalturaSeriesRecordingFilter' => 'Kaltura_Client_Type_SeriesRecordingFilter',
 		'KalturaSeriesRecordingListResponse' => 'Kaltura_Client_Type_SeriesRecordingListResponse',
+		'KalturaSeriesRecordingOption' => 'Kaltura_Client_Type_SeriesRecordingOption',
 		'KalturaSeriesReminder' => 'Kaltura_Client_Type_SeriesReminder',
 		'KalturaSeriesReminderFilter' => 'Kaltura_Client_Type_SeriesReminderFilter',
 		'KalturaSession' => 'Kaltura_Client_Type_Session',
@@ -640,6 +642,7 @@ class Kaltura_Client_TypeMap
 		'KalturaSubscribeReference' => 'Kaltura_Client_Type_SubscribeReference',
 		'KalturaSubscription' => 'Kaltura_Client_Type_Subscription',
 		'KalturaSubscriptionCondition' => 'Kaltura_Client_Type_SubscriptionCondition',
+		'KalturaSubscriptionCouponGroup' => 'Kaltura_Client_Type_SubscriptionCouponGroup',
 		'KalturaSubscriptionDependencySet' => 'Kaltura_Client_Type_SubscriptionDependencySet',
 		'KalturaSubscriptionDependencySetFilter' => 'Kaltura_Client_Type_SubscriptionDependencySetFilter',
 		'KalturaSubscriptionEntitlement' => 'Kaltura_Client_Type_SubscriptionEntitlement',
