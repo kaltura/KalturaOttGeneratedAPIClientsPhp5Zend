@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -395,6 +395,9 @@ class Kaltura_Client_TypeMap
 		'KalturaIpRangeCondition' => 'Kaltura_Client_Type_IpRangeCondition',
 		'KalturaKeyValue' => 'Kaltura_Client_Type_KeyValue',
 		'KalturaKsqlSegmentAction' => 'Kaltura_Client_Type_KsqlSegmentAction',
+		'KalturaLabel' => 'Kaltura_Client_Type_Label',
+		'KalturaLabelFilter' => 'Kaltura_Client_Type_LabelFilter',
+		'KalturaLabelListResponse' => 'Kaltura_Client_Type_LabelListResponse',
 		'KalturaLanguage' => 'Kaltura_Client_Type_Language',
 		'KalturaLanguageFilter' => 'Kaltura_Client_Type_LanguageFilter',
 		'KalturaLanguageListResponse' => 'Kaltura_Client_Type_LanguageListResponse',
@@ -459,6 +462,8 @@ class Kaltura_Client_TypeMap
 		'KalturaPartnerConfigurationListResponse' => 'Kaltura_Client_Type_PartnerConfigurationListResponse',
 		'KalturaPartnerFilter' => 'Kaltura_Client_Type_PartnerFilter',
 		'KalturaPartnerListResponse' => 'Kaltura_Client_Type_PartnerListResponse',
+		'KalturaPartnerPremiumService' => 'Kaltura_Client_Type_PartnerPremiumService',
+		'KalturaPartnerPremiumServices' => 'Kaltura_Client_Type_PartnerPremiumServices',
 		'KalturaPartnerSetup' => 'Kaltura_Client_Type_PartnerSetup',
 		'KalturaPasswordPolicy' => 'Kaltura_Client_Type_PasswordPolicy',
 		'KalturaPasswordPolicyFilter' => 'Kaltura_Client_Type_PasswordPolicyFilter',
@@ -602,6 +607,7 @@ class Kaltura_Client_TypeMap
 		'KalturaSeriesRecording' => 'Kaltura_Client_Type_SeriesRecording',
 		'KalturaSeriesRecordingFilter' => 'Kaltura_Client_Type_SeriesRecordingFilter',
 		'KalturaSeriesRecordingListResponse' => 'Kaltura_Client_Type_SeriesRecordingListResponse',
+		'KalturaSeriesRecordingOption' => 'Kaltura_Client_Type_SeriesRecordingOption',
 		'KalturaSeriesReminder' => 'Kaltura_Client_Type_SeriesReminder',
 		'KalturaSeriesReminderFilter' => 'Kaltura_Client_Type_SeriesReminderFilter',
 		'KalturaSession' => 'Kaltura_Client_Type_Session',
@@ -640,6 +646,7 @@ class Kaltura_Client_TypeMap
 		'KalturaSubscribeReference' => 'Kaltura_Client_Type_SubscribeReference',
 		'KalturaSubscription' => 'Kaltura_Client_Type_Subscription',
 		'KalturaSubscriptionCondition' => 'Kaltura_Client_Type_SubscriptionCondition',
+		'KalturaSubscriptionCouponGroup' => 'Kaltura_Client_Type_SubscriptionCouponGroup',
 		'KalturaSubscriptionDependencySet' => 'Kaltura_Client_Type_SubscriptionDependencySet',
 		'KalturaSubscriptionDependencySetFilter' => 'Kaltura_Client_Type_SubscriptionDependencySetFilter',
 		'KalturaSubscriptionEntitlement' => 'Kaltura_Client_Type_SubscriptionEntitlement',
@@ -675,6 +682,7 @@ class Kaltura_Client_TypeMap
 		'KalturaTranslationToken' => 'Kaltura_Client_Type_TranslationToken',
 		'KalturaTrigger' => 'Kaltura_Client_Type_Trigger',
 		'KalturaTriggerCampaign' => 'Kaltura_Client_Type_TriggerCampaign',
+		'KalturaTriggerCampaignEvent' => 'Kaltura_Client_Type_TriggerCampaignEvent',
 		'KalturaTriggerCampaignSearchFilter' => 'Kaltura_Client_Type_TriggerCampaignSearchFilter',
 		'KalturaTvmDeviceRule' => 'Kaltura_Client_Type_TvmDeviceRule',
 		'KalturaTvmGeoRule' => 'Kaltura_Client_Type_TvmGeoRule',
