@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -47,6 +47,8 @@ class Kaltura_Client_Type_AssetFilter extends Kaltura_Client_Type_PersistedFilte
 		
 		if(count($xml->dynamicOrderBy) && !empty($xml->dynamicOrderBy))
 			$this->dynamicOrderBy = Kaltura_Client_ParseUtils::unmarshalObject($xml->dynamicOrderBy, "KalturaDynamicOrderBy");
+		if(count($xml->trendingDaysEqual))
+			$this->trendingDaysEqual = (int)$xml->trendingDaysEqual;
 	}
 	/**
 	 * dynamicOrderBy - order by Meta
@@ -54,6 +56,13 @@ class Kaltura_Client_Type_AssetFilter extends Kaltura_Client_Type_PersistedFilte
 	 * @var Kaltura_Client_Type_DynamicOrderBy
 	 */
 	public $dynamicOrderBy;
+
+	/**
+	 * Trending Days Equal
+	 *
+	 * @var int
+	 */
+	public $trendingDaysEqual = null;
 
 
 }

@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -53,8 +53,21 @@ class Kaltura_Client_Type_SubscriptionFilter extends Kaltura_Client_Type_Filter
 			$this->externalIdIn = (string)$xml->externalIdIn;
 		if(count($xml->couponGroupIdEqual))
 			$this->couponGroupIdEqual = (int)$xml->couponGroupIdEqual;
+		if(count($xml->previewModuleIdEqual))
+			$this->previewModuleIdEqual = (string)$xml->previewModuleIdEqual;
+		if(count($xml->pricePlanIdEqual))
+			$this->pricePlanIdEqual = (string)$xml->pricePlanIdEqual;
+		if(count($xml->channelIdEqual))
+			$this->channelIdEqual = (string)$xml->channelIdEqual;
 		if(count($xml->kSql))
 			$this->kSql = (string)$xml->kSql;
+		if(count($xml->alsoInactive))
+		{
+			if(!empty($xml->alsoInactive) && ((int) $xml->alsoInactive === 1 || strtolower((string)$xml->alsoInactive) === 'true'))
+				$this->alsoInactive = true;
+			else
+				$this->alsoInactive = false;
+		}
 	}
 	/**
 	 * Comma separated subscription IDs to get the subscriptions by
@@ -85,11 +98,39 @@ class Kaltura_Client_Type_SubscriptionFilter extends Kaltura_Client_Type_Filter
 	public $couponGroupIdEqual = null;
 
 	/**
+	 * previewModuleIdEqual
+	 *
+	 * @var bigint
+	 */
+	public $previewModuleIdEqual = null;
+
+	/**
+	 * pricePlanIdEqual
+	 *
+	 * @var bigint
+	 */
+	public $pricePlanIdEqual = null;
+
+	/**
+	 * channelIdEqual
+	 *
+	 * @var bigint
+	 */
+	public $channelIdEqual = null;
+
+	/**
 	 * KSQL expression
 	 *
 	 * @var string
 	 */
 	public $kSql = null;
+
+	/**
+	 * Root only
+	 *
+	 * @var bool
+	 */
+	public $alsoInactive = null;
 
 
 }
