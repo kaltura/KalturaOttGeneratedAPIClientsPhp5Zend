@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -55,27 +55,6 @@ class Kaltura_Client_RecordingService extends Kaltura_Client_ServiceBase
 		$this->client->checkIfError($resultXmlObject->result);
 		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaRecording");
 		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Recording");
-		return $resultObject;
-	}
-
-	/**
-	 * @return array
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function bulkdelete($recordingIds)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "recordingIds", $recordingIds);
-		$this->client->queueServiceActionCall("recording", "bulkdelete", "KalturaActionResult", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalArray($resultXmlObject->result, "KalturaActionResult");
-		foreach($resultObject as $resultObjectItem){
-			$this->client->validateObjectType($resultObjectItem, "Kaltura_Client_Type_ActionResult");
-		}
 		return $resultObject;
 	}
 

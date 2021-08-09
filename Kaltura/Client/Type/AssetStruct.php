@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -81,13 +81,6 @@ class Kaltura_Client_Type_AssetStruct extends Kaltura_Client_ObjectBase
 			$this->connectingMetaId = (string)$xml->connectingMetaId;
 		if(count($xml->connectedParentMetaId))
 			$this->connectedParentMetaId = (string)$xml->connectedParentMetaId;
-		if(count($xml->dynamicData))
-		{
-			if(empty($xml->dynamicData))
-				$this->dynamicData = array();
-			else
-				$this->dynamicData = Kaltura_Client_ParseUtils::unmarshalMap($xml->dynamicData, "KalturaStringValue");
-		}
 	}
 	/**
 	 * Asset Struct id
@@ -183,13 +176,6 @@ class Kaltura_Client_Type_AssetStruct extends Kaltura_Client_ObjectBase
 	 * @var bigint
 	 */
 	public $connectedParentMetaId = null;
-
-	/**
-	 * Dynamic data
-	 *
-	 * @var map
-	 */
-	public $dynamicData;
 
 
 }
