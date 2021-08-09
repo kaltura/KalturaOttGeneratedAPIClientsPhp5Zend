@@ -48,7 +48,6 @@ class Kaltura_Client_Configuration
 	public $verifySSL 					= true;
 	public $sslCertificatePath			= null;
 	public $requestHeaders				= array();
-	public $internalServiceUrl			= null;
 	
 	/**
 	 * Set logger to get kaltura client debug logs

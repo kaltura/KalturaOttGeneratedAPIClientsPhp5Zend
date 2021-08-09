@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -45,8 +45,6 @@ class Kaltura_Client_Type_DiscountModule extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
 		if(count($xml->percent))
 			$this->percent = (float)$xml->percent;
 		if(count($xml->startDate))
@@ -54,13 +52,6 @@ class Kaltura_Client_Type_DiscountModule extends Kaltura_Client_ObjectBase
 		if(count($xml->endDate))
 			$this->endDate = (string)$xml->endDate;
 	}
-	/**
-	 * Discount module identifier
-	 *
-	 * @var bigint
-	 */
-	public $id = null;
-
 	/**
 	 * The discount percentage
 	 *

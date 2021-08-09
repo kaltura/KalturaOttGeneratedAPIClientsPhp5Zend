@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -173,25 +173,6 @@ class Kaltura_Client_SeriesRecordingService extends Kaltura_Client_ServiceBase
 		$this->client->checkIfError($resultXmlObject->result);
 		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSeriesRecordingListResponse");
 		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SeriesRecordingListResponse");
-		return $resultObject;
-	}
-
-	/**
-	 * @return Kaltura_Client_Type_SeriesRecording
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function rebookCanceledByEpgId($epgId)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "epgId", $epgId);
-		$this->client->queueServiceActionCall("seriesrecording", "rebookCanceledByEpgId", "KalturaSeriesRecording", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSeriesRecording");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SeriesRecording");
 		return $resultObject;
 	}
 }
