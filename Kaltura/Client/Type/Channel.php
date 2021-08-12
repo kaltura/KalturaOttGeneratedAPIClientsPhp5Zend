@@ -98,6 +98,8 @@ class Kaltura_Client_Type_Channel extends Kaltura_Client_Type_BaseChannel
 			else
 				$this->metaData = Kaltura_Client_ParseUtils::unmarshalMap($xml->metaData, "KalturaStringValue");
 		}
+		if(count($xml->virtualAssetId))
+			$this->virtualAssetId = (string)$xml->virtualAssetId;
 	}
 	/**
 	 * Channel name
@@ -200,6 +202,14 @@ class Kaltura_Client_Type_Channel extends Kaltura_Client_Type_BaseChannel
 	 * @var map
 	 */
 	public $metaData;
+
+	/**
+	 * Virtual asset id
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $virtualAssetId = null;
 
 
 }

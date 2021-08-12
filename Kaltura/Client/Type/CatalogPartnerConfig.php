@@ -61,6 +61,13 @@ class Kaltura_Client_Type_CatalogPartnerConfig extends Kaltura_Client_Type_Partn
 			else
 				$this->epgMultilingualFallbackSupport = false;
 		}
+		if(count($xml->uploadExportDatalake))
+		{
+			if(!empty($xml->uploadExportDatalake) && ((int) $xml->uploadExportDatalake === 1 || strtolower((string)$xml->uploadExportDatalake) === 'true'))
+				$this->uploadExportDatalake = true;
+			else
+				$this->uploadExportDatalake = false;
+		}
 	}
 	/**
 	 * Single multilingual mode
@@ -82,6 +89,13 @@ class Kaltura_Client_Type_CatalogPartnerConfig extends Kaltura_Client_Type_Partn
 	 * @var bool
 	 */
 	public $epgMultilingualFallbackSupport = null;
+
+	/**
+	 * Upload Export Datalake
+	 *
+	 * @var bool
+	 */
+	public $uploadExportDatalake = null;
 
 
 }

@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_CommercePartnerConfig extends Kaltura_Client_Type_PartnerConfiguration
+class Kaltura_Client_Type_SeriesRecordingOption extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaCommercePartnerConfig';
+		return 'KalturaSeriesRecordingOption';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,34 +45,24 @@ class Kaltura_Client_Type_CommercePartnerConfig extends Kaltura_Client_Type_Part
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->bookmarkEventThresholds))
-		{
-			if(empty($xml->bookmarkEventThresholds))
-				$this->bookmarkEventThresholds = array();
-			else
-				$this->bookmarkEventThresholds = Kaltura_Client_ParseUtils::unmarshalArray($xml->bookmarkEventThresholds, "KalturaBookmarkEventThreshold");
-		}
-		if(count($xml->keepSubscriptionAddOns))
-		{
-			if(!empty($xml->keepSubscriptionAddOns) && ((int) $xml->keepSubscriptionAddOns === 1 || strtolower((string)$xml->keepSubscriptionAddOns) === 'true'))
-				$this->keepSubscriptionAddOns = true;
-			else
-				$this->keepSubscriptionAddOns = false;
-		}
+		if(count($xml->minSeasonNumber))
+			$this->minSeasonNumber = (int)$xml->minSeasonNumber;
+		if(count($xml->minEpisodeNumber))
+			$this->minEpisodeNumber = (int)$xml->minEpisodeNumber;
 	}
 	/**
-	 * configuration for bookmark event threshold (when to dispatch the event) in seconds.
+	 * min Season Number
 	 *
-	 * @var array of KalturaBookmarkEventThreshold
+	 * @var int
 	 */
-	public $bookmarkEventThresholds;
+	public $minSeasonNumber = null;
 
 	/**
-	 * configuration for keep add-ons after subscription deletion
+	 * min Season Number
 	 *
-	 * @var bool
+	 * @var int
 	 */
-	public $keepSubscriptionAddOns = null;
+	public $minEpisodeNumber = null;
 
 
 }

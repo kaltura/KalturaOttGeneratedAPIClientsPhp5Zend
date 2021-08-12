@@ -103,6 +103,8 @@ class Kaltura_Client_Type_MediaFile extends Kaltura_Client_Type_AssetFile
 			$this->opl = (string)$xml->opl;
 		if(count($xml->businessModuleDetails) && !empty($xml->businessModuleDetails))
 			$this->businessModuleDetails = Kaltura_Client_ParseUtils::unmarshalObject($xml->businessModuleDetails, "KalturaBusinessModuleDetails");
+		if(count($xml->labels))
+			$this->labels = (string)$xml->labels;
 	}
 	/**
 	 * Unique identifier for the asset
@@ -273,6 +275,13 @@ class Kaltura_Client_Type_MediaFile extends Kaltura_Client_Type_AssetFile
 	 * @var Kaltura_Client_Type_BusinessModuleDetails
 	 */
 	public $businessModuleDetails;
+
+	/**
+	 * Labels associated with the media file
+	 *
+	 * @var string
+	 */
+	public $labels = null;
 
 
 }
