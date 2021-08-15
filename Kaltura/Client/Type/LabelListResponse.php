@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_CommercePartnerConfig extends Kaltura_Client_Type_PartnerConfiguration
+class Kaltura_Client_Type_LabelListResponse extends Kaltura_Client_Type_ListResponse
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaCommercePartnerConfig';
+		return 'KalturaLabelListResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,34 +45,20 @@ class Kaltura_Client_Type_CommercePartnerConfig extends Kaltura_Client_Type_Part
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->bookmarkEventThresholds))
+		if(count($xml->objects))
 		{
-			if(empty($xml->bookmarkEventThresholds))
-				$this->bookmarkEventThresholds = array();
+			if(empty($xml->objects))
+				$this->objects = array();
 			else
-				$this->bookmarkEventThresholds = Kaltura_Client_ParseUtils::unmarshalArray($xml->bookmarkEventThresholds, "KalturaBookmarkEventThreshold");
-		}
-		if(count($xml->keepSubscriptionAddOns))
-		{
-			if(!empty($xml->keepSubscriptionAddOns) && ((int) $xml->keepSubscriptionAddOns === 1 || strtolower((string)$xml->keepSubscriptionAddOns) === 'true'))
-				$this->keepSubscriptionAddOns = true;
-			else
-				$this->keepSubscriptionAddOns = false;
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaLabel");
 		}
 	}
 	/**
-	 * configuration for bookmark event threshold (when to dispatch the event) in seconds.
+	 * List of labels
 	 *
-	 * @var array of KalturaBookmarkEventThreshold
+	 * @var array of KalturaLabel
 	 */
-	public $bookmarkEventThresholds;
-
-	/**
-	 * configuration for keep add-ons after subscription deletion
-	 *
-	 * @var bool
-	 */
-	public $keepSubscriptionAddOns = null;
+	public $objects;
 
 
 }

@@ -54,6 +54,8 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 			else
 				$this->channels = Kaltura_Client_ParseUtils::unmarshalArray($xml->channels, "KalturaBaseChannel");
 		}
+		if(count($xml->channelsIds))
+			$this->channelsIds = (string)$xml->channelsIds;
 		if(count($xml->startDate))
 			$this->startDate = (string)$xml->startDate;
 		if(count($xml->endDate))
@@ -65,6 +67,8 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 			else
 				$this->fileTypes = Kaltura_Client_ParseUtils::unmarshalArray($xml->fileTypes, "KalturaIntegerValue");
 		}
+		if(count($xml->fileTypesIds))
+			$this->fileTypesIds = (string)$xml->fileTypesIds;
 		if(count($xml->isRenewable))
 		{
 			if(!empty($xml->isRenewable) && ((int) $xml->isRenewable === 1 || strtolower((string)$xml->isRenewable) === 'true'))
@@ -85,6 +89,8 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 			$this->price = Kaltura_Client_ParseUtils::unmarshalObject($xml->price, "KalturaPriceDetails");
 		if(count($xml->discountModule) && !empty($xml->discountModule))
 			$this->discountModule = Kaltura_Client_ParseUtils::unmarshalObject($xml->discountModule, "KalturaDiscountModule");
+		if(count($xml->internalDiscountModuleId))
+			$this->internalDiscountModuleId = (string)$xml->internalDiscountModuleId;
 		if(count($xml->name))
 			$this->name = (string)$xml->name;
 		if(count($xml->multilingualName))
@@ -111,6 +117,8 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 			$this->pricePlanIds = (string)$xml->pricePlanIds;
 		if(count($xml->previewModule) && !empty($xml->previewModule))
 			$this->previewModule = Kaltura_Client_ParseUtils::unmarshalObject($xml->previewModule, "KalturaPreviewModule");
+		if(count($xml->previewModuleId))
+			$this->previewModuleId = (string)$xml->previewModuleId;
 		if(count($xml->householdLimitationsId))
 			$this->householdLimitationsId = (int)$xml->householdLimitationsId;
 		if(count($xml->gracePeriodMinutes))
@@ -149,6 +157,13 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 			else
 				$this->couponsGroups = Kaltura_Client_ParseUtils::unmarshalArray($xml->couponsGroups, "KalturaCouponsGroup");
 		}
+		if(count($xml->subscriptionCouponGroup))
+		{
+			if(empty($xml->subscriptionCouponGroup))
+				$this->subscriptionCouponGroup = array();
+			else
+				$this->subscriptionCouponGroup = Kaltura_Client_ParseUtils::unmarshalArray($xml->subscriptionCouponGroup, "KalturaSubscriptionCouponGroup");
+		}
 		if(count($xml->productCodes))
 		{
 			if(empty($xml->productCodes))
@@ -169,6 +184,17 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 		}
 		if(count($xml->preSaleDate))
 			$this->preSaleDate = (string)$xml->preSaleDate;
+		if(count($xml->adsPolicy))
+			$this->adsPolicy = (string)$xml->adsPolicy;
+		if(count($xml->adsParam))
+			$this->adsParam = (string)$xml->adsParam;
+		if(count($xml->isActive))
+		{
+			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))
+				$this->isActive = true;
+			else
+				$this->isActive = false;
+		}
 	}
 	/**
 	 * Subscription identifier
@@ -181,8 +207,16 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 	 * A list of channels associated with this subscription
 	 *
 	 * @var array of KalturaBaseChannel
+	 * @readonly
 	 */
 	public $channels;
+
+	/**
+	 * Comma separated channels Ids associated with this subscription
+	 *
+	 * @var string
+	 */
+	public $channelsIds = null;
 
 	/**
 	 * The first date the subscription is available for purchasing
@@ -202,13 +236,22 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 	 * A list of file types identifiers that are supported in this subscription
 	 *
 	 * @var array of KalturaIntegerValue
+	 * @readonly
 	 */
 	public $fileTypes;
+
+	/**
+	 * Comma separated file types identifiers that are supported in this subscription
+	 *
+	 * @var string
+	 */
+	public $fileTypesIds = null;
 
 	/**
 	 * Denotes whether or not this subscription can be renewed
 	 *
 	 * @var bool
+	 * @readonly
 	 */
 	public $isRenewable = null;
 
@@ -216,6 +259,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 	 * Defines the number of times this subscription will be renewed
 	 *
 	 * @var int
+	 * @readonly
 	 */
 	public $renewalsNumber = null;
 
@@ -223,6 +267,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 	 * Indicates whether the subscription will renew forever
 	 *
 	 * @var bool
+	 * @readonly
 	 */
 	public $isInfiniteRenewal = null;
 
@@ -230,6 +275,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 	 * The price of the subscription
 	 *
 	 * @var Kaltura_Client_Type_PriceDetails
+	 * @readonly
 	 */
 	public $price;
 
@@ -237,8 +283,16 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 	 * The internal discount module for the subscription
 	 *
 	 * @var Kaltura_Client_Type_DiscountModule
+	 * @readonly
 	 */
 	public $discountModule;
+
+	/**
+	 * The internal discount module identifier for the subscription
+	 *
+	 * @var bigint
+	 */
+	public $internalDiscountModuleId = null;
 
 	/**
 	 * Name of the subscription
@@ -274,6 +328,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 	 * Identifier of the media associated with the subscription
 	 *
 	 * @var int
+	 * @readonly
 	 */
 	public $mediaId = null;
 
@@ -295,8 +350,16 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 	 * Subscription preview module
 	 *
 	 * @var Kaltura_Client_Type_PreviewModule
+	 * @readonly
 	 */
 	public $previewModule;
+
+	/**
+	 * Subscription preview module identifier
+	 *
+	 * @var bigint
+	 */
+	public $previewModuleId = null;
 
 	/**
 	 * The household limitation module identifier associated with this subscription
@@ -323,6 +386,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 	 * The maximum number of times an item in this usage module can be viewed
 	 *
 	 * @var int
+	 * @readonly
 	 */
 	public $maxViewsNumber = null;
 
@@ -330,6 +394,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 	 * The amount time an item is available for viewing since a user started watching the item
 	 *
 	 * @var int
+	 * @readonly
 	 */
 	public $viewLifeCycle = null;
 
@@ -337,6 +402,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 	 * Time period during which the end user can waive his rights to cancel a purchase. When the time period is passed, the purchase can no longer be cancelled
 	 *
 	 * @var int
+	 * @readonly
 	 */
 	public $waiverPeriod = null;
 
@@ -344,6 +410,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 	 * Indicates whether or not the end user has the right to waive his rights to cancel a purchase
 	 *
 	 * @var bool
+	 * @readonly
 	 */
 	public $isWaiverEnabled = null;
 
@@ -351,6 +418,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 	 * List of permitted user types for the subscription
 	 *
 	 * @var array of KalturaOTTUserType
+	 * @readonly
 	 */
 	public $userTypes;
 
@@ -358,8 +426,16 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 	 * List of Coupons group
 	 *
 	 * @var array of KalturaCouponsGroup
+	 * @readonly
 	 */
 	public $couponsGroups;
+
+	/**
+	 * List of subscription Coupons group
+	 *
+	 * @var array of KalturaSubscriptionCouponGroup
+	 */
+	public $subscriptionCouponGroup;
 
 	/**
 	 * List of Subscription product codes
@@ -395,6 +471,27 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 	 * @var bigint
 	 */
 	public $preSaleDate = null;
+
+	/**
+	 * Ads policy
+	 *
+	 * @var Kaltura_Client_Enum_AdsPolicy
+	 */
+	public $adsPolicy = null;
+
+	/**
+	 * The parameters to pass to the ads server
+	 *
+	 * @var string
+	 */
+	public $adsParam = null;
+
+	/**
+	 * Is active subscription
+	 *
+	 * @var bool
+	 */
+	public $isActive = null;
 
 
 }

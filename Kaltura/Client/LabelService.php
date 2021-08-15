@@ -32,7 +32,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_CategoryTreeService extends Kaltura_Client_ServiceBase
+class Kaltura_Client_LabelService extends Kaltura_Client_ServiceBase
 {
 	function __construct(Kaltura_Client_Client $client = null)
 	{
@@ -40,62 +40,80 @@ class Kaltura_Client_CategoryTreeService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_CategoryTree
+	 * @return Kaltura_Client_Type_Label
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function duplicate($categoryItemId, $name)
+	function add(Kaltura_Client_Type_Label $label)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "categoryItemId", $categoryItemId);
-		$this->client->addParam($kparams, "name", $name);
-		$this->client->queueServiceActionCall("categorytree", "duplicate", "KalturaCategoryTree", $kparams);
+		$this->client->addParam($kparams, "label", $label->toParams());
+		$this->client->queueServiceActionCall("label", "add", "KalturaLabel", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCategoryTree");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CategoryTree");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLabel");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Label");
 		return $resultObject;
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_CategoryTree
+	 * @return bool
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function get($categoryItemId, $filter = false)
+	function delete($id)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "categoryItemId", $categoryItemId);
-		$this->client->addParam($kparams, "filter", $filter);
-		$this->client->queueServiceActionCall("categorytree", "get", "KalturaCategoryTree", $kparams);
+		$this->client->addParam($kparams, "id", $id);
+		$this->client->queueServiceActionCall("label", "delete", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCategoryTree");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CategoryTree");
+		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
 		return $resultObject;
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_CategoryTree
+	 * @return Kaltura_Client_Type_LabelListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function getByVersion($versionId = null, $deviceFamilyId = null)
+	function listAction(Kaltura_Client_Type_LabelFilter $filter, Kaltura_Client_Type_FilterPager $pager = null)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "versionId", $versionId);
-		$this->client->addParam($kparams, "deviceFamilyId", $deviceFamilyId);
-		$this->client->queueServiceActionCall("categorytree", "getByVersion", "KalturaCategoryTree", $kparams);
+		$this->client->addParam($kparams, "filter", $filter->toParams());
+		if ($pager !== null)
+			$this->client->addParam($kparams, "pager", $pager->toParams());
+		$this->client->queueServiceActionCall("label", "list", "KalturaLabelListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCategoryTree");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CategoryTree");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLabelListResponse");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LabelListResponse");
+		return $resultObject;
+	}
+
+	/**
+	 * @return Kaltura_Client_Type_Label
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function update($id, Kaltura_Client_Type_Label $label)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "id", $id);
+		$this->client->addParam($kparams, "label", $label->toParams());
+		$this->client->queueServiceActionCall("label", "update", "KalturaLabel", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLabel");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Label");
 		return $resultObject;
 	}
 }

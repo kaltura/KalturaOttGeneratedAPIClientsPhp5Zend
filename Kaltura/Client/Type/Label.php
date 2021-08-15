@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_CommercePartnerConfig extends Kaltura_Client_Type_PartnerConfiguration
+class Kaltura_Client_Type_Label extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaCommercePartnerConfig';
+		return 'KalturaLabel';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,34 +45,35 @@ class Kaltura_Client_Type_CommercePartnerConfig extends Kaltura_Client_Type_Part
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->bookmarkEventThresholds))
-		{
-			if(empty($xml->bookmarkEventThresholds))
-				$this->bookmarkEventThresholds = array();
-			else
-				$this->bookmarkEventThresholds = Kaltura_Client_ParseUtils::unmarshalArray($xml->bookmarkEventThresholds, "KalturaBookmarkEventThreshold");
-		}
-		if(count($xml->keepSubscriptionAddOns))
-		{
-			if(!empty($xml->keepSubscriptionAddOns) && ((int) $xml->keepSubscriptionAddOns === 1 || strtolower((string)$xml->keepSubscriptionAddOns) === 'true'))
-				$this->keepSubscriptionAddOns = true;
-			else
-				$this->keepSubscriptionAddOns = false;
-		}
+		if(count($xml->id))
+			$this->id = (string)$xml->id;
+		if(count($xml->value))
+			$this->value = (string)$xml->value;
+		if(count($xml->entityAttribute))
+			$this->entityAttribute = (string)$xml->entityAttribute;
 	}
 	/**
-	 * configuration for bookmark event threshold (when to dispatch the event) in seconds.
+	 * Label identifier
 	 *
-	 * @var array of KalturaBookmarkEventThreshold
+	 * @var bigint
+	 * @readonly
 	 */
-	public $bookmarkEventThresholds;
+	public $id = null;
 
 	/**
-	 * configuration for keep add-ons after subscription deletion
+	 * Label value. It must be unique in the context of entityAttribute
 	 *
-	 * @var bool
+	 * @var string
 	 */
-	public $keepSubscriptionAddOns = null;
+	public $value = null;
+
+	/**
+	 * Identifier of entity to which label belongs
+	 *
+	 * @var Kaltura_Client_Enum_EntityAttribute
+	 * @insertonly
+	 */
+	public $entityAttribute = null;
 
 
 }
