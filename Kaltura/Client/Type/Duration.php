@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -49,6 +49,8 @@ class Kaltura_Client_Type_Duration extends Kaltura_Client_ObjectBase
 			$this->unit = (string)$xml->unit;
 		if(count($xml->value))
 			$this->value = (int)$xml->value;
+		if(count($xml->code))
+			$this->code = (string)$xml->code;
 	}
 	/**
 	 * duration unit
@@ -63,6 +65,14 @@ class Kaltura_Client_Type_Duration extends Kaltura_Client_ObjectBase
 	 * @var int
 	 */
 	public $value = null;
+
+	/**
+	 * duration code - the canculat time in minutes except from years and months that have specific code
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $code = null;
 
 
 }
