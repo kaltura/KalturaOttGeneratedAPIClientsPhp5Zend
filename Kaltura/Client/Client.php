@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -263,6 +263,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_DurationService
+	 */
+	public $duration = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_DynamicListService
 	 */
 	public $dynamicList = null;
@@ -434,6 +440,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	 * @var Kaltura_Client_IotProfileService
 	 */
 	public $iotProfile = null;
+
+	/**
+	 * 
+	 * @var Kaltura_Client_LabelService
+	 */
+	public $label = null;
 
 	/**
 	 * 
@@ -858,8 +870,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:21-06-30');
-		$this->setApiVersion('6.5.0.29184');
+		$this->setClientTag('php5:21-08-23');
+		$this->setApiVersion('6.7.0.29269');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -899,6 +911,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->deviceReferenceData = new Kaltura_Client_DeviceReferenceDataService($this);
 		$this->discountDetails = new Kaltura_Client_DiscountDetailsService($this);
 		$this->drmProfile = new Kaltura_Client_DrmProfileService($this);
+		$this->duration = new Kaltura_Client_DurationService($this);
 		$this->dynamicList = new Kaltura_Client_DynamicListService($this);
 		$this->email = new Kaltura_Client_EmailService($this);
 		$this->engagementAdapter = new Kaltura_Client_EngagementAdapterService($this);
@@ -928,6 +941,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->IngestProfile = new Kaltura_Client_IngestProfileService($this);
 		$this->iot = new Kaltura_Client_IotService($this);
 		$this->iotProfile = new Kaltura_Client_IotProfileService($this);
+		$this->label = new Kaltura_Client_LabelService($this);
 		$this->language = new Kaltura_Client_LanguageService($this);
 		$this->licensedUrl = new Kaltura_Client_LicensedUrlService($this);
 		$this->mediaConcurrencyRule = new Kaltura_Client_MediaConcurrencyRuleService($this);

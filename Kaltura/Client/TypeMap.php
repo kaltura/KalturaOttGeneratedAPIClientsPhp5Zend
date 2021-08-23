@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -107,6 +107,7 @@ class Kaltura_Client_TypeMap
 		'KalturaAssetUserRuleFilterAction' => 'Kaltura_Client_Type_AssetUserRuleFilterAction',
 		'KalturaAssetUserRuleListResponse' => 'Kaltura_Client_Type_AssetUserRuleListResponse',
 		'KalturaAssetsCount' => 'Kaltura_Client_Type_AssetsCount',
+		'KalturaBaseAssetStructFilter' => 'Kaltura_Client_Type_BaseAssetStructFilter',
 		'KalturaBaseChannel' => 'Kaltura_Client_Type_BaseChannel',
 		'KalturaBaseOTTUser' => 'Kaltura_Client_Type_BaseOTTUser',
 		'KalturaBasePartnerConfiguration' => 'Kaltura_Client_Type_BasePartnerConfiguration',
@@ -280,6 +281,7 @@ class Kaltura_Client_TypeMap
 		'KalturaDrmProfile' => 'Kaltura_Client_Type_DrmProfile',
 		'KalturaDrmProfileListResponse' => 'Kaltura_Client_Type_DrmProfileListResponse',
 		'KalturaDuration' => 'Kaltura_Client_Type_Duration',
+		'KalturaDurationListResponse' => 'Kaltura_Client_Type_DurationListResponse',
 		'KalturaDynamicChannel' => 'Kaltura_Client_Type_DynamicChannel',
 		'KalturaDynamicData' => 'Kaltura_Client_Type_DynamicData',
 		'KalturaDynamicList' => 'Kaltura_Client_Type_DynamicList',
@@ -395,6 +397,9 @@ class Kaltura_Client_TypeMap
 		'KalturaIpRangeCondition' => 'Kaltura_Client_Type_IpRangeCondition',
 		'KalturaKeyValue' => 'Kaltura_Client_Type_KeyValue',
 		'KalturaKsqlSegmentAction' => 'Kaltura_Client_Type_KsqlSegmentAction',
+		'KalturaLabel' => 'Kaltura_Client_Type_Label',
+		'KalturaLabelFilter' => 'Kaltura_Client_Type_LabelFilter',
+		'KalturaLabelListResponse' => 'Kaltura_Client_Type_LabelListResponse',
 		'KalturaLanguage' => 'Kaltura_Client_Type_Language',
 		'KalturaLanguageFilter' => 'Kaltura_Client_Type_LanguageFilter',
 		'KalturaLanguageListResponse' => 'Kaltura_Client_Type_LanguageListResponse',
@@ -403,6 +408,7 @@ class Kaltura_Client_TypeMap
 		'KalturaLicensedUrlEpgRequest' => 'Kaltura_Client_Type_LicensedUrlEpgRequest',
 		'KalturaLicensedUrlMediaRequest' => 'Kaltura_Client_Type_LicensedUrlMediaRequest',
 		'KalturaLicensedUrlRecordingRequest' => 'Kaltura_Client_Type_LicensedUrlRecordingRequest',
+		'KalturaLinearAssetStructFilter' => 'Kaltura_Client_Type_LinearAssetStructFilter',
 		'KalturaListResponse' => 'Kaltura_Client_Type_ListResponse',
 		'KalturaLiveAsset' => 'Kaltura_Client_Type_LiveAsset',
 		'KalturaLoginResponse' => 'Kaltura_Client_Type_LoginResponse',
@@ -602,6 +608,7 @@ class Kaltura_Client_TypeMap
 		'KalturaSeriesRecording' => 'Kaltura_Client_Type_SeriesRecording',
 		'KalturaSeriesRecordingFilter' => 'Kaltura_Client_Type_SeriesRecordingFilter',
 		'KalturaSeriesRecordingListResponse' => 'Kaltura_Client_Type_SeriesRecordingListResponse',
+		'KalturaSeriesRecordingOption' => 'Kaltura_Client_Type_SeriesRecordingOption',
 		'KalturaSeriesReminder' => 'Kaltura_Client_Type_SeriesReminder',
 		'KalturaSeriesReminderFilter' => 'Kaltura_Client_Type_SeriesReminderFilter',
 		'KalturaSession' => 'Kaltura_Client_Type_Session',
@@ -640,6 +647,7 @@ class Kaltura_Client_TypeMap
 		'KalturaSubscribeReference' => 'Kaltura_Client_Type_SubscribeReference',
 		'KalturaSubscription' => 'Kaltura_Client_Type_Subscription',
 		'KalturaSubscriptionCondition' => 'Kaltura_Client_Type_SubscriptionCondition',
+		'KalturaSubscriptionCouponGroup' => 'Kaltura_Client_Type_SubscriptionCouponGroup',
 		'KalturaSubscriptionDependencySet' => 'Kaltura_Client_Type_SubscriptionDependencySet',
 		'KalturaSubscriptionDependencySetFilter' => 'Kaltura_Client_Type_SubscriptionDependencySetFilter',
 		'KalturaSubscriptionEntitlement' => 'Kaltura_Client_Type_SubscriptionEntitlement',
@@ -675,6 +683,7 @@ class Kaltura_Client_TypeMap
 		'KalturaTranslationToken' => 'Kaltura_Client_Type_TranslationToken',
 		'KalturaTrigger' => 'Kaltura_Client_Type_Trigger',
 		'KalturaTriggerCampaign' => 'Kaltura_Client_Type_TriggerCampaign',
+		'KalturaTriggerCampaignEvent' => 'Kaltura_Client_Type_TriggerCampaignEvent',
 		'KalturaTriggerCampaignSearchFilter' => 'Kaltura_Client_Type_TriggerCampaignSearchFilter',
 		'KalturaTvmDeviceRule' => 'Kaltura_Client_Type_TvmDeviceRule',
 		'KalturaTvmGeoRule' => 'Kaltura_Client_Type_TvmGeoRule',

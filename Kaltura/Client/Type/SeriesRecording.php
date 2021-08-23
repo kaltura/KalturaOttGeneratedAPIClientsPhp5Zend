@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -68,6 +68,8 @@ class Kaltura_Client_Type_SeriesRecording extends Kaltura_Client_ObjectBase
 			else
 				$this->excludedSeasons = Kaltura_Client_ParseUtils::unmarshalArray($xml->excludedSeasons, "KalturaIntegerValue");
 		}
+		if(count($xml->seriesRecordingOption) && !empty($xml->seriesRecordingOption))
+			$this->seriesRecordingOption = Kaltura_Client_ParseUtils::unmarshalObject($xml->seriesRecordingOption, "KalturaSeriesRecordingOption");
 	}
 	/**
 	 * Kaltura unique ID representing the series recording identifier
@@ -135,6 +137,13 @@ class Kaltura_Client_Type_SeriesRecording extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $excludedSeasons;
+
+	/**
+	 * Series Recording Option
+	 *
+	 * @var Kaltura_Client_Type_SeriesRecordingOption
+	 */
+	public $seriesRecordingOption;
 
 
 }
