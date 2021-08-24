@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -44,20 +44,5 @@ class Kaltura_Client_Enum_RuleActionType extends Kaltura_Client_EnumBase
 	const FILTER = "FILTER";
 	const ASSET_LIFE_CYCLE_TRANSITION = "ASSET_LIFE_CYCLE_TRANSITION";
 	const APPLY_FREE_PLAYBACK = "APPLY_FREE_PLAYBACK";
-	const FILTERASSETBYKSQL = "FilterAssetByKsql";
-	const FILTERFILEBYQUALITYINDISCOVERY = "FilterFileByQualityInDiscovery";
-	const FILTERFILEBYQUALITYINPLAYBACK = "FilterFileByQualityInPlayback";
-	const FILTERFILEBYFILETYPEFORASSETTYPEINDISCOVERY = "FilterFileByFileTypeForAssetTypeInDiscovery";
-	const FILTERFILEBYFILETYPEFORASSETTYPEINPLAYBACK = "FilterFileByFileTypeForAssetTypeInPlayback";
-	const FILTERFILEBYFILETYPEINDISCOVERY = "FilterFileByFileTypeInDiscovery";
-	const FILTERFILEBYFILETYPEINPLAYBACK = "FilterFileByFileTypeInPlayback";
-	const FILTERFILEBYAUDIOCODECINDISCOVERY = "FilterFileByAudioCodecInDiscovery";
-	const FILTERFILEBYAUDIOCODECINPLAYBACK = "FilterFileByAudioCodecInPlayback";
-	const FILTERFILEBYVIDEOCODECINDISCOVERY = "FilterFileByVideoCodecInDiscovery";
-	const FILTERFILEBYVIDEOCODECINPLAYBACK = "FilterFileByVideoCodecInPlayback";
-	const FILTERFILEBYSTREAMERTYPEINDISCOVERY = "FilterFileByStreamerTypeInDiscovery";
-	const FILTERFILEBYSTREAMERTYPEINPLAYBACK = "FilterFileByStreamerTypeInPlayback";
-	const FILTERFILEBYLABELINDISCOVERY = "FilterFileByLabelInDiscovery";
-	const FILTERFILEBYLABELINPLAYBACK = "FilterFileByLabelInPlayback";
 }
 

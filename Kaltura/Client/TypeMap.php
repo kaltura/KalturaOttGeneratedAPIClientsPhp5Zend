@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -283,7 +283,6 @@ class Kaltura_Client_TypeMap
 		'KalturaDurationListResponse' => 'Kaltura_Client_Type_DurationListResponse',
 		'KalturaDynamicChannel' => 'Kaltura_Client_Type_DynamicChannel',
 		'KalturaDynamicData' => 'Kaltura_Client_Type_DynamicData',
-		'KalturaDynamicKeysCondition' => 'Kaltura_Client_Type_DynamicKeysCondition',
 		'KalturaDynamicList' => 'Kaltura_Client_Type_DynamicList',
 		'KalturaDynamicListFilter' => 'Kaltura_Client_Type_DynamicListFilter',
 		'KalturaDynamicListIdInFilter' => 'Kaltura_Client_Type_DynamicListIdInFilter',
@@ -337,28 +336,6 @@ class Kaltura_Client_TypeMap
 		'KalturaFavoriteListResponse' => 'Kaltura_Client_Type_FavoriteListResponse',
 		'KalturaFeed' => 'Kaltura_Client_Type_Feed',
 		'KalturaFilter' => 'Kaltura_Client_Type_Filter',
-		'KalturaFilterAssetByKsql' => 'Kaltura_Client_Type_FilterAssetByKsql',
-		'KalturaFilterFileByAudioCodec' => 'Kaltura_Client_Type_FilterFileByAudioCodec',
-		'KalturaFilterFileByAudioCodecInDiscovery' => 'Kaltura_Client_Type_FilterFileByAudioCodecInDiscovery',
-		'KalturaFilterFileByAudioCodecInPlayback' => 'Kaltura_Client_Type_FilterFileByAudioCodecInPlayback',
-		'KalturaFilterFileByFileType' => 'Kaltura_Client_Type_FilterFileByFileType',
-		'KalturaFilterFileByFileTypeForAssetType' => 'Kaltura_Client_Type_FilterFileByFileTypeForAssetType',
-		'KalturaFilterFileByFileTypeForAssetTypeInDiscovery' => 'Kaltura_Client_Type_FilterFileByFileTypeForAssetTypeInDiscovery',
-		'KalturaFilterFileByFileTypeForAssetTypeInPlayback' => 'Kaltura_Client_Type_FilterFileByFileTypeForAssetTypeInPlayback',
-		'KalturaFilterFileByFileTypeInDiscovery' => 'Kaltura_Client_Type_FilterFileByFileTypeInDiscovery',
-		'KalturaFilterFileByFileTypeInPlayback' => 'Kaltura_Client_Type_FilterFileByFileTypeInPlayback',
-		'KalturaFilterFileByLabel' => 'Kaltura_Client_Type_FilterFileByLabel',
-		'KalturaFilterFileByLabelInDiscovery' => 'Kaltura_Client_Type_FilterFileByLabelInDiscovery',
-		'KalturaFilterFileByLabelInPlayback' => 'Kaltura_Client_Type_FilterFileByLabelInPlayback',
-		'KalturaFilterFileByQuality' => 'Kaltura_Client_Type_FilterFileByQuality',
-		'KalturaFilterFileByQualityInDiscovery' => 'Kaltura_Client_Type_FilterFileByQualityInDiscovery',
-		'KalturaFilterFileByQualityInPlayback' => 'Kaltura_Client_Type_FilterFileByQualityInPlayback',
-		'KalturaFilterFileByStreamerType' => 'Kaltura_Client_Type_FilterFileByStreamerType',
-		'KalturaFilterFileByStreamerTypeInDiscovery' => 'Kaltura_Client_Type_FilterFileByStreamerTypeInDiscovery',
-		'KalturaFilterFileByStreamerTypeInPlayback' => 'Kaltura_Client_Type_FilterFileByStreamerTypeInPlayback',
-		'KalturaFilterFileByVideoCodec' => 'Kaltura_Client_Type_FilterFileByVideoCodec',
-		'KalturaFilterFileByVideoCodecInDiscovery' => 'Kaltura_Client_Type_FilterFileByVideoCodecInDiscovery',
-		'KalturaFilterFileByVideoCodecInPlayback' => 'Kaltura_Client_Type_FilterFileByVideoCodecInPlayback',
 		'KalturaFilterPager' => 'Kaltura_Client_Type_FilterPager',
 		'KalturaFollowDataBase' => 'Kaltura_Client_Type_FollowDataBase',
 		'KalturaFollowTvSeries' => 'Kaltura_Client_Type_FollowTvSeries',
@@ -741,11 +718,6 @@ class Kaltura_Client_TypeMap
 		'KalturaUserSegment' => 'Kaltura_Client_Type_UserSegment',
 		'KalturaUserSegmentFilter' => 'Kaltura_Client_Type_UserSegmentFilter',
 		'KalturaUserSegmentListResponse' => 'Kaltura_Client_Type_UserSegmentListResponse',
-		'KalturaUserSessionProfile' => 'Kaltura_Client_Type_UserSessionProfile',
-		'KalturaUserSessionProfileCondition' => 'Kaltura_Client_Type_UserSessionProfileCondition',
-		'KalturaUserSessionProfileExpression' => 'Kaltura_Client_Type_UserSessionProfileExpression',
-		'KalturaUserSessionProfileFilter' => 'Kaltura_Client_Type_UserSessionProfileFilter',
-		'KalturaUserSessionProfileListResponse' => 'Kaltura_Client_Type_UserSessionProfileListResponse',
 		'KalturaUserSocialActionResponse' => 'Kaltura_Client_Type_UserSocialActionResponse',
 		'KalturaUserSubscriptionCondition' => 'Kaltura_Client_Type_UserSubscriptionCondition',
 		'KalturaValue' => 'Kaltura_Client_Type_Value',

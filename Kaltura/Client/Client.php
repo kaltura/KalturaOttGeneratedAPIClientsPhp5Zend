@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -862,12 +862,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	public $userSegment = null;
 
 	/**
-	 * 
-	 * @var Kaltura_Client_UserSessionProfileService
-	 */
-	public $userSessionProfile = null;
-
-	/**
 	 * Kaltura client constructor
 	 *
 	 * @param Kaltura_Client_Configuration $config
@@ -876,8 +870,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:21-08-19');
-		$this->setApiVersion('6.7.0.29292');
+		$this->setClientTag('php5:21-08-24');
+		$this->setApiVersion('6.7.0.29255');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -1017,7 +1011,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->userLoginPin = new Kaltura_Client_UserLoginPinService($this);
 		$this->userRole = new Kaltura_Client_UserRoleService($this);
 		$this->userSegment = new Kaltura_Client_UserSegmentService($this);
-		$this->userSessionProfile = new Kaltura_Client_UserSessionProfileService($this);
 	}
 	
 	/**
