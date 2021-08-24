@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -320,6 +320,9 @@ class Kaltura_Client_TypeMap
 		'KalturaExportTask' => 'Kaltura_Client_Type_ExportTask',
 		'KalturaExportTaskFilter' => 'Kaltura_Client_Type_ExportTaskFilter',
 		'KalturaExportTaskListResponse' => 'Kaltura_Client_Type_ExportTaskListResponse',
+		'KalturaExpressionAnd' => 'Kaltura_Client_Type_ExpressionAnd',
+		'KalturaExpressionNot' => 'Kaltura_Client_Type_ExpressionNot',
+		'KalturaExpressionOr' => 'Kaltura_Client_Type_ExpressionOr',
 		'KalturaExternalChannelProfile' => 'Kaltura_Client_Type_ExternalChannelProfile',
 		'KalturaExternalChannelProfileByIdInFilter' => 'Kaltura_Client_Type_ExternalChannelProfileByIdInFilter',
 		'KalturaExternalChannelProfileFilter' => 'Kaltura_Client_Type_ExternalChannelProfileFilter',
@@ -741,6 +744,7 @@ class Kaltura_Client_TypeMap
 		'KalturaUserSegment' => 'Kaltura_Client_Type_UserSegment',
 		'KalturaUserSegmentFilter' => 'Kaltura_Client_Type_UserSegmentFilter',
 		'KalturaUserSegmentListResponse' => 'Kaltura_Client_Type_UserSegmentListResponse',
+		'KalturaUserSessionCondition' => 'Kaltura_Client_Type_UserSessionCondition',
 		'KalturaUserSessionProfile' => 'Kaltura_Client_Type_UserSessionProfile',
 		'KalturaUserSessionProfileCondition' => 'Kaltura_Client_Type_UserSessionProfileCondition',
 		'KalturaUserSessionProfileExpression' => 'Kaltura_Client_Type_UserSessionProfileExpression',
