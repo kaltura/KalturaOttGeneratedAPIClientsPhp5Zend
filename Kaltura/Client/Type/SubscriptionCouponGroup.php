@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_CommercePartnerConfig extends Kaltura_Client_Type_PartnerConfiguration
+class Kaltura_Client_Type_SubscriptionCouponGroup extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaCommercePartnerConfig';
+		return 'KalturaSubscriptionCouponGroup';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,34 +45,33 @@ class Kaltura_Client_Type_CommercePartnerConfig extends Kaltura_Client_Type_Part
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->bookmarkEventThresholds))
-		{
-			if(empty($xml->bookmarkEventThresholds))
-				$this->bookmarkEventThresholds = array();
-			else
-				$this->bookmarkEventThresholds = Kaltura_Client_ParseUtils::unmarshalArray($xml->bookmarkEventThresholds, "KalturaBookmarkEventThreshold");
-		}
-		if(count($xml->keepSubscriptionAddOns))
-		{
-			if(!empty($xml->keepSubscriptionAddOns) && ((int) $xml->keepSubscriptionAddOns === 1 || strtolower((string)$xml->keepSubscriptionAddOns) === 'true'))
-				$this->keepSubscriptionAddOns = true;
-			else
-				$this->keepSubscriptionAddOns = false;
-		}
+		if(count($xml->id))
+			$this->id = (string)$xml->id;
+		if(count($xml->startDate))
+			$this->startDate = (string)$xml->startDate;
+		if(count($xml->endDate))
+			$this->endDate = (string)$xml->endDate;
 	}
 	/**
-	 * configuration for bookmark event threshold (when to dispatch the event) in seconds.
+	 * Coupon group identifier
 	 *
-	 * @var array of KalturaBookmarkEventThreshold
+	 * @var bigint
 	 */
-	public $bookmarkEventThresholds;
+	public $id = null;
 
 	/**
-	 * configuration for keep add-ons after subscription deletion
+	 * The first date the coupons in this coupons group are valid
 	 *
-	 * @var bool
+	 * @var bigint
 	 */
-	public $keepSubscriptionAddOns = null;
+	public $startDate = null;
+
+	/**
+	 * The last date the coupons in this coupons group are valid
+	 *
+	 * @var bigint
+	 */
+	public $endDate = null;
 
 
 }

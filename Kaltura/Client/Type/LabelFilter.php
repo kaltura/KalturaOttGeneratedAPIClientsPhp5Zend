@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_CommercePartnerConfig extends Kaltura_Client_Type_PartnerConfiguration
+class Kaltura_Client_Type_LabelFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaCommercePartnerConfig';
+		return 'KalturaLabelFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,34 +45,42 @@ class Kaltura_Client_Type_CommercePartnerConfig extends Kaltura_Client_Type_Part
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->bookmarkEventThresholds))
-		{
-			if(empty($xml->bookmarkEventThresholds))
-				$this->bookmarkEventThresholds = array();
-			else
-				$this->bookmarkEventThresholds = Kaltura_Client_ParseUtils::unmarshalArray($xml->bookmarkEventThresholds, "KalturaBookmarkEventThreshold");
-		}
-		if(count($xml->keepSubscriptionAddOns))
-		{
-			if(!empty($xml->keepSubscriptionAddOns) && ((int) $xml->keepSubscriptionAddOns === 1 || strtolower((string)$xml->keepSubscriptionAddOns) === 'true'))
-				$this->keepSubscriptionAddOns = true;
-			else
-				$this->keepSubscriptionAddOns = false;
-		}
+		if(count($xml->idIn))
+			$this->idIn = (string)$xml->idIn;
+		if(count($xml->labelEqual))
+			$this->labelEqual = (string)$xml->labelEqual;
+		if(count($xml->labelStartsWith))
+			$this->labelStartsWith = (string)$xml->labelStartsWith;
+		if(count($xml->entityAttributeEqual))
+			$this->entityAttributeEqual = (string)$xml->entityAttributeEqual;
 	}
 	/**
-	 * configuration for bookmark event threshold (when to dispatch the event) in seconds.
+	 * Comma-separated identifiers of labels
 	 *
-	 * @var array of KalturaBookmarkEventThreshold
+	 * @var string
 	 */
-	public $bookmarkEventThresholds;
+	public $idIn = null;
 
 	/**
-	 * configuration for keep add-ons after subscription deletion
+	 * Filter the label with this value
 	 *
-	 * @var bool
+	 * @var string
 	 */
-	public $keepSubscriptionAddOns = null;
+	public $labelEqual = null;
+
+	/**
+	 * Filter labels which start with this value
+	 *
+	 * @var string
+	 */
+	public $labelStartsWith = null;
+
+	/**
+	 * Type of entity that labels are associated with
+	 *
+	 * @var Kaltura_Client_Enum_EntityAttribute
+	 */
+	public $entityAttributeEqual = null;
 
 
 }

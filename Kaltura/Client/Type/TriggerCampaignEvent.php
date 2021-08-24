@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_CommercePartnerConfig extends Kaltura_Client_Type_PartnerConfiguration
+class Kaltura_Client_Type_TriggerCampaignEvent extends Kaltura_Client_Type_EventObject
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaCommercePartnerConfig';
+		return 'KalturaTriggerCampaignEvent';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,34 +45,46 @@ class Kaltura_Client_Type_CommercePartnerConfig extends Kaltura_Client_Type_Part
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->bookmarkEventThresholds))
-		{
-			if(empty($xml->bookmarkEventThresholds))
-				$this->bookmarkEventThresholds = array();
-			else
-				$this->bookmarkEventThresholds = Kaltura_Client_ParseUtils::unmarshalArray($xml->bookmarkEventThresholds, "KalturaBookmarkEventThreshold");
-		}
-		if(count($xml->keepSubscriptionAddOns))
-		{
-			if(!empty($xml->keepSubscriptionAddOns) && ((int) $xml->keepSubscriptionAddOns === 1 || strtolower((string)$xml->keepSubscriptionAddOns) === 'true'))
-				$this->keepSubscriptionAddOns = true;
-			else
-				$this->keepSubscriptionAddOns = false;
-		}
+		if(count($xml->userId))
+			$this->userId = (string)$xml->userId;
+		if(count($xml->campaignId))
+			$this->campaignId = (string)$xml->campaignId;
+		if(count($xml->udid))
+			$this->udid = (string)$xml->udid;
+		if(count($xml->householdId))
+			$this->householdId = (string)$xml->householdId;
 	}
 	/**
-	 * configuration for bookmark event threshold (when to dispatch the event) in seconds.
+	 * User Id
 	 *
-	 * @var array of KalturaBookmarkEventThreshold
+	 * @var bigint
+	 * @readonly
 	 */
-	public $bookmarkEventThresholds;
+	public $userId = null;
 
 	/**
-	 * configuration for keep add-ons after subscription deletion
+	 * Campaign Id
 	 *
-	 * @var bool
+	 * @var bigint
+	 * @readonly
 	 */
-	public $keepSubscriptionAddOns = null;
+	public $campaignId = null;
+
+	/**
+	 * Udid
+	 *
+	 * @var string
+	 * @readonly
+	 */
+	public $udid = null;
+
+	/**
+	 * Household Id
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $householdId = null;
 
 
 }

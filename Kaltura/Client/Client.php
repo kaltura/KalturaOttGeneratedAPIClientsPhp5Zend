@@ -437,6 +437,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_LabelService
+	 */
+	public $label = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_LanguageService
 	 */
 	public $language = null;
@@ -858,8 +864,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:21-06-30');
-		$this->setApiVersion('6.5.0.29184');
+		$this->setClientTag('php5:21-08-24');
+		$this->setApiVersion('6.6.0.29208');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -928,6 +934,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->IngestProfile = new Kaltura_Client_IngestProfileService($this);
 		$this->iot = new Kaltura_Client_IotService($this);
 		$this->iotProfile = new Kaltura_Client_IotProfileService($this);
+		$this->label = new Kaltura_Client_LabelService($this);
 		$this->language = new Kaltura_Client_LanguageService($this);
 		$this->licensedUrl = new Kaltura_Client_LicensedUrlService($this);
 		$this->mediaConcurrencyRule = new Kaltura_Client_MediaConcurrencyRuleService($this);

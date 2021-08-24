@@ -31,49 +31,8 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_CommercePartnerConfig extends Kaltura_Client_Type_PartnerConfiguration
+class Kaltura_Client_Enum_LabelOrderBy extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaCommercePartnerConfig';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->bookmarkEventThresholds))
-		{
-			if(empty($xml->bookmarkEventThresholds))
-				$this->bookmarkEventThresholds = array();
-			else
-				$this->bookmarkEventThresholds = Kaltura_Client_ParseUtils::unmarshalArray($xml->bookmarkEventThresholds, "KalturaBookmarkEventThreshold");
-		}
-		if(count($xml->keepSubscriptionAddOns))
-		{
-			if(!empty($xml->keepSubscriptionAddOns) && ((int) $xml->keepSubscriptionAddOns === 1 || strtolower((string)$xml->keepSubscriptionAddOns) === 'true'))
-				$this->keepSubscriptionAddOns = true;
-			else
-				$this->keepSubscriptionAddOns = false;
-		}
-	}
-	/**
-	 * configuration for bookmark event threshold (when to dispatch the event) in seconds.
-	 *
-	 * @var array of KalturaBookmarkEventThreshold
-	 */
-	public $bookmarkEventThresholds;
-
-	/**
-	 * configuration for keep add-ons after subscription deletion
-	 *
-	 * @var bool
-	 */
-	public $keepSubscriptionAddOns = null;
-
-
+	const NONE = "NONE";
 }
 
