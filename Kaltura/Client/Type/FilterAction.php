@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_FilterFileByLabelInDiscovery extends Kaltura_Client_Type_FilterFileByLabel
+abstract class Kaltura_Client_Type_FilterAction extends Kaltura_Client_Type_AssetRuleAction
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaFilterFileByLabelInDiscovery';
+		return 'KalturaFilterAction';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)

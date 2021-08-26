@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-abstract class Kaltura_Client_Type_FilterFileByVideoCodec extends Kaltura_Client_Type_AssetRuleAction
+class Kaltura_Client_Type_FilterFileByFileTypeIdInDiscoveryAction extends Kaltura_Client_Type_FilterFileByFileTypeIdAction
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaFilterFileByVideoCodec';
+		return 'KalturaFilterFileByFileTypeIdInDiscoveryAction';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,16 +45,7 @@ abstract class Kaltura_Client_Type_FilterFileByVideoCodec extends Kaltura_Client
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->videoCodecs))
-			$this->videoCodecs = (string)$xml->videoCodecs;
 	}
-	/**
-	 * List of comma separated videoCodecs
-	 *
-	 * @var string
-	 */
-	public $videoCodecs = null;
-
 
 }
 

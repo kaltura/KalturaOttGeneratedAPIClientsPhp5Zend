@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_FilterFileByQualityInPlayback extends Kaltura_Client_Type_FilterFileByQuality
+class Kaltura_Client_Type_FilterFileByQualityInPlaybackAction extends Kaltura_Client_Type_FilterFileByQualityAction
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaFilterFileByQualityInPlayback';
+		return 'KalturaFilterFileByQualityInPlaybackAction';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)

@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-abstract class Kaltura_Client_Type_FilterFileByFileTypeForAssetType extends Kaltura_Client_Type_FilterFileByFileType
+class Kaltura_Client_Type_FilterFileByAssetTypeInDiscoveryAction extends Kaltura_Client_Type_FilterFileByAssetTypeAction
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaFilterFileByFileTypeForAssetType';
+		return 'KalturaFilterFileByAssetTypeInDiscoveryAction';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,16 +45,7 @@ abstract class Kaltura_Client_Type_FilterFileByFileTypeForAssetType extends Kalt
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->assetTypes))
-			$this->assetTypes = (string)$xml->assetTypes;
 	}
-	/**
-	 * List of comma separated assetTypes
-	 *
-	 * @var string
-	 */
-	public $assetTypes = null;
-
 
 }
 

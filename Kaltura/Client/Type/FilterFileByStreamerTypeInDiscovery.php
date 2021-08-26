@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_FilterFileByStreamerTypeInDiscovery extends Kaltura_Client_Type_FilterFileByStreamerType
+class Kaltura_Client_Type_FilterFileByStreamerTypeInDiscovery extends Kaltura_Client_Type_FilterFileByStreamerTypeAction
 {
 	public function getKalturaObjectType()
 	{

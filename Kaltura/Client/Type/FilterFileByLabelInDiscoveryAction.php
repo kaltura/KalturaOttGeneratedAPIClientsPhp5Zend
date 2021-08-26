@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-abstract class Kaltura_Client_Type_FilterFileByLabel extends Kaltura_Client_Type_AssetRuleAction
+class Kaltura_Client_Type_FilterFileByLabelInDiscoveryAction extends Kaltura_Client_Type_FilterFileByLabelAction
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaFilterFileByLabel';
+		return 'KalturaFilterFileByLabelInDiscoveryAction';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,16 +45,7 @@ abstract class Kaltura_Client_Type_FilterFileByLabel extends Kaltura_Client_Type
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->labels))
-			$this->labels = (string)$xml->labels;
 	}
-	/**
-	 * List of comma separated labels
-	 *
-	 * @var string
-	 */
-	public $labels = null;
-
 
 }
 

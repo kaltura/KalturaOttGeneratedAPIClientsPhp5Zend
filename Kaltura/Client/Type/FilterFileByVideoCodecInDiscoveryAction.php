@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_FilterFileByAudioCodecInDiscovery extends Kaltura_Client_Type_FilterFileByAudioCodec
+class Kaltura_Client_Type_FilterFileByVideoCodecInDiscoveryAction extends Kaltura_Client_Type_FilterFileByVideoCodecAction
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaFilterFileByAudioCodecInDiscovery';
+		return 'KalturaFilterFileByVideoCodecInDiscoveryAction';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)

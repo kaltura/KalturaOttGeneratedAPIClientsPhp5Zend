@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_FilterFileByVideoCodecInPlayback extends Kaltura_Client_Type_FilterFileByVideoCodec
+class Kaltura_Client_Type_FilterFileByVideoCodecInPlayback extends Kaltura_Client_Type_FilterFileByVideoCodecAction
 {
 	public function getKalturaObjectType()
 	{

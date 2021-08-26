@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-abstract class Kaltura_Client_Type_FilterFileByAudioCodec extends Kaltura_Client_Type_AssetRuleAction
+abstract class Kaltura_Client_Type_FilterFileByQualityAction extends Kaltura_Client_Type_FilterAction
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaFilterFileByAudioCodec';
+		return 'KalturaFilterFileByQualityAction';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,15 +45,15 @@ abstract class Kaltura_Client_Type_FilterFileByAudioCodec extends Kaltura_Client
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->audioCodecs))
-			$this->audioCodecs = (string)$xml->audioCodecs;
+		if(count($xml->typeQualityIn))
+			$this->typeQualityIn = (string)$xml->typeQualityIn;
 	}
 	/**
-	 * List of comma separated audioCodecs
+	 * List of comma separated qualities
 	 *
 	 * @var string
 	 */
-	public $audioCodecs = null;
+	public $typeQualityIn = null;
 
 
 }

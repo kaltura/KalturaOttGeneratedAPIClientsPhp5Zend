@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_FilterAssetByKsql extends Kaltura_Client_Type_AssetRuleAction
+class Kaltura_Client_Type_FilterFileByLabelInPlaybackAction extends Kaltura_Client_Type_FilterFileByLabelAction
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaFilterAssetByKsql';
+		return 'KalturaFilterFileByLabelInPlaybackAction';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,16 +45,7 @@ class Kaltura_Client_Type_FilterAssetByKsql extends Kaltura_Client_Type_AssetRul
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->ksql))
-			$this->ksql = (string)$xml->ksql;
 	}
-	/**
-	 * ksql to filter assets by
-	 *
-	 * @var string
-	 */
-	public $ksql = null;
-
 
 }
 
