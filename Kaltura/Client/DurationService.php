@@ -27,66 +27,33 @@
 // @ignore
 // ===================================================================================================
 
+
 /**
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PricePlan extends Kaltura_Client_Type_UsageModule
+class Kaltura_Client_DurationService extends Kaltura_Client_ServiceBase
 {
-	public function getKalturaObjectType()
+	function __construct(Kaltura_Client_Client $client = null)
 	{
-		return 'KalturaPricePlan';
+		parent::__construct($client);
 	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
+
+	/**
+	 * @return Kaltura_Client_Type_DurationListResponse
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function listAction()
 	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->isRenewable))
-		{
-			if(!empty($xml->isRenewable) && ((int) $xml->isRenewable === 1 || strtolower((string)$xml->isRenewable) === 'true'))
-				$this->isRenewable = true;
-			else
-				$this->isRenewable = false;
-		}
-		if(count($xml->renewalsNumber))
-			$this->renewalsNumber = (int)$xml->renewalsNumber;
-		if(count($xml->discountId))
-			$this->discountId = (string)$xml->discountId;
-		if(count($xml->priceDetailsId))
-			$this->priceDetailsId = (string)$xml->priceDetailsId;
+		$kparams = array();
+		$this->client->queueServiceActionCall("duration", "list", "KalturaDurationListResponse", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaDurationListResponse");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_DurationListResponse");
+		return $resultObject;
 	}
-	/**
-	 * Denotes whether or not this object can be renewed
-	 *
-	 * @var bool
-	 */
-	public $isRenewable = null;
-
-	/**
-	 * Defines the number of times the module will be renewed (for the life_cycle period)
-	 *
-	 * @var int
-	 */
-	public $renewalsNumber = null;
-
-	/**
-	 * The discount module identifier of the price plan
-	 *
-	 * @var bigint
-	 */
-	public $discountId = null;
-
-	/**
-	 * The ID of the price details associated with this price plan
-	 *
-	 * @var bigint
-	 */
-	public $priceDetailsId = null;
-
-
 }
-

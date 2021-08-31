@@ -49,6 +49,8 @@ class Kaltura_Client_Type_Duration extends Kaltura_Client_ObjectBase
 			$this->unit = (string)$xml->unit;
 		if(count($xml->value))
 			$this->value = (int)$xml->value;
+		if(count($xml->code))
+			$this->code = (string)$xml->code;
 	}
 	/**
 	 * duration unit
@@ -63,6 +65,14 @@ class Kaltura_Client_Type_Duration extends Kaltura_Client_ObjectBase
 	 * @var int
 	 */
 	public $value = null;
+
+	/**
+	 * duration code - the canculat time in minutes except from years and months that have specific code
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $code = null;
 
 
 }

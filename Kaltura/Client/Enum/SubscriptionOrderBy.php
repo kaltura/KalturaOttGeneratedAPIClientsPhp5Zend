@@ -35,5 +35,11 @@ class Kaltura_Client_Enum_SubscriptionOrderBy extends Kaltura_Client_EnumBase
 {
 	const START_DATE_ASC = "START_DATE_ASC";
 	const START_DATE_DESC = "START_DATE_DESC";
+	const CREATE_DATE_ASC = "CREATE_DATE_ASC";
+	const CREATE_DATE_DESC = "CREATE_DATE_DESC";
+	const UPDATE_DATE_ASC = "UPDATE_DATE_ASC";
+	const UPDATE_DATE_DESC = "UPDATE_DATE_DESC";
+	const NAME_ASC = "NAME_ASC";
+	const NAME_DESC = "NAME_DESC";
 }
 
