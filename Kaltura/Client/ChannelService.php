@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -99,7 +99,7 @@ class Kaltura_Client_ChannelService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_ChannelListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function listAction(Kaltura_Client_Type_ChannelsFilter $filter = null, Kaltura_Client_Type_FilterPager $pager = null)
+	function listAction(Kaltura_Client_Type_ChannelsBaseFilter $filter = null, Kaltura_Client_Type_FilterPager $pager = null)
 	{
 		$kparams = array();
 		if ($filter !== null)
