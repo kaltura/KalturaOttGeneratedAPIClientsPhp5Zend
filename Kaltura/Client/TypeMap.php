@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platforms allow them to do with
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -463,6 +463,8 @@ class Kaltura_Client_TypeMap
 		'KalturaPartnerConfigurationListResponse' => 'Kaltura_Client_Type_PartnerConfigurationListResponse',
 		'KalturaPartnerFilter' => 'Kaltura_Client_Type_PartnerFilter',
 		'KalturaPartnerListResponse' => 'Kaltura_Client_Type_PartnerListResponse',
+		'KalturaPartnerPremiumService' => 'Kaltura_Client_Type_PartnerPremiumService',
+		'KalturaPartnerPremiumServices' => 'Kaltura_Client_Type_PartnerPremiumServices',
 		'KalturaPartnerSetup' => 'Kaltura_Client_Type_PartnerSetup',
 		'KalturaPasswordPolicy' => 'Kaltura_Client_Type_PasswordPolicy',
 		'KalturaPasswordPolicyFilter' => 'Kaltura_Client_Type_PasswordPolicyFilter',
@@ -513,6 +515,7 @@ class Kaltura_Client_TypeMap
 		'KalturaPpvPrice' => 'Kaltura_Client_Type_PpvPrice',
 		'KalturaPremiumService' => 'Kaltura_Client_Type_PremiumService',
 		'KalturaPreviewModule' => 'Kaltura_Client_Type_PreviewModule',
+		'KalturaPreviewModuleFilter' => 'Kaltura_Client_Type_PreviewModuleFilter',
 		'KalturaPreviewModuleListResponse' => 'Kaltura_Client_Type_PreviewModuleListResponse',
 		'KalturaPrice' => 'Kaltura_Client_Type_Price',
 		'KalturaPriceDetails' => 'Kaltura_Client_Type_PriceDetails',
