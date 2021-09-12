@@ -103,13 +103,15 @@ class Kaltura_Client_SocialService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_LoginResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function login($partnerId, $token, $type, $udid = null)
+	function login($partnerId, $token, $type, $udid = null, array $extraParams = null)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "partnerId", $partnerId);
 		$this->client->addParam($kparams, "token", $token);
 		$this->client->addParam($kparams, "type", $type);
 		$this->client->addParam($kparams, "udid", $udid);
+		if ($extraParams !== null)
+			$this->client->addParam($kparams, "extraParams", $extraParams->toParams());
 		$this->client->queueServiceActionCall("social", "login", "KalturaLoginResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();

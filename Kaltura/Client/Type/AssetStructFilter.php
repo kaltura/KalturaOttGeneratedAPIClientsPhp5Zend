@@ -56,6 +56,8 @@ class Kaltura_Client_Type_AssetStructFilter extends Kaltura_Client_Type_Filter
 			else
 				$this->isProtectedEqual = false;
 		}
+		if(count($xml->objectVirtualAssetInfoTypeEqual))
+			$this->objectVirtualAssetInfoTypeEqual = (string)$xml->objectVirtualAssetInfoTypeEqual;
 	}
 	/**
 	 * Comma separated identifiers, id = 0 is identified as program AssetStruct
@@ -77,6 +79,13 @@ class Kaltura_Client_Type_AssetStructFilter extends Kaltura_Client_Type_Filter
 	 * @var bool
 	 */
 	public $isProtectedEqual = null;
+
+	/**
+	 * Filter Asset Structs by object virtual asset info type value
+	 *
+	 * @var Kaltura_Client_Enum_ObjectVirtualAssetInfoType
+	 */
+	public $objectVirtualAssetInfoTypeEqual = null;
 
 
 }

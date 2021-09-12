@@ -80,9 +80,11 @@ class Kaltura_Client_PreviewModuleService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_PreviewModuleListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function listAction()
+	function listAction(Kaltura_Client_Type_PreviewModuleFilter $filter = null)
 	{
 		$kparams = array();
+		if ($filter !== null)
+			$this->client->addParam($kparams, "filter", $filter->toParams());
 		$this->client->queueServiceActionCall("previewmodule", "list", "KalturaPreviewModuleListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
@@ -91,6 +93,26 @@ class Kaltura_Client_PreviewModuleService extends Kaltura_Client_ServiceBase
 		$this->client->checkIfError($resultXmlObject->result);
 		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaPreviewModuleListResponse");
 		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_PreviewModuleListResponse");
+		return $resultObject;
+	}
+
+	/**
+	 * @return Kaltura_Client_Type_PreviewModule
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function update($id, Kaltura_Client_Type_PreviewModule $previewModule)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "id", $id);
+		$this->client->addParam($kparams, "previewModule", $previewModule->toParams());
+		$this->client->queueServiceActionCall("previewmodule", "update", "KalturaPreviewModule", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaPreviewModule");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_PreviewModule");
 		return $resultObject;
 	}
 }
