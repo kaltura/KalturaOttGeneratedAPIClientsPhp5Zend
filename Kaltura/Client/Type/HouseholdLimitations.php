@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -72,6 +72,10 @@ class Kaltura_Client_Type_HouseholdLimitations extends Kaltura_Client_ObjectBase
 			else
 				$this->deviceFamiliesLimitations = Kaltura_Client_ParseUtils::unmarshalArray($xml->deviceFamiliesLimitations, "KalturaHouseholdDeviceFamilyLimitations");
 		}
+		if(count($xml->description))
+			$this->description = (string)$xml->description;
+		if(count($xml->associatedDeviceFamiliesIdsIn))
+			$this->associatedDeviceFamiliesIdsIn = (string)$xml->associatedDeviceFamiliesIdsIn;
 	}
 	/**
 	 * Household limitation module identifier
@@ -153,6 +157,20 @@ class Kaltura_Client_Type_HouseholdLimitations extends Kaltura_Client_ObjectBase
 	 * @var array of KalturaHouseholdDeviceFamilyLimitations
 	 */
 	public $deviceFamiliesLimitations;
+
+	/**
+	 * Allowed device change frequency description
+	 *
+	 * @var string
+	 */
+	public $description = null;
+
+	/**
+	 * Associated Device Families ids
+	 *
+	 * @var string
+	 */
+	public $associatedDeviceFamiliesIdsIn = null;
 
 
 }

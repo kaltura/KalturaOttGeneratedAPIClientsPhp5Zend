@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -55,6 +55,13 @@ class Kaltura_Client_Type_BasePartnerConfiguration extends Kaltura_Client_Type_P
 			$this->refreshExpirationForPinLoginSeconds = (string)$xml->refreshExpirationForPinLoginSeconds;
 		if(count($xml->appTokenMaxExpirySeconds))
 			$this->appTokenMaxExpirySeconds = (int)$xml->appTokenMaxExpirySeconds;
+		if(count($xml->autoRefreshAppToken))
+		{
+			if(!empty($xml->autoRefreshAppToken) && ((int) $xml->autoRefreshAppToken === 1 || strtolower((string)$xml->autoRefreshAppToken) === 'true'))
+				$this->autoRefreshAppToken = true;
+			else
+				$this->autoRefreshAppToken = false;
+		}
 		if(count($xml->uploadTokenExpirySeconds))
 			$this->uploadTokenExpirySeconds = (int)$xml->uploadTokenExpirySeconds;
 		if(count($xml->apptokenUserValidationDisabled))
@@ -99,6 +106,13 @@ class Kaltura_Client_Type_BasePartnerConfiguration extends Kaltura_Client_Type_P
 	 * @var int
 	 */
 	public $appTokenMaxExpirySeconds = null;
+
+	/**
+	 * AutoRefreshAppToken
+	 *
+	 * @var bool
+	 */
+	public $autoRefreshAppToken = null;
 
 	/**
 	 * uploadTokenExpirySeconds
