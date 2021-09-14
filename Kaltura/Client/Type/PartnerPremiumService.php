@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PricePlan extends Kaltura_Client_Type_UsageModule
+class Kaltura_Client_Type_PartnerPremiumService extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaPricePlan';
+		return 'KalturaPartnerPremiumService';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,47 +45,39 @@ class Kaltura_Client_Type_PricePlan extends Kaltura_Client_Type_UsageModule
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->isRenewable))
+		if(count($xml->id))
+			$this->id = (string)$xml->id;
+		if(count($xml->name))
+			$this->name = (string)$xml->name;
+		if(count($xml->isApplied))
 		{
-			if(!empty($xml->isRenewable) && ((int) $xml->isRenewable === 1 || strtolower((string)$xml->isRenewable) === 'true'))
-				$this->isRenewable = true;
+			if(!empty($xml->isApplied) && ((int) $xml->isApplied === 1 || strtolower((string)$xml->isApplied) === 'true'))
+				$this->isApplied = true;
 			else
-				$this->isRenewable = false;
+				$this->isApplied = false;
 		}
-		if(count($xml->renewalsNumber))
-			$this->renewalsNumber = (int)$xml->renewalsNumber;
-		if(count($xml->discountId))
-			$this->discountId = (string)$xml->discountId;
-		if(count($xml->priceDetailsId))
-			$this->priceDetailsId = (string)$xml->priceDetailsId;
 	}
 	/**
-	 * Denotes whether or not this object can be renewed
+	 * Service identifier
+	 *
+	 * @var bigint
+	 */
+	public $id = null;
+
+	/**
+	 * Service name / description
+	 *
+	 * @var string
+	 * @readonly
+	 */
+	public $name = null;
+
+	/**
+	 * Service name / description
 	 *
 	 * @var bool
 	 */
-	public $isRenewable = null;
-
-	/**
-	 * Defines the number of times the module will be renewed (for the life_cycle period)
-	 *
-	 * @var int
-	 */
-	public $renewalsNumber = null;
-
-	/**
-	 * The discount module identifier of the price plan
-	 *
-	 * @var bigint
-	 */
-	public $discountId = null;
-
-	/**
-	 * The ID of the price details associated with this price plan
-	 *
-	 * @var bigint
-	 */
-	public $priceDetailsId = null;
+	public $isApplied = null;
 
 
 }

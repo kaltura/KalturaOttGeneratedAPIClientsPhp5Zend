@@ -52,7 +52,6 @@ class Kaltura_Client_Type_NpvrPremiumService extends Kaltura_Client_Type_Premium
 	 * Quota in minutes
 	 *
 	 * @var bigint
-	 * @readonly
 	 */
 	public $quotaInMinutes = null;
 

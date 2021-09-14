@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupportNullable
 {
 	public function getKalturaObjectType()
 	{
@@ -195,6 +195,10 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 			else
 				$this->isActive = false;
 		}
+		if(count($xml->createDate))
+			$this->createDate = (string)$xml->createDate;
+		if(count($xml->updateDate))
+			$this->updateDate = (string)$xml->updateDate;
 	}
 	/**
 	 * Subscription identifier
@@ -492,6 +496,22 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_ObjectBase
 	 * @var bool
 	 */
 	public $isActive = null;
+
+	/**
+	 * Specifies when was the Subscription created. Date and time represented as epoch.
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $createDate = null;
+
+	/**
+	 * Specifies when was the Subscription last updated. Date and time represented as epoch.
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $updateDate = null;
 
 
 }
