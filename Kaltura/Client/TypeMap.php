@@ -414,6 +414,7 @@ class Kaltura_Client_TypeMap
 		'KalturaLongValue' => 'Kaltura_Client_Type_LongValue',
 		'KalturaMailDispatcher' => 'Kaltura_Client_Type_MailDispatcher',
 		'KalturaManualChannel' => 'Kaltura_Client_Type_ManualChannel',
+		'KalturaManualCollectionAsset' => 'Kaltura_Client_Type_ManualCollectionAsset',
 		'KalturaMediaAsset' => 'Kaltura_Client_Type_MediaAsset',
 		'KalturaMediaConcurrencyRule' => 'Kaltura_Client_Type_MediaConcurrencyRule',
 		'KalturaMediaConcurrencyRuleListResponse' => 'Kaltura_Client_Type_MediaConcurrencyRuleListResponse',

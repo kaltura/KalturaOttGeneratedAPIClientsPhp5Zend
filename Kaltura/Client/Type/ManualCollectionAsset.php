@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_ManualChannel extends Kaltura_Client_Type_Channel
+class Kaltura_Client_Type_ManualCollectionAsset extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaManualChannel';
+		return 'KalturaManualCollectionAsset';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,29 +45,26 @@ class Kaltura_Client_Type_ManualChannel extends Kaltura_Client_Type_Channel
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->mediaIds))
-			$this->mediaIds = (string)$xml->mediaIds;
-		if(count($xml->assets))
-		{
-			if(empty($xml->assets))
-				$this->assets = array();
-			else
-				$this->assets = Kaltura_Client_ParseUtils::unmarshalArray($xml->assets, "KalturaManualCollectionAsset");
-		}
+		if(count($xml->id))
+			$this->id = (string)$xml->id;
+		if(count($xml->type))
+			$this->type = (string)$xml->type;
 	}
 	/**
-	 * A list of comma separated media ids associated with this channel, according to the order of the medias in the channel.
+	 * Internal identifier of the asset
 	 *
 	 * @var string
+	 * @insertonly
 	 */
-	public $mediaIds = null;
+	public $id = null;
 
 	/**
-	 * List of assets identifier
+	 * The type of the asset. Possible values: media, epg
 	 *
-	 * @var array of KalturaManualCollectionAsset
+	 * @var Kaltura_Client_Enum_ManualCollectionAssetType
+	 * @insertonly
 	 */
-	public $assets;
+	public $type = null;
 
 
 }
