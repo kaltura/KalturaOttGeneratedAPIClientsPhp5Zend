@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_FilterFileByAssetTypeInPlaybackAction extends Kaltura_Client_Type_FilterFileByAssetTypeAction
+class Kaltura_Client_Type_DeviceDynamicDataCondition extends Kaltura_Client_Type_Condition
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaFilterFileByAssetTypeInPlaybackAction';
+		return 'KalturaDeviceDynamicDataCondition';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,7 +45,25 @@ class Kaltura_Client_Type_FilterFileByAssetTypeInPlaybackAction extends Kaltura_
 		if(is_null($xml))
 			return;
 		
+		if(count($xml->key))
+			$this->key = (string)$xml->key;
+		if(count($xml->value))
+			$this->value = (string)$xml->value;
 	}
+	/**
+	 * key
+	 *
+	 * @var string
+	 */
+	public $key = null;
+
+	/**
+	 * value
+	 *
+	 * @var string
+	 */
+	public $value = null;
+
 
 }
 

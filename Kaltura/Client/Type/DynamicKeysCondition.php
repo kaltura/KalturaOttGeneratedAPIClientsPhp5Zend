@@ -45,20 +45,24 @@ class Kaltura_Client_Type_DynamicKeysCondition extends Kaltura_Client_Type_Condi
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->keyValues))
-		{
-			if(empty($xml->keyValues))
-				$this->keyValues = array();
-			else
-				$this->keyValues = Kaltura_Client_ParseUtils::unmarshalMap($xml->keyValues, "KalturaStringValueArray");
-		}
+		if(count($xml->key))
+			$this->key = (string)$xml->key;
+		if(count($xml->values))
+			$this->values = (string)$xml->values;
 	}
 	/**
-	 * DynamicKeysCondition
+	 * key
 	 *
-	 * @var map
+	 * @var string
 	 */
-	public $keyValues;
+	public $key = null;
+
+	/**
+	 * comma-separated values
+	 *
+	 * @var string
+	 */
+	public $values = null;
 
 
 }
