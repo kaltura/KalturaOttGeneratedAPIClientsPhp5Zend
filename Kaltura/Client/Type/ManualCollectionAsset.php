@@ -54,7 +54,6 @@ class Kaltura_Client_Type_ManualCollectionAsset extends Kaltura_Client_ObjectBas
 	 * Internal identifier of the asset
 	 *
 	 * @var string
-	 * @insertonly
 	 */
 	public $id = null;
 
@@ -62,7 +61,6 @@ class Kaltura_Client_Type_ManualCollectionAsset extends Kaltura_Client_ObjectBas
 	 * The type of the asset. Possible values: media, epg
 	 *
 	 * @var Kaltura_Client_Enum_ManualCollectionAssetType
-	 * @insertonly
 	 */
 	public $type = null;
 
