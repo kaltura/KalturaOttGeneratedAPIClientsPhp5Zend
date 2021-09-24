@@ -95,4 +95,24 @@ class Kaltura_Client_DiscountDetailsService extends Kaltura_Client_ServiceBase
 		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_DiscountDetailsListResponse");
 		return $resultObject;
 	}
+
+	/**
+	 * @return Kaltura_Client_Type_DiscountDetails
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function update($id, Kaltura_Client_Type_DiscountDetails $discountDetails)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "id", $id);
+		$this->client->addParam($kparams, "discountDetails", $discountDetails->toParams());
+		$this->client->queueServiceActionCall("discountdetails", "update", "KalturaDiscountDetails", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaDiscountDetails");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_DiscountDetails");
+		return $resultObject;
+	}
 }
