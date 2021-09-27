@@ -76,6 +76,8 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 			$this->defaultRegion = (int)$xml->defaultRegion;
 		if(count($xml->rollingDeviceData) && !empty($xml->rollingDeviceData))
 			$this->rollingDeviceData = Kaltura_Client_ParseUtils::unmarshalObject($xml->rollingDeviceData, "KalturaRollingDeviceRemovalData");
+		if(count($xml->linearWatchHistoryThreshold))
+			$this->linearWatchHistoryThreshold = (int)$xml->linearWatchHistoryThreshold;
 		if(count($xml->finishedPercentThreshold))
 			$this->finishedPercentThreshold = (int)$xml->finishedPercentThreshold;
 		if(count($xml->suspensionProfileInheritanceType))
@@ -178,6 +180,13 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 	 * @var Kaltura_Client_Type_RollingDeviceRemovalData
 	 */
 	public $rollingDeviceData;
+
+	/**
+	 * minimum bookmark position of a linear channel to be included in a watch history
+	 *
+	 * @var int
+	 */
+	public $linearWatchHistoryThreshold = null;
 
 	/**
 	 * Finished PercentThreshold

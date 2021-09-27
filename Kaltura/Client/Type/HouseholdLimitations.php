@@ -72,6 +72,10 @@ class Kaltura_Client_Type_HouseholdLimitations extends Kaltura_Client_ObjectBase
 			else
 				$this->deviceFamiliesLimitations = Kaltura_Client_ParseUtils::unmarshalArray($xml->deviceFamiliesLimitations, "KalturaHouseholdDeviceFamilyLimitations");
 		}
+		if(count($xml->description))
+			$this->description = (string)$xml->description;
+		if(count($xml->associatedDeviceFamiliesIdsIn))
+			$this->associatedDeviceFamiliesIdsIn = (string)$xml->associatedDeviceFamiliesIdsIn;
 	}
 	/**
 	 * Household limitation module identifier
@@ -153,6 +157,20 @@ class Kaltura_Client_Type_HouseholdLimitations extends Kaltura_Client_ObjectBase
 	 * @var array of KalturaHouseholdDeviceFamilyLimitations
 	 */
 	public $deviceFamiliesLimitations;
+
+	/**
+	 * Allowed device change frequency description
+	 *
+	 * @var string
+	 */
+	public $description = null;
+
+	/**
+	 * Associated Device Families ids
+	 *
+	 * @var string
+	 */
+	public $associatedDeviceFamiliesIdsIn = null;
 
 
 }

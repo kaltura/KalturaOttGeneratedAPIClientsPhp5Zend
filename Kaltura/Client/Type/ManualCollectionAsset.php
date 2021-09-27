@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PricePlan extends Kaltura_Client_Type_UsageModule
+class Kaltura_Client_Type_ManualCollectionAsset extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaPricePlan';
+		return 'KalturaManualCollectionAsset';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,47 +45,26 @@ class Kaltura_Client_Type_PricePlan extends Kaltura_Client_Type_UsageModule
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->isRenewable))
-		{
-			if(!empty($xml->isRenewable) && ((int) $xml->isRenewable === 1 || strtolower((string)$xml->isRenewable) === 'true'))
-				$this->isRenewable = true;
-			else
-				$this->isRenewable = false;
-		}
-		if(count($xml->renewalsNumber))
-			$this->renewalsNumber = (int)$xml->renewalsNumber;
-		if(count($xml->discountId))
-			$this->discountId = (string)$xml->discountId;
-		if(count($xml->priceDetailsId))
-			$this->priceDetailsId = (string)$xml->priceDetailsId;
+		if(count($xml->id))
+			$this->id = (string)$xml->id;
+		if(count($xml->type))
+			$this->type = (string)$xml->type;
 	}
 	/**
-	 * Denotes whether or not this object can be renewed
+	 * Internal identifier of the asset
 	 *
-	 * @var bool
+	 * @var string
+	 * @insertonly
 	 */
-	public $isRenewable = null;
+	public $id = null;
 
 	/**
-	 * Defines the number of times the module will be renewed (for the life_cycle period)
+	 * The type of the asset. Possible values: media, epg
 	 *
-	 * @var int
+	 * @var Kaltura_Client_Enum_ManualCollectionAssetType
+	 * @insertonly
 	 */
-	public $renewalsNumber = null;
-
-	/**
-	 * The discount module identifier of the price plan
-	 *
-	 * @var bigint
-	 */
-	public $discountId = null;
-
-	/**
-	 * The ID of the price details associated with this price plan
-	 *
-	 * @var bigint
-	 */
-	public $priceDetailsId = null;
+	public $type = null;
 
 
 }

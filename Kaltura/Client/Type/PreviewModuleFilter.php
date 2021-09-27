@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PricePlan extends Kaltura_Client_Type_UsageModule
+class Kaltura_Client_Type_PreviewModuleFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaPricePlan';
+		return 'KalturaPreviewModuleFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,47 +45,15 @@ class Kaltura_Client_Type_PricePlan extends Kaltura_Client_Type_UsageModule
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->isRenewable))
-		{
-			if(!empty($xml->isRenewable) && ((int) $xml->isRenewable === 1 || strtolower((string)$xml->isRenewable) === 'true'))
-				$this->isRenewable = true;
-			else
-				$this->isRenewable = false;
-		}
-		if(count($xml->renewalsNumber))
-			$this->renewalsNumber = (int)$xml->renewalsNumber;
-		if(count($xml->discountId))
-			$this->discountId = (string)$xml->discountId;
-		if(count($xml->priceDetailsId))
-			$this->priceDetailsId = (string)$xml->priceDetailsId;
+		if(count($xml->idIn))
+			$this->idIn = (string)$xml->idIn;
 	}
 	/**
-	 * Denotes whether or not this object can be renewed
+	 * Comma separated discount codes
 	 *
-	 * @var bool
+	 * @var string
 	 */
-	public $isRenewable = null;
-
-	/**
-	 * Defines the number of times the module will be renewed (for the life_cycle period)
-	 *
-	 * @var int
-	 */
-	public $renewalsNumber = null;
-
-	/**
-	 * The discount module identifier of the price plan
-	 *
-	 * @var bigint
-	 */
-	public $discountId = null;
-
-	/**
-	 * The ID of the price details associated with this price plan
-	 *
-	 * @var bigint
-	 */
-	public $priceDetailsId = null;
+	public $idIn = null;
 
 
 }
