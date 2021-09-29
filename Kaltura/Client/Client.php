@@ -461,12 +461,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_LineupService
-	 */
-	public $lineup = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_MediaConcurrencyRuleService
 	 */
 	public $mediaConcurrencyRule = null;
@@ -883,7 +877,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		parent::__construct($config);
 		
 		$this->setClientTag('php5:21-09-29');
-		$this->setApiVersion('6.8.0.29561');
+		$this->setApiVersion('6.8.0.29534');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -956,7 +950,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->label = new Kaltura_Client_LabelService($this);
 		$this->language = new Kaltura_Client_LanguageService($this);
 		$this->licensedUrl = new Kaltura_Client_LicensedUrlService($this);
-		$this->lineup = new Kaltura_Client_LineupService($this);
 		$this->mediaConcurrencyRule = new Kaltura_Client_MediaConcurrencyRuleService($this);
 		$this->mediaFile = new Kaltura_Client_MediaFileService($this);
 		$this->mediaFileType = new Kaltura_Client_MediaFileTypeService($this);
