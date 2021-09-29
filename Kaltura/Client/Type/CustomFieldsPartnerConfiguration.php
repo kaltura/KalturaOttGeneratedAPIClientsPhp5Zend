@@ -31,9 +31,30 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_ManualCollectionAssetType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_CustomFieldsPartnerConfiguration extends Kaltura_Client_Type_PartnerConfiguration
 {
-	const MEDIA = "media";
-	const EPG = "epg";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaCustomFieldsPartnerConfiguration';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->metaSystemNameInsteadOfAliasList))
+			$this->metaSystemNameInsteadOfAliasList = (string)$xml->metaSystemNameInsteadOfAliasList;
+	}
+	/**
+	 * Array of clientTag values
+	 *
+	 * @var string
+	 */
+	public $metaSystemNameInsteadOfAliasList = null;
+
+
 }
 

@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_AssetStructFilter extends Kaltura_Client_Type_BaseAssetStructFilter
+class Kaltura_Client_Type_AssetStructFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{

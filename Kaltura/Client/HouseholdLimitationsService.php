@@ -96,24 +96,6 @@ class Kaltura_Client_HouseholdLimitationsService extends Kaltura_Client_ServiceB
 	}
 
 	/**
-	 * @return bool
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function isUsed($dlmId)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "dlmId", $dlmId);
-		$this->client->queueServiceActionCall("householdlimitations", "isUsed", null, $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
-		return $resultObject;
-	}
-
-	/**
 	 * @return Kaltura_Client_Type_HouseholdLimitationsListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -128,26 +110,6 @@ class Kaltura_Client_HouseholdLimitationsService extends Kaltura_Client_ServiceB
 		$this->client->checkIfError($resultXmlObject->result);
 		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaHouseholdLimitationsListResponse");
 		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_HouseholdLimitationsListResponse");
-		return $resultObject;
-	}
-
-	/**
-	 * @return Kaltura_Client_Type_HouseholdLimitations
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function update($dlmId, Kaltura_Client_Type_HouseholdLimitations $householdLimitation)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "dlmId", $dlmId);
-		$this->client->addParam($kparams, "householdLimitation", $householdLimitation->toParams());
-		$this->client->queueServiceActionCall("householdlimitations", "update", "KalturaHouseholdLimitations", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaHouseholdLimitations");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_HouseholdLimitations");
 		return $resultObject;
 	}
 }

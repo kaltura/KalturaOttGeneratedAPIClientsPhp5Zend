@@ -55,13 +55,6 @@ class Kaltura_Client_Type_BasePartnerConfiguration extends Kaltura_Client_Type_P
 			$this->refreshExpirationForPinLoginSeconds = (string)$xml->refreshExpirationForPinLoginSeconds;
 		if(count($xml->appTokenMaxExpirySeconds))
 			$this->appTokenMaxExpirySeconds = (int)$xml->appTokenMaxExpirySeconds;
-		if(count($xml->autoRefreshAppToken))
-		{
-			if(!empty($xml->autoRefreshAppToken) && ((int) $xml->autoRefreshAppToken === 1 || strtolower((string)$xml->autoRefreshAppToken) === 'true'))
-				$this->autoRefreshAppToken = true;
-			else
-				$this->autoRefreshAppToken = false;
-		}
 		if(count($xml->uploadTokenExpirySeconds))
 			$this->uploadTokenExpirySeconds = (int)$xml->uploadTokenExpirySeconds;
 		if(count($xml->apptokenUserValidationDisabled))
@@ -106,13 +99,6 @@ class Kaltura_Client_Type_BasePartnerConfiguration extends Kaltura_Client_Type_P
 	 * @var int
 	 */
 	public $appTokenMaxExpirySeconds = null;
-
-	/**
-	 * AutoRefreshAppToken
-	 *
-	 * @var bool
-	 */
-	public $autoRefreshAppToken = null;
 
 	/**
 	 * uploadTokenExpirySeconds

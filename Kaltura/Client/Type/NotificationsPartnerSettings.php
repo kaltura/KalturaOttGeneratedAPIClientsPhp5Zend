@@ -118,8 +118,6 @@ class Kaltura_Client_Type_NotificationsPartnerSettings extends Kaltura_Client_Ob
 		}
 		if(count($xml->epgNotification) && !empty($xml->epgNotification))
 			$this->epgNotification = Kaltura_Client_ParseUtils::unmarshalObject($xml->epgNotification, "KalturaEpgNotificationSettings");
-		if(count($xml->lineupNotification) && !empty($xml->lineupNotification))
-			$this->lineupNotification = Kaltura_Client_ParseUtils::unmarshalObject($xml->lineupNotification, "KalturaLineupNotificationSettings");
 	}
 	/**
 	 * Push notification capability is enabled for the account
@@ -253,13 +251,6 @@ class Kaltura_Client_Type_NotificationsPartnerSettings extends Kaltura_Client_Ob
 	 * @var Kaltura_Client_Type_EpgNotificationSettings
 	 */
 	public $epgNotification;
-
-	/**
-	 * Settings for lineup notifications
-	 *
-	 * @var Kaltura_Client_Type_LineupNotificationSettings
-	 */
-	public $lineupNotification;
 
 
 }
