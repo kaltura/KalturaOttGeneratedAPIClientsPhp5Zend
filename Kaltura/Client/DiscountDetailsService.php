@@ -40,43 +40,6 @@ class Kaltura_Client_DiscountDetailsService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_DiscountDetails
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function add(Kaltura_Client_Type_DiscountDetails $discountDetails)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "discountDetails", $discountDetails->toParams());
-		$this->client->queueServiceActionCall("discountdetails", "add", "KalturaDiscountDetails", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaDiscountDetails");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_DiscountDetails");
-		return $resultObject;
-	}
-
-	/**
-	 * @return bool
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function delete($id)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "id", $id);
-		$this->client->queueServiceActionCall("discountdetails", "delete", null, $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
-		return $resultObject;
-	}
-
-	/**
 	 * @return Kaltura_Client_Type_DiscountDetailsListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -93,26 +56,6 @@ class Kaltura_Client_DiscountDetailsService extends Kaltura_Client_ServiceBase
 		$this->client->checkIfError($resultXmlObject->result);
 		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaDiscountDetailsListResponse");
 		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_DiscountDetailsListResponse");
-		return $resultObject;
-	}
-
-	/**
-	 * @return Kaltura_Client_Type_DiscountDetails
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function update($id, Kaltura_Client_Type_DiscountDetails $discountDetails)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "id", $id);
-		$this->client->addParam($kparams, "discountDetails", $discountDetails->toParams());
-		$this->client->queueServiceActionCall("discountdetails", "update", "KalturaDiscountDetails", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaDiscountDetails");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_DiscountDetails");
 		return $resultObject;
 	}
 }

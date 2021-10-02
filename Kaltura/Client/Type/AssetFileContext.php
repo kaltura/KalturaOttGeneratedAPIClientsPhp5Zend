@@ -56,13 +56,6 @@ class Kaltura_Client_Type_AssetFileContext extends Kaltura_Client_ObjectBase
 			else
 				$this->isOfflinePlayBack = false;
 		}
-		if(count($xml->isLivePlayBack))
-		{
-			if(!empty($xml->isLivePlayBack) && ((int) $xml->isLivePlayBack === 1 || strtolower((string)$xml->isLivePlayBack) === 'true'))
-				$this->isLivePlayBack = true;
-			else
-				$this->isLivePlayBack = false;
-		}
 	}
 	/**
 	 * viewLifeCycle
@@ -87,14 +80,6 @@ class Kaltura_Client_Type_AssetFileContext extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $isOfflinePlayBack = null;
-
-	/**
-	 * Is Live PlayBack
-	 *
-	 * @var bool
-	 * @readonly
-	 */
-	public $isLivePlayBack = null;
 
 
 }

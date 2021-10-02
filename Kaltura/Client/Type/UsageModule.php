@@ -78,6 +78,7 @@ class Kaltura_Client_Type_UsageModule extends Kaltura_Client_ObjectBase
 	 * Usage module identifier
 	 *
 	 * @var bigint
+	 * @readonly
 	 */
 	public $id = null;
 
@@ -85,6 +86,7 @@ class Kaltura_Client_Type_UsageModule extends Kaltura_Client_ObjectBase
 	 * Usage module name
 	 *
 	 * @var string
+	 * @readonly
 	 */
 	public $name = null;
 
@@ -92,6 +94,7 @@ class Kaltura_Client_Type_UsageModule extends Kaltura_Client_ObjectBase
 	 * The maximum number of times an item in this usage module can be viewed
 	 *
 	 * @var int
+	 * @readonly
 	 */
 	public $maxViewsNumber = null;
 
@@ -99,6 +102,7 @@ class Kaltura_Client_Type_UsageModule extends Kaltura_Client_ObjectBase
 	 * The amount time an item is available for viewing since a user started watching the item
 	 *
 	 * @var int
+	 * @readonly
 	 */
 	public $viewLifeCycle = null;
 
@@ -106,6 +110,7 @@ class Kaltura_Client_Type_UsageModule extends Kaltura_Client_ObjectBase
 	 * The amount time an item is available for viewing
 	 *
 	 * @var int
+	 * @readonly
 	 */
 	public $fullLifeCycle = null;
 
@@ -121,6 +126,7 @@ class Kaltura_Client_Type_UsageModule extends Kaltura_Client_ObjectBase
 	 * Time period during which the end user can waive his rights to cancel a purchase. When the time period is passed, the purchase can no longer be cancelled
 	 *
 	 * @var int
+	 * @readonly
 	 */
 	public $waiverPeriod = null;
 
@@ -128,6 +134,7 @@ class Kaltura_Client_Type_UsageModule extends Kaltura_Client_ObjectBase
 	 * Indicates whether or not the end user has the right to waive his rights to cancel a purchase
 	 *
 	 * @var bool
+	 * @readonly
 	 */
 	public $isWaiverEnabled = null;
 
@@ -135,6 +142,7 @@ class Kaltura_Client_Type_UsageModule extends Kaltura_Client_ObjectBase
 	 * Indicates that usage is targeted for offline playback
 	 *
 	 * @var bool
+	 * @readonly
 	 */
 	public $isOfflinePlayback = null;
 

@@ -63,6 +63,7 @@ class Kaltura_Client_Type_PricePlan extends Kaltura_Client_Type_UsageModule
 	 * Denotes whether or not this object can be renewed
 	 *
 	 * @var bool
+	 * @readonly
 	 */
 	public $isRenewable = null;
 
@@ -70,6 +71,7 @@ class Kaltura_Client_Type_PricePlan extends Kaltura_Client_Type_UsageModule
 	 * Defines the number of times the module will be renewed (for the life_cycle period)
 	 *
 	 * @var int
+	 * @readonly
 	 */
 	public $renewalsNumber = null;
 
@@ -77,6 +79,7 @@ class Kaltura_Client_Type_PricePlan extends Kaltura_Client_Type_UsageModule
 	 * The discount module identifier of the price plan
 	 *
 	 * @var bigint
+	 * @readonly
 	 */
 	public $discountId = null;
 

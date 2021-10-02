@@ -54,6 +54,7 @@ class Kaltura_Client_Type_PremiumService extends Kaltura_Client_ObjectBase
 	 * Service identifier
 	 *
 	 * @var bigint
+	 * @readonly
 	 */
 	public $id = null;
 

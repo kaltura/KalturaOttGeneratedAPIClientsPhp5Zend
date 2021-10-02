@@ -76,19 +76,8 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 			$this->defaultRegion = (int)$xml->defaultRegion;
 		if(count($xml->rollingDeviceData) && !empty($xml->rollingDeviceData))
 			$this->rollingDeviceData = Kaltura_Client_ParseUtils::unmarshalObject($xml->rollingDeviceData, "KalturaRollingDeviceRemovalData");
-		if(count($xml->linearWatchHistoryThreshold))
-			$this->linearWatchHistoryThreshold = (int)$xml->linearWatchHistoryThreshold;
 		if(count($xml->finishedPercentThreshold))
 			$this->finishedPercentThreshold = (int)$xml->finishedPercentThreshold;
-		if(count($xml->suspensionProfileInheritanceType))
-			$this->suspensionProfileInheritanceType = (string)$xml->suspensionProfileInheritanceType;
-		if(count($xml->allowDeviceMobility))
-		{
-			if(!empty($xml->allowDeviceMobility) && ((int) $xml->allowDeviceMobility === 1 || strtolower((string)$xml->allowDeviceMobility) === 'true'))
-				$this->allowDeviceMobility = true;
-			else
-				$this->allowDeviceMobility = false;
-		}
 	}
 	/**
 	 * Partner name
@@ -182,32 +171,11 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 	public $rollingDeviceData;
 
 	/**
-	 * minimum bookmark position of a linear channel to be included in a watch history
-	 *
-	 * @var int
-	 */
-	public $linearWatchHistoryThreshold = null;
-
-	/**
 	 * Finished PercentThreshold
 	 *
 	 * @var int
 	 */
 	public $finishedPercentThreshold = null;
-
-	/**
-	 * Suspension Profile Inheritance
-	 *
-	 * @var Kaltura_Client_Enum_SuspensionProfileInheritanceType
-	 */
-	public $suspensionProfileInheritanceType = null;
-
-	/**
-	 * Allow Device Mobility
-	 *
-	 * @var bool
-	 */
-	public $allowDeviceMobility = null;
 
 
 }
