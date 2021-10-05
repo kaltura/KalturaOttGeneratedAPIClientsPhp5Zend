@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_AssetStructFilter extends Kaltura_Client_Type_BaseAssetStructFilter
+class Kaltura_Client_Type_EpgServicePartnerConfiguration extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaAssetStructFilter';
+		return 'KalturaEpgServicePartnerConfiguration';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,47 +45,24 @@ class Kaltura_Client_Type_AssetStructFilter extends Kaltura_Client_Type_BaseAsse
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
-		if(count($xml->metaIdEqual))
-			$this->metaIdEqual = (string)$xml->metaIdEqual;
-		if(count($xml->isProtectedEqual))
-		{
-			if(!empty($xml->isProtectedEqual) && ((int) $xml->isProtectedEqual === 1 || strtolower((string)$xml->isProtectedEqual) === 'true'))
-				$this->isProtectedEqual = true;
-			else
-				$this->isProtectedEqual = false;
-		}
-		if(count($xml->objectVirtualAssetInfoTypeEqual))
-			$this->objectVirtualAssetInfoTypeEqual = (string)$xml->objectVirtualAssetInfoTypeEqual;
+		if(count($xml->numberOfSlots))
+			$this->numberOfSlots = (int)$xml->numberOfSlots;
+		if(count($xml->firstSlotOffset))
+			$this->firstSlotOffset = (int)$xml->firstSlotOffset;
 	}
 	/**
-	 * Comma separated identifiers, id = 0 is identified as program AssetStruct
+	 * The number of slots (NOS) that are supported (1, 2, 3, 4, 6, 8, 12, 24)
 	 *
-	 * @var string
+	 * @var int
 	 */
-	public $idIn = null;
+	public $numberOfSlots = null;
 
 	/**
-	 * Filter Asset Structs that contain a specific meta id
+	 * The offset of the first slot from 00:00 UTC
 	 *
-	 * @var bigint
+	 * @var int
 	 */
-	public $metaIdEqual = null;
-
-	/**
-	 * Filter Asset Structs by isProtectedEqual value
-	 *
-	 * @var bool
-	 */
-	public $isProtectedEqual = null;
-
-	/**
-	 * Filter Asset Structs by object virtual asset info type value
-	 *
-	 * @var Kaltura_Client_Enum_ObjectVirtualAssetInfoType
-	 */
-	public $objectVirtualAssetInfoTypeEqual = null;
+	public $firstSlotOffset = null;
 
 
 }

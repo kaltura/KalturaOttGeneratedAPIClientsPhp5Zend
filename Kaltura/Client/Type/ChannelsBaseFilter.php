@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_AssetStructFilter extends Kaltura_Client_Type_BaseAssetStructFilter
+abstract class Kaltura_Client_Type_ChannelsBaseFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaAssetStructFilter';
+		return 'KalturaChannelsBaseFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,48 +45,7 @@ class Kaltura_Client_Type_AssetStructFilter extends Kaltura_Client_Type_BaseAsse
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
-		if(count($xml->metaIdEqual))
-			$this->metaIdEqual = (string)$xml->metaIdEqual;
-		if(count($xml->isProtectedEqual))
-		{
-			if(!empty($xml->isProtectedEqual) && ((int) $xml->isProtectedEqual === 1 || strtolower((string)$xml->isProtectedEqual) === 'true'))
-				$this->isProtectedEqual = true;
-			else
-				$this->isProtectedEqual = false;
-		}
-		if(count($xml->objectVirtualAssetInfoTypeEqual))
-			$this->objectVirtualAssetInfoTypeEqual = (string)$xml->objectVirtualAssetInfoTypeEqual;
 	}
-	/**
-	 * Comma separated identifiers, id = 0 is identified as program AssetStruct
-	 *
-	 * @var string
-	 */
-	public $idIn = null;
-
-	/**
-	 * Filter Asset Structs that contain a specific meta id
-	 *
-	 * @var bigint
-	 */
-	public $metaIdEqual = null;
-
-	/**
-	 * Filter Asset Structs by isProtectedEqual value
-	 *
-	 * @var bool
-	 */
-	public $isProtectedEqual = null;
-
-	/**
-	 * Filter Asset Structs by object virtual asset info type value
-	 *
-	 * @var Kaltura_Client_Enum_ObjectVirtualAssetInfoType
-	 */
-	public $objectVirtualAssetInfoTypeEqual = null;
-
 
 }
 
