@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_ManualCollectionAsset extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_CustomFieldsPartnerConfiguration extends Kaltura_Client_Type_PartnerConfiguration
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaManualCollectionAsset';
+		return 'KalturaCustomFieldsPartnerConfiguration';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,24 +45,15 @@ class Kaltura_Client_Type_ManualCollectionAsset extends Kaltura_Client_ObjectBas
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->metaSystemNameInsteadOfAliasList))
+			$this->metaSystemNameInsteadOfAliasList = (string)$xml->metaSystemNameInsteadOfAliasList;
 	}
 	/**
-	 * Internal identifier of the asset
+	 * Array of clientTag values
 	 *
 	 * @var string
 	 */
-	public $id = null;
-
-	/**
-	 * The type of the asset. Possible values: media, epg
-	 *
-	 * @var Kaltura_Client_Enum_ManualCollectionAssetType
-	 */
-	public $type = null;
+	public $metaSystemNameInsteadOfAliasList = null;
 
 
 }

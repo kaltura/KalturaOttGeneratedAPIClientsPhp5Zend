@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_ManualCollectionAsset extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_EpgServicePartnerConfiguration extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaManualCollectionAsset';
+		return 'KalturaEpgServicePartnerConfiguration';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,24 +45,24 @@ class Kaltura_Client_Type_ManualCollectionAsset extends Kaltura_Client_ObjectBas
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->numberOfSlots))
+			$this->numberOfSlots = (int)$xml->numberOfSlots;
+		if(count($xml->firstSlotOffset))
+			$this->firstSlotOffset = (int)$xml->firstSlotOffset;
 	}
 	/**
-	 * Internal identifier of the asset
+	 * The number of slots (NOS) that are supported (1, 2, 3, 4, 6, 8, 12, 24)
 	 *
-	 * @var string
+	 * @var int
 	 */
-	public $id = null;
+	public $numberOfSlots = null;
 
 	/**
-	 * The type of the asset. Possible values: media, epg
+	 * The offset of the first slot from 00:00 UTC
 	 *
-	 * @var Kaltura_Client_Enum_ManualCollectionAssetType
+	 * @var int
 	 */
-	public $type = null;
+	public $firstSlotOffset = null;
 
 
 }

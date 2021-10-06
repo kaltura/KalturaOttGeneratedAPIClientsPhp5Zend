@@ -99,7 +99,7 @@ class Kaltura_Client_ChannelService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_ChannelListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function listAction(Kaltura_Client_Type_ChannelsFilter $filter = null, Kaltura_Client_Type_FilterPager $pager = null)
+	function listAction(Kaltura_Client_Type_ChannelsBaseFilter $filter = null, Kaltura_Client_Type_FilterPager $pager = null)
 	{
 		$kparams = array();
 		if ($filter !== null)
