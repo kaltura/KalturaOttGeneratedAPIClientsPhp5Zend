@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_ManualCollectionAsset extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_ChannelSearchByKsqlFilter extends Kaltura_Client_Type_ChannelsBaseFilter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaManualCollectionAsset';
+		return 'KalturaChannelSearchByKsqlFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,24 +45,24 @@ class Kaltura_Client_Type_ManualCollectionAsset extends Kaltura_Client_ObjectBas
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->kSql))
+			$this->kSql = (string)$xml->kSql;
+		if(count($xml->channelStructEqual))
+			$this->channelStructEqual = (string)$xml->channelStructEqual;
 	}
 	/**
-	 * Internal identifier of the asset
+	 * KSQL expression
 	 *
 	 * @var string
 	 */
-	public $id = null;
+	public $kSql = null;
 
 	/**
-	 * The type of the asset. Possible values: media, epg
+	 * channel struct
 	 *
-	 * @var Kaltura_Client_Enum_ManualCollectionAssetType
+	 * @var Kaltura_Client_Enum_ChannelStruct
 	 */
-	public $type = null;
+	public $channelStructEqual = null;
 
 
 }
