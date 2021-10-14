@@ -412,6 +412,8 @@ class Kaltura_Client_TypeMap
 		'KalturaLicensedUrlMediaRequest' => 'Kaltura_Client_Type_LicensedUrlMediaRequest',
 		'KalturaLicensedUrlRecordingRequest' => 'Kaltura_Client_Type_LicensedUrlRecordingRequest',
 		'KalturaLinearAssetStructFilter' => 'Kaltura_Client_Type_LinearAssetStructFilter',
+		'KalturaLineupChannelAsset' => 'Kaltura_Client_Type_LineupChannelAsset',
+		'KalturaLineupChannelAssetListResponse' => 'Kaltura_Client_Type_LineupChannelAssetListResponse',
 		'KalturaLineupNotificationSettings' => 'Kaltura_Client_Type_LineupNotificationSettings',
 		'KalturaListResponse' => 'Kaltura_Client_Type_ListResponse',
 		'KalturaLiveAsset' => 'Kaltura_Client_Type_LiveAsset',
