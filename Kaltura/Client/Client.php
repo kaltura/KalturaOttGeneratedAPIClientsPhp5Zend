@@ -874,6 +874,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	public $userSegment = null;
 
 	/**
+	 * 
+	 * @var Kaltura_Client_UserSessionProfileService
+	 */
+	public $userSessionProfile = null;
+
+	/**
 	 * Kaltura client constructor
 	 *
 	 * @param Kaltura_Client_Configuration $config
@@ -882,8 +888,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:21-10-10');
-		$this->setApiVersion('6.9.0.29551');
+		$this->setClientTag('php5:21-10-18');
+		$this->setApiVersion('6.9.0.29555');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -1025,6 +1031,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->userLoginPin = new Kaltura_Client_UserLoginPinService($this);
 		$this->userRole = new Kaltura_Client_UserRoleService($this);
 		$this->userSegment = new Kaltura_Client_UserSegmentService($this);
+		$this->userSessionProfile = new Kaltura_Client_UserSessionProfileService($this);
 	}
 	
 	/**

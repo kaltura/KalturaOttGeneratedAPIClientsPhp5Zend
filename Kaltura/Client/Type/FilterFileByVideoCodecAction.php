@@ -31,27 +31,30 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_RuleConditionType extends Kaltura_Client_EnumBase
+abstract class Kaltura_Client_Type_FilterFileByVideoCodecAction extends Kaltura_Client_Type_FilterAction
 {
-	const ASSET = "ASSET";
-	const COUNTRY = "COUNTRY";
-	const CONCURRENCY = "CONCURRENCY";
-	const IP_RANGE = "IP_RANGE";
-	const BUSINESS_MODULE = "BUSINESS_MODULE";
-	const SEGMENTS = "SEGMENTS";
-	const DATE = "DATE";
-	const OR = "OR";
-	const HEADER = "HEADER";
-	const USER_SUBSCRIPTION = "USER_SUBSCRIPTION";
-	const ASSET_SUBSCRIPTION = "ASSET_SUBSCRIPTION";
-	const USER_ROLE = "USER_ROLE";
-	const DEVICE_BRAND = "DEVICE_BRAND";
-	const DEVICE_FAMILY = "DEVICE_FAMILY";
-	const DEVICE_MANUFACTURER = "DEVICE_MANUFACTURER";
-	const DEVICE_MODEL = "DEVICE_MODEL";
-	const DEVICE_UDID_DYNAMIC_LIST = "DEVICE_UDID_DYNAMIC_LIST";
-	const DYNAMIC_KEYS = "DYNAMIC_KEYS";
-	const USER_SESSION_PROFILE = "USER_SESSION_PROFILE";
-	const DEVICE_DYNAMIC_DATA = "DEVICE_DYNAMIC_DATA";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaFilterFileByVideoCodecAction';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->videoCodecIn))
+			$this->videoCodecIn = (string)$xml->videoCodecIn;
+	}
+	/**
+	 * List of comma separated videoCodecs
+	 *
+	 * @var string
+	 */
+	public $videoCodecIn = null;
+
+
 }
 
