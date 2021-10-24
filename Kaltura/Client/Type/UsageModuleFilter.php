@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PpvFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_UsageModuleFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaPpvFilter';
+		return 'KalturaUsageModuleFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,38 +45,15 @@ class Kaltura_Client_Type_PpvFilter extends Kaltura_Client_Type_Filter
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
-		if(count($xml->couponGroupIdEqual))
-			$this->couponGroupIdEqual = (int)$xml->couponGroupIdEqual;
-		if(count($xml->alsoInactive))
-		{
-			if(!empty($xml->alsoInactive) && ((int) $xml->alsoInactive === 1 || strtolower((string)$xml->alsoInactive) === 'true'))
-				$this->alsoInactive = true;
-			else
-				$this->alsoInactive = false;
-		}
+		if(count($xml->idEqual))
+			$this->idEqual = (int)$xml->idEqual;
 	}
 	/**
-	 * Comma separated identifiers
-	 *
-	 * @var string
-	 */
-	public $idIn = null;
-
-	/**
-	 * couponGroupIdEqual
+	 * Comma separated discount codes
 	 *
 	 * @var int
 	 */
-	public $couponGroupIdEqual = null;
-
-	/**
-	 * return also inactive
-	 *
-	 * @var bool
-	 */
-	public $alsoInactive = null;
+	public $idEqual = null;
 
 
 }

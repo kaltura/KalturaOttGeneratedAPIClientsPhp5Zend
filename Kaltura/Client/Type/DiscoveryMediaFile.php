@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PpvFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_DiscoveryMediaFile extends Kaltura_Client_Type_MediaFile
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaPpvFilter';
+		return 'KalturaDiscoveryMediaFile';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,38 +45,20 @@ class Kaltura_Client_Type_PpvFilter extends Kaltura_Client_Type_Filter
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
-		if(count($xml->couponGroupIdEqual))
-			$this->couponGroupIdEqual = (int)$xml->couponGroupIdEqual;
-		if(count($xml->alsoInactive))
+		if(count($xml->isPlaybackable))
 		{
-			if(!empty($xml->alsoInactive) && ((int) $xml->alsoInactive === 1 || strtolower((string)$xml->alsoInactive) === 'true'))
-				$this->alsoInactive = true;
+			if(!empty($xml->isPlaybackable) && ((int) $xml->isPlaybackable === 1 || strtolower((string)$xml->isPlaybackable) === 'true'))
+				$this->isPlaybackable = true;
 			else
-				$this->alsoInactive = false;
+				$this->isPlaybackable = false;
 		}
 	}
 	/**
-	 * Comma separated identifiers
-	 *
-	 * @var string
-	 */
-	public $idIn = null;
-
-	/**
-	 * couponGroupIdEqual
-	 *
-	 * @var int
-	 */
-	public $couponGroupIdEqual = null;
-
-	/**
-	 * return also inactive
+	 * show, if file could be played
 	 *
 	 * @var bool
 	 */
-	public $alsoInactive = null;
+	public $isPlaybackable = null;
 
 
 }

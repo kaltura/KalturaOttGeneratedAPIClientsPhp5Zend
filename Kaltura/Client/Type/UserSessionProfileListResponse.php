@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PpvFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_UserSessionProfileListResponse extends Kaltura_Client_Type_ListResponse
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaPpvFilter';
+		return 'KalturaUserSessionProfileListResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,38 +45,20 @@ class Kaltura_Client_Type_PpvFilter extends Kaltura_Client_Type_Filter
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
-		if(count($xml->couponGroupIdEqual))
-			$this->couponGroupIdEqual = (int)$xml->couponGroupIdEqual;
-		if(count($xml->alsoInactive))
+		if(count($xml->objects))
 		{
-			if(!empty($xml->alsoInactive) && ((int) $xml->alsoInactive === 1 || strtolower((string)$xml->alsoInactive) === 'true'))
-				$this->alsoInactive = true;
+			if(empty($xml->objects))
+				$this->objects = array();
 			else
-				$this->alsoInactive = false;
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaUserSessionProfile");
 		}
 	}
 	/**
-	 * Comma separated identifiers
+	 * A list of KalturaUserSessionProfile
 	 *
-	 * @var string
+	 * @var array of KalturaUserSessionProfile
 	 */
-	public $idIn = null;
-
-	/**
-	 * couponGroupIdEqual
-	 *
-	 * @var int
-	 */
-	public $couponGroupIdEqual = null;
-
-	/**
-	 * return also inactive
-	 *
-	 * @var bool
-	 */
-	public $alsoInactive = null;
+	public $objects;
 
 
 }

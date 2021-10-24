@@ -32,7 +32,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_UsageModuleService extends Kaltura_Client_ServiceBase
+class Kaltura_Client_UserSessionProfileService extends Kaltura_Client_ServiceBase
 {
 	function __construct(Kaltura_Client_Client $client = null)
 	{
@@ -40,79 +40,79 @@ class Kaltura_Client_UsageModuleService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_UsageModule
+	 * @return Kaltura_Client_Type_UserSessionProfile
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function add(Kaltura_Client_Type_UsageModule $usageModule)
+	function add(Kaltura_Client_Type_UserSessionProfile $userSessionProfile)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "usageModule", $usageModule->toParams());
-		$this->client->queueServiceActionCall("usagemodule", "add", "KalturaUsageModule", $kparams);
+		$this->client->addParam($kparams, "userSessionProfile", $userSessionProfile->toParams());
+		$this->client->queueServiceActionCall("usersessionprofile", "add", "KalturaUserSessionProfile", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaUsageModule");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_UsageModule");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaUserSessionProfile");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_UserSessionProfile");
 		return $resultObject;
 	}
 
 	/**
-	 * @return bool
+	 * @return 
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
 	function delete($id)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "id", $id);
-		$this->client->queueServiceActionCall("usagemodule", "delete", null, $kparams);
+		$this->client->queueServiceActionCall("usersessionprofile", "delete", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
-		return $resultObject;
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_UsageModuleListResponse
+	 * @return Kaltura_Client_Type_UserSessionProfileListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function listAction(Kaltura_Client_Type_UsageModuleFilter $filter = null)
+	function listAction(Kaltura_Client_Type_UserSessionProfileFilter $filter = null, Kaltura_Client_Type_FilterPager $pager = null)
 	{
 		$kparams = array();
 		if ($filter !== null)
 			$this->client->addParam($kparams, "filter", $filter->toParams());
-		$this->client->queueServiceActionCall("usagemodule", "list", "KalturaUsageModuleListResponse", $kparams);
+		if ($pager !== null)
+			$this->client->addParam($kparams, "pager", $pager->toParams());
+		$this->client->queueServiceActionCall("usersessionprofile", "list", "KalturaUserSessionProfileListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaUsageModuleListResponse");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_UsageModuleListResponse");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaUserSessionProfileListResponse");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_UserSessionProfileListResponse");
 		return $resultObject;
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_UsageModule
+	 * @return Kaltura_Client_Type_UserSessionProfile
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function update($id, Kaltura_Client_Type_UsageModule $usageModule)
+	function update($id, Kaltura_Client_Type_UserSessionProfile $userSessionProfile)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "id", $id);
-		$this->client->addParam($kparams, "usageModule", $usageModule->toParams());
-		$this->client->queueServiceActionCall("usagemodule", "update", "KalturaUsageModule", $kparams);
+		$this->client->addParam($kparams, "userSessionProfile", $userSessionProfile->toParams());
+		$this->client->queueServiceActionCall("usersessionprofile", "update", "KalturaUserSessionProfile", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaUsageModule");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_UsageModule");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaUserSessionProfile");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_UserSessionProfile");
 		return $resultObject;
 	}
 }

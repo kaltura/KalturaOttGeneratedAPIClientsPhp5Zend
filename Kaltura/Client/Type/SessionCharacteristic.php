@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PpvFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_SessionCharacteristic extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaPpvFilter';
+		return 'KalturaSessionCharacteristic';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,38 +45,56 @@ class Kaltura_Client_Type_PpvFilter extends Kaltura_Client_Type_Filter
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
-		if(count($xml->couponGroupIdEqual))
-			$this->couponGroupIdEqual = (int)$xml->couponGroupIdEqual;
-		if(count($xml->alsoInactive))
-		{
-			if(!empty($xml->alsoInactive) && ((int) $xml->alsoInactive === 1 || strtolower((string)$xml->alsoInactive) === 'true'))
-				$this->alsoInactive = true;
-			else
-				$this->alsoInactive = false;
-		}
+		if(count($xml->id))
+			$this->id = (string)$xml->id;
+		if(count($xml->regionId))
+			$this->regionId = (int)$xml->regionId;
+		if(count($xml->userSegmentsIds))
+			$this->userSegmentsIds = (string)$xml->userSegmentsIds;
+		if(count($xml->userRolesIds))
+			$this->userRolesIds = (string)$xml->userRolesIds;
+		if(count($xml->userSessionProfilesIds))
+			$this->userSessionProfilesIds = (string)$xml->userSessionProfilesIds;
 	}
 	/**
-	 * Comma separated identifiers
+	 * Session characteristic identifier
 	 *
 	 * @var string
+	 * @readonly
 	 */
-	public $idIn = null;
+	public $id = null;
 
 	/**
-	 * couponGroupIdEqual
+	 * Region identifier
 	 *
 	 * @var int
+	 * @readonly
 	 */
-	public $couponGroupIdEqual = null;
+	public $regionId = null;
 
 	/**
-	 * return also inactive
+	 * Comma-separated list of user segments identifiers
 	 *
-	 * @var bool
+	 * @var string
+	 * @readonly
 	 */
-	public $alsoInactive = null;
+	public $userSegmentsIds = null;
+
+	/**
+	 * Comma-separated list of user roles identifiers
+	 *
+	 * @var string
+	 * @readonly
+	 */
+	public $userRolesIds = null;
+
+	/**
+	 * Comma-separated list of user session profiles identifiers
+	 *
+	 * @var string
+	 * @readonly
+	 */
+	public $userSessionProfilesIds = null;
 
 
 }
