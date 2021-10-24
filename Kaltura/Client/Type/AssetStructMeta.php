@@ -80,6 +80,8 @@ class Kaltura_Client_Type_AssetStructMeta extends Kaltura_Client_ObjectBase
 		}
 		if(count($xml->suppressedOrder))
 			$this->suppressedOrder = (int)$xml->suppressedOrder;
+		if(count($xml->aliasName))
+			$this->aliasName = (string)$xml->aliasName;
 	}
 	/**
 	 * Asset Struct id (template_id)
@@ -154,6 +156,13 @@ class Kaltura_Client_Type_AssetStructMeta extends Kaltura_Client_ObjectBase
 	 * @var int
 	 */
 	public $suppressedOrder = null;
+
+	/**
+	 * Case sensitive alias value
+	 *
+	 * @var string
+	 */
+	public $aliasName = null;
 
 
 }

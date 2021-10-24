@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_SeriesRecordingOption extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_DefaultParentalSettingsPartnerConfig extends Kaltura_Client_Type_PartnerConfiguration
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaSeriesRecordingOption';
+		return 'KalturaDefaultParentalSettingsPartnerConfig';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,33 +45,51 @@ class Kaltura_Client_Type_SeriesRecordingOption extends Kaltura_Client_ObjectBas
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->minSeasonNumber))
-			$this->minSeasonNumber = (int)$xml->minSeasonNumber;
-		if(count($xml->minEpisodeNumber))
-			$this->minEpisodeNumber = (int)$xml->minEpisodeNumber;
-		if(count($xml->chronologicalRecordStartTime))
-			$this->chronologicalRecordStartTime = (string)$xml->chronologicalRecordStartTime;
+		if(count($xml->defaultMoviesParentalRuleId))
+			$this->defaultMoviesParentalRuleId = (string)$xml->defaultMoviesParentalRuleId;
+		if(count($xml->defaultTvSeriesParentalRuleId))
+			$this->defaultTvSeriesParentalRuleId = (string)$xml->defaultTvSeriesParentalRuleId;
+		if(count($xml->defaultParentalPin))
+			$this->defaultParentalPin = (int)$xml->defaultParentalPin;
+		if(count($xml->defaultPurchasePin))
+			$this->defaultPurchasePin = (int)$xml->defaultPurchasePin;
+		if(count($xml->defaultPurchaseSettings))
+			$this->defaultPurchaseSettings = (int)$xml->defaultPurchaseSettings;
 	}
 	/**
-	 * min Season Number
+	 * defaultTvSeriesParentalRuleId
+	 *
+	 * @var bigint
+	 */
+	public $defaultMoviesParentalRuleId = null;
+
+	/**
+	 * defaultTvSeriesParentalRuleId
+	 *
+	 * @var bigint
+	 */
+	public $defaultTvSeriesParentalRuleId = null;
+
+	/**
+	 * defaultParentalPin
 	 *
 	 * @var int
 	 */
-	public $minSeasonNumber = null;
+	public $defaultParentalPin = null;
 
 	/**
-	 * min Season Number
+	 * defaultPurchasePin
 	 *
 	 * @var int
 	 */
-	public $minEpisodeNumber = null;
+	public $defaultPurchasePin = null;
 
 	/**
-	 * Record future only from selected value
+	 * defaultPurchaseSettings
 	 *
-	 * @var Kaltura_Client_Enum_ChronologicalRecordStartTime
+	 * @var int
 	 */
-	public $chronologicalRecordStartTime = null;
+	public $defaultPurchaseSettings = null;
 
 
 }

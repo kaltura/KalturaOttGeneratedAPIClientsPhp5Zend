@@ -217,13 +217,15 @@ class Kaltura_Client_OttUserService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_LoginResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function loginWithPin($partnerId, $pin, $udid = null, $secret = null)
+	function loginWithPin($partnerId, $pin, $udid = null, $secret = null, array $extraParams = null)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "partnerId", $partnerId);
 		$this->client->addParam($kparams, "pin", $pin);
 		$this->client->addParam($kparams, "udid", $udid);
 		$this->client->addParam($kparams, "secret", $secret);
+		if ($extraParams !== null)
+			$this->client->addParam($kparams, "extraParams", $extraParams->toParams());
 		$this->client->queueServiceActionCall("ottuser", "loginWithPin", "KalturaLoginResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
