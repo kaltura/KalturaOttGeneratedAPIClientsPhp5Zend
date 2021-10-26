@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_ChannelsFilter extends Kaltura_Client_Type_ChannelsBaseFilter
+class Kaltura_Client_Type_ChannelsFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
