@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -47,6 +47,13 @@ class Kaltura_Client_Type_ManualChannel extends Kaltura_Client_Type_Channel
 		
 		if(count($xml->mediaIds))
 			$this->mediaIds = (string)$xml->mediaIds;
+		if(count($xml->assets))
+		{
+			if(empty($xml->assets))
+				$this->assets = array();
+			else
+				$this->assets = Kaltura_Client_ParseUtils::unmarshalArray($xml->assets, "KalturaManualCollectionAsset");
+		}
 	}
 	/**
 	 * A list of comma separated media ids associated with this channel, according to the order of the medias in the channel.
@@ -54,6 +61,13 @@ class Kaltura_Client_Type_ManualChannel extends Kaltura_Client_Type_Channel
 	 * @var string
 	 */
 	public $mediaIds = null;
+
+	/**
+	 * List of assets identifier
+	 *
+	 * @var array of KalturaManualCollectionAsset
+	 */
+	public $assets;
 
 
 }

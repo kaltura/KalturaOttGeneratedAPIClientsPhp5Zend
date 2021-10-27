@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -76,6 +76,8 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 			$this->defaultRegion = (int)$xml->defaultRegion;
 		if(count($xml->rollingDeviceData) && !empty($xml->rollingDeviceData))
 			$this->rollingDeviceData = Kaltura_Client_ParseUtils::unmarshalObject($xml->rollingDeviceData, "KalturaRollingDeviceRemovalData");
+		if(count($xml->linearWatchHistoryThreshold))
+			$this->linearWatchHistoryThreshold = (int)$xml->linearWatchHistoryThreshold;
 		if(count($xml->finishedPercentThreshold))
 			$this->finishedPercentThreshold = (int)$xml->finishedPercentThreshold;
 		if(count($xml->suspensionProfileInheritanceType))
@@ -178,6 +180,13 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 	 * @var Kaltura_Client_Type_RollingDeviceRemovalData
 	 */
 	public $rollingDeviceData;
+
+	/**
+	 * minimum bookmark position of a linear channel to be included in a watch history
+	 *
+	 * @var int
+	 */
+	public $linearWatchHistoryThreshold = null;
 
 	/**
 	 * Finished PercentThreshold

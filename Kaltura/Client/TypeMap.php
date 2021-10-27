@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2021  Kaltura Inc.
@@ -107,6 +107,7 @@ class Kaltura_Client_TypeMap
 		'KalturaAssetUserRuleFilterAction' => 'Kaltura_Client_Type_AssetUserRuleFilterAction',
 		'KalturaAssetUserRuleListResponse' => 'Kaltura_Client_Type_AssetUserRuleListResponse',
 		'KalturaAssetsCount' => 'Kaltura_Client_Type_AssetsCount',
+		'KalturaBaseAssetStructFilter' => 'Kaltura_Client_Type_BaseAssetStructFilter',
 		'KalturaBaseChannel' => 'Kaltura_Client_Type_BaseChannel',
 		'KalturaBaseOTTUser' => 'Kaltura_Client_Type_BaseOTTUser',
 		'KalturaBasePartnerConfiguration' => 'Kaltura_Client_Type_BasePartnerConfiguration',
@@ -409,6 +410,7 @@ class Kaltura_Client_TypeMap
 		'KalturaLicensedUrlEpgRequest' => 'Kaltura_Client_Type_LicensedUrlEpgRequest',
 		'KalturaLicensedUrlMediaRequest' => 'Kaltura_Client_Type_LicensedUrlMediaRequest',
 		'KalturaLicensedUrlRecordingRequest' => 'Kaltura_Client_Type_LicensedUrlRecordingRequest',
+		'KalturaLinearAssetStructFilter' => 'Kaltura_Client_Type_LinearAssetStructFilter',
 		'KalturaListResponse' => 'Kaltura_Client_Type_ListResponse',
 		'KalturaLiveAsset' => 'Kaltura_Client_Type_LiveAsset',
 		'KalturaLoginResponse' => 'Kaltura_Client_Type_LoginResponse',
@@ -416,6 +418,7 @@ class Kaltura_Client_TypeMap
 		'KalturaLongValue' => 'Kaltura_Client_Type_LongValue',
 		'KalturaMailDispatcher' => 'Kaltura_Client_Type_MailDispatcher',
 		'KalturaManualChannel' => 'Kaltura_Client_Type_ManualChannel',
+		'KalturaManualCollectionAsset' => 'Kaltura_Client_Type_ManualCollectionAsset',
 		'KalturaMediaAsset' => 'Kaltura_Client_Type_MediaAsset',
 		'KalturaMediaConcurrencyRule' => 'Kaltura_Client_Type_MediaConcurrencyRule',
 		'KalturaMediaConcurrencyRuleListResponse' => 'Kaltura_Client_Type_MediaConcurrencyRuleListResponse',
