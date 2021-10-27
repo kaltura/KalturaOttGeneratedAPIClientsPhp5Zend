@@ -50,11 +50,11 @@ class Kaltura_Client_Type_DefaultParentalSettingsPartnerConfig extends Kaltura_C
 		if(count($xml->defaultTvSeriesParentalRuleId))
 			$this->defaultTvSeriesParentalRuleId = (string)$xml->defaultTvSeriesParentalRuleId;
 		if(count($xml->defaultParentalPin))
-			$this->defaultParentalPin = (int)$xml->defaultParentalPin;
+			$this->defaultParentalPin = (string)$xml->defaultParentalPin;
 		if(count($xml->defaultPurchasePin))
-			$this->defaultPurchasePin = (int)$xml->defaultPurchasePin;
+			$this->defaultPurchasePin = (string)$xml->defaultPurchasePin;
 		if(count($xml->defaultPurchaseSettings))
-			$this->defaultPurchaseSettings = (int)$xml->defaultPurchaseSettings;
+			$this->defaultPurchaseSettings = (string)$xml->defaultPurchaseSettings;
 	}
 	/**
 	 * defaultTvSeriesParentalRuleId
@@ -73,21 +73,21 @@ class Kaltura_Client_Type_DefaultParentalSettingsPartnerConfig extends Kaltura_C
 	/**
 	 * defaultParentalPin
 	 *
-	 * @var int
+	 * @var string
 	 */
 	public $defaultParentalPin = null;
 
 	/**
 	 * defaultPurchasePin
 	 *
-	 * @var int
+	 * @var string
 	 */
 	public $defaultPurchasePin = null;
 
 	/**
 	 * defaultPurchaseSettings
 	 *
-	 * @var int
+	 * @var bigint
 	 */
 	public $defaultPurchaseSettings = null;
 
