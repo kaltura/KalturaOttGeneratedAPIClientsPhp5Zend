@@ -31,21 +31,71 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_PartnerConfigurationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_SessionCharacteristic extends Kaltura_Client_ObjectBase
 {
-	const DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway";
-	const ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection";
-	const OSSADAPTER = "OSSAdapter";
-	const CONCURRENCY = "Concurrency";
-	const GENERAL = "General";
-	const OBJECTVIRTUALASSET = "ObjectVirtualAsset";
-	const COMMERCE = "Commerce";
-	const PLAYBACK = "Playback";
-	const PAYMENT = "Payment";
-	const CATALOG = "Catalog";
-	const SECURITY = "Security";
-	const OPC = "Opc";
-	const BASE = "Base";
-	const CUSTOMFIELDS = "CustomFields";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaSessionCharacteristic';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->id))
+			$this->id = (string)$xml->id;
+		if(count($xml->regionId))
+			$this->regionId = (int)$xml->regionId;
+		if(count($xml->userSegmentsIds))
+			$this->userSegmentsIds = (string)$xml->userSegmentsIds;
+		if(count($xml->userRolesIds))
+			$this->userRolesIds = (string)$xml->userRolesIds;
+		if(count($xml->userSessionProfilesIds))
+			$this->userSessionProfilesIds = (string)$xml->userSessionProfilesIds;
+	}
+	/**
+	 * Session characteristic identifier
+	 *
+	 * @var string
+	 * @readonly
+	 */
+	public $id = null;
+
+	/**
+	 * Region identifier
+	 *
+	 * @var int
+	 * @readonly
+	 */
+	public $regionId = null;
+
+	/**
+	 * Comma-separated list of user segments identifiers
+	 *
+	 * @var string
+	 * @readonly
+	 */
+	public $userSegmentsIds = null;
+
+	/**
+	 * Comma-separated list of user roles identifiers
+	 *
+	 * @var string
+	 * @readonly
+	 */
+	public $userRolesIds = null;
+
+	/**
+	 * Comma-separated list of user session profiles identifiers
+	 *
+	 * @var string
+	 * @readonly
+	 */
+	public $userSessionProfilesIds = null;
+
+
 }
 

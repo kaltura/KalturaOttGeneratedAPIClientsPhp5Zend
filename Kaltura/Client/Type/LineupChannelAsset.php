@@ -31,21 +31,30 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_PartnerConfigurationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_LineupChannelAsset extends Kaltura_Client_Type_LiveAsset
 {
-	const DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway";
-	const ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection";
-	const OSSADAPTER = "OSSAdapter";
-	const CONCURRENCY = "Concurrency";
-	const GENERAL = "General";
-	const OBJECTVIRTUALASSET = "ObjectVirtualAsset";
-	const COMMERCE = "Commerce";
-	const PLAYBACK = "Playback";
-	const PAYMENT = "Payment";
-	const CATALOG = "Catalog";
-	const SECURITY = "Security";
-	const OPC = "Opc";
-	const BASE = "Base";
-	const CUSTOMFIELDS = "CustomFields";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaLineupChannelAsset';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->lcn))
+			$this->lcn = (int)$xml->lcn;
+	}
+	/**
+	 * Lineup channel number (LCN) - A logical linear channel number. This number is unique in the region context.
+	 *
+	 * @var int
+	 */
+	public $lcn = null;
+
+
 }
 
