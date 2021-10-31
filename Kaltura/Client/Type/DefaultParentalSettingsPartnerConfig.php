@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_UsageModuleFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_DefaultParentalSettingsPartnerConfig extends Kaltura_Client_Type_PartnerConfiguration
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaUsageModuleFilter';
+		return 'KalturaDefaultParentalSettingsPartnerConfig';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,15 +45,51 @@ class Kaltura_Client_Type_UsageModuleFilter extends Kaltura_Client_Type_Filter
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->idEqual))
-			$this->idEqual = (int)$xml->idEqual;
+		if(count($xml->defaultMoviesParentalRuleId))
+			$this->defaultMoviesParentalRuleId = (string)$xml->defaultMoviesParentalRuleId;
+		if(count($xml->defaultTvSeriesParentalRuleId))
+			$this->defaultTvSeriesParentalRuleId = (string)$xml->defaultTvSeriesParentalRuleId;
+		if(count($xml->defaultParentalPin))
+			$this->defaultParentalPin = (string)$xml->defaultParentalPin;
+		if(count($xml->defaultPurchasePin))
+			$this->defaultPurchasePin = (string)$xml->defaultPurchasePin;
+		if(count($xml->defaultPurchaseSettings))
+			$this->defaultPurchaseSettings = (string)$xml->defaultPurchaseSettings;
 	}
 	/**
-	 * Comma separated usageModule ids
+	 * defaultTvSeriesParentalRuleId
 	 *
-	 * @var int
+	 * @var bigint
 	 */
-	public $idEqual = null;
+	public $defaultMoviesParentalRuleId = null;
+
+	/**
+	 * defaultTvSeriesParentalRuleId
+	 *
+	 * @var bigint
+	 */
+	public $defaultTvSeriesParentalRuleId = null;
+
+	/**
+	 * defaultParentalPin
+	 *
+	 * @var string
+	 */
+	public $defaultParentalPin = null;
+
+	/**
+	 * defaultPurchasePin
+	 *
+	 * @var string
+	 */
+	public $defaultPurchasePin = null;
+
+	/**
+	 * defaultPurchaseSettings
+	 *
+	 * @var bigint
+	 */
+	public $defaultPurchaseSettings = null;
 
 
 }

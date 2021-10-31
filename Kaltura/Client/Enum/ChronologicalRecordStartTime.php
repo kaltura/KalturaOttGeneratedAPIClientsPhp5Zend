@@ -31,22 +31,10 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_PartnerConfigurationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Enum_ChronologicalRecordStartTime extends Kaltura_Client_EnumBase
 {
-	const DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway";
-	const ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection";
-	const OSSADAPTER = "OSSAdapter";
-	const CONCURRENCY = "Concurrency";
-	const GENERAL = "General";
-	const OBJECTVIRTUALASSET = "ObjectVirtualAsset";
-	const COMMERCE = "Commerce";
-	const PLAYBACK = "Playback";
-	const PAYMENT = "Payment";
-	const CATALOG = "Catalog";
-	const SECURITY = "Security";
-	const OPC = "Opc";
-	const BASE = "Base";
-	const CUSTOMFIELDS = "CustomFields";
-	const DEFAULTPARENTALSETTINGS = "DefaultParentalSettings";
+	const NONE = "NONE";
+	const NOW = "NOW";
+	const EPG_START_TIME = "EPG_START_TIME";
 }
 

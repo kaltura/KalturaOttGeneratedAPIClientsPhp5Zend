@@ -220,7 +220,7 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 	public $updateDate = null;
 
 	/**
-	 * Specifies when was the Subscription created. Date and time represented as epoch.
+	 * Specifies when was the ppv created. Date and time represented as epoch.
 	 *
 	 * @var bigint
 	 * @readonly
