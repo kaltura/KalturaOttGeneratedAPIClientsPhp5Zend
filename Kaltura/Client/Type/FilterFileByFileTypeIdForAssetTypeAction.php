@@ -31,21 +31,30 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_PartnerConfigurationType extends Kaltura_Client_EnumBase
+abstract class Kaltura_Client_Type_FilterFileByFileTypeIdForAssetTypeAction extends Kaltura_Client_Type_FilterFileByFileTypeIdAction
 {
-	const DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway";
-	const ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection";
-	const OSSADAPTER = "OSSAdapter";
-	const CONCURRENCY = "Concurrency";
-	const GENERAL = "General";
-	const OBJECTVIRTUALASSET = "ObjectVirtualAsset";
-	const COMMERCE = "Commerce";
-	const PLAYBACK = "Playback";
-	const PAYMENT = "Payment";
-	const CATALOG = "Catalog";
-	const SECURITY = "Security";
-	const OPC = "Opc";
-	const BASE = "Base";
-	const CUSTOMFIELDS = "CustomFields";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaFilterFileByFileTypeIdForAssetTypeAction';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->assetTypeIn))
+			$this->assetTypeIn = (string)$xml->assetTypeIn;
+	}
+	/**
+	 * List of comma separated assetTypes
+	 *
+	 * @var string
+	 */
+	public $assetTypeIn = null;
+
+
 }
 

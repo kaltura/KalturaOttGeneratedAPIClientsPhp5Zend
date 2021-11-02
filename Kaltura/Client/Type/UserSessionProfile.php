@@ -31,21 +31,49 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_PartnerConfigurationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_UserSessionProfile extends Kaltura_Client_ObjectBase
 {
-	const DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway";
-	const ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection";
-	const OSSADAPTER = "OSSAdapter";
-	const CONCURRENCY = "Concurrency";
-	const GENERAL = "General";
-	const OBJECTVIRTUALASSET = "ObjectVirtualAsset";
-	const COMMERCE = "Commerce";
-	const PLAYBACK = "Playback";
-	const PAYMENT = "Payment";
-	const CATALOG = "Catalog";
-	const SECURITY = "Security";
-	const OPC = "Opc";
-	const BASE = "Base";
-	const CUSTOMFIELDS = "CustomFields";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaUserSessionProfile';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->id))
+			$this->id = (string)$xml->id;
+		if(count($xml->name))
+			$this->name = (string)$xml->name;
+		if(count($xml->expression) && !empty($xml->expression))
+			$this->expression = Kaltura_Client_ParseUtils::unmarshalObject($xml->expression, "KalturaUserSessionProfileExpression");
+	}
+	/**
+	 * The user session profile id.
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $id = null;
+
+	/**
+	 * The user session profile name for presentation.
+	 *
+	 * @var string
+	 */
+	public $name = null;
+
+	/**
+	 * expression
+	 *
+	 * @var Kaltura_Client_Type_UserSessionProfileExpression
+	 */
+	public $expression;
+
+
 }
 

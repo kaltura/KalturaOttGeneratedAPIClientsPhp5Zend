@@ -49,6 +49,8 @@ class Kaltura_Client_Type_SeriesRecordingOption extends Kaltura_Client_ObjectBas
 			$this->minSeasonNumber = (int)$xml->minSeasonNumber;
 		if(count($xml->minEpisodeNumber))
 			$this->minEpisodeNumber = (int)$xml->minEpisodeNumber;
+		if(count($xml->chronologicalRecordStartTime))
+			$this->chronologicalRecordStartTime = (string)$xml->chronologicalRecordStartTime;
 	}
 	/**
 	 * min Season Number
@@ -63,6 +65,13 @@ class Kaltura_Client_Type_SeriesRecordingOption extends Kaltura_Client_ObjectBas
 	 * @var int
 	 */
 	public $minEpisodeNumber = null;
+
+	/**
+	 * Record future only from selected value
+	 *
+	 * @var Kaltura_Client_Enum_ChronologicalRecordStartTime
+	 */
+	public $chronologicalRecordStartTime = null;
 
 
 }
