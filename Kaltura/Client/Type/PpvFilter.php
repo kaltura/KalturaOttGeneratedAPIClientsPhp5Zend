@@ -49,13 +49,6 @@ class Kaltura_Client_Type_PpvFilter extends Kaltura_Client_Type_Filter
 			$this->idIn = (string)$xml->idIn;
 		if(count($xml->couponGroupIdEqual))
 			$this->couponGroupIdEqual = (int)$xml->couponGroupIdEqual;
-		if(count($xml->alsoInactive))
-		{
-			if(!empty($xml->alsoInactive) && ((int) $xml->alsoInactive === 1 || strtolower((string)$xml->alsoInactive) === 'true'))
-				$this->alsoInactive = true;
-			else
-				$this->alsoInactive = false;
-		}
 	}
 	/**
 	 * Comma separated identifiers
@@ -70,13 +63,6 @@ class Kaltura_Client_Type_PpvFilter extends Kaltura_Client_Type_Filter
 	 * @var int
 	 */
 	public $couponGroupIdEqual = null;
-
-	/**
-	 * return also inactive
-	 *
-	 * @var bool
-	 */
-	public $alsoInactive = null;
 
 
 }

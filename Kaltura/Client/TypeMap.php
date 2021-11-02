@@ -744,7 +744,6 @@ class Kaltura_Client_TypeMap
 		'KalturaUploadedFileTokenResource' => 'Kaltura_Client_Type_UploadedFileTokenResource',
 		'KalturaUrlResource' => 'Kaltura_Client_Type_UrlResource',
 		'KalturaUsageModule' => 'Kaltura_Client_Type_UsageModule',
-		'KalturaUsageModuleFilter' => 'Kaltura_Client_Type_UsageModuleFilter',
 		'KalturaUsageModuleListResponse' => 'Kaltura_Client_Type_UsageModuleListResponse',
 		'KalturaUserAssetRule' => 'Kaltura_Client_Type_UserAssetRule',
 		'KalturaUserAssetRuleFilter' => 'Kaltura_Client_Type_UserAssetRuleFilter',

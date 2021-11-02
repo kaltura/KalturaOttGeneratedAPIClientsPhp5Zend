@@ -58,8 +58,6 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 			else
 				$this->fileTypes = Kaltura_Client_ParseUtils::unmarshalArray($xml->fileTypes, "KalturaIntegerValue");
 		}
-		if(count($xml->fileTypesIds))
-			$this->fileTypesIds = (string)$xml->fileTypesIds;
 		if(count($xml->discountModule) && !empty($xml->discountModule))
 			$this->discountModule = Kaltura_Client_ParseUtils::unmarshalObject($xml->discountModule, "KalturaDiscountModule");
 		if(count($xml->couponsGroup) && !empty($xml->couponsGroup))
@@ -89,23 +87,6 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 		}
 		if(count($xml->usageModule) && !empty($xml->usageModule))
 			$this->usageModule = Kaltura_Client_ParseUtils::unmarshalObject($xml->usageModule, "KalturaUsageModule");
-		if(count($xml->externalId))
-			$this->externalId = (string)$xml->externalId;
-		if(count($xml->adsPolicy))
-			$this->adsPolicy = (string)$xml->adsPolicy;
-		if(count($xml->isActive))
-		{
-			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))
-				$this->isActive = true;
-			else
-				$this->isActive = false;
-		}
-		if(count($xml->updateDate))
-			$this->updateDate = (string)$xml->updateDate;
-		if(count($xml->createDate))
-			$this->createDate = (string)$xml->createDate;
-		if(count($xml->virtualAssetId))
-			$this->virtualAssetId = (string)$xml->virtualAssetId;
 	}
 	/**
 	 * PPV identifier
@@ -136,13 +117,6 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 	public $fileTypes;
 
 	/**
-	 * Comma separated file types identifiers that are supported in this subscription
-	 *
-	 * @var string
-	 */
-	public $fileTypesIds = null;
-
-	/**
 	 * The internal discount module for the ppv
 	 *
 	 * @var Kaltura_Client_Type_DiscountModule
@@ -167,7 +141,6 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 	 * Product code for the ppv
 	 *
 	 * @var string
-	 * @readonly
 	 */
 	public $productCode = null;
 
@@ -191,51 +164,6 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 	 * @var Kaltura_Client_Type_UsageModule
 	 */
 	public $usageModule;
-
-	/**
-	 * External ID
-	 *
-	 * @var string
-	 */
-	public $externalId = null;
-
-	/**
-	 * adsPolicy
-	 *
-	 * @var Kaltura_Client_Enum_AdsPolicy
-	 */
-	public $adsPolicy = null;
-
-	/**
-	 * Is active ppv
-	 *
-	 * @var bool
-	 */
-	public $isActive = null;
-
-	/**
-	 * Specifies when was the ppv last updated. Date and time represented as epoch.
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $updateDate = null;
-
-	/**
-	 * Specifies when was the ppv created. Date and time represented as epoch.
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $createDate = null;
-
-	/**
-	 * Virtual asset id
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $virtualAssetId = null;
 
 
 }

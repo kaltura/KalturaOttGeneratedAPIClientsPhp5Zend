@@ -80,11 +80,9 @@ class Kaltura_Client_UsageModuleService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_UsageModuleListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function listAction(Kaltura_Client_Type_UsageModuleFilter $filter = null)
+	function listAction()
 	{
 		$kparams = array();
-		if ($filter !== null)
-			$this->client->addParam($kparams, "filter", $filter->toParams());
 		$this->client->queueServiceActionCall("usagemodule", "list", "KalturaUsageModuleListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
@@ -93,26 +91,6 @@ class Kaltura_Client_UsageModuleService extends Kaltura_Client_ServiceBase
 		$this->client->checkIfError($resultXmlObject->result);
 		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaUsageModuleListResponse");
 		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_UsageModuleListResponse");
-		return $resultObject;
-	}
-
-	/**
-	 * @return Kaltura_Client_Type_UsageModule
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function update($id, Kaltura_Client_Type_UsageModule $usageModule)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "id", $id);
-		$this->client->addParam($kparams, "usageModule", $usageModule->toParams());
-		$this->client->queueServiceActionCall("usagemodule", "update", "KalturaUsageModule", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaUsageModule");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_UsageModule");
 		return $resultObject;
 	}
 }
