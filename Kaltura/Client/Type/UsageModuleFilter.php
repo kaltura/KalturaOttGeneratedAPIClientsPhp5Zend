@@ -49,7 +49,7 @@ class Kaltura_Client_Type_UsageModuleFilter extends Kaltura_Client_Type_Filter
 			$this->idEqual = (int)$xml->idEqual;
 	}
 	/**
-	 * Comma separated usageModule ids
+	 * usageModule id
 	 *
 	 * @var int
 	 */

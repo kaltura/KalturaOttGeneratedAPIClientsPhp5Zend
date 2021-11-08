@@ -51,6 +51,8 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 			$this->name = (string)$xml->name;
 		if(count($xml->price) && !empty($xml->price))
 			$this->price = Kaltura_Client_ParseUtils::unmarshalObject($xml->price, "KalturaPriceDetails");
+		if(count($xml->priceDetailsId))
+			$this->priceDetailsId = (int)$xml->priceDetailsId;
 		if(count($xml->fileTypes))
 		{
 			if(empty($xml->fileTypes))
@@ -62,8 +64,12 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 			$this->fileTypesIds = (string)$xml->fileTypesIds;
 		if(count($xml->discountModule) && !empty($xml->discountModule))
 			$this->discountModule = Kaltura_Client_ParseUtils::unmarshalObject($xml->discountModule, "KalturaDiscountModule");
+		if(count($xml->discountId))
+			$this->discountId = (string)$xml->discountId;
 		if(count($xml->couponsGroup) && !empty($xml->couponsGroup))
 			$this->couponsGroup = Kaltura_Client_ParseUtils::unmarshalObject($xml->couponsGroup, "KalturaCouponsGroup");
+		if(count($xml->couponsGroupId))
+			$this->couponsGroupId = (string)$xml->couponsGroupId;
 		if(count($xml->descriptions))
 		{
 			if(empty($xml->descriptions))
@@ -89,8 +95,8 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 		}
 		if(count($xml->usageModule) && !empty($xml->usageModule))
 			$this->usageModule = Kaltura_Client_ParseUtils::unmarshalObject($xml->usageModule, "KalturaUsageModule");
-		if(count($xml->externalId))
-			$this->externalId = (string)$xml->externalId;
+		if(count($xml->usageModuleId))
+			$this->usageModuleId = (string)$xml->usageModuleId;
 		if(count($xml->adsPolicy))
 			$this->adsPolicy = (string)$xml->adsPolicy;
 		if(count($xml->isActive))
@@ -122,16 +128,25 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 	public $name = null;
 
 	/**
-	 * The price of the ppv
+	 * This property will deprecated soon. Please use PriceId instead of it.
 	 *
 	 * @var Kaltura_Client_Type_PriceDetails
+	 * @readonly
 	 */
 	public $price;
 
 	/**
-	 * A list of file types identifiers that are supported in this ppv
+	 * The price if of the ppv
+	 *
+	 * @var int
+	 */
+	public $priceDetailsId = null;
+
+	/**
+	 * This property will deprecated soon. Please use fileTypesIds instead of it.
 	 *
 	 * @var array of KalturaIntegerValue
+	 * @readonly
 	 */
 	public $fileTypes;
 
@@ -143,18 +158,34 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 	public $fileTypesIds = null;
 
 	/**
-	 * The internal discount module for the ppv
+	 * This property will deprecated soon. Please use DiscountId instead of it.
 	 *
 	 * @var Kaltura_Client_Type_DiscountModule
+	 * @readonly
 	 */
 	public $discountModule;
 
 	/**
-	 * Coupons group for the ppv
+	 * The discount id for the ppv
+	 *
+	 * @var bigint
+	 */
+	public $discountId = null;
+
+	/**
+	 * This property will deprecated soon. Please use CouponsGroupId instead of it.
 	 *
 	 * @var Kaltura_Client_Type_CouponsGroup
+	 * @readonly
 	 */
 	public $couponsGroup;
+
+	/**
+	 * Coupons group id for the ppv
+	 *
+	 * @var bigint
+	 */
+	public $couponsGroupId = null;
 
 	/**
 	 * A list of the descriptions of the ppv on different languages (language code and translation)
@@ -167,7 +198,6 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 	 * Product code for the ppv
 	 *
 	 * @var string
-	 * @readonly
 	 */
 	public $productCode = null;
 
@@ -186,18 +216,19 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 	public $firstDeviceLimitation = null;
 
 	/**
-	 * PPV usage module
+	 * This property will deprecated soon. Please use UsageModuleId instead of it.
 	 *
 	 * @var Kaltura_Client_Type_UsageModule
+	 * @readonly
 	 */
 	public $usageModule;
 
 	/**
-	 * External ID
+	 * PPV usage module Id
 	 *
-	 * @var string
+	 * @var bigint
 	 */
-	public $externalId = null;
+	public $usageModuleId = null;
 
 	/**
 	 * adsPolicy

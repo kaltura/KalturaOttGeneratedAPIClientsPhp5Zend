@@ -70,6 +70,7 @@ class Kaltura_Client_Type_PriceDetails extends Kaltura_Client_ObjectBase
 	 * The price code identifier
 	 *
 	 * @var int
+	 * @readonly
 	 */
 	public $id = null;
 
