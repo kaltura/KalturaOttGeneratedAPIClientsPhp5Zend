@@ -97,4 +97,24 @@ class Kaltura_Client_CollectionService extends Kaltura_Client_ServiceBase
 		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CollectionListResponse");
 		return $resultObject;
 	}
+
+	/**
+	 * @return Kaltura_Client_Type_Collection
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function update($id, Kaltura_Client_Type_Collection $collection)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "id", $id);
+		$this->client->addParam($kparams, "collection", $collection->toParams());
+		$this->client->queueServiceActionCall("collection", "update", "KalturaCollection", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCollection");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Collection");
+		return $resultObject;
+	}
 }

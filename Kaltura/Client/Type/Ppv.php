@@ -51,6 +51,8 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 			$this->name = (string)$xml->name;
 		if(count($xml->price) && !empty($xml->price))
 			$this->price = Kaltura_Client_ParseUtils::unmarshalObject($xml->price, "KalturaPriceDetails");
+		if(count($xml->priceDetailsId))
+			$this->priceDetailsId = (int)$xml->priceDetailsId;
 		if(count($xml->fileTypes))
 		{
 			if(empty($xml->fileTypes))
@@ -58,10 +60,16 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 			else
 				$this->fileTypes = Kaltura_Client_ParseUtils::unmarshalArray($xml->fileTypes, "KalturaIntegerValue");
 		}
+		if(count($xml->fileTypesIds))
+			$this->fileTypesIds = (string)$xml->fileTypesIds;
 		if(count($xml->discountModule) && !empty($xml->discountModule))
 			$this->discountModule = Kaltura_Client_ParseUtils::unmarshalObject($xml->discountModule, "KalturaDiscountModule");
+		if(count($xml->discountId))
+			$this->discountId = (string)$xml->discountId;
 		if(count($xml->couponsGroup) && !empty($xml->couponsGroup))
 			$this->couponsGroup = Kaltura_Client_ParseUtils::unmarshalObject($xml->couponsGroup, "KalturaCouponsGroup");
+		if(count($xml->couponsGroupId))
+			$this->couponsGroupId = (string)$xml->couponsGroupId;
 		if(count($xml->descriptions))
 		{
 			if(empty($xml->descriptions))
@@ -87,6 +95,23 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 		}
 		if(count($xml->usageModule) && !empty($xml->usageModule))
 			$this->usageModule = Kaltura_Client_ParseUtils::unmarshalObject($xml->usageModule, "KalturaUsageModule");
+		if(count($xml->usageModuleId))
+			$this->usageModuleId = (string)$xml->usageModuleId;
+		if(count($xml->adsPolicy))
+			$this->adsPolicy = (string)$xml->adsPolicy;
+		if(count($xml->isActive))
+		{
+			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))
+				$this->isActive = true;
+			else
+				$this->isActive = false;
+		}
+		if(count($xml->updateDate))
+			$this->updateDate = (string)$xml->updateDate;
+		if(count($xml->createDate))
+			$this->createDate = (string)$xml->createDate;
+		if(count($xml->virtualAssetId))
+			$this->virtualAssetId = (string)$xml->virtualAssetId;
 	}
 	/**
 	 * PPV identifier
@@ -103,32 +128,64 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 	public $name = null;
 
 	/**
-	 * The price of the ppv
+	 * This property will deprecated soon. Please use PriceId instead of it.
 	 *
 	 * @var Kaltura_Client_Type_PriceDetails
+	 * @readonly
 	 */
 	public $price;
 
 	/**
-	 * A list of file types identifiers that are supported in this ppv
+	 * The price if of the ppv
+	 *
+	 * @var int
+	 */
+	public $priceDetailsId = null;
+
+	/**
+	 * This property will deprecated soon. Please use fileTypesIds instead of it.
 	 *
 	 * @var array of KalturaIntegerValue
+	 * @readonly
 	 */
 	public $fileTypes;
 
 	/**
-	 * The internal discount module for the ppv
+	 * Comma separated file types identifiers that are supported in this subscription
+	 *
+	 * @var string
+	 */
+	public $fileTypesIds = null;
+
+	/**
+	 * This property will deprecated soon. Please use DiscountId instead of it.
 	 *
 	 * @var Kaltura_Client_Type_DiscountModule
+	 * @readonly
 	 */
 	public $discountModule;
 
 	/**
-	 * Coupons group for the ppv
+	 * The discount id for the ppv
+	 *
+	 * @var bigint
+	 */
+	public $discountId = null;
+
+	/**
+	 * This property will deprecated soon. Please use CouponsGroupId instead of it.
 	 *
 	 * @var Kaltura_Client_Type_CouponsGroup
+	 * @readonly
 	 */
 	public $couponsGroup;
+
+	/**
+	 * Coupons group id for the ppv
+	 *
+	 * @var bigint
+	 */
+	public $couponsGroupId = null;
 
 	/**
 	 * A list of the descriptions of the ppv on different languages (language code and translation)
@@ -159,11 +216,57 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 	public $firstDeviceLimitation = null;
 
 	/**
-	 * PPV usage module
+	 * This property will deprecated soon. Please use UsageModuleId instead of it.
 	 *
 	 * @var Kaltura_Client_Type_UsageModule
+	 * @readonly
 	 */
 	public $usageModule;
+
+	/**
+	 * PPV usage module Id
+	 *
+	 * @var bigint
+	 */
+	public $usageModuleId = null;
+
+	/**
+	 * adsPolicy
+	 *
+	 * @var Kaltura_Client_Enum_AdsPolicy
+	 */
+	public $adsPolicy = null;
+
+	/**
+	 * Is active ppv
+	 *
+	 * @var bool
+	 */
+	public $isActive = null;
+
+	/**
+	 * Specifies when was the ppv last updated. Date and time represented as epoch.
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $updateDate = null;
+
+	/**
+	 * Specifies when was the ppv created. Date and time represented as epoch.
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $createDate = null;
+
+	/**
+	 * Virtual asset id
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $virtualAssetId = null;
 
 
 }

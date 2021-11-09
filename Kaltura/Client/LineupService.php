@@ -58,4 +58,22 @@ class Kaltura_Client_LineupService extends Kaltura_Client_ServiceBase
 		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LineupChannelAssetListResponse");
 		return $resultObject;
 	}
+
+	/**
+	 * @return bool
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function sendUpdatedNotification($regionIds)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "regionIds", $regionIds);
+		$this->client->queueServiceActionCall("lineup", "sendUpdatedNotification", null, $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
+		return $resultObject;
+	}
 }
