@@ -251,7 +251,6 @@ class Kaltura_Client_TypeMap
 		'KalturaDataEncryption' => 'Kaltura_Client_Type_DataEncryption',
 		'KalturaDateCondition' => 'Kaltura_Client_Type_DateCondition',
 		'KalturaDateTrigger' => 'Kaltura_Client_Type_DateTrigger',
-		'KalturaDefaultParentalSettingsPartnerConfig' => 'Kaltura_Client_Type_DefaultParentalSettingsPartnerConfig',
 		'KalturaDefaultPlaybackAdapters' => 'Kaltura_Client_Type_DefaultPlaybackAdapters',
 		'KalturaDefaultRegionFilter' => 'Kaltura_Client_Type_DefaultRegionFilter',
 		'KalturaDetachedResponseProfile' => 'Kaltura_Client_Type_DetachedResponseProfile',

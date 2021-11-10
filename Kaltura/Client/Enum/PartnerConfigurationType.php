@@ -47,6 +47,5 @@ class Kaltura_Client_Enum_PartnerConfigurationType extends Kaltura_Client_EnumBa
 	const OPC = "Opc";
 	const BASE = "Base";
 	const CUSTOMFIELDS = "CustomFields";
-	const DEFAULTPARENTALSETTINGS = "DefaultParentalSettings";
 }
 
