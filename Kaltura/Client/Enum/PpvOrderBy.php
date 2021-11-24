@@ -35,5 +35,7 @@ class Kaltura_Client_Enum_PpvOrderBy extends Kaltura_Client_EnumBase
 {
 	const NAME_ASC = "NAME_ASC";
 	const NAME_DESC = "NAME_DESC";
+	const UPDATE_DATE_ASC = "UPDATE_DATE_ASC";
+	const UPDATE_DATE_DESC = "UPDATE_DATE_DESC";
 }
 

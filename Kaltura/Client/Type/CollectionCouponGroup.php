@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PpvFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_CollectionCouponGroup extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaPpvFilter';
+		return 'KalturaCollectionCouponGroup';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,38 +45,33 @@ class Kaltura_Client_Type_PpvFilter extends Kaltura_Client_Type_Filter
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
-		if(count($xml->couponGroupIdEqual))
-			$this->couponGroupIdEqual = (int)$xml->couponGroupIdEqual;
-		if(count($xml->alsoInactive))
-		{
-			if(!empty($xml->alsoInactive) && ((int) $xml->alsoInactive === 1 || strtolower((string)$xml->alsoInactive) === 'true'))
-				$this->alsoInactive = true;
-			else
-				$this->alsoInactive = false;
-		}
+		if(count($xml->id))
+			$this->id = (string)$xml->id;
+		if(count($xml->startDate))
+			$this->startDate = (string)$xml->startDate;
+		if(count($xml->endDate))
+			$this->endDate = (string)$xml->endDate;
 	}
 	/**
-	 * Comma separated identifiers
+	 * Coupon group identifier
 	 *
-	 * @var string
+	 * @var bigint
 	 */
-	public $idIn = null;
+	public $id = null;
 
 	/**
-	 * couponGroupIdEqual
+	 * The first date the coupons in this coupons group are valid
 	 *
-	 * @var int
+	 * @var bigint
 	 */
-	public $couponGroupIdEqual = null;
+	public $startDate = null;
 
 	/**
-	 * return also inactive
+	 * The last date the coupons in this coupons group are valid
 	 *
-	 * @var bool
+	 * @var bigint
 	 */
-	public $alsoInactive = null;
+	public $endDate = null;
 
 
 }

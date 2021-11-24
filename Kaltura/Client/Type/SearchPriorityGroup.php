@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_PpvFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_SearchPriorityGroup extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaPpvFilter';
+		return 'KalturaSearchPriorityGroup';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,38 +45,49 @@ class Kaltura_Client_Type_PpvFilter extends Kaltura_Client_Type_Filter
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
-		if(count($xml->couponGroupIdEqual))
-			$this->couponGroupIdEqual = (int)$xml->couponGroupIdEqual;
-		if(count($xml->alsoInactive))
+		if(count($xml->id))
+			$this->id = (string)$xml->id;
+		if(count($xml->name))
+			$this->name = (string)$xml->name;
+		if(count($xml->multilingualName))
 		{
-			if(!empty($xml->alsoInactive) && ((int) $xml->alsoInactive === 1 || strtolower((string)$xml->alsoInactive) === 'true'))
-				$this->alsoInactive = true;
+			if(empty($xml->multilingualName))
+				$this->multilingualName = array();
 			else
-				$this->alsoInactive = false;
+				$this->multilingualName = Kaltura_Client_ParseUtils::unmarshalArray($xml->multilingualName, "KalturaTranslationToken");
 		}
+		if(count($xml->criteria) && !empty($xml->criteria))
+			$this->criteria = Kaltura_Client_ParseUtils::unmarshalObject($xml->criteria, "KalturaSearchPriorityCriteria");
 	}
 	/**
-	 * Comma separated identifiers
+	 * Identifier
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $id = null;
+
+	/**
+	 * Name
 	 *
 	 * @var string
+	 * @readonly
 	 */
-	public $idIn = null;
+	public $name = null;
 
 	/**
-	 * couponGroupIdEqual
+	 * Name
 	 *
-	 * @var int
+	 * @var array of KalturaTranslationToken
 	 */
-	public $couponGroupIdEqual = null;
+	public $multilingualName;
 
 	/**
-	 * return also inactive
+	 * Search criterion
 	 *
-	 * @var bool
+	 * @var Kaltura_Client_Type_SearchPriorityCriteria
 	 */
-	public $alsoInactive = null;
+	public $criteria;
 
 
 }

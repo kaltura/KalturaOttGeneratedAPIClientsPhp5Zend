@@ -32,7 +32,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_CollectionService extends Kaltura_Client_ServiceBase
+class Kaltura_Client_SearchPriorityGroupService extends Kaltura_Client_ServiceBase
 {
 	function __construct(Kaltura_Client_Client $client = null)
 	{
@@ -40,21 +40,21 @@ class Kaltura_Client_CollectionService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_Collection
+	 * @return Kaltura_Client_Type_SearchPriorityGroup
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function add(Kaltura_Client_Type_Collection $collection)
+	function add(Kaltura_Client_Type_SearchPriorityGroup $searchPriorityGroup)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "collection", $collection->toParams());
-		$this->client->queueServiceActionCall("collection", "add", "KalturaCollection", $kparams);
+		$this->client->addParam($kparams, "searchPriorityGroup", $searchPriorityGroup->toParams());
+		$this->client->queueServiceActionCall("searchprioritygroup", "add", "KalturaSearchPriorityGroup", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCollection");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Collection");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSearchPriorityGroup");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SearchPriorityGroup");
 		return $resultObject;
 	}
 
@@ -66,7 +66,7 @@ class Kaltura_Client_CollectionService extends Kaltura_Client_ServiceBase
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "id", $id);
-		$this->client->queueServiceActionCall("collection", "delete", null, $kparams);
+		$this->client->queueServiceActionCall("searchprioritygroup", "delete", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
@@ -77,44 +77,43 @@ class Kaltura_Client_CollectionService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_CollectionListResponse
+	 * @return Kaltura_Client_Type_SearchPriorityGroupListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function listAction(Kaltura_Client_Type_CollectionFilter $filter = null, Kaltura_Client_Type_FilterPager $pager = null)
+	function listAction(Kaltura_Client_Type_SearchPriorityGroupFilter $filter, Kaltura_Client_Type_FilterPager $pager = null)
 	{
 		$kparams = array();
-		if ($filter !== null)
-			$this->client->addParam($kparams, "filter", $filter->toParams());
+		$this->client->addParam($kparams, "filter", $filter->toParams());
 		if ($pager !== null)
 			$this->client->addParam($kparams, "pager", $pager->toParams());
-		$this->client->queueServiceActionCall("collection", "list", "KalturaCollectionListResponse", $kparams);
+		$this->client->queueServiceActionCall("searchprioritygroup", "list", "KalturaSearchPriorityGroupListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCollectionListResponse");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CollectionListResponse");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSearchPriorityGroupListResponse");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SearchPriorityGroupListResponse");
 		return $resultObject;
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_Collection
+	 * @return Kaltura_Client_Type_SearchPriorityGroup
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function update($id, Kaltura_Client_Type_Collection $collection)
+	function update($id, Kaltura_Client_Type_SearchPriorityGroup $searchPriorityGroup)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "id", $id);
-		$this->client->addParam($kparams, "collection", $collection->toParams());
-		$this->client->queueServiceActionCall("collection", "update", "KalturaCollection", $kparams);
+		$this->client->addParam($kparams, "searchPriorityGroup", $searchPriorityGroup->toParams());
+		$this->client->queueServiceActionCall("searchprioritygroup", "update", "KalturaSearchPriorityGroup", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCollection");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Collection");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSearchPriorityGroup");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SearchPriorityGroup");
 		return $resultObject;
 	}
 }
