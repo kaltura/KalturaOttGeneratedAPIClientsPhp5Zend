@@ -51,6 +51,13 @@ class Kaltura_Client_Type_CollectionFilter extends Kaltura_Client_Type_Filter
 			$this->mediaFileIdEqual = (int)$xml->mediaFileIdEqual;
 		if(count($xml->couponGroupIdEqual))
 			$this->couponGroupIdEqual = (int)$xml->couponGroupIdEqual;
+		if(count($xml->alsoInactive))
+		{
+			if(!empty($xml->alsoInactive) && ((int) $xml->alsoInactive === 1 || strtolower((string)$xml->alsoInactive) === 'true'))
+				$this->alsoInactive = true;
+			else
+				$this->alsoInactive = false;
+		}
 	}
 	/**
 	 * Comma separated collection IDs
@@ -60,7 +67,7 @@ class Kaltura_Client_Type_CollectionFilter extends Kaltura_Client_Type_Filter
 	public $collectionIdIn = null;
 
 	/**
-	 * Media-file ID to get the subscriptions by
+	 * Media-file ID to get the collections by
 	 *
 	 * @var int
 	 */
@@ -72,6 +79,13 @@ class Kaltura_Client_Type_CollectionFilter extends Kaltura_Client_Type_Filter
 	 * @var int
 	 */
 	public $couponGroupIdEqual = null;
+
+	/**
+	 * return also inactive
+	 *
+	 * @var bool
+	 */
+	public $alsoInactive = null;
 
 
 }

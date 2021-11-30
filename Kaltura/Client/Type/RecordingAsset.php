@@ -49,6 +49,8 @@ class Kaltura_Client_Type_RecordingAsset extends Kaltura_Client_Type_ProgramAsse
 			$this->recordingId = (string)$xml->recordingId;
 		if(count($xml->recordingType))
 			$this->recordingType = (string)$xml->recordingType;
+		if(count($xml->viewableUntilDate))
+			$this->viewableUntilDate = (string)$xml->viewableUntilDate;
 	}
 	/**
 	 * Recording identifier
@@ -63,6 +65,13 @@ class Kaltura_Client_Type_RecordingAsset extends Kaltura_Client_Type_ProgramAsse
 	 * @var Kaltura_Client_Enum_RecordingType
 	 */
 	public $recordingType = null;
+
+	/**
+	 * Specifies until when the recording is available for viewing. Date and time represented as epoch.
+	 *
+	 * @var bigint
+	 */
+	public $viewableUntilDate = null;
 
 
 }
