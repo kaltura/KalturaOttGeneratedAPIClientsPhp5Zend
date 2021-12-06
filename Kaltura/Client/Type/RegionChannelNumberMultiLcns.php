@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_UsageModuleFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_RegionChannelNumberMultiLcns extends Kaltura_Client_Type_RegionChannelNumber
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaUsageModuleFilter';
+		return 'KalturaRegionChannelNumberMultiLcns';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,15 +45,15 @@ class Kaltura_Client_Type_UsageModuleFilter extends Kaltura_Client_Type_Filter
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->idEqual))
-			$this->idEqual = (int)$xml->idEqual;
+		if(count($xml->lcns))
+			$this->lcns = (string)$xml->lcns;
 	}
 	/**
-	 * usageModule id
+	 * Linear channel numbers
 	 *
-	 * @var int
+	 * @var string
 	 */
-	public $idEqual = null;
+	public $lcns = null;
 
 
 }

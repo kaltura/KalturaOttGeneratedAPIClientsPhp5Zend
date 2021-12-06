@@ -121,7 +121,7 @@ class Kaltura_Client_Type_Configurations extends Kaltura_Client_ObjectBase
 	public $externalPushId = null;
 
 	/**
-	 * The default value for &quot;isForceUpdate&quot; is &quot;FALSE&quot;. When &quot;isForceUpdate&quot; is not populated it will revert to its default value.
+	 * Is force update
 	 *
 	 * @var bool
 	 */

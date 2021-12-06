@@ -58,7 +58,7 @@ class Kaltura_Client_Type_RegionChannelNumber extends Kaltura_Client_ObjectBase
 	public $regionId = null;
 
 	/**
-	 * The number of channel
+	 * The number of the channel
 	 *
 	 * @var int
 	 */

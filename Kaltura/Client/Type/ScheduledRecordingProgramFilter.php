@@ -53,8 +53,6 @@ class Kaltura_Client_Type_ScheduledRecordingProgramFilter extends Kaltura_Client
 			$this->startDateGreaterThanOrNull = (string)$xml->startDateGreaterThanOrNull;
 		if(count($xml->endDateLessThanOrNull))
 			$this->endDateLessThanOrNull = (string)$xml->endDateLessThanOrNull;
-		if(count($xml->seriesIdsIn))
-			$this->seriesIdsIn = (string)$xml->seriesIdsIn;
 	}
 	/**
 	 * The type of recordings to return
@@ -83,13 +81,6 @@ class Kaltura_Client_Type_ScheduledRecordingProgramFilter extends Kaltura_Client
 	 * @var bigint
 	 */
 	public $endDateLessThanOrNull = null;
-
-	/**
-	 * Series to filter by
-	 *
-	 * @var string
-	 */
-	public $seriesIdsIn = null;
 
 
 }

@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_CollectionCouponGroup extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_RegionalChannelMultiLcns extends Kaltura_Client_Type_RegionalChannel
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaCollectionCouponGroup';
+		return 'KalturaRegionalChannelMultiLcns';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,33 +45,15 @@ class Kaltura_Client_Type_CollectionCouponGroup extends Kaltura_Client_ObjectBas
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->startDate))
-			$this->startDate = (string)$xml->startDate;
-		if(count($xml->endDate))
-			$this->endDate = (string)$xml->endDate;
+		if(count($xml->lcns))
+			$this->lcns = (string)$xml->lcns;
 	}
 	/**
-	 * Coupon group identifier
+	 * Linear channel numbers
 	 *
-	 * @var bigint
+	 * @var string
 	 */
-	public $id = null;
-
-	/**
-	 * The first date the coupons in this coupons group are valid
-	 *
-	 * @var bigint
-	 */
-	public $startDate = null;
-
-	/**
-	 * The last date the coupons in this coupons group are valid
-	 *
-	 * @var bigint
-	 */
-	public $endDate = null;
+	public $lcns = null;
 
 
 }
