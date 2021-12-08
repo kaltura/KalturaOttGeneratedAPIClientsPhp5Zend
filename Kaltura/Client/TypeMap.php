@@ -565,6 +565,7 @@ class Kaltura_Client_TypeMap
 		'KalturaPricePlan' => 'Kaltura_Client_Type_PricePlan',
 		'KalturaPricePlanFilter' => 'Kaltura_Client_Type_PricePlanFilter',
 		'KalturaPricePlanListResponse' => 'Kaltura_Client_Type_PricePlanListResponse',
+		'KalturaPriorityGroupFilter' => 'Kaltura_Client_Type_PriorityGroupFilter',
 		'KalturaProductCode' => 'Kaltura_Client_Type_ProductCode',
 		'KalturaProductPrice' => 'Kaltura_Client_Type_ProductPrice',
 		'KalturaProductPriceFilter' => 'Kaltura_Client_Type_ProductPriceFilter',
