@@ -126,7 +126,7 @@ class Kaltura_Client_Type_SubscriptionFilter extends Kaltura_Client_Type_Filter
 	public $kSql = null;
 
 	/**
-	 * Root only
+	 * return also inactive
 	 *
 	 * @var bool
 	 */
