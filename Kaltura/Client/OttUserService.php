@@ -116,24 +116,6 @@ class Kaltura_Client_OttUserService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return bool
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function deleteDynamicData($key)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "key", $key);
-		$this->client->queueServiceActionCall("ottuser", "deleteDynamicData", null, $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
-		return $resultObject;
-	}
-
-	/**
 	 * @return Kaltura_Client_Type_OTTUser
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -217,15 +199,13 @@ class Kaltura_Client_OttUserService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_LoginResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function loginWithPin($partnerId, $pin, $udid = null, $secret = null, array $extraParams = null)
+	function loginWithPin($partnerId, $pin, $udid = null, $secret = null)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "partnerId", $partnerId);
 		$this->client->addParam($kparams, "pin", $pin);
 		$this->client->addParam($kparams, "udid", $udid);
 		$this->client->addParam($kparams, "secret", $secret);
-		if ($extraParams !== null)
-			$this->client->addParam($kparams, "extraParams", $extraParams->toParams());
 		$this->client->queueServiceActionCall("ottuser", "loginWithPin", "KalturaLoginResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
@@ -412,25 +392,5 @@ class Kaltura_Client_OttUserService extends Kaltura_Client_ServiceBase
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-	}
-
-	/**
-	 * @return Kaltura_Client_Type_DynamicData
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function upsertDynamicData($key, Kaltura_Client_Type_StringValue $value)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "key", $key);
-		$this->client->addParam($kparams, "value", $value->toParams());
-		$this->client->queueServiceActionCall("ottuser", "upsertDynamicData", "KalturaDynamicData", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaDynamicData");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_DynamicData");
-		return $resultObject;
 	}
 }

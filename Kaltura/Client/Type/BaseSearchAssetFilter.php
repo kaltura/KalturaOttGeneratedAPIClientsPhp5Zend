@@ -56,8 +56,6 @@ abstract class Kaltura_Client_Type_BaseSearchAssetFilter extends Kaltura_Client_
 		}
 		if(count($xml->groupOrderBy))
 			$this->groupOrderBy = (string)$xml->groupOrderBy;
-		if(count($xml->groupingOptionEqual))
-			$this->groupingOptionEqual = (string)$xml->groupingOptionEqual;
 	}
 	/**
 	 * Search assets using dynamic criteria. Provided collection of nested expressions with key, comparison operators, value, and logical conjunction.
@@ -92,13 +90,6 @@ abstract class Kaltura_Client_Type_BaseSearchAssetFilter extends Kaltura_Client_
 	 * @var Kaltura_Client_Enum_GroupByOrder
 	 */
 	public $groupOrderBy = null;
-
-	/**
-	 * Grouping Option, Omit if not specified otherwise
-	 *
-	 * @var Kaltura_Client_Enum_GroupingOption
-	 */
-	public $groupingOptionEqual = null;
 
 
 }

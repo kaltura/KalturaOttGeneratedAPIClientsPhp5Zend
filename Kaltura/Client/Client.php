@@ -263,12 +263,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_DurationService
-	 */
-	public $duration = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_DynamicListService
 	 */
 	public $dynamicList = null;
@@ -302,12 +296,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	 * @var Kaltura_Client_EpgService
 	 */
 	public $epg = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_EpgServicePartnerConfigurationService
-	 */
-	public $epgServicePartnerConfiguration = null;
 
 	/**
 	 * 
@@ -449,12 +437,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_LabelService
-	 */
-	public $label = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_LanguageService
 	 */
 	public $language = null;
@@ -464,12 +446,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	 * @var Kaltura_Client_LicensedUrlService
 	 */
 	public $licensedUrl = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_LineupService
-	 */
-	public $lineup = null;
 
 	/**
 	 * 
@@ -557,12 +533,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_PartnerPremiumServicesService
-	 */
-	public $partnerPremiumServices = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_PasswordPolicyService
 	 */
 	public $passwordPolicy = null;
@@ -620,12 +590,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	 * @var Kaltura_Client_PpvService
 	 */
 	public $ppv = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_PreviewModuleService
-	 */
-	public $previewModule = null;
 
 	/**
 	 * 
@@ -698,18 +662,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	 * @var Kaltura_Client_SearchHistoryService
 	 */
 	public $searchHistory = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_SearchPriorityGroupService
-	 */
-	public $searchPriorityGroup = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_SearchPriorityGroupOrderedIdsSetService
-	 */
-	public $searchPriorityGroupOrderedIdsSet = null;
 
 	/**
 	 * 
@@ -851,12 +803,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_UsageModuleService
-	 */
-	public $usageModule = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_UserAssetRuleService
 	 */
 	public $userAssetRule = null;
@@ -892,12 +838,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	public $userSegment = null;
 
 	/**
-	 * 
-	 * @var Kaltura_Client_UserSessionProfileService
-	 */
-	public $userSessionProfile = null;
-
-	/**
 	 * Kaltura client constructor
 	 *
 	 * @param Kaltura_Client_Configuration $config
@@ -906,8 +846,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:21-12-06');
-		$this->setApiVersion('7.0.0.29627');
+		$this->setClientTag('php5:21-12-08');
+		$this->setApiVersion('6.2.0.29025');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -947,14 +887,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->deviceReferenceData = new Kaltura_Client_DeviceReferenceDataService($this);
 		$this->discountDetails = new Kaltura_Client_DiscountDetailsService($this);
 		$this->drmProfile = new Kaltura_Client_DrmProfileService($this);
-		$this->duration = new Kaltura_Client_DurationService($this);
 		$this->dynamicList = new Kaltura_Client_DynamicListService($this);
 		$this->email = new Kaltura_Client_EmailService($this);
 		$this->engagementAdapter = new Kaltura_Client_EngagementAdapterService($this);
 		$this->engagement = new Kaltura_Client_EngagementService($this);
 		$this->entitlement = new Kaltura_Client_EntitlementService($this);
 		$this->epg = new Kaltura_Client_EpgService($this);
-		$this->epgServicePartnerConfiguration = new Kaltura_Client_EpgServicePartnerConfigurationService($this);
 		$this->eventNotificationAction = new Kaltura_Client_EventNotificationActionService($this);
 		$this->eventNotification = new Kaltura_Client_EventNotificationService($this);
 		$this->exportTask = new Kaltura_Client_ExportTaskService($this);
@@ -978,10 +916,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->IngestProfile = new Kaltura_Client_IngestProfileService($this);
 		$this->iot = new Kaltura_Client_IotService($this);
 		$this->iotProfile = new Kaltura_Client_IotProfileService($this);
-		$this->label = new Kaltura_Client_LabelService($this);
 		$this->language = new Kaltura_Client_LanguageService($this);
 		$this->licensedUrl = new Kaltura_Client_LicensedUrlService($this);
-		$this->lineup = new Kaltura_Client_LineupService($this);
 		$this->mediaConcurrencyRule = new Kaltura_Client_MediaConcurrencyRuleService($this);
 		$this->mediaFile = new Kaltura_Client_MediaFileService($this);
 		$this->mediaFileType = new Kaltura_Client_MediaFileTypeService($this);
@@ -996,7 +932,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->parentalRule = new Kaltura_Client_ParentalRuleService($this);
 		$this->partnerConfiguration = new Kaltura_Client_PartnerConfigurationService($this);
 		$this->partner = new Kaltura_Client_PartnerService($this);
-		$this->partnerPremiumServices = new Kaltura_Client_PartnerPremiumServicesService($this);
 		$this->passwordPolicy = new Kaltura_Client_PasswordPolicyService($this);
 		$this->paymentGatewayProfile = new Kaltura_Client_PaymentGatewayProfileService($this);
 		$this->paymentMethodProfile = new Kaltura_Client_PaymentMethodProfileService($this);
@@ -1007,7 +942,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->pin = new Kaltura_Client_PinService($this);
 		$this->playbackProfile = new Kaltura_Client_PlaybackProfileService($this);
 		$this->ppv = new Kaltura_Client_PpvService($this);
-		$this->previewModule = new Kaltura_Client_PreviewModuleService($this);
 		$this->priceDetails = new Kaltura_Client_PriceDetailsService($this);
 		$this->pricePlan = new Kaltura_Client_PricePlanService($this);
 		$this->productPrice = new Kaltura_Client_ProductPriceService($this);
@@ -1020,8 +954,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->reminder = new Kaltura_Client_ReminderService($this);
 		$this->report = new Kaltura_Client_ReportService($this);
 		$this->searchHistory = new Kaltura_Client_SearchHistoryService($this);
-		$this->searchPriorityGroup = new Kaltura_Client_SearchPriorityGroupService($this);
-		$this->searchPriorityGroupOrderedIdsSet = new Kaltura_Client_SearchPriorityGroupOrderedIdsSetService($this);
 		$this->segmentationType = new Kaltura_Client_SegmentationTypeService($this);
 		$this->seriesRecording = new Kaltura_Client_SeriesRecordingService($this);
 		$this->session = new Kaltura_Client_SessionService($this);
@@ -1045,14 +977,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->tvmRule = new Kaltura_Client_TvmRuleService($this);
 		$this->unifiedPayment = new Kaltura_Client_UnifiedPaymentService($this);
 		$this->uploadToken = new Kaltura_Client_UploadTokenService($this);
-		$this->usageModule = new Kaltura_Client_UsageModuleService($this);
 		$this->userAssetRule = new Kaltura_Client_UserAssetRuleService($this);
 		$this->userAssetsListItem = new Kaltura_Client_UserAssetsListItemService($this);
 		$this->userInterest = new Kaltura_Client_UserInterestService($this);
 		$this->userLoginPin = new Kaltura_Client_UserLoginPinService($this);
 		$this->userRole = new Kaltura_Client_UserRoleService($this);
 		$this->userSegment = new Kaltura_Client_UserSegmentService($this);
-		$this->userSessionProfile = new Kaltura_Client_UserSessionProfileService($this);
 	}
 	
 	/**

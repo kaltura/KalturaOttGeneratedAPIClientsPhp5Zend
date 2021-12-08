@@ -52,13 +52,6 @@ class Kaltura_Client_Type_CommercePartnerConfig extends Kaltura_Client_Type_Part
 			else
 				$this->bookmarkEventThresholds = Kaltura_Client_ParseUtils::unmarshalArray($xml->bookmarkEventThresholds, "KalturaBookmarkEventThreshold");
 		}
-		if(count($xml->keepSubscriptionAddOns))
-		{
-			if(!empty($xml->keepSubscriptionAddOns) && ((int) $xml->keepSubscriptionAddOns === 1 || strtolower((string)$xml->keepSubscriptionAddOns) === 'true'))
-				$this->keepSubscriptionAddOns = true;
-			else
-				$this->keepSubscriptionAddOns = false;
-		}
 	}
 	/**
 	 * configuration for bookmark event threshold (when to dispatch the event) in seconds.
@@ -66,13 +59,6 @@ class Kaltura_Client_Type_CommercePartnerConfig extends Kaltura_Client_Type_Part
 	 * @var array of KalturaBookmarkEventThreshold
 	 */
 	public $bookmarkEventThresholds;
-
-	/**
-	 * configuration for keep add-ons after subscription deletion
-	 *
-	 * @var bool
-	 */
-	public $keepSubscriptionAddOns = null;
 
 
 }

@@ -36,7 +36,5 @@ class Kaltura_Client_Enum_ObjectVirtualAssetInfoType extends Kaltura_Client_Enum
 	const SUBSCRIPTION = "Subscription";
 	const SEGMENT = "Segment";
 	const CATEGORY = "Category";
-	const TVOD = "Tvod";
-	const BOXSET = "Boxset";
 }
 

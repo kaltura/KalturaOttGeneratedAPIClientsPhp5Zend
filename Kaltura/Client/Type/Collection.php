@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSupportNullable
+class Kaltura_Client_Type_Collection extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
@@ -54,16 +54,12 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 			else
 				$this->channels = Kaltura_Client_ParseUtils::unmarshalArray($xml->channels, "KalturaBaseChannel");
 		}
-		if(count($xml->channelsIds))
-			$this->channelsIds = (string)$xml->channelsIds;
 		if(count($xml->startDate))
 			$this->startDate = (string)$xml->startDate;
 		if(count($xml->endDate))
 			$this->endDate = (string)$xml->endDate;
 		if(count($xml->discountModule) && !empty($xml->discountModule))
 			$this->discountModule = Kaltura_Client_ParseUtils::unmarshalObject($xml->discountModule, "KalturaDiscountModule");
-		if(count($xml->discountModuleId))
-			$this->discountModuleId = (string)$xml->discountModuleId;
 		if(count($xml->name))
 			$this->name = (string)$xml->name;
 		if(count($xml->multilingualName))
@@ -84,21 +80,12 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 		}
 		if(count($xml->usageModule) && !empty($xml->usageModule))
 			$this->usageModule = Kaltura_Client_ParseUtils::unmarshalObject($xml->usageModule, "KalturaUsageModule");
-		if(count($xml->usageModuleId))
-			$this->usageModuleId = (string)$xml->usageModuleId;
 		if(count($xml->couponsGroups))
 		{
 			if(empty($xml->couponsGroups))
 				$this->couponsGroups = array();
 			else
 				$this->couponsGroups = Kaltura_Client_ParseUtils::unmarshalArray($xml->couponsGroups, "KalturaCouponsGroup");
-		}
-		if(count($xml->collectionCouponGroup))
-		{
-			if(empty($xml->collectionCouponGroup))
-				$this->collectionCouponGroup = array();
-			else
-				$this->collectionCouponGroup = Kaltura_Client_ParseUtils::unmarshalArray($xml->collectionCouponGroup, "KalturaCollectionCouponGroup");
 		}
 		if(count($xml->externalId))
 			$this->externalId = (string)$xml->externalId;
@@ -111,19 +98,6 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 		}
 		if(count($xml->priceDetailsId))
 			$this->priceDetailsId = (string)$xml->priceDetailsId;
-		if(count($xml->isActive))
-		{
-			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))
-				$this->isActive = true;
-			else
-				$this->isActive = false;
-		}
-		if(count($xml->createDate))
-			$this->createDate = (string)$xml->createDate;
-		if(count($xml->updateDate))
-			$this->updateDate = (string)$xml->updateDate;
-		if(count($xml->virtualAssetId))
-			$this->virtualAssetId = (string)$xml->virtualAssetId;
 	}
 	/**
 	 * Collection identifier
@@ -133,20 +107,11 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 	public $id = null;
 
 	/**
-	 * A list of channels associated with this collection 
-	 *             This property will deprecated soon. Please use ChannelsIds instead of it.
+	 * A list of channels associated with this collection
 	 *
 	 * @var array of KalturaBaseChannel
-	 * @readonly
 	 */
 	public $channels;
-
-	/**
-	 * Comma separated channels Ids associated with this collection
-	 *
-	 * @var string
-	 */
-	public $channelsIds = null;
 
 	/**
 	 * The first date the collection is available for purchasing
@@ -163,23 +128,14 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 	public $endDate = null;
 
 	/**
-	 * The internal discount module for the collection
-	 *             This property will deprecated soon. Please use DiscountModuleId instead of it.
+	 * The internal discount module for the subscription
 	 *
 	 * @var Kaltura_Client_Type_DiscountModule
-	 * @readonly
 	 */
 	public $discountModule;
 
 	/**
-	 * The internal discount module identifier for the collection
-	 *
-	 * @var bigint
-	 */
-	public $discountModuleId = null;
-
-	/**
-	 * Name of the collection
+	 * Name of the subscription
 	 *
 	 * @var string
 	 * @readonly
@@ -187,14 +143,14 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 	public $name = null;
 
 	/**
-	 * Name of the collection
+	 * Name of the subscription
 	 *
 	 * @var array of KalturaTranslationToken
 	 */
 	public $multilingualName;
 
 	/**
-	 * description of the collection
+	 * description of the subscription
 	 *
 	 * @var string
 	 * @readonly
@@ -202,7 +158,7 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 	public $description = null;
 
 	/**
-	 * description of the collection
+	 * description of the subscription
 	 *
 	 * @var array of KalturaTranslationToken
 	 */
@@ -210,35 +166,17 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 
 	/**
 	 * Collection usage module
-	 *             This property will deprecated soon. Please use usageModuleId instead of it.
 	 *
 	 * @var Kaltura_Client_Type_UsageModule
-	 * @readonly
 	 */
 	public $usageModule;
 
 	/**
-	 * The internal usage module identifier for the collection
-	 *
-	 * @var bigint
-	 */
-	public $usageModuleId = null;
-
-	/**
 	 * List of Coupons group
-	 *             This property will deprecated soon. Please use CollectionCouponGroup instead of it.
 	 *
 	 * @var array of KalturaCouponsGroup
-	 * @readonly
 	 */
 	public $couponsGroups;
-
-	/**
-	 * List of collection Coupons group
-	 *
-	 * @var array of KalturaCollectionCouponGroup
-	 */
-	public $collectionCouponGroup;
 
 	/**
 	 * External ID
@@ -260,37 +198,6 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 	 * @var bigint
 	 */
 	public $priceDetailsId = null;
-
-	/**
-	 * Is active collection
-	 *
-	 * @var bool
-	 */
-	public $isActive = null;
-
-	/**
-	 * Specifies when was the collection created. Date and time represented as epoch.
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $createDate = null;
-
-	/**
-	 * Specifies when was the collection last updated. Date and time represented as epoch.
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $updateDate = null;
-
-	/**
-	 * Virtual asset id
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $virtualAssetId = null;
 
 
 }

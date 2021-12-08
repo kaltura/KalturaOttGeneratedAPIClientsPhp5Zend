@@ -40,31 +40,6 @@ class Kaltura_Client_SessionService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_SessionCharacteristic
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function createSessionCharacteristic($userId, $householdId, $udid, $expiration, $regionId = null, array $sessionCharacteristicParams = null)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "userId", $userId);
-		$this->client->addParam($kparams, "householdId", $householdId);
-		$this->client->addParam($kparams, "udid", $udid);
-		$this->client->addParam($kparams, "expiration", $expiration);
-		$this->client->addParam($kparams, "regionId", $regionId);
-		if ($sessionCharacteristicParams !== null)
-			$this->client->addParam($kparams, "sessionCharacteristicParams", $sessionCharacteristicParams->toParams());
-		$this->client->queueServiceActionCall("session", "createSessionCharacteristic", "KalturaSessionCharacteristic", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSessionCharacteristic");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SessionCharacteristic");
-		return $resultObject;
-	}
-
-	/**
 	 * @return Kaltura_Client_Type_Session
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
