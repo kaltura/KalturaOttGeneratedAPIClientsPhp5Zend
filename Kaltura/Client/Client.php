@@ -701,18 +701,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_SearchPriorityGroupService
-	 */
-	public $searchPriorityGroup = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_SearchPriorityGroupOrderedIdsSetService
-	 */
-	public $searchPriorityGroupOrderedIdsSet = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_SegmentationTypeService
 	 */
 	public $segmentationType = null;
@@ -906,8 +894,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:21-12-06');
-		$this->setApiVersion('7.0.0.29627');
+		$this->setClientTag('php5:21-12-15');
+		$this->setApiVersion('7.0.0.29593');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -1020,8 +1008,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->reminder = new Kaltura_Client_ReminderService($this);
 		$this->report = new Kaltura_Client_ReportService($this);
 		$this->searchHistory = new Kaltura_Client_SearchHistoryService($this);
-		$this->searchPriorityGroup = new Kaltura_Client_SearchPriorityGroupService($this);
-		$this->searchPriorityGroupOrderedIdsSet = new Kaltura_Client_SearchPriorityGroupOrderedIdsSetService($this);
 		$this->segmentationType = new Kaltura_Client_SegmentationTypeService($this);
 		$this->seriesRecording = new Kaltura_Client_SeriesRecordingService($this);
 		$this->session = new Kaltura_Client_SessionService($this);
