@@ -89,6 +89,13 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 			else
 				$this->allowDeviceMobility = false;
 		}
+		if(count($xml->enableMultiLcns))
+		{
+			if(!empty($xml->enableMultiLcns) && ((int) $xml->enableMultiLcns === 1 || strtolower((string)$xml->enableMultiLcns) === 'true'))
+				$this->enableMultiLcns = true;
+			else
+				$this->enableMultiLcns = false;
+		}
 	}
 	/**
 	 * Partner name
@@ -208,6 +215,13 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 	 * @var bool
 	 */
 	public $allowDeviceMobility = null;
+
+	/**
+	 * Enable multi LCNs per linear channel
+	 *
+	 * @var bool
+	 */
+	public $enableMultiLcns = null;
 
 
 }

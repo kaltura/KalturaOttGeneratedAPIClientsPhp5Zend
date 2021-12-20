@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RegionChannelNumber extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_RegionalChannelMultiLcns extends Kaltura_Client_Type_RegionalChannel
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRegionChannelNumber';
+		return 'KalturaRegionalChannelMultiLcns';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,24 +45,15 @@ class Kaltura_Client_Type_RegionChannelNumber extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->regionId))
-			$this->regionId = (int)$xml->regionId;
-		if(count($xml->channelNumber))
-			$this->channelNumber = (int)$xml->channelNumber;
+		if(count($xml->lcns))
+			$this->lcns = (string)$xml->lcns;
 	}
 	/**
-	 * The identifier of the region
+	 * Linear channel numbers
 	 *
-	 * @var int
+	 * @var string
 	 */
-	public $regionId = null;
-
-	/**
-	 * The number of the channel
-	 *
-	 * @var int
-	 */
-	public $channelNumber = null;
+	public $lcns = null;
 
 
 }
