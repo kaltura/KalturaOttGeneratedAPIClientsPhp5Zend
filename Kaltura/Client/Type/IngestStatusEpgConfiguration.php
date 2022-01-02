@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RegionChannelNumber extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_IngestStatusEpgConfiguration extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRegionChannelNumber';
+		return 'KalturaIngestStatusEpgConfiguration';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,24 +45,29 @@ class Kaltura_Client_Type_RegionChannelNumber extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->regionId))
-			$this->regionId = (int)$xml->regionId;
-		if(count($xml->channelNumber))
-			$this->channelNumber = (int)$xml->channelNumber;
+		if(count($xml->isSupported))
+		{
+			if(!empty($xml->isSupported) && ((int) $xml->isSupported === 1 || strtolower((string)$xml->isSupported) === 'true'))
+				$this->isSupported = true;
+			else
+				$this->isSupported = false;
+		}
+		if(count($xml->retainingPeriod))
+			$this->retainingPeriod = (int)$xml->retainingPeriod;
 	}
 	/**
-	 * The identifier of the region
+	 * Defines whether partner in question enabled core ingest status service.
 	 *
-	 * @var int
+	 * @var bool
 	 */
-	public $regionId = null;
+	public $isSupported = null;
 
 	/**
-	 * The number of the channel
+	 * Defines the time in seconds that the service retain information about ingest status.
 	 *
 	 * @var int
 	 */
-	public $channelNumber = null;
+	public $retainingPeriod = null;
 
 
 }

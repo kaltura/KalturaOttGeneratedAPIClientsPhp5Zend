@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RegionChannelNumber extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_IngestStatusEpgListResponse extends Kaltura_Client_Type_ListResponse
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRegionChannelNumber';
+		return 'KalturaIngestStatusEpgListResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,24 +45,20 @@ class Kaltura_Client_Type_RegionChannelNumber extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->regionId))
-			$this->regionId = (int)$xml->regionId;
-		if(count($xml->channelNumber))
-			$this->channelNumber = (int)$xml->channelNumber;
+		if(count($xml->objects))
+		{
+			if(empty($xml->objects))
+				$this->objects = array();
+			else
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaIngestEpg");
+		}
 	}
 	/**
-	 * The identifier of the region
+	 * IngestStatus
 	 *
-	 * @var int
+	 * @var array of KalturaIngestEpg
 	 */
-	public $regionId = null;
-
-	/**
-	 * The number of the channel
-	 *
-	 * @var int
-	 */
-	public $channelNumber = null;
+	public $objects;
 
 
 }
