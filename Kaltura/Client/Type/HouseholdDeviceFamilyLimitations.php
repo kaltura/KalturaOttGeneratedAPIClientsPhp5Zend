@@ -51,6 +51,20 @@ class Kaltura_Client_Type_HouseholdDeviceFamilyLimitations extends Kaltura_Clien
 			$this->deviceLimit = (int)$xml->deviceLimit;
 		if(count($xml->concurrentLimit))
 			$this->concurrentLimit = (int)$xml->concurrentLimit;
+		if(count($xml->isDefaultDeviceLimit))
+		{
+			if(!empty($xml->isDefaultDeviceLimit) && ((int) $xml->isDefaultDeviceLimit === 1 || strtolower((string)$xml->isDefaultDeviceLimit) === 'true'))
+				$this->isDefaultDeviceLimit = true;
+			else
+				$this->isDefaultDeviceLimit = false;
+		}
+		if(count($xml->isDefaultConcurrentLimit ))
+		{
+			if(!empty($xml->isDefaultConcurrentLimit ) && ((int) $xml->isDefaultConcurrentLimit  === 1 || strtolower((string)$xml->isDefaultConcurrentLimit ) === 'true'))
+				$this->isDefaultConcurrentLimit  = true;
+			else
+				$this->isDefaultConcurrentLimit  = false;
+		}
 	}
 	/**
 	 * Allowed device change frequency code
@@ -72,6 +86,22 @@ class Kaltura_Client_Type_HouseholdDeviceFamilyLimitations extends Kaltura_Clien
 	 * @var int
 	 */
 	public $concurrentLimit = null;
+
+	/**
+	 * Is the Max number of devices allowed for this family is default value or not
+	 *
+	 * @var bool
+	 * @readonly
+	 */
+	public $isDefaultDeviceLimit = null;
+
+	/**
+	 * Is the Max number of streams allowed for this family is default value or not
+	 *
+	 * @var bool
+	 * @readonly
+	 */
+	public $isDefaultConcurrentLimit  = null;
 
 
 }
