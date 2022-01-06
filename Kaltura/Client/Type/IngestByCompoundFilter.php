@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RegionChannelNumber extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_IngestByCompoundFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRegionChannelNumber';
+		return 'KalturaIngestByCompoundFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,24 +45,51 @@ class Kaltura_Client_Type_RegionChannelNumber extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->regionId))
-			$this->regionId = (int)$xml->regionId;
-		if(count($xml->channelNumber))
-			$this->channelNumber = (int)$xml->channelNumber;
+		if(count($xml->ingestNameContains))
+			$this->ingestNameContains = (string)$xml->ingestNameContains;
+		if(count($xml->ingestedByUserIdIn))
+			$this->ingestedByUserIdIn = (string)$xml->ingestedByUserIdIn;
+		if(count($xml->ingestStatusIn))
+			$this->ingestStatusIn = (string)$xml->ingestStatusIn;
+		if(count($xml->createdDateGreaterThan))
+			$this->createdDateGreaterThan = (string)$xml->createdDateGreaterThan;
+		if(count($xml->createdDateSmallerThan))
+			$this->createdDateSmallerThan = (string)$xml->createdDateSmallerThan;
 	}
 	/**
-	 * The identifier of the region
+	 * A string that is included in the ingest file name
 	 *
-	 * @var int
+	 * @var string
 	 */
-	public $regionId = null;
+	public $ingestNameContains = null;
 
 	/**
-	 * The number of the channel
+	 * Comma seperated user ids
 	 *
-	 * @var int
+	 * @var string
 	 */
-	public $channelNumber = null;
+	public $ingestedByUserIdIn = null;
+
+	/**
+	 * Comma seperated valid stutuses
+	 *
+	 * @var string
+	 */
+	public $ingestStatusIn = null;
+
+	/**
+	 * Ingest created date greater then this value. . Date and time represented as epoch.
+	 *
+	 * @var bigint
+	 */
+	public $createdDateGreaterThan = null;
+
+	/**
+	 * Ingest created date smaller than this value. Date and time represented as epoch.
+	 *
+	 * @var bigint
+	 */
+	public $createdDateSmallerThan = null;
 
 
 }
