@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2021  Kaltura Inc.
+// Copyright (C) 2006-2022  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -109,6 +109,7 @@ class Kaltura_Client_TypeMap
 		'KalturaAssetsCount' => 'Kaltura_Client_Type_AssetsCount',
 		'KalturaBaseAssetStructFilter' => 'Kaltura_Client_Type_BaseAssetStructFilter',
 		'KalturaBaseChannel' => 'Kaltura_Client_Type_BaseChannel',
+		'KalturaBaseChannelOrder' => 'Kaltura_Client_Type_BaseChannelOrder',
 		'KalturaBaseOTTUser' => 'Kaltura_Client_Type_BaseOTTUser',
 		'KalturaBasePartnerConfiguration' => 'Kaltura_Client_Type_BasePartnerConfiguration',
 		'KalturaBasePermissionFilter' => 'Kaltura_Client_Type_BasePermissionFilter',
@@ -189,12 +190,15 @@ class Kaltura_Client_TypeMap
 		'KalturaCategoryVersionFilterByTree' => 'Kaltura_Client_Type_CategoryVersionFilterByTree',
 		'KalturaCategoryVersionListResponse' => 'Kaltura_Client_Type_CategoryVersionListResponse',
 		'KalturaChannel' => 'Kaltura_Client_Type_Channel',
+		'KalturaChannelDynamicOrder' => 'Kaltura_Client_Type_ChannelDynamicOrder',
 		'KalturaChannelEnrichmentHolder' => 'Kaltura_Client_Type_ChannelEnrichmentHolder',
 		'KalturaChannelExternalFilter' => 'Kaltura_Client_Type_ChannelExternalFilter',
+		'KalturaChannelFieldOrder' => 'Kaltura_Client_Type_ChannelFieldOrder',
 		'KalturaChannelFilter' => 'Kaltura_Client_Type_ChannelFilter',
 		'KalturaChannelListResponse' => 'Kaltura_Client_Type_ChannelListResponse',
 		'KalturaChannelOrder' => 'Kaltura_Client_Type_ChannelOrder',
 		'KalturaChannelSearchByKsqlFilter' => 'Kaltura_Client_Type_ChannelSearchByKsqlFilter',
+		'KalturaChannelSlidingWindowOrder' => 'Kaltura_Client_Type_ChannelSlidingWindowOrder',
 		'KalturaChannelsBaseFilter' => 'Kaltura_Client_Type_ChannelsBaseFilter',
 		'KalturaChannelsFilter' => 'Kaltura_Client_Type_ChannelsFilter',
 		'KalturaClientConfiguration' => 'Kaltura_Client_Type_ClientConfiguration',
@@ -418,8 +422,14 @@ class Kaltura_Client_TypeMap
 		'KalturaInboxMessage' => 'Kaltura_Client_Type_InboxMessage',
 		'KalturaInboxMessageFilter' => 'Kaltura_Client_Type_InboxMessageFilter',
 		'KalturaInboxMessageListResponse' => 'Kaltura_Client_Type_InboxMessageListResponse',
+		'KalturaIngestByCompoundFilter' => 'Kaltura_Client_Type_IngestByCompoundFilter',
+		'KalturaIngestByIdsFilter' => 'Kaltura_Client_Type_IngestByIdsFilter',
+		'KalturaIngestEpg' => 'Kaltura_Client_Type_IngestEpg',
 		'KalturaIngestProfile' => 'Kaltura_Client_Type_IngestProfile',
 		'KalturaIngestProfileListResponse' => 'Kaltura_Client_Type_IngestProfileListResponse',
+		'KalturaIngestStatusEpgConfiguration' => 'Kaltura_Client_Type_IngestStatusEpgConfiguration',
+		'KalturaIngestStatusEpgListResponse' => 'Kaltura_Client_Type_IngestStatusEpgListResponse',
+		'KalturaIngestStatusPartnerConfiguration' => 'Kaltura_Client_Type_IngestStatusPartnerConfiguration',
 		'KalturaIntegerValue' => 'Kaltura_Client_Type_IntegerValue',
 		'KalturaIntegerValueListResponse' => 'Kaltura_Client_Type_IntegerValueListResponse',
 		'KalturaIot' => 'Kaltura_Client_Type_Iot',
@@ -565,6 +575,7 @@ class Kaltura_Client_TypeMap
 		'KalturaPricePlan' => 'Kaltura_Client_Type_PricePlan',
 		'KalturaPricePlanFilter' => 'Kaltura_Client_Type_PricePlanFilter',
 		'KalturaPricePlanListResponse' => 'Kaltura_Client_Type_PricePlanListResponse',
+		'KalturaPriorityGroupFilter' => 'Kaltura_Client_Type_PriorityGroupFilter',
 		'KalturaProductCode' => 'Kaltura_Client_Type_ProductCode',
 		'KalturaProductPrice' => 'Kaltura_Client_Type_ProductPrice',
 		'KalturaProductPriceFilter' => 'Kaltura_Client_Type_ProductPriceFilter',
@@ -595,9 +606,11 @@ class Kaltura_Client_TypeMap
 		'KalturaRegexExpression' => 'Kaltura_Client_Type_RegexExpression',
 		'KalturaRegion' => 'Kaltura_Client_Type_Region',
 		'KalturaRegionChannelNumber' => 'Kaltura_Client_Type_RegionChannelNumber',
+		'KalturaRegionChannelNumberMultiLcns' => 'Kaltura_Client_Type_RegionChannelNumberMultiLcns',
 		'KalturaRegionFilter' => 'Kaltura_Client_Type_RegionFilter',
 		'KalturaRegionListResponse' => 'Kaltura_Client_Type_RegionListResponse',
 		'KalturaRegionalChannel' => 'Kaltura_Client_Type_RegionalChannel',
+		'KalturaRegionalChannelMultiLcns' => 'Kaltura_Client_Type_RegionalChannelMultiLcns',
 		'KalturaRegistryResponse' => 'Kaltura_Client_Type_RegistryResponse',
 		'KalturaRegistrySettings' => 'Kaltura_Client_Type_RegistrySettings',
 		'KalturaRegistrySettingsListResponse' => 'Kaltura_Client_Type_RegistrySettingsListResponse',
