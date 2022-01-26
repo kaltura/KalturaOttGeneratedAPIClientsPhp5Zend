@@ -35,5 +35,6 @@ class Kaltura_Client_Enum_DowngradePolicy extends Kaltura_Client_EnumBase
 {
 	const LIFO = "LIFO";
 	const FIFO = "FIFO";
+	const ACTIVE_DATE = "ACTIVE_DATE";
 }
 

@@ -437,6 +437,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_IngestStatusService
+	 */
+	public $ingestStatus = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_IotService
 	 */
 	public $iot = null;
@@ -906,8 +912,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:21-12-06');
-		$this->setApiVersion('7.0.0.29627');
+		$this->setClientTag('php5:22-01-26');
+		$this->setApiVersion('7.2.0.29662');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -976,6 +982,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->imageType = new Kaltura_Client_ImageTypeService($this);
 		$this->inboxMessage = new Kaltura_Client_InboxMessageService($this);
 		$this->IngestProfile = new Kaltura_Client_IngestProfileService($this);
+		$this->ingestStatus = new Kaltura_Client_IngestStatusService($this);
 		$this->iot = new Kaltura_Client_IotService($this);
 		$this->iotProfile = new Kaltura_Client_IotProfileService($this);
 		$this->label = new Kaltura_Client_LabelService($this);

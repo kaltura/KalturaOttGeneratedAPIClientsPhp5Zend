@@ -93,6 +93,13 @@ class Kaltura_Client_Type_Announcement extends Kaltura_Client_ObjectBase
 			else
 				$this->includeIot = false;
 		}
+		if(count($xml->includeUserInbox))
+		{
+			if(!empty($xml->includeUserInbox) && ((int) $xml->includeUserInbox === 1 || strtolower((string)$xml->includeUserInbox) === 'true'))
+				$this->includeUserInbox = true;
+			else
+				$this->includeUserInbox = false;
+		}
 	}
 	/**
 	 * Announcement name
@@ -193,6 +200,13 @@ class Kaltura_Client_Type_Announcement extends Kaltura_Client_ObjectBase
 	 * @var bool
 	 */
 	public $includeIot = null;
+
+	/**
+	 * Should add to user inbox
+	 *
+	 * @var bool
+	 */
+	public $includeUserInbox = null;
 
 
 }
