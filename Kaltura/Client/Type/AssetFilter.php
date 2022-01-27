@@ -49,6 +49,13 @@ class Kaltura_Client_Type_AssetFilter extends Kaltura_Client_Type_PersistedFilte
 			$this->dynamicOrderBy = Kaltura_Client_ParseUtils::unmarshalObject($xml->dynamicOrderBy, "KalturaDynamicOrderBy");
 		if(count($xml->trendingDaysEqual))
 			$this->trendingDaysEqual = (int)$xml->trendingDaysEqual;
+		if(count($xml->shouldApplyPriorityGroupsEqual))
+		{
+			if(!empty($xml->shouldApplyPriorityGroupsEqual) && ((int) $xml->shouldApplyPriorityGroupsEqual === 1 || strtolower((string)$xml->shouldApplyPriorityGroupsEqual) === 'true'))
+				$this->shouldApplyPriorityGroupsEqual = true;
+			else
+				$this->shouldApplyPriorityGroupsEqual = false;
+		}
 	}
 	/**
 	 * dynamicOrderBy - order by Meta
@@ -63,6 +70,13 @@ class Kaltura_Client_Type_AssetFilter extends Kaltura_Client_Type_PersistedFilte
 	 * @var int
 	 */
 	public $trendingDaysEqual = null;
+
+	/**
+	 * Should apply priority groups filter or not.
+	 *
+	 * @var bool
+	 */
+	public $shouldApplyPriorityGroupsEqual = null;
 
 
 }

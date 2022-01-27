@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RegionChannelNumber extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_ChannelDynamicOrder extends Kaltura_Client_Type_BaseChannelOrder
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRegionChannelNumber';
+		return 'KalturaChannelDynamicOrder';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,24 +45,24 @@ class Kaltura_Client_Type_RegionChannelNumber extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->regionId))
-			$this->regionId = (int)$xml->regionId;
-		if(count($xml->channelNumber))
-			$this->channelNumber = (int)$xml->channelNumber;
+		if(count($xml->name))
+			$this->name = (string)$xml->name;
+		if(count($xml->orderBy))
+			$this->orderBy = (string)$xml->orderBy;
 	}
 	/**
-	 * The identifier of the region
+	 * Value
 	 *
-	 * @var int
+	 * @var string
 	 */
-	public $regionId = null;
+	public $name = null;
 
 	/**
-	 * The number of the channel
+	 * Order By
 	 *
-	 * @var int
+	 * @var Kaltura_Client_Enum_MetaTagOrderBy
 	 */
-	public $channelNumber = null;
+	public $orderBy = null;
 
 
 }
