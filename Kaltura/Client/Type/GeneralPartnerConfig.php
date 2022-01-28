@@ -59,6 +59,8 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 			$this->secondaryCurrencies = (string)$xml->secondaryCurrencies;
 		if(count($xml->downgradePolicy))
 			$this->downgradePolicy = (string)$xml->downgradePolicy;
+		if(count($xml->downgradePriorityFamilyIds))
+			$this->downgradePriorityFamilyIds = (string)$xml->downgradePriorityFamilyIds;
 		if(count($xml->mailSettings))
 			$this->mailSettings = (string)$xml->mailSettings;
 		if(count($xml->dateFormat))
@@ -88,6 +90,13 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 				$this->allowDeviceMobility = true;
 			else
 				$this->allowDeviceMobility = false;
+		}
+		if(count($xml->enableMultiLcns))
+		{
+			if(!empty($xml->enableMultiLcns) && ((int) $xml->enableMultiLcns === 1 || strtolower((string)$xml->enableMultiLcns) === 'true'))
+				$this->enableMultiLcns = true;
+			else
+				$this->enableMultiLcns = false;
 		}
 	}
 	/**
@@ -138,6 +147,13 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 	 * @var Kaltura_Client_Enum_DowngradePolicy
 	 */
 	public $downgradePolicy = null;
+
+	/**
+	 * Priority Family Ids to remove devices on downgrade (first in the list first to remove)
+	 *
+	 * @var string
+	 */
+	public $downgradePriorityFamilyIds = null;
 
 	/**
 	 * Mail settings
@@ -208,6 +224,13 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 	 * @var bool
 	 */
 	public $allowDeviceMobility = null;
+
+	/**
+	 * Enable multi LCNs per linear channel
+	 *
+	 * @var bool
+	 */
+	public $enableMultiLcns = null;
 
 
 }

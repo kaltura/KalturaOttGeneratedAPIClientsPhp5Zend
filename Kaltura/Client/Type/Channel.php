@@ -78,6 +78,13 @@ class Kaltura_Client_Type_Channel extends Kaltura_Client_Type_BaseChannel
 		}
 		if(count($xml->orderBy) && !empty($xml->orderBy))
 			$this->orderBy = Kaltura_Client_ParseUtils::unmarshalObject($xml->orderBy, "KalturaChannelOrder");
+		if(count($xml->orderingParametersEqual))
+		{
+			if(empty($xml->orderingParametersEqual))
+				$this->orderingParametersEqual = array();
+			else
+				$this->orderingParametersEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->orderingParametersEqual, "KalturaBaseChannelOrder");
+		}
 		if(count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
 		if(count($xml->updateDate))
@@ -165,6 +172,13 @@ class Kaltura_Client_Type_Channel extends Kaltura_Client_Type_BaseChannel
 	 * @var Kaltura_Client_Type_ChannelOrder
 	 */
 	public $orderBy;
+
+	/**
+	 * Parameters for asset list sorting.
+	 *
+	 * @var array of KalturaBaseChannelOrder
+	 */
+	public $orderingParametersEqual;
 
 	/**
 	 * Specifies when was the Channel was created. Date and time represented as epoch.

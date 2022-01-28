@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_AssetFilter extends Kaltura_Client_Type_PersistedFilter
+class Kaltura_Client_Type_IngestStatusEpgConfiguration extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaAssetFilter';
+		return 'KalturaIngestStatusEpgConfiguration';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,52 +45,29 @@ class Kaltura_Client_Type_AssetFilter extends Kaltura_Client_Type_PersistedFilte
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->dynamicOrderBy) && !empty($xml->dynamicOrderBy))
-			$this->dynamicOrderBy = Kaltura_Client_ParseUtils::unmarshalObject($xml->dynamicOrderBy, "KalturaDynamicOrderBy");
-		if(count($xml->orderingParameters))
+		if(count($xml->isSupported))
 		{
-			if(empty($xml->orderingParameters))
-				$this->orderingParameters = array();
+			if(!empty($xml->isSupported) && ((int) $xml->isSupported === 1 || strtolower((string)$xml->isSupported) === 'true'))
+				$this->isSupported = true;
 			else
-				$this->orderingParameters = Kaltura_Client_ParseUtils::unmarshalArray($xml->orderingParameters, "KalturaBaseAssetOrder");
+				$this->isSupported = false;
 		}
-		if(count($xml->trendingDaysEqual))
-			$this->trendingDaysEqual = (int)$xml->trendingDaysEqual;
-		if(count($xml->shouldApplyPriorityGroupsEqual))
-		{
-			if(!empty($xml->shouldApplyPriorityGroupsEqual) && ((int) $xml->shouldApplyPriorityGroupsEqual === 1 || strtolower((string)$xml->shouldApplyPriorityGroupsEqual) === 'true'))
-				$this->shouldApplyPriorityGroupsEqual = true;
-			else
-				$this->shouldApplyPriorityGroupsEqual = false;
-		}
+		if(count($xml->retainingPeriod))
+			$this->retainingPeriod = (int)$xml->retainingPeriod;
 	}
 	/**
-	 * dynamicOrderBy - order by Meta
-	 *
-	 * @var Kaltura_Client_Type_DynamicOrderBy
-	 */
-	public $dynamicOrderBy;
-
-	/**
-	 * Parameters for asset list sorting.
-	 *
-	 * @var array of KalturaBaseAssetOrder
-	 */
-	public $orderingParameters;
-
-	/**
-	 * Trending Days Equal
-	 *
-	 * @var int
-	 */
-	public $trendingDaysEqual = null;
-
-	/**
-	 * Should apply priority groups filter or not.
+	 * Defines whether partner in question enabled core ingest status service.
 	 *
 	 * @var bool
 	 */
-	public $shouldApplyPriorityGroupsEqual = null;
+	public $isSupported = null;
+
+	/**
+	 * Defines the time in seconds that the service retain information about ingest status.
+	 *
+	 * @var int
+	 */
+	public $retainingPeriod = null;
 
 
 }

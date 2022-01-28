@@ -31,39 +31,8 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RegionChannelNumber extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Enum_AssetOrderByStatistics extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaRegionChannelNumber';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->regionId))
-			$this->regionId = (int)$xml->regionId;
-		if(count($xml->channelNumber))
-			$this->channelNumber = (int)$xml->channelNumber;
-	}
-	/**
-	 * The identifier of the region
-	 *
-	 * @var int
-	 */
-	public $regionId = null;
-
-	/**
-	 * The number of the channel
-	 *
-	 * @var int
-	 */
-	public $channelNumber = null;
-
-
+	const VIEWS_DESC = "VIEWS_DESC";
 }
 

@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_AssetFilter extends Kaltura_Client_Type_PersistedFilter
+class Kaltura_Client_Type_IngestByCompoundFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaAssetFilter';
+		return 'KalturaIngestByCompoundFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,52 +45,51 @@ class Kaltura_Client_Type_AssetFilter extends Kaltura_Client_Type_PersistedFilte
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->dynamicOrderBy) && !empty($xml->dynamicOrderBy))
-			$this->dynamicOrderBy = Kaltura_Client_ParseUtils::unmarshalObject($xml->dynamicOrderBy, "KalturaDynamicOrderBy");
-		if(count($xml->orderingParameters))
-		{
-			if(empty($xml->orderingParameters))
-				$this->orderingParameters = array();
-			else
-				$this->orderingParameters = Kaltura_Client_ParseUtils::unmarshalArray($xml->orderingParameters, "KalturaBaseAssetOrder");
-		}
-		if(count($xml->trendingDaysEqual))
-			$this->trendingDaysEqual = (int)$xml->trendingDaysEqual;
-		if(count($xml->shouldApplyPriorityGroupsEqual))
-		{
-			if(!empty($xml->shouldApplyPriorityGroupsEqual) && ((int) $xml->shouldApplyPriorityGroupsEqual === 1 || strtolower((string)$xml->shouldApplyPriorityGroupsEqual) === 'true'))
-				$this->shouldApplyPriorityGroupsEqual = true;
-			else
-				$this->shouldApplyPriorityGroupsEqual = false;
-		}
+		if(count($xml->ingestNameContains))
+			$this->ingestNameContains = (string)$xml->ingestNameContains;
+		if(count($xml->ingestedByUserIdIn))
+			$this->ingestedByUserIdIn = (string)$xml->ingestedByUserIdIn;
+		if(count($xml->ingestStatusIn))
+			$this->ingestStatusIn = (string)$xml->ingestStatusIn;
+		if(count($xml->createdDateGreaterThan))
+			$this->createdDateGreaterThan = (string)$xml->createdDateGreaterThan;
+		if(count($xml->createdDateSmallerThan))
+			$this->createdDateSmallerThan = (string)$xml->createdDateSmallerThan;
 	}
 	/**
-	 * dynamicOrderBy - order by Meta
+	 * A string that is included in the ingest file name
 	 *
-	 * @var Kaltura_Client_Type_DynamicOrderBy
+	 * @var string
 	 */
-	public $dynamicOrderBy;
+	public $ingestNameContains = null;
 
 	/**
-	 * Parameters for asset list sorting.
+	 * Comma seperated user ids
 	 *
-	 * @var array of KalturaBaseAssetOrder
+	 * @var string
 	 */
-	public $orderingParameters;
+	public $ingestedByUserIdIn = null;
 
 	/**
-	 * Trending Days Equal
+	 * Comma seperated valid stutuses
 	 *
-	 * @var int
+	 * @var string
 	 */
-	public $trendingDaysEqual = null;
+	public $ingestStatusIn = null;
 
 	/**
-	 * Should apply priority groups filter or not.
+	 * Ingest created date greater then this value. . Date and time represented as epoch.
 	 *
-	 * @var bool
+	 * @var bigint
 	 */
-	public $shouldApplyPriorityGroupsEqual = null;
+	public $createdDateGreaterThan = null;
+
+	/**
+	 * Ingest created date smaller than this value. Date and time represented as epoch.
+	 *
+	 * @var bigint
+	 */
+	public $createdDateSmallerThan = null;
 
 
 }
