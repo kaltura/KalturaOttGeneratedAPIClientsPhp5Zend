@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RegionChannelNumber extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_ProgramAssetGroupOfferFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRegionChannelNumber';
+		return 'KalturaProgramAssetGroupOfferFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,24 +45,20 @@ class Kaltura_Client_Type_RegionChannelNumber extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->regionId))
-			$this->regionId = (int)$xml->regionId;
-		if(count($xml->channelNumber))
-			$this->channelNumber = (int)$xml->channelNumber;
+		if(count($xml->alsoInactive))
+		{
+			if(!empty($xml->alsoInactive) && ((int) $xml->alsoInactive === 1 || strtolower((string)$xml->alsoInactive) === 'true'))
+				$this->alsoInactive = true;
+			else
+				$this->alsoInactive = false;
+		}
 	}
 	/**
-	 * The identifier of the region
+	 * return also inactive
 	 *
-	 * @var int
+	 * @var bool
 	 */
-	public $regionId = null;
-
-	/**
-	 * The number of the channel
-	 *
-	 * @var int
-	 */
-	public $channelNumber = null;
+	public $alsoInactive = null;
 
 
 }
