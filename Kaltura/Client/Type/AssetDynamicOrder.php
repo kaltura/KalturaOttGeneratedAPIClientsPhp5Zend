@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_AssetFilter extends Kaltura_Client_Type_PersistedFilter
+class Kaltura_Client_Type_AssetDynamicOrder extends Kaltura_Client_Type_BaseAssetOrder
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaAssetFilter';
+		return 'KalturaAssetDynamicOrder';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,52 +45,24 @@ class Kaltura_Client_Type_AssetFilter extends Kaltura_Client_Type_PersistedFilte
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->dynamicOrderBy) && !empty($xml->dynamicOrderBy))
-			$this->dynamicOrderBy = Kaltura_Client_ParseUtils::unmarshalObject($xml->dynamicOrderBy, "KalturaDynamicOrderBy");
-		if(count($xml->orderingParameters))
-		{
-			if(empty($xml->orderingParameters))
-				$this->orderingParameters = array();
-			else
-				$this->orderingParameters = Kaltura_Client_ParseUtils::unmarshalArray($xml->orderingParameters, "KalturaBaseAssetOrder");
-		}
-		if(count($xml->trendingDaysEqual))
-			$this->trendingDaysEqual = (int)$xml->trendingDaysEqual;
-		if(count($xml->shouldApplyPriorityGroupsEqual))
-		{
-			if(!empty($xml->shouldApplyPriorityGroupsEqual) && ((int) $xml->shouldApplyPriorityGroupsEqual === 1 || strtolower((string)$xml->shouldApplyPriorityGroupsEqual) === 'true'))
-				$this->shouldApplyPriorityGroupsEqual = true;
-			else
-				$this->shouldApplyPriorityGroupsEqual = false;
-		}
+		if(count($xml->name))
+			$this->name = (string)$xml->name;
+		if(count($xml->orderBy))
+			$this->orderBy = (string)$xml->orderBy;
 	}
 	/**
-	 * dynamicOrderBy - order by Meta
+	 * order by name
 	 *
-	 * @var Kaltura_Client_Type_DynamicOrderBy
+	 * @var string
 	 */
-	public $dynamicOrderBy;
+	public $name = null;
 
 	/**
-	 * Parameters for asset list sorting.
+	 * order by meta asc/desc
 	 *
-	 * @var array of KalturaBaseAssetOrder
+	 * @var Kaltura_Client_Enum_MetaTagOrderBy
 	 */
-	public $orderingParameters;
-
-	/**
-	 * Trending Days Equal
-	 *
-	 * @var int
-	 */
-	public $trendingDaysEqual = null;
-
-	/**
-	 * Should apply priority groups filter or not.
-	 *
-	 * @var bool
-	 */
-	public $shouldApplyPriorityGroupsEqual = null;
+	public $orderBy = null;
 
 
 }

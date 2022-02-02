@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_AssetFilter extends Kaltura_Client_Type_PersistedFilter
+class Kaltura_Client_Type_AssetStatisticsOrder extends Kaltura_Client_Type_BaseAssetOrder
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaAssetFilter';
+		return 'KalturaAssetStatisticsOrder';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,39 +45,11 @@ class Kaltura_Client_Type_AssetFilter extends Kaltura_Client_Type_PersistedFilte
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->dynamicOrderBy) && !empty($xml->dynamicOrderBy))
-			$this->dynamicOrderBy = Kaltura_Client_ParseUtils::unmarshalObject($xml->dynamicOrderBy, "KalturaDynamicOrderBy");
-		if(count($xml->orderingParameters))
-		{
-			if(empty($xml->orderingParameters))
-				$this->orderingParameters = array();
-			else
-				$this->orderingParameters = Kaltura_Client_ParseUtils::unmarshalArray($xml->orderingParameters, "KalturaBaseAssetOrder");
-		}
 		if(count($xml->trendingDaysEqual))
 			$this->trendingDaysEqual = (int)$xml->trendingDaysEqual;
-		if(count($xml->shouldApplyPriorityGroupsEqual))
-		{
-			if(!empty($xml->shouldApplyPriorityGroupsEqual) && ((int) $xml->shouldApplyPriorityGroupsEqual === 1 || strtolower((string)$xml->shouldApplyPriorityGroupsEqual) === 'true'))
-				$this->shouldApplyPriorityGroupsEqual = true;
-			else
-				$this->shouldApplyPriorityGroupsEqual = false;
-		}
+		if(count($xml->orderBy))
+			$this->orderBy = (string)$xml->orderBy;
 	}
-	/**
-	 * dynamicOrderBy - order by Meta
-	 *
-	 * @var Kaltura_Client_Type_DynamicOrderBy
-	 */
-	public $dynamicOrderBy;
-
-	/**
-	 * Parameters for asset list sorting.
-	 *
-	 * @var array of KalturaBaseAssetOrder
-	 */
-	public $orderingParameters;
-
 	/**
 	 * Trending Days Equal
 	 *
@@ -86,11 +58,11 @@ class Kaltura_Client_Type_AssetFilter extends Kaltura_Client_Type_PersistedFilte
 	public $trendingDaysEqual = null;
 
 	/**
-	 * Should apply priority groups filter or not.
+	 * order by meta asc/desc
 	 *
-	 * @var bool
+	 * @var Kaltura_Client_Enum_AssetOrderByStatistics
 	 */
-	public $shouldApplyPriorityGroupsEqual = null;
+	public $orderBy = null;
 
 
 }

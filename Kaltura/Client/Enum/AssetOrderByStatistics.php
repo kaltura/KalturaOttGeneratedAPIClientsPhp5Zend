@@ -31,13 +31,8 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_ObjectVirtualAssetInfoType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Enum_AssetOrderByStatistics extends Kaltura_Client_EnumBase
 {
-	const SUBSCRIPTION = "Subscription";
-	const SEGMENT = "Segment";
-	const CATEGORY = "Category";
-	const TVOD = "Tvod";
-	const BOXSET = "Boxset";
-	const PAGO = "PAGO";
+	const VIEWS_DESC = "VIEWS_DESC";
 }
 

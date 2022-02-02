@@ -31,13 +31,17 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_ObjectVirtualAssetInfoType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Enum_AssetOrderByType extends Kaltura_Client_EnumBase
 {
-	const SUBSCRIPTION = "Subscription";
-	const SEGMENT = "Segment";
-	const CATEGORY = "Category";
-	const TVOD = "Tvod";
-	const BOXSET = "Boxset";
-	const PAGO = "PAGO";
+	const RELEVANCY_DESC = "RELEVANCY_DESC";
+	const NAME_ASC = "NAME_ASC";
+	const NAME_DESC = "NAME_DESC";
+	const RATINGS_DESC = "RATINGS_DESC";
+	const VOTES_DESC = "VOTES_DESC";
+	const START_DATE_DESC = "START_DATE_DESC";
+	const START_DATE_ASC = "START_DATE_ASC";
+	const LIKES_DESC = "LIKES_DESC";
+	const CREATE_DATE_ASC = "CREATE_DATE_ASC";
+	const CREATE_DATE_DESC = "CREATE_DATE_DESC";
 }
 
