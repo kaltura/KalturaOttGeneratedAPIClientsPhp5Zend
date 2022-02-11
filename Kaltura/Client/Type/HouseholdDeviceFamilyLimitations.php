@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2021  Kaltura Inc.
+// Copyright (C) 2006-2022  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -58,12 +58,12 @@ class Kaltura_Client_Type_HouseholdDeviceFamilyLimitations extends Kaltura_Clien
 			else
 				$this->isDefaultDeviceLimit = false;
 		}
-		if(count($xml->isDefaultConcurrentLimit ))
+		if(count($xml->isDefaultConcurrentLimit))
 		{
-			if(!empty($xml->isDefaultConcurrentLimit ) && ((int) $xml->isDefaultConcurrentLimit  === 1 || strtolower((string)$xml->isDefaultConcurrentLimit ) === 'true'))
-				$this->isDefaultConcurrentLimit  = true;
+			if(!empty($xml->isDefaultConcurrentLimit) && ((int) $xml->isDefaultConcurrentLimit === 1 || strtolower((string)$xml->isDefaultConcurrentLimit) === 'true'))
+				$this->isDefaultConcurrentLimit = true;
 			else
-				$this->isDefaultConcurrentLimit  = false;
+				$this->isDefaultConcurrentLimit = false;
 		}
 	}
 	/**
@@ -101,7 +101,7 @@ class Kaltura_Client_Type_HouseholdDeviceFamilyLimitations extends Kaltura_Clien
 	 * @var bool
 	 * @readonly
 	 */
-	public $isDefaultConcurrentLimit  = null;
+	public $isDefaultConcurrentLimit = null;
 
 
 }

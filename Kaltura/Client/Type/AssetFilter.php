@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2021  Kaltura Inc.
+// Copyright (C) 2006-2022  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -47,8 +47,22 @@ class Kaltura_Client_Type_AssetFilter extends Kaltura_Client_Type_PersistedFilte
 		
 		if(count($xml->dynamicOrderBy) && !empty($xml->dynamicOrderBy))
 			$this->dynamicOrderBy = Kaltura_Client_ParseUtils::unmarshalObject($xml->dynamicOrderBy, "KalturaDynamicOrderBy");
+		if(count($xml->orderingParameters))
+		{
+			if(empty($xml->orderingParameters))
+				$this->orderingParameters = array();
+			else
+				$this->orderingParameters = Kaltura_Client_ParseUtils::unmarshalArray($xml->orderingParameters, "KalturaBaseAssetOrder");
+		}
 		if(count($xml->trendingDaysEqual))
 			$this->trendingDaysEqual = (int)$xml->trendingDaysEqual;
+		if(count($xml->shouldApplyPriorityGroupsEqual))
+		{
+			if(!empty($xml->shouldApplyPriorityGroupsEqual) && ((int) $xml->shouldApplyPriorityGroupsEqual === 1 || strtolower((string)$xml->shouldApplyPriorityGroupsEqual) === 'true'))
+				$this->shouldApplyPriorityGroupsEqual = true;
+			else
+				$this->shouldApplyPriorityGroupsEqual = false;
+		}
 	}
 	/**
 	 * dynamicOrderBy - order by Meta
@@ -58,11 +72,25 @@ class Kaltura_Client_Type_AssetFilter extends Kaltura_Client_Type_PersistedFilte
 	public $dynamicOrderBy;
 
 	/**
+	 * Parameters for asset list sorting.
+	 *
+	 * @var array of KalturaBaseAssetOrder
+	 */
+	public $orderingParameters;
+
+	/**
 	 * Trending Days Equal
 	 *
 	 * @var int
 	 */
 	public $trendingDaysEqual = null;
+
+	/**
+	 * Should apply priority groups filter or not.
+	 *
+	 * @var bool
+	 */
+	public $shouldApplyPriorityGroupsEqual = null;
 
 
 }

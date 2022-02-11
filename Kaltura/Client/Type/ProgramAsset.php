@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2021  Kaltura Inc.
+// Copyright (C) 2006-2022  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -83,6 +83,8 @@ class Kaltura_Client_Type_ProgramAsset extends Kaltura_Client_Type_Asset
 			else
 				$this->enableTrickPlay = false;
 		}
+		if(count($xml->externalOfferIds))
+			$this->externalOfferIds = (string)$xml->externalOfferIds;
 	}
 	/**
 	 * EPG channel identifier
@@ -157,6 +159,13 @@ class Kaltura_Client_Type_ProgramAsset extends Kaltura_Client_Type_Asset
 	 * @var bool
 	 */
 	public $enableTrickPlay = null;
+
+	/**
+	 * Contains comma separate list of KalturaProgramAssetGroupOffer.externalOfferId values indicating the PAGOs to which the Program Asset is bound.
+	 *
+	 * @var string
+	 */
+	public $externalOfferIds = null;
 
 
 }
