@@ -45,6 +45,8 @@ class Kaltura_Client_Type_Price extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
+		if(count($xml->currencyId))
+			$this->currencyId = (string)$xml->currencyId;
 		if(count($xml->amount))
 			$this->amount = (float)$xml->amount;
 		if(count($xml->currency))
@@ -54,6 +56,14 @@ class Kaltura_Client_Type_Price extends Kaltura_Client_ObjectBase
 		if(count($xml->countryId))
 			$this->countryId = (string)$xml->countryId;
 	}
+	/**
+	 * Currency ID
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $currencyId = null;
+
 	/**
 	 * Price
 	 *
