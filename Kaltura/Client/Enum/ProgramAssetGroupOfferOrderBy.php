@@ -31,39 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_AssetStatisticsOrder extends Kaltura_Client_Type_BaseAssetOrder
+class Kaltura_Client_Enum_ProgramAssetGroupOfferOrderBy extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaAssetStatisticsOrder';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->trendingDaysEqual))
-			$this->trendingDaysEqual = (int)$xml->trendingDaysEqual;
-		if(count($xml->orderBy))
-			$this->orderBy = (string)$xml->orderBy;
-	}
-	/**
-	 * Trending Days Equal
-	 *
-	 * @var int
-	 */
-	public $trendingDaysEqual = null;
-
-	/**
-	 * order by meta asc/desc
-	 *
-	 * @var Kaltura_Client_Enum_AssetOrderByStatistics
-	 */
-	public $orderBy = null;
-
-
+	const NAME_ASC = "NAME_ASC";
+	const NAME_DESC = "NAME_DESC";
+	const UPDATE_DATE_ASC = "UPDATE_DATE_ASC";
+	const UPDATE_DATE_DESC = "UPDATE_DATE_DESC";
 }
 

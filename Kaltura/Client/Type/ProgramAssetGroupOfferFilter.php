@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_AssetOrder extends Kaltura_Client_Type_BaseAssetOrder
+class Kaltura_Client_Type_ProgramAssetGroupOfferFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaAssetOrder';
+		return 'KalturaProgramAssetGroupOfferFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,15 +45,20 @@ class Kaltura_Client_Type_AssetOrder extends Kaltura_Client_Type_BaseAssetOrder
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->orderBy))
-			$this->orderBy = (string)$xml->orderBy;
+		if(count($xml->alsoInactive))
+		{
+			if(!empty($xml->alsoInactive) && ((int) $xml->alsoInactive === 1 || strtolower((string)$xml->alsoInactive) === 'true'))
+				$this->alsoInactive = true;
+			else
+				$this->alsoInactive = false;
+		}
 	}
 	/**
-	 * Order By
+	 * return also inactive
 	 *
-	 * @var Kaltura_Client_Enum_AssetOrderByType
+	 * @var bool
 	 */
-	public $orderBy = null;
+	public $alsoInactive = null;
 
 
 }

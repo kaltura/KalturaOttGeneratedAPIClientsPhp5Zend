@@ -31,17 +31,21 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_AssetOrderByType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_ProgramAssetGroupOfferPrice extends Kaltura_Client_Type_ProductPrice
 {
-	const RELEVANCY_DESC = "RELEVANCY_DESC";
-	const NAME_ASC = "NAME_ASC";
-	const NAME_DESC = "NAME_DESC";
-	const RATINGS_DESC = "RATINGS_DESC";
-	const VOTES_DESC = "VOTES_DESC";
-	const START_DATE_DESC = "START_DATE_DESC";
-	const START_DATE_ASC = "START_DATE_ASC";
-	const LIKES_DESC = "LIKES_DESC";
-	const CREATE_DATE_ASC = "CREATE_DATE_ASC";
-	const CREATE_DATE_DESC = "CREATE_DATE_DESC";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaProgramAssetGroupOfferPrice';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+	}
+
 }
 

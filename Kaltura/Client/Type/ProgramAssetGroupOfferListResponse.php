@@ -31,8 +31,35 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_AssetOrderByStatistics extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_ProgramAssetGroupOfferListResponse extends Kaltura_Client_Type_ListResponse
 {
-	const VIEWS_DESC = "VIEWS_DESC";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaProgramAssetGroupOfferListResponse';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->objects))
+		{
+			if(empty($xml->objects))
+				$this->objects = array();
+			else
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaProgramAssetGroupOffer");
+		}
+	}
+	/**
+	 * A list of collections
+	 *
+	 * @var array of KalturaProgramAssetGroupOffer
+	 */
+	public $objects;
+
+
 }
 

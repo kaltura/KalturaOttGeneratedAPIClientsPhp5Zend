@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-abstract class Kaltura_Client_Type_BaseAssetOrder extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_ProgramAssetGroupOfferEntitlement extends Kaltura_Client_Type_Entitlement
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBaseAssetOrder';
+		return 'KalturaProgramAssetGroupOfferEntitlement';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)

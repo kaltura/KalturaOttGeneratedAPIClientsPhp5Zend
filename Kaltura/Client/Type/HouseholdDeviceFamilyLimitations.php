@@ -58,12 +58,12 @@ class Kaltura_Client_Type_HouseholdDeviceFamilyLimitations extends Kaltura_Clien
 			else
 				$this->isDefaultDeviceLimit = false;
 		}
-		if(count($xml->isDefaultConcurrentLimit))
+		if(count($xml->isDefaultConcurrentLimit ))
 		{
-			if(!empty($xml->isDefaultConcurrentLimit) && ((int) $xml->isDefaultConcurrentLimit === 1 || strtolower((string)$xml->isDefaultConcurrentLimit) === 'true'))
-				$this->isDefaultConcurrentLimit = true;
+			if(!empty($xml->isDefaultConcurrentLimit ) && ((int) $xml->isDefaultConcurrentLimit  === 1 || strtolower((string)$xml->isDefaultConcurrentLimit ) === 'true'))
+				$this->isDefaultConcurrentLimit  = true;
 			else
-				$this->isDefaultConcurrentLimit = false;
+				$this->isDefaultConcurrentLimit  = false;
 		}
 	}
 	/**
@@ -101,7 +101,7 @@ class Kaltura_Client_Type_HouseholdDeviceFamilyLimitations extends Kaltura_Clien
 	 * @var bool
 	 * @readonly
 	 */
-	public $isDefaultConcurrentLimit = null;
+	public $isDefaultConcurrentLimit  = null;
 
 
 }
