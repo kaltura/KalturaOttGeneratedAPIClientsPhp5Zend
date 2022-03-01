@@ -53,7 +53,7 @@ class Kaltura_Client_Type_IngestStatusEpgConfiguration extends Kaltura_Client_Ob
 				$this->isSupported = false;
 		}
 		if(count($xml->retainingPeriod))
-			$this->retainingPeriod = (int)$xml->retainingPeriod;
+			$this->retainingPeriod = (string)$xml->retainingPeriod;
 	}
 	/**
 	 * Defines whether partner in question enabled core ingest status service.
@@ -65,7 +65,7 @@ class Kaltura_Client_Type_IngestStatusEpgConfiguration extends Kaltura_Client_Ob
 	/**
 	 * Defines the time in seconds that the service retain information about ingest status.
 	 *
-	 * @var int
+	 * @var bigint
 	 */
 	public $retainingPeriod = null;
 

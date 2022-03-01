@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEntitlementFilter
+class Kaltura_Client_Type_IngestProgramResultsByCompoundFilter extends Kaltura_Client_Type_IngestProgramResultsByRefineFilter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaEntitlementFilter';
+		return 'KalturaIngestProgramResultsByCompoundFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,38 +45,16 @@ class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEnti
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->productTypeEqual))
-			$this->productTypeEqual = (string)$xml->productTypeEqual;
-		if(count($xml->entityReferenceEqual))
-			$this->entityReferenceEqual = (string)$xml->entityReferenceEqual;
-		if(count($xml->isExpiredEqual))
-		{
-			if(!empty($xml->isExpiredEqual) && ((int) $xml->isExpiredEqual === 1 || strtolower((string)$xml->isExpiredEqual) === 'true'))
-				$this->isExpiredEqual = true;
-			else
-				$this->isExpiredEqual = false;
-		}
+		if(count($xml->linearChannelIdIn))
+			$this->linearChannelIdIn = (string)$xml->linearChannelIdIn;
 	}
 	/**
-	 * The type of the entitlements to return
+	 * Comma seperated channel id (the id of the linear channel asset that the program belongs to).
+	 *             Up to 20 ids are allowed.
 	 *
-	 * @var Kaltura_Client_Enum_TransactionType
+	 * @var string
 	 */
-	public $productTypeEqual = null;
-
-	/**
-	 * Reference type to filter by
-	 *
-	 * @var Kaltura_Client_Enum_EntityReferenceBy
-	 */
-	public $entityReferenceEqual = null;
-
-	/**
-	 * Is expired
-	 *
-	 * @var bool
-	 */
-	public $isExpiredEqual = null;
+	public $linearChannelIdIn = null;
 
 
 }

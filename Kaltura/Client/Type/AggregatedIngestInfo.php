@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEntitlementFilter
+class Kaltura_Client_Type_AggregatedIngestInfo extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaEntitlementFilter';
+		return 'KalturaAggregatedIngestInfo';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,38 +45,42 @@ class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEnti
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->productTypeEqual))
-			$this->productTypeEqual = (string)$xml->productTypeEqual;
-		if(count($xml->entityReferenceEqual))
-			$this->entityReferenceEqual = (string)$xml->entityReferenceEqual;
-		if(count($xml->isExpiredEqual))
-		{
-			if(!empty($xml->isExpiredEqual) && ((int) $xml->isExpiredEqual === 1 || strtolower((string)$xml->isExpiredEqual) === 'true'))
-				$this->isExpiredEqual = true;
-			else
-				$this->isExpiredEqual = false;
-		}
+		if(count($xml->resultsCount))
+			$this->resultsCount = (string)$xml->resultsCount;
+		if(count($xml->totalFailureCount))
+			$this->totalFailureCount = (string)$xml->totalFailureCount;
+		if(count($xml->partialFailureCount))
+			$this->partialFailureCount = (string)$xml->partialFailureCount;
+		if(count($xml->warningsCount))
+			$this->warningsCount = (string)$xml->warningsCount;
 	}
 	/**
-	 * The type of the entitlements to return
+	 * Number of results
 	 *
-	 * @var Kaltura_Client_Enum_TransactionType
+	 * @var bigint
 	 */
-	public $productTypeEqual = null;
+	public $resultsCount = null;
 
 	/**
-	 * Reference type to filter by
+	 * Number of results that include at least one error of severity TotalFailure
 	 *
-	 * @var Kaltura_Client_Enum_EntityReferenceBy
+	 * @var bigint
 	 */
-	public $entityReferenceEqual = null;
+	public $totalFailureCount = null;
 
 	/**
-	 * Is expired
+	 * Number of results that include no error with severity TotalFailure but at at least one error of severity PartialFailure
 	 *
-	 * @var bool
+	 * @var bigint
 	 */
-	public $isExpiredEqual = null;
+	public $partialFailureCount = null;
+
+	/**
+	 * Number of results that include at least one warning
+	 *
+	 * @var bigint
+	 */
+	public $warningsCount = null;
 
 
 }

@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEntitlementFilter
+class Kaltura_Client_Type_IngestEpgDetailsAggregation extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaEntitlementFilter';
+		return 'KalturaIngestEpgDetailsAggregation';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,38 +45,43 @@ class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEnti
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->productTypeEqual))
-			$this->productTypeEqual = (string)$xml->productTypeEqual;
-		if(count($xml->entityReferenceEqual))
-			$this->entityReferenceEqual = (string)$xml->entityReferenceEqual;
-		if(count($xml->isExpiredEqual))
+		if(count($xml->linearChannels))
 		{
-			if(!empty($xml->isExpiredEqual) && ((int) $xml->isExpiredEqual === 1 || strtolower((string)$xml->isExpiredEqual) === 'true'))
-				$this->isExpiredEqual = true;
+			if(empty($xml->linearChannels))
+				$this->linearChannels = array();
 			else
-				$this->isExpiredEqual = false;
+				$this->linearChannels = Kaltura_Client_ParseUtils::unmarshalArray($xml->linearChannels, "KalturaChannelAggregatedIngestInfo");
 		}
+		if(count($xml->dates))
+		{
+			if(empty($xml->dates))
+				$this->dates = array();
+			else
+				$this->dates = Kaltura_Client_ParseUtils::unmarshalArray($xml->dates, "KalturaDateAggregatedIngestInfo");
+		}
+		if(count($xml->all) && !empty($xml->all))
+			$this->all = Kaltura_Client_ParseUtils::unmarshalObject($xml->all, "KalturaAggregatedIngestInfo");
 	}
 	/**
-	 * The type of the entitlements to return
+	 * Array of aggregated information per channel that included in the ingest job in question
 	 *
-	 * @var Kaltura_Client_Enum_TransactionType
+	 * @var array of KalturaChannelAggregatedIngestInfo
 	 */
-	public $productTypeEqual = null;
+	public $linearChannels;
 
 	/**
-	 * Reference type to filter by
+	 * Array of aggregated information per date that included in the ingest job in question
 	 *
-	 * @var Kaltura_Client_Enum_EntityReferenceBy
+	 * @var array of KalturaDateAggregatedIngestInfo
 	 */
-	public $entityReferenceEqual = null;
+	public $dates;
 
 	/**
-	 * Is expired
+	 * All aggregated counters
 	 *
-	 * @var bool
+	 * @var Kaltura_Client_Type_AggregatedIngestInfo
 	 */
-	public $isExpiredEqual = null;
+	public $all;
 
 
 }

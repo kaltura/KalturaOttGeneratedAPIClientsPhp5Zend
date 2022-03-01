@@ -40,6 +40,25 @@ class Kaltura_Client_IngestStatusService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
+	 * @return Kaltura_Client_Type_IngestEpgDetails
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function getEpgDetails($ingestId)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "ingestId", $ingestId);
+		$this->client->queueServiceActionCall("ingeststatus", "getEpgDetails", "KalturaIngestEpgDetails", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaIngestEpgDetails");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_IngestEpgDetails");
+		return $resultObject;
+	}
+
+	/**
 	 * @return Kaltura_Client_Type_IngestStatusEpgListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -60,6 +79,29 @@ class Kaltura_Client_IngestStatusService extends Kaltura_Client_ServiceBase
 		$this->client->checkIfError($resultXmlObject->result);
 		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaIngestStatusEpgListResponse");
 		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_IngestStatusEpgListResponse");
+		return $resultObject;
+	}
+
+	/**
+	 * @return Kaltura_Client_Type_IngestStatusEpgProgramResultListResponse
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function getEpgProgramResultList($ingestId, Kaltura_Client_Type_IngestEpgProgramResultFilter $filter = null, Kaltura_Client_Type_FilterPager $pager = null)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "ingestId", $ingestId);
+		if ($filter !== null)
+			$this->client->addParam($kparams, "filter", $filter->toParams());
+		if ($pager !== null)
+			$this->client->addParam($kparams, "pager", $pager->toParams());
+		$this->client->queueServiceActionCall("ingeststatus", "getEpgProgramResultList", "KalturaIngestStatusEpgProgramResultListResponse", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaIngestStatusEpgProgramResultListResponse");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_IngestStatusEpgProgramResultListResponse");
 		return $resultObject;
 	}
 

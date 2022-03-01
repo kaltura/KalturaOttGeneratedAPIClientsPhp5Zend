@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEntitlementFilter
+class Kaltura_Client_Type_EpgIngestErrorMessage extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaEntitlementFilter';
+		return 'KalturaEpgIngestErrorMessage';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,38 +45,38 @@ class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEnti
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->productTypeEqual))
-			$this->productTypeEqual = (string)$xml->productTypeEqual;
-		if(count($xml->entityReferenceEqual))
-			$this->entityReferenceEqual = (string)$xml->entityReferenceEqual;
-		if(count($xml->isExpiredEqual))
+		if(count($xml->message))
+			$this->message = (string)$xml->message;
+		if(count($xml->code))
+			$this->code = (string)$xml->code;
+		if(count($xml->args))
 		{
-			if(!empty($xml->isExpiredEqual) && ((int) $xml->isExpiredEqual === 1 || strtolower((string)$xml->isExpiredEqual) === 'true'))
-				$this->isExpiredEqual = true;
+			if(empty($xml->args))
+				$this->args = array();
 			else
-				$this->isExpiredEqual = false;
+				$this->args = Kaltura_Client_ParseUtils::unmarshalMap($xml->args, "KalturaStringValue");
 		}
 	}
 	/**
-	 * The type of the entitlements to return
+	 * The message description with arguments place holders
 	 *
-	 * @var Kaltura_Client_Enum_TransactionType
+	 * @var string
 	 */
-	public $productTypeEqual = null;
+	public $message = null;
 
 	/**
-	 * Reference type to filter by
+	 * The message code
 	 *
-	 * @var Kaltura_Client_Enum_EntityReferenceBy
+	 * @var string
 	 */
-	public $entityReferenceEqual = null;
+	public $code = null;
 
 	/**
-	 * Is expired
+	 * Message args
 	 *
-	 * @var bool
+	 * @var map
 	 */
-	public $isExpiredEqual = null;
+	public $args;
 
 
 }

@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEntitlementFilter
+abstract class Kaltura_Client_Type_IngestProgramResultsByRefineFilter extends Kaltura_Client_Type_IngestEpgProgramResultFilter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaEntitlementFilter';
+		return 'KalturaIngestProgramResultsByRefineFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,38 +45,33 @@ class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEnti
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->productTypeEqual))
-			$this->productTypeEqual = (string)$xml->productTypeEqual;
-		if(count($xml->entityReferenceEqual))
-			$this->entityReferenceEqual = (string)$xml->entityReferenceEqual;
-		if(count($xml->isExpiredEqual))
-		{
-			if(!empty($xml->isExpiredEqual) && ((int) $xml->isExpiredEqual === 1 || strtolower((string)$xml->isExpiredEqual) === 'true'))
-				$this->isExpiredEqual = true;
-			else
-				$this->isExpiredEqual = false;
-		}
+		if(count($xml->ingestStatusIn))
+			$this->ingestStatusIn = (string)$xml->ingestStatusIn;
+		if(count($xml->startDateGreaterThan))
+			$this->startDateGreaterThan = (string)$xml->startDateGreaterThan;
+		if(count($xml->startDateSmallerThan))
+			$this->startDateSmallerThan = (string)$xml->startDateSmallerThan;
 	}
 	/**
-	 * The type of the entitlements to return
+	 * Comma seperated valid statuses - only &#39;FAILURE&#39;, &#39;WARNING&#39; and &#39;SUCCESS&#39; are valid strings. No repetitions are allowed.
 	 *
-	 * @var Kaltura_Client_Enum_TransactionType
+	 * @var string
 	 */
-	public $productTypeEqual = null;
+	public $ingestStatusIn = null;
 
 	/**
-	 * Reference type to filter by
+	 * Program EPG start date greater then this value. Date and time represented as epoch.
 	 *
-	 * @var Kaltura_Client_Enum_EntityReferenceBy
+	 * @var bigint
 	 */
-	public $entityReferenceEqual = null;
+	public $startDateGreaterThan = null;
 
 	/**
-	 * Is expired
+	 * Program EPG start date smaller than this value. Date and time represented as epoch.
 	 *
-	 * @var bool
+	 * @var bigint
 	 */
-	public $isExpiredEqual = null;
+	public $startDateSmallerThan = null;
 
 
 }
