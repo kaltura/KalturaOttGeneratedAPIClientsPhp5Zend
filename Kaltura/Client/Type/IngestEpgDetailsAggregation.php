@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_IngestStatusEpgConfiguration extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_IngestEpgDetailsAggregation extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaIngestStatusEpgConfiguration';
+		return 'KalturaIngestEpgDetailsAggregation';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,29 +45,43 @@ class Kaltura_Client_Type_IngestStatusEpgConfiguration extends Kaltura_Client_Ob
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->isSupported))
+		if(count($xml->linearChannels))
 		{
-			if(!empty($xml->isSupported) && ((int) $xml->isSupported === 1 || strtolower((string)$xml->isSupported) === 'true'))
-				$this->isSupported = true;
+			if(empty($xml->linearChannels))
+				$this->linearChannels = array();
 			else
-				$this->isSupported = false;
+				$this->linearChannels = Kaltura_Client_ParseUtils::unmarshalArray($xml->linearChannels, "KalturaChannelAggregatedIngestInfo");
 		}
-		if(count($xml->retainingPeriod))
-			$this->retainingPeriod = (string)$xml->retainingPeriod;
+		if(count($xml->dates))
+		{
+			if(empty($xml->dates))
+				$this->dates = array();
+			else
+				$this->dates = Kaltura_Client_ParseUtils::unmarshalArray($xml->dates, "KalturaDateAggregatedIngestInfo");
+		}
+		if(count($xml->all) && !empty($xml->all))
+			$this->all = Kaltura_Client_ParseUtils::unmarshalObject($xml->all, "KalturaAggregatedIngestInfo");
 	}
 	/**
-	 * Defines whether partner in question enabled core ingest status service.
+	 * Array of aggregated information per channel that included in the ingest job in question
 	 *
-	 * @var bool
+	 * @var array of KalturaChannelAggregatedIngestInfo
 	 */
-	public $isSupported = null;
+	public $linearChannels;
 
 	/**
-	 * Defines the time in seconds that the service retain information about ingest status.
+	 * Array of aggregated information per date that included in the ingest job in question
 	 *
-	 * @var bigint
+	 * @var array of KalturaDateAggregatedIngestInfo
 	 */
-	public $retainingPeriod = null;
+	public $dates;
+
+	/**
+	 * All aggregated counters
+	 *
+	 * @var Kaltura_Client_Type_AggregatedIngestInfo
+	 */
+	public $all;
 
 
 }

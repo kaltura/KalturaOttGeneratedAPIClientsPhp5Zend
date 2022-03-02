@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_IngestStatusEpgConfiguration extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_ProgramAssetGroupOfferFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaIngestStatusEpgConfiguration';
+		return 'KalturaProgramAssetGroupOfferFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,29 +45,20 @@ class Kaltura_Client_Type_IngestStatusEpgConfiguration extends Kaltura_Client_Ob
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->isSupported))
+		if(count($xml->alsoInactive))
 		{
-			if(!empty($xml->isSupported) && ((int) $xml->isSupported === 1 || strtolower((string)$xml->isSupported) === 'true'))
-				$this->isSupported = true;
+			if(!empty($xml->alsoInactive) && ((int) $xml->alsoInactive === 1 || strtolower((string)$xml->alsoInactive) === 'true'))
+				$this->alsoInactive = true;
 			else
-				$this->isSupported = false;
+				$this->alsoInactive = false;
 		}
-		if(count($xml->retainingPeriod))
-			$this->retainingPeriod = (string)$xml->retainingPeriod;
 	}
 	/**
-	 * Defines whether partner in question enabled core ingest status service.
+	 * return also inactive
 	 *
 	 * @var bool
 	 */
-	public $isSupported = null;
-
-	/**
-	 * Defines the time in seconds that the service retain information about ingest status.
-	 *
-	 * @var bigint
-	 */
-	public $retainingPeriod = null;
+	public $alsoInactive = null;
 
 
 }

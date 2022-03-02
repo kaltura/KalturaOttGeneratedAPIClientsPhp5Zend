@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_IngestStatusEpgConfiguration extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_DateAggregatedIngestInfo extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaIngestStatusEpgConfiguration';
+		return 'KalturaDateAggregatedIngestInfo';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,29 +45,24 @@ class Kaltura_Client_Type_IngestStatusEpgConfiguration extends Kaltura_Client_Ob
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->isSupported))
-		{
-			if(!empty($xml->isSupported) && ((int) $xml->isSupported === 1 || strtolower((string)$xml->isSupported) === 'true'))
-				$this->isSupported = true;
-			else
-				$this->isSupported = false;
-		}
-		if(count($xml->retainingPeriod))
-			$this->retainingPeriod = (string)$xml->retainingPeriod;
+		if(count($xml->date))
+			$this->date = (string)$xml->date;
+		if(count($xml->aggregatedErrors) && !empty($xml->aggregatedErrors))
+			$this->aggregatedErrors = Kaltura_Client_ParseUtils::unmarshalObject($xml->aggregatedErrors, "KalturaAggregatedIngestInfo");
 	}
 	/**
-	 * Defines whether partner in question enabled core ingest status service.
-	 *
-	 * @var bool
-	 */
-	public $isSupported = null;
-
-	/**
-	 * Defines the time in seconds that the service retain information about ingest status.
+	 * 00:00 UTC of the date in question
 	 *
 	 * @var bigint
 	 */
-	public $retainingPeriod = null;
+	public $date = null;
+
+	/**
+	 * Aggregated error counters
+	 *
+	 * @var Kaltura_Client_Type_AggregatedIngestInfo
+	 */
+	public $aggregatedErrors;
 
 
 }

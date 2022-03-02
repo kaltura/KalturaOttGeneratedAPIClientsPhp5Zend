@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_IngestStatusEpgConfiguration extends Kaltura_Client_ObjectBase
+abstract class Kaltura_Client_Type_IngestProgramResultsByRefineFilter extends Kaltura_Client_Type_IngestEpgProgramResultFilter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaIngestStatusEpgConfiguration';
+		return 'KalturaIngestProgramResultsByRefineFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,29 +45,33 @@ class Kaltura_Client_Type_IngestStatusEpgConfiguration extends Kaltura_Client_Ob
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->isSupported))
-		{
-			if(!empty($xml->isSupported) && ((int) $xml->isSupported === 1 || strtolower((string)$xml->isSupported) === 'true'))
-				$this->isSupported = true;
-			else
-				$this->isSupported = false;
-		}
-		if(count($xml->retainingPeriod))
-			$this->retainingPeriod = (string)$xml->retainingPeriod;
+		if(count($xml->ingestStatusIn))
+			$this->ingestStatusIn = (string)$xml->ingestStatusIn;
+		if(count($xml->startDateGreaterThan))
+			$this->startDateGreaterThan = (string)$xml->startDateGreaterThan;
+		if(count($xml->startDateSmallerThan))
+			$this->startDateSmallerThan = (string)$xml->startDateSmallerThan;
 	}
 	/**
-	 * Defines whether partner in question enabled core ingest status service.
+	 * Comma seperated valid statuses - only &#39;FAILURE&#39;, &#39;WARNING&#39; and &#39;SUCCESS&#39; are valid strings. No repetitions are allowed.
 	 *
-	 * @var bool
+	 * @var string
 	 */
-	public $isSupported = null;
+	public $ingestStatusIn = null;
 
 	/**
-	 * Defines the time in seconds that the service retain information about ingest status.
+	 * Program EPG start date greater then this value. Date and time represented as epoch.
 	 *
 	 * @var bigint
 	 */
-	public $retainingPeriod = null;
+	public $startDateGreaterThan = null;
+
+	/**
+	 * Program EPG start date smaller than this value. Date and time represented as epoch.
+	 *
+	 * @var bigint
+	 */
+	public $startDateSmallerThan = null;
 
 
 }

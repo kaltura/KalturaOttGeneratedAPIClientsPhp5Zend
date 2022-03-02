@@ -31,44 +31,10 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_IngestStatusEpgConfiguration extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Enum_IngestEpgProgramStatus extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaIngestStatusEpgConfiguration';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->isSupported))
-		{
-			if(!empty($xml->isSupported) && ((int) $xml->isSupported === 1 || strtolower((string)$xml->isSupported) === 'true'))
-				$this->isSupported = true;
-			else
-				$this->isSupported = false;
-		}
-		if(count($xml->retainingPeriod))
-			$this->retainingPeriod = (string)$xml->retainingPeriod;
-	}
-	/**
-	 * Defines whether partner in question enabled core ingest status service.
-	 *
-	 * @var bool
-	 */
-	public $isSupported = null;
-
-	/**
-	 * Defines the time in seconds that the service retain information about ingest status.
-	 *
-	 * @var bigint
-	 */
-	public $retainingPeriod = null;
-
-
+	const FAILURE = "FAILURE";
+	const WARNING = "WARNING";
+	const SUCCESS = "SUCCESS";
 }
 

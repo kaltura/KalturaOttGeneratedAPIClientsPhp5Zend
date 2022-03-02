@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_IngestStatusEpgConfiguration extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_AggregatedIngestInfo extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaIngestStatusEpgConfiguration';
+		return 'KalturaAggregatedIngestInfo';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,29 +45,42 @@ class Kaltura_Client_Type_IngestStatusEpgConfiguration extends Kaltura_Client_Ob
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->isSupported))
-		{
-			if(!empty($xml->isSupported) && ((int) $xml->isSupported === 1 || strtolower((string)$xml->isSupported) === 'true'))
-				$this->isSupported = true;
-			else
-				$this->isSupported = false;
-		}
-		if(count($xml->retainingPeriod))
-			$this->retainingPeriod = (string)$xml->retainingPeriod;
+		if(count($xml->resultsCount))
+			$this->resultsCount = (string)$xml->resultsCount;
+		if(count($xml->totalFailureCount))
+			$this->totalFailureCount = (string)$xml->totalFailureCount;
+		if(count($xml->partialFailureCount))
+			$this->partialFailureCount = (string)$xml->partialFailureCount;
+		if(count($xml->warningsCount))
+			$this->warningsCount = (string)$xml->warningsCount;
 	}
 	/**
-	 * Defines whether partner in question enabled core ingest status service.
-	 *
-	 * @var bool
-	 */
-	public $isSupported = null;
-
-	/**
-	 * Defines the time in seconds that the service retain information about ingest status.
+	 * Number of results
 	 *
 	 * @var bigint
 	 */
-	public $retainingPeriod = null;
+	public $resultsCount = null;
+
+	/**
+	 * Number of results that include at least one error of severity TotalFailure
+	 *
+	 * @var bigint
+	 */
+	public $totalFailureCount = null;
+
+	/**
+	 * Number of results that include no error with severity TotalFailure but at at least one error of severity PartialFailure
+	 *
+	 * @var bigint
+	 */
+	public $partialFailureCount = null;
+
+	/**
+	 * Number of results that include at least one warning
+	 *
+	 * @var bigint
+	 */
+	public $warningsCount = null;
 
 
 }

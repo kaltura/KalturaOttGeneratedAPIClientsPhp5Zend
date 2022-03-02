@@ -31,44 +31,18 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_IngestStatusEpgConfiguration extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Enum_IngestEpgProgramResultOrderBy extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaIngestStatusEpgConfiguration';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->isSupported))
-		{
-			if(!empty($xml->isSupported) && ((int) $xml->isSupported === 1 || strtolower((string)$xml->isSupported) === 'true'))
-				$this->isSupported = true;
-			else
-				$this->isSupported = false;
-		}
-		if(count($xml->retainingPeriod))
-			$this->retainingPeriod = (string)$xml->retainingPeriod;
-	}
-	/**
-	 * Defines whether partner in question enabled core ingest status service.
-	 *
-	 * @var bool
-	 */
-	public $isSupported = null;
-
-	/**
-	 * Defines the time in seconds that the service retain information about ingest status.
-	 *
-	 * @var bigint
-	 */
-	public $retainingPeriod = null;
-
-
+	const NONE = "NONE";
+	const EXTERNAL_PROGRAM_ID_DESC = "EXTERNAL_PROGRAM_ID_DESC";
+	const EXTERNAL_PROGRAM_ID_ASC = "EXTERNAL_PROGRAM_ID_ASC";
+	const LINEAR_CHANNEL_ID_DESC = "LINEAR_CHANNEL_ID_DESC";
+	const LINEAR_CHANNEL_ID_ASC = "LINEAR_CHANNEL_ID_ASC";
+	const INDEX_IN_FILE_DESC = "INDEX_IN_FILE_DESC";
+	const INDEX_IN_FILE_ASC = "INDEX_IN_FILE_ASC";
+	const START_DATE_DESC = "START_DATE_DESC";
+	const START_DATE_ASC = "START_DATE_ASC";
+	const SEVERITY_DESC = "SEVERITY_DESC";
+	const SEVERITY_ASC = "SEVERITY_ASC";
 }
 

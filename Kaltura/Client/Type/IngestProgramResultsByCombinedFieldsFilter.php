@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_IngestStatusEpgConfiguration extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_IngestProgramResultsByCombinedFieldsFilter extends Kaltura_Client_Type_IngestProgramResultsByRefineFilter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaIngestStatusEpgConfiguration';
+		return 'KalturaIngestProgramResultsByCombinedFieldsFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,29 +45,16 @@ class Kaltura_Client_Type_IngestStatusEpgConfiguration extends Kaltura_Client_Ob
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->isSupported))
-		{
-			if(!empty($xml->isSupported) && ((int) $xml->isSupported === 1 || strtolower((string)$xml->isSupported) === 'true'))
-				$this->isSupported = true;
-			else
-				$this->isSupported = false;
-		}
-		if(count($xml->retainingPeriod))
-			$this->retainingPeriod = (string)$xml->retainingPeriod;
+		if(count($xml->combinedFieldsValue))
+			$this->combinedFieldsValue = (string)$xml->combinedFieldsValue;
 	}
 	/**
-	 * Defines whether partner in question enabled core ingest status service.
+	 * String value to substring search by ProgramID or ExternalProgramID or LinearChannelID.
+	 *             Up to 20 ids are allowed.
 	 *
-	 * @var bool
+	 * @var string
 	 */
-	public $isSupported = null;
-
-	/**
-	 * Defines the time in seconds that the service retain information about ingest status.
-	 *
-	 * @var bigint
-	 */
-	public $retainingPeriod = null;
+	public $combinedFieldsValue = null;
 
 
 }

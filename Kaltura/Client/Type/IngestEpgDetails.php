@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_IngestStatusEpgConfiguration extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_IngestEpgDetails extends Kaltura_Client_Type_IngestEpg
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaIngestStatusEpgConfiguration';
+		return 'KalturaIngestEpgDetails';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,29 +45,29 @@ class Kaltura_Client_Type_IngestStatusEpgConfiguration extends Kaltura_Client_Ob
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->isSupported))
+		if(count($xml->errors))
 		{
-			if(!empty($xml->isSupported) && ((int) $xml->isSupported === 1 || strtolower((string)$xml->isSupported) === 'true'))
-				$this->isSupported = true;
+			if(empty($xml->errors))
+				$this->errors = array();
 			else
-				$this->isSupported = false;
+				$this->errors = Kaltura_Client_ParseUtils::unmarshalArray($xml->errors, "KalturaEpgIngestErrorMessage");
 		}
-		if(count($xml->retainingPeriod))
-			$this->retainingPeriod = (string)$xml->retainingPeriod;
+		if(count($xml->aggregations) && !empty($xml->aggregations))
+			$this->aggregations = Kaltura_Client_ParseUtils::unmarshalObject($xml->aggregations, "KalturaIngestEpgDetailsAggregation");
 	}
 	/**
-	 * Defines whether partner in question enabled core ingest status service.
+	 * Errors
 	 *
-	 * @var bool
+	 * @var array of KalturaEpgIngestErrorMessage
 	 */
-	public $isSupported = null;
+	public $errors;
 
 	/**
-	 * Defines the time in seconds that the service retain information about ingest status.
+	 * Aggregated counters
 	 *
-	 * @var bigint
+	 * @var Kaltura_Client_Type_IngestEpgDetailsAggregation
 	 */
-	public $retainingPeriod = null;
+	public $aggregations;
 
 
 }
