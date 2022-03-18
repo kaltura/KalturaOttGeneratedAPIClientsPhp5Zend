@@ -444,6 +444,7 @@ class Kaltura_Client_TypeMap
 		'KalturaIotProfileAws' => 'Kaltura_Client_Type_IotProfileAws',
 		'KalturaIotProfileFilter' => 'Kaltura_Client_Type_IotProfileFilter',
 		'KalturaIpRangeCondition' => 'Kaltura_Client_Type_IpRangeCondition',
+		'KalturaIpV6RangeCondition' => 'Kaltura_Client_Type_IpV6RangeCondition',
 		'KalturaKeyValue' => 'Kaltura_Client_Type_KeyValue',
 		'KalturaKsqlSegmentAction' => 'Kaltura_Client_Type_KsqlSegmentAction',
 		'KalturaLabel' => 'Kaltura_Client_Type_Label',

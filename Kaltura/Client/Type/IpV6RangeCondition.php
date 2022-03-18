@@ -31,28 +31,39 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_RuleConditionType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_IpV6RangeCondition extends Kaltura_Client_Type_Condition
 {
-	const ASSET = "ASSET";
-	const COUNTRY = "COUNTRY";
-	const CONCURRENCY = "CONCURRENCY";
-	const IP_RANGE = "IP_RANGE";
-	const BUSINESS_MODULE = "BUSINESS_MODULE";
-	const SEGMENTS = "SEGMENTS";
-	const DATE = "DATE";
-	const OR = "OR";
-	const HEADER = "HEADER";
-	const USER_SUBSCRIPTION = "USER_SUBSCRIPTION";
-	const ASSET_SUBSCRIPTION = "ASSET_SUBSCRIPTION";
-	const USER_ROLE = "USER_ROLE";
-	const DEVICE_BRAND = "DEVICE_BRAND";
-	const DEVICE_FAMILY = "DEVICE_FAMILY";
-	const DEVICE_MANUFACTURER = "DEVICE_MANUFACTURER";
-	const DEVICE_MODEL = "DEVICE_MODEL";
-	const DEVICE_UDID_DYNAMIC_LIST = "DEVICE_UDID_DYNAMIC_LIST";
-	const DYNAMIC_KEYS = "DYNAMIC_KEYS";
-	const USER_SESSION_PROFILE = "USER_SESSION_PROFILE";
-	const DEVICE_DYNAMIC_DATA = "DEVICE_DYNAMIC_DATA";
-	const IP_V6_RANGE = "IP_V6_RANGE";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaIpV6RangeCondition';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->fromIP))
+			$this->fromIP = (string)$xml->fromIP;
+		if(count($xml->toIP))
+			$this->toIP = (string)$xml->toIP;
+	}
+	/**
+	 * From IP address range
+	 *
+	 * @var string
+	 */
+	public $fromIP = null;
+
+	/**
+	 * TO IP address range
+	 *
+	 * @var string
+	 */
+	public $toIP = null;
+
+
 }
 
