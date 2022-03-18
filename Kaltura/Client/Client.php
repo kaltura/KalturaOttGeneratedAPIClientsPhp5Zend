@@ -653,12 +653,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_ProgramAssetGroupOfferService
-	 */
-	public $programAssetGroupOffer = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_PurchaseSettingsService
 	 */
 	public $purchaseSettings = null;
@@ -918,8 +912,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:22-03-02');
-		$this->setApiVersion('7.3.0.29794');
+		$this->setClientTag('php5:22-03-18');
+		$this->setApiVersion('7.3.0.29809');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -1024,7 +1018,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->priceDetails = new Kaltura_Client_PriceDetailsService($this);
 		$this->pricePlan = new Kaltura_Client_PricePlanService($this);
 		$this->productPrice = new Kaltura_Client_ProductPriceService($this);
-		$this->programAssetGroupOffer = new Kaltura_Client_ProgramAssetGroupOfferService($this);
 		$this->purchaseSettings = new Kaltura_Client_PurchaseSettingsService($this);
 		$this->ratio = new Kaltura_Client_RatioService($this);
 		$this->recommendationProfile = new Kaltura_Client_RecommendationProfileService($this);
