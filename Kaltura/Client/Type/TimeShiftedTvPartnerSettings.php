@@ -139,8 +139,6 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 			else
 				$this->privateCopyEnabled = false;
 		}
-		if(count($xml->defaultQuota))
-			$this->defaultQuota = (int)$xml->defaultQuota;
 	}
 	/**
 	 * Is catch-up enabled
@@ -295,13 +293,6 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 	 * @var bool
 	 */
 	public $privateCopyEnabled = null;
-
-	/**
-	 * Quota in seconds
-	 *
-	 * @var int
-	 */
-	public $defaultQuota = null;
 
 
 }
