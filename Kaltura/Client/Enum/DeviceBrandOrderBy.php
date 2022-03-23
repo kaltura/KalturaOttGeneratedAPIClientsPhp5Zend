@@ -31,30 +31,9 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceReferenceDataFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Enum_DeviceBrandOrderBy extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaDeviceReferenceDataFilter';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
-	}
-	/**
-	 * IdIn
-	 *
-	 * @var string
-	 */
-	public $idIn = null;
-
-
+	const ID_ASC = "ID_ASC";
+	const ID_DESC = "ID_DESC";
 }
 

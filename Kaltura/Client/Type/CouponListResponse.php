@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_T extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_CouponListResponse extends Kaltura_Client_Type_ListResponse
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaT';
+		return 'KalturaCouponListResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,7 +45,21 @@ class Kaltura_Client_Type_T extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
+		if(count($xml->objects))
+		{
+			if(empty($xml->objects))
+				$this->objects = array();
+			else
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaCoupon");
+		}
 	}
+	/**
+	 * A list of objects
+	 *
+	 * @var array of KalturaCoupon
+	 */
+	public $objects;
+
 
 }
 

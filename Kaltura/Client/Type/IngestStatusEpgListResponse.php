@@ -54,7 +54,7 @@ class Kaltura_Client_Type_IngestStatusEpgListResponse extends Kaltura_Client_Typ
 		}
 	}
 	/**
-	 * IngestStatus
+	 * A list of objects
 	 *
 	 * @var array of KalturaIngestEpg
 	 */

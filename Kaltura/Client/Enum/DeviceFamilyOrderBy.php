@@ -31,35 +31,9 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_GenericListResponse extends Kaltura_Client_Type_ListResponse
+class Kaltura_Client_Enum_DeviceFamilyOrderBy extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaGenericListResponse';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->objects))
-		{
-			if(empty($xml->objects))
-				$this->objects = array();
-			else
-				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaT");
-		}
-	}
-	/**
-	 * A list of objects
-	 *
-	 * @var array of KalturaT
-	 */
-	public $objects;
-
-
+	const ID_ASC = "ID_ASC";
+	const ID_DESC = "ID_DESC";
 }
 

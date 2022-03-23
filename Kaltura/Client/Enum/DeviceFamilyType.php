@@ -31,21 +31,9 @@
  * @package Kaltura
  * @subpackage Client
  */
-abstract class Kaltura_Client_Type_CrudFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Enum_DeviceFamilyType extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaCrudFilter';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-	}
-
+	const SYSTEM = "System";
+	const CUSTOM = "Custom";
 }
 
