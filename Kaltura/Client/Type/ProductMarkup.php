@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEntitlementFilter
+class Kaltura_Client_Type_ProductMarkup extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaEntitlementFilter';
+		return 'KalturaProductMarkup';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,38 +45,41 @@ class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEnti
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->productTypeEqual))
-			$this->productTypeEqual = (string)$xml->productTypeEqual;
-		if(count($xml->entityReferenceEqual))
-			$this->entityReferenceEqual = (string)$xml->entityReferenceEqual;
-		if(count($xml->isExpiredEqual))
+		if(count($xml->productId))
+			$this->productId = (string)$xml->productId;
+		if(count($xml->productType))
+			$this->productType = (string)$xml->productType;
+		if(count($xml->isEntitled))
 		{
-			if(!empty($xml->isExpiredEqual) && ((int) $xml->isExpiredEqual === 1 || strtolower((string)$xml->isExpiredEqual) === 'true'))
-				$this->isExpiredEqual = true;
+			if(!empty($xml->isEntitled) && ((int) $xml->isEntitled === 1 || strtolower((string)$xml->isEntitled) === 'true'))
+				$this->isEntitled = true;
 			else
-				$this->isExpiredEqual = false;
+				$this->isEntitled = false;
 		}
 	}
 	/**
-	 * The type of the entitlements to return
+	 * Product Id
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $productId = null;
+
+	/**
+	 * Product Type
 	 *
 	 * @var Kaltura_Client_Enum_TransactionType
+	 * @readonly
 	 */
-	public $productTypeEqual = null;
+	public $productType = null;
 
 	/**
-	 * Reference type to filter by
-	 *
-	 * @var Kaltura_Client_Enum_EntityReferenceBy
-	 */
-	public $entityReferenceEqual = null;
-
-	/**
-	 * Is expired
+	 * Is Entitled to this product
 	 *
 	 * @var bool
+	 * @readonly
 	 */
-	public $isExpiredEqual = null;
+	public $isEntitled = null;
 
 
 }

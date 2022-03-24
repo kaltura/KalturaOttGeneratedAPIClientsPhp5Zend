@@ -77,6 +77,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_AssetPersonalMarkupService
+	 */
+	public $assetPersonalMarkup = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_AssetRuleService
 	 */
 	public $assetRule = null;
@@ -918,8 +924,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:22-03-02');
-		$this->setApiVersion('7.3.0.29794');
+		$this->setClientTag('php5:22-03-24');
+		$this->setApiVersion('7.4.0.29816');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -928,6 +934,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->assetFile = new Kaltura_Client_AssetFileService($this);
 		$this->assetFilePpv = new Kaltura_Client_AssetFilePpvService($this);
 		$this->assetHistory = new Kaltura_Client_AssetHistoryService($this);
+		$this->assetPersonalMarkup = new Kaltura_Client_AssetPersonalMarkupService($this);
 		$this->assetRule = new Kaltura_Client_AssetRuleService($this);
 		$this->assetStatistics = new Kaltura_Client_AssetStatisticsService($this);
 		$this->assetStruct = new Kaltura_Client_AssetStructService($this);
