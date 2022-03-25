@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEntitlementFilter
+class Kaltura_Client_Type_DeviceFamilyFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaEntitlementFilter';
+		return 'KalturaDeviceFamilyFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,38 +45,33 @@ class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEnti
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->productTypeEqual))
-			$this->productTypeEqual = (string)$xml->productTypeEqual;
-		if(count($xml->entityReferenceEqual))
-			$this->entityReferenceEqual = (string)$xml->entityReferenceEqual;
-		if(count($xml->isExpiredEqual))
-		{
-			if(!empty($xml->isExpiredEqual) && ((int) $xml->isExpiredEqual === 1 || strtolower((string)$xml->isExpiredEqual) === 'true'))
-				$this->isExpiredEqual = true;
-			else
-				$this->isExpiredEqual = false;
-		}
+		if(count($xml->idEqual))
+			$this->idEqual = (string)$xml->idEqual;
+		if(count($xml->nameEqual))
+			$this->nameEqual = (string)$xml->nameEqual;
+		if(count($xml->typeEqual))
+			$this->typeEqual = (string)$xml->typeEqual;
 	}
 	/**
-	 * The type of the entitlements to return
+	 * Filter the device family with this identifier.
 	 *
-	 * @var Kaltura_Client_Enum_TransactionType
+	 * @var bigint
 	 */
-	public $productTypeEqual = null;
+	public $idEqual = null;
 
 	/**
-	 * Reference type to filter by
+	 * Filter the device family with this name.
 	 *
-	 * @var Kaltura_Client_Enum_EntityReferenceBy
+	 * @var string
 	 */
-	public $entityReferenceEqual = null;
+	public $nameEqual = null;
 
 	/**
-	 * Is expired
+	 * Filter device families of this type
 	 *
-	 * @var bool
+	 * @var Kaltura_Client_Enum_DeviceFamilyType
 	 */
-	public $isExpiredEqual = null;
+	public $typeEqual = null;
 
 
 }
