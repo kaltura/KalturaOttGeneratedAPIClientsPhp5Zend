@@ -35,5 +35,6 @@ class Kaltura_Client_Enum_BundleType extends Kaltura_Client_EnumBase
 {
 	const SUBSCRIPTION = "subscription";
 	const COLLECTION = "collection";
+	const PAGO = "pago";
 }
 

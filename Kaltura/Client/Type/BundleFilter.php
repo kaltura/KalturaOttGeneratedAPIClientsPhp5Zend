@@ -60,7 +60,7 @@ class Kaltura_Client_Type_BundleFilter extends Kaltura_Client_Type_AssetFilter
 	public $idEqual = null;
 
 	/**
-	 * Comma separated list of asset types to search within. 
+	 * Comma separated list of asset types to search within.
 	 *             Possible values: 0 – EPG linear programs entries, any media type ID (according to media type IDs defined dynamically in the system).
 	 *             If omitted – all types should be included.
 	 *
@@ -69,7 +69,7 @@ class Kaltura_Client_Type_BundleFilter extends Kaltura_Client_Type_AssetFilter
 	public $typeIn = null;
 
 	/**
-	 * bundleType - possible values: Subscription or Collection
+	 * bundleType - possible values: Subscription, Collection or PAGO
 	 *
 	 * @var Kaltura_Client_Enum_BundleType
 	 */

@@ -31,51 +31,9 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceFamilyBase extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Enum_DeviceBrandType extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaDeviceFamilyBase';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
-	}
-	/**
-	 * Device family identifier
-	 *
-	 * @var bigint
-	 */
-	public $id = null;
-
-	/**
-	 * Device family name
-	 *
-	 * @var string
-	 */
-	public $name = null;
-
-	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
-	 *
-	 * @var Kaltura_Client_Enum_DeviceFamilyType
-	 * @readonly
-	 */
-	public $type = null;
-
-
+	const SYSTEM = "System";
+	const CUSTOM = "Custom";
 }
 
