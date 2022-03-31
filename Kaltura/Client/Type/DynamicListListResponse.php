@@ -54,7 +54,7 @@ class Kaltura_Client_Type_DynamicListListResponse extends Kaltura_Client_Type_Li
 		}
 	}
 	/**
-	 * A list of objects
+	 * A list of KalturaDynamicList
 	 *
 	 * @var array of KalturaDynamicList
 	 */

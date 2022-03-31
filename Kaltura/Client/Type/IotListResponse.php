@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-abstract class Kaltura_Client_Type_CrudObject extends Kaltura_Client_Type_OTTObjectSupportNullable
+class Kaltura_Client_Type_IotListResponse extends Kaltura_Client_Type_ListResponse
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaCrudObject';
+		return 'KalturaIotListResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,7 +45,21 @@ abstract class Kaltura_Client_Type_CrudObject extends Kaltura_Client_Type_OTTObj
 		if(is_null($xml))
 			return;
 		
+		if(count($xml->objects))
+		{
+			if(empty($xml->objects))
+				$this->objects = array();
+			else
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaIot");
+		}
 	}
+	/**
+	 * A list of objects
+	 *
+	 * @var array of KalturaIot
+	 */
+	public $objects;
+
 
 }
 

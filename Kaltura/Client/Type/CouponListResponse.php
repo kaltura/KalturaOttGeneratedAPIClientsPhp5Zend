@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_GenericListResponse extends Kaltura_Client_Type_ListResponse
+class Kaltura_Client_Type_CouponListResponse extends Kaltura_Client_Type_ListResponse
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaGenericListResponse';
+		return 'KalturaCouponListResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -50,13 +50,13 @@ class Kaltura_Client_Type_GenericListResponse extends Kaltura_Client_Type_ListRe
 			if(empty($xml->objects))
 				$this->objects = array();
 			else
-				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaT");
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaCoupon");
 		}
 	}
 	/**
 	 * A list of objects
 	 *
-	 * @var array of KalturaT
+	 * @var array of KalturaCoupon
 	 */
 	public $objects;
 

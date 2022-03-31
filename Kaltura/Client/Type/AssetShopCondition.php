@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-abstract class Kaltura_Client_Type_CrudFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_AssetShopCondition extends Kaltura_Client_Type_AssetConditionBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaCrudFilter';
+		return 'KalturaAssetShopCondition';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,7 +45,16 @@ abstract class Kaltura_Client_Type_CrudFilter extends Kaltura_Client_Type_Filter
 		if(is_null($xml))
 			return;
 		
+		if(count($xml->value))
+			$this->value = (string)$xml->value;
 	}
+	/**
+	 * Shop marker&#39;s value
+	 *
+	 * @var string
+	 */
+	public $value = null;
+
 
 }
 

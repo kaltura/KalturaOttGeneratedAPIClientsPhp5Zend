@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_T extends Kaltura_Client_ObjectBase
+abstract class Kaltura_Client_Type_AssetConditionBase extends Kaltura_Client_Type_Condition
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaT';
+		return 'KalturaAssetConditionBase';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)

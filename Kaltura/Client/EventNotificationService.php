@@ -40,6 +40,25 @@ class Kaltura_Client_EventNotificationService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
+	 * @return Kaltura_Client_Type_EventNotificationListResponse
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function listAction(Kaltura_Client_Type_EventNotificationFilter $filter)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "filter", $filter->toParams());
+		$this->client->queueServiceActionCall("eventnotification", "list", "KalturaEventNotificationListResponse", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaEventNotificationListResponse");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_EventNotificationListResponse");
+		return $resultObject;
+	}
+
+	/**
 	 * @return Kaltura_Client_Type_EventNotification
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -56,25 +75,6 @@ class Kaltura_Client_EventNotificationService extends Kaltura_Client_ServiceBase
 		$this->client->checkIfError($resultXmlObject->result);
 		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaEventNotification");
 		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_EventNotification");
-		return $resultObject;
-	}
-
-	/**
-	 * @return Kaltura_Client_Type_EventNotificationListResponse
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function listAction(Kaltura_Client_Type_EventNotificationFilter $filter)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "filter", $filter->toParams());
-		$this->client->queueServiceActionCall("eventnotification", "list", "KalturaEventNotificationListResponse", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaEventNotificationListResponse");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_EventNotificationListResponse");
 		return $resultObject;
 	}
 }

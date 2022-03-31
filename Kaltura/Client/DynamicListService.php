@@ -59,22 +59,24 @@ class Kaltura_Client_DynamicListService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_DynamicList
+	 * @return Kaltura_Client_Type_BulkUpload
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function update($id, Kaltura_Client_Type_DynamicList $objectToUpdate)
+	function addFromBulkUpload($fileData, Kaltura_Client_Type_BulkUploadExcelJobData $jobData, Kaltura_Client_Type_BulkUploadDynamicListData $bulkUploadData)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "id", $id);
-		$this->client->addParam($kparams, "objectToUpdate", $objectToUpdate->toParams());
-		$this->client->queueServiceActionCall("dynamiclist", "update", "KalturaDynamicList", $kparams);
+		$kfiles = array();
+		$this->client->addParam($kfiles, "fileData", $fileData);
+		$this->client->addParam($kparams, "jobData", $jobData->toParams());
+		$this->client->addParam($kparams, "bulkUploadData", $bulkUploadData->toParams());
+		$this->client->queueServiceActionCall("dynamiclist", "addFromBulkUpload",  "KalturaBulkUpload", $kparams, $kfiles);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaDynamicList");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_DynamicList");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaBulkUpload");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_BulkUpload");
 		return $resultObject;
 	}
 
@@ -116,24 +118,22 @@ class Kaltura_Client_DynamicListService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_BulkUpload
+	 * @return Kaltura_Client_Type_DynamicList
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function addFromBulkUpload($fileData, Kaltura_Client_Type_BulkUploadExcelJobData $jobData, Kaltura_Client_Type_BulkUploadDynamicListData $bulkUploadData)
+	function update($id, Kaltura_Client_Type_DynamicList $objectToUpdate)
 	{
 		$kparams = array();
-		$kfiles = array();
-		$this->client->addParam($kfiles, "fileData", $fileData);
-		$this->client->addParam($kparams, "jobData", $jobData->toParams());
-		$this->client->addParam($kparams, "bulkUploadData", $bulkUploadData->toParams());
-		$this->client->queueServiceActionCall("dynamiclist", "addFromBulkUpload",  "KalturaBulkUpload", $kparams, $kfiles);
+		$this->client->addParam($kparams, "id", $id);
+		$this->client->addParam($kparams, "objectToUpdate", $objectToUpdate->toParams());
+		$this->client->queueServiceActionCall("dynamiclist", "update", "KalturaDynamicList", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaBulkUpload");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_BulkUpload");
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaDynamicList");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_DynamicList");
 		return $resultObject;
 	}
 }

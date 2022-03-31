@@ -54,7 +54,7 @@ class Kaltura_Client_Type_IngestStatusEpgProgramResultListResponse extends Kaltu
 		}
 	}
 	/**
-	 * IngestStatusEpgProgramResult
+	 * list of KalturaIngestEpgProgramResult
 	 *
 	 * @var array of KalturaIngestEpgProgramResult
 	 */
