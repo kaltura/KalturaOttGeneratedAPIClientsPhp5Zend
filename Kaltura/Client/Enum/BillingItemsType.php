@@ -39,5 +39,6 @@ class Kaltura_Client_Enum_BillingItemsType extends Kaltura_Client_EnumBase
 	const PRE_PAID = "pre_paid";
 	const PRE_PAID_EXPIRED = "pre_paid_expired";
 	const COLLECTION = "collection";
+	const PROGRAM_ASSET_GROUP_OFFER = "program_asset_group_offer";
 }
 

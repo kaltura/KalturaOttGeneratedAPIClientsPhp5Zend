@@ -31,53 +31,9 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEntitlementFilter
+class Kaltura_Client_Enum_DeviceBrandOrderBy extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaEntitlementFilter';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->productTypeEqual))
-			$this->productTypeEqual = (string)$xml->productTypeEqual;
-		if(count($xml->entityReferenceEqual))
-			$this->entityReferenceEqual = (string)$xml->entityReferenceEqual;
-		if(count($xml->isExpiredEqual))
-		{
-			if(!empty($xml->isExpiredEqual) && ((int) $xml->isExpiredEqual === 1 || strtolower((string)$xml->isExpiredEqual) === 'true'))
-				$this->isExpiredEqual = true;
-			else
-				$this->isExpiredEqual = false;
-		}
-	}
-	/**
-	 * The type of the entitlements to return
-	 *
-	 * @var Kaltura_Client_Enum_TransactionType
-	 */
-	public $productTypeEqual = null;
-
-	/**
-	 * Reference type to filter by
-	 *
-	 * @var Kaltura_Client_Enum_EntityReferenceBy
-	 */
-	public $entityReferenceEqual = null;
-
-	/**
-	 * Is expired
-	 *
-	 * @var bool
-	 */
-	public $isExpiredEqual = null;
-
-
+	const ID_ASC = "ID_ASC";
+	const ID_DESC = "ID_DESC";
 }
 
