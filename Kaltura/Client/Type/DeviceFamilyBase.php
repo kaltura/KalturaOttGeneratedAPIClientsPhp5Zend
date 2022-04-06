@@ -49,6 +49,8 @@ class Kaltura_Client_Type_DeviceFamilyBase extends Kaltura_Client_ObjectBase
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
 			$this->name = (string)$xml->name;
+		if(count($xml->type))
+			$this->type = (string)$xml->type;
 	}
 	/**
 	 * Device family identifier
@@ -61,9 +63,18 @@ class Kaltura_Client_Type_DeviceFamilyBase extends Kaltura_Client_ObjectBase
 	 * Device family name
 	 *
 	 * @var string
-	 * @readonly
 	 */
 	public $name = null;
+
+	/**
+	 * Type of device family.
+	 *              if this device family belongs only to this group,
+	 *              otherwise.
+	 *
+	 * @var Kaltura_Client_Enum_DeviceFamilyType
+	 * @readonly
+	 */
+	public $type = null;
 
 
 }

@@ -49,14 +49,15 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
+		if(count($xml->deviceFamilyId))
+			$this->deviceFamilyId = (string)$xml->deviceFamilyId;
+		if(count($xml->type))
+			$this->type = (string)$xml->type;
 	}
 	/**
 	 * Device brand identifier
 	 *
 	 * @var bigint
-	 * @readonly
 	 */
 	public $id = null;
 
@@ -71,9 +72,18 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 	 * Device family identifier
 	 *
 	 * @var bigint
+	 */
+	public $deviceFamilyId = null;
+
+	/**
+	 * Type of device family.
+	 *              if this device family belongs only to this group,
+	 *              otherwise.
+	 *
+	 * @var Kaltura_Client_Enum_DeviceBrandType
 	 * @readonly
 	 */
-	public $deviceFamilyid = null;
+	public $type = null;
 
 
 }

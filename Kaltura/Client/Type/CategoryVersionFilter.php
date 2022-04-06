@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_CategoryVersionFilter extends Kaltura_Client_Type_CrudFilter
+class Kaltura_Client_Type_CategoryVersionFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{

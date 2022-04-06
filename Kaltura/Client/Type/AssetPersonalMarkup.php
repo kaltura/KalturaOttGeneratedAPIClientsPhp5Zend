@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEntitlementFilter
+class Kaltura_Client_Type_AssetPersonalMarkup extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaEntitlementFilter';
+		return 'KalturaAssetPersonalMarkup';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,38 +45,40 @@ class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEnti
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->productTypeEqual))
-			$this->productTypeEqual = (string)$xml->productTypeEqual;
-		if(count($xml->entityReferenceEqual))
-			$this->entityReferenceEqual = (string)$xml->entityReferenceEqual;
-		if(count($xml->isExpiredEqual))
+		if(count($xml->assetId))
+			$this->assetId = (string)$xml->assetId;
+		if(count($xml->assetType))
+			$this->assetType = (string)$xml->assetType;
+		if(count($xml->products))
 		{
-			if(!empty($xml->isExpiredEqual) && ((int) $xml->isExpiredEqual === 1 || strtolower((string)$xml->isExpiredEqual) === 'true'))
-				$this->isExpiredEqual = true;
+			if(empty($xml->products))
+				$this->products = array();
 			else
-				$this->isExpiredEqual = false;
+				$this->products = Kaltura_Client_ParseUtils::unmarshalArray($xml->products, "KalturaProductMarkup");
 		}
 	}
 	/**
-	 * The type of the entitlements to return
+	 * Asset Id
 	 *
-	 * @var Kaltura_Client_Enum_TransactionType
+	 * @var bigint
+	 * @readonly
 	 */
-	public $productTypeEqual = null;
+	public $assetId = null;
 
 	/**
-	 * Reference type to filter by
+	 * Asset Type
 	 *
-	 * @var Kaltura_Client_Enum_EntityReferenceBy
+	 * @var Kaltura_Client_Enum_AssetType
+	 * @readonly
 	 */
-	public $entityReferenceEqual = null;
+	public $assetType = null;
 
 	/**
-	 * Is expired
+	 * all related asset&#39;s Product Markups
 	 *
-	 * @var bool
+	 * @var array of KalturaProductMarkup
 	 */
-	public $isExpiredEqual = null;
+	public $products;
 
 
 }

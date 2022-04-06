@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_IotProfileAws extends Kaltura_Client_Type_CrudObject
+class Kaltura_Client_Type_IotProfileAws extends Kaltura_Client_Type_OTTObjectSupportNullable
 {
 	public function getKalturaObjectType()
 	{

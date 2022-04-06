@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_GenericListResponse extends Kaltura_Client_Type_ListResponse
+class Kaltura_Client_Type_ProgramAssetGroupOfferPrice extends Kaltura_Client_Type_ProductPrice
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaGenericListResponse';
+		return 'KalturaProgramAssetGroupOfferPrice';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,21 +45,7 @@ class Kaltura_Client_Type_GenericListResponse extends Kaltura_Client_Type_ListRe
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->objects))
-		{
-			if(empty($xml->objects))
-				$this->objects = array();
-			else
-				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaT");
-		}
 	}
-	/**
-	 * A list of objects
-	 *
-	 * @var array of KalturaT
-	 */
-	public $objects;
-
 
 }
 
