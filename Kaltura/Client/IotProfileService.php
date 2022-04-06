@@ -62,11 +62,11 @@ class Kaltura_Client_IotProfileService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_IotProfile
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function delete($id)
+	function get($id)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "id", $id);
-		$this->client->queueServiceActionCall("iotprofile", "delete", "KalturaIotProfile", $kparams);
+		$this->client->queueServiceActionCall("iotprofile", "get", "KalturaIotProfile", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
