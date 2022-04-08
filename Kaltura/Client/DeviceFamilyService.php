@@ -40,12 +40,35 @@ class Kaltura_Client_DeviceFamilyService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
+	 * @return Kaltura_Client_Type_DeviceFamily
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function add(Kaltura_Client_Type_DeviceFamily $deviceFamily)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "deviceFamily", $deviceFamily->toParams());
+		$this->client->queueServiceActionCall("devicefamily", "add", "KalturaDeviceFamily", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaDeviceFamily");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_DeviceFamily");
+		return $resultObject;
+	}
+
+	/**
 	 * @return Kaltura_Client_Type_DeviceFamilyListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function listAction()
+	function listAction(Kaltura_Client_Type_DeviceFamilyFilter $filter = null, Kaltura_Client_Type_FilterPager $pager = null)
 	{
 		$kparams = array();
+		if ($filter !== null)
+			$this->client->addParam($kparams, "filter", $filter->toParams());
+		if ($pager !== null)
+			$this->client->addParam($kparams, "pager", $pager->toParams());
 		$this->client->queueServiceActionCall("devicefamily", "list", "KalturaDeviceFamilyListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
@@ -54,6 +77,26 @@ class Kaltura_Client_DeviceFamilyService extends Kaltura_Client_ServiceBase
 		$this->client->checkIfError($resultXmlObject->result);
 		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaDeviceFamilyListResponse");
 		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_DeviceFamilyListResponse");
+		return $resultObject;
+	}
+
+	/**
+	 * @return Kaltura_Client_Type_DeviceFamily
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function update($id, Kaltura_Client_Type_DeviceFamily $deviceFamily)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "id", $id);
+		$this->client->addParam($kparams, "deviceFamily", $deviceFamily->toParams());
+		$this->client->queueServiceActionCall("devicefamily", "update", "KalturaDeviceFamily", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaDeviceFamily");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_DeviceFamily");
 		return $resultObject;
 	}
 }

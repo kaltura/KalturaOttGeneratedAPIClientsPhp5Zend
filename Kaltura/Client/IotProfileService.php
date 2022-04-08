@@ -62,12 +62,11 @@ class Kaltura_Client_IotProfileService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_IotProfile
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function update($id, Kaltura_Client_Type_IotProfile $objectToUpdate)
+	function delete($id)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "id", $id);
-		$this->client->addParam($kparams, "objectToUpdate", $objectToUpdate->toParams());
-		$this->client->queueServiceActionCall("iotprofile", "update", "KalturaIotProfile", $kparams);
+		$this->client->queueServiceActionCall("iotprofile", "delete", "KalturaIotProfile", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
@@ -82,11 +81,12 @@ class Kaltura_Client_IotProfileService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_IotProfile
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function get($id)
+	function update($id, Kaltura_Client_Type_IotProfile $objectToUpdate)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "id", $id);
-		$this->client->queueServiceActionCall("iotprofile", "get", "KalturaIotProfile", $kparams);
+		$this->client->addParam($kparams, "objectToUpdate", $objectToUpdate->toParams());
+		$this->client->queueServiceActionCall("iotprofile", "update", "KalturaIotProfile", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
