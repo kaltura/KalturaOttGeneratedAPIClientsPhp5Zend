@@ -36,5 +36,6 @@ class Kaltura_Client_Enum_TransactionType extends Kaltura_Client_EnumBase
 	const PPV = "ppv";
 	const SUBSCRIPTION = "subscription";
 	const COLLECTION = "collection";
+	const PROGRAMASSETGROUPOFFER = "programAssetGroupOffer";
 }
 

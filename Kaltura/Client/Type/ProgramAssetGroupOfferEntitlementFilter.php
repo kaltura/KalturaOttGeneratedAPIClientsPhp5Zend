@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_T extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_ProgramAssetGroupOfferEntitlementFilter extends Kaltura_Client_Type_BaseEntitlementFilter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaT';
+		return 'KalturaProgramAssetGroupOfferEntitlementFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)

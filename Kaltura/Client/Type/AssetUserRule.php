@@ -50,7 +50,7 @@ class Kaltura_Client_Type_AssetUserRule extends Kaltura_Client_Type_AssetRuleBas
 			if(empty($xml->conditions))
 				$this->conditions = array();
 			else
-				$this->conditions = Kaltura_Client_ParseUtils::unmarshalArray($xml->conditions, "KalturaAssetCondition");
+				$this->conditions = Kaltura_Client_ParseUtils::unmarshalArray($xml->conditions, "KalturaAssetConditionBase");
 		}
 		if(count($xml->actions))
 		{
@@ -61,9 +61,9 @@ class Kaltura_Client_Type_AssetUserRule extends Kaltura_Client_Type_AssetRuleBas
 		}
 	}
 	/**
-	 * List of Ksql conditions for the user rule
+	 * List of conditions for the user rule
 	 *
-	 * @var array of KalturaAssetCondition
+	 * @var array of KalturaAssetConditionBase
 	 */
 	public $conditions;
 

@@ -59,26 +59,6 @@ class Kaltura_Client_CategoryItemService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_CategoryItem
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function update($id, Kaltura_Client_Type_CategoryItem $objectToUpdate)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "id", $id);
-		$this->client->addParam($kparams, "objectToUpdate", $objectToUpdate->toParams());
-		$this->client->queueServiceActionCall("categoryitem", "update", "KalturaCategoryItem", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCategoryItem");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CategoryItem");
-		return $resultObject;
-	}
-
-	/**
 	 * @return 
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -113,6 +93,26 @@ class Kaltura_Client_CategoryItemService extends Kaltura_Client_ServiceBase
 		$this->client->checkIfError($resultXmlObject->result);
 		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCategoryItemListResponse");
 		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CategoryItemListResponse");
+		return $resultObject;
+	}
+
+	/**
+	 * @return Kaltura_Client_Type_CategoryItem
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function update($id, Kaltura_Client_Type_CategoryItem $objectToUpdate)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "id", $id);
+		$this->client->addParam($kparams, "objectToUpdate", $objectToUpdate->toParams());
+		$this->client->queueServiceActionCall("categoryitem", "update", "KalturaCategoryItem", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCategoryItem");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CategoryItem");
 		return $resultObject;
 	}
 }
