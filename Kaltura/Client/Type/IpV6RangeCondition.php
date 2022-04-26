@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEntitlementFilter
+class Kaltura_Client_Type_IpV6RangeCondition extends Kaltura_Client_Type_Condition
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaEntitlementFilter';
+		return 'KalturaIpV6RangeCondition';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,38 +45,24 @@ class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEnti
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->productTypeEqual))
-			$this->productTypeEqual = (string)$xml->productTypeEqual;
-		if(count($xml->entityReferenceEqual))
-			$this->entityReferenceEqual = (string)$xml->entityReferenceEqual;
-		if(count($xml->isExpiredEqual))
-		{
-			if(!empty($xml->isExpiredEqual) && ((int) $xml->isExpiredEqual === 1 || strtolower((string)$xml->isExpiredEqual) === 'true'))
-				$this->isExpiredEqual = true;
-			else
-				$this->isExpiredEqual = false;
-		}
+		if(count($xml->fromIP))
+			$this->fromIP = (string)$xml->fromIP;
+		if(count($xml->toIP))
+			$this->toIP = (string)$xml->toIP;
 	}
 	/**
-	 * The type of the entitlements to return
+	 * From IP address range
 	 *
-	 * @var Kaltura_Client_Enum_TransactionType
+	 * @var string
 	 */
-	public $productTypeEqual = null;
+	public $fromIP = null;
 
 	/**
-	 * Reference type to filter by
+	 * TO IP address range
 	 *
-	 * @var Kaltura_Client_Enum_EntityReferenceBy
+	 * @var string
 	 */
-	public $entityReferenceEqual = null;
-
-	/**
-	 * Is expired
-	 *
-	 * @var bool
-	 */
-	public $isExpiredEqual = null;
+	public $toIP = null;
 
 
 }

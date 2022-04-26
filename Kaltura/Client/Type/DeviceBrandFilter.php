@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEntitlementFilter
+class Kaltura_Client_Type_DeviceBrandFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaEntitlementFilter';
+		return 'KalturaDeviceBrandFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,38 +45,42 @@ class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEnti
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->productTypeEqual))
-			$this->productTypeEqual = (string)$xml->productTypeEqual;
-		if(count($xml->entityReferenceEqual))
-			$this->entityReferenceEqual = (string)$xml->entityReferenceEqual;
-		if(count($xml->isExpiredEqual))
-		{
-			if(!empty($xml->isExpiredEqual) && ((int) $xml->isExpiredEqual === 1 || strtolower((string)$xml->isExpiredEqual) === 'true'))
-				$this->isExpiredEqual = true;
-			else
-				$this->isExpiredEqual = false;
-		}
+		if(count($xml->idEqual))
+			$this->idEqual = (string)$xml->idEqual;
+		if(count($xml->deviceFamilyIdEqual))
+			$this->deviceFamilyIdEqual = (string)$xml->deviceFamilyIdEqual;
+		if(count($xml->nameEqual))
+			$this->nameEqual = (string)$xml->nameEqual;
+		if(count($xml->typeEqual))
+			$this->typeEqual = (string)$xml->typeEqual;
 	}
 	/**
-	 * The type of the entitlements to return
+	 * Filter the device brand with this identifier.
 	 *
-	 * @var Kaltura_Client_Enum_TransactionType
+	 * @var bigint
 	 */
-	public $productTypeEqual = null;
+	public $idEqual = null;
 
 	/**
-	 * Reference type to filter by
+	 * Filter the device brands with this device family&#39;s identifier.
 	 *
-	 * @var Kaltura_Client_Enum_EntityReferenceBy
+	 * @var bigint
 	 */
-	public $entityReferenceEqual = null;
+	public $deviceFamilyIdEqual = null;
 
 	/**
-	 * Is expired
+	 * Filter the device brand with this name.
 	 *
-	 * @var bool
+	 * @var string
 	 */
-	public $isExpiredEqual = null;
+	public $nameEqual = null;
+
+	/**
+	 * Filter device brands of this type
+	 *
+	 * @var Kaltura_Client_Enum_DeviceBrandType
+	 */
+	public $typeEqual = null;
 
 
 }

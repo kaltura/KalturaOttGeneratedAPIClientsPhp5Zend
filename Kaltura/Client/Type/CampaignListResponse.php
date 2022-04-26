@@ -54,7 +54,7 @@ class Kaltura_Client_Type_CampaignListResponse extends Kaltura_Client_Type_ListR
 		}
 	}
 	/**
-	 * A list of objects
+	 * A list of Campaigns
 	 *
 	 * @var array of KalturaCampaign
 	 */
