@@ -68,6 +68,8 @@ class Kaltura_Client_Type_CatalogPartnerConfig extends Kaltura_Client_Type_Partn
 			else
 				$this->uploadExportDatalake = false;
 		}
+		if(count($xml->shopMarkerMetaId))
+			$this->shopMarkerMetaId = (string)$xml->shopMarkerMetaId;
 	}
 	/**
 	 * Single multilingual mode
@@ -96,6 +98,13 @@ class Kaltura_Client_Type_CatalogPartnerConfig extends Kaltura_Client_Type_Partn
 	 * @var bool
 	 */
 	public $uploadExportDatalake = null;
+
+	/**
+	 * Shop Marker&#39;s identifier
+	 *
+	 * @var bigint
+	 */
+	public $shopMarkerMetaId = null;
 
 
 }
