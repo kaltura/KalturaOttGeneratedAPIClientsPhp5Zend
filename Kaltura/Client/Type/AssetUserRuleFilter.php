@@ -54,8 +54,6 @@ class Kaltura_Client_Type_AssetUserRuleFilter extends Kaltura_Client_Type_Filter
 		}
 		if(count($xml->actionsContainType))
 			$this->actionsContainType = (string)$xml->actionsContainType;
-		if(count($xml->conditionsContainType))
-			$this->conditionsContainType = (string)$xml->conditionsContainType;
 	}
 	/**
 	 * Indicates if to get the asset user rule list for the attached user or for the entire group
@@ -70,13 +68,6 @@ class Kaltura_Client_Type_AssetUserRuleFilter extends Kaltura_Client_Type_Filter
 	 * @var Kaltura_Client_Enum_RuleActionType
 	 */
 	public $actionsContainType = null;
-
-	/**
-	 * Indicates that only asset rules are returned that have exactly one and not more associated condition.
-	 *
-	 * @var Kaltura_Client_Enum_RuleConditionType
-	 */
-	public $conditionsContainType = null;
 
 
 }

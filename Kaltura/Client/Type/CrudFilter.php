@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_IngestProgramResultsByCompoundFilter extends Kaltura_Client_Type_IngestProgramResultsByRefineFilter
+abstract class Kaltura_Client_Type_CrudFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaIngestProgramResultsByCompoundFilter';
+		return 'KalturaCrudFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,17 +45,7 @@ class Kaltura_Client_Type_IngestProgramResultsByCompoundFilter extends Kaltura_C
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->linearChannelIdIn))
-			$this->linearChannelIdIn = (string)$xml->linearChannelIdIn;
 	}
-	/**
-	 * Comma seperated channel id (the id of the linear channel asset that the program belongs to).
-	 *             Up to 20 ids are allowed.
-	 *
-	 * @var string
-	 */
-	public $linearChannelIdIn = null;
-
 
 }
 

@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_ProgramAssetGroupOfferPrice extends Kaltura_Client_Type_ProductPrice
+abstract class Kaltura_Client_Type_CrudObject extends Kaltura_Client_Type_OTTObjectSupportNullable
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaProgramAssetGroupOfferPrice';
+		return 'KalturaCrudObject';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)

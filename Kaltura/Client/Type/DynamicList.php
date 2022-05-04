@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DynamicList extends Kaltura_Client_Type_OTTObjectSupportNullable
+class Kaltura_Client_Type_DynamicList extends Kaltura_Client_Type_CrudObject
 {
 	public function getKalturaObjectType()
 	{

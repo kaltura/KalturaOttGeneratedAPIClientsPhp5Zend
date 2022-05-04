@@ -59,10 +59,6 @@ class Kaltura_Client_Type_CommercePartnerConfig extends Kaltura_Client_Type_Part
 			else
 				$this->keepSubscriptionAddOns = false;
 		}
-		if(count($xml->programAssetEntitlementPaddingStart))
-			$this->programAssetEntitlementPaddingStart = (int)$xml->programAssetEntitlementPaddingStart;
-		if(count($xml->programAssetEntitlementPaddingEnd))
-			$this->programAssetEntitlementPaddingEnd = (int)$xml->programAssetEntitlementPaddingEnd;
 	}
 	/**
 	 * configuration for bookmark event threshold (when to dispatch the event) in seconds.
@@ -77,20 +73,6 @@ class Kaltura_Client_Type_CommercePartnerConfig extends Kaltura_Client_Type_Part
 	 * @var bool
 	 */
 	public $keepSubscriptionAddOns = null;
-
-	/**
-	 * configuration for asset start entitlement padding e.g. asset start time - padding still relevant for asset
-	 *
-	 * @var int
-	 */
-	public $programAssetEntitlementPaddingStart = null;
-
-	/**
-	 * configuration for asset end entitlement padding e.g. asset end time + padding still relevant for asset
-	 *
-	 * @var int
-	 */
-	public $programAssetEntitlementPaddingEnd = null;
 
 
 }
