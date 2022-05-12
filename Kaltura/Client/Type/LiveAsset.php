@@ -53,6 +53,10 @@ class Kaltura_Client_Type_LiveAsset extends Kaltura_Client_Type_MediaAsset
 			$this->enableStartOverState = (string)$xml->enableStartOverState;
 		if(count($xml->bufferCatchUpSetting))
 			$this->bufferCatchUpSetting = (string)$xml->bufferCatchUpSetting;
+		if(count($xml->paddingBeforeProgramStartsSetting))
+			$this->paddingBeforeProgramStartsSetting = (string)$xml->paddingBeforeProgramStartsSetting;
+		if(count($xml->paddingAfterProgramEndsSetting))
+			$this->paddingAfterProgramEndsSetting = (string)$xml->paddingAfterProgramEndsSetting;
 		if(count($xml->bufferTrickPlaySetting))
 			$this->bufferTrickPlaySetting = (string)$xml->bufferTrickPlaySetting;
 		if(count($xml->enableRecordingPlaybackNonEntitledChannelState))
@@ -86,6 +90,10 @@ class Kaltura_Client_Type_LiveAsset extends Kaltura_Client_Type_MediaAsset
 		}
 		if(count($xml->catchUpBuffer))
 			$this->catchUpBuffer = (string)$xml->catchUpBuffer;
+		if(count($xml->paddingBeforeProgramStarts))
+			$this->paddingBeforeProgramStarts = (string)$xml->paddingBeforeProgramStarts;
+		if(count($xml->paddingAfterProgramEnds))
+			$this->paddingAfterProgramEnds = (string)$xml->paddingAfterProgramEnds;
 		if(count($xml->trickPlayBuffer))
 			$this->trickPlayBuffer = (string)$xml->trickPlayBuffer;
 		if(count($xml->enableRecordingPlaybackNonEntitledChannel))
@@ -132,6 +140,20 @@ class Kaltura_Client_Type_LiveAsset extends Kaltura_Client_Type_MediaAsset
 	 * @var bigint
 	 */
 	public $bufferCatchUpSetting = null;
+
+	/**
+	 * padding before program starts in seconds, configuration only
+	 *
+	 * @var bigint
+	 */
+	public $paddingBeforeProgramStartsSetting = null;
+
+	/**
+	 * padding after program ends in seconds, configuration only
+	 *
+	 * @var bigint
+	 */
+	public $paddingAfterProgramEndsSetting = null;
 
 	/**
 	 * buffer Trick-play, configuration only
@@ -205,6 +227,24 @@ class Kaltura_Client_Type_LiveAsset extends Kaltura_Client_Type_MediaAsset
 	 * @readonly
 	 */
 	public $catchUpBuffer = null;
+
+	/**
+	 * Returns padding before program starts in seconds from a live asset if configured,
+	 *             otherwise returns corresponding value from TimeShiftedTvPartnerSettings.
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $paddingBeforeProgramStarts = null;
+
+	/**
+	 * Returns padding after program ends in seconds from a live asset if configured,
+	 *             otherwise returns corresponding value from TimeShiftedTvPartnerSettings.
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $paddingAfterProgramEnds = null;
 
 	/**
 	 * summed Trick-play buffer, the TimeShiftedTvPartnerSettings are also taken into consideration
