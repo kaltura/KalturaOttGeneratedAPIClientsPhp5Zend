@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_UserAssetsListItem extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_IpV6RangeCondition extends Kaltura_Client_Type_Condition
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaUserAssetsListItem';
+		return 'KalturaIpV6RangeCondition';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,52 +45,24 @@ class Kaltura_Client_Type_UserAssetsListItem extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->orderIndex))
-			$this->orderIndex = (int)$xml->orderIndex;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
-		if(count($xml->userId))
-			$this->userId = (string)$xml->userId;
-		if(count($xml->listType))
-			$this->listType = (string)$xml->listType;
+		if(count($xml->fromIP))
+			$this->fromIP = (string)$xml->fromIP;
+		if(count($xml->toIP))
+			$this->toIP = (string)$xml->toIP;
 	}
 	/**
-	 * Asset identifier
+	 * From IP address range
 	 *
 	 * @var string
 	 */
-	public $id = null;
+	public $fromIP = null;
 
 	/**
-	 * The order index of the asset in the list
-	 *
-	 * @var int
-	 */
-	public $orderIndex = null;
-
-	/**
-	 * The type of the asset
-	 *
-	 * @var Kaltura_Client_Enum_UserAssetsListItemType
-	 */
-	public $type = null;
-
-	/**
-	 * The identifier of the user who added the item to the list
+	 * TO IP address range
 	 *
 	 * @var string
-	 * @readonly
 	 */
-	public $userId = null;
-
-	/**
-	 * The type of the list, all is not supported
-	 *
-	 * @var Kaltura_Client_Enum_UserAssetsListType
-	 */
-	public $listType = null;
+	public $toIP = null;
 
 
 }

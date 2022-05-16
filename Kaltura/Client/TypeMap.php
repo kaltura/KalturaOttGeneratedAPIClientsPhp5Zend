@@ -466,6 +466,7 @@ class Kaltura_Client_TypeMap
 		'KalturaIotProfileFilter' => 'Kaltura_Client_Type_IotProfileFilter',
 		'KalturaIotProfileListResponse' => 'Kaltura_Client_Type_IotProfileListResponse',
 		'KalturaIpRangeCondition' => 'Kaltura_Client_Type_IpRangeCondition',
+		'KalturaIpV6RangeCondition' => 'Kaltura_Client_Type_IpV6RangeCondition',
 		'KalturaKeyValue' => 'Kaltura_Client_Type_KeyValue',
 		'KalturaKsqlSegmentAction' => 'Kaltura_Client_Type_KsqlSegmentAction',
 		'KalturaLabel' => 'Kaltura_Client_Type_Label',
