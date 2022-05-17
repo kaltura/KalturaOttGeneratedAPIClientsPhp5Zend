@@ -27,25 +27,33 @@
 // @ignore
 // ===================================================================================================
 
+
 /**
  * @package Kaltura
  * @subpackage Client
  */
-abstract class Kaltura_Client_Type_AssetConditionBase extends Kaltura_Client_Type_Condition
+class Kaltura_Client_HouseholdQuotaService extends Kaltura_Client_ServiceBase
 {
-	public function getKalturaObjectType()
+	function __construct(Kaltura_Client_Client $client = null)
 	{
-		return 'KalturaAssetConditionBase';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
+		parent::__construct($client);
 	}
 
+	/**
+	 * @return Kaltura_Client_Type_HouseholdQuota
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function get()
+	{
+		$kparams = array();
+		$this->client->queueServiceActionCall("householdquota", "get", "KalturaHouseholdQuota", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaHouseholdQuota");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_HouseholdQuota");
+		return $resultObject;
+	}
 }
-

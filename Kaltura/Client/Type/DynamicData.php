@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_IpV6RangeCondition extends Kaltura_Client_Type_Condition
+class Kaltura_Client_Type_DynamicData extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaIpV6RangeCondition';
+		return 'KalturaDynamicData';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,24 +45,24 @@ class Kaltura_Client_Type_IpV6RangeCondition extends Kaltura_Client_Type_Conditi
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->fromIP))
-			$this->fromIP = (string)$xml->fromIP;
-		if(count($xml->toIP))
-			$this->toIP = (string)$xml->toIP;
+		if(count($xml->key))
+			$this->key = (string)$xml->key;
+		if(count($xml->value) && !empty($xml->value))
+			$this->value = Kaltura_Client_ParseUtils::unmarshalObject($xml->value, "KalturaValue");
 	}
 	/**
-	 * From IP address range
+	 * Key
 	 *
 	 * @var string
 	 */
-	public $fromIP = null;
+	public $key = null;
 
 	/**
-	 * TO IP address range
+	 * Value
 	 *
-	 * @var string
+	 * @var Kaltura_Client_Type_Value
 	 */
-	public $toIP = null;
+	public $value;
 
 
 }
