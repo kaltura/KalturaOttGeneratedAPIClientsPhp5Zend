@@ -54,7 +54,7 @@ class Kaltura_Client_Type_TopicListResponse extends Kaltura_Client_Type_ListResp
 		}
 	}
 	/**
-	 * List of Topics
+	 * Follow data list
 	 *
 	 * @var array of KalturaTopic
 	 */

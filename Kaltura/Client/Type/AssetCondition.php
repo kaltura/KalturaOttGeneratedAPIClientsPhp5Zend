@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_AssetCondition extends Kaltura_Client_Type_AssetConditionBase
+class Kaltura_Client_Type_AssetCondition extends Kaltura_Client_Type_Condition
 {
 	public function getKalturaObjectType()
 	{

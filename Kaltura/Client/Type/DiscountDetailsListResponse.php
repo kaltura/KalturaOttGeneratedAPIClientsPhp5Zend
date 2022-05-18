@@ -54,7 +54,7 @@ class Kaltura_Client_Type_DiscountDetailsListResponse extends Kaltura_Client_Typ
 		}
 	}
 	/**
-	 * A list of discount details
+	 * A list of price details
 	 *
 	 * @var array of KalturaDiscountDetails
 	 */

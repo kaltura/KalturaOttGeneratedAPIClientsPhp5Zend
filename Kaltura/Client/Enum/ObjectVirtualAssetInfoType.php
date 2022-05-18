@@ -38,6 +38,5 @@ class Kaltura_Client_Enum_ObjectVirtualAssetInfoType extends Kaltura_Client_Enum
 	const CATEGORY = "Category";
 	const TVOD = "Tvod";
 	const BOXSET = "Boxset";
-	const PAGO = "PAGO";
 }
 
