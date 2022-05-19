@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_AssetEvent extends Kaltura_Client_Type_EventObject
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaAssetEvent';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,47 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
+		if(count($xml->userId))
+			$this->userId = (string)$xml->userId;
+		if(count($xml->assetId))
+			$this->assetId = (string)$xml->assetId;
 		if(count($xml->type))
-			$this->type = (string)$xml->type;
+			$this->type = (int)$xml->type;
+		if(count($xml->externalId))
+			$this->externalId = (string)$xml->externalId;
 	}
 	/**
-	 * Device brand identifier
+	 * User Id
 	 *
 	 * @var bigint
+	 * @readonly
 	 */
-	public $id = null;
+	public $userId = null;
 
 	/**
-	 * Device brand name
-	 *
-	 * @var string
-	 */
-	public $name = null;
-
-	/**
-	 * Device family identifier
+	 * Asset Id
 	 *
 	 * @var bigint
+	 * @readonly
 	 */
-	public $deviceFamilyid = null;
+	public $assetId = null;
 
 	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
+	 * Identifies the asset type (EPG, Recording, Movie, TV Series, etc). 
+	 *             Possible values: 0 – EPG linear programs, 1 - Recording; or any asset type ID according to the asset types IDs defined in the system.
 	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
+	 * @var int
 	 * @readonly
 	 */
 	public $type = null;
+
+	/**
+	 * External identifier for the asset
+	 *
+	 * @var string
+	 * @readonly
+	 */
+	public $externalId = null;
 
 
 }

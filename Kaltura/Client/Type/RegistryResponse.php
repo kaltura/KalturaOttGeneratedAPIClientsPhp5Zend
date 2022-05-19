@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_RegistryResponse extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaRegistryResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,33 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->announcementId))
+			$this->announcementId = (string)$xml->announcementId;
+		if(count($xml->key))
+			$this->key = (string)$xml->key;
+		if(count($xml->url))
+			$this->url = (string)$xml->url;
 	}
 	/**
-	 * Device brand identifier
+	 * Announcement Id
 	 *
 	 * @var bigint
 	 */
-	public $id = null;
+	public $announcementId = null;
 
 	/**
-	 * Device brand name
+	 * Key
 	 *
 	 * @var string
 	 */
-	public $name = null;
+	public $key = null;
 
 	/**
-	 * Device family identifier
+	 * URL
 	 *
-	 * @var bigint
+	 * @var string
 	 */
-	public $deviceFamilyid = null;
-
-	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
-	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
-	 */
-	public $type = null;
+	public $url = null;
 
 
 }

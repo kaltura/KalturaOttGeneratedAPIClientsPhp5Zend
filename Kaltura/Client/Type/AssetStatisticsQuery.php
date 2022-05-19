@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_AssetStatisticsQuery extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaAssetStatisticsQuery';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,42 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->assetIdIn))
+			$this->assetIdIn = (string)$xml->assetIdIn;
+		if(count($xml->assetTypeEqual))
+			$this->assetTypeEqual = (string)$xml->assetTypeEqual;
+		if(count($xml->startDateGreaterThanOrEqual))
+			$this->startDateGreaterThanOrEqual = (string)$xml->startDateGreaterThanOrEqual;
+		if(count($xml->endDateGreaterThanOrEqual))
+			$this->endDateGreaterThanOrEqual = (string)$xml->endDateGreaterThanOrEqual;
 	}
 	/**
-	 * Device brand identifier
-	 *
-	 * @var bigint
-	 */
-	public $id = null;
-
-	/**
-	 * Device brand name
+	 * Comma separated list of asset identifiers.
 	 *
 	 * @var string
 	 */
-	public $name = null;
+	public $assetIdIn = null;
 
 	/**
-	 * Device family identifier
+	 * Asset type
+	 *
+	 * @var Kaltura_Client_Enum_AssetType
+	 */
+	public $assetTypeEqual = null;
+
+	/**
+	 * The beginning of the time window to get the statistics for (in epoch).
 	 *
 	 * @var bigint
 	 */
-	public $deviceFamilyid = null;
+	public $startDateGreaterThanOrEqual = null;
 
 	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
+	 * /// The end of the time window to get the statistics for (in epoch).
 	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
+	 * @var bigint
 	 */
-	public $type = null;
+	public $endDateGreaterThanOrEqual = null;
 
 
 }

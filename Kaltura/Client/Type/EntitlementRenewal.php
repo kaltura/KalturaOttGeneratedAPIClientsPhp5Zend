@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_EntitlementRenewal extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaEntitlementRenewal';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,51 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->price) && !empty($xml->price))
+			$this->price = Kaltura_Client_ParseUtils::unmarshalObject($xml->price, "KalturaPrice");
+		if(count($xml->date))
+			$this->date = (string)$xml->date;
+		if(count($xml->purchaseId))
+			$this->purchaseId = (string)$xml->purchaseId;
+		if(count($xml->subscriptionId))
+			$this->subscriptionId = (string)$xml->subscriptionId;
+		if(count($xml->userId))
+			$this->userId = (string)$xml->userId;
 	}
 	/**
-	 * Device brand identifier
+	 * Price that is going to be paid on the renewal
+	 *
+	 * @var Kaltura_Client_Type_Price
+	 */
+	public $price;
+
+	/**
+	 * Next renewal date
 	 *
 	 * @var bigint
 	 */
-	public $id = null;
+	public $date = null;
 
 	/**
-	 * Device brand name
-	 *
-	 * @var string
-	 */
-	public $name = null;
-
-	/**
-	 * Device family identifier
+	 * Puchase ID
 	 *
 	 * @var bigint
 	 */
-	public $deviceFamilyid = null;
+	public $purchaseId = null;
 
 	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
+	 * Subscription ID
 	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
+	 * @var bigint
 	 */
-	public $type = null;
+	public $subscriptionId = null;
+
+	/**
+	 * User ID
+	 *
+	 * @var bigint
+	 */
+	public $userId = null;
 
 
 }

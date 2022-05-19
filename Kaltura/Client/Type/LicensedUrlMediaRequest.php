@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_LicensedUrlMediaRequest extends Kaltura_Client_Type_LicensedUrlBaseRequest
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaLicensedUrlMediaRequest';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,24 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->contentId))
+			$this->contentId = (int)$xml->contentId;
+		if(count($xml->baseUrl))
+			$this->baseUrl = (string)$xml->baseUrl;
 	}
 	/**
-	 * Device brand identifier
+	 * Identifier of the content to get the link for (file identifier)
 	 *
-	 * @var bigint
+	 * @var int
 	 */
-	public $id = null;
+	public $contentId = null;
 
 	/**
-	 * Device brand name
+	 * Base URL for the licensed URLs
 	 *
 	 * @var string
 	 */
-	public $name = null;
-
-	/**
-	 * Device family identifier
-	 *
-	 * @var bigint
-	 */
-	public $deviceFamilyid = null;
-
-	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
-	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
-	 */
-	public $type = null;
+	public $baseUrl = null;
 
 
 }

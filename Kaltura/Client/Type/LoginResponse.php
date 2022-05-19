@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_LoginResponse extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaLoginResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,24 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->user) && !empty($xml->user))
+			$this->user = Kaltura_Client_ParseUtils::unmarshalObject($xml->user, "KalturaOTTUser");
+		if(count($xml->loginSession) && !empty($xml->loginSession))
+			$this->loginSession = Kaltura_Client_ParseUtils::unmarshalObject($xml->loginSession, "KalturaLoginSession");
 	}
 	/**
-	 * Device brand identifier
+	 * User
 	 *
-	 * @var bigint
+	 * @var Kaltura_Client_Type_OTTUser
 	 */
-	public $id = null;
+	public $user;
 
 	/**
-	 * Device brand name
+	 * Kaltura login session details
 	 *
-	 * @var string
+	 * @var Kaltura_Client_Type_LoginSession
 	 */
-	public $name = null;
-
-	/**
-	 * Device family identifier
-	 *
-	 * @var bigint
-	 */
-	public $deviceFamilyid = null;
-
-	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
-	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
-	 */
-	public $type = null;
+	public $loginSession;
 
 
 }

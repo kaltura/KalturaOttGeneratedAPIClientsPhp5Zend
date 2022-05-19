@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_UserSocialActionResponse extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaUserSocialActionResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,29 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->socialAction) && !empty($xml->socialAction))
+			$this->socialAction = Kaltura_Client_ParseUtils::unmarshalObject($xml->socialAction, "KalturaSocialAction");
+		if(count($xml->failStatus))
+		{
+			if(empty($xml->failStatus))
+				$this->failStatus = array();
+			else
+				$this->failStatus = Kaltura_Client_ParseUtils::unmarshalArray($xml->failStatus, "KalturaNetworkActionStatus");
+		}
 	}
 	/**
-	 * Device brand identifier
+	 * socialAction
 	 *
-	 * @var bigint
+	 * @var Kaltura_Client_Type_SocialAction
 	 */
-	public $id = null;
+	public $socialAction;
 
 	/**
-	 * Device brand name
+	 * List of action permission items
 	 *
-	 * @var string
+	 * @var array of KalturaNetworkActionStatus
 	 */
-	public $name = null;
-
-	/**
-	 * Device family identifier
-	 *
-	 * @var bigint
-	 */
-	public $deviceFamilyid = null;
-
-	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
-	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
-	 */
-	public $type = null;
+	public $failStatus;
 
 
 }

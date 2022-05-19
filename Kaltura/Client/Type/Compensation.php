@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_Compensation extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaCompensation';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -47,43 +47,70 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->subscriptionId))
+			$this->subscriptionId = (string)$xml->subscriptionId;
+		if(count($xml->compensationType))
+			$this->compensationType = (string)$xml->compensationType;
+		if(count($xml->amount))
+			$this->amount = (float)$xml->amount;
+		if(count($xml->totalRenewalIterations))
+			$this->totalRenewalIterations = (int)$xml->totalRenewalIterations;
+		if(count($xml->appliedRenewalIterations))
+			$this->appliedRenewalIterations = (int)$xml->appliedRenewalIterations;
+		if(count($xml->purchaseId))
+			$this->purchaseId = (int)$xml->purchaseId;
 	}
 	/**
-	 * Device brand identifier
+	 * Compensation identifier
 	 *
 	 * @var bigint
+	 * @readonly
 	 */
 	public $id = null;
 
 	/**
-	 * Device brand name
-	 *
-	 * @var string
-	 */
-	public $name = null;
-
-	/**
-	 * Device family identifier
+	 * Subscription identifier
 	 *
 	 * @var bigint
-	 */
-	public $deviceFamilyid = null;
-
-	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
-	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
 	 * @readonly
 	 */
-	public $type = null;
+	public $subscriptionId = null;
+
+	/**
+	 * Compensation type
+	 *
+	 * @var Kaltura_Client_Enum_CompensationType
+	 */
+	public $compensationType = null;
+
+	/**
+	 * Compensation amount
+	 *
+	 * @var float
+	 */
+	public $amount = null;
+
+	/**
+	 * The number of renewals for compensation
+	 *
+	 * @var int
+	 */
+	public $totalRenewalIterations = null;
+
+	/**
+	 * The number of renewals the compensation was already applied on
+	 *
+	 * @var int
+	 * @readonly
+	 */
+	public $appliedRenewalIterations = null;
+
+	/**
+	 * Purchase identifier
+	 *
+	 * @var int
+	 */
+	public $purchaseId = null;
 
 
 }

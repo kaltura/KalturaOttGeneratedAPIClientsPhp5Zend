@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_PushMessage extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaPushMessage';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,60 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->message))
+			$this->message = (string)$xml->message;
+		if(count($xml->sound))
+			$this->sound = (string)$xml->sound;
+		if(count($xml->action))
+			$this->action = (string)$xml->action;
+		if(count($xml->url))
+			$this->url = (string)$xml->url;
+		if(count($xml->udid))
+			$this->udid = (string)$xml->udid;
+		if(count($xml->pushChannels))
+			$this->pushChannels = (string)$xml->pushChannels;
 	}
 	/**
-	 * Device brand identifier
-	 *
-	 * @var bigint
-	 */
-	public $id = null;
-
-	/**
-	 * Device brand name
+	 * The message that will be presented to the user.
 	 *
 	 * @var string
 	 */
-	public $name = null;
+	public $message = null;
 
 	/**
-	 * Device family identifier
+	 * Optional. Can be used to change the default push sound on the user device.
 	 *
-	 * @var bigint
+	 * @var string
 	 */
-	public $deviceFamilyid = null;
+	public $sound = null;
 
 	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
+	 * Optional. Used to change the default action of the application when a push is received.
 	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
+	 * @var string
 	 */
-	public $type = null;
+	public $action = null;
+
+	/**
+	 * Optional. Used to direct the application to the relevant page.
+	 *
+	 * @var string
+	 */
+	public $url = null;
+
+	/**
+	 * Device unique identifier
+	 *
+	 * @var string
+	 */
+	public $udid = null;
+
+	/**
+	 * PushChannels - separated with comma
+	 *
+	 * @var string
+	 */
+	public $pushChannels = null;
 
 
 }
