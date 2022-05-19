@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_AssetShopCondition extends Kaltura_Client_Type_AssetConditionBase
+class Kaltura_Client_Type_UserAssetsListItem extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaAssetShopCondition';
+		return 'KalturaUserAssetsListItem';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,15 +45,52 @@ class Kaltura_Client_Type_AssetShopCondition extends Kaltura_Client_Type_AssetCo
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->value))
-			$this->value = (string)$xml->value;
+		if(count($xml->id))
+			$this->id = (string)$xml->id;
+		if(count($xml->orderIndex))
+			$this->orderIndex = (int)$xml->orderIndex;
+		if(count($xml->type))
+			$this->type = (string)$xml->type;
+		if(count($xml->userId))
+			$this->userId = (string)$xml->userId;
+		if(count($xml->listType))
+			$this->listType = (string)$xml->listType;
 	}
 	/**
-	 * Shop marker&#39;s value
+	 * Asset identifier
 	 *
 	 * @var string
 	 */
-	public $value = null;
+	public $id = null;
+
+	/**
+	 * The order index of the asset in the list
+	 *
+	 * @var int
+	 */
+	public $orderIndex = null;
+
+	/**
+	 * The type of the asset
+	 *
+	 * @var Kaltura_Client_Enum_UserAssetsListItemType
+	 */
+	public $type = null;
+
+	/**
+	 * The identifier of the user who added the item to the list
+	 *
+	 * @var string
+	 * @readonly
+	 */
+	public $userId = null;
+
+	/**
+	 * The type of the list, all is not supported
+	 *
+	 * @var Kaltura_Client_Enum_UserAssetsListType
+	 */
+	public $listType = null;
 
 
 }

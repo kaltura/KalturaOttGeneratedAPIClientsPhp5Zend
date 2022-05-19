@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-abstract class Kaltura_Client_Type_AssetConditionBase extends Kaltura_Client_Type_Condition
+class Kaltura_Client_Type_DynamicData extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaAssetConditionBase';
+		return 'KalturaDynamicData';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,7 +45,25 @@ abstract class Kaltura_Client_Type_AssetConditionBase extends Kaltura_Client_Typ
 		if(is_null($xml))
 			return;
 		
+		if(count($xml->key))
+			$this->key = (string)$xml->key;
+		if(count($xml->value) && !empty($xml->value))
+			$this->value = Kaltura_Client_ParseUtils::unmarshalObject($xml->value, "KalturaValue");
 	}
+	/**
+	 * Key
+	 *
+	 * @var string
+	 */
+	public $key = null;
+
+	/**
+	 * Value
+	 *
+	 * @var Kaltura_Client_Type_Value
+	 */
+	public $value;
+
 
 }
 

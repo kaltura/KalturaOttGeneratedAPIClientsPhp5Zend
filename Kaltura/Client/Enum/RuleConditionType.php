@@ -54,6 +54,5 @@ class Kaltura_Client_Enum_RuleConditionType extends Kaltura_Client_EnumBase
 	const USER_SESSION_PROFILE = "USER_SESSION_PROFILE";
 	const DEVICE_DYNAMIC_DATA = "DEVICE_DYNAMIC_DATA";
 	const IP_V6_RANGE = "IP_V6_RANGE";
-	const ASSET_SHOP = "ASSET_SHOP";
 }
 
