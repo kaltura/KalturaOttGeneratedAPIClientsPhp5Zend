@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_EpgServicePartnerConfiguration extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaEpgServicePartnerConfiguration';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,24 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->numberOfSlots))
+			$this->numberOfSlots = (int)$xml->numberOfSlots;
+		if(count($xml->firstSlotOffset))
+			$this->firstSlotOffset = (int)$xml->firstSlotOffset;
 	}
 	/**
-	 * Device brand identifier
+	 * The number of slots (NOS) that are supported (1, 2, 3, 4, 6, 8, 12, 24)
 	 *
-	 * @var bigint
+	 * @var int
 	 */
-	public $id = null;
+	public $numberOfSlots = null;
 
 	/**
-	 * Device brand name
+	 * The offset of the first slot from 00:00 UTC
 	 *
-	 * @var string
+	 * @var int
 	 */
-	public $name = null;
-
-	/**
-	 * Device family identifier
-	 *
-	 * @var bigint
-	 */
-	public $deviceFamilyid = null;
-
-	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
-	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
-	 */
-	public $type = null;
+	public $firstSlotOffset = null;
 
 
 }

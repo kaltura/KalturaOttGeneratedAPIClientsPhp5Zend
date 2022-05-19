@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+abstract class Kaltura_Client_Type_Social extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaSocial';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -49,41 +49,96 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->firstName))
+			$this->firstName = (string)$xml->firstName;
+		if(count($xml->lastName))
+			$this->lastName = (string)$xml->lastName;
+		if(count($xml->email))
+			$this->email = (string)$xml->email;
+		if(count($xml->gender))
+			$this->gender = (string)$xml->gender;
+		if(count($xml->userId))
+			$this->userId = (string)$xml->userId;
+		if(count($xml->birthday))
+			$this->birthday = (string)$xml->birthday;
+		if(count($xml->status))
+			$this->status = (string)$xml->status;
+		if(count($xml->pictureUrl))
+			$this->pictureUrl = (string)$xml->pictureUrl;
 	}
 	/**
-	 * Device brand identifier
+	 * Facebook identifier
 	 *
-	 * @var bigint
+	 * @var string
+	 * @readonly
 	 */
 	public $id = null;
 
 	/**
-	 * Device brand name
+	 * Full name
 	 *
 	 * @var string
 	 */
 	public $name = null;
 
 	/**
-	 * Device family identifier
+	 * First name
 	 *
-	 * @var bigint
+	 * @var string
 	 */
-	public $deviceFamilyid = null;
+	public $firstName = null;
 
 	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
+	 * Last name
 	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
+	 * @var string
+	 */
+	public $lastName = null;
+
+	/**
+	 * User email
+	 *
+	 * @var string
+	 */
+	public $email = null;
+
+	/**
+	 * Gender
+	 *
+	 * @var string
+	 */
+	public $gender = null;
+
+	/**
+	 * User identifier
+	 *
+	 * @var string
 	 * @readonly
 	 */
-	public $type = null;
+	public $userId = null;
+
+	/**
+	 * User birthday
+	 *
+	 * @var string
+	 */
+	public $birthday = null;
+
+	/**
+	 * User model status
+	 *             Possible values: UNKNOWN, OK, ERROR, NOACTION, NOTEXIST, CONFLICT, MERGE, MERGEOK, NEWUSER, MINFRIENDS, INVITEOK, INVITEERROR, ACCESSDENIED, WRONGPASSWORDORUSERNAME, UNMERGEOK, USEREMAILISMISSING
+	 *
+	 * @var string
+	 * @readonly
+	 */
+	public $status = null;
+
+	/**
+	 * Profile picture URL
+	 *
+	 * @var string
+	 */
+	public $pictureUrl = null;
 
 
 }

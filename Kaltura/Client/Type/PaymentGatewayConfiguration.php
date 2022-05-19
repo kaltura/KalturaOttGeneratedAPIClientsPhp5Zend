@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_PaymentGatewayConfiguration extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaPaymentGatewayConfiguration';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,20 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->paymentGatewayConfiguration))
+		{
+			if(empty($xml->paymentGatewayConfiguration))
+				$this->paymentGatewayConfiguration = array();
+			else
+				$this->paymentGatewayConfiguration = Kaltura_Client_ParseUtils::unmarshalArray($xml->paymentGatewayConfiguration, "KalturaKeyValue");
+		}
 	}
 	/**
-	 * Device brand identifier
+	 * Payment gateway configuration
 	 *
-	 * @var bigint
+	 * @var array of KalturaKeyValue
 	 */
-	public $id = null;
-
-	/**
-	 * Device brand name
-	 *
-	 * @var string
-	 */
-	public $name = null;
-
-	/**
-	 * Device family identifier
-	 *
-	 * @var bigint
-	 */
-	public $deviceFamilyid = null;
-
-	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
-	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
-	 */
-	public $type = null;
+	public $paymentGatewayConfiguration;
 
 
 }

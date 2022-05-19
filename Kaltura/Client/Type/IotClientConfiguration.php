@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_IotClientConfiguration extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaIotClientConfiguration';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,51 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->announcementTopic))
+			$this->announcementTopic = (string)$xml->announcementTopic;
+		if(count($xml->credentialsProvider) && !empty($xml->credentialsProvider))
+			$this->credentialsProvider = Kaltura_Client_ParseUtils::unmarshalObject($xml->credentialsProvider, "KalturaCredentialsProvider");
+		if(count($xml->cognitoUserPool) && !empty($xml->cognitoUserPool))
+			$this->cognitoUserPool = Kaltura_Client_ParseUtils::unmarshalObject($xml->cognitoUserPool, "KalturaCognitoUserPool");
+		if(count($xml->json))
+			$this->json = (string)$xml->json;
+		if(count($xml->topics))
+			$this->topics = (string)$xml->topics;
 	}
 	/**
-	 * Device brand identifier
-	 *
-	 * @var bigint
-	 */
-	public $id = null;
-
-	/**
-	 * Device brand name
+	 * announcementTopic
 	 *
 	 * @var string
 	 */
-	public $name = null;
+	public $announcementTopic = null;
 
 	/**
-	 * Device family identifier
+	 * KalturaCredentialsProvider
 	 *
-	 * @var bigint
+	 * @var Kaltura_Client_Type_CredentialsProvider
 	 */
-	public $deviceFamilyid = null;
+	public $credentialsProvider;
 
 	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
+	 * CognitoUserPool
 	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
+	 * @var Kaltura_Client_Type_CognitoUserPool
 	 */
-	public $type = null;
+	public $cognitoUserPool;
+
+	/**
+	 * json
+	 *
+	 * @var string
+	 */
+	public $json = null;
+
+	/**
+	 * topics
+	 *
+	 * @var string
+	 */
+	public $topics = null;
 
 
 }

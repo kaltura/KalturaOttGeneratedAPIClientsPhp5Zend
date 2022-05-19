@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_UserAssetsListItem extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaUserAssetsListItem';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -47,43 +47,50 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
+		if(count($xml->orderIndex))
+			$this->orderIndex = (int)$xml->orderIndex;
 		if(count($xml->type))
 			$this->type = (string)$xml->type;
+		if(count($xml->userId))
+			$this->userId = (string)$xml->userId;
+		if(count($xml->listType))
+			$this->listType = (string)$xml->listType;
 	}
 	/**
-	 * Device brand identifier
+	 * Asset identifier
 	 *
-	 * @var bigint
+	 * @var string
 	 */
 	public $id = null;
 
 	/**
-	 * Device brand name
+	 * The order index of the asset in the list
 	 *
-	 * @var string
+	 * @var int
 	 */
-	public $name = null;
+	public $orderIndex = null;
 
 	/**
-	 * Device family identifier
+	 * The type of the asset
 	 *
-	 * @var bigint
-	 */
-	public $deviceFamilyid = null;
-
-	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
-	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
+	 * @var Kaltura_Client_Enum_UserAssetsListItemType
 	 */
 	public $type = null;
+
+	/**
+	 * The identifier of the user who added the item to the list
+	 *
+	 * @var string
+	 * @readonly
+	 */
+	public $userId = null;
+
+	/**
+	 * The type of the list, all is not supported
+	 *
+	 * @var Kaltura_Client_Enum_UserAssetsListType
+	 */
+	public $listType = null;
 
 
 }

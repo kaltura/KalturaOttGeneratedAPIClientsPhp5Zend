@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_Pin extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaPin';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,43 +45,31 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
+		if(count($xml->pin))
+			$this->pin = (string)$xml->pin;
+		if(count($xml->origin))
+			$this->origin = (string)$xml->origin;
 		if(count($xml->type))
 			$this->type = (string)$xml->type;
 	}
 	/**
-	 * Device brand identifier
-	 *
-	 * @var bigint
-	 */
-	public $id = null;
-
-	/**
-	 * Device brand name
+	 * PIN code
 	 *
 	 * @var string
 	 */
-	public $name = null;
+	public $pin = null;
 
 	/**
-	 * Device family identifier
+	 * Where the PIN was defined at – account, household or user
 	 *
-	 * @var bigint
+	 * @var Kaltura_Client_Enum_RuleLevel
 	 */
-	public $deviceFamilyid = null;
+	public $origin = null;
 
 	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
+	 * PIN type
 	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
+	 * @var Kaltura_Client_Enum_PinType
 	 */
 	public $type = null;
 

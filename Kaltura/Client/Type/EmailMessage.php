@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_EmailMessage extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaEmailMessage';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,92 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->templateName))
+			$this->templateName = (string)$xml->templateName;
+		if(count($xml->subject))
+			$this->subject = (string)$xml->subject;
+		if(count($xml->firstName))
+			$this->firstName = (string)$xml->firstName;
+		if(count($xml->lastName))
+			$this->lastName = (string)$xml->lastName;
+		if(count($xml->senderName))
+			$this->senderName = (string)$xml->senderName;
+		if(count($xml->senderFrom))
+			$this->senderFrom = (string)$xml->senderFrom;
+		if(count($xml->senderTo))
+			$this->senderTo = (string)$xml->senderTo;
+		if(count($xml->bccAddress))
+			$this->bccAddress = (string)$xml->bccAddress;
+		if(count($xml->extraParameters))
+		{
+			if(empty($xml->extraParameters))
+				$this->extraParameters = array();
+			else
+				$this->extraParameters = Kaltura_Client_ParseUtils::unmarshalArray($xml->extraParameters, "KalturaKeyValue");
+		}
 	}
 	/**
-	 * Device brand identifier
-	 *
-	 * @var bigint
-	 */
-	public $id = null;
-
-	/**
-	 * Device brand name
+	 * email template name
 	 *
 	 * @var string
 	 */
-	public $name = null;
+	public $templateName = null;
 
 	/**
-	 * Device family identifier
+	 * email subject
 	 *
-	 * @var bigint
+	 * @var string
 	 */
-	public $deviceFamilyid = null;
+	public $subject = null;
 
 	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
+	 * first name
 	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
+	 * @var string
 	 */
-	public $type = null;
+	public $firstName = null;
+
+	/**
+	 * last name
+	 *
+	 * @var string
+	 */
+	public $lastName = null;
+
+	/**
+	 * sender name
+	 *
+	 * @var string
+	 */
+	public $senderName = null;
+
+	/**
+	 * sender from
+	 *
+	 * @var string
+	 */
+	public $senderFrom = null;
+
+	/**
+	 * sender to
+	 *
+	 * @var string
+	 */
+	public $senderTo = null;
+
+	/**
+	 * bcc address - seperated by comma
+	 *
+	 * @var string
+	 */
+	public $bccAddress = null;
+
+	/**
+	 * extra parameters
+	 *
+	 * @var array of KalturaKeyValue
+	 */
+	public $extraParameters;
 
 
 }

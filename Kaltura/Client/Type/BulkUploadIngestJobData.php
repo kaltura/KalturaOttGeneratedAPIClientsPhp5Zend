@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_BulkUploadIngestJobData extends Kaltura_Client_Type_BulkUploadJobData
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaBulkUploadIngestJobData';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,31 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->ingestProfileId))
+			$this->ingestProfileId = (int)$xml->ingestProfileId;
+		if(count($xml->disableEpgNotification))
+		{
+			if(!empty($xml->disableEpgNotification) && ((int) $xml->disableEpgNotification === 1 || strtolower((string)$xml->disableEpgNotification) === 'true'))
+				$this->disableEpgNotification = true;
+			else
+				$this->disableEpgNotification = false;
+		}
 	}
 	/**
-	 * Device brand identifier
+	 * Identifies the ingest profile that will handle the ingest of programs
+	 *             Ingest profiles are created separately using the ingest profile service
 	 *
-	 * @var bigint
+	 * @var int
 	 */
-	public $id = null;
+	public $ingestProfileId = null;
 
 	/**
-	 * Device brand name
+	 * By default, after the successful ingest, devices will be notified about changes in epg channels.
+	 *             This parameter disables this notification.
 	 *
-	 * @var string
+	 * @var bool
 	 */
-	public $name = null;
-
-	/**
-	 * Device family identifier
-	 *
-	 * @var bigint
-	 */
-	public $deviceFamilyid = null;
-
-	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
-	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
-	 */
-	public $type = null;
+	public $disableEpgNotification = null;
 
 
 }

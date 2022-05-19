@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_PartnerSetup extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaPartnerSetup';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,33 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->adminUsername))
+			$this->adminUsername = (string)$xml->adminUsername;
+		if(count($xml->adminPassword))
+			$this->adminPassword = (string)$xml->adminPassword;
+		if(count($xml->basePartnerConfiguration) && !empty($xml->basePartnerConfiguration))
+			$this->basePartnerConfiguration = Kaltura_Client_ParseUtils::unmarshalObject($xml->basePartnerConfiguration, "KalturaBasePartnerConfiguration");
 	}
 	/**
-	 * Device brand identifier
-	 *
-	 * @var bigint
-	 */
-	public $id = null;
-
-	/**
-	 * Device brand name
+	 * admin Username
 	 *
 	 * @var string
 	 */
-	public $name = null;
+	public $adminUsername = null;
 
 	/**
-	 * Device family identifier
+	 * admin Password
 	 *
-	 * @var bigint
+	 * @var string
 	 */
-	public $deviceFamilyid = null;
+	public $adminPassword = null;
 
 	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
+	 * basePartnerConfiguration
 	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
+	 * @var Kaltura_Client_Type_BasePartnerConfiguration
 	 */
-	public $type = null;
+	public $basePartnerConfiguration;
 
 
 }
