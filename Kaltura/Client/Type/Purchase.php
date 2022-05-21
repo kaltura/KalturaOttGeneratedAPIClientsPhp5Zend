@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_Purchase extends Kaltura_Client_Type_PurchaseBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaPurchase';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,51 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->currency))
+			$this->currency = (string)$xml->currency;
+		if(count($xml->price))
+			$this->price = (float)$xml->price;
+		if(count($xml->paymentMethodId))
+			$this->paymentMethodId = (int)$xml->paymentMethodId;
+		if(count($xml->paymentGatewayId))
+			$this->paymentGatewayId = (int)$xml->paymentGatewayId;
+		if(count($xml->coupon))
+			$this->coupon = (string)$xml->coupon;
 	}
 	/**
-	 * Device brand identifier
-	 *
-	 * @var bigint
-	 */
-	public $id = null;
-
-	/**
-	 * Device brand name
+	 * Identifier for paying currency, according to ISO 4217
 	 *
 	 * @var string
 	 */
-	public $name = null;
+	public $currency = null;
 
 	/**
-	 * Device family identifier
+	 * Net sum to charge – as a one-time transaction. Price must match the previously provided price for the specified content.
 	 *
-	 * @var bigint
+	 * @var float
 	 */
-	public $deviceFamilyid = null;
+	public $price = null;
 
 	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
+	 * Identifier for a pre-entered payment method. If not provided – the household’s default payment method is used
 	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
+	 * @var int
 	 */
-	public $type = null;
+	public $paymentMethodId = null;
+
+	/**
+	 * Identifier for a pre-associated payment gateway. If not provided – the account’s default payment gateway is used
+	 *
+	 * @var int
+	 */
+	public $paymentGatewayId = null;
+
+	/**
+	 * Coupon code
+	 *
+	 * @var string
+	 */
+	public $coupon = null;
 
 
 }

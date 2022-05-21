@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_EpgNotificationSettings extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaEpgNotificationSettings';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,58 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->enabled))
+		{
+			if(!empty($xml->enabled) && ((int) $xml->enabled === 1 || strtolower((string)$xml->enabled) === 'true'))
+				$this->enabled = true;
+			else
+				$this->enabled = false;
+		}
+		if(count($xml->deviceFamilyIds))
+			$this->deviceFamilyIds = (string)$xml->deviceFamilyIds;
+		if(count($xml->liveAssetIds))
+			$this->liveAssetIds = (string)$xml->liveAssetIds;
+		if(count($xml->backwardTimeRange))
+			$this->backwardTimeRange = (int)$xml->backwardTimeRange;
+		if(count($xml->forwardTimeRange))
+			$this->forwardTimeRange = (int)$xml->forwardTimeRange;
 	}
 	/**
-	 * Device brand identifier
+	 * EPG notification capability is enabled for the account
 	 *
-	 * @var bigint
+	 * @var bool
 	 */
-	public $id = null;
+	public $enabled = null;
 
 	/**
-	 * Device brand name
+	 * Specify which devices should receive notifications
 	 *
 	 * @var string
 	 */
-	public $name = null;
+	public $deviceFamilyIds = null;
 
 	/**
-	 * Device family identifier
+	 * Specify which live assets should fire notifications
 	 *
-	 * @var bigint
+	 * @var string
 	 */
-	public $deviceFamilyid = null;
+	public $liveAssetIds = null;
 
 	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
+	 * The backward range (in hours), in which, EPG updates triggers a notification,
+	 *             every program that is updated and it’s starts time falls within this range shall trigger a notification
 	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
+	 * @var int
 	 */
-	public $type = null;
+	public $backwardTimeRange = null;
+
+	/**
+	 * The forward range (in hours), in which, EPG updates triggers a notification,
+	 *             every program that is updated and it’s starts time falls within this range shall trigger a notification
+	 *
+	 * @var int
+	 */
+	public $forwardTimeRange = null;
 
 
 }

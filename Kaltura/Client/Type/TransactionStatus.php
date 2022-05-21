@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_TransactionStatus extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaTransactionStatus';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,51 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->adapterTransactionStatus))
+			$this->adapterTransactionStatus = (string)$xml->adapterTransactionStatus;
+		if(count($xml->externalId))
+			$this->externalId = (string)$xml->externalId;
+		if(count($xml->externalStatus))
+			$this->externalStatus = (string)$xml->externalStatus;
+		if(count($xml->externalMessage))
+			$this->externalMessage = (string)$xml->externalMessage;
+		if(count($xml->failReason))
+			$this->failReason = (int)$xml->failReason;
 	}
 	/**
-	 * Device brand identifier
+	 * Payment gateway adapter application state for the transaction to update
 	 *
-	 * @var bigint
+	 * @var Kaltura_Client_Enum_TransactionAdapterStatus
 	 */
-	public $id = null;
+	public $adapterTransactionStatus = null;
 
 	/**
-	 * Device brand name
+	 * External transaction identifier
 	 *
 	 * @var string
 	 */
-	public $name = null;
+	public $externalId = null;
 
 	/**
-	 * Device family identifier
+	 * Payment gateway transaction status
 	 *
-	 * @var bigint
+	 * @var string
 	 */
-	public $deviceFamilyid = null;
+	public $externalStatus = null;
 
 	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
+	 * Payment gateway message
 	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
+	 * @var string
 	 */
-	public $type = null;
+	public $externalMessage = null;
+
+	/**
+	 * The reason the transaction failed
+	 *
+	 * @var int
+	 */
+	public $failReason = null;
 
 
 }

@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_AssetFileContext extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaAssetFileContext';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,56 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->viewLifeCycle))
+			$this->viewLifeCycle = (string)$xml->viewLifeCycle;
+		if(count($xml->fullLifeCycle))
+			$this->fullLifeCycle = (string)$xml->fullLifeCycle;
+		if(count($xml->isOfflinePlayBack))
+		{
+			if(!empty($xml->isOfflinePlayBack) && ((int) $xml->isOfflinePlayBack === 1 || strtolower((string)$xml->isOfflinePlayBack) === 'true'))
+				$this->isOfflinePlayBack = true;
+			else
+				$this->isOfflinePlayBack = false;
+		}
+		if(count($xml->isLivePlayBack))
+		{
+			if(!empty($xml->isLivePlayBack) && ((int) $xml->isLivePlayBack === 1 || strtolower((string)$xml->isLivePlayBack) === 'true'))
+				$this->isLivePlayBack = true;
+			else
+				$this->isLivePlayBack = false;
+		}
 	}
 	/**
-	 * Device brand identifier
-	 *
-	 * @var bigint
-	 */
-	public $id = null;
-
-	/**
-	 * Device brand name
+	 * viewLifeCycle
 	 *
 	 * @var string
-	 */
-	public $name = null;
-
-	/**
-	 * Device family identifier
-	 *
-	 * @var bigint
-	 */
-	public $deviceFamilyid = null;
-
-	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
-	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
 	 * @readonly
 	 */
-	public $type = null;
+	public $viewLifeCycle = null;
+
+	/**
+	 * fullLifeCycle
+	 *
+	 * @var string
+	 * @readonly
+	 */
+	public $fullLifeCycle = null;
+
+	/**
+	 * isOfflinePlayBack
+	 *
+	 * @var bool
+	 * @readonly
+	 */
+	public $isOfflinePlayBack = null;
+
+	/**
+	 * Is Live PlayBack
+	 *
+	 * @var bool
+	 * @readonly
+	 */
+	public $isLivePlayBack = null;
 
 
 }

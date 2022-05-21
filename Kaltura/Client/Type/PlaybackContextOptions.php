@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_PlaybackContextOptions extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaPlaybackContextOptions';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,65 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->mediaProtocol))
+			$this->mediaProtocol = (string)$xml->mediaProtocol;
+		if(count($xml->streamerType))
+			$this->streamerType = (string)$xml->streamerType;
+		if(count($xml->assetFileIds))
+			$this->assetFileIds = (string)$xml->assetFileIds;
+		if(count($xml->adapterData))
+		{
+			if(empty($xml->adapterData))
+				$this->adapterData = array();
+			else
+				$this->adapterData = Kaltura_Client_ParseUtils::unmarshalMap($xml->adapterData, "KalturaStringValue");
+		}
+		if(count($xml->context))
+			$this->context = (string)$xml->context;
+		if(count($xml->urlType))
+			$this->urlType = (string)$xml->urlType;
 	}
 	/**
-	 * Device brand identifier
-	 *
-	 * @var bigint
-	 */
-	public $id = null;
-
-	/**
-	 * Device brand name
+	 * Protocol of the specific media object (http / https).
 	 *
 	 * @var string
 	 */
-	public $name = null;
+	public $mediaProtocol = null;
 
 	/**
-	 * Device family identifier
+	 * Playback streamer type: applehttp, mpegdash, url, smothstreaming, multicast, none
 	 *
-	 * @var bigint
+	 * @var string
 	 */
-	public $deviceFamilyid = null;
+	public $streamerType = null;
 
 	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
+	 * List of comma separated media file IDs
 	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
+	 * @var string
 	 */
-	public $type = null;
+	public $assetFileIds = null;
+
+	/**
+	 * key/value map field for extra data
+	 *
+	 * @var map
+	 */
+	public $adapterData;
+
+	/**
+	 * Playback context type
+	 *
+	 * @var Kaltura_Client_Enum_PlaybackContextType
+	 */
+	public $context = null;
+
+	/**
+	 * Url type
+	 *
+	 * @var Kaltura_Client_Enum_UrlType
+	 */
+	public $urlType = null;
 
 
 }

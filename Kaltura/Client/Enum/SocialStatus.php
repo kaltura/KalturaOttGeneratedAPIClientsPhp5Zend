@@ -31,60 +31,19 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Enum_SocialStatus extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaDeviceBrand';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
-	}
-	/**
-	 * Device brand identifier
-	 *
-	 * @var bigint
-	 */
-	public $id = null;
-
-	/**
-	 * Device brand name
-	 *
-	 * @var string
-	 */
-	public $name = null;
-
-	/**
-	 * Device family identifier
-	 *
-	 * @var bigint
-	 */
-	public $deviceFamilyid = null;
-
-	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
-	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
-	 */
-	public $type = null;
-
-
+	const ERROR = "error";
+	const OK = "ok";
+	const USER_DOES_NOT_EXIST = "user_does_not_exist";
+	const NO_USER_SOCIAL_SETTINGS_FOUND = "no_user_social_settings_found";
+	const ASSET_ALREADY_LIKED = "asset_already_liked";
+	const NOT_ALLOWED = "not_allowed";
+	const INVALID_PARAMETERS = "invalid_parameters";
+	const NO_FACEBOOK_ACTION = "no_facebook_action";
+	const ASSET_ALREADY_RATED = "asset_already_rated";
+	const ASSET_DOSE_NOT_EXISTS = "asset_dose_not_exists";
+	const INVALID_PLATFORM_REQUEST = "invalid_platform_request";
+	const INVALID_ACCESS_TOKEN = "invalid_access_token";
 }
 

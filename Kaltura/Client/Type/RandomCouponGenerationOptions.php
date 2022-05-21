@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_RandomCouponGenerationOptions extends Kaltura_Client_Type_CouponGenerationOptions
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaRandomCouponGenerationOptions';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,57 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->numberOfCoupons))
+			$this->numberOfCoupons = (int)$xml->numberOfCoupons;
+		if(count($xml->useLetters))
+		{
+			if(!empty($xml->useLetters) && ((int) $xml->useLetters === 1 || strtolower((string)$xml->useLetters) === 'true'))
+				$this->useLetters = true;
+			else
+				$this->useLetters = false;
+		}
+		if(count($xml->useNumbers))
+		{
+			if(!empty($xml->useNumbers) && ((int) $xml->useNumbers === 1 || strtolower((string)$xml->useNumbers) === 'true'))
+				$this->useNumbers = true;
+			else
+				$this->useNumbers = false;
+		}
+		if(count($xml->useSpecialCharacters))
+		{
+			if(!empty($xml->useSpecialCharacters) && ((int) $xml->useSpecialCharacters === 1 || strtolower((string)$xml->useSpecialCharacters) === 'true'))
+				$this->useSpecialCharacters = true;
+			else
+				$this->useSpecialCharacters = false;
+		}
 	}
 	/**
-	 * Device brand identifier
+	 * Number of coupons to generate
 	 *
-	 * @var bigint
+	 * @var int
 	 */
-	public $id = null;
+	public $numberOfCoupons = null;
 
 	/**
-	 * Device brand name
+	 * Indicates whether to use letters in the generated codes (default is true)
 	 *
-	 * @var string
+	 * @var bool
 	 */
-	public $name = null;
+	public $useLetters = null;
 
 	/**
-	 * Device family identifier
+	 * Indicates whether to use numbers in the generated codes (default is true)
 	 *
-	 * @var bigint
+	 * @var bool
 	 */
-	public $deviceFamilyid = null;
+	public $useNumbers = null;
 
 	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
+	 * Indicates whether to use special characters in the generated codes(default is true)
 	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
+	 * @var bool
 	 */
-	public $type = null;
+	public $useSpecialCharacters = null;
 
 
 }

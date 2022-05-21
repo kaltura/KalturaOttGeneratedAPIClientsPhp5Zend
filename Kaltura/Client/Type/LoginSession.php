@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_LoginSession extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaLoginSession';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,24 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->ks))
+			$this->ks = (string)$xml->ks;
+		if(count($xml->expiry))
+			$this->expiry = (string)$xml->expiry;
 	}
 	/**
-	 * Device brand identifier
-	 *
-	 * @var bigint
-	 */
-	public $id = null;
-
-	/**
-	 * Device brand name
+	 * Access token in a KS format
 	 *
 	 * @var string
 	 */
-	public $name = null;
+	public $ks = null;
 
 	/**
-	 * Device family identifier
+	 * Expiration
 	 *
 	 * @var bigint
 	 */
-	public $deviceFamilyid = null;
-
-	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
-	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
-	 */
-	public $type = null;
+	public $expiry = null;
 
 
 }

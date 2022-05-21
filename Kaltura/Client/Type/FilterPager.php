@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_FilterPager extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaFilterPager';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,24 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->pageSize))
+			$this->pageSize = (int)$xml->pageSize;
+		if(count($xml->pageIndex))
+			$this->pageIndex = (int)$xml->pageIndex;
 	}
 	/**
-	 * Device brand identifier
+	 * The number of objects to retrieve. Possible range 1 ≤ value ≤ 50. If omitted or value &lt; 1 - will be set to 25. If a value &gt; 50 provided – will be set to 50
 	 *
-	 * @var bigint
+	 * @var int
 	 */
-	public $id = null;
+	public $pageSize = null;
 
 	/**
-	 * Device brand name
+	 * The page number for which {pageSize} of objects should be retrieved
 	 *
-	 * @var string
+	 * @var int
 	 */
-	public $name = null;
-
-	/**
-	 * Device family identifier
-	 *
-	 * @var bigint
-	 */
-	public $deviceFamilyid = null;
-
-	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
-	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
-	 */
-	public $type = null;
+	public $pageIndex = null;
 
 
 }

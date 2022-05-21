@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_PlaybackContext extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaPlaybackContext';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,76 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->sources))
+		{
+			if(empty($xml->sources))
+				$this->sources = array();
+			else
+				$this->sources = Kaltura_Client_ParseUtils::unmarshalArray($xml->sources, "KalturaPlaybackSource");
+		}
+		if(count($xml->actions))
+		{
+			if(empty($xml->actions))
+				$this->actions = array();
+			else
+				$this->actions = Kaltura_Client_ParseUtils::unmarshalArray($xml->actions, "KalturaRuleAction");
+		}
+		if(count($xml->messages))
+		{
+			if(empty($xml->messages))
+				$this->messages = array();
+			else
+				$this->messages = Kaltura_Client_ParseUtils::unmarshalArray($xml->messages, "KalturaAccessControlMessage");
+		}
+		if(count($xml->playbackCaptions))
+		{
+			if(empty($xml->playbackCaptions))
+				$this->playbackCaptions = array();
+			else
+				$this->playbackCaptions = Kaltura_Client_ParseUtils::unmarshalArray($xml->playbackCaptions, "KalturaCaptionPlaybackPluginData");
+		}
+		if(count($xml->plugins))
+		{
+			if(empty($xml->plugins))
+				$this->plugins = array();
+			else
+				$this->plugins = Kaltura_Client_ParseUtils::unmarshalArray($xml->plugins, "KalturaPlaybackPluginData");
+		}
 	}
 	/**
-	 * Device brand identifier
+	 * Sources
 	 *
-	 * @var bigint
+	 * @var array of KalturaPlaybackSource
 	 */
-	public $id = null;
+	public $sources;
 
 	/**
-	 * Device brand name
+	 * Actions
 	 *
-	 * @var string
+	 * @var array of KalturaRuleAction
 	 */
-	public $name = null;
+	public $actions;
 
 	/**
-	 * Device family identifier
+	 * Messages
 	 *
-	 * @var bigint
+	 * @var array of KalturaAccessControlMessage
 	 */
-	public $deviceFamilyid = null;
+	public $messages;
 
 	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
+	 * Playback captions
 	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
+	 * @var array of KalturaCaptionPlaybackPluginData
 	 */
-	public $type = null;
+	public $playbackCaptions;
+
+	/**
+	 * Plugins
+	 *
+	 * @var array of KalturaPlaybackPluginData
+	 */
+	public $plugins;
 
 
 }

@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_PurchaseBase extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaPurchaseBase';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,42 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->productId))
+			$this->productId = (int)$xml->productId;
+		if(count($xml->contentId))
+			$this->contentId = (int)$xml->contentId;
+		if(count($xml->productType))
+			$this->productType = (string)$xml->productType;
+		if(count($xml->adapterData))
+			$this->adapterData = (string)$xml->adapterData;
 	}
 	/**
-	 * Device brand identifier
+	 * Identifier for the package from which this content is offered
 	 *
-	 * @var bigint
+	 * @var int
 	 */
-	public $id = null;
+	public $productId = null;
 
 	/**
-	 * Device brand name
+	 * Identifier for the content to purchase. Relevant only if Product type = PPV
+	 *
+	 * @var int
+	 */
+	public $contentId = null;
+
+	/**
+	 * Package type. Possible values: PPV, Subscription, Collection
+	 *
+	 * @var Kaltura_Client_Enum_TransactionType
+	 */
+	public $productType = null;
+
+	/**
+	 * Additional data for the adapter
 	 *
 	 * @var string
 	 */
-	public $name = null;
-
-	/**
-	 * Device family identifier
-	 *
-	 * @var bigint
-	 */
-	public $deviceFamilyid = null;
-
-	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
-	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
-	 */
-	public $type = null;
+	public $adapterData = null;
 
 
 }

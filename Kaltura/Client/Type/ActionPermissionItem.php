@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_ActionPermissionItem extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaActionPermissionItem';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,42 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->network))
+			$this->network = (string)$xml->network;
+		if(count($xml->actionPrivacy))
+			$this->actionPrivacy = (string)$xml->actionPrivacy;
+		if(count($xml->privacy))
+			$this->privacy = (string)$xml->privacy;
+		if(count($xml->action))
+			$this->action = (string)$xml->action;
 	}
 	/**
-	 * Device brand identifier
+	 * Social network
 	 *
-	 * @var bigint
+	 * @var Kaltura_Client_Enum_SocialNetwork
 	 */
-	public $id = null;
+	public $network = null;
 
 	/**
-	 * Device brand name
+	 * Action privacy
+	 *
+	 * @var Kaltura_Client_Enum_SocialActionPrivacy
+	 */
+	public $actionPrivacy = null;
+
+	/**
+	 * Social privacy
+	 *
+	 * @var Kaltura_Client_Enum_SocialPrivacy
+	 */
+	public $privacy = null;
+
+	/**
+	 * Action - separated with comma
 	 *
 	 * @var string
 	 */
-	public $name = null;
-
-	/**
-	 * Device family identifier
-	 *
-	 * @var bigint
-	 */
-	public $deviceFamilyid = null;
-
-	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
-	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
-	 */
-	public $type = null;
+	public $action = null;
 
 
 }

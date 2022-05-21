@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_AdsSource extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaAdsSource';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -46,44 +46,42 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
+			$this->id = (int)$xml->id;
 		if(count($xml->type))
 			$this->type = (string)$xml->type;
+		if(count($xml->adsPolicy))
+			$this->adsPolicy = (string)$xml->adsPolicy;
+		if(count($xml->adsParam))
+			$this->adsParam = (string)$xml->adsParam;
 	}
 	/**
-	 * Device brand identifier
+	 * File unique identifier
 	 *
-	 * @var bigint
+	 * @var int
+	 * @readonly
 	 */
 	public $id = null;
 
 	/**
-	 * Device brand name
+	 * Device types as defined in the system
 	 *
 	 * @var string
 	 */
-	public $name = null;
-
-	/**
-	 * Device family identifier
-	 *
-	 * @var bigint
-	 */
-	public $deviceFamilyid = null;
-
-	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
-	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
-	 */
 	public $type = null;
+
+	/**
+	 * Ads policy
+	 *
+	 * @var Kaltura_Client_Enum_AdsPolicy
+	 */
+	public $adsPolicy = null;
+
+	/**
+	 * The parameters to pass to the ads server
+	 *
+	 * @var string
+	 */
+	public $adsParam = null;
 
 
 }

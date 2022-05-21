@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_Transaction extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaTransaction';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -47,43 +47,62 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->paymentGatewayReferenceId))
+			$this->paymentGatewayReferenceId = (string)$xml->paymentGatewayReferenceId;
+		if(count($xml->paymentGatewayResponseId))
+			$this->paymentGatewayResponseId = (string)$xml->paymentGatewayResponseId;
+		if(count($xml->state))
+			$this->state = (string)$xml->state;
+		if(count($xml->failReasonCode))
+			$this->failReasonCode = (int)$xml->failReasonCode;
+		if(count($xml->createdAt))
+			$this->createdAt = (int)$xml->createdAt;
 	}
 	/**
-	 * Device brand identifier
+	 * Kaltura unique ID representing the transaction
 	 *
-	 * @var bigint
+	 * @var string
 	 */
 	public $id = null;
 
 	/**
-	 * Device brand name
+	 * Transaction reference ID received from the payment gateway. 
+	 *             Value is available only if the payment gateway provides this information.
 	 *
 	 * @var string
 	 */
-	public $name = null;
+	public $paymentGatewayReferenceId = null;
 
 	/**
-	 * Device family identifier
+	 * Response ID received from by the payment gateway. 
+	 *             Value is available only if the payment gateway provides this information.
 	 *
-	 * @var bigint
+	 * @var string
 	 */
-	public $deviceFamilyid = null;
+	public $paymentGatewayResponseId = null;
 
 	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
+	 * Transaction state: OK/Pending/Failed
 	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
+	 * @var string
 	 */
-	public $type = null;
+	public $state = null;
+
+	/**
+	 * Adapter failure reason code
+	 *             Insufficient funds = 20, Invalid account = 21, User unknown = 22, Reason unknown = 23, Unknown payment gateway response = 24,
+	 *             No response from payment gateway = 25, Exceeded retry limit = 26, Illegal client request = 27, Expired = 28
+	 *
+	 * @var int
+	 */
+	public $failReasonCode = null;
+
+	/**
+	 * Entitlement creation date
+	 *
+	 * @var int
+	 */
+	public $createdAt = null;
 
 
 }

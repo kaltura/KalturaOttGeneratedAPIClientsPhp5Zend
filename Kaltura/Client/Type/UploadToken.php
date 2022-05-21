@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_UploadToken extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaUploadToken';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -47,43 +47,54 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->status))
+			$this->status = (string)$xml->status;
+		if(count($xml->fileSize))
+			$this->fileSize = (float)$xml->fileSize;
+		if(count($xml->createDate))
+			$this->createDate = (string)$xml->createDate;
+		if(count($xml->updateDate))
+			$this->updateDate = (string)$xml->updateDate;
 	}
 	/**
-	 * Device brand identifier
+	 * Upload-token identifier
 	 *
-	 * @var bigint
+	 * @var string
+	 * @readonly
 	 */
 	public $id = null;
 
 	/**
-	 * Device brand name
+	 * Status
 	 *
-	 * @var string
-	 */
-	public $name = null;
-
-	/**
-	 * Device family identifier
-	 *
-	 * @var bigint
-	 */
-	public $deviceFamilyid = null;
-
-	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
-	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
+	 * @var Kaltura_Client_Enum_UploadTokenStatus
 	 * @readonly
 	 */
-	public $type = null;
+	public $status = null;
+
+	/**
+	 * File size
+	 *
+	 * @var float
+	 * @readonly
+	 */
+	public $fileSize = null;
+
+	/**
+	 * Specifies when was the Asset was created. Date and time represented as epoch.
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $createDate = null;
+
+	/**
+	 * Specifies when was the Asset last updated. Date and time represented as epoch.
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $updateDate = null;
 
 
 }

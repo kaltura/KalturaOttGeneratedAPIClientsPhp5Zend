@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_BookmarkEvent extends Kaltura_Client_Type_EventObject
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaBookmarkEvent';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,78 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->userId))
+			$this->userId = (string)$xml->userId;
+		if(count($xml->householdId))
+			$this->householdId = (string)$xml->householdId;
+		if(count($xml->assetId))
+			$this->assetId = (string)$xml->assetId;
+		if(count($xml->fileId))
+			$this->fileId = (string)$xml->fileId;
+		if(count($xml->position))
+			$this->position = (int)$xml->position;
+		if(count($xml->action))
+			$this->action = (string)$xml->action;
+		if(count($xml->productType))
+			$this->productType = (string)$xml->productType;
+		if(count($xml->productId))
+			$this->productId = (int)$xml->productId;
 	}
 	/**
-	 * Device brand identifier
+	 * User Id
 	 *
 	 * @var bigint
 	 */
-	public $id = null;
+	public $userId = null;
 
 	/**
-	 * Device brand name
-	 *
-	 * @var string
-	 */
-	public $name = null;
-
-	/**
-	 * Device family identifier
+	 * Household Id
 	 *
 	 * @var bigint
 	 */
-	public $deviceFamilyid = null;
+	public $householdId = null;
 
 	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
+	 * Asset Id
 	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
+	 * @var bigint
 	 */
-	public $type = null;
+	public $assetId = null;
+
+	/**
+	 * File Id
+	 *
+	 * @var bigint
+	 */
+	public $fileId = null;
+
+	/**
+	 * position
+	 *
+	 * @var int
+	 */
+	public $position = null;
+
+	/**
+	 * Bookmark Action Type
+	 *
+	 * @var Kaltura_Client_Enum_BookmarkActionType
+	 */
+	public $action = null;
+
+	/**
+	 * Product Type
+	 *
+	 * @var Kaltura_Client_Enum_TransactionType
+	 */
+	public $productType = null;
+
+	/**
+	 * Product Id
+	 *
+	 * @var int
+	 */
+	public $productId = null;
 
 
 }
