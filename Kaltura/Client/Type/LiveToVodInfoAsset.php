@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_MediaAsset extends Kaltura_Client_Type_Asset
+class Kaltura_Client_Type_LiveToVodInfoAsset extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaMediaAsset';
+		return 'KalturaLiveToVodInfoAsset';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,74 +45,78 @@ class Kaltura_Client_Type_MediaAsset extends Kaltura_Client_Type_Asset
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->externalIds))
-			$this->externalIds = (string)$xml->externalIds;
-		if(count($xml->entryId))
-			$this->entryId = (string)$xml->entryId;
-		if(count($xml->deviceRuleId))
-			$this->deviceRuleId = (int)$xml->deviceRuleId;
-		if(count($xml->geoBlockRuleId))
-			$this->geoBlockRuleId = (int)$xml->geoBlockRuleId;
-		if(count($xml->status))
-		{
-			if(!empty($xml->status) && ((int) $xml->status === 1 || strtolower((string)$xml->status) === 'true'))
-				$this->status = true;
-			else
-				$this->status = false;
-		}
-		if(count($xml->inheritancePolicy))
-			$this->inheritancePolicy = (string)$xml->inheritancePolicy;
-		if(count($xml->liveToVod) && !empty($xml->liveToVod))
-			$this->liveToVod = Kaltura_Client_ParseUtils::unmarshalObject($xml->liveToVod, "KalturaLiveToVodInfoAsset");
+		if(count($xml->linearAssetId))
+			$this->linearAssetId = (string)$xml->linearAssetId;
+		if(count($xml->epgId))
+			$this->epgId = (string)$xml->epgId;
+		if(count($xml->epgChannelId))
+			$this->epgChannelId = (string)$xml->epgChannelId;
+		if(count($xml->crid))
+			$this->crid = (string)$xml->crid;
+		if(count($xml->originalStartDate))
+			$this->originalStartDate = (string)$xml->originalStartDate;
+		if(count($xml->originalEndDate))
+			$this->originalEndDate = (string)$xml->originalEndDate;
+		if(count($xml->paddingBeforeProgramStarts))
+			$this->paddingBeforeProgramStarts = (string)$xml->paddingBeforeProgramStarts;
+		if(count($xml->paddingAfterProgramEnds))
+			$this->paddingAfterProgramEnds = (string)$xml->paddingAfterProgramEnds;
 	}
 	/**
-	 * External identifiers
+	 * Linear Asset Id
+	 *
+	 * @var bigint
+	 */
+	public $linearAssetId = null;
+
+	/**
+	 * EPG Id
 	 *
 	 * @var string
 	 */
-	public $externalIds = null;
+	public $epgId = null;
 
 	/**
-	 * Entry Identifier
+	 * EPG Channel Id
+	 *
+	 * @var bigint
+	 */
+	public $epgChannelId = null;
+
+	/**
+	 * Crid
 	 *
 	 * @var string
 	 */
-	public $entryId = null;
+	public $crid = null;
 
 	/**
-	 * Device rule identifier
+	 * Original Start Date
 	 *
-	 * @var int
+	 * @var bigint
 	 */
-	public $deviceRuleId = null;
+	public $originalStartDate = null;
 
 	/**
-	 * Geo block rule identifier
+	 * Original End Date
 	 *
-	 * @var int
+	 * @var bigint
 	 */
-	public $geoBlockRuleId = null;
+	public $originalEndDate = null;
 
 	/**
-	 * The media asset status
+	 * Padding before program starts
 	 *
-	 * @var bool
+	 * @var bigint
 	 */
-	public $status = null;
+	public $paddingBeforeProgramStarts = null;
 
 	/**
-	 * The media asset inheritance policy
+	 * Padding after program ends
 	 *
-	 * @var Kaltura_Client_Enum_AssetInheritancePolicy
+	 * @var bigint
 	 */
-	public $inheritancePolicy = null;
-
-	/**
-	 * Live to VOD (if present)
-	 *
-	 * @var Kaltura_Client_Type_LiveToVodInfoAsset
-	 */
-	public $liveToVod;
+	public $paddingAfterProgramEnds = null;
 
 
 }

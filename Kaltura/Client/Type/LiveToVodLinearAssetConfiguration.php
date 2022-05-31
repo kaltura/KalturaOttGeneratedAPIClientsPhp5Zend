@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_MediaAsset extends Kaltura_Client_Type_Asset
+class Kaltura_Client_Type_LiveToVodLinearAssetConfiguration extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaMediaAsset';
+		return 'KalturaLiveToVodLinearAssetConfiguration';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,74 +45,39 @@ class Kaltura_Client_Type_MediaAsset extends Kaltura_Client_Type_Asset
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->externalIds))
-			$this->externalIds = (string)$xml->externalIds;
-		if(count($xml->entryId))
-			$this->entryId = (string)$xml->entryId;
-		if(count($xml->deviceRuleId))
-			$this->deviceRuleId = (int)$xml->deviceRuleId;
-		if(count($xml->geoBlockRuleId))
-			$this->geoBlockRuleId = (int)$xml->geoBlockRuleId;
-		if(count($xml->status))
+		if(count($xml->linearAssetId))
+			$this->linearAssetId = (string)$xml->linearAssetId;
+		if(count($xml->isL2vEnabled))
 		{
-			if(!empty($xml->status) && ((int) $xml->status === 1 || strtolower((string)$xml->status) === 'true'))
-				$this->status = true;
+			if(!empty($xml->isL2vEnabled) && ((int) $xml->isL2vEnabled === 1 || strtolower((string)$xml->isL2vEnabled) === 'true'))
+				$this->isL2vEnabled = true;
 			else
-				$this->status = false;
+				$this->isL2vEnabled = false;
 		}
-		if(count($xml->inheritancePolicy))
-			$this->inheritancePolicy = (string)$xml->inheritancePolicy;
-		if(count($xml->liveToVod) && !empty($xml->liveToVod))
-			$this->liveToVod = Kaltura_Client_ParseUtils::unmarshalObject($xml->liveToVod, "KalturaLiveToVodInfoAsset");
+		if(count($xml->retentionPeriodDays))
+			$this->retentionPeriodDays = (int)$xml->retentionPeriodDays;
 	}
 	/**
-	 * External identifiers
+	 * Linear asset&#39;s identifier.
 	 *
-	 * @var string
+	 * @var bigint
 	 */
-	public $externalIds = null;
+	public $linearAssetId = null;
 
 	/**
-	 * Entry Identifier
-	 *
-	 * @var string
-	 */
-	public $entryId = null;
-
-	/**
-	 * Device rule identifier
-	 *
-	 * @var int
-	 */
-	public $deviceRuleId = null;
-
-	/**
-	 * Geo block rule identifier
-	 *
-	 * @var int
-	 */
-	public $geoBlockRuleId = null;
-
-	/**
-	 * The media asset status
+	 * Enable/disable the feature per linear channel. Considered only if the flag is enabled on the account level.
 	 *
 	 * @var bool
 	 */
-	public $status = null;
+	public $isL2vEnabled = null;
 
 	/**
-	 * The media asset inheritance policy
+	 * Number of days the L2V asset is retained in the system.
+	 *             Optional - if configured, overriding the account level value.
 	 *
-	 * @var Kaltura_Client_Enum_AssetInheritancePolicy
+	 * @var int
 	 */
-	public $inheritancePolicy = null;
-
-	/**
-	 * Live to VOD (if present)
-	 *
-	 * @var Kaltura_Client_Type_LiveToVodInfoAsset
-	 */
-	public $liveToVod;
+	public $retentionPeriodDays = null;
 
 
 }
