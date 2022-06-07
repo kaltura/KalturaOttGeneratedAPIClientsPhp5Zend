@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_AssetPersonalSelection extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaAssetPersonalSelection';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,36 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->assetId))
+			$this->assetId = (string)$xml->assetId;
+		if(count($xml->assetType))
+			$this->assetType = (string)$xml->assetType;
+		if(count($xml->updateDate))
+			$this->updateDate = (string)$xml->updateDate;
 	}
 	/**
-	 * Device brand identifier
+	 * Asset Id
 	 *
 	 * @var bigint
-	 */
-	public $id = null;
-
-	/**
-	 * Device brand name
-	 *
-	 * @var string
-	 */
-	public $name = null;
-
-	/**
-	 * Device family identifier
-	 *
-	 * @var bigint
-	 */
-	public $deviceFamilyid = null;
-
-	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
-	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
 	 * @readonly
 	 */
-	public $type = null;
+	public $assetId = null;
+
+	/**
+	 * Asset Type
+	 *
+	 * @var Kaltura_Client_Enum_AssetType
+	 * @readonly
+	 */
+	public $assetType = null;
+
+	/**
+	 * Update Date
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $updateDate = null;
 
 
 }

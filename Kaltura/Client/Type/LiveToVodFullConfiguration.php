@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_LiveToVodFullConfiguration extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDeviceBrand';
+		return 'KalturaLiveToVodFullConfiguration';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,45 +45,52 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->id))
-			$this->id = (string)$xml->id;
-		if(count($xml->name))
-			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyid))
-			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
-		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		if(count($xml->isL2vEnabled))
+		{
+			if(!empty($xml->isL2vEnabled) && ((int) $xml->isL2vEnabled === 1 || strtolower((string)$xml->isL2vEnabled) === 'true'))
+				$this->isL2vEnabled = true;
+			else
+				$this->isL2vEnabled = false;
+		}
+		if(count($xml->retentionPeriodDays))
+			$this->retentionPeriodDays = (int)$xml->retentionPeriodDays;
+		if(count($xml->metadataClassifier))
+			$this->metadataClassifier = (string)$xml->metadataClassifier;
+		if(count($xml->linearAssets))
+		{
+			if(empty($xml->linearAssets))
+				$this->linearAssets = array();
+			else
+				$this->linearAssets = Kaltura_Client_ParseUtils::unmarshalArray($xml->linearAssets, "KalturaLiveToVodLinearAssetConfiguration");
+		}
 	}
 	/**
-	 * Device brand identifier
+	 * Enable/disable the feature globally. If disabled, then all linear assets are not enabled.
 	 *
-	 * @var bigint
+	 * @var bool
 	 */
-	public $id = null;
+	public $isL2vEnabled = null;
 
 	/**
-	 * Device brand name
+	 * Number of days the L2V asset is retained in the system.
+	 *
+	 * @var int
+	 */
+	public $retentionPeriodDays = null;
+
+	/**
+	 * The name (label) of the metadata field marking the program asset to be duplicated as a L2V asset.
 	 *
 	 * @var string
 	 */
-	public $name = null;
+	public $metadataClassifier = null;
 
 	/**
-	 * Device family identifier
+	 * Configuring isL2vEnabled/retentionPeriodDays per each channel, overriding the defaults set in the global isL2vEnabled and retentionPeriodDays parameters.
 	 *
-	 * @var bigint
+	 * @var array of KalturaLiveToVodLinearAssetConfiguration
 	 */
-	public $deviceFamilyid = null;
-
-	/**
-	 * Type of device family.
-	 *              if this device family belongs only to this group,
-	 *              otherwise.
-	 *
-	 * @var Kaltura_Client_Enum_DeviceBrandType
-	 * @readonly
-	 */
-	public $type = null;
+	public $linearAssets;
 
 
 }

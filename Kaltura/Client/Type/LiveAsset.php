@@ -53,6 +53,10 @@ class Kaltura_Client_Type_LiveAsset extends Kaltura_Client_Type_MediaAsset
 			$this->enableStartOverState = (string)$xml->enableStartOverState;
 		if(count($xml->bufferCatchUpSetting))
 			$this->bufferCatchUpSetting = (string)$xml->bufferCatchUpSetting;
+		if(count($xml->paddingBeforeProgramStarts))
+			$this->paddingBeforeProgramStarts = (string)$xml->paddingBeforeProgramStarts;
+		if(count($xml->paddingAfterProgramEnds))
+			$this->paddingAfterProgramEnds = (string)$xml->paddingAfterProgramEnds;
 		if(count($xml->bufferTrickPlaySetting))
 			$this->bufferTrickPlaySetting = (string)$xml->bufferTrickPlaySetting;
 		if(count($xml->enableRecordingPlaybackNonEntitledChannelState))
@@ -132,6 +136,22 @@ class Kaltura_Client_Type_LiveAsset extends Kaltura_Client_Type_MediaAsset
 	 * @var bigint
 	 */
 	public $bufferCatchUpSetting = null;
+
+	/**
+	 * Returns padding before program starts in seconds from a live asset if configured,
+	 *             otherwise returns corresponding value from TimeShiftedTvPartnerSettings.
+	 *
+	 * @var bigint
+	 */
+	public $paddingBeforeProgramStarts = null;
+
+	/**
+	 * Returns padding after program ends in seconds from a live asset if configured,
+	 *             otherwise returns corresponding value from TimeShiftedTvPartnerSettings.
+	 *
+	 * @var bigint
+	 */
+	public $paddingAfterProgramEnds = null;
 
 	/**
 	 * buffer Trick-play, configuration only
