@@ -49,8 +49,8 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->deviceFamilyId))
-			$this->deviceFamilyId = (string)$xml->deviceFamilyId;
+		if(count($xml->deviceFamilyid))
+			$this->deviceFamilyid = (string)$xml->deviceFamilyid;
 		if(count($xml->type))
 			$this->type = (string)$xml->type;
 	}
@@ -73,7 +73,7 @@ class Kaltura_Client_Type_DeviceBrand extends Kaltura_Client_ObjectBase
 	 *
 	 * @var bigint
 	 */
-	public $deviceFamilyId = null;
+	public $deviceFamilyid = null;
 
 	/**
 	 * Type of device family.

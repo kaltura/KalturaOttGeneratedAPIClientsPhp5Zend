@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_Promotion extends Kaltura_Client_Type_BasePromotion
+class Kaltura_Client_Type_PersonalAssetSelectionFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaPromotion';
+		return 'KalturaPersonalAssetSelectionFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,24 +45,15 @@ class Kaltura_Client_Type_Promotion extends Kaltura_Client_Type_BasePromotion
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->discountModuleId))
-			$this->discountModuleId = (string)$xml->discountModuleId;
-		if(count($xml->numberOfRecurring))
-			$this->numberOfRecurring = (int)$xml->numberOfRecurring;
+		if(count($xml->slotNumberEqual))
+			$this->slotNumberEqual = (int)$xml->slotNumberEqual;
 	}
 	/**
-	 * The discount module id that is promoted to the user
-	 *
-	 * @var bigint
-	 */
-	public $discountModuleId = null;
-
-	/**
-	 * the numer of recurring for this promotion
+	 * selected assets for specific slot number
 	 *
 	 * @var int
 	 */
-	public $numberOfRecurring = null;
+	public $slotNumberEqual = null;
 
 
 }

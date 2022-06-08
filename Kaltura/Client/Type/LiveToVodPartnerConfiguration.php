@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_Promotion extends Kaltura_Client_Type_BasePromotion
+class Kaltura_Client_Type_LiveToVodPartnerConfiguration extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaPromotion';
+		return 'KalturaLiveToVodPartnerConfiguration';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,24 +45,38 @@ class Kaltura_Client_Type_Promotion extends Kaltura_Client_Type_BasePromotion
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->discountModuleId))
-			$this->discountModuleId = (string)$xml->discountModuleId;
-		if(count($xml->numberOfRecurring))
-			$this->numberOfRecurring = (int)$xml->numberOfRecurring;
+		if(count($xml->isL2vEnabled))
+		{
+			if(!empty($xml->isL2vEnabled) && ((int) $xml->isL2vEnabled === 1 || strtolower((string)$xml->isL2vEnabled) === 'true'))
+				$this->isL2vEnabled = true;
+			else
+				$this->isL2vEnabled = false;
+		}
+		if(count($xml->retentionPeriodDays))
+			$this->retentionPeriodDays = (int)$xml->retentionPeriodDays;
+		if(count($xml->metadataClassifier))
+			$this->metadataClassifier = (string)$xml->metadataClassifier;
 	}
 	/**
-	 * The discount module id that is promoted to the user
+	 * Enable/disable the feature globally. If disabled, then all linear assets are not enabled.
 	 *
-	 * @var bigint
+	 * @var bool
 	 */
-	public $discountModuleId = null;
+	public $isL2vEnabled = null;
 
 	/**
-	 * the numer of recurring for this promotion
+	 * Number of days the L2V asset is retained in the system.
 	 *
 	 * @var int
 	 */
-	public $numberOfRecurring = null;
+	public $retentionPeriodDays = null;
+
+	/**
+	 * The name (label) of the metadata field marking the program asset to be duplicated as a L2V asset.
+	 *
+	 * @var string
+	 */
+	public $metadataClassifier = null;
 
 
 }
