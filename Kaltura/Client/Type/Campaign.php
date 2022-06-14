@@ -64,7 +64,7 @@ class Kaltura_Client_Type_Campaign extends Kaltura_Client_Type_OTTObjectSupportN
 		if(count($xml->state))
 			$this->state = (string)$xml->state;
 		if(count($xml->promotion) && !empty($xml->promotion))
-			$this->promotion = Kaltura_Client_ParseUtils::unmarshalObject($xml->promotion, "KalturaBasePromotion");
+			$this->promotion = Kaltura_Client_ParseUtils::unmarshalObject($xml->promotion, "KalturaPromotion");
 		if(count($xml->message))
 			$this->message = (string)$xml->message;
 		if(count($xml->collectionIdIn))
@@ -140,7 +140,7 @@ class Kaltura_Client_Type_Campaign extends Kaltura_Client_Type_OTTObjectSupportN
 	/**
 	 * The Promotion that is promoted to the user
 	 *
-	 * @var Kaltura_Client_Type_BasePromotion
+	 * @var Kaltura_Client_Type_Promotion
 	 */
 	public $promotion;
 

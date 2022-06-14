@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_Promotion extends Kaltura_Client_Type_BasePromotion
+class Kaltura_Client_Type_Promotion extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
@@ -47,6 +47,13 @@ class Kaltura_Client_Type_Promotion extends Kaltura_Client_Type_BasePromotion
 		
 		if(count($xml->discountModuleId))
 			$this->discountModuleId = (string)$xml->discountModuleId;
+		if(count($xml->conditions))
+		{
+			if(empty($xml->conditions))
+				$this->conditions = array();
+			else
+				$this->conditions = Kaltura_Client_ParseUtils::unmarshalArray($xml->conditions, "KalturaCondition");
+		}
 		if(count($xml->numberOfRecurring))
 			$this->numberOfRecurring = (int)$xml->numberOfRecurring;
 	}
@@ -56,6 +63,13 @@ class Kaltura_Client_Type_Promotion extends Kaltura_Client_Type_BasePromotion
 	 * @var bigint
 	 */
 	public $discountModuleId = null;
+
+	/**
+	 * These conditions define the Promotion that applies on
+	 *
+	 * @var array of KalturaCondition
+	 */
+	public $conditions;
 
 	/**
 	 * the numer of recurring for this promotion
