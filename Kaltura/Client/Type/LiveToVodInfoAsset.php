@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-abstract class Kaltura_Client_Type_BasePromotion extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_LiveToVodInfoAsset extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBasePromotion';
+		return 'KalturaLiveToVodInfoAsset';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,20 +45,78 @@ abstract class Kaltura_Client_Type_BasePromotion extends Kaltura_Client_ObjectBa
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->conditions))
-		{
-			if(empty($xml->conditions))
-				$this->conditions = array();
-			else
-				$this->conditions = Kaltura_Client_ParseUtils::unmarshalArray($xml->conditions, "KalturaCondition");
-		}
+		if(count($xml->linearAssetId))
+			$this->linearAssetId = (string)$xml->linearAssetId;
+		if(count($xml->epgId))
+			$this->epgId = (string)$xml->epgId;
+		if(count($xml->epgChannelId))
+			$this->epgChannelId = (string)$xml->epgChannelId;
+		if(count($xml->crid))
+			$this->crid = (string)$xml->crid;
+		if(count($xml->originalStartDate))
+			$this->originalStartDate = (string)$xml->originalStartDate;
+		if(count($xml->originalEndDate))
+			$this->originalEndDate = (string)$xml->originalEndDate;
+		if(count($xml->paddingBeforeProgramStarts))
+			$this->paddingBeforeProgramStarts = (string)$xml->paddingBeforeProgramStarts;
+		if(count($xml->paddingAfterProgramEnds))
+			$this->paddingAfterProgramEnds = (string)$xml->paddingAfterProgramEnds;
 	}
 	/**
-	 * These conditions define the Promotion that applies on
+	 * Linear Asset Id
 	 *
-	 * @var array of KalturaCondition
+	 * @var bigint
 	 */
-	public $conditions;
+	public $linearAssetId = null;
+
+	/**
+	 * EPG Id
+	 *
+	 * @var string
+	 */
+	public $epgId = null;
+
+	/**
+	 * EPG Channel Id
+	 *
+	 * @var bigint
+	 */
+	public $epgChannelId = null;
+
+	/**
+	 * Crid
+	 *
+	 * @var string
+	 */
+	public $crid = null;
+
+	/**
+	 * Original Start Date
+	 *
+	 * @var bigint
+	 */
+	public $originalStartDate = null;
+
+	/**
+	 * Original End Date
+	 *
+	 * @var bigint
+	 */
+	public $originalEndDate = null;
+
+	/**
+	 * Padding before program starts
+	 *
+	 * @var bigint
+	 */
+	public $paddingBeforeProgramStarts = null;
+
+	/**
+	 * Padding after program ends
+	 *
+	 * @var bigint
+	 */
+	public $paddingAfterProgramEnds = null;
 
 
 }

@@ -492,6 +492,7 @@ class Kaltura_Client_TypeMap
 		'KalturaListResponse' => 'Kaltura_Client_Type_ListResponse',
 		'KalturaLiveAsset' => 'Kaltura_Client_Type_LiveAsset',
 		'KalturaLiveToVodFullConfiguration' => 'Kaltura_Client_Type_LiveToVodFullConfiguration',
+		'KalturaLiveToVodInfoAsset' => 'Kaltura_Client_Type_LiveToVodInfoAsset',
 		'KalturaLiveToVodLinearAssetConfiguration' => 'Kaltura_Client_Type_LiveToVodLinearAssetConfiguration',
 		'KalturaLiveToVodPartnerConfiguration' => 'Kaltura_Client_Type_LiveToVodPartnerConfiguration',
 		'KalturaLoginResponse' => 'Kaltura_Client_Type_LoginResponse',

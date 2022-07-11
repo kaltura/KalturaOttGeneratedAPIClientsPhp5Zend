@@ -62,6 +62,8 @@ class Kaltura_Client_Type_MediaAsset extends Kaltura_Client_Type_Asset
 		}
 		if(count($xml->inheritancePolicy))
 			$this->inheritancePolicy = (string)$xml->inheritancePolicy;
+		if(count($xml->liveToVod) && !empty($xml->liveToVod))
+			$this->liveToVod = Kaltura_Client_ParseUtils::unmarshalObject($xml->liveToVod, "KalturaLiveToVodInfoAsset");
 	}
 	/**
 	 * External identifiers
@@ -104,6 +106,13 @@ class Kaltura_Client_Type_MediaAsset extends Kaltura_Client_Type_Asset
 	 * @var Kaltura_Client_Enum_AssetInheritancePolicy
 	 */
 	public $inheritancePolicy = null;
+
+	/**
+	 * Live to VOD (if present)
+	 *
+	 * @var Kaltura_Client_Type_LiveToVodInfoAsset
+	 */
+	public $liveToVod;
 
 
 }
