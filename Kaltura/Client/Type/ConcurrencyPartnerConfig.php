@@ -58,6 +58,13 @@ class Kaltura_Client_Type_ConcurrencyPartnerConfig extends Kaltura_Client_Type_P
 			else
 				$this->revokeOnDeviceDelete = false;
 		}
+		if(count($xml->excludeFreeContentFromConcurrency))
+		{
+			if(!empty($xml->excludeFreeContentFromConcurrency) && ((int) $xml->excludeFreeContentFromConcurrency === 1 || strtolower((string)$xml->excludeFreeContentFromConcurrency) === 'true'))
+				$this->excludeFreeContentFromConcurrency = true;
+			else
+				$this->excludeFreeContentFromConcurrency = false;
+		}
 	}
 	/**
 	 * Comma separated list of device Family Ids order by their priority.
@@ -86,6 +93,13 @@ class Kaltura_Client_Type_ConcurrencyPartnerConfig extends Kaltura_Client_Type_P
 	 * @var bool
 	 */
 	public $revokeOnDeviceDelete = null;
+
+	/**
+	 * If set to true then for all concurrency checks in all APIs, system shall exclude free content from counting towards the use of a concurrency slot
+	 *
+	 * @var bool
+	 */
+	public $excludeFreeContentFromConcurrency = null;
 
 
 }

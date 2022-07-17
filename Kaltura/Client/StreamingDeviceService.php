@@ -40,6 +40,26 @@ class Kaltura_Client_StreamingDeviceService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
+	 * @return bool
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function bookPlaybackSession($mediaFileId, $assetId, $assetType)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "mediaFileId", $mediaFileId);
+		$this->client->addParam($kparams, "assetId", $assetId);
+		$this->client->addParam($kparams, "assetType", $assetType);
+		$this->client->queueServiceActionCall("streamingdevice", "bookPlaybackSession", null, $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
+		return $resultObject;
+	}
+
+	/**
 	 * @return Kaltura_Client_Type_StreamingDeviceListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
