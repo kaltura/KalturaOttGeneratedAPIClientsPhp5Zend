@@ -124,6 +124,15 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 			$this->updateDate = (string)$xml->updateDate;
 		if(count($xml->virtualAssetId))
 			$this->virtualAssetId = (string)$xml->virtualAssetId;
+		if(count($xml->fileTypes))
+		{
+			if(empty($xml->fileTypes))
+				$this->fileTypes = array();
+			else
+				$this->fileTypes = Kaltura_Client_ParseUtils::unmarshalArray($xml->fileTypes, "KalturaIntegerValue");
+		}
+		if(count($xml->fileTypesIds))
+			$this->fileTypesIds = (string)$xml->fileTypesIds;
 	}
 	/**
 	 * Collection identifier
@@ -291,6 +300,21 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 	 * @readonly
 	 */
 	public $virtualAssetId = null;
+
+	/**
+	 * A list of file types identifiers that are supported in this collection
+	 *
+	 * @var array of KalturaIntegerValue
+	 * @readonly
+	 */
+	public $fileTypes;
+
+	/**
+	 * Comma separated file types identifiers that are supported in this collection
+	 *
+	 * @var string
+	 */
+	public $fileTypesIds = null;
 
 
 }

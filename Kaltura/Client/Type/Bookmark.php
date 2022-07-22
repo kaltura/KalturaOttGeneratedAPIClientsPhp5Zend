@@ -69,8 +69,6 @@ class Kaltura_Client_Type_Bookmark extends Kaltura_Client_Type_SlimAsset
 			else
 				$this->isReportingMode = false;
 		}
-		if(count($xml->context))
-			$this->context = (string)$xml->context;
 	}
 	/**
 	 * User identifier
@@ -124,13 +122,6 @@ class Kaltura_Client_Type_Bookmark extends Kaltura_Client_Type_SlimAsset
 	 * @var bool
 	 */
 	public $isReportingMode = null;
-
-	/**
-	 * Playback context type
-	 *
-	 * @var Kaltura_Client_Enum_PlaybackContextType
-	 */
-	public $context = null;
 
 
 }

@@ -46,12 +46,12 @@ class Kaltura_Client_Type_Discount extends Kaltura_Client_Type_Price
 			return;
 		
 		if(count($xml->percentage))
-			$this->percentage = (float)$xml->percentage;
+			$this->percentage = (int)$xml->percentage;
 	}
 	/**
 	 * The discount percentage
 	 *
-	 * @var float
+	 * @var int
 	 */
 	public $percentage = null;
 
