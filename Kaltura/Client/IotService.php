@@ -58,20 +58,19 @@ class Kaltura_Client_IotService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_Iot
+	 * @return bool
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
 	function register()
 	{
 		$kparams = array();
-		$this->client->queueServiceActionCall("iot", "register", "KalturaIot", $kparams);
+		$this->client->queueServiceActionCall("iot", "register", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaIot");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Iot");
+		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
 		return $resultObject;
 	}
 }

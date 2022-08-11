@@ -45,51 +45,128 @@ class Kaltura_Client_Type_IotClientConfiguration extends Kaltura_Client_ObjectBa
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->announcementTopic))
-			$this->announcementTopic = (string)$xml->announcementTopic;
-		if(count($xml->credentialsProvider) && !empty($xml->credentialsProvider))
-			$this->credentialsProvider = Kaltura_Client_ParseUtils::unmarshalObject($xml->credentialsProvider, "KalturaCredentialsProvider");
-		if(count($xml->cognitoUserPool) && !empty($xml->cognitoUserPool))
-			$this->cognitoUserPool = Kaltura_Client_ParseUtils::unmarshalObject($xml->cognitoUserPool, "KalturaCognitoUserPool");
-		if(count($xml->json))
-			$this->json = (string)$xml->json;
+		if(count($xml->identityPoolId))
+			$this->identityPoolId = (string)$xml->identityPoolId;
+		if(count($xml->userPoolId))
+			$this->userPoolId = (string)$xml->userPoolId;
+		if(count($xml->awsRegion))
+			$this->awsRegion = (string)$xml->awsRegion;
+		if(count($xml->appClientId))
+			$this->appClientId = (string)$xml->appClientId;
+		if(count($xml->endPoint))
+			$this->endPoint = (string)$xml->endPoint;
+		if(count($xml->thingName))
+			$this->thingName = (string)$xml->thingName;
+		if(count($xml->thingArn))
+			$this->thingArn = (string)$xml->thingArn;
+		if(count($xml->thingId))
+			$this->thingId = (string)$xml->thingId;
+		if(count($xml->username))
+			$this->username = (string)$xml->username;
+		if(count($xml->password))
+			$this->password = (string)$xml->password;
 		if(count($xml->topics))
-			$this->topics = (string)$xml->topics;
+		{
+			if(empty($xml->topics))
+				$this->topics = array();
+			else
+				$this->topics = Kaltura_Client_ParseUtils::unmarshalArray($xml->topics, "KalturaStringValue");
+		}
+		if(count($xml->status))
+			$this->status = (string)$xml->status;
+		if(count($xml->message))
+			$this->message = (string)$xml->message;
 	}
 	/**
-	 * announcementTopic
+	 * IdentityPoolId
 	 *
 	 * @var string
 	 */
-	public $announcementTopic = null;
+	public $identityPoolId = null;
 
 	/**
-	 * KalturaCredentialsProvider
-	 *
-	 * @var Kaltura_Client_Type_CredentialsProvider
-	 */
-	public $credentialsProvider;
-
-	/**
-	 * CognitoUserPool
-	 *
-	 * @var Kaltura_Client_Type_CognitoUserPool
-	 */
-	public $cognitoUserPool;
-
-	/**
-	 * json
+	 * UserPoolId
 	 *
 	 * @var string
 	 */
-	public $json = null;
+	public $userPoolId = null;
+
+	/**
+	 * AwsRegion
+	 *
+	 * @var string
+	 */
+	public $awsRegion = null;
+
+	/**
+	 * appClientId
+	 *
+	 * @var string
+	 */
+	public $appClientId = null;
+
+	/**
+	 * endPoint
+	 *
+	 * @var string
+	 */
+	public $endPoint = null;
+
+	/**
+	 * thingName
+	 *
+	 * @var string
+	 */
+	public $thingName = null;
+
+	/**
+	 * thingArn
+	 *
+	 * @var string
+	 */
+	public $thingArn = null;
+
+	/**
+	 * thingId
+	 *
+	 * @var string
+	 */
+	public $thingId = null;
+
+	/**
+	 * username
+	 *
+	 * @var string
+	 */
+	public $username = null;
+
+	/**
+	 * password
+	 *
+	 * @var string
+	 */
+	public $password = null;
 
 	/**
 	 * topics
 	 *
+	 * @var array of KalturaStringValue
+	 */
+	public $topics;
+
+	/**
+	 * status
+	 *
 	 * @var string
 	 */
-	public $topics = null;
+	public $status = null;
+
+	/**
+	 * message
+	 *
+	 * @var string
+	 */
+	public $message = null;
 
 
 }
