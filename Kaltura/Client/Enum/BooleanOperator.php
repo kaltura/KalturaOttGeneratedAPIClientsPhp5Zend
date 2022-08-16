@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2022  Kaltura Inc.
@@ -26,46 +26,14 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_MultiRequestSubResult implements ArrayAccess
+class Kaltura_Client_Enum_BooleanOperator extends Kaltura_Client_EnumBase
 {
-    function __construct($value)
-	{
-        $this->value = $value;
-	}
-	
-    function __toString()
-	{
-        return '{' . $this->value . '}';
-	}
-
-    function __get($name)
-	{
-        return new Kaltura_Client_MultiRequestSubResult($this->value . ':' . $name);
-	}
-	
-	#[\ReturnTypeWillChange]
-	public function offsetExists($offset)
-	{
-		return true;
-	}
-
-	#[\ReturnTypeWillChange]
-	public function offsetGet($offset)
-	{
-	    return new Kaltura_Client_MultiRequestSubResult($this->value . ':' . $offset);
-	}
-
-	#[\ReturnTypeWillChange]
-	public function offsetSet($offset, $value)
-	{
-	}
-	
-	#[\ReturnTypeWillChange]
-	public function offsetUnset($offset)
-	{
-	}
+	const AND = "And";
+	const OR = "Or";
 }
+
