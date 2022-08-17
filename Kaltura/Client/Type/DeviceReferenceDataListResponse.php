@@ -54,7 +54,7 @@ class Kaltura_Client_Type_DeviceReferenceDataListResponse extends Kaltura_Client
 		}
 	}
 	/**
-	 * A list of KalturaDeviceReferenceData
+	 * A list of objects
 	 *
 	 * @var array of KalturaDeviceReferenceData
 	 */

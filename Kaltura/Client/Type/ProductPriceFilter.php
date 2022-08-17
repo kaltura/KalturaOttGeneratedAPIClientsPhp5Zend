@@ -60,8 +60,6 @@ class Kaltura_Client_Type_ProductPriceFilter extends Kaltura_Client_Type_Filter
 		}
 		if(count($xml->couponCodeEqual))
 			$this->couponCodeEqual = (string)$xml->couponCodeEqual;
-		if(count($xml->programAssetGroupOfferIdIn))
-			$this->programAssetGroupOfferIdIn = (string)$xml->programAssetGroupOfferIdIn;
 	}
 	/**
 	 * Comma separated subscriptions identifiers
@@ -97,13 +95,6 @@ class Kaltura_Client_Type_ProductPriceFilter extends Kaltura_Client_Type_Filter
 	 * @var string
 	 */
 	public $couponCodeEqual = null;
-
-	/**
-	 * Comma separated ProgramAssetGroupOffer identifiers
-	 *
-	 * @var string
-	 */
-	public $programAssetGroupOfferIdIn = null;
 
 
 }

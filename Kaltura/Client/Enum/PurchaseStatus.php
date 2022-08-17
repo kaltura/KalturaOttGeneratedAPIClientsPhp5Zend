@@ -49,6 +49,5 @@ class Kaltura_Client_Enum_PurchaseStatus extends Kaltura_Client_EnumBase
 	const INVALID_CURRENCY = "invalid_currency";
 	const CURRENCY_NOT_DEFINED_ON_PRICE_CODE = "currency_not_defined_on_price_code";
 	const PENDING_ENTITLEMENT = "pending_entitlement";
-	const PROGRAM_ASSET_GROUP_OFFER_PURCHASED = "program_asset_group_offer_purchased";
 }
 

@@ -59,30 +59,15 @@ class Kaltura_Client_SmsAdapterProfileService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return 
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function delete($id)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "id", $id);
-		$this->client->queueServiceActionCall("smsadapterprofile", "delete", null, $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-	}
-
-	/**
 	 * @return Kaltura_Client_Type_SmsAdapterProfile
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function generateSharedSecret($smsAdapterId)
+	function update($id, Kaltura_Client_Type_SmsAdapterProfile $objectToUpdate)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "smsAdapterId", $smsAdapterId);
-		$this->client->queueServiceActionCall("smsadapterprofile", "generateSharedSecret", "KalturaSmsAdapterProfile", $kparams);
+		$this->client->addParam($kparams, "id", $id);
+		$this->client->addParam($kparams, "objectToUpdate", $objectToUpdate->toParams());
+		$this->client->queueServiceActionCall("smsadapterprofile", "update", "KalturaSmsAdapterProfile", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
@@ -116,11 +101,10 @@ class Kaltura_Client_SmsAdapterProfileService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_SmsAdapterProfileListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function listAction(Kaltura_Client_Type_SmsAdapterProfileFilter $filter = null)
+	function listAction(Kaltura_Client_Type_SmsAdapterProfileFilter $filter)
 	{
 		$kparams = array();
-		if ($filter !== null)
-			$this->client->addParam($kparams, "filter", $filter->toParams());
+		$this->client->addParam($kparams, "filter", $filter->toParams());
 		$this->client->queueServiceActionCall("smsadapterprofile", "list", "KalturaSmsAdapterProfileListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
@@ -133,15 +117,30 @@ class Kaltura_Client_SmsAdapterProfileService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_SmsAdapterProfile
+	 * @return 
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function update($id, Kaltura_Client_Type_SmsAdapterProfile $objectToUpdate)
+	function delete($id)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "id", $id);
-		$this->client->addParam($kparams, "objectToUpdate", $objectToUpdate->toParams());
-		$this->client->queueServiceActionCall("smsadapterprofile", "update", "KalturaSmsAdapterProfile", $kparams);
+		$this->client->queueServiceActionCall("smsadapterprofile", "delete", null, $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+	}
+
+	/**
+	 * @return Kaltura_Client_Type_SmsAdapterProfile
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function generateSharedSecret($smsAdapterId)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "smsAdapterId", $smsAdapterId);
+		$this->client->queueServiceActionCall("smsadapterprofile", "generateSharedSecret", "KalturaSmsAdapterProfile", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();

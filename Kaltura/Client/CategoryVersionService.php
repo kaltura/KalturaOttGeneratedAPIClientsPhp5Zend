@@ -62,13 +62,12 @@ class Kaltura_Client_CategoryVersionService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_CategoryVersion
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function createTree($categoryItemId, $name, $comment)
+	function update($id, Kaltura_Client_Type_CategoryVersion $objectToUpdate)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "categoryItemId", $categoryItemId);
-		$this->client->addParam($kparams, "name", $name);
-		$this->client->addParam($kparams, "comment", $comment);
-		$this->client->queueServiceActionCall("categoryversion", "createTree", "KalturaCategoryVersion", $kparams);
+		$this->client->addParam($kparams, "id", $id);
+		$this->client->addParam($kparams, "objectToUpdate", $objectToUpdate->toParams());
+		$this->client->queueServiceActionCall("categoryversion", "update", "KalturaCategoryVersion", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
@@ -117,6 +116,27 @@ class Kaltura_Client_CategoryVersionService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
+	 * @return Kaltura_Client_Type_CategoryVersion
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function createTree($categoryItemId, $name, $comment)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "categoryItemId", $categoryItemId);
+		$this->client->addParam($kparams, "name", $name);
+		$this->client->addParam($kparams, "comment", $comment);
+		$this->client->queueServiceActionCall("categoryversion", "createTree", "KalturaCategoryVersion", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCategoryVersion");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CategoryVersion");
+		return $resultObject;
+	}
+
+	/**
 	 * @return 
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -131,25 +151,5 @@ class Kaltura_Client_CategoryVersionService extends Kaltura_Client_ServiceBase
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-	}
-
-	/**
-	 * @return Kaltura_Client_Type_CategoryVersion
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function update($id, Kaltura_Client_Type_CategoryVersion $objectToUpdate)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "id", $id);
-		$this->client->addParam($kparams, "objectToUpdate", $objectToUpdate->toParams());
-		$this->client->queueServiceActionCall("categoryversion", "update", "KalturaCategoryVersion", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCategoryVersion");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CategoryVersion");
-		return $resultObject;
 	}
 }

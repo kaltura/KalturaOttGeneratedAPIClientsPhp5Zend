@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_IngestEpgDetailsAggregation extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_GenericListResponse extends Kaltura_Client_Type_ListResponse
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaIngestEpgDetailsAggregation';
+		return 'KalturaGenericListResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,43 +45,20 @@ class Kaltura_Client_Type_IngestEpgDetailsAggregation extends Kaltura_Client_Obj
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->linearChannels))
+		if(count($xml->objects))
 		{
-			if(empty($xml->linearChannels))
-				$this->linearChannels = array();
+			if(empty($xml->objects))
+				$this->objects = array();
 			else
-				$this->linearChannels = Kaltura_Client_ParseUtils::unmarshalArray($xml->linearChannels, "KalturaChannelAggregatedIngestInfo");
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaT");
 		}
-		if(count($xml->dates))
-		{
-			if(empty($xml->dates))
-				$this->dates = array();
-			else
-				$this->dates = Kaltura_Client_ParseUtils::unmarshalArray($xml->dates, "KalturaDateAggregatedIngestInfo");
-		}
-		if(count($xml->all) && !empty($xml->all))
-			$this->all = Kaltura_Client_ParseUtils::unmarshalObject($xml->all, "KalturaAggregatedIngestInfo");
 	}
 	/**
-	 * Array of aggregated information per channel that included in the ingest job in question
+	 * A list of objects
 	 *
-	 * @var array of KalturaChannelAggregatedIngestInfo
+	 * @var array of KalturaT
 	 */
-	public $linearChannels;
-
-	/**
-	 * Array of aggregated information per date that included in the ingest job in question
-	 *
-	 * @var array of KalturaDateAggregatedIngestInfo
-	 */
-	public $dates;
-
-	/**
-	 * All aggregated counters
-	 *
-	 * @var Kaltura_Client_Type_AggregatedIngestInfo
-	 */
-	public $all;
+	public $objects;
 
 
 }

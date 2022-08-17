@@ -59,6 +59,26 @@ class Kaltura_Client_DeviceReferenceDataService extends Kaltura_Client_ServiceBa
 	}
 
 	/**
+	 * @return Kaltura_Client_Type_DeviceReferenceData
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function update($id, Kaltura_Client_Type_DeviceReferenceData $objectToUpdate)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "id", $id);
+		$this->client->addParam($kparams, "objectToUpdate", $objectToUpdate->toParams());
+		$this->client->queueServiceActionCall("devicereferencedata", "update", "KalturaDeviceReferenceData", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaDeviceReferenceData");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_DeviceReferenceData");
+		return $resultObject;
+	}
+
+	/**
 	 * @return 
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -92,26 +112,6 @@ class Kaltura_Client_DeviceReferenceDataService extends Kaltura_Client_ServiceBa
 		$this->client->checkIfError($resultXmlObject->result);
 		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaDeviceReferenceDataListResponse");
 		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_DeviceReferenceDataListResponse");
-		return $resultObject;
-	}
-
-	/**
-	 * @return Kaltura_Client_Type_DeviceReferenceData
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function update($id, Kaltura_Client_Type_DeviceReferenceData $objectToUpdate)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "id", $id);
-		$this->client->addParam($kparams, "objectToUpdate", $objectToUpdate->toParams());
-		$this->client->queueServiceActionCall("devicereferencedata", "update", "KalturaDeviceReferenceData", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaDeviceReferenceData");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_DeviceReferenceData");
 		return $resultObject;
 	}
 }

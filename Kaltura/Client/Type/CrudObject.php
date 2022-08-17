@@ -31,10 +31,21 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_IngestEpgProgramStatus extends Kaltura_Client_EnumBase
+abstract class Kaltura_Client_Type_CrudObject extends Kaltura_Client_Type_OTTObjectSupportNullable
 {
-	const FAILURE = "FAILURE";
-	const WARNING = "WARNING";
-	const SUCCESS = "SUCCESS";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaCrudObject';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+	}
+
 }
 

@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_EventNotificationFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_EventNotificationFilter extends Kaltura_Client_Type_CrudFilter
 {
 	public function getKalturaObjectType()
 	{
