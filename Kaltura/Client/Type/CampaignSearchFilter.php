@@ -58,6 +58,12 @@ class Kaltura_Client_Type_CampaignSearchFilter extends Kaltura_Client_Type_Campa
 			else
 				$this->hasPromotion = false;
 		}
+		if(count($xml->nameEqual))
+			$this->nameEqual = (string)$xml->nameEqual;
+		if(count($xml->nameContains))
+			$this->nameContains = (string)$xml->nameContains;
+		if(count($xml->stateIn))
+			$this->stateIn = (string)$xml->stateIn;
 	}
 	/**
 	 * start Date Greater Than Or Equal
@@ -86,6 +92,27 @@ class Kaltura_Client_Type_CampaignSearchFilter extends Kaltura_Client_Type_Campa
 	 * @var bool
 	 */
 	public $hasPromotion = null;
+
+	/**
+	 * Filter the Campaign with this name.
+	 *
+	 * @var string
+	 */
+	public $nameEqual = null;
+
+	/**
+	 * A string that is included in the Campaign name
+	 *
+	 * @var string
+	 */
+	public $nameContains = null;
+
+	/**
+	 * Comma separated Campaign State list
+	 *
+	 * @var string
+	 */
+	public $stateIn = null;
 
 
 }
