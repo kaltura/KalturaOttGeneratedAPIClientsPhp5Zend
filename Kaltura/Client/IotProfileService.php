@@ -40,60 +40,19 @@ class Kaltura_Client_IotProfileService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_IotProfile
+	 * @return bool
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function add(Kaltura_Client_Type_IotProfile $objectToAdd)
+	function add()
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "objectToAdd", $objectToAdd->toParams());
-		$this->client->queueServiceActionCall("iotprofile", "add", "KalturaIotProfile", $kparams);
+		$this->client->queueServiceActionCall("iotprofile", "add", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();
 		$resultXmlObject = new \SimpleXMLElement($resultXml);
 		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaIotProfile");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_IotProfile");
-		return $resultObject;
-	}
-
-	/**
-	 * @return Kaltura_Client_Type_IotProfile
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function get($id)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "id", $id);
-		$this->client->queueServiceActionCall("iotprofile", "get", "KalturaIotProfile", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaIotProfile");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_IotProfile");
-		return $resultObject;
-	}
-
-	/**
-	 * @return Kaltura_Client_Type_IotProfile
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function update($id, Kaltura_Client_Type_IotProfile $objectToUpdate)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "id", $id);
-		$this->client->addParam($kparams, "objectToUpdate", $objectToUpdate->toParams());
-		$this->client->queueServiceActionCall("iotprofile", "update", "KalturaIotProfile", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaIotProfile");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_IotProfile");
+		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
 		return $resultObject;
 	}
 }
