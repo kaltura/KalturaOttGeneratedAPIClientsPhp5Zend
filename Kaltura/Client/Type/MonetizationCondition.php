@@ -57,8 +57,6 @@ class Kaltura_Client_Type_MonetizationCondition extends Kaltura_Client_Type_Base
 			$this->operator = (string)$xml->operator;
 		if(count($xml->businessModuleIdIn))
 			$this->businessModuleIdIn = (string)$xml->businessModuleIdIn;
-		if(count($xml->currencyCode))
-			$this->currencyCode = (string)$xml->currencyCode;
 	}
 	/**
 	 * The minimum value to be met
@@ -101,13 +99,6 @@ class Kaltura_Client_Type_MonetizationCondition extends Kaltura_Client_Type_Base
 	 * @var string
 	 */
 	public $businessModuleIdIn = null;
-
-	/**
-	 * Which currency code should be taken into consideration
-	 *
-	 * @var string
-	 */
-	public $currencyCode = null;
 
 
 }
