@@ -31,12 +31,30 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_MonetizationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_BaseBulkUploadSegmentsResult extends Kaltura_Client_Type_BulkUploadResult
 {
-	const PPV = "ppv";
-	const SUBSCRIPTION = "subscription";
-	const BOXSET = "boxset";
-	const ANY = "any";
-	const PPV_LIVE = "ppv_live";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaBaseBulkUploadSegmentsResult';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->segmentId))
+			$this->segmentId = (string)$xml->segmentId;
+	}
+	/**
+	 * Segment Id
+	 *
+	 * @var bigint
+	 */
+	public $segmentId = null;
+
+
 }
 

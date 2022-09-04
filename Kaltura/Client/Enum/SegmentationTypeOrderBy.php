@@ -31,12 +31,15 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_MonetizationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Enum_SegmentationTypeOrderBy extends Kaltura_Client_EnumBase
 {
-	const PPV = "ppv";
-	const SUBSCRIPTION = "subscription";
-	const BOXSET = "boxset";
-	const ANY = "any";
-	const PPV_LIVE = "ppv_live";
+	const UPDATE_DATE_DESC = "UPDATE_DATE_DESC";
+	const UPDATE_DATE_ASC = "UPDATE_DATE_ASC";
+	const CREATE_DATE_DESC = "CREATE_DATE_DESC";
+	const CREATE_DATE_ASC = "CREATE_DATE_ASC";
+	const EXECUTE_DATE_DESC = "EXECUTE_DATE_DESC";
+	const EXECUTE_DATE_ASC = "EXECUTE_DATE_ASC";
+	const AFFECTED_USERS_DESC = "AFFECTED_USERS_DESC";
+	const AFFECTED_USERS_ASC = "AFFECTED_USERS_ASC";
 }
 

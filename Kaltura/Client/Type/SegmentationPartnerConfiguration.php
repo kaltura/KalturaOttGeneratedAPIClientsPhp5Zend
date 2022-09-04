@@ -31,12 +31,39 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_MonetizationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_SegmentationPartnerConfiguration extends Kaltura_Client_ObjectBase
 {
-	const PPV = "ppv";
-	const SUBSCRIPTION = "subscription";
-	const BOXSET = "boxset";
-	const ANY = "any";
-	const PPV_LIVE = "ppv_live";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaSegmentationPartnerConfiguration';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->maxCalculatedPeriod))
+			$this->maxCalculatedPeriod = (int)$xml->maxCalculatedPeriod;
+		if(count($xml->maxDynamicSegments))
+			$this->maxDynamicSegments = (int)$xml->maxDynamicSegments;
+	}
+	/**
+	 * The maximum number of past days to be calculated for dynamic segments
+	 *
+	 * @var int
+	 */
+	public $maxCalculatedPeriod = null;
+
+	/**
+	 * How many dynamic segments (segments with conditions) the operator is allowed to have
+	 *
+	 * @var int
+	 */
+	public $maxDynamicSegments = null;
+
+
 }
 

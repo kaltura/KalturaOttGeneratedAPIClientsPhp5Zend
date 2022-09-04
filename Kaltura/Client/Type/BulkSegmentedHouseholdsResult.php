@@ -31,12 +31,21 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_MonetizationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_BulkSegmentedHouseholdsResult extends Kaltura_Client_Type_BaseBulkUploadSegmentsResult
 {
-	const PPV = "ppv";
-	const SUBSCRIPTION = "subscription";
-	const BOXSET = "boxset";
-	const ANY = "any";
-	const PPV_LIVE = "ppv_live";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaBulkSegmentedHouseholdsResult';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+	}
+
 }
 

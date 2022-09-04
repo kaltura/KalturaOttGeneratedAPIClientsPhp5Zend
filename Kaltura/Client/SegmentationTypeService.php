@@ -77,6 +77,24 @@ class Kaltura_Client_SegmentationTypeService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
+	 * @return Kaltura_Client_Type_SegmentationPartnerConfiguration
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function getPartnerConfiguration()
+	{
+		$kparams = array();
+		$this->client->queueServiceActionCall("segmentationtype", "getPartnerConfiguration", "KalturaSegmentationPartnerConfiguration", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSegmentationPartnerConfiguration");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SegmentationPartnerConfiguration");
+		return $resultObject;
+	}
+
+	/**
 	 * @return Kaltura_Client_Type_SegmentationTypeListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -115,6 +133,25 @@ class Kaltura_Client_SegmentationTypeService extends Kaltura_Client_ServiceBase
 		$this->client->checkIfError($resultXmlObject->result);
 		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSegmentationType");
 		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SegmentationType");
+		return $resultObject;
+	}
+
+	/**
+	 * @return Kaltura_Client_Type_SegmentationPartnerConfiguration
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function updatePartnerConfiguration(Kaltura_Client_Type_SegmentationPartnerConfiguration $configuration)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "configuration", $configuration->toParams());
+		$this->client->queueServiceActionCall("segmentationtype", "updatePartnerConfiguration", "KalturaSegmentationPartnerConfiguration", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSegmentationPartnerConfiguration");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SegmentationPartnerConfiguration");
 		return $resultObject;
 	}
 }
