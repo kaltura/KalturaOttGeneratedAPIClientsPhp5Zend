@@ -68,12 +68,7 @@ class Kaltura_Client_Type_IotClientConfiguration extends Kaltura_Client_ObjectBa
 		if(count($xml->password))
 			$this->password = (string)$xml->password;
 		if(count($xml->topics))
-		{
-			if(empty($xml->topics))
-				$this->topics = array();
-			else
-				$this->topics = Kaltura_Client_ParseUtils::unmarshalArray($xml->topics, "KalturaStringValue");
-		}
+			$this->topics = (string)$xml->topics;
 		if(count($xml->status))
 			$this->status = (string)$xml->status;
 		if(count($xml->message))
@@ -159,9 +154,9 @@ class Kaltura_Client_Type_IotClientConfiguration extends Kaltura_Client_ObjectBa
 	/**
 	 * topics
 	 *
-	 * @var array of KalturaStringValue
+	 * @var string
 	 */
-	public $topics;
+	public $topics = null;
 
 	/**
 	 * status
