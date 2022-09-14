@@ -45,15 +45,15 @@ class Kaltura_Client_Type_CampaignSegmentFilter extends Kaltura_Client_Type_Camp
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->segmentIdIn))
-			$this->segmentIdIn = (string)$xml->segmentIdIn;
+		if(count($xml->segmentIdEqual))
+			$this->segmentIdEqual = (string)$xml->segmentIdEqual;
 	}
 	/**
-	 * comma separeted segment ids to be searched inside campaigns
+	 * segment id to be searched inside campaigns
 	 *
-	 * @var string
+	 * @var bigint
 	 */
-	public $segmentIdIn = null;
+	public $segmentIdEqual = null;
 
 
 }
