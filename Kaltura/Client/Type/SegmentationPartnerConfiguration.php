@@ -51,14 +51,14 @@ class Kaltura_Client_Type_SegmentationPartnerConfiguration extends Kaltura_Clien
 			$this->maxDynamicSegments = (int)$xml->maxDynamicSegments;
 	}
 	/**
-	 * The maximum number of past days to be calculated for dynamic segments
+	 * The maximum number of past days to be calculated for dynamic segments, default=180
 	 *
 	 * @var int
 	 */
 	public $maxCalculatedPeriod = null;
 
 	/**
-	 * How many dynamic segments (segments with conditions) the operator is allowed to have
+	 * How many dynamic segments (segments with conditions) the operator is allowed to have, default=50
 	 *
 	 * @var int
 	 */
