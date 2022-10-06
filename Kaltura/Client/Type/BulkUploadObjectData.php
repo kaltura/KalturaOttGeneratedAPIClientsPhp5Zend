@@ -45,16 +45,7 @@ abstract class Kaltura_Client_Type_BulkUploadObjectData extends Kaltura_Client_O
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->action))
-			$this->action = (string)$xml->action;
 	}
-	/**
-	 * defaults to upsert
-	 *
-	 * @var Kaltura_Client_Enum_BulkUploadJobAction
-	 */
-	public $action = null;
-
 
 }
 

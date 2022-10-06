@@ -58,8 +58,6 @@ class Kaltura_Client_Type_SegmentationType extends Kaltura_Client_ObjectBase
 			else
 				$this->conditions = Kaltura_Client_ParseUtils::unmarshalArray($xml->conditions, "KalturaBaseSegmentCondition");
 		}
-		if(count($xml->conditionsOperator))
-			$this->conditionsOperator = (string)$xml->conditionsOperator;
 		if(count($xml->actions))
 		{
 			if(empty($xml->actions))
@@ -71,10 +69,6 @@ class Kaltura_Client_Type_SegmentationType extends Kaltura_Client_ObjectBase
 			$this->value = Kaltura_Client_ParseUtils::unmarshalObject($xml->value, "KalturaBaseSegmentValue");
 		if(count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
-		if(count($xml->updateDate))
-			$this->updateDate = (string)$xml->updateDate;
-		if(count($xml->executeDate))
-			$this->executeDate = (string)$xml->executeDate;
 		if(count($xml->version))
 			$this->version = (string)$xml->version;
 	}
@@ -108,13 +102,6 @@ class Kaltura_Client_Type_SegmentationType extends Kaltura_Client_ObjectBase
 	public $conditions;
 
 	/**
-	 * Boolean operator between segmentation type&#39;s conditions - defaults to &quot;And&quot;
-	 *
-	 * @var Kaltura_Client_Enum_BooleanOperator
-	 */
-	public $conditionsOperator = null;
-
-	/**
 	 * Segmentation conditions - can be empty
 	 *
 	 * @var array of KalturaBaseSegmentAction
@@ -135,22 +122,6 @@ class Kaltura_Client_Type_SegmentationType extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $createDate = null;
-
-	/**
-	 * Update date of segmentation type
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $updateDate = null;
-
-	/**
-	 * Last date of execution of segmentation type
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $executeDate = null;
 
 	/**
 	 * Segmentation type version

@@ -36,7 +36,5 @@ class Kaltura_Client_Enum_MonetizationType extends Kaltura_Client_EnumBase
 	const PPV = "ppv";
 	const SUBSCRIPTION = "subscription";
 	const BOXSET = "boxset";
-	const ANY = "any";
-	const PPV_LIVE = "ppv_live";
 }
 
