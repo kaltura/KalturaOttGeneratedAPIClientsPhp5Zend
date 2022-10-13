@@ -71,8 +71,6 @@ class Kaltura_Client_Type_BasePartnerConfiguration extends Kaltura_Client_Type_P
 			else
 				$this->apptokenUserValidationDisabled = false;
 		}
-		if(count($xml->epgFeatureVersion))
-			$this->epgFeatureVersion = (int)$xml->epgFeatureVersion;
 	}
 	/**
 	 * KSExpirationSeconds
@@ -129,15 +127,6 @@ class Kaltura_Client_Type_BasePartnerConfiguration extends Kaltura_Client_Type_P
 	 * @var bool
 	 */
 	public $apptokenUserValidationDisabled = null;
-
-	/**
-	 * epgFeatureVersion
-	 *             defines the epg feature version from version 1 to version 3
-	 *             if not provided v2 will be used
-	 *
-	 * @var int
-	 */
-	public $epgFeatureVersion = null;
 
 
 }
