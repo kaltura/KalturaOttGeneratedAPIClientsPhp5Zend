@@ -82,6 +82,7 @@ class Kaltura_Client_Type_Bookmark extends Kaltura_Client_Type_SlimAsset
 
 	/**
 	 * The position of the user in the specific asset (in seconds)
+	 *             For external recordings will always be &#39;0&#39;
 	 *
 	 * @var int
 	 * @insertonly
@@ -98,6 +99,7 @@ class Kaltura_Client_Type_Bookmark extends Kaltura_Client_Type_SlimAsset
 
 	/**
 	 * Specifies whether the user&#39;s current position exceeded 95% of the duration
+	 *             For external recordings will always be &#39;True&#39;
 	 *
 	 * @var bool
 	 * @readonly

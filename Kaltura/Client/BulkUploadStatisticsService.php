@@ -27,16 +27,35 @@
 // @ignore
 // ===================================================================================================
 
+
 /**
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_MonetizationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_BulkUploadStatisticsService extends Kaltura_Client_ServiceBase
 {
-	const PPV = "ppv";
-	const SUBSCRIPTION = "subscription";
-	const BOXSET = "boxset";
-	const ANY = "any";
-	const PPV_LIVE = "ppv_live";
-}
+	function __construct(Kaltura_Client_Client $client = null)
+	{
+		parent::__construct($client);
+	}
 
+	/**
+	 * @return Kaltura_Client_Type_BulkUploadStatistics
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function get($bulkObjectTypeEqual, $createDateGreaterThanOrEqual)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "bulkObjectTypeEqual", $bulkObjectTypeEqual);
+		$this->client->addParam($kparams, "createDateGreaterThanOrEqual", $createDateGreaterThanOrEqual);
+		$this->client->queueServiceActionCall("bulkuploadstatistics", "get", "KalturaBulkUploadStatistics", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaBulkUploadStatistics");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_BulkUploadStatistics");
+		return $resultObject;
+	}
+}
