@@ -131,6 +131,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_BulkUploadStatisticsService
+	 */
+	public $bulkUploadStatistics = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_BusinessModuleRuleService
 	 */
 	public $businessModuleRule = null;
@@ -936,8 +942,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:22-10-25');
-		$this->setApiVersion('8.0.1.30022');
+		$this->setClientTag('php5:22-11-25');
+		$this->setApiVersion('8.2.0.30085');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -955,6 +961,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->assetUserRule = new Kaltura_Client_AssetUserRuleService($this);
 		$this->bookmark = new Kaltura_Client_BookmarkService($this);
 		$this->bulkUpload = new Kaltura_Client_BulkUploadService($this);
+		$this->bulkUploadStatistics = new Kaltura_Client_BulkUploadStatisticsService($this);
 		$this->businessModuleRule = new Kaltura_Client_BusinessModuleRuleService($this);
 		$this->campaign = new Kaltura_Client_CampaignService($this);
 		$this->categoryItem = new Kaltura_Client_CategoryItemService($this);

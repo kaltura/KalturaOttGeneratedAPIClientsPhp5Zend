@@ -35,6 +35,6 @@ class Kaltura_Client_Enum_UnmatchedItemsPolicy extends Kaltura_Client_EnumBase
 {
 	const OMIT = "Omit";
 	const GROUP = "Group";
-	const INCLUDE = "Include";
+	const INCLUDEANDMERGE = "IncludeAndMerge";
 }
 
