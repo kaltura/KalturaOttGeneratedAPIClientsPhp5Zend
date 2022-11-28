@@ -112,6 +112,8 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 			$this->createDate = (string)$xml->createDate;
 		if(count($xml->virtualAssetId))
 			$this->virtualAssetId = (string)$xml->virtualAssetId;
+		if(count($xml->assetUserRuleId))
+			$this->assetUserRuleId = (string)$xml->assetUserRuleId;
 	}
 	/**
 	 * PPV identifier
@@ -267,6 +269,13 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $virtualAssetId = null;
+
+	/**
+	 * Asset user rule identifier
+	 *
+	 * @var bigint
+	 */
+	public $assetUserRuleId = null;
 
 
 }

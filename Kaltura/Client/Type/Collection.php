@@ -133,6 +133,8 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 		}
 		if(count($xml->fileTypesIds))
 			$this->fileTypesIds = (string)$xml->fileTypesIds;
+		if(count($xml->assetUserRuleId))
+			$this->assetUserRuleId = (string)$xml->assetUserRuleId;
 	}
 	/**
 	 * Collection identifier
@@ -315,6 +317,13 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 	 * @var string
 	 */
 	public $fileTypesIds = null;
+
+	/**
+	 * Asset user rule identifier
+	 *
+	 * @var bigint
+	 */
+	public $assetUserRuleId = null;
 
 
 }

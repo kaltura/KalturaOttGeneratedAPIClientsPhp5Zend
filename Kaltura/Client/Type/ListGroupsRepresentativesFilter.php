@@ -31,12 +31,30 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_MonetizationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_ListGroupsRepresentativesFilter extends Kaltura_Client_Type_Filter
 {
-	const PPV = "ppv";
-	const SUBSCRIPTION = "subscription";
-	const BOXSET = "boxset";
-	const ANY = "any";
-	const PPV_LIVE = "ppv_live";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaListGroupsRepresentativesFilter';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->kSql))
+			$this->kSql = (string)$xml->kSql;
+	}
+	/**
+	 * Search assets using dynamic criteria. Provided collection of nested expressions with key, comparison operators, value, and logical conjunction.
+	 *
+	 * @var string
+	 */
+	public $kSql = null;
+
+
 }
 

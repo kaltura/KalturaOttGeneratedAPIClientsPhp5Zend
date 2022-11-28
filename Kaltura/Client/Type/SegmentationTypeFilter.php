@@ -49,6 +49,8 @@ class Kaltura_Client_Type_SegmentationTypeFilter extends Kaltura_Client_Type_Bas
 			$this->idIn = (string)$xml->idIn;
 		if(count($xml->kSql))
 			$this->kSql = (string)$xml->kSql;
+		if(count($xml->nameContain))
+			$this->nameContain = (string)$xml->nameContain;
 	}
 	/**
 	 * Comma separated segmentation types identifiers
@@ -63,6 +65,13 @@ class Kaltura_Client_Type_SegmentationTypeFilter extends Kaltura_Client_Type_Bas
 	 * @var string
 	 */
 	public $kSql = null;
+
+	/**
+	 * Name of segment contains specific string value
+	 *
+	 * @var string
+	 */
+	public $nameContain = null;
 
 
 }

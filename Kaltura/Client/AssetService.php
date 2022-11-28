@@ -208,6 +208,34 @@ class Kaltura_Client_AssetService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_AssetListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
+	function groupRepresentativeList(Kaltura_Client_Type_AssetGroupBy $groupBy, $unmatchedItemsPolicy, Kaltura_Client_Type_BaseAssetOrder $orderBy = null, Kaltura_Client_Type_ListGroupsRepresentativesFilter $filter = null, Kaltura_Client_Type_RepresentativeSelectionPolicy $selectionPolicy = null, Kaltura_Client_Type_FilterPager $pager = null)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "groupBy", $groupBy->toParams());
+		$this->client->addParam($kparams, "unmatchedItemsPolicy", $unmatchedItemsPolicy);
+		if ($orderBy !== null)
+			$this->client->addParam($kparams, "orderBy", $orderBy->toParams());
+		if ($filter !== null)
+			$this->client->addParam($kparams, "filter", $filter->toParams());
+		if ($selectionPolicy !== null)
+			$this->client->addParam($kparams, "selectionPolicy", $selectionPolicy->toParams());
+		if ($pager !== null)
+			$this->client->addParam($kparams, "pager", $pager->toParams());
+		$this->client->queueServiceActionCall("asset", "groupRepresentativeList", "KalturaAssetListResponse", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaAssetListResponse");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_AssetListResponse");
+		return $resultObject;
+	}
+
+	/**
+	 * @return Kaltura_Client_Type_AssetListResponse
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
 	function listAction(Kaltura_Client_Type_AssetFilter $filter = null, Kaltura_Client_Type_FilterPager $pager = null)
 	{
 		$kparams = array();

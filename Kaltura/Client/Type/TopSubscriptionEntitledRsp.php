@@ -31,12 +31,30 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_MonetizationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_TopSubscriptionEntitledRsp extends Kaltura_Client_Type_RepresentativeSelectionPolicy
 {
-	const PPV = "ppv";
-	const SUBSCRIPTION = "subscription";
-	const BOXSET = "boxset";
-	const ANY = "any";
-	const PPV_LIVE = "ppv_live";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaTopSubscriptionEntitledRsp';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->orderBy) && !empty($xml->orderBy))
+			$this->orderBy = Kaltura_Client_ParseUtils::unmarshalObject($xml->orderBy, "KalturaBaseAssetOrder");
+	}
+	/**
+	 * order by
+	 *
+	 * @var Kaltura_Client_Type_BaseAssetOrder
+	 */
+	public $orderBy;
+
+
 }
 

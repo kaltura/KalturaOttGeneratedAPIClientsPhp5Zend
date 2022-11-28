@@ -31,12 +31,30 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_MonetizationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_CampaignSegmentFilter extends Kaltura_Client_Type_CampaignSearchFilter
 {
-	const PPV = "ppv";
-	const SUBSCRIPTION = "subscription";
-	const BOXSET = "boxset";
-	const ANY = "any";
-	const PPV_LIVE = "ppv_live";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaCampaignSegmentFilter';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->segmentIdEqual))
+			$this->segmentIdEqual = (string)$xml->segmentIdEqual;
+	}
+	/**
+	 * segment id to be searched inside campaigns
+	 *
+	 * @var bigint
+	 */
+	public $segmentIdEqual = null;
+
+
 }
 
