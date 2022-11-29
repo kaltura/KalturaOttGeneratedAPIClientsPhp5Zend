@@ -46,7 +46,12 @@ class Kaltura_Client_Type_PartnerConfigurationFilter extends Kaltura_Client_Type
 			return;
 		
 		if(count($xml->partnerConfigurationTypeEqual))
-			$this->partnerConfigurationTypeEqual = (string)$xml->partnerConfigurationTypeEqual;
+		{
+			if(isset($xml->partnerConfigurationTypeEqual->item) && count($xml->partnerConfigurationTypeEqual->item))
+				$this->multiLingual_partnerConfigurationTypeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->partnerConfigurationTypeEqual, '');
+			else
+				$this->partnerConfigurationTypeEqual = (string)$xml->partnerConfigurationTypeEqual;
+		}
 	}
 	/**
 	 * Indicates which partner configuration list to return

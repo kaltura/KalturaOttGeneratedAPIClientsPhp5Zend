@@ -46,7 +46,12 @@ class Kaltura_Client_Type_Purchase extends Kaltura_Client_Type_PurchaseBase
 			return;
 		
 		if(count($xml->currency))
-			$this->currency = (string)$xml->currency;
+		{
+			if(isset($xml->currency->item) && count($xml->currency->item))
+				$this->multiLingual_currency = Kaltura_Client_ParseUtils::unmarshalArray($xml->currency, '');
+			else
+				$this->currency = (string)$xml->currency;
+		}
 		if(count($xml->price))
 			$this->price = (float)$xml->price;
 		if(count($xml->paymentMethodId))
@@ -54,7 +59,12 @@ class Kaltura_Client_Type_Purchase extends Kaltura_Client_Type_PurchaseBase
 		if(count($xml->paymentGatewayId))
 			$this->paymentGatewayId = (int)$xml->paymentGatewayId;
 		if(count($xml->coupon))
-			$this->coupon = (string)$xml->coupon;
+		{
+			if(isset($xml->coupon->item) && count($xml->coupon->item))
+				$this->multiLingual_coupon = Kaltura_Client_ParseUtils::unmarshalArray($xml->coupon, '');
+			else
+				$this->coupon = (string)$xml->coupon;
+		}
 	}
 	/**
 	 * Identifier for paying currency, according to ISO 4217

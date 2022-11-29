@@ -46,7 +46,12 @@ class Kaltura_Client_Type_TransactionHistoryFilter extends Kaltura_Client_Type_F
 			return;
 		
 		if(count($xml->entityReferenceEqual))
-			$this->entityReferenceEqual = (string)$xml->entityReferenceEqual;
+		{
+			if(isset($xml->entityReferenceEqual->item) && count($xml->entityReferenceEqual->item))
+				$this->multiLingual_entityReferenceEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->entityReferenceEqual, '');
+			else
+				$this->entityReferenceEqual = (string)$xml->entityReferenceEqual;
+		}
 		if(count($xml->startDateGreaterThanOrEqual))
 			$this->startDateGreaterThanOrEqual = (int)$xml->startDateGreaterThanOrEqual;
 		if(count($xml->endDateLessThanOrEqual))
@@ -54,11 +59,26 @@ class Kaltura_Client_Type_TransactionHistoryFilter extends Kaltura_Client_Type_F
 		if(count($xml->entitlementIdEqual))
 			$this->entitlementIdEqual = (string)$xml->entitlementIdEqual;
 		if(count($xml->externalIdEqual))
-			$this->externalIdEqual = (string)$xml->externalIdEqual;
+		{
+			if(isset($xml->externalIdEqual->item) && count($xml->externalIdEqual->item))
+				$this->multiLingual_externalIdEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalIdEqual, '');
+			else
+				$this->externalIdEqual = (string)$xml->externalIdEqual;
+		}
 		if(count($xml->billingItemsTypeEqual))
-			$this->billingItemsTypeEqual = (string)$xml->billingItemsTypeEqual;
+		{
+			if(isset($xml->billingItemsTypeEqual->item) && count($xml->billingItemsTypeEqual->item))
+				$this->multiLingual_billingItemsTypeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->billingItemsTypeEqual, '');
+			else
+				$this->billingItemsTypeEqual = (string)$xml->billingItemsTypeEqual;
+		}
 		if(count($xml->billingActionEqual))
-			$this->billingActionEqual = (string)$xml->billingActionEqual;
+		{
+			if(isset($xml->billingActionEqual->item) && count($xml->billingActionEqual->item))
+				$this->multiLingual_billingActionEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->billingActionEqual, '');
+			else
+				$this->billingActionEqual = (string)$xml->billingActionEqual;
+		}
 	}
 	/**
 	 * Reference type to filter by

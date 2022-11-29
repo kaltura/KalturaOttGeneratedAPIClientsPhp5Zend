@@ -48,13 +48,28 @@ class Kaltura_Client_Type_ImageType extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		{
+			if(isset($xml->name->item) && count($xml->name->item))
+				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
+			else
+				$this->name = (string)$xml->name;
+		}
 		if(count($xml->systemName))
-			$this->systemName = (string)$xml->systemName;
+		{
+			if(isset($xml->systemName->item) && count($xml->systemName->item))
+				$this->multiLingual_systemName = Kaltura_Client_ParseUtils::unmarshalArray($xml->systemName, '');
+			else
+				$this->systemName = (string)$xml->systemName;
+		}
 		if(count($xml->ratioId))
 			$this->ratioId = (string)$xml->ratioId;
 		if(count($xml->helpText))
-			$this->helpText = (string)$xml->helpText;
+		{
+			if(isset($xml->helpText->item) && count($xml->helpText->item))
+				$this->multiLingual_helpText = Kaltura_Client_ParseUtils::unmarshalArray($xml->helpText, '');
+			else
+				$this->helpText = (string)$xml->helpText;
+		}
 		if(count($xml->defaultImageId))
 			$this->defaultImageId = (string)$xml->defaultImageId;
 	}

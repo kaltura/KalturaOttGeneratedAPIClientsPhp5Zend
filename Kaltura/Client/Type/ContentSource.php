@@ -46,7 +46,12 @@ class Kaltura_Client_Type_ContentSource extends Kaltura_Client_Type_SegmentSourc
 			return;
 		
 		if(count($xml->field))
-			$this->field = (string)$xml->field;
+		{
+			if(isset($xml->field->item) && count($xml->field->item))
+				$this->multiLingual_field = Kaltura_Client_ParseUtils::unmarshalArray($xml->field, '');
+			else
+				$this->field = (string)$xml->field;
+		}
 	}
 	/**
 	 * Topic (meta or tag) name

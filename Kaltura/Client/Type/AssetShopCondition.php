@@ -46,7 +46,12 @@ class Kaltura_Client_Type_AssetShopCondition extends Kaltura_Client_Type_AssetCo
 			return;
 		
 		if(count($xml->value))
-			$this->value = (string)$xml->value;
+		{
+			if(isset($xml->value->item) && count($xml->value->item))
+				$this->multiLingual_value = Kaltura_Client_ParseUtils::unmarshalArray($xml->value, '');
+			else
+				$this->value = (string)$xml->value;
+		}
 		if(count($xml->values) && !empty($xml->values))
 			$this->values = Kaltura_Client_ParseUtils::unmarshalObject($xml->values, "KalturaStringValueArray");
 	}

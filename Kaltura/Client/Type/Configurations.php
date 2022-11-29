@@ -46,19 +46,49 @@ class Kaltura_Client_Type_Configurations extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->id))
-			$this->id = (string)$xml->id;
+		{
+			if(isset($xml->id->item) && count($xml->id->item))
+				$this->multiLingual_id = Kaltura_Client_ParseUtils::unmarshalArray($xml->id, '');
+			else
+				$this->id = (string)$xml->id;
+		}
 		if(count($xml->partnerId))
 			$this->partnerId = (int)$xml->partnerId;
 		if(count($xml->configurationGroupId))
-			$this->configurationGroupId = (string)$xml->configurationGroupId;
+		{
+			if(isset($xml->configurationGroupId->item) && count($xml->configurationGroupId->item))
+				$this->multiLingual_configurationGroupId = Kaltura_Client_ParseUtils::unmarshalArray($xml->configurationGroupId, '');
+			else
+				$this->configurationGroupId = (string)$xml->configurationGroupId;
+		}
 		if(count($xml->appName))
-			$this->appName = (string)$xml->appName;
+		{
+			if(isset($xml->appName->item) && count($xml->appName->item))
+				$this->multiLingual_appName = Kaltura_Client_ParseUtils::unmarshalArray($xml->appName, '');
+			else
+				$this->appName = (string)$xml->appName;
+		}
 		if(count($xml->clientVersion))
-			$this->clientVersion = (string)$xml->clientVersion;
+		{
+			if(isset($xml->clientVersion->item) && count($xml->clientVersion->item))
+				$this->multiLingual_clientVersion = Kaltura_Client_ParseUtils::unmarshalArray($xml->clientVersion, '');
+			else
+				$this->clientVersion = (string)$xml->clientVersion;
+		}
 		if(count($xml->platform))
-			$this->platform = (string)$xml->platform;
+		{
+			if(isset($xml->platform->item) && count($xml->platform->item))
+				$this->multiLingual_platform = Kaltura_Client_ParseUtils::unmarshalArray($xml->platform, '');
+			else
+				$this->platform = (string)$xml->platform;
+		}
 		if(count($xml->externalPushId))
-			$this->externalPushId = (string)$xml->externalPushId;
+		{
+			if(isset($xml->externalPushId->item) && count($xml->externalPushId->item))
+				$this->multiLingual_externalPushId = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalPushId, '');
+			else
+				$this->externalPushId = (string)$xml->externalPushId;
+		}
 		if(count($xml->isForceUpdate))
 		{
 			if(!empty($xml->isForceUpdate) && ((int) $xml->isForceUpdate === 1 || strtolower((string)$xml->isForceUpdate) === 'true'))
@@ -67,7 +97,12 @@ class Kaltura_Client_Type_Configurations extends Kaltura_Client_ObjectBase
 				$this->isForceUpdate = false;
 		}
 		if(count($xml->content))
-			$this->content = (string)$xml->content;
+		{
+			if(isset($xml->content->item) && count($xml->content->item))
+				$this->multiLingual_content = Kaltura_Client_ParseUtils::unmarshalArray($xml->content, '');
+			else
+				$this->content = (string)$xml->content;
+		}
 	}
 	/**
 	 * Configuration id

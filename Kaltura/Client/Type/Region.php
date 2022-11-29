@@ -48,9 +48,19 @@ class Kaltura_Client_Type_Region extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (int)$xml->id;
 		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		{
+			if(isset($xml->name->item) && count($xml->name->item))
+				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
+			else
+				$this->name = (string)$xml->name;
+		}
 		if(count($xml->externalId))
-			$this->externalId = (string)$xml->externalId;
+		{
+			if(isset($xml->externalId->item) && count($xml->externalId->item))
+				$this->multiLingual_externalId = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalId, '');
+			else
+				$this->externalId = (string)$xml->externalId;
+		}
 		if(count($xml->isDefault))
 		{
 			if(!empty($xml->isDefault) && ((int) $xml->isDefault === 1 || strtolower((string)$xml->isDefault) === 'true'))

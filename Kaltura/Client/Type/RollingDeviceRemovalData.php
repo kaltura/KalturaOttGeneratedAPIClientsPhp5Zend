@@ -46,9 +46,19 @@ class Kaltura_Client_Type_RollingDeviceRemovalData extends Kaltura_Client_Object
 			return;
 		
 		if(count($xml->rollingDeviceRemovalPolicy))
-			$this->rollingDeviceRemovalPolicy = (string)$xml->rollingDeviceRemovalPolicy;
+		{
+			if(isset($xml->rollingDeviceRemovalPolicy->item) && count($xml->rollingDeviceRemovalPolicy->item))
+				$this->multiLingual_rollingDeviceRemovalPolicy = Kaltura_Client_ParseUtils::unmarshalArray($xml->rollingDeviceRemovalPolicy, '');
+			else
+				$this->rollingDeviceRemovalPolicy = (string)$xml->rollingDeviceRemovalPolicy;
+		}
 		if(count($xml->rollingDeviceRemovalFamilyIds))
-			$this->rollingDeviceRemovalFamilyIds = (string)$xml->rollingDeviceRemovalFamilyIds;
+		{
+			if(isset($xml->rollingDeviceRemovalFamilyIds->item) && count($xml->rollingDeviceRemovalFamilyIds->item))
+				$this->multiLingual_rollingDeviceRemovalFamilyIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->rollingDeviceRemovalFamilyIds, '');
+			else
+				$this->rollingDeviceRemovalFamilyIds = (string)$xml->rollingDeviceRemovalFamilyIds;
+		}
 	}
 	/**
 	 * Rolling Device Policy

@@ -46,15 +46,40 @@ class Kaltura_Client_Type_BillingTransaction extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->recieptCode))
-			$this->recieptCode = (string)$xml->recieptCode;
+		{
+			if(isset($xml->recieptCode->item) && count($xml->recieptCode->item))
+				$this->multiLingual_recieptCode = Kaltura_Client_ParseUtils::unmarshalArray($xml->recieptCode, '');
+			else
+				$this->recieptCode = (string)$xml->recieptCode;
+		}
 		if(count($xml->purchasedItemName))
-			$this->purchasedItemName = (string)$xml->purchasedItemName;
+		{
+			if(isset($xml->purchasedItemName->item) && count($xml->purchasedItemName->item))
+				$this->multiLingual_purchasedItemName = Kaltura_Client_ParseUtils::unmarshalArray($xml->purchasedItemName, '');
+			else
+				$this->purchasedItemName = (string)$xml->purchasedItemName;
+		}
 		if(count($xml->purchasedItemCode))
-			$this->purchasedItemCode = (string)$xml->purchasedItemCode;
+		{
+			if(isset($xml->purchasedItemCode->item) && count($xml->purchasedItemCode->item))
+				$this->multiLingual_purchasedItemCode = Kaltura_Client_ParseUtils::unmarshalArray($xml->purchasedItemCode, '');
+			else
+				$this->purchasedItemCode = (string)$xml->purchasedItemCode;
+		}
 		if(count($xml->itemType))
-			$this->itemType = (string)$xml->itemType;
+		{
+			if(isset($xml->itemType->item) && count($xml->itemType->item))
+				$this->multiLingual_itemType = Kaltura_Client_ParseUtils::unmarshalArray($xml->itemType, '');
+			else
+				$this->itemType = (string)$xml->itemType;
+		}
 		if(count($xml->billingAction))
-			$this->billingAction = (string)$xml->billingAction;
+		{
+			if(isset($xml->billingAction->item) && count($xml->billingAction->item))
+				$this->multiLingual_billingAction = Kaltura_Client_ParseUtils::unmarshalArray($xml->billingAction, '');
+			else
+				$this->billingAction = (string)$xml->billingAction;
+		}
 		if(count($xml->price) && !empty($xml->price))
 			$this->price = Kaltura_Client_ParseUtils::unmarshalObject($xml->price, "KalturaPrice");
 		if(count($xml->actionDate))
@@ -64,9 +89,19 @@ class Kaltura_Client_Type_BillingTransaction extends Kaltura_Client_ObjectBase
 		if(count($xml->endDate))
 			$this->endDate = (string)$xml->endDate;
 		if(count($xml->paymentMethod))
-			$this->paymentMethod = (string)$xml->paymentMethod;
+		{
+			if(isset($xml->paymentMethod->item) && count($xml->paymentMethod->item))
+				$this->multiLingual_paymentMethod = Kaltura_Client_ParseUtils::unmarshalArray($xml->paymentMethod, '');
+			else
+				$this->paymentMethod = (string)$xml->paymentMethod;
+		}
 		if(count($xml->paymentMethodExtraDetails))
-			$this->paymentMethodExtraDetails = (string)$xml->paymentMethodExtraDetails;
+		{
+			if(isset($xml->paymentMethodExtraDetails->item) && count($xml->paymentMethodExtraDetails->item))
+				$this->multiLingual_paymentMethodExtraDetails = Kaltura_Client_ParseUtils::unmarshalArray($xml->paymentMethodExtraDetails, '');
+			else
+				$this->paymentMethodExtraDetails = (string)$xml->paymentMethodExtraDetails;
+		}
 		if(count($xml->isRecurring))
 		{
 			if(!empty($xml->isRecurring) && ((int) $xml->isRecurring === 1 || strtolower((string)$xml->isRecurring) === 'true'))
@@ -79,11 +114,26 @@ class Kaltura_Client_Type_BillingTransaction extends Kaltura_Client_ObjectBase
 		if(count($xml->purchaseId))
 			$this->purchaseId = (int)$xml->purchaseId;
 		if(count($xml->remarks))
-			$this->remarks = (string)$xml->remarks;
+		{
+			if(isset($xml->remarks->item) && count($xml->remarks->item))
+				$this->multiLingual_remarks = Kaltura_Client_ParseUtils::unmarshalArray($xml->remarks, '');
+			else
+				$this->remarks = (string)$xml->remarks;
+		}
 		if(count($xml->billingPriceType))
-			$this->billingPriceType = (string)$xml->billingPriceType;
+		{
+			if(isset($xml->billingPriceType->item) && count($xml->billingPriceType->item))
+				$this->multiLingual_billingPriceType = Kaltura_Client_ParseUtils::unmarshalArray($xml->billingPriceType, '');
+			else
+				$this->billingPriceType = (string)$xml->billingPriceType;
+		}
 		if(count($xml->externalTransactionId))
-			$this->externalTransactionId = (string)$xml->externalTransactionId;
+		{
+			if(isset($xml->externalTransactionId->item) && count($xml->externalTransactionId->item))
+				$this->multiLingual_externalTransactionId = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalTransactionId, '');
+			else
+				$this->externalTransactionId = (string)$xml->externalTransactionId;
+		}
 	}
 	/**
 	 * Reciept Code

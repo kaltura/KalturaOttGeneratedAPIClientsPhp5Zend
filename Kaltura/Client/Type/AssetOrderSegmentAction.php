@@ -46,7 +46,12 @@ class Kaltura_Client_Type_AssetOrderSegmentAction extends Kaltura_Client_Type_Ba
 			return;
 		
 		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		{
+			if(isset($xml->name->item) && count($xml->name->item))
+				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
+			else
+				$this->name = (string)$xml->name;
+		}
 		if(count($xml->values))
 		{
 			if(empty($xml->values))

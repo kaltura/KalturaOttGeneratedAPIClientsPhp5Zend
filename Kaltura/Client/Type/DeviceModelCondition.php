@@ -46,7 +46,12 @@ class Kaltura_Client_Type_DeviceModelCondition extends Kaltura_Client_Type_Condi
 			return;
 		
 		if(count($xml->regexEqual))
-			$this->regexEqual = (string)$xml->regexEqual;
+		{
+			if(isset($xml->regexEqual->item) && count($xml->regexEqual->item))
+				$this->multiLingual_regexEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->regexEqual, '');
+			else
+				$this->regexEqual = (string)$xml->regexEqual;
+		}
 	}
 	/**
 	 * regex of device model that is compared to

@@ -48,7 +48,12 @@ class Kaltura_Client_Type_Entitlement extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (int)$xml->id;
 		if(count($xml->productId))
-			$this->productId = (string)$xml->productId;
+		{
+			if(isset($xml->productId->item) && count($xml->productId->item))
+				$this->multiLingual_productId = Kaltura_Client_ParseUtils::unmarshalArray($xml->productId, '');
+			else
+				$this->productId = (string)$xml->productId;
+		}
 		if(count($xml->currentUses))
 			$this->currentUses = (int)$xml->currentUses;
 		if(count($xml->endDate))
@@ -60,11 +65,26 @@ class Kaltura_Client_Type_Entitlement extends Kaltura_Client_ObjectBase
 		if(count($xml->purchaseDate))
 			$this->purchaseDate = (string)$xml->purchaseDate;
 		if(count($xml->paymentMethod))
-			$this->paymentMethod = (string)$xml->paymentMethod;
+		{
+			if(isset($xml->paymentMethod->item) && count($xml->paymentMethod->item))
+				$this->multiLingual_paymentMethod = Kaltura_Client_ParseUtils::unmarshalArray($xml->paymentMethod, '');
+			else
+				$this->paymentMethod = (string)$xml->paymentMethod;
+		}
 		if(count($xml->deviceUdid))
-			$this->deviceUdid = (string)$xml->deviceUdid;
+		{
+			if(isset($xml->deviceUdid->item) && count($xml->deviceUdid->item))
+				$this->multiLingual_deviceUdid = Kaltura_Client_ParseUtils::unmarshalArray($xml->deviceUdid, '');
+			else
+				$this->deviceUdid = (string)$xml->deviceUdid;
+		}
 		if(count($xml->deviceName))
-			$this->deviceName = (string)$xml->deviceName;
+		{
+			if(isset($xml->deviceName->item) && count($xml->deviceName->item))
+				$this->multiLingual_deviceName = Kaltura_Client_ParseUtils::unmarshalArray($xml->deviceName, '');
+			else
+				$this->deviceName = (string)$xml->deviceName;
+		}
 		if(count($xml->isCancelationWindowEnabled))
 		{
 			if(!empty($xml->isCancelationWindowEnabled) && ((int) $xml->isCancelationWindowEnabled === 1 || strtolower((string)$xml->isCancelationWindowEnabled) === 'true'))
@@ -75,7 +95,12 @@ class Kaltura_Client_Type_Entitlement extends Kaltura_Client_ObjectBase
 		if(count($xml->maxUses))
 			$this->maxUses = (int)$xml->maxUses;
 		if(count($xml->userId))
-			$this->userId = (string)$xml->userId;
+		{
+			if(isset($xml->userId->item) && count($xml->userId->item))
+				$this->multiLingual_userId = Kaltura_Client_ParseUtils::unmarshalArray($xml->userId, '');
+			else
+				$this->userId = (string)$xml->userId;
+		}
 		if(count($xml->householdId))
 			$this->householdId = (string)$xml->householdId;
 		if(count($xml->isPending))

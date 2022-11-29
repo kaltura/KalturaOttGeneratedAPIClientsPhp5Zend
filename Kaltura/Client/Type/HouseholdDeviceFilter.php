@@ -48,9 +48,19 @@ class Kaltura_Client_Type_HouseholdDeviceFilter extends Kaltura_Client_Type_Filt
 		if(count($xml->householdIdEqual))
 			$this->householdIdEqual = (int)$xml->householdIdEqual;
 		if(count($xml->deviceFamilyIdIn))
-			$this->deviceFamilyIdIn = (string)$xml->deviceFamilyIdIn;
+		{
+			if(isset($xml->deviceFamilyIdIn->item) && count($xml->deviceFamilyIdIn->item))
+				$this->multiLingual_deviceFamilyIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->deviceFamilyIdIn, '');
+			else
+				$this->deviceFamilyIdIn = (string)$xml->deviceFamilyIdIn;
+		}
 		if(count($xml->externalIdEqual))
-			$this->externalIdEqual = (string)$xml->externalIdEqual;
+		{
+			if(isset($xml->externalIdEqual->item) && count($xml->externalIdEqual->item))
+				$this->multiLingual_externalIdEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalIdEqual, '');
+			else
+				$this->externalIdEqual = (string)$xml->externalIdEqual;
+		}
 	}
 	/**
 	 * The identifier of the household

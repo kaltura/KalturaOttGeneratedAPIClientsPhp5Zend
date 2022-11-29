@@ -48,7 +48,12 @@ class Kaltura_Client_Type_ProductMarkup extends Kaltura_Client_ObjectBase
 		if(count($xml->productId))
 			$this->productId = (string)$xml->productId;
 		if(count($xml->productType))
-			$this->productType = (string)$xml->productType;
+		{
+			if(isset($xml->productType->item) && count($xml->productType->item))
+				$this->multiLingual_productType = Kaltura_Client_ParseUtils::unmarshalArray($xml->productType, '');
+			else
+				$this->productType = (string)$xml->productType;
+		}
 		if(count($xml->isEntitled))
 		{
 			if(!empty($xml->isEntitled) && ((int) $xml->isEntitled === 1 || strtolower((string)$xml->isEntitled) === 'true'))

@@ -48,11 +48,21 @@ class Kaltura_Client_Type_RelatedExternalFilter extends Kaltura_Client_Type_Asse
 		if(count($xml->idEqual))
 			$this->idEqual = (int)$xml->idEqual;
 		if(count($xml->typeIn))
-			$this->typeIn = (string)$xml->typeIn;
+		{
+			if(isset($xml->typeIn->item) && count($xml->typeIn->item))
+				$this->multiLingual_typeIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->typeIn, '');
+			else
+				$this->typeIn = (string)$xml->typeIn;
+		}
 		if(count($xml->utcOffsetEqual))
 			$this->utcOffsetEqual = (int)$xml->utcOffsetEqual;
 		if(count($xml->freeText))
-			$this->freeText = (string)$xml->freeText;
+		{
+			if(isset($xml->freeText->item) && count($xml->freeText->item))
+				$this->multiLingual_freeText = Kaltura_Client_ParseUtils::unmarshalArray($xml->freeText, '');
+			else
+				$this->freeText = (string)$xml->freeText;
+		}
 	}
 	/**
 	 * the External ID of the asset for which to return related assets

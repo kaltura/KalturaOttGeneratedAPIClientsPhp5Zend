@@ -46,9 +46,19 @@ class Kaltura_Client_Type_CouponsGroup extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->id))
-			$this->id = (string)$xml->id;
+		{
+			if(isset($xml->id->item) && count($xml->id->item))
+				$this->multiLingual_id = Kaltura_Client_ParseUtils::unmarshalArray($xml->id, '');
+			else
+				$this->id = (string)$xml->id;
+		}
 		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		{
+			if(isset($xml->name->item) && count($xml->name->item))
+				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
+			else
+				$this->name = (string)$xml->name;
+		}
 		if(count($xml->startDate))
 			$this->startDate = (string)$xml->startDate;
 		if(count($xml->endDate))
@@ -58,7 +68,12 @@ class Kaltura_Client_Type_CouponsGroup extends Kaltura_Client_ObjectBase
 		if(count($xml->maxUsesNumberOnRenewableSub))
 			$this->maxUsesNumberOnRenewableSub = (int)$xml->maxUsesNumberOnRenewableSub;
 		if(count($xml->couponGroupType))
-			$this->couponGroupType = (string)$xml->couponGroupType;
+		{
+			if(isset($xml->couponGroupType->item) && count($xml->couponGroupType->item))
+				$this->multiLingual_couponGroupType = Kaltura_Client_ParseUtils::unmarshalArray($xml->couponGroupType, '');
+			else
+				$this->couponGroupType = (string)$xml->couponGroupType;
+		}
 		if(count($xml->maxHouseholdUses))
 			$this->maxHouseholdUses = (int)$xml->maxHouseholdUses;
 		if(count($xml->discountId))

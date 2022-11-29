@@ -46,7 +46,12 @@ class Kaltura_Client_Type_ParentalRuleFilter extends Kaltura_Client_Type_Filter
 			return;
 		
 		if(count($xml->entityReferenceEqual))
-			$this->entityReferenceEqual = (string)$xml->entityReferenceEqual;
+		{
+			if(isset($xml->entityReferenceEqual->item) && count($xml->entityReferenceEqual->item))
+				$this->multiLingual_entityReferenceEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->entityReferenceEqual, '');
+			else
+				$this->entityReferenceEqual = (string)$xml->entityReferenceEqual;
+		}
 	}
 	/**
 	 * Reference type to filter by

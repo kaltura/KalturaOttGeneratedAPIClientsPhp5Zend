@@ -48,7 +48,12 @@ class Kaltura_Client_Type_CategoryTree extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		{
+			if(isset($xml->name->item) && count($xml->name->item))
+				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
+			else
+				$this->name = (string)$xml->name;
+		}
 		if(count($xml->multilingualName))
 		{
 			if(empty($xml->multilingualName))
@@ -96,13 +101,23 @@ class Kaltura_Client_Type_CategoryTree extends Kaltura_Client_ObjectBase
 		if(count($xml->endDateInSeconds))
 			$this->endDateInSeconds = (string)$xml->endDateInSeconds;
 		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		{
+			if(isset($xml->type->item) && count($xml->type->item))
+				$this->multiLingual_type = Kaltura_Client_ParseUtils::unmarshalArray($xml->type, '');
+			else
+				$this->type = (string)$xml->type;
+		}
 		if(count($xml->versionId))
 			$this->versionId = (string)$xml->versionId;
 		if(count($xml->virtualAssetId))
 			$this->virtualAssetId = (string)$xml->virtualAssetId;
 		if(count($xml->referenceId))
-			$this->referenceId = (string)$xml->referenceId;
+		{
+			if(isset($xml->referenceId->item) && count($xml->referenceId->item))
+				$this->multiLingual_referenceId = Kaltura_Client_ParseUtils::unmarshalArray($xml->referenceId, '');
+			else
+				$this->referenceId = (string)$xml->referenceId;
+		}
 	}
 	/**
 	 * Unique identifier for the category item

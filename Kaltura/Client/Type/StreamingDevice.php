@@ -48,9 +48,19 @@ class Kaltura_Client_Type_StreamingDevice extends Kaltura_Client_ObjectBase
 		if(count($xml->asset) && !empty($xml->asset))
 			$this->asset = Kaltura_Client_ParseUtils::unmarshalObject($xml->asset, "KalturaSlimAsset");
 		if(count($xml->userId))
-			$this->userId = (string)$xml->userId;
+		{
+			if(isset($xml->userId->item) && count($xml->userId->item))
+				$this->multiLingual_userId = Kaltura_Client_ParseUtils::unmarshalArray($xml->userId, '');
+			else
+				$this->userId = (string)$xml->userId;
+		}
 		if(count($xml->udid))
-			$this->udid = (string)$xml->udid;
+		{
+			if(isset($xml->udid->item) && count($xml->udid->item))
+				$this->multiLingual_udid = Kaltura_Client_ParseUtils::unmarshalArray($xml->udid, '');
+			else
+				$this->udid = (string)$xml->udid;
+		}
 	}
 	/**
 	 * Asset

@@ -46,7 +46,12 @@ class Kaltura_Client_Type_FilterAssetByKsqlAction extends Kaltura_Client_Type_Fi
 			return;
 		
 		if(count($xml->ksql))
-			$this->ksql = (string)$xml->ksql;
+		{
+			if(isset($xml->ksql->item) && count($xml->ksql->item))
+				$this->multiLingual_ksql = Kaltura_Client_ParseUtils::unmarshalArray($xml->ksql, '');
+			else
+				$this->ksql = (string)$xml->ksql;
+		}
 	}
 	/**
 	 * ksql to filter assets by

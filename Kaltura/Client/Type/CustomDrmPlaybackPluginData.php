@@ -46,7 +46,12 @@ class Kaltura_Client_Type_CustomDrmPlaybackPluginData extends Kaltura_Client_Typ
 			return;
 		
 		if(count($xml->data))
-			$this->data = (string)$xml->data;
+		{
+			if(isset($xml->data->item) && count($xml->data->item))
+				$this->multiLingual_data = Kaltura_Client_ParseUtils::unmarshalArray($xml->data, '');
+			else
+				$this->data = (string)$xml->data;
+		}
 	}
 	/**
 	 * Custom DRM license data

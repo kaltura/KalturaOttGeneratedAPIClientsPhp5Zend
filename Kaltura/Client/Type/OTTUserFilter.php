@@ -46,15 +46,40 @@ class Kaltura_Client_Type_OTTUserFilter extends Kaltura_Client_Type_Filter
 			return;
 		
 		if(count($xml->usernameEqual))
-			$this->usernameEqual = (string)$xml->usernameEqual;
+		{
+			if(isset($xml->usernameEqual->item) && count($xml->usernameEqual->item))
+				$this->multiLingual_usernameEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->usernameEqual, '');
+			else
+				$this->usernameEqual = (string)$xml->usernameEqual;
+		}
 		if(count($xml->externalIdEqual))
-			$this->externalIdEqual = (string)$xml->externalIdEqual;
+		{
+			if(isset($xml->externalIdEqual->item) && count($xml->externalIdEqual->item))
+				$this->multiLingual_externalIdEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalIdEqual, '');
+			else
+				$this->externalIdEqual = (string)$xml->externalIdEqual;
+		}
 		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
+		{
+			if(isset($xml->idIn->item) && count($xml->idIn->item))
+				$this->multiLingual_idIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->idIn, '');
+			else
+				$this->idIn = (string)$xml->idIn;
+		}
 		if(count($xml->roleIdsIn))
-			$this->roleIdsIn = (string)$xml->roleIdsIn;
+		{
+			if(isset($xml->roleIdsIn->item) && count($xml->roleIdsIn->item))
+				$this->multiLingual_roleIdsIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->roleIdsIn, '');
+			else
+				$this->roleIdsIn = (string)$xml->roleIdsIn;
+		}
 		if(count($xml->emailEqual))
-			$this->emailEqual = (string)$xml->emailEqual;
+		{
+			if(isset($xml->emailEqual->item) && count($xml->emailEqual->item))
+				$this->multiLingual_emailEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->emailEqual, '');
+			else
+				$this->emailEqual = (string)$xml->emailEqual;
+		}
 	}
 	/**
 	 * Username

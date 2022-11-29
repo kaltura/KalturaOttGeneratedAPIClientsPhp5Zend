@@ -46,7 +46,12 @@ class Kaltura_Client_Type_LicensedUrlRecordingRequest extends Kaltura_Client_Typ
 			return;
 		
 		if(count($xml->fileType))
-			$this->fileType = (string)$xml->fileType;
+		{
+			if(isset($xml->fileType->item) && count($xml->fileType->item))
+				$this->multiLingual_fileType = Kaltura_Client_ParseUtils::unmarshalArray($xml->fileType, '');
+			else
+				$this->fileType = (string)$xml->fileType;
+		}
 	}
 	/**
 	 * The file type for the URL

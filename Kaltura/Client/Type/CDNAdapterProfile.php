@@ -48,7 +48,12 @@ class Kaltura_Client_Type_CDNAdapterProfile extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (int)$xml->id;
 		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		{
+			if(isset($xml->name->item) && count($xml->name->item))
+				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
+			else
+				$this->name = (string)$xml->name;
+		}
 		if(count($xml->isActive))
 		{
 			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))
@@ -57,9 +62,19 @@ class Kaltura_Client_Type_CDNAdapterProfile extends Kaltura_Client_ObjectBase
 				$this->isActive = false;
 		}
 		if(count($xml->adapterUrl))
-			$this->adapterUrl = (string)$xml->adapterUrl;
+		{
+			if(isset($xml->adapterUrl->item) && count($xml->adapterUrl->item))
+				$this->multiLingual_adapterUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->adapterUrl, '');
+			else
+				$this->adapterUrl = (string)$xml->adapterUrl;
+		}
 		if(count($xml->baseUrl))
-			$this->baseUrl = (string)$xml->baseUrl;
+		{
+			if(isset($xml->baseUrl->item) && count($xml->baseUrl->item))
+				$this->multiLingual_baseUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->baseUrl, '');
+			else
+				$this->baseUrl = (string)$xml->baseUrl;
+		}
 		if(count($xml->settings))
 		{
 			if(empty($xml->settings))
@@ -68,9 +83,19 @@ class Kaltura_Client_Type_CDNAdapterProfile extends Kaltura_Client_ObjectBase
 				$this->settings = Kaltura_Client_ParseUtils::unmarshalMap($xml->settings, "KalturaStringValue");
 		}
 		if(count($xml->systemName))
-			$this->systemName = (string)$xml->systemName;
+		{
+			if(isset($xml->systemName->item) && count($xml->systemName->item))
+				$this->multiLingual_systemName = Kaltura_Client_ParseUtils::unmarshalArray($xml->systemName, '');
+			else
+				$this->systemName = (string)$xml->systemName;
+		}
 		if(count($xml->sharedSecret))
-			$this->sharedSecret = (string)$xml->sharedSecret;
+		{
+			if(isset($xml->sharedSecret->item) && count($xml->sharedSecret->item))
+				$this->multiLingual_sharedSecret = Kaltura_Client_ParseUtils::unmarshalArray($xml->sharedSecret, '');
+			else
+				$this->sharedSecret = (string)$xml->sharedSecret;
+		}
 	}
 	/**
 	 * CDN adapter identifier

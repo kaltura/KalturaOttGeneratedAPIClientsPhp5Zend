@@ -46,9 +46,19 @@ class Kaltura_Client_Type_RegexExpression extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->expression))
-			$this->expression = (string)$xml->expression;
+		{
+			if(isset($xml->expression->item) && count($xml->expression->item))
+				$this->multiLingual_expression = Kaltura_Client_ParseUtils::unmarshalArray($xml->expression, '');
+			else
+				$this->expression = (string)$xml->expression;
+		}
 		if(count($xml->description))
-			$this->description = (string)$xml->description;
+		{
+			if(isset($xml->description->item) && count($xml->description->item))
+				$this->multiLingual_description = Kaltura_Client_ParseUtils::unmarshalArray($xml->description, '');
+			else
+				$this->description = (string)$xml->description;
+		}
 	}
 	/**
 	 * regex expression

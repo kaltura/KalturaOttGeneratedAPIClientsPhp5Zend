@@ -48,7 +48,12 @@ class Kaltura_Client_Type_PaymentGatewayBaseProfile extends Kaltura_Client_Objec
 		if(count($xml->id))
 			$this->id = (int)$xml->id;
 		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		{
+			if(isset($xml->name->item) && count($xml->name->item))
+				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
+			else
+				$this->name = (string)$xml->name;
+		}
 		if(count($xml->isDefault))
 		{
 			if(!empty($xml->isDefault) && ((int) $xml->isDefault === 1 || strtolower((string)$xml->isDefault) === 'true'))
@@ -57,7 +62,12 @@ class Kaltura_Client_Type_PaymentGatewayBaseProfile extends Kaltura_Client_Objec
 				$this->isDefault = false;
 		}
 		if(count($xml->selectedBy))
-			$this->selectedBy = (string)$xml->selectedBy;
+		{
+			if(isset($xml->selectedBy->item) && count($xml->selectedBy->item))
+				$this->multiLingual_selectedBy = Kaltura_Client_ParseUtils::unmarshalArray($xml->selectedBy, '');
+			else
+				$this->selectedBy = (string)$xml->selectedBy;
+		}
 	}
 	/**
 	 * payment gateway id

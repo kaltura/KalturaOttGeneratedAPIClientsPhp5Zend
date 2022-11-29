@@ -46,9 +46,19 @@ class Kaltura_Client_Type_AssetLifeCycleBuisnessModuleTransitionAction extends K
 			return;
 		
 		if(count($xml->fileTypeIds))
-			$this->fileTypeIds = (string)$xml->fileTypeIds;
+		{
+			if(isset($xml->fileTypeIds->item) && count($xml->fileTypeIds->item))
+				$this->multiLingual_fileTypeIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->fileTypeIds, '');
+			else
+				$this->fileTypeIds = (string)$xml->fileTypeIds;
+		}
 		if(count($xml->ppvIds))
-			$this->ppvIds = (string)$xml->ppvIds;
+		{
+			if(isset($xml->ppvIds->item) && count($xml->ppvIds->item))
+				$this->multiLingual_ppvIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->ppvIds, '');
+			else
+				$this->ppvIds = (string)$xml->ppvIds;
+		}
 	}
 	/**
 	 * Comma separated list of fileType Ids.

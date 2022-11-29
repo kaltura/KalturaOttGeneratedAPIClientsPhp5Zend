@@ -48,9 +48,19 @@ class Kaltura_Client_Type_SegmentationType extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		{
+			if(isset($xml->name->item) && count($xml->name->item))
+				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
+			else
+				$this->name = (string)$xml->name;
+		}
 		if(count($xml->description))
-			$this->description = (string)$xml->description;
+		{
+			if(isset($xml->description->item) && count($xml->description->item))
+				$this->multiLingual_description = Kaltura_Client_ParseUtils::unmarshalArray($xml->description, '');
+			else
+				$this->description = (string)$xml->description;
+		}
 		if(count($xml->conditions))
 		{
 			if(empty($xml->conditions))
@@ -59,7 +69,12 @@ class Kaltura_Client_Type_SegmentationType extends Kaltura_Client_ObjectBase
 				$this->conditions = Kaltura_Client_ParseUtils::unmarshalArray($xml->conditions, "KalturaBaseSegmentCondition");
 		}
 		if(count($xml->conditionsOperator))
-			$this->conditionsOperator = (string)$xml->conditionsOperator;
+		{
+			if(isset($xml->conditionsOperator->item) && count($xml->conditionsOperator->item))
+				$this->multiLingual_conditionsOperator = Kaltura_Client_ParseUtils::unmarshalArray($xml->conditionsOperator, '');
+			else
+				$this->conditionsOperator = (string)$xml->conditionsOperator;
+		}
 		if(count($xml->actions))
 		{
 			if(empty($xml->actions))

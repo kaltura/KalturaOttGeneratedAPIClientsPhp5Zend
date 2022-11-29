@@ -46,11 +46,26 @@ class Kaltura_Client_Type_RecordingFilter extends Kaltura_Client_Type_Filter
 			return;
 		
 		if(count($xml->statusIn))
-			$this->statusIn = (string)$xml->statusIn;
+		{
+			if(isset($xml->statusIn->item) && count($xml->statusIn->item))
+				$this->multiLingual_statusIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->statusIn, '');
+			else
+				$this->statusIn = (string)$xml->statusIn;
+		}
 		if(count($xml->externalRecordingIdIn))
-			$this->externalRecordingIdIn = (string)$xml->externalRecordingIdIn;
+		{
+			if(isset($xml->externalRecordingIdIn->item) && count($xml->externalRecordingIdIn->item))
+				$this->multiLingual_externalRecordingIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalRecordingIdIn, '');
+			else
+				$this->externalRecordingIdIn = (string)$xml->externalRecordingIdIn;
+		}
 		if(count($xml->kSql))
-			$this->kSql = (string)$xml->kSql;
+		{
+			if(isset($xml->kSql->item) && count($xml->kSql->item))
+				$this->multiLingual_kSql = Kaltura_Client_ParseUtils::unmarshalArray($xml->kSql, '');
+			else
+				$this->kSql = (string)$xml->kSql;
+		}
 	}
 	/**
 	 * Recording Statuses

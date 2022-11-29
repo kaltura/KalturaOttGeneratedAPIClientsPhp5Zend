@@ -48,7 +48,12 @@ class Kaltura_Client_Type_UserSegment extends Kaltura_Client_ObjectBase
 		if(count($xml->segmentId))
 			$this->segmentId = (string)$xml->segmentId;
 		if(count($xml->userId))
-			$this->userId = (string)$xml->userId;
+		{
+			if(isset($xml->userId->item) && count($xml->userId->item))
+				$this->multiLingual_userId = Kaltura_Client_ParseUtils::unmarshalArray($xml->userId, '');
+			else
+				$this->userId = (string)$xml->userId;
+		}
 	}
 	/**
 	 * Segment Id

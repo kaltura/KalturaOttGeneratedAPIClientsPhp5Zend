@@ -53,9 +53,19 @@ class Kaltura_Client_Type_EngagementAdapter extends Kaltura_Client_Type_Engageme
 				$this->isActive = false;
 		}
 		if(count($xml->adapterUrl))
-			$this->adapterUrl = (string)$xml->adapterUrl;
+		{
+			if(isset($xml->adapterUrl->item) && count($xml->adapterUrl->item))
+				$this->multiLingual_adapterUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->adapterUrl, '');
+			else
+				$this->adapterUrl = (string)$xml->adapterUrl;
+		}
 		if(count($xml->providerUrl))
-			$this->providerUrl = (string)$xml->providerUrl;
+		{
+			if(isset($xml->providerUrl->item) && count($xml->providerUrl->item))
+				$this->multiLingual_providerUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->providerUrl, '');
+			else
+				$this->providerUrl = (string)$xml->providerUrl;
+		}
 		if(count($xml->engagementAdapterSettings))
 		{
 			if(empty($xml->engagementAdapterSettings))
@@ -64,7 +74,12 @@ class Kaltura_Client_Type_EngagementAdapter extends Kaltura_Client_Type_Engageme
 				$this->engagementAdapterSettings = Kaltura_Client_ParseUtils::unmarshalMap($xml->engagementAdapterSettings, "KalturaStringValue");
 		}
 		if(count($xml->sharedSecret))
-			$this->sharedSecret = (string)$xml->sharedSecret;
+		{
+			if(isset($xml->sharedSecret->item) && count($xml->sharedSecret->item))
+				$this->multiLingual_sharedSecret = Kaltura_Client_ParseUtils::unmarshalArray($xml->sharedSecret, '');
+			else
+				$this->sharedSecret = (string)$xml->sharedSecret;
+		}
 	}
 	/**
 	 * Engagement adapter active status
