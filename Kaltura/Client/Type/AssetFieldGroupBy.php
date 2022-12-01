@@ -46,7 +46,12 @@ class Kaltura_Client_Type_AssetFieldGroupBy extends Kaltura_Client_Type_AssetGro
 			return;
 		
 		if(count($xml->value))
-			$this->value = (string)$xml->value;
+		{
+			if(isset($xml->value->item) && count($xml->value->item))
+				$this->multiLingual_value = Kaltura_Client_ParseUtils::unmarshalArray($xml->value, '');
+			else
+				$this->value = (string)$xml->value;
+		}
 	}
 	/**
 	 * Group by a specific field that is defined in enum

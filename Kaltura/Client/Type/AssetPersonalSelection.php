@@ -48,7 +48,12 @@ class Kaltura_Client_Type_AssetPersonalSelection extends Kaltura_Client_ObjectBa
 		if(count($xml->assetId))
 			$this->assetId = (string)$xml->assetId;
 		if(count($xml->assetType))
-			$this->assetType = (string)$xml->assetType;
+		{
+			if(isset($xml->assetType->item) && count($xml->assetType->item))
+				$this->multiLingual_assetType = Kaltura_Client_ParseUtils::unmarshalArray($xml->assetType, '');
+			else
+				$this->assetType = (string)$xml->assetType;
+		}
 		if(count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
 	}

@@ -48,7 +48,12 @@ class Kaltura_Client_Type_BulkUploadProgramAssetResult extends Kaltura_Client_Ty
 		if(count($xml->programId))
 			$this->programId = (int)$xml->programId;
 		if(count($xml->programExternalId))
-			$this->programExternalId = (string)$xml->programExternalId;
+		{
+			if(isset($xml->programExternalId->item) && count($xml->programExternalId->item))
+				$this->multiLingual_programExternalId = Kaltura_Client_ParseUtils::unmarshalArray($xml->programExternalId, '');
+			else
+				$this->programExternalId = (string)$xml->programExternalId;
+		}
 		if(count($xml->liveAssetId))
 			$this->liveAssetId = (int)$xml->liveAssetId;
 	}

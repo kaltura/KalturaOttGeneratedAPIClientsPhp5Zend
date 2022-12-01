@@ -60,7 +60,12 @@ class Kaltura_Client_Type_AssetRule extends Kaltura_Client_Type_AssetRuleBase
 				$this->actions = Kaltura_Client_ParseUtils::unmarshalArray($xml->actions, "KalturaAssetRuleAction");
 		}
 		if(count($xml->status))
-			$this->status = (string)$xml->status;
+		{
+			if(isset($xml->status->item) && count($xml->status->item))
+				$this->multiLingual_status = Kaltura_Client_ParseUtils::unmarshalArray($xml->status, '');
+			else
+				$this->status = (string)$xml->status;
+		}
 	}
 	/**
 	 * List of conditions for the rule

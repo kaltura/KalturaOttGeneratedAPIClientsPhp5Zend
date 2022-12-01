@@ -46,7 +46,12 @@ class Kaltura_Client_Type_AssetMetaOrTagGroupBy extends Kaltura_Client_Type_Asse
 			return;
 		
 		if(count($xml->value))
-			$this->value = (string)$xml->value;
+		{
+			if(isset($xml->value->item) && count($xml->value->item))
+				$this->multiLingual_value = Kaltura_Client_ParseUtils::unmarshalArray($xml->value, '');
+			else
+				$this->value = (string)$xml->value;
+		}
 	}
 	/**
 	 * Group by a tag or meta - according to the name that appears in the system (similar to KSQL)

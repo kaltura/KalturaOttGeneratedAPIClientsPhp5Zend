@@ -46,7 +46,12 @@ class Kaltura_Client_Type_RecordingContextFilter extends Kaltura_Client_Type_Fil
 			return;
 		
 		if(count($xml->assetIdIn))
-			$this->assetIdIn = (string)$xml->assetIdIn;
+		{
+			if(isset($xml->assetIdIn->item) && count($xml->assetIdIn->item))
+				$this->multiLingual_assetIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->assetIdIn, '');
+			else
+				$this->assetIdIn = (string)$xml->assetIdIn;
+		}
 	}
 	/**
 	 * Comma separated asset ids

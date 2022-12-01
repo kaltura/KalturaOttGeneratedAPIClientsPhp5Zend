@@ -46,7 +46,12 @@ class Kaltura_Client_Type_UploadedFileTokenResource extends Kaltura_Client_Type_
 			return;
 		
 		if(count($xml->token))
-			$this->token = (string)$xml->token;
+		{
+			if(isset($xml->token->item) && count($xml->token->item))
+				$this->multiLingual_token = Kaltura_Client_ParseUtils::unmarshalArray($xml->token, '');
+			else
+				$this->token = (string)$xml->token;
+		}
 	}
 	/**
 	 * Token that returned from uploadToken.add action

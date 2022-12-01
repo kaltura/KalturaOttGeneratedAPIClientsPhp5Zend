@@ -46,25 +46,75 @@ abstract class Kaltura_Client_Type_Social extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->id))
-			$this->id = (string)$xml->id;
+		{
+			if(isset($xml->id->item) && count($xml->id->item))
+				$this->multiLingual_id = Kaltura_Client_ParseUtils::unmarshalArray($xml->id, '');
+			else
+				$this->id = (string)$xml->id;
+		}
 		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		{
+			if(isset($xml->name->item) && count($xml->name->item))
+				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
+			else
+				$this->name = (string)$xml->name;
+		}
 		if(count($xml->firstName))
-			$this->firstName = (string)$xml->firstName;
+		{
+			if(isset($xml->firstName->item) && count($xml->firstName->item))
+				$this->multiLingual_firstName = Kaltura_Client_ParseUtils::unmarshalArray($xml->firstName, '');
+			else
+				$this->firstName = (string)$xml->firstName;
+		}
 		if(count($xml->lastName))
-			$this->lastName = (string)$xml->lastName;
+		{
+			if(isset($xml->lastName->item) && count($xml->lastName->item))
+				$this->multiLingual_lastName = Kaltura_Client_ParseUtils::unmarshalArray($xml->lastName, '');
+			else
+				$this->lastName = (string)$xml->lastName;
+		}
 		if(count($xml->email))
-			$this->email = (string)$xml->email;
+		{
+			if(isset($xml->email->item) && count($xml->email->item))
+				$this->multiLingual_email = Kaltura_Client_ParseUtils::unmarshalArray($xml->email, '');
+			else
+				$this->email = (string)$xml->email;
+		}
 		if(count($xml->gender))
-			$this->gender = (string)$xml->gender;
+		{
+			if(isset($xml->gender->item) && count($xml->gender->item))
+				$this->multiLingual_gender = Kaltura_Client_ParseUtils::unmarshalArray($xml->gender, '');
+			else
+				$this->gender = (string)$xml->gender;
+		}
 		if(count($xml->userId))
-			$this->userId = (string)$xml->userId;
+		{
+			if(isset($xml->userId->item) && count($xml->userId->item))
+				$this->multiLingual_userId = Kaltura_Client_ParseUtils::unmarshalArray($xml->userId, '');
+			else
+				$this->userId = (string)$xml->userId;
+		}
 		if(count($xml->birthday))
-			$this->birthday = (string)$xml->birthday;
+		{
+			if(isset($xml->birthday->item) && count($xml->birthday->item))
+				$this->multiLingual_birthday = Kaltura_Client_ParseUtils::unmarshalArray($xml->birthday, '');
+			else
+				$this->birthday = (string)$xml->birthday;
+		}
 		if(count($xml->status))
-			$this->status = (string)$xml->status;
+		{
+			if(isset($xml->status->item) && count($xml->status->item))
+				$this->multiLingual_status = Kaltura_Client_ParseUtils::unmarshalArray($xml->status, '');
+			else
+				$this->status = (string)$xml->status;
+		}
 		if(count($xml->pictureUrl))
-			$this->pictureUrl = (string)$xml->pictureUrl;
+		{
+			if(isset($xml->pictureUrl->item) && count($xml->pictureUrl->item))
+				$this->multiLingual_pictureUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->pictureUrl, '');
+			else
+				$this->pictureUrl = (string)$xml->pictureUrl;
+		}
 	}
 	/**
 	 * Facebook identifier

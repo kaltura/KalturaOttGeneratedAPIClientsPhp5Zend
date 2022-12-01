@@ -50,7 +50,12 @@ class Kaltura_Client_Type_AssetStructMeta extends Kaltura_Client_ObjectBase
 		if(count($xml->metaId))
 			$this->metaId = (string)$xml->metaId;
 		if(count($xml->ingestReferencePath))
-			$this->ingestReferencePath = (string)$xml->ingestReferencePath;
+		{
+			if(isset($xml->ingestReferencePath->item) && count($xml->ingestReferencePath->item))
+				$this->multiLingual_ingestReferencePath = Kaltura_Client_ParseUtils::unmarshalArray($xml->ingestReferencePath, '');
+			else
+				$this->ingestReferencePath = (string)$xml->ingestReferencePath;
+		}
 		if(count($xml->protectFromIngest))
 		{
 			if(!empty($xml->protectFromIngest) && ((int) $xml->protectFromIngest === 1 || strtolower((string)$xml->protectFromIngest) === 'true'))
@@ -59,7 +64,12 @@ class Kaltura_Client_Type_AssetStructMeta extends Kaltura_Client_ObjectBase
 				$this->protectFromIngest = false;
 		}
 		if(count($xml->defaultIngestValue))
-			$this->defaultIngestValue = (string)$xml->defaultIngestValue;
+		{
+			if(isset($xml->defaultIngestValue->item) && count($xml->defaultIngestValue->item))
+				$this->multiLingual_defaultIngestValue = Kaltura_Client_ParseUtils::unmarshalArray($xml->defaultIngestValue, '');
+			else
+				$this->defaultIngestValue = (string)$xml->defaultIngestValue;
+		}
 		if(count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
 		if(count($xml->updateDate))
@@ -81,7 +91,12 @@ class Kaltura_Client_Type_AssetStructMeta extends Kaltura_Client_ObjectBase
 		if(count($xml->suppressedOrder))
 			$this->suppressedOrder = (int)$xml->suppressedOrder;
 		if(count($xml->aliasName))
-			$this->aliasName = (string)$xml->aliasName;
+		{
+			if(isset($xml->aliasName->item) && count($xml->aliasName->item))
+				$this->multiLingual_aliasName = Kaltura_Client_ParseUtils::unmarshalArray($xml->aliasName, '');
+			else
+				$this->aliasName = (string)$xml->aliasName;
+		}
 	}
 	/**
 	 * Asset Struct id (template_id)

@@ -46,11 +46,26 @@ class Kaltura_Client_Type_LiveAsset extends Kaltura_Client_Type_MediaAsset
 			return;
 		
 		if(count($xml->enableCdvrState))
-			$this->enableCdvrState = (string)$xml->enableCdvrState;
+		{
+			if(isset($xml->enableCdvrState->item) && count($xml->enableCdvrState->item))
+				$this->multiLingual_enableCdvrState = Kaltura_Client_ParseUtils::unmarshalArray($xml->enableCdvrState, '');
+			else
+				$this->enableCdvrState = (string)$xml->enableCdvrState;
+		}
 		if(count($xml->enableCatchUpState))
-			$this->enableCatchUpState = (string)$xml->enableCatchUpState;
+		{
+			if(isset($xml->enableCatchUpState->item) && count($xml->enableCatchUpState->item))
+				$this->multiLingual_enableCatchUpState = Kaltura_Client_ParseUtils::unmarshalArray($xml->enableCatchUpState, '');
+			else
+				$this->enableCatchUpState = (string)$xml->enableCatchUpState;
+		}
 		if(count($xml->enableStartOverState))
-			$this->enableStartOverState = (string)$xml->enableStartOverState;
+		{
+			if(isset($xml->enableStartOverState->item) && count($xml->enableStartOverState->item))
+				$this->multiLingual_enableStartOverState = Kaltura_Client_ParseUtils::unmarshalArray($xml->enableStartOverState, '');
+			else
+				$this->enableStartOverState = (string)$xml->enableStartOverState;
+		}
 		if(count($xml->bufferCatchUpSetting))
 			$this->bufferCatchUpSetting = (string)$xml->bufferCatchUpSetting;
 		if(count($xml->paddingBeforeProgramStarts))
@@ -60,13 +75,33 @@ class Kaltura_Client_Type_LiveAsset extends Kaltura_Client_Type_MediaAsset
 		if(count($xml->bufferTrickPlaySetting))
 			$this->bufferTrickPlaySetting = (string)$xml->bufferTrickPlaySetting;
 		if(count($xml->enableRecordingPlaybackNonEntitledChannelState))
-			$this->enableRecordingPlaybackNonEntitledChannelState = (string)$xml->enableRecordingPlaybackNonEntitledChannelState;
+		{
+			if(isset($xml->enableRecordingPlaybackNonEntitledChannelState->item) && count($xml->enableRecordingPlaybackNonEntitledChannelState->item))
+				$this->multiLingual_enableRecordingPlaybackNonEntitledChannelState = Kaltura_Client_ParseUtils::unmarshalArray($xml->enableRecordingPlaybackNonEntitledChannelState, '');
+			else
+				$this->enableRecordingPlaybackNonEntitledChannelState = (string)$xml->enableRecordingPlaybackNonEntitledChannelState;
+		}
 		if(count($xml->enableTrickPlayState))
-			$this->enableTrickPlayState = (string)$xml->enableTrickPlayState;
+		{
+			if(isset($xml->enableTrickPlayState->item) && count($xml->enableTrickPlayState->item))
+				$this->multiLingual_enableTrickPlayState = Kaltura_Client_ParseUtils::unmarshalArray($xml->enableTrickPlayState, '');
+			else
+				$this->enableTrickPlayState = (string)$xml->enableTrickPlayState;
+		}
 		if(count($xml->externalEpgIngestId))
-			$this->externalEpgIngestId = (string)$xml->externalEpgIngestId;
+		{
+			if(isset($xml->externalEpgIngestId->item) && count($xml->externalEpgIngestId->item))
+				$this->multiLingual_externalEpgIngestId = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalEpgIngestId, '');
+			else
+				$this->externalEpgIngestId = (string)$xml->externalEpgIngestId;
+		}
 		if(count($xml->externalCdvrId))
-			$this->externalCdvrId = (string)$xml->externalCdvrId;
+		{
+			if(isset($xml->externalCdvrId->item) && count($xml->externalCdvrId->item))
+				$this->multiLingual_externalCdvrId = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalCdvrId, '');
+			else
+				$this->externalCdvrId = (string)$xml->externalCdvrId;
+		}
 		if(count($xml->enableCdvr))
 		{
 			if(!empty($xml->enableCdvr) && ((int) $xml->enableCdvr === 1 || strtolower((string)$xml->enableCdvr) === 'true'))
@@ -107,7 +142,12 @@ class Kaltura_Client_Type_LiveAsset extends Kaltura_Client_Type_MediaAsset
 				$this->enableTrickPlay = false;
 		}
 		if(count($xml->channelType))
-			$this->channelType = (string)$xml->channelType;
+		{
+			if(isset($xml->channelType->item) && count($xml->channelType->item))
+				$this->multiLingual_channelType = Kaltura_Client_ParseUtils::unmarshalArray($xml->channelType, '');
+			else
+				$this->channelType = (string)$xml->channelType;
+		}
 	}
 	/**
 	 * Enable CDVR, configuration only

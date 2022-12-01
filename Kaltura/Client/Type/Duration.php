@@ -46,7 +46,12 @@ class Kaltura_Client_Type_Duration extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->unit))
-			$this->unit = (string)$xml->unit;
+		{
+			if(isset($xml->unit->item) && count($xml->unit->item))
+				$this->multiLingual_unit = Kaltura_Client_ParseUtils::unmarshalArray($xml->unit, '');
+			else
+				$this->unit = (string)$xml->unit;
+		}
 		if(count($xml->value))
 			$this->value = (int)$xml->value;
 		if(count($xml->code))

@@ -50,7 +50,12 @@ class Kaltura_Client_Type_Tag extends Kaltura_Client_ObjectBase
 		if(count($xml->type))
 			$this->type = (int)$xml->type;
 		if(count($xml->tag))
-			$this->tag = (string)$xml->tag;
+		{
+			if(isset($xml->tag->item) && count($xml->tag->item))
+				$this->multiLingual_tag = Kaltura_Client_ParseUtils::unmarshalArray($xml->tag, '');
+			else
+				$this->tag = (string)$xml->tag;
+		}
 		if(count($xml->multilingualTag))
 		{
 			if(empty($xml->multilingualTag))

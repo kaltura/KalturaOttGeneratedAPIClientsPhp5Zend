@@ -46,11 +46,21 @@ class Kaltura_Client_Type_Bookmark extends Kaltura_Client_Type_SlimAsset
 			return;
 		
 		if(count($xml->userId))
-			$this->userId = (string)$xml->userId;
+		{
+			if(isset($xml->userId->item) && count($xml->userId->item))
+				$this->multiLingual_userId = Kaltura_Client_ParseUtils::unmarshalArray($xml->userId, '');
+			else
+				$this->userId = (string)$xml->userId;
+		}
 		if(count($xml->position))
 			$this->position = (int)$xml->position;
 		if(count($xml->positionOwner))
-			$this->positionOwner = (string)$xml->positionOwner;
+		{
+			if(isset($xml->positionOwner->item) && count($xml->positionOwner->item))
+				$this->multiLingual_positionOwner = Kaltura_Client_ParseUtils::unmarshalArray($xml->positionOwner, '');
+			else
+				$this->positionOwner = (string)$xml->positionOwner;
+		}
 		if(count($xml->finishedWatching))
 		{
 			if(!empty($xml->finishedWatching) && ((int) $xml->finishedWatching === 1 || strtolower((string)$xml->finishedWatching) === 'true'))
@@ -70,7 +80,12 @@ class Kaltura_Client_Type_Bookmark extends Kaltura_Client_Type_SlimAsset
 				$this->isReportingMode = false;
 		}
 		if(count($xml->context))
-			$this->context = (string)$xml->context;
+		{
+			if(isset($xml->context->item) && count($xml->context->item))
+				$this->multiLingual_context = Kaltura_Client_ParseUtils::unmarshalArray($xml->context, '');
+			else
+				$this->context = (string)$xml->context;
+		}
 	}
 	/**
 	 * User identifier
@@ -82,6 +97,7 @@ class Kaltura_Client_Type_Bookmark extends Kaltura_Client_Type_SlimAsset
 
 	/**
 	 * The position of the user in the specific asset (in seconds)
+	 *             For external recordings will always be &#39;0&#39;
 	 *
 	 * @var int
 	 * @insertonly
@@ -98,6 +114,7 @@ class Kaltura_Client_Type_Bookmark extends Kaltura_Client_Type_SlimAsset
 
 	/**
 	 * Specifies whether the user&#39;s current position exceeded 95% of the duration
+	 *             For external recordings will always be &#39;True&#39;
 	 *
 	 * @var bool
 	 * @readonly

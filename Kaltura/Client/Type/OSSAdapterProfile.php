@@ -53,7 +53,12 @@ class Kaltura_Client_Type_OSSAdapterProfile extends Kaltura_Client_Type_OSSAdapt
 				$this->isActive = false;
 		}
 		if(count($xml->adapterUrl))
-			$this->adapterUrl = (string)$xml->adapterUrl;
+		{
+			if(isset($xml->adapterUrl->item) && count($xml->adapterUrl->item))
+				$this->multiLingual_adapterUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->adapterUrl, '');
+			else
+				$this->adapterUrl = (string)$xml->adapterUrl;
+		}
 		if(count($xml->ossAdapterSettings))
 		{
 			if(empty($xml->ossAdapterSettings))
@@ -62,9 +67,19 @@ class Kaltura_Client_Type_OSSAdapterProfile extends Kaltura_Client_Type_OSSAdapt
 				$this->ossAdapterSettings = Kaltura_Client_ParseUtils::unmarshalMap($xml->ossAdapterSettings, "KalturaStringValue");
 		}
 		if(count($xml->externalIdentifier))
-			$this->externalIdentifier = (string)$xml->externalIdentifier;
+		{
+			if(isset($xml->externalIdentifier->item) && count($xml->externalIdentifier->item))
+				$this->multiLingual_externalIdentifier = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalIdentifier, '');
+			else
+				$this->externalIdentifier = (string)$xml->externalIdentifier;
+		}
 		if(count($xml->sharedSecret))
-			$this->sharedSecret = (string)$xml->sharedSecret;
+		{
+			if(isset($xml->sharedSecret->item) && count($xml->sharedSecret->item))
+				$this->multiLingual_sharedSecret = Kaltura_Client_ParseUtils::unmarshalArray($xml->sharedSecret, '');
+			else
+				$this->sharedSecret = (string)$xml->sharedSecret;
+		}
 	}
 	/**
 	 * OSS adapter active status

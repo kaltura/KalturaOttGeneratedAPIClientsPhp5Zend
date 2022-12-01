@@ -46,7 +46,12 @@ class Kaltura_Client_Type_PersonalListSearchFilter extends Kaltura_Client_Type_B
 			return;
 		
 		if(count($xml->partnerListTypeIn))
-			$this->partnerListTypeIn = (string)$xml->partnerListTypeIn;
+		{
+			if(isset($xml->partnerListTypeIn->item) && count($xml->partnerListTypeIn->item))
+				$this->multiLingual_partnerListTypeIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->partnerListTypeIn, '');
+			else
+				$this->partnerListTypeIn = (string)$xml->partnerListTypeIn;
+		}
 	}
 	/**
 	 * Comma separated list of partner list types to search within. 

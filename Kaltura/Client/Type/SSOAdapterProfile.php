@@ -48,11 +48,21 @@ class Kaltura_Client_Type_SSOAdapterProfile extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (int)$xml->id;
 		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		{
+			if(isset($xml->name->item) && count($xml->name->item))
+				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
+			else
+				$this->name = (string)$xml->name;
+		}
 		if(count($xml->isActive))
 			$this->isActive = (int)$xml->isActive;
 		if(count($xml->adapterUrl))
-			$this->adapterUrl = (string)$xml->adapterUrl;
+		{
+			if(isset($xml->adapterUrl->item) && count($xml->adapterUrl->item))
+				$this->multiLingual_adapterUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->adapterUrl, '');
+			else
+				$this->adapterUrl = (string)$xml->adapterUrl;
+		}
 		if(count($xml->settings))
 		{
 			if(empty($xml->settings))
@@ -61,9 +71,19 @@ class Kaltura_Client_Type_SSOAdapterProfile extends Kaltura_Client_ObjectBase
 				$this->settings = Kaltura_Client_ParseUtils::unmarshalMap($xml->settings, "KalturaStringValue");
 		}
 		if(count($xml->externalIdentifier))
-			$this->externalIdentifier = (string)$xml->externalIdentifier;
+		{
+			if(isset($xml->externalIdentifier->item) && count($xml->externalIdentifier->item))
+				$this->multiLingual_externalIdentifier = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalIdentifier, '');
+			else
+				$this->externalIdentifier = (string)$xml->externalIdentifier;
+		}
 		if(count($xml->sharedSecret))
-			$this->sharedSecret = (string)$xml->sharedSecret;
+		{
+			if(isset($xml->sharedSecret->item) && count($xml->sharedSecret->item))
+				$this->multiLingual_sharedSecret = Kaltura_Client_ParseUtils::unmarshalArray($xml->sharedSecret, '');
+			else
+				$this->sharedSecret = (string)$xml->sharedSecret;
+		}
 	}
 	/**
 	 * SSO Adapter id

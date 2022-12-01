@@ -46,7 +46,12 @@ class Kaltura_Client_Type_CouponFilter extends Kaltura_Client_Type_Filter
 			return;
 		
 		if(count($xml->couponCodesIn))
-			$this->couponCodesIn = (string)$xml->couponCodesIn;
+		{
+			if(isset($xml->couponCodesIn->item) && count($xml->couponCodesIn->item))
+				$this->multiLingual_couponCodesIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->couponCodesIn, '');
+			else
+				$this->couponCodesIn = (string)$xml->couponCodesIn;
+		}
 	}
 	/**
 	 * Comma separated list of coupon codes.

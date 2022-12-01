@@ -46,9 +46,19 @@ class Kaltura_Client_Type_TvmRuleFilter extends Kaltura_Client_Type_Filter
 			return;
 		
 		if(count($xml->ruleTypeEqual))
-			$this->ruleTypeEqual = (string)$xml->ruleTypeEqual;
+		{
+			if(isset($xml->ruleTypeEqual->item) && count($xml->ruleTypeEqual->item))
+				$this->multiLingual_ruleTypeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->ruleTypeEqual, '');
+			else
+				$this->ruleTypeEqual = (string)$xml->ruleTypeEqual;
+		}
 		if(count($xml->nameEqual))
-			$this->nameEqual = (string)$xml->nameEqual;
+		{
+			if(isset($xml->nameEqual->item) && count($xml->nameEqual->item))
+				$this->multiLingual_nameEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->nameEqual, '');
+			else
+				$this->nameEqual = (string)$xml->nameEqual;
+		}
 	}
 	/**
 	 * Indicates which tvm rule list to return by their type.

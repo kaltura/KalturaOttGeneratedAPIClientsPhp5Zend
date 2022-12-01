@@ -48,9 +48,19 @@ class Kaltura_Client_Type_SocialFriendActivityFilter extends Kaltura_Client_Type
 		if(count($xml->assetIdEqual))
 			$this->assetIdEqual = (string)$xml->assetIdEqual;
 		if(count($xml->assetTypeEqual))
-			$this->assetTypeEqual = (string)$xml->assetTypeEqual;
+		{
+			if(isset($xml->assetTypeEqual->item) && count($xml->assetTypeEqual->item))
+				$this->multiLingual_assetTypeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->assetTypeEqual, '');
+			else
+				$this->assetTypeEqual = (string)$xml->assetTypeEqual;
+		}
 		if(count($xml->actionTypeIn))
-			$this->actionTypeIn = (string)$xml->actionTypeIn;
+		{
+			if(isset($xml->actionTypeIn->item) && count($xml->actionTypeIn->item))
+				$this->multiLingual_actionTypeIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->actionTypeIn, '');
+			else
+				$this->actionTypeIn = (string)$xml->actionTypeIn;
+		}
 	}
 	/**
 	 * Asset ID to filter by

@@ -46,25 +46,65 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 			return;
 		
 		if(count($xml->partnerName))
-			$this->partnerName = (string)$xml->partnerName;
+		{
+			if(isset($xml->partnerName->item) && count($xml->partnerName->item))
+				$this->multiLingual_partnerName = Kaltura_Client_ParseUtils::unmarshalArray($xml->partnerName, '');
+			else
+				$this->partnerName = (string)$xml->partnerName;
+		}
 		if(count($xml->mainLanguage))
 			$this->mainLanguage = (int)$xml->mainLanguage;
 		if(count($xml->secondaryLanguages))
-			$this->secondaryLanguages = (string)$xml->secondaryLanguages;
+		{
+			if(isset($xml->secondaryLanguages->item) && count($xml->secondaryLanguages->item))
+				$this->multiLingual_secondaryLanguages = Kaltura_Client_ParseUtils::unmarshalArray($xml->secondaryLanguages, '');
+			else
+				$this->secondaryLanguages = (string)$xml->secondaryLanguages;
+		}
 		if(count($xml->deleteMediaPolicy))
-			$this->deleteMediaPolicy = (string)$xml->deleteMediaPolicy;
+		{
+			if(isset($xml->deleteMediaPolicy->item) && count($xml->deleteMediaPolicy->item))
+				$this->multiLingual_deleteMediaPolicy = Kaltura_Client_ParseUtils::unmarshalArray($xml->deleteMediaPolicy, '');
+			else
+				$this->deleteMediaPolicy = (string)$xml->deleteMediaPolicy;
+		}
 		if(count($xml->mainCurrency))
 			$this->mainCurrency = (int)$xml->mainCurrency;
 		if(count($xml->secondaryCurrencies))
-			$this->secondaryCurrencies = (string)$xml->secondaryCurrencies;
+		{
+			if(isset($xml->secondaryCurrencies->item) && count($xml->secondaryCurrencies->item))
+				$this->multiLingual_secondaryCurrencies = Kaltura_Client_ParseUtils::unmarshalArray($xml->secondaryCurrencies, '');
+			else
+				$this->secondaryCurrencies = (string)$xml->secondaryCurrencies;
+		}
 		if(count($xml->downgradePolicy))
-			$this->downgradePolicy = (string)$xml->downgradePolicy;
+		{
+			if(isset($xml->downgradePolicy->item) && count($xml->downgradePolicy->item))
+				$this->multiLingual_downgradePolicy = Kaltura_Client_ParseUtils::unmarshalArray($xml->downgradePolicy, '');
+			else
+				$this->downgradePolicy = (string)$xml->downgradePolicy;
+		}
 		if(count($xml->downgradePriorityFamilyIds))
-			$this->downgradePriorityFamilyIds = (string)$xml->downgradePriorityFamilyIds;
+		{
+			if(isset($xml->downgradePriorityFamilyIds->item) && count($xml->downgradePriorityFamilyIds->item))
+				$this->multiLingual_downgradePriorityFamilyIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->downgradePriorityFamilyIds, '');
+			else
+				$this->downgradePriorityFamilyIds = (string)$xml->downgradePriorityFamilyIds;
+		}
 		if(count($xml->mailSettings))
-			$this->mailSettings = (string)$xml->mailSettings;
+		{
+			if(isset($xml->mailSettings->item) && count($xml->mailSettings->item))
+				$this->multiLingual_mailSettings = Kaltura_Client_ParseUtils::unmarshalArray($xml->mailSettings, '');
+			else
+				$this->mailSettings = (string)$xml->mailSettings;
+		}
 		if(count($xml->dateFormat))
-			$this->dateFormat = (string)$xml->dateFormat;
+		{
+			if(isset($xml->dateFormat->item) && count($xml->dateFormat->item))
+				$this->multiLingual_dateFormat = Kaltura_Client_ParseUtils::unmarshalArray($xml->dateFormat, '');
+			else
+				$this->dateFormat = (string)$xml->dateFormat;
+		}
 		if(count($xml->householdLimitationModule))
 			$this->householdLimitationModule = (int)$xml->householdLimitationModule;
 		if(count($xml->enableRegionFiltering))
@@ -83,7 +123,12 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 		if(count($xml->finishedPercentThreshold))
 			$this->finishedPercentThreshold = (int)$xml->finishedPercentThreshold;
 		if(count($xml->suspensionProfileInheritanceType))
-			$this->suspensionProfileInheritanceType = (string)$xml->suspensionProfileInheritanceType;
+		{
+			if(isset($xml->suspensionProfileInheritanceType->item) && count($xml->suspensionProfileInheritanceType->item))
+				$this->multiLingual_suspensionProfileInheritanceType = Kaltura_Client_ParseUtils::unmarshalArray($xml->suspensionProfileInheritanceType, '');
+			else
+				$this->suspensionProfileInheritanceType = (string)$xml->suspensionProfileInheritanceType;
+		}
 		if(count($xml->allowDeviceMobility))
 		{
 			if(!empty($xml->allowDeviceMobility) && ((int) $xml->allowDeviceMobility === 1 || strtolower((string)$xml->allowDeviceMobility) === 'true'))

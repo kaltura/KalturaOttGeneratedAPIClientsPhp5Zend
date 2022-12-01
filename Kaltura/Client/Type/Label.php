@@ -48,9 +48,19 @@ class Kaltura_Client_Type_Label extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->value))
-			$this->value = (string)$xml->value;
+		{
+			if(isset($xml->value->item) && count($xml->value->item))
+				$this->multiLingual_value = Kaltura_Client_ParseUtils::unmarshalArray($xml->value, '');
+			else
+				$this->value = (string)$xml->value;
+		}
 		if(count($xml->entityAttribute))
-			$this->entityAttribute = (string)$xml->entityAttribute;
+		{
+			if(isset($xml->entityAttribute->item) && count($xml->entityAttribute->item))
+				$this->multiLingual_entityAttribute = Kaltura_Client_ParseUtils::unmarshalArray($xml->entityAttribute, '');
+			else
+				$this->entityAttribute = (string)$xml->entityAttribute;
+		}
 	}
 	/**
 	 * Label identifier

@@ -46,9 +46,19 @@ class Kaltura_Client_Type_UserSegmentFilter extends Kaltura_Client_Type_Filter
 			return;
 		
 		if(count($xml->userIdEqual))
-			$this->userIdEqual = (string)$xml->userIdEqual;
+		{
+			if(isset($xml->userIdEqual->item) && count($xml->userIdEqual->item))
+				$this->multiLingual_userIdEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->userIdEqual, '');
+			else
+				$this->userIdEqual = (string)$xml->userIdEqual;
+		}
 		if(count($xml->kSql))
-			$this->kSql = (string)$xml->kSql;
+		{
+			if(isset($xml->kSql->item) && count($xml->kSql->item))
+				$this->multiLingual_kSql = Kaltura_Client_ParseUtils::unmarshalArray($xml->kSql, '');
+			else
+				$this->kSql = (string)$xml->kSql;
+		}
 	}
 	/**
 	 * User ID

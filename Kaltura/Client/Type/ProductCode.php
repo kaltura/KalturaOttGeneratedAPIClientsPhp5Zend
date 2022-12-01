@@ -46,9 +46,19 @@ class Kaltura_Client_Type_ProductCode extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->inappProvider))
-			$this->inappProvider = (string)$xml->inappProvider;
+		{
+			if(isset($xml->inappProvider->item) && count($xml->inappProvider->item))
+				$this->multiLingual_inappProvider = Kaltura_Client_ParseUtils::unmarshalArray($xml->inappProvider, '');
+			else
+				$this->inappProvider = (string)$xml->inappProvider;
+		}
 		if(count($xml->code))
-			$this->code = (string)$xml->code;
+		{
+			if(isset($xml->code->item) && count($xml->code->item))
+				$this->multiLingual_code = Kaltura_Client_ParseUtils::unmarshalArray($xml->code, '');
+			else
+				$this->code = (string)$xml->code;
+		}
 	}
 	/**
 	 * Provider Name

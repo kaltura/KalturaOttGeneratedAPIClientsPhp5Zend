@@ -48,15 +48,32 @@ class Kaltura_Client_Type_SegmentationType extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		{
+			if(isset($xml->name->item) && count($xml->name->item))
+				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
+			else
+				$this->name = (string)$xml->name;
+		}
 		if(count($xml->description))
-			$this->description = (string)$xml->description;
+		{
+			if(isset($xml->description->item) && count($xml->description->item))
+				$this->multiLingual_description = Kaltura_Client_ParseUtils::unmarshalArray($xml->description, '');
+			else
+				$this->description = (string)$xml->description;
+		}
 		if(count($xml->conditions))
 		{
 			if(empty($xml->conditions))
 				$this->conditions = array();
 			else
 				$this->conditions = Kaltura_Client_ParseUtils::unmarshalArray($xml->conditions, "KalturaBaseSegmentCondition");
+		}
+		if(count($xml->conditionsOperator))
+		{
+			if(isset($xml->conditionsOperator->item) && count($xml->conditionsOperator->item))
+				$this->multiLingual_conditionsOperator = Kaltura_Client_ParseUtils::unmarshalArray($xml->conditionsOperator, '');
+			else
+				$this->conditionsOperator = (string)$xml->conditionsOperator;
 		}
 		if(count($xml->actions))
 		{
@@ -69,6 +86,10 @@ class Kaltura_Client_Type_SegmentationType extends Kaltura_Client_ObjectBase
 			$this->value = Kaltura_Client_ParseUtils::unmarshalObject($xml->value, "KalturaBaseSegmentValue");
 		if(count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
+		if(count($xml->updateDate))
+			$this->updateDate = (string)$xml->updateDate;
+		if(count($xml->executeDate))
+			$this->executeDate = (string)$xml->executeDate;
 		if(count($xml->version))
 			$this->version = (string)$xml->version;
 	}
@@ -102,6 +123,13 @@ class Kaltura_Client_Type_SegmentationType extends Kaltura_Client_ObjectBase
 	public $conditions;
 
 	/**
+	 * Boolean operator between segmentation type&#39;s conditions - defaults to &quot;And&quot;
+	 *
+	 * @var Kaltura_Client_Enum_BooleanOperator
+	 */
+	public $conditionsOperator = null;
+
+	/**
 	 * Segmentation conditions - can be empty
 	 *
 	 * @var array of KalturaBaseSegmentAction
@@ -122,6 +150,22 @@ class Kaltura_Client_Type_SegmentationType extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $createDate = null;
+
+	/**
+	 * Update date of segmentation type
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $updateDate = null;
+
+	/**
+	 * Last date of execution of segmentation type
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $executeDate = null;
 
 	/**
 	 * Segmentation type version

@@ -46,7 +46,12 @@ class Kaltura_Client_Type_UserRoleFilter extends Kaltura_Client_Type_Filter
 			return;
 		
 		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
+		{
+			if(isset($xml->idIn->item) && count($xml->idIn->item))
+				$this->multiLingual_idIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->idIn, '');
+			else
+				$this->idIn = (string)$xml->idIn;
+		}
 		if(count($xml->currentUserRoleIdsContains))
 		{
 			if(!empty($xml->currentUserRoleIdsContains) && ((int) $xml->currentUserRoleIdsContains === 1 || strtolower((string)$xml->currentUserRoleIdsContains) === 'true'))
@@ -55,9 +60,19 @@ class Kaltura_Client_Type_UserRoleFilter extends Kaltura_Client_Type_Filter
 				$this->currentUserRoleIdsContains = false;
 		}
 		if(count($xml->typeEqual))
-			$this->typeEqual = (string)$xml->typeEqual;
+		{
+			if(isset($xml->typeEqual->item) && count($xml->typeEqual->item))
+				$this->multiLingual_typeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->typeEqual, '');
+			else
+				$this->typeEqual = (string)$xml->typeEqual;
+		}
 		if(count($xml->profileEqual))
-			$this->profileEqual = (string)$xml->profileEqual;
+		{
+			if(isset($xml->profileEqual->item) && count($xml->profileEqual->item))
+				$this->multiLingual_profileEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->profileEqual, '');
+			else
+				$this->profileEqual = (string)$xml->profileEqual;
+		}
 	}
 	/**
 	 * Comma separated roles identifiers

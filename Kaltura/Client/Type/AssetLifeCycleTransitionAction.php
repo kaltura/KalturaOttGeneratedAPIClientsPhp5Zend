@@ -46,9 +46,19 @@ abstract class Kaltura_Client_Type_AssetLifeCycleTransitionAction extends Kaltur
 			return;
 		
 		if(count($xml->assetLifeCycleRuleActionType))
-			$this->assetLifeCycleRuleActionType = (string)$xml->assetLifeCycleRuleActionType;
+		{
+			if(isset($xml->assetLifeCycleRuleActionType->item) && count($xml->assetLifeCycleRuleActionType->item))
+				$this->multiLingual_assetLifeCycleRuleActionType = Kaltura_Client_ParseUtils::unmarshalArray($xml->assetLifeCycleRuleActionType, '');
+			else
+				$this->assetLifeCycleRuleActionType = (string)$xml->assetLifeCycleRuleActionType;
+		}
 		if(count($xml->assetLifeCycleRuleTransitionType))
-			$this->assetLifeCycleRuleTransitionType = (string)$xml->assetLifeCycleRuleTransitionType;
+		{
+			if(isset($xml->assetLifeCycleRuleTransitionType->item) && count($xml->assetLifeCycleRuleTransitionType->item))
+				$this->multiLingual_assetLifeCycleRuleTransitionType = Kaltura_Client_ParseUtils::unmarshalArray($xml->assetLifeCycleRuleTransitionType, '');
+			else
+				$this->assetLifeCycleRuleTransitionType = (string)$xml->assetLifeCycleRuleTransitionType;
+		}
 	}
 	/**
 	 * Asset LifeCycle Rule Action Type

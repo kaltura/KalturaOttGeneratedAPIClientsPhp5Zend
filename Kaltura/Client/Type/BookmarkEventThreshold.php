@@ -46,7 +46,12 @@ class Kaltura_Client_Type_BookmarkEventThreshold extends Kaltura_Client_ObjectBa
 			return;
 		
 		if(count($xml->transactionType))
-			$this->transactionType = (string)$xml->transactionType;
+		{
+			if(isset($xml->transactionType->item) && count($xml->transactionType->item))
+				$this->multiLingual_transactionType = Kaltura_Client_ParseUtils::unmarshalArray($xml->transactionType, '');
+			else
+				$this->transactionType = (string)$xml->transactionType;
+		}
 		if(count($xml->threshold))
 			$this->threshold = (int)$xml->threshold;
 	}

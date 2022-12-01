@@ -46,7 +46,12 @@ class Kaltura_Client_Type_LicensedUrlBaseRequest extends Kaltura_Client_ObjectBa
 			return;
 		
 		if(count($xml->assetId))
-			$this->assetId = (string)$xml->assetId;
+		{
+			if(isset($xml->assetId->item) && count($xml->assetId->item))
+				$this->multiLingual_assetId = Kaltura_Client_ParseUtils::unmarshalArray($xml->assetId, '');
+			else
+				$this->assetId = (string)$xml->assetId;
+		}
 	}
 	/**
 	 * Asset identifier

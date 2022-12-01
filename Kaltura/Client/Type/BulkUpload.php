@@ -48,11 +48,26 @@ class Kaltura_Client_Type_BulkUpload extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->fileName))
-			$this->fileName = (string)$xml->fileName;
+		{
+			if(isset($xml->fileName->item) && count($xml->fileName->item))
+				$this->multiLingual_fileName = Kaltura_Client_ParseUtils::unmarshalArray($xml->fileName, '');
+			else
+				$this->fileName = (string)$xml->fileName;
+		}
 		if(count($xml->status))
-			$this->status = (string)$xml->status;
+		{
+			if(isset($xml->status->item) && count($xml->status->item))
+				$this->multiLingual_status = Kaltura_Client_ParseUtils::unmarshalArray($xml->status, '');
+			else
+				$this->status = (string)$xml->status;
+		}
 		if(count($xml->action))
-			$this->action = (string)$xml->action;
+		{
+			if(isset($xml->action->item) && count($xml->action->item))
+				$this->multiLingual_action = Kaltura_Client_ParseUtils::unmarshalArray($xml->action, '');
+			else
+				$this->action = (string)$xml->action;
+		}
 		if(count($xml->numOfObjects))
 			$this->numOfObjects = (int)$xml->numOfObjects;
 		if(count($xml->createDate))

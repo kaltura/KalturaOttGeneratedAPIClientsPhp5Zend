@@ -46,7 +46,12 @@ class Kaltura_Client_Type_CountryCondition extends Kaltura_Client_Type_NotCondit
 			return;
 		
 		if(count($xml->countries))
-			$this->countries = (string)$xml->countries;
+		{
+			if(isset($xml->countries->item) && count($xml->countries->item))
+				$this->multiLingual_countries = Kaltura_Client_ParseUtils::unmarshalArray($xml->countries, '');
+			else
+				$this->countries = (string)$xml->countries;
+		}
 	}
 	/**
 	 * Comma separated countries IDs list

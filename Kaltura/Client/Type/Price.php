@@ -50,9 +50,19 @@ class Kaltura_Client_Type_Price extends Kaltura_Client_ObjectBase
 		if(count($xml->amount))
 			$this->amount = (float)$xml->amount;
 		if(count($xml->currency))
-			$this->currency = (string)$xml->currency;
+		{
+			if(isset($xml->currency->item) && count($xml->currency->item))
+				$this->multiLingual_currency = Kaltura_Client_ParseUtils::unmarshalArray($xml->currency, '');
+			else
+				$this->currency = (string)$xml->currency;
+		}
 		if(count($xml->currencySign))
-			$this->currencySign = (string)$xml->currencySign;
+		{
+			if(isset($xml->currencySign->item) && count($xml->currencySign->item))
+				$this->multiLingual_currencySign = Kaltura_Client_ParseUtils::unmarshalArray($xml->currencySign, '');
+			else
+				$this->currencySign = (string)$xml->currencySign;
+		}
 		if(count($xml->countryId))
 			$this->countryId = (string)$xml->countryId;
 	}

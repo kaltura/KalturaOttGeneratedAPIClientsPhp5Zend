@@ -46,13 +46,33 @@ class Kaltura_Client_Type_ActionPermissionItem extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->network))
-			$this->network = (string)$xml->network;
+		{
+			if(isset($xml->network->item) && count($xml->network->item))
+				$this->multiLingual_network = Kaltura_Client_ParseUtils::unmarshalArray($xml->network, '');
+			else
+				$this->network = (string)$xml->network;
+		}
 		if(count($xml->actionPrivacy))
-			$this->actionPrivacy = (string)$xml->actionPrivacy;
+		{
+			if(isset($xml->actionPrivacy->item) && count($xml->actionPrivacy->item))
+				$this->multiLingual_actionPrivacy = Kaltura_Client_ParseUtils::unmarshalArray($xml->actionPrivacy, '');
+			else
+				$this->actionPrivacy = (string)$xml->actionPrivacy;
+		}
 		if(count($xml->privacy))
-			$this->privacy = (string)$xml->privacy;
+		{
+			if(isset($xml->privacy->item) && count($xml->privacy->item))
+				$this->multiLingual_privacy = Kaltura_Client_ParseUtils::unmarshalArray($xml->privacy, '');
+			else
+				$this->privacy = (string)$xml->privacy;
+		}
 		if(count($xml->action))
-			$this->action = (string)$xml->action;
+		{
+			if(isset($xml->action->item) && count($xml->action->item))
+				$this->multiLingual_action = Kaltura_Client_ParseUtils::unmarshalArray($xml->action, '');
+			else
+				$this->action = (string)$xml->action;
+		}
 	}
 	/**
 	 * Social network
