@@ -46,15 +46,35 @@ class Kaltura_Client_Type_UserAssetsListItem extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->id))
-			$this->id = (string)$xml->id;
+		{
+			if(isset($xml->id->item) && count($xml->id->item))
+				$this->multiLingual_id = Kaltura_Client_ParseUtils::unmarshalArray($xml->id, '');
+			else
+				$this->id = (string)$xml->id;
+		}
 		if(count($xml->orderIndex))
 			$this->orderIndex = (int)$xml->orderIndex;
 		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		{
+			if(isset($xml->type->item) && count($xml->type->item))
+				$this->multiLingual_type = Kaltura_Client_ParseUtils::unmarshalArray($xml->type, '');
+			else
+				$this->type = (string)$xml->type;
+		}
 		if(count($xml->userId))
-			$this->userId = (string)$xml->userId;
+		{
+			if(isset($xml->userId->item) && count($xml->userId->item))
+				$this->multiLingual_userId = Kaltura_Client_ParseUtils::unmarshalArray($xml->userId, '');
+			else
+				$this->userId = (string)$xml->userId;
+		}
 		if(count($xml->listType))
-			$this->listType = (string)$xml->listType;
+		{
+			if(isset($xml->listType->item) && count($xml->listType->item))
+				$this->multiLingual_listType = Kaltura_Client_ParseUtils::unmarshalArray($xml->listType, '');
+			else
+				$this->listType = (string)$xml->listType;
+		}
 	}
 	/**
 	 * Asset identifier

@@ -46,7 +46,12 @@ class Kaltura_Client_Type_AssetLifeCycleTagTransitionAction extends Kaltura_Clie
 			return;
 		
 		if(count($xml->tagIds))
-			$this->tagIds = (string)$xml->tagIds;
+		{
+			if(isset($xml->tagIds->item) && count($xml->tagIds->item))
+				$this->multiLingual_tagIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->tagIds, '');
+			else
+				$this->tagIds = (string)$xml->tagIds;
+		}
 	}
 	/**
 	 * Comma separated list of tag Ids.

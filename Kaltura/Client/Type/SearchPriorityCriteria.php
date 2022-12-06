@@ -46,9 +46,19 @@ class Kaltura_Client_Type_SearchPriorityCriteria extends Kaltura_Client_ObjectBa
 			return;
 		
 		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		{
+			if(isset($xml->type->item) && count($xml->type->item))
+				$this->multiLingual_type = Kaltura_Client_ParseUtils::unmarshalArray($xml->type, '');
+			else
+				$this->type = (string)$xml->type;
+		}
 		if(count($xml->value))
-			$this->value = (string)$xml->value;
+		{
+			if(isset($xml->value->item) && count($xml->value->item))
+				$this->multiLingual_value = Kaltura_Client_ParseUtils::unmarshalArray($xml->value, '');
+			else
+				$this->value = (string)$xml->value;
+		}
 	}
 	/**
 	 * Criterion type

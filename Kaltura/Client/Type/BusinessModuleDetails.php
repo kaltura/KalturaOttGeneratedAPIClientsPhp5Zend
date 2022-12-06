@@ -48,7 +48,12 @@ class Kaltura_Client_Type_BusinessModuleDetails extends Kaltura_Client_ObjectBas
 		if(count($xml->businessModuleId))
 			$this->businessModuleId = (int)$xml->businessModuleId;
 		if(count($xml->businessModuleType))
-			$this->businessModuleType = (string)$xml->businessModuleType;
+		{
+			if(isset($xml->businessModuleType->item) && count($xml->businessModuleType->item))
+				$this->multiLingual_businessModuleType = Kaltura_Client_ParseUtils::unmarshalArray($xml->businessModuleType, '');
+			else
+				$this->businessModuleType = (string)$xml->businessModuleType;
+		}
 	}
 	/**
 	 * BusinessModuleId

@@ -46,7 +46,12 @@ class Kaltura_Client_Type_SubscriptionDependencySetFilter extends Kaltura_Client
 			return;
 		
 		if(count($xml->baseSubscriptionIdIn))
-			$this->baseSubscriptionIdIn = (string)$xml->baseSubscriptionIdIn;
+		{
+			if(isset($xml->baseSubscriptionIdIn->item) && count($xml->baseSubscriptionIdIn->item))
+				$this->multiLingual_baseSubscriptionIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->baseSubscriptionIdIn, '');
+			else
+				$this->baseSubscriptionIdIn = (string)$xml->baseSubscriptionIdIn;
+		}
 	}
 	/**
 	 * Comma separated identifiers

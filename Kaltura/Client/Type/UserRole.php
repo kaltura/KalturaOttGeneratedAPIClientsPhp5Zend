@@ -48,15 +48,40 @@ class Kaltura_Client_Type_UserRole extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		{
+			if(isset($xml->name->item) && count($xml->name->item))
+				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
+			else
+				$this->name = (string)$xml->name;
+		}
 		if(count($xml->permissionNames))
-			$this->permissionNames = (string)$xml->permissionNames;
+		{
+			if(isset($xml->permissionNames->item) && count($xml->permissionNames->item))
+				$this->multiLingual_permissionNames = Kaltura_Client_ParseUtils::unmarshalArray($xml->permissionNames, '');
+			else
+				$this->permissionNames = (string)$xml->permissionNames;
+		}
 		if(count($xml->excludedPermissionNames))
-			$this->excludedPermissionNames = (string)$xml->excludedPermissionNames;
+		{
+			if(isset($xml->excludedPermissionNames->item) && count($xml->excludedPermissionNames->item))
+				$this->multiLingual_excludedPermissionNames = Kaltura_Client_ParseUtils::unmarshalArray($xml->excludedPermissionNames, '');
+			else
+				$this->excludedPermissionNames = (string)$xml->excludedPermissionNames;
+		}
 		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		{
+			if(isset($xml->type->item) && count($xml->type->item))
+				$this->multiLingual_type = Kaltura_Client_ParseUtils::unmarshalArray($xml->type, '');
+			else
+				$this->type = (string)$xml->type;
+		}
 		if(count($xml->profile))
-			$this->profile = (string)$xml->profile;
+		{
+			if(isset($xml->profile->item) && count($xml->profile->item))
+				$this->multiLingual_profile = Kaltura_Client_ParseUtils::unmarshalArray($xml->profile, '');
+			else
+				$this->profile = (string)$xml->profile;
+		}
 	}
 	/**
 	 * User role identifier

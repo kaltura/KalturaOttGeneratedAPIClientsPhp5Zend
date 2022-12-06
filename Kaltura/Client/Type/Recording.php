@@ -48,11 +48,21 @@ class Kaltura_Client_Type_Recording extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->status))
-			$this->status = (string)$xml->status;
+		{
+			if(isset($xml->status->item) && count($xml->status->item))
+				$this->multiLingual_status = Kaltura_Client_ParseUtils::unmarshalArray($xml->status, '');
+			else
+				$this->status = (string)$xml->status;
+		}
 		if(count($xml->assetId))
 			$this->assetId = (string)$xml->assetId;
 		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		{
+			if(isset($xml->type->item) && count($xml->type->item))
+				$this->multiLingual_type = Kaltura_Client_ParseUtils::unmarshalArray($xml->type, '');
+			else
+				$this->type = (string)$xml->type;
+		}
 		if(count($xml->viewableUntilDate))
 			$this->viewableUntilDate = (string)$xml->viewableUntilDate;
 		if(count($xml->isProtected))
@@ -66,6 +76,10 @@ class Kaltura_Client_Type_Recording extends Kaltura_Client_ObjectBase
 			$this->createDate = (string)$xml->createDate;
 		if(count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
+		if(count($xml->householdSpecificStartTimeOffset))
+			$this->householdSpecificStartTimeOffset = (int)$xml->householdSpecificStartTimeOffset;
+		if(count($xml->householdSpecificEndTimeOffset))
+			$this->householdSpecificEndTimeOffset = (int)$xml->householdSpecificEndTimeOffset;
 	}
 	/**
 	 * Kaltura unique ID representing the recording identifier
@@ -128,6 +142,20 @@ class Kaltura_Client_Type_Recording extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $updateDate = null;
+
+	/**
+	 * Household specific start time of the recording
+	 *
+	 * @var int
+	 */
+	public $householdSpecificStartTimeOffset = null;
+
+	/**
+	 * Household specific end time of the recording
+	 *
+	 * @var int
+	 */
+	public $householdSpecificEndTimeOffset = null;
 
 
 }

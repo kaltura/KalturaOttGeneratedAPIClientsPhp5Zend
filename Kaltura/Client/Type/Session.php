@@ -46,17 +46,37 @@ class Kaltura_Client_Type_Session extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->ks))
-			$this->ks = (string)$xml->ks;
+		{
+			if(isset($xml->ks->item) && count($xml->ks->item))
+				$this->multiLingual_ks = Kaltura_Client_ParseUtils::unmarshalArray($xml->ks, '');
+			else
+				$this->ks = (string)$xml->ks;
+		}
 		if(count($xml->partnerId))
 			$this->partnerId = (int)$xml->partnerId;
 		if(count($xml->userId))
-			$this->userId = (string)$xml->userId;
+		{
+			if(isset($xml->userId->item) && count($xml->userId->item))
+				$this->multiLingual_userId = Kaltura_Client_ParseUtils::unmarshalArray($xml->userId, '');
+			else
+				$this->userId = (string)$xml->userId;
+		}
 		if(count($xml->expiry))
 			$this->expiry = (int)$xml->expiry;
 		if(count($xml->privileges))
-			$this->privileges = (string)$xml->privileges;
+		{
+			if(isset($xml->privileges->item) && count($xml->privileges->item))
+				$this->multiLingual_privileges = Kaltura_Client_ParseUtils::unmarshalArray($xml->privileges, '');
+			else
+				$this->privileges = (string)$xml->privileges;
+		}
 		if(count($xml->udid))
-			$this->udid = (string)$xml->udid;
+		{
+			if(isset($xml->udid->item) && count($xml->udid->item))
+				$this->multiLingual_udid = Kaltura_Client_ParseUtils::unmarshalArray($xml->udid, '');
+			else
+				$this->udid = (string)$xml->udid;
+		}
 		if(count($xml->createDate))
 			$this->createDate = (int)$xml->createDate;
 	}

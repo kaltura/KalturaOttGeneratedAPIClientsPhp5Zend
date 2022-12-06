@@ -50,11 +50,26 @@ class Kaltura_Client_Type_RequestConfiguration extends Kaltura_Client_ObjectBase
 		if(count($xml->userId))
 			$this->userId = (int)$xml->userId;
 		if(count($xml->language))
-			$this->language = (string)$xml->language;
+		{
+			if(isset($xml->language->item) && count($xml->language->item))
+				$this->multiLingual_language = Kaltura_Client_ParseUtils::unmarshalArray($xml->language, '');
+			else
+				$this->language = (string)$xml->language;
+		}
 		if(count($xml->currency))
-			$this->currency = (string)$xml->currency;
+		{
+			if(isset($xml->currency->item) && count($xml->currency->item))
+				$this->multiLingual_currency = Kaltura_Client_ParseUtils::unmarshalArray($xml->currency, '');
+			else
+				$this->currency = (string)$xml->currency;
+		}
 		if(count($xml->ks))
-			$this->ks = (string)$xml->ks;
+		{
+			if(isset($xml->ks->item) && count($xml->ks->item))
+				$this->multiLingual_ks = Kaltura_Client_ParseUtils::unmarshalArray($xml->ks, '');
+			else
+				$this->ks = (string)$xml->ks;
+		}
 		if(count($xml->responseProfile) && !empty($xml->responseProfile))
 			$this->responseProfile = Kaltura_Client_ParseUtils::unmarshalObject($xml->responseProfile, "KalturaBaseResponseProfile");
 		if(count($xml->abortOnError))

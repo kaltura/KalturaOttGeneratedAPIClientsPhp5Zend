@@ -46,9 +46,19 @@ class Kaltura_Client_Type_MediaAsset extends Kaltura_Client_Type_Asset
 			return;
 		
 		if(count($xml->externalIds))
-			$this->externalIds = (string)$xml->externalIds;
+		{
+			if(isset($xml->externalIds->item) && count($xml->externalIds->item))
+				$this->multiLingual_externalIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalIds, '');
+			else
+				$this->externalIds = (string)$xml->externalIds;
+		}
 		if(count($xml->entryId))
-			$this->entryId = (string)$xml->entryId;
+		{
+			if(isset($xml->entryId->item) && count($xml->entryId->item))
+				$this->multiLingual_entryId = Kaltura_Client_ParseUtils::unmarshalArray($xml->entryId, '');
+			else
+				$this->entryId = (string)$xml->entryId;
+		}
 		if(count($xml->deviceRuleId))
 			$this->deviceRuleId = (int)$xml->deviceRuleId;
 		if(count($xml->geoBlockRuleId))
@@ -61,7 +71,12 @@ class Kaltura_Client_Type_MediaAsset extends Kaltura_Client_Type_Asset
 				$this->status = false;
 		}
 		if(count($xml->inheritancePolicy))
-			$this->inheritancePolicy = (string)$xml->inheritancePolicy;
+		{
+			if(isset($xml->inheritancePolicy->item) && count($xml->inheritancePolicy->item))
+				$this->multiLingual_inheritancePolicy = Kaltura_Client_ParseUtils::unmarshalArray($xml->inheritancePolicy, '');
+			else
+				$this->inheritancePolicy = (string)$xml->inheritancePolicy;
+		}
 		if(count($xml->liveToVod) && !empty($xml->liveToVod))
 			$this->liveToVod = Kaltura_Client_ParseUtils::unmarshalObject($xml->liveToVod, "KalturaLiveToVodInfoAsset");
 	}

@@ -46,7 +46,12 @@ class Kaltura_Client_Type_IngestByIdsFilter extends Kaltura_Client_Type_Filter
 			return;
 		
 		if(count($xml->ingestIdIn))
-			$this->ingestIdIn = (string)$xml->ingestIdIn;
+		{
+			if(isset($xml->ingestIdIn->item) && count($xml->ingestIdIn->item))
+				$this->multiLingual_ingestIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->ingestIdIn, '');
+			else
+				$this->ingestIdIn = (string)$xml->ingestIdIn;
+		}
 	}
 	/**
 	 * Comma seperated ingest profile ids

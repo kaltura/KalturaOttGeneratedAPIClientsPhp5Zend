@@ -46,9 +46,19 @@ class Kaltura_Client_Type_TranslationToken extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->language))
-			$this->language = (string)$xml->language;
+		{
+			if(isset($xml->language->item) && count($xml->language->item))
+				$this->multiLingual_language = Kaltura_Client_ParseUtils::unmarshalArray($xml->language, '');
+			else
+				$this->language = (string)$xml->language;
+		}
 		if(count($xml->value))
-			$this->value = (string)$xml->value;
+		{
+			if(isset($xml->value->item) && count($xml->value->item))
+				$this->multiLingual_value = Kaltura_Client_ParseUtils::unmarshalArray($xml->value, '');
+			else
+				$this->value = (string)$xml->value;
+		}
 	}
 	/**
 	 * Language code

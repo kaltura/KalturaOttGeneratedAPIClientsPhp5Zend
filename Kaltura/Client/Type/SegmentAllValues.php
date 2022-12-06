@@ -46,7 +46,12 @@ class Kaltura_Client_Type_SegmentAllValues extends Kaltura_Client_Type_SegmentVa
 			return;
 		
 		if(count($xml->nameFormat))
-			$this->nameFormat = (string)$xml->nameFormat;
+		{
+			if(isset($xml->nameFormat->item) && count($xml->nameFormat->item))
+				$this->multiLingual_nameFormat = Kaltura_Client_ParseUtils::unmarshalArray($xml->nameFormat, '');
+			else
+				$this->nameFormat = (string)$xml->nameFormat;
+		}
 	}
 	/**
 	 * Segment names&#39; format - they will be automatically generated

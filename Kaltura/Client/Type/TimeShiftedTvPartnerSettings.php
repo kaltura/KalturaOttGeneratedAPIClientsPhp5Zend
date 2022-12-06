@@ -127,9 +127,19 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 				$this->nonExistingChannelPlaybackEnabled = false;
 		}
 		if(count($xml->quotaOveragePolicy))
-			$this->quotaOveragePolicy = (string)$xml->quotaOveragePolicy;
+		{
+			if(isset($xml->quotaOveragePolicy->item) && count($xml->quotaOveragePolicy->item))
+				$this->multiLingual_quotaOveragePolicy = Kaltura_Client_ParseUtils::unmarshalArray($xml->quotaOveragePolicy, '');
+			else
+				$this->quotaOveragePolicy = (string)$xml->quotaOveragePolicy;
+		}
 		if(count($xml->protectionPolicy))
-			$this->protectionPolicy = (string)$xml->protectionPolicy;
+		{
+			if(isset($xml->protectionPolicy->item) && count($xml->protectionPolicy->item))
+				$this->multiLingual_protectionPolicy = Kaltura_Client_ParseUtils::unmarshalArray($xml->protectionPolicy, '');
+			else
+				$this->protectionPolicy = (string)$xml->protectionPolicy;
+		}
 		if(count($xml->recoveryGracePeriod))
 			$this->recoveryGracePeriod = (int)$xml->recoveryGracePeriod;
 		if(count($xml->privateCopyEnabled))
@@ -141,6 +151,15 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 		}
 		if(count($xml->defaultQuota))
 			$this->defaultQuota = (int)$xml->defaultQuota;
+		if(count($xml->personalizedRecording))
+		{
+			if(!empty($xml->personalizedRecording) && ((int) $xml->personalizedRecording === 1 || strtolower((string)$xml->personalizedRecording) === 'true'))
+				$this->personalizedRecording = true;
+			else
+				$this->personalizedRecording = false;
+		}
+		if(count($xml->maxRecordingConcurrency))
+			$this->maxRecordingConcurrency = (int)$xml->maxRecordingConcurrency;
 	}
 	/**
 	 * Is catch-up enabled
@@ -302,6 +321,20 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 	 * @var int
 	 */
 	public $defaultQuota = null;
+
+	/**
+	 * Define whatever the partner enables the Personal Padding and Immediate / Stop recording services to the partner. Default value should be FALSE
+	 *
+	 * @var bool
+	 */
+	public $personalizedRecording = null;
+
+	/**
+	 * Define the max allowed number of parallel recordings. Default NULL unlimited
+	 *
+	 * @var int
+	 */
+	public $maxRecordingConcurrency = null;
 
 
 }

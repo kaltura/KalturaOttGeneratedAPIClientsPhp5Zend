@@ -48,7 +48,12 @@ class Kaltura_Client_Type_AssetStruct extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		{
+			if(isset($xml->name->item) && count($xml->name->item))
+				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
+			else
+				$this->name = (string)$xml->name;
+		}
 		if(count($xml->multilingualName))
 		{
 			if(empty($xml->multilingualName))
@@ -57,7 +62,12 @@ class Kaltura_Client_Type_AssetStruct extends Kaltura_Client_ObjectBase
 				$this->multilingualName = Kaltura_Client_ParseUtils::unmarshalArray($xml->multilingualName, "KalturaTranslationToken");
 		}
 		if(count($xml->systemName))
-			$this->systemName = (string)$xml->systemName;
+		{
+			if(isset($xml->systemName->item) && count($xml->systemName->item))
+				$this->multiLingual_systemName = Kaltura_Client_ParseUtils::unmarshalArray($xml->systemName, '');
+			else
+				$this->systemName = (string)$xml->systemName;
+		}
 		if(count($xml->isProtected))
 		{
 			if(!empty($xml->isProtected) && ((int) $xml->isProtected === 1 || strtolower((string)$xml->isProtected) === 'true'))
@@ -66,15 +76,30 @@ class Kaltura_Client_Type_AssetStruct extends Kaltura_Client_ObjectBase
 				$this->isProtected = false;
 		}
 		if(count($xml->metaIds))
-			$this->metaIds = (string)$xml->metaIds;
+		{
+			if(isset($xml->metaIds->item) && count($xml->metaIds->item))
+				$this->multiLingual_metaIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->metaIds, '');
+			else
+				$this->metaIds = (string)$xml->metaIds;
+		}
 		if(count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
 		if(count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
 		if(count($xml->features))
-			$this->features = (string)$xml->features;
+		{
+			if(isset($xml->features->item) && count($xml->features->item))
+				$this->multiLingual_features = Kaltura_Client_ParseUtils::unmarshalArray($xml->features, '');
+			else
+				$this->features = (string)$xml->features;
+		}
 		if(count($xml->pluralName))
-			$this->pluralName = (string)$xml->pluralName;
+		{
+			if(isset($xml->pluralName->item) && count($xml->pluralName->item))
+				$this->multiLingual_pluralName = Kaltura_Client_ParseUtils::unmarshalArray($xml->pluralName, '');
+			else
+				$this->pluralName = (string)$xml->pluralName;
+		}
 		if(count($xml->parentId))
 			$this->parentId = (string)$xml->parentId;
 		if(count($xml->connectingMetaId))

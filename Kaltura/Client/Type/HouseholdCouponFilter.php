@@ -46,13 +46,28 @@ class Kaltura_Client_Type_HouseholdCouponFilter extends Kaltura_Client_Type_Filt
 			return;
 		
 		if(count($xml->businessModuleTypeEqual))
-			$this->businessModuleTypeEqual = (string)$xml->businessModuleTypeEqual;
+		{
+			if(isset($xml->businessModuleTypeEqual->item) && count($xml->businessModuleTypeEqual->item))
+				$this->multiLingual_businessModuleTypeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->businessModuleTypeEqual, '');
+			else
+				$this->businessModuleTypeEqual = (string)$xml->businessModuleTypeEqual;
+		}
 		if(count($xml->businessModuleIdEqual))
 			$this->businessModuleIdEqual = (string)$xml->businessModuleIdEqual;
 		if(count($xml->couponCode))
-			$this->couponCode = (string)$xml->couponCode;
+		{
+			if(isset($xml->couponCode->item) && count($xml->couponCode->item))
+				$this->multiLingual_couponCode = Kaltura_Client_ParseUtils::unmarshalArray($xml->couponCode, '');
+			else
+				$this->couponCode = (string)$xml->couponCode;
+		}
 		if(count($xml->status))
-			$this->status = (string)$xml->status;
+		{
+			if(isset($xml->status->item) && count($xml->status->item))
+				$this->multiLingual_status = Kaltura_Client_ParseUtils::unmarshalArray($xml->status, '');
+			else
+				$this->status = (string)$xml->status;
+		}
 	}
 	/**
 	 * Indicates which household coupons list to return by their business module type.

@@ -46,13 +46,33 @@ class Kaltura_Client_Type_LabelFilter extends Kaltura_Client_Type_Filter
 			return;
 		
 		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
+		{
+			if(isset($xml->idIn->item) && count($xml->idIn->item))
+				$this->multiLingual_idIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->idIn, '');
+			else
+				$this->idIn = (string)$xml->idIn;
+		}
 		if(count($xml->labelEqual))
-			$this->labelEqual = (string)$xml->labelEqual;
+		{
+			if(isset($xml->labelEqual->item) && count($xml->labelEqual->item))
+				$this->multiLingual_labelEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->labelEqual, '');
+			else
+				$this->labelEqual = (string)$xml->labelEqual;
+		}
 		if(count($xml->labelStartsWith))
-			$this->labelStartsWith = (string)$xml->labelStartsWith;
+		{
+			if(isset($xml->labelStartsWith->item) && count($xml->labelStartsWith->item))
+				$this->multiLingual_labelStartsWith = Kaltura_Client_ParseUtils::unmarshalArray($xml->labelStartsWith, '');
+			else
+				$this->labelStartsWith = (string)$xml->labelStartsWith;
+		}
 		if(count($xml->entityAttributeEqual))
-			$this->entityAttributeEqual = (string)$xml->entityAttributeEqual;
+		{
+			if(isset($xml->entityAttributeEqual->item) && count($xml->entityAttributeEqual->item))
+				$this->multiLingual_entityAttributeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->entityAttributeEqual, '');
+			else
+				$this->entityAttributeEqual = (string)$xml->entityAttributeEqual;
+		}
 	}
 	/**
 	 * Comma-separated identifiers of labels

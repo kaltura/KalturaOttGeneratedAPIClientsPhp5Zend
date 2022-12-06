@@ -46,23 +46,68 @@ class Kaltura_Client_Type_MessageTemplate extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->message))
-			$this->message = (string)$xml->message;
+		{
+			if(isset($xml->message->item) && count($xml->message->item))
+				$this->multiLingual_message = Kaltura_Client_ParseUtils::unmarshalArray($xml->message, '');
+			else
+				$this->message = (string)$xml->message;
+		}
 		if(count($xml->dateFormat))
-			$this->dateFormat = (string)$xml->dateFormat;
+		{
+			if(isset($xml->dateFormat->item) && count($xml->dateFormat->item))
+				$this->multiLingual_dateFormat = Kaltura_Client_ParseUtils::unmarshalArray($xml->dateFormat, '');
+			else
+				$this->dateFormat = (string)$xml->dateFormat;
+		}
 		if(count($xml->messageType))
-			$this->messageType = (string)$xml->messageType;
+		{
+			if(isset($xml->messageType->item) && count($xml->messageType->item))
+				$this->multiLingual_messageType = Kaltura_Client_ParseUtils::unmarshalArray($xml->messageType, '');
+			else
+				$this->messageType = (string)$xml->messageType;
+		}
 		if(count($xml->sound))
-			$this->sound = (string)$xml->sound;
+		{
+			if(isset($xml->sound->item) && count($xml->sound->item))
+				$this->multiLingual_sound = Kaltura_Client_ParseUtils::unmarshalArray($xml->sound, '');
+			else
+				$this->sound = (string)$xml->sound;
+		}
 		if(count($xml->action))
-			$this->action = (string)$xml->action;
+		{
+			if(isset($xml->action->item) && count($xml->action->item))
+				$this->multiLingual_action = Kaltura_Client_ParseUtils::unmarshalArray($xml->action, '');
+			else
+				$this->action = (string)$xml->action;
+		}
 		if(count($xml->url))
-			$this->url = (string)$xml->url;
+		{
+			if(isset($xml->url->item) && count($xml->url->item))
+				$this->multiLingual_url = Kaltura_Client_ParseUtils::unmarshalArray($xml->url, '');
+			else
+				$this->url = (string)$xml->url;
+		}
 		if(count($xml->mailTemplate))
-			$this->mailTemplate = (string)$xml->mailTemplate;
+		{
+			if(isset($xml->mailTemplate->item) && count($xml->mailTemplate->item))
+				$this->multiLingual_mailTemplate = Kaltura_Client_ParseUtils::unmarshalArray($xml->mailTemplate, '');
+			else
+				$this->mailTemplate = (string)$xml->mailTemplate;
+		}
 		if(count($xml->mailSubject))
-			$this->mailSubject = (string)$xml->mailSubject;
+		{
+			if(isset($xml->mailSubject->item) && count($xml->mailSubject->item))
+				$this->multiLingual_mailSubject = Kaltura_Client_ParseUtils::unmarshalArray($xml->mailSubject, '');
+			else
+				$this->mailSubject = (string)$xml->mailSubject;
+		}
 		if(count($xml->ratioId))
-			$this->ratioId = (string)$xml->ratioId;
+		{
+			if(isset($xml->ratioId->item) && count($xml->ratioId->item))
+				$this->multiLingual_ratioId = Kaltura_Client_ParseUtils::unmarshalArray($xml->ratioId, '');
+			else
+				$this->ratioId = (string)$xml->ratioId;
+		}
 	}
 	/**
 	 * The message template with placeholders

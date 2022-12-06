@@ -46,7 +46,12 @@ class Kaltura_Client_Type_CurrencyFilter extends Kaltura_Client_Type_Filter
 			return;
 		
 		if(count($xml->codeIn))
-			$this->codeIn = (string)$xml->codeIn;
+		{
+			if(isset($xml->codeIn->item) && count($xml->codeIn->item))
+				$this->multiLingual_codeIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->codeIn, '');
+			else
+				$this->codeIn = (string)$xml->codeIn;
+		}
 		if(count($xml->excludePartner))
 		{
 			if(!empty($xml->excludePartner) && ((int) $xml->excludePartner === 1 || strtolower((string)$xml->excludePartner) === 'true'))

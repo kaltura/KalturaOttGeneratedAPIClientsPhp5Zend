@@ -48,11 +48,26 @@ class Kaltura_Client_Type_Currency extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (int)$xml->id;
 		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		{
+			if(isset($xml->name->item) && count($xml->name->item))
+				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
+			else
+				$this->name = (string)$xml->name;
+		}
 		if(count($xml->code))
-			$this->code = (string)$xml->code;
+		{
+			if(isset($xml->code->item) && count($xml->code->item))
+				$this->multiLingual_code = Kaltura_Client_ParseUtils::unmarshalArray($xml->code, '');
+			else
+				$this->code = (string)$xml->code;
+		}
 		if(count($xml->sign))
-			$this->sign = (string)$xml->sign;
+		{
+			if(isset($xml->sign->item) && count($xml->sign->item))
+				$this->multiLingual_sign = Kaltura_Client_ParseUtils::unmarshalArray($xml->sign, '');
+			else
+				$this->sign = (string)$xml->sign;
+		}
 		if(count($xml->isDefault))
 		{
 			if(!empty($xml->isDefault) && ((int) $xml->isDefault === 1 || strtolower((string)$xml->isDefault) === 'true'))

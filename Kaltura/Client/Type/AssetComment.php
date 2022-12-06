@@ -50,9 +50,19 @@ class Kaltura_Client_Type_AssetComment extends Kaltura_Client_Type_SocialComment
 		if(count($xml->assetId))
 			$this->assetId = (int)$xml->assetId;
 		if(count($xml->assetType))
-			$this->assetType = (string)$xml->assetType;
+		{
+			if(isset($xml->assetType->item) && count($xml->assetType->item))
+				$this->multiLingual_assetType = Kaltura_Client_ParseUtils::unmarshalArray($xml->assetType, '');
+			else
+				$this->assetType = (string)$xml->assetType;
+		}
 		if(count($xml->subHeader))
-			$this->subHeader = (string)$xml->subHeader;
+		{
+			if(isset($xml->subHeader->item) && count($xml->subHeader->item))
+				$this->multiLingual_subHeader = Kaltura_Client_ParseUtils::unmarshalArray($xml->subHeader, '');
+			else
+				$this->subHeader = (string)$xml->subHeader;
+		}
 	}
 	/**
 	 * Comment ID

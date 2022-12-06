@@ -91,15 +91,40 @@ class Kaltura_Client_Type_NotificationsPartnerSettings extends Kaltura_Client_Ob
 		if(count($xml->reminderOffsetSec))
 			$this->reminderOffsetSec = (int)$xml->reminderOffsetSec;
 		if(count($xml->pushAdapterUrl))
-			$this->pushAdapterUrl = (string)$xml->pushAdapterUrl;
+		{
+			if(isset($xml->pushAdapterUrl->item) && count($xml->pushAdapterUrl->item))
+				$this->multiLingual_pushAdapterUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->pushAdapterUrl, '');
+			else
+				$this->pushAdapterUrl = (string)$xml->pushAdapterUrl;
+		}
 		if(count($xml->churnMailTemplateName))
-			$this->churnMailTemplateName = (string)$xml->churnMailTemplateName;
+		{
+			if(isset($xml->churnMailTemplateName->item) && count($xml->churnMailTemplateName->item))
+				$this->multiLingual_churnMailTemplateName = Kaltura_Client_ParseUtils::unmarshalArray($xml->churnMailTemplateName, '');
+			else
+				$this->churnMailTemplateName = (string)$xml->churnMailTemplateName;
+		}
 		if(count($xml->churnMailSubject))
-			$this->churnMailSubject = (string)$xml->churnMailSubject;
+		{
+			if(isset($xml->churnMailSubject->item) && count($xml->churnMailSubject->item))
+				$this->multiLingual_churnMailSubject = Kaltura_Client_ParseUtils::unmarshalArray($xml->churnMailSubject, '');
+			else
+				$this->churnMailSubject = (string)$xml->churnMailSubject;
+		}
 		if(count($xml->senderEmail))
-			$this->senderEmail = (string)$xml->senderEmail;
+		{
+			if(isset($xml->senderEmail->item) && count($xml->senderEmail->item))
+				$this->multiLingual_senderEmail = Kaltura_Client_ParseUtils::unmarshalArray($xml->senderEmail, '');
+			else
+				$this->senderEmail = (string)$xml->senderEmail;
+		}
 		if(count($xml->mailSenderName))
-			$this->mailSenderName = (string)$xml->mailSenderName;
+		{
+			if(isset($xml->mailSenderName->item) && count($xml->mailSenderName->item))
+				$this->multiLingual_mailSenderName = Kaltura_Client_ParseUtils::unmarshalArray($xml->mailSenderName, '');
+			else
+				$this->mailSenderName = (string)$xml->mailSenderName;
+		}
 		if(count($xml->mailNotificationAdapterId))
 			$this->mailNotificationAdapterId = (string)$xml->mailNotificationAdapterId;
 		if(count($xml->smsEnabled))

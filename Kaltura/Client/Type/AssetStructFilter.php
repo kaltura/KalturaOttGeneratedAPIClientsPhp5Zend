@@ -46,7 +46,12 @@ class Kaltura_Client_Type_AssetStructFilter extends Kaltura_Client_Type_BaseAsse
 			return;
 		
 		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
+		{
+			if(isset($xml->idIn->item) && count($xml->idIn->item))
+				$this->multiLingual_idIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->idIn, '');
+			else
+				$this->idIn = (string)$xml->idIn;
+		}
 		if(count($xml->metaIdEqual))
 			$this->metaIdEqual = (string)$xml->metaIdEqual;
 		if(count($xml->isProtectedEqual))
@@ -57,7 +62,12 @@ class Kaltura_Client_Type_AssetStructFilter extends Kaltura_Client_Type_BaseAsse
 				$this->isProtectedEqual = false;
 		}
 		if(count($xml->objectVirtualAssetInfoTypeEqual))
-			$this->objectVirtualAssetInfoTypeEqual = (string)$xml->objectVirtualAssetInfoTypeEqual;
+		{
+			if(isset($xml->objectVirtualAssetInfoTypeEqual->item) && count($xml->objectVirtualAssetInfoTypeEqual->item))
+				$this->multiLingual_objectVirtualAssetInfoTypeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->objectVirtualAssetInfoTypeEqual, '');
+			else
+				$this->objectVirtualAssetInfoTypeEqual = (string)$xml->objectVirtualAssetInfoTypeEqual;
+		}
 	}
 	/**
 	 * Comma separated identifiers, id = 0 is identified as program AssetStruct

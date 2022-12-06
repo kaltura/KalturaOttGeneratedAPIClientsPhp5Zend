@@ -48,7 +48,12 @@ class Kaltura_Client_Type_CategoryVersionFilterByTree extends Kaltura_Client_Typ
 		if(count($xml->treeIdEqual))
 			$this->treeIdEqual = (string)$xml->treeIdEqual;
 		if(count($xml->stateEqual))
-			$this->stateEqual = (string)$xml->stateEqual;
+		{
+			if(isset($xml->stateEqual->item) && count($xml->stateEqual->item))
+				$this->multiLingual_stateEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->stateEqual, '');
+			else
+				$this->stateEqual = (string)$xml->stateEqual;
+		}
 	}
 	/**
 	 * Category version tree identifier

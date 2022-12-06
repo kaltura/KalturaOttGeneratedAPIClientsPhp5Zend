@@ -46,7 +46,12 @@ class Kaltura_Client_Type_FairPlayPlaybackPluginData extends Kaltura_Client_Type
 			return;
 		
 		if(count($xml->certificate))
-			$this->certificate = (string)$xml->certificate;
+		{
+			if(isset($xml->certificate->item) && count($xml->certificate->item))
+				$this->multiLingual_certificate = Kaltura_Client_ParseUtils::unmarshalArray($xml->certificate, '');
+			else
+				$this->certificate = (string)$xml->certificate;
+		}
 	}
 	/**
 	 * Custom data string

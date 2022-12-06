@@ -46,7 +46,12 @@ class Kaltura_Client_Type_SearchAssetFilter extends Kaltura_Client_Type_BaseSear
 			return;
 		
 		if(count($xml->typeIn))
-			$this->typeIn = (string)$xml->typeIn;
+		{
+			if(isset($xml->typeIn->item) && count($xml->typeIn->item))
+				$this->multiLingual_typeIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->typeIn, '');
+			else
+				$this->typeIn = (string)$xml->typeIn;
+		}
 	}
 	/**
 	 * (Deprecated - use KalturaBaseSearchAssetFilter.kSql)

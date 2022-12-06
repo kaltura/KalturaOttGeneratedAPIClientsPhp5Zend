@@ -48,7 +48,12 @@ class Kaltura_Client_Type_LicensedUrlMediaRequest extends Kaltura_Client_Type_Li
 		if(count($xml->contentId))
 			$this->contentId = (int)$xml->contentId;
 		if(count($xml->baseUrl))
-			$this->baseUrl = (string)$xml->baseUrl;
+		{
+			if(isset($xml->baseUrl->item) && count($xml->baseUrl->item))
+				$this->multiLingual_baseUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->baseUrl, '');
+			else
+				$this->baseUrl = (string)$xml->baseUrl;
+		}
 	}
 	/**
 	 * Identifier of the content to get the link for (file identifier)

@@ -46,9 +46,19 @@ class Kaltura_Client_Type_ApiActionPermissionItem extends Kaltura_Client_Type_Pe
 			return;
 		
 		if(count($xml->service))
-			$this->service = (string)$xml->service;
+		{
+			if(isset($xml->service->item) && count($xml->service->item))
+				$this->multiLingual_service = Kaltura_Client_ParseUtils::unmarshalArray($xml->service, '');
+			else
+				$this->service = (string)$xml->service;
+		}
 		if(count($xml->action))
-			$this->action = (string)$xml->action;
+		{
+			if(isset($xml->action->item) && count($xml->action->item))
+				$this->multiLingual_action = Kaltura_Client_ParseUtils::unmarshalArray($xml->action, '');
+			else
+				$this->action = (string)$xml->action;
+		}
 	}
 	/**
 	 * API service name

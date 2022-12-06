@@ -46,15 +46,30 @@ abstract class Kaltura_Client_Type_ProductPrice extends Kaltura_Client_ObjectBas
 			return;
 		
 		if(count($xml->productId))
-			$this->productId = (string)$xml->productId;
+		{
+			if(isset($xml->productId->item) && count($xml->productId->item))
+				$this->multiLingual_productId = Kaltura_Client_ParseUtils::unmarshalArray($xml->productId, '');
+			else
+				$this->productId = (string)$xml->productId;
+		}
 		if(count($xml->productType))
-			$this->productType = (string)$xml->productType;
+		{
+			if(isset($xml->productType->item) && count($xml->productType->item))
+				$this->multiLingual_productType = Kaltura_Client_ParseUtils::unmarshalArray($xml->productType, '');
+			else
+				$this->productType = (string)$xml->productType;
+		}
 		if(count($xml->price) && !empty($xml->price))
 			$this->price = Kaltura_Client_ParseUtils::unmarshalObject($xml->price, "KalturaPrice");
 		if(count($xml->fullPrice) && !empty($xml->fullPrice))
 			$this->fullPrice = Kaltura_Client_ParseUtils::unmarshalObject($xml->fullPrice, "KalturaPrice");
 		if(count($xml->purchaseStatus))
-			$this->purchaseStatus = (string)$xml->purchaseStatus;
+		{
+			if(isset($xml->purchaseStatus->item) && count($xml->purchaseStatus->item))
+				$this->multiLingual_purchaseStatus = Kaltura_Client_ParseUtils::unmarshalArray($xml->purchaseStatus, '');
+			else
+				$this->purchaseStatus = (string)$xml->purchaseStatus;
+		}
 		if(count($xml->promotionInfo) && !empty($xml->promotionInfo))
 			$this->promotionInfo = Kaltura_Client_ParseUtils::unmarshalObject($xml->promotionInfo, "KalturaPromotionInfo");
 	}

@@ -46,7 +46,12 @@ abstract class Kaltura_Client_Type_BaseSearchAssetFilter extends Kaltura_Client_
 			return;
 		
 		if(count($xml->kSql))
-			$this->kSql = (string)$xml->kSql;
+		{
+			if(isset($xml->kSql->item) && count($xml->kSql->item))
+				$this->multiLingual_kSql = Kaltura_Client_ParseUtils::unmarshalArray($xml->kSql, '');
+			else
+				$this->kSql = (string)$xml->kSql;
+		}
 		if(count($xml->groupBy))
 		{
 			if(empty($xml->groupBy))
@@ -55,9 +60,19 @@ abstract class Kaltura_Client_Type_BaseSearchAssetFilter extends Kaltura_Client_
 				$this->groupBy = Kaltura_Client_ParseUtils::unmarshalArray($xml->groupBy, "KalturaAssetGroupBy");
 		}
 		if(count($xml->groupOrderBy))
-			$this->groupOrderBy = (string)$xml->groupOrderBy;
+		{
+			if(isset($xml->groupOrderBy->item) && count($xml->groupOrderBy->item))
+				$this->multiLingual_groupOrderBy = Kaltura_Client_ParseUtils::unmarshalArray($xml->groupOrderBy, '');
+			else
+				$this->groupOrderBy = (string)$xml->groupOrderBy;
+		}
 		if(count($xml->groupingOptionEqual))
-			$this->groupingOptionEqual = (string)$xml->groupingOptionEqual;
+		{
+			if(isset($xml->groupingOptionEqual->item) && count($xml->groupingOptionEqual->item))
+				$this->multiLingual_groupingOptionEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->groupingOptionEqual, '');
+			else
+				$this->groupingOptionEqual = (string)$xml->groupingOptionEqual;
+		}
 	}
 	/**
 	 * Search assets using dynamic criteria. Provided collection of nested expressions with key, comparison operators, value, and logical conjunction.

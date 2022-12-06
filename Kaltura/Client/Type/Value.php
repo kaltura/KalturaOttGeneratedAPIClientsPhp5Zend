@@ -46,7 +46,12 @@ abstract class Kaltura_Client_Type_Value extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->description))
-			$this->description = (string)$xml->description;
+		{
+			if(isset($xml->description->item) && count($xml->description->item))
+				$this->multiLingual_description = Kaltura_Client_ParseUtils::unmarshalArray($xml->description, '');
+			else
+				$this->description = (string)$xml->description;
+		}
 	}
 	/**
 	 * Description

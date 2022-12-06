@@ -46,9 +46,19 @@ class Kaltura_Client_Type_ClientConfiguration extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->clientTag))
-			$this->clientTag = (string)$xml->clientTag;
+		{
+			if(isset($xml->clientTag->item) && count($xml->clientTag->item))
+				$this->multiLingual_clientTag = Kaltura_Client_ParseUtils::unmarshalArray($xml->clientTag, '');
+			else
+				$this->clientTag = (string)$xml->clientTag;
+		}
 		if(count($xml->apiVersion))
-			$this->apiVersion = (string)$xml->apiVersion;
+		{
+			if(isset($xml->apiVersion->item) && count($xml->apiVersion->item))
+				$this->multiLingual_apiVersion = Kaltura_Client_ParseUtils::unmarshalArray($xml->apiVersion, '');
+			else
+				$this->apiVersion = (string)$xml->apiVersion;
+		}
 	}
 	/**
 	 * Client Tag

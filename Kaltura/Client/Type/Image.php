@@ -48,21 +48,51 @@ class Kaltura_Client_Type_Image extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->version))
-			$this->version = (string)$xml->version;
+		{
+			if(isset($xml->version->item) && count($xml->version->item))
+				$this->multiLingual_version = Kaltura_Client_ParseUtils::unmarshalArray($xml->version, '');
+			else
+				$this->version = (string)$xml->version;
+		}
 		if(count($xml->imageTypeId))
 			$this->imageTypeId = (string)$xml->imageTypeId;
 		if(count($xml->imageTypeName))
-			$this->imageTypeName = (string)$xml->imageTypeName;
+		{
+			if(isset($xml->imageTypeName->item) && count($xml->imageTypeName->item))
+				$this->multiLingual_imageTypeName = Kaltura_Client_ParseUtils::unmarshalArray($xml->imageTypeName, '');
+			else
+				$this->imageTypeName = (string)$xml->imageTypeName;
+		}
 		if(count($xml->imageObjectId))
 			$this->imageObjectId = (string)$xml->imageObjectId;
 		if(count($xml->imageObjectType))
-			$this->imageObjectType = (string)$xml->imageObjectType;
+		{
+			if(isset($xml->imageObjectType->item) && count($xml->imageObjectType->item))
+				$this->multiLingual_imageObjectType = Kaltura_Client_ParseUtils::unmarshalArray($xml->imageObjectType, '');
+			else
+				$this->imageObjectType = (string)$xml->imageObjectType;
+		}
 		if(count($xml->status))
-			$this->status = (string)$xml->status;
+		{
+			if(isset($xml->status->item) && count($xml->status->item))
+				$this->multiLingual_status = Kaltura_Client_ParseUtils::unmarshalArray($xml->status, '');
+			else
+				$this->status = (string)$xml->status;
+		}
 		if(count($xml->url))
-			$this->url = (string)$xml->url;
+		{
+			if(isset($xml->url->item) && count($xml->url->item))
+				$this->multiLingual_url = Kaltura_Client_ParseUtils::unmarshalArray($xml->url, '');
+			else
+				$this->url = (string)$xml->url;
+		}
 		if(count($xml->contentId))
-			$this->contentId = (string)$xml->contentId;
+		{
+			if(isset($xml->contentId->item) && count($xml->contentId->item))
+				$this->multiLingual_contentId = Kaltura_Client_ParseUtils::unmarshalArray($xml->contentId, '');
+			else
+				$this->contentId = (string)$xml->contentId;
+		}
 		if(count($xml->isDefault))
 		{
 			if(!empty($xml->isDefault) && ((int) $xml->isDefault === 1 || strtolower((string)$xml->isDefault) === 'true'))

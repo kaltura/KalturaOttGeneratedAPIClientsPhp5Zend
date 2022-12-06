@@ -48,7 +48,12 @@ class Kaltura_Client_Type_HouseholdUser extends Kaltura_Client_ObjectBase
 		if(count($xml->householdId))
 			$this->householdId = (int)$xml->householdId;
 		if(count($xml->userId))
-			$this->userId = (string)$xml->userId;
+		{
+			if(isset($xml->userId->item) && count($xml->userId->item))
+				$this->multiLingual_userId = Kaltura_Client_ParseUtils::unmarshalArray($xml->userId, '');
+			else
+				$this->userId = (string)$xml->userId;
+		}
 		if(count($xml->isMaster))
 		{
 			if(!empty($xml->isMaster) && ((int) $xml->isMaster === 1 || strtolower((string)$xml->isMaster) === 'true'))
@@ -57,9 +62,19 @@ class Kaltura_Client_Type_HouseholdUser extends Kaltura_Client_ObjectBase
 				$this->isMaster = false;
 		}
 		if(count($xml->householdMasterUsername))
-			$this->householdMasterUsername = (string)$xml->householdMasterUsername;
+		{
+			if(isset($xml->householdMasterUsername->item) && count($xml->householdMasterUsername->item))
+				$this->multiLingual_householdMasterUsername = Kaltura_Client_ParseUtils::unmarshalArray($xml->householdMasterUsername, '');
+			else
+				$this->householdMasterUsername = (string)$xml->householdMasterUsername;
+		}
 		if(count($xml->status))
-			$this->status = (string)$xml->status;
+		{
+			if(isset($xml->status->item) && count($xml->status->item))
+				$this->multiLingual_status = Kaltura_Client_ParseUtils::unmarshalArray($xml->status, '');
+			else
+				$this->status = (string)$xml->status;
+		}
 		if(count($xml->isDefault))
 		{
 			if(!empty($xml->isDefault) && ((int) $xml->isDefault === 1 || strtolower((string)$xml->isDefault) === 'true'))

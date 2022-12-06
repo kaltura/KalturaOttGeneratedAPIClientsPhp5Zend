@@ -46,7 +46,12 @@ abstract class Kaltura_Client_Type_SubscriptionCondition extends Kaltura_Client_
 			return;
 		
 		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
+		{
+			if(isset($xml->idIn->item) && count($xml->idIn->item))
+				$this->multiLingual_idIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->idIn, '');
+			else
+				$this->idIn = (string)$xml->idIn;
+		}
 	}
 	/**
 	 * Comma separated subscription IDs list

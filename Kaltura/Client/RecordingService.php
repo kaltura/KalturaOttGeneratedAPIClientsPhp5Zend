@@ -181,6 +181,27 @@ class Kaltura_Client_RecordingService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_Recording
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
+	function stop($programId, $epgChannelId, $householdRecordingId)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "programId", $programId);
+		$this->client->addParam($kparams, "epgChannelId", $epgChannelId);
+		$this->client->addParam($kparams, "householdRecordingId", $householdRecordingId);
+		$this->client->queueServiceActionCall("recording", "stop", "KalturaRecording", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaRecording");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Recording");
+		return $resultObject;
+	}
+
+	/**
+	 * @return Kaltura_Client_Type_Recording
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
 	function update($id, Kaltura_Client_Type_Recording $recording)
 	{
 		$kparams = array();

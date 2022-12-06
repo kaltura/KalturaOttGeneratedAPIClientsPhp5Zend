@@ -46,38 +46,103 @@ class Kaltura_Client_Type_IotClientConfiguration extends Kaltura_Client_ObjectBa
 			return;
 		
 		if(count($xml->identityPoolId))
-			$this->identityPoolId = (string)$xml->identityPoolId;
+		{
+			if(isset($xml->identityPoolId->item) && count($xml->identityPoolId->item))
+				$this->multiLingual_identityPoolId = Kaltura_Client_ParseUtils::unmarshalArray($xml->identityPoolId, '');
+			else
+				$this->identityPoolId = (string)$xml->identityPoolId;
+		}
 		if(count($xml->userPoolId))
-			$this->userPoolId = (string)$xml->userPoolId;
+		{
+			if(isset($xml->userPoolId->item) && count($xml->userPoolId->item))
+				$this->multiLingual_userPoolId = Kaltura_Client_ParseUtils::unmarshalArray($xml->userPoolId, '');
+			else
+				$this->userPoolId = (string)$xml->userPoolId;
+		}
 		if(count($xml->awsRegion))
-			$this->awsRegion = (string)$xml->awsRegion;
+		{
+			if(isset($xml->awsRegion->item) && count($xml->awsRegion->item))
+				$this->multiLingual_awsRegion = Kaltura_Client_ParseUtils::unmarshalArray($xml->awsRegion, '');
+			else
+				$this->awsRegion = (string)$xml->awsRegion;
+		}
 		if(count($xml->appClientId))
-			$this->appClientId = (string)$xml->appClientId;
+		{
+			if(isset($xml->appClientId->item) && count($xml->appClientId->item))
+				$this->multiLingual_appClientId = Kaltura_Client_ParseUtils::unmarshalArray($xml->appClientId, '');
+			else
+				$this->appClientId = (string)$xml->appClientId;
+		}
 		if(count($xml->legacyEndPoint))
-			$this->legacyEndPoint = (string)$xml->legacyEndPoint;
+		{
+			if(isset($xml->legacyEndPoint->item) && count($xml->legacyEndPoint->item))
+				$this->multiLingual_legacyEndPoint = Kaltura_Client_ParseUtils::unmarshalArray($xml->legacyEndPoint, '');
+			else
+				$this->legacyEndPoint = (string)$xml->legacyEndPoint;
+		}
 		if(count($xml->endPoint))
-			$this->endPoint = (string)$xml->endPoint;
+		{
+			if(isset($xml->endPoint->item) && count($xml->endPoint->item))
+				$this->multiLingual_endPoint = Kaltura_Client_ParseUtils::unmarshalArray($xml->endPoint, '');
+			else
+				$this->endPoint = (string)$xml->endPoint;
+		}
 		if(count($xml->thingName))
-			$this->thingName = (string)$xml->thingName;
+		{
+			if(isset($xml->thingName->item) && count($xml->thingName->item))
+				$this->multiLingual_thingName = Kaltura_Client_ParseUtils::unmarshalArray($xml->thingName, '');
+			else
+				$this->thingName = (string)$xml->thingName;
+		}
 		if(count($xml->thingArn))
-			$this->thingArn = (string)$xml->thingArn;
+		{
+			if(isset($xml->thingArn->item) && count($xml->thingArn->item))
+				$this->multiLingual_thingArn = Kaltura_Client_ParseUtils::unmarshalArray($xml->thingArn, '');
+			else
+				$this->thingArn = (string)$xml->thingArn;
+		}
 		if(count($xml->thingId))
-			$this->thingId = (string)$xml->thingId;
+		{
+			if(isset($xml->thingId->item) && count($xml->thingId->item))
+				$this->multiLingual_thingId = Kaltura_Client_ParseUtils::unmarshalArray($xml->thingId, '');
+			else
+				$this->thingId = (string)$xml->thingId;
+		}
 		if(count($xml->username))
-			$this->username = (string)$xml->username;
+		{
+			if(isset($xml->username->item) && count($xml->username->item))
+				$this->multiLingual_username = Kaltura_Client_ParseUtils::unmarshalArray($xml->username, '');
+			else
+				$this->username = (string)$xml->username;
+		}
 		if(count($xml->password))
-			$this->password = (string)$xml->password;
+		{
+			if(isset($xml->password->item) && count($xml->password->item))
+				$this->multiLingual_password = Kaltura_Client_ParseUtils::unmarshalArray($xml->password, '');
+			else
+				$this->password = (string)$xml->password;
+		}
 		if(count($xml->topics))
 		{
 			if(empty($xml->topics))
 				$this->topics = array();
 			else
-				$this->topics = Kaltura_Client_ParseUtils::unmarshalArray($xml->topics, "KalturaStringValue");
+				$this->topics = Kaltura_Client_ParseUtils::unmarshalArray($xml->topics, "KalturaKeyValue");
 		}
 		if(count($xml->status))
-			$this->status = (string)$xml->status;
+		{
+			if(isset($xml->status->item) && count($xml->status->item))
+				$this->multiLingual_status = Kaltura_Client_ParseUtils::unmarshalArray($xml->status, '');
+			else
+				$this->status = (string)$xml->status;
+		}
 		if(count($xml->message))
-			$this->message = (string)$xml->message;
+		{
+			if(isset($xml->message->item) && count($xml->message->item))
+				$this->multiLingual_message = Kaltura_Client_ParseUtils::unmarshalArray($xml->message, '');
+			else
+				$this->message = (string)$xml->message;
+		}
 	}
 	/**
 	 * IdentityPoolId
@@ -159,7 +224,7 @@ class Kaltura_Client_Type_IotClientConfiguration extends Kaltura_Client_ObjectBa
 	/**
 	 * topics
 	 *
-	 * @var array of KalturaStringValue
+	 * @var array of KalturaKeyValue
 	 */
 	public $topics;
 

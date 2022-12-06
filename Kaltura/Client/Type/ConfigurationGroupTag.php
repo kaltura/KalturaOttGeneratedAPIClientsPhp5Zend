@@ -46,11 +46,21 @@ class Kaltura_Client_Type_ConfigurationGroupTag extends Kaltura_Client_ObjectBas
 			return;
 		
 		if(count($xml->configurationGroupId))
-			$this->configurationGroupId = (string)$xml->configurationGroupId;
+		{
+			if(isset($xml->configurationGroupId->item) && count($xml->configurationGroupId->item))
+				$this->multiLingual_configurationGroupId = Kaltura_Client_ParseUtils::unmarshalArray($xml->configurationGroupId, '');
+			else
+				$this->configurationGroupId = (string)$xml->configurationGroupId;
+		}
 		if(count($xml->partnerId))
 			$this->partnerId = (int)$xml->partnerId;
 		if(count($xml->tag))
-			$this->tag = (string)$xml->tag;
+		{
+			if(isset($xml->tag->item) && count($xml->tag->item))
+				$this->multiLingual_tag = Kaltura_Client_ParseUtils::unmarshalArray($xml->tag, '');
+			else
+				$this->tag = (string)$xml->tag;
+		}
 	}
 	/**
 	 * Configuration group identifier

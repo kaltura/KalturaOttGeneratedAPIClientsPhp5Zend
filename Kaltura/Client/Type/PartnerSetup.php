@@ -46,9 +46,19 @@ class Kaltura_Client_Type_PartnerSetup extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->adminUsername))
-			$this->adminUsername = (string)$xml->adminUsername;
+		{
+			if(isset($xml->adminUsername->item) && count($xml->adminUsername->item))
+				$this->multiLingual_adminUsername = Kaltura_Client_ParseUtils::unmarshalArray($xml->adminUsername, '');
+			else
+				$this->adminUsername = (string)$xml->adminUsername;
+		}
 		if(count($xml->adminPassword))
-			$this->adminPassword = (string)$xml->adminPassword;
+		{
+			if(isset($xml->adminPassword->item) && count($xml->adminPassword->item))
+				$this->multiLingual_adminPassword = Kaltura_Client_ParseUtils::unmarshalArray($xml->adminPassword, '');
+			else
+				$this->adminPassword = (string)$xml->adminPassword;
+		}
 		if(count($xml->basePartnerConfiguration) && !empty($xml->basePartnerConfiguration))
 			$this->basePartnerConfiguration = Kaltura_Client_ParseUtils::unmarshalObject($xml->basePartnerConfiguration, "KalturaBasePartnerConfiguration");
 	}
