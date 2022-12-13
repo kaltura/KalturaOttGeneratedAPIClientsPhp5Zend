@@ -31,12 +31,30 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_GroupByField extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_TopRsp extends Kaltura_Client_Type_RepresentativeSelectionPolicy
 {
-	const MEDIA_TYPE_ID = "media_type_id";
-	const SUPPRESSED = "suppressed";
-	const CRID = "crid";
-	const LINEAR_MEDIA_ID = "linear_media_id";
-	const NAME = "name";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaTopRsp';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->orderBy) && !empty($xml->orderBy))
+			$this->orderBy = Kaltura_Client_ParseUtils::unmarshalObject($xml->orderBy, "KalturaBaseAssetOrder");
+	}
+	/**
+	 * order by
+	 *
+	 * @var Kaltura_Client_Type_BaseAssetOrder
+	 */
+	public $orderBy;
+
+
 }
 

@@ -76,10 +76,6 @@ class Kaltura_Client_Type_Recording extends Kaltura_Client_ObjectBase
 			$this->createDate = (string)$xml->createDate;
 		if(count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
-		if(count($xml->householdSpecificStartTimeOffset))
-			$this->householdSpecificStartTimeOffset = (int)$xml->householdSpecificStartTimeOffset;
-		if(count($xml->householdSpecificEndTimeOffset))
-			$this->householdSpecificEndTimeOffset = (int)$xml->householdSpecificEndTimeOffset;
 	}
 	/**
 	 * Kaltura unique ID representing the recording identifier
@@ -142,20 +138,6 @@ class Kaltura_Client_Type_Recording extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $updateDate = null;
-
-	/**
-	 * Household specific start time of the recording
-	 *
-	 * @var int
-	 */
-	public $householdSpecificStartTimeOffset = null;
-
-	/**
-	 * Household specific end time of the recording
-	 *
-	 * @var int
-	 */
-	public $householdSpecificEndTimeOffset = null;
 
 
 }

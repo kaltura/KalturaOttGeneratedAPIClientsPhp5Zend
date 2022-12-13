@@ -31,12 +31,21 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_GroupByField extends Kaltura_Client_EnumBase
+abstract class Kaltura_Client_Type_RepresentativeSelectionPolicy extends Kaltura_Client_ObjectBase
 {
-	const MEDIA_TYPE_ID = "media_type_id";
-	const SUPPRESSED = "suppressed";
-	const CRID = "crid";
-	const LINEAR_MEDIA_ID = "linear_media_id";
-	const NAME = "name";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaRepresentativeSelectionPolicy';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+	}
+
 }
 

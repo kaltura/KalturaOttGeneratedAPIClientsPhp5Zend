@@ -31,12 +31,35 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_GroupByField extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_ListGroupsRepresentativesFilter extends Kaltura_Client_Type_Filter
 {
-	const MEDIA_TYPE_ID = "media_type_id";
-	const SUPPRESSED = "suppressed";
-	const CRID = "crid";
-	const LINEAR_MEDIA_ID = "linear_media_id";
-	const NAME = "name";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaListGroupsRepresentativesFilter';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->kSql))
+		{
+			if(isset($xml->kSql->item) && count($xml->kSql->item))
+				$this->multiLingual_kSql = Kaltura_Client_ParseUtils::unmarshalArray($xml->kSql, '');
+			else
+				$this->kSql = (string)$xml->kSql;
+		}
+	}
+	/**
+	 * Search assets using dynamic criteria. Provided collection of nested expressions with key, comparison operators, value, and logical conjunction.
+	 *
+	 * @var string
+	 */
+	public $kSql = null;
+
+
 }
 

@@ -31,12 +31,39 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_GroupByField extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_ImmediateRecording extends Kaltura_Client_Type_Recording
 {
-	const MEDIA_TYPE_ID = "media_type_id";
-	const SUPPRESSED = "suppressed";
-	const CRID = "crid";
-	const LINEAR_MEDIA_ID = "linear_media_id";
-	const NAME = "name";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaImmediateRecording';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->endPadding))
+			$this->endPadding = (int)$xml->endPadding;
+		if(count($xml->absoluteStart))
+			$this->absoluteStart = (string)$xml->absoluteStart;
+	}
+	/**
+	 * Household specific end padding of the recording
+	 *
+	 * @var int
+	 */
+	public $endPadding = null;
+
+	/**
+	 * Household absolute start time of the immediate recording
+	 *
+	 * @var bigint
+	 */
+	public $absoluteStart = null;
+
+
 }
 

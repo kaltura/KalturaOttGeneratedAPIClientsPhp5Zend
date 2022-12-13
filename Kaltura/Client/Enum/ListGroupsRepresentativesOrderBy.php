@@ -31,12 +31,8 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_GroupByField extends Kaltura_Client_EnumBase
+class Kaltura_Client_Enum_ListGroupsRepresentativesOrderBy extends Kaltura_Client_EnumBase
 {
-	const MEDIA_TYPE_ID = "media_type_id";
-	const SUPPRESSED = "suppressed";
-	const CRID = "crid";
-	const LINEAR_MEDIA_ID = "linear_media_id";
-	const NAME = "name";
+	const NONE = "None";
 }
 
