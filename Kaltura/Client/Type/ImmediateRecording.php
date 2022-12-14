@@ -49,6 +49,8 @@ class Kaltura_Client_Type_ImmediateRecording extends Kaltura_Client_Type_Recordi
 			$this->endPadding = (int)$xml->endPadding;
 		if(count($xml->absoluteStart))
 			$this->absoluteStart = (string)$xml->absoluteStart;
+		if(count($xml->absoluteEnd))
+			$this->absoluteEnd = (string)$xml->absoluteEnd;
 	}
 	/**
 	 * Household specific end padding of the recording
@@ -63,6 +65,13 @@ class Kaltura_Client_Type_ImmediateRecording extends Kaltura_Client_Type_Recordi
 	 * @var bigint
 	 */
 	public $absoluteStart = null;
+
+	/**
+	 * Household absolute end time of the immediate recording, empty if till end of program
+	 *
+	 * @var bigint
+	 */
+	public $absoluteEnd = null;
 
 
 }

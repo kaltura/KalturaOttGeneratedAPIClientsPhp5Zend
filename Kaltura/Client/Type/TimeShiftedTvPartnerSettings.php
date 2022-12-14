@@ -160,6 +160,8 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 		}
 		if(count($xml->maxRecordingConcurrency))
 			$this->maxRecordingConcurrency = (int)$xml->maxRecordingConcurrency;
+		if(count($xml->maxConcurrencyMargin))
+			$this->maxConcurrencyMargin = (int)$xml->maxConcurrencyMargin;
 	}
 	/**
 	 * Is catch-up enabled
@@ -335,6 +337,13 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 	 * @var int
 	 */
 	public $maxRecordingConcurrency = null;
+
+	/**
+	 * Define the max grace margin time for overlapping recording. Default NULL 0 margin
+	 *
+	 * @var int
+	 */
+	public $maxConcurrencyMargin = null;
 
 
 }
