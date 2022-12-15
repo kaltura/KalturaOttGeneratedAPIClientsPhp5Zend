@@ -46,11 +46,21 @@ class Kaltura_Client_Type_MetaFilter extends Kaltura_Client_Type_Filter
 			return;
 		
 		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
+		{
+			if(isset($xml->idIn->item) && count($xml->idIn->item))
+				$this->multiLingual_idIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->idIn, '');
+			else
+				$this->idIn = (string)$xml->idIn;
+		}
 		if(count($xml->assetStructIdEqual))
 			$this->assetStructIdEqual = (string)$xml->assetStructIdEqual;
 		if(count($xml->dataTypeEqual))
-			$this->dataTypeEqual = (string)$xml->dataTypeEqual;
+		{
+			if(isset($xml->dataTypeEqual->item) && count($xml->dataTypeEqual->item))
+				$this->multiLingual_dataTypeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->dataTypeEqual, '');
+			else
+				$this->dataTypeEqual = (string)$xml->dataTypeEqual;
+		}
 		if(count($xml->multipleValueEqual))
 		{
 			if(!empty($xml->multipleValueEqual) && ((int) $xml->multipleValueEqual === 1 || strtolower((string)$xml->multipleValueEqual) === 'true'))

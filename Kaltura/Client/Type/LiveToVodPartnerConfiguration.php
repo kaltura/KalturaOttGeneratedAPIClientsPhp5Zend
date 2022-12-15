@@ -55,7 +55,12 @@ class Kaltura_Client_Type_LiveToVodPartnerConfiguration extends Kaltura_Client_O
 		if(count($xml->retentionPeriodDays))
 			$this->retentionPeriodDays = (int)$xml->retentionPeriodDays;
 		if(count($xml->metadataClassifier))
-			$this->metadataClassifier = (string)$xml->metadataClassifier;
+		{
+			if(isset($xml->metadataClassifier->item) && count($xml->metadataClassifier->item))
+				$this->multiLingual_metadataClassifier = Kaltura_Client_ParseUtils::unmarshalArray($xml->metadataClassifier, '');
+			else
+				$this->metadataClassifier = (string)$xml->metadataClassifier;
+		}
 	}
 	/**
 	 * Enable/disable the feature globally. If disabled, then all linear assets are not enabled.

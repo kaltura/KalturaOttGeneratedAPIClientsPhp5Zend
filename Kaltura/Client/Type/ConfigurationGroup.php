@@ -46,9 +46,19 @@ class Kaltura_Client_Type_ConfigurationGroup extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->id))
-			$this->id = (string)$xml->id;
+		{
+			if(isset($xml->id->item) && count($xml->id->item))
+				$this->multiLingual_id = Kaltura_Client_ParseUtils::unmarshalArray($xml->id, '');
+			else
+				$this->id = (string)$xml->id;
+		}
 		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		{
+			if(isset($xml->name->item) && count($xml->name->item))
+				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
+			else
+				$this->name = (string)$xml->name;
+		}
 		if(count($xml->partnerId))
 			$this->partnerId = (int)$xml->partnerId;
 		if(count($xml->isDefault))

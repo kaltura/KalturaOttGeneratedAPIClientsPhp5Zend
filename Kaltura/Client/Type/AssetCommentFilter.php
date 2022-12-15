@@ -48,7 +48,12 @@ class Kaltura_Client_Type_AssetCommentFilter extends Kaltura_Client_Type_Filter
 		if(count($xml->assetIdEqual))
 			$this->assetIdEqual = (int)$xml->assetIdEqual;
 		if(count($xml->assetTypeEqual))
-			$this->assetTypeEqual = (string)$xml->assetTypeEqual;
+		{
+			if(isset($xml->assetTypeEqual->item) && count($xml->assetTypeEqual->item))
+				$this->multiLingual_assetTypeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->assetTypeEqual, '');
+			else
+				$this->assetTypeEqual = (string)$xml->assetTypeEqual;
+		}
 	}
 	/**
 	 * Asset Id

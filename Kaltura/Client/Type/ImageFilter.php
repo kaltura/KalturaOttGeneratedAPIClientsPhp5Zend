@@ -46,11 +46,21 @@ class Kaltura_Client_Type_ImageFilter extends Kaltura_Client_Type_Filter
 			return;
 		
 		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
+		{
+			if(isset($xml->idIn->item) && count($xml->idIn->item))
+				$this->multiLingual_idIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->idIn, '');
+			else
+				$this->idIn = (string)$xml->idIn;
+		}
 		if(count($xml->imageObjectIdEqual))
 			$this->imageObjectIdEqual = (string)$xml->imageObjectIdEqual;
 		if(count($xml->imageObjectTypeEqual))
-			$this->imageObjectTypeEqual = (string)$xml->imageObjectTypeEqual;
+		{
+			if(isset($xml->imageObjectTypeEqual->item) && count($xml->imageObjectTypeEqual->item))
+				$this->multiLingual_imageObjectTypeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->imageObjectTypeEqual, '');
+			else
+				$this->imageObjectTypeEqual = (string)$xml->imageObjectTypeEqual;
+		}
 		if(count($xml->isDefaultEqual))
 		{
 			if(!empty($xml->isDefaultEqual) && ((int) $xml->isDefaultEqual === 1 || strtolower((string)$xml->isDefaultEqual) === 'true'))
@@ -59,7 +69,12 @@ class Kaltura_Client_Type_ImageFilter extends Kaltura_Client_Type_Filter
 				$this->isDefaultEqual = false;
 		}
 		if(count($xml->imageObjectIdIn))
-			$this->imageObjectIdIn = (string)$xml->imageObjectIdIn;
+		{
+			if(isset($xml->imageObjectIdIn->item) && count($xml->imageObjectIdIn->item))
+				$this->multiLingual_imageObjectIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->imageObjectIdIn, '');
+			else
+				$this->imageObjectIdIn = (string)$xml->imageObjectIdIn;
+		}
 	}
 	/**
 	 * IDs to filter by

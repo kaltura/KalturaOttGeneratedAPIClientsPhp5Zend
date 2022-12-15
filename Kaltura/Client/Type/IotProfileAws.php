@@ -46,19 +46,54 @@ class Kaltura_Client_Type_IotProfileAws extends Kaltura_Client_Type_OTTObjectSup
 			return;
 		
 		if(count($xml->iotEndPoint))
-			$this->iotEndPoint = (string)$xml->iotEndPoint;
+		{
+			if(isset($xml->iotEndPoint->item) && count($xml->iotEndPoint->item))
+				$this->multiLingual_iotEndPoint = Kaltura_Client_ParseUtils::unmarshalArray($xml->iotEndPoint, '');
+			else
+				$this->iotEndPoint = (string)$xml->iotEndPoint;
+		}
 		if(count($xml->accessKeyId))
-			$this->accessKeyId = (string)$xml->accessKeyId;
+		{
+			if(isset($xml->accessKeyId->item) && count($xml->accessKeyId->item))
+				$this->multiLingual_accessKeyId = Kaltura_Client_ParseUtils::unmarshalArray($xml->accessKeyId, '');
+			else
+				$this->accessKeyId = (string)$xml->accessKeyId;
+		}
 		if(count($xml->secretAccessKey))
-			$this->secretAccessKey = (string)$xml->secretAccessKey;
+		{
+			if(isset($xml->secretAccessKey->item) && count($xml->secretAccessKey->item))
+				$this->multiLingual_secretAccessKey = Kaltura_Client_ParseUtils::unmarshalArray($xml->secretAccessKey, '');
+			else
+				$this->secretAccessKey = (string)$xml->secretAccessKey;
+		}
 		if(count($xml->userPoolId))
-			$this->userPoolId = (string)$xml->userPoolId;
+		{
+			if(isset($xml->userPoolId->item) && count($xml->userPoolId->item))
+				$this->multiLingual_userPoolId = Kaltura_Client_ParseUtils::unmarshalArray($xml->userPoolId, '');
+			else
+				$this->userPoolId = (string)$xml->userPoolId;
+		}
 		if(count($xml->clientId))
-			$this->clientId = (string)$xml->clientId;
+		{
+			if(isset($xml->clientId->item) && count($xml->clientId->item))
+				$this->multiLingual_clientId = Kaltura_Client_ParseUtils::unmarshalArray($xml->clientId, '');
+			else
+				$this->clientId = (string)$xml->clientId;
+		}
 		if(count($xml->identityPoolId))
-			$this->identityPoolId = (string)$xml->identityPoolId;
+		{
+			if(isset($xml->identityPoolId->item) && count($xml->identityPoolId->item))
+				$this->multiLingual_identityPoolId = Kaltura_Client_ParseUtils::unmarshalArray($xml->identityPoolId, '');
+			else
+				$this->identityPoolId = (string)$xml->identityPoolId;
+		}
 		if(count($xml->region))
-			$this->region = (string)$xml->region;
+		{
+			if(isset($xml->region->item) && count($xml->region->item))
+				$this->multiLingual_region = Kaltura_Client_ParseUtils::unmarshalArray($xml->region, '');
+			else
+				$this->region = (string)$xml->region;
+		}
 		if(count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
 	}

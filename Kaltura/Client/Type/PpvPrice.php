@@ -48,7 +48,12 @@ class Kaltura_Client_Type_PpvPrice extends Kaltura_Client_Type_ProductPrice
 		if(count($xml->fileId))
 			$this->fileId = (int)$xml->fileId;
 		if(count($xml->ppvModuleId))
-			$this->ppvModuleId = (string)$xml->ppvModuleId;
+		{
+			if(isset($xml->ppvModuleId->item) && count($xml->ppvModuleId->item))
+				$this->multiLingual_ppvModuleId = Kaltura_Client_ParseUtils::unmarshalArray($xml->ppvModuleId, '');
+			else
+				$this->ppvModuleId = (string)$xml->ppvModuleId;
+		}
 		if(count($xml->isSubscriptionOnly))
 		{
 			if(!empty($xml->isSubscriptionOnly) && ((int) $xml->isSubscriptionOnly === 1 || strtolower((string)$xml->isSubscriptionOnly) === 'true'))
@@ -57,11 +62,26 @@ class Kaltura_Client_Type_PpvPrice extends Kaltura_Client_Type_ProductPrice
 				$this->isSubscriptionOnly = false;
 		}
 		if(count($xml->subscriptionId))
-			$this->subscriptionId = (string)$xml->subscriptionId;
+		{
+			if(isset($xml->subscriptionId->item) && count($xml->subscriptionId->item))
+				$this->multiLingual_subscriptionId = Kaltura_Client_ParseUtils::unmarshalArray($xml->subscriptionId, '');
+			else
+				$this->subscriptionId = (string)$xml->subscriptionId;
+		}
 		if(count($xml->collectionId))
-			$this->collectionId = (string)$xml->collectionId;
+		{
+			if(isset($xml->collectionId->item) && count($xml->collectionId->item))
+				$this->multiLingual_collectionId = Kaltura_Client_ParseUtils::unmarshalArray($xml->collectionId, '');
+			else
+				$this->collectionId = (string)$xml->collectionId;
+		}
 		if(count($xml->prePaidId))
-			$this->prePaidId = (string)$xml->prePaidId;
+		{
+			if(isset($xml->prePaidId->item) && count($xml->prePaidId->item))
+				$this->multiLingual_prePaidId = Kaltura_Client_ParseUtils::unmarshalArray($xml->prePaidId, '');
+			else
+				$this->prePaidId = (string)$xml->prePaidId;
+		}
 		if(count($xml->ppvDescriptions))
 		{
 			if(empty($xml->ppvDescriptions))
@@ -70,7 +90,12 @@ class Kaltura_Client_Type_PpvPrice extends Kaltura_Client_Type_ProductPrice
 				$this->ppvDescriptions = Kaltura_Client_ParseUtils::unmarshalArray($xml->ppvDescriptions, "KalturaTranslationToken");
 		}
 		if(count($xml->purchaseUserId))
-			$this->purchaseUserId = (string)$xml->purchaseUserId;
+		{
+			if(isset($xml->purchaseUserId->item) && count($xml->purchaseUserId->item))
+				$this->multiLingual_purchaseUserId = Kaltura_Client_ParseUtils::unmarshalArray($xml->purchaseUserId, '');
+			else
+				$this->purchaseUserId = (string)$xml->purchaseUserId;
+		}
 		if(count($xml->purchasedMediaFileId))
 			$this->purchasedMediaFileId = (int)$xml->purchasedMediaFileId;
 		if(count($xml->relatedMediaFileIds))
@@ -87,7 +112,12 @@ class Kaltura_Client_Type_PpvPrice extends Kaltura_Client_Type_ProductPrice
 		if(count($xml->discountEndDate))
 			$this->discountEndDate = (string)$xml->discountEndDate;
 		if(count($xml->firstDeviceName))
-			$this->firstDeviceName = (string)$xml->firstDeviceName;
+		{
+			if(isset($xml->firstDeviceName->item) && count($xml->firstDeviceName->item))
+				$this->multiLingual_firstDeviceName = Kaltura_Client_ParseUtils::unmarshalArray($xml->firstDeviceName, '');
+			else
+				$this->firstDeviceName = (string)$xml->firstDeviceName;
+		}
 		if(count($xml->isInCancelationPeriod))
 		{
 			if(!empty($xml->isInCancelationPeriod) && ((int) $xml->isInCancelationPeriod === 1 || strtolower((string)$xml->isInCancelationPeriod) === 'true'))
@@ -96,7 +126,12 @@ class Kaltura_Client_Type_PpvPrice extends Kaltura_Client_Type_ProductPrice
 				$this->isInCancelationPeriod = false;
 		}
 		if(count($xml->ppvProductCode))
-			$this->ppvProductCode = (string)$xml->ppvProductCode;
+		{
+			if(isset($xml->ppvProductCode->item) && count($xml->ppvProductCode->item))
+				$this->multiLingual_ppvProductCode = Kaltura_Client_ParseUtils::unmarshalArray($xml->ppvProductCode, '');
+			else
+				$this->ppvProductCode = (string)$xml->ppvProductCode;
+		}
 	}
 	/**
 	 * Media file identifier

@@ -53,9 +53,19 @@ class Kaltura_Client_Type_EpgNotificationSettings extends Kaltura_Client_ObjectB
 				$this->enabled = false;
 		}
 		if(count($xml->deviceFamilyIds))
-			$this->deviceFamilyIds = (string)$xml->deviceFamilyIds;
+		{
+			if(isset($xml->deviceFamilyIds->item) && count($xml->deviceFamilyIds->item))
+				$this->multiLingual_deviceFamilyIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->deviceFamilyIds, '');
+			else
+				$this->deviceFamilyIds = (string)$xml->deviceFamilyIds;
+		}
 		if(count($xml->liveAssetIds))
-			$this->liveAssetIds = (string)$xml->liveAssetIds;
+		{
+			if(isset($xml->liveAssetIds->item) && count($xml->liveAssetIds->item))
+				$this->multiLingual_liveAssetIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->liveAssetIds, '');
+			else
+				$this->liveAssetIds = (string)$xml->liveAssetIds;
+		}
 		if(count($xml->backwardTimeRange))
 			$this->backwardTimeRange = (int)$xml->backwardTimeRange;
 		if(count($xml->forwardTimeRange))

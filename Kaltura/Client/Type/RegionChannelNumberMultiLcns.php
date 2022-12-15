@@ -46,7 +46,12 @@ class Kaltura_Client_Type_RegionChannelNumberMultiLcns extends Kaltura_Client_Ty
 			return;
 		
 		if(count($xml->lcns))
-			$this->lcns = (string)$xml->lcns;
+		{
+			if(isset($xml->lcns->item) && count($xml->lcns->item))
+				$this->multiLingual_lcns = Kaltura_Client_ParseUtils::unmarshalArray($xml->lcns, '');
+			else
+				$this->lcns = (string)$xml->lcns;
+		}
 	}
 	/**
 	 * Linear channel numbers

@@ -46,7 +46,12 @@ class Kaltura_Client_Type_SegmentsCondition extends Kaltura_Client_Type_Conditio
 			return;
 		
 		if(count($xml->segmentsIds))
-			$this->segmentsIds = (string)$xml->segmentsIds;
+		{
+			if(isset($xml->segmentsIds->item) && count($xml->segmentsIds->item))
+				$this->multiLingual_segmentsIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->segmentsIds, '');
+			else
+				$this->segmentsIds = (string)$xml->segmentsIds;
+		}
 	}
 	/**
 	 * Comma separated segments IDs list

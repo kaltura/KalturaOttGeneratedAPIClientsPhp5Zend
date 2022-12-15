@@ -50,11 +50,21 @@ abstract class Kaltura_Client_Type_FollowDataBase extends Kaltura_Client_ObjectB
 		if(count($xml->status))
 			$this->status = (int)$xml->status;
 		if(count($xml->title))
-			$this->title = (string)$xml->title;
+		{
+			if(isset($xml->title->item) && count($xml->title->item))
+				$this->multiLingual_title = Kaltura_Client_ParseUtils::unmarshalArray($xml->title, '');
+			else
+				$this->title = (string)$xml->title;
+		}
 		if(count($xml->timestamp))
 			$this->timestamp = (string)$xml->timestamp;
 		if(count($xml->followPhrase))
-			$this->followPhrase = (string)$xml->followPhrase;
+		{
+			if(isset($xml->followPhrase->item) && count($xml->followPhrase->item))
+				$this->multiLingual_followPhrase = Kaltura_Client_ParseUtils::unmarshalArray($xml->followPhrase, '');
+			else
+				$this->followPhrase = (string)$xml->followPhrase;
+		}
 	}
 	/**
 	 * Announcement Id

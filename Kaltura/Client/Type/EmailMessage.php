@@ -46,21 +46,61 @@ class Kaltura_Client_Type_EmailMessage extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->templateName))
-			$this->templateName = (string)$xml->templateName;
+		{
+			if(isset($xml->templateName->item) && count($xml->templateName->item))
+				$this->multiLingual_templateName = Kaltura_Client_ParseUtils::unmarshalArray($xml->templateName, '');
+			else
+				$this->templateName = (string)$xml->templateName;
+		}
 		if(count($xml->subject))
-			$this->subject = (string)$xml->subject;
+		{
+			if(isset($xml->subject->item) && count($xml->subject->item))
+				$this->multiLingual_subject = Kaltura_Client_ParseUtils::unmarshalArray($xml->subject, '');
+			else
+				$this->subject = (string)$xml->subject;
+		}
 		if(count($xml->firstName))
-			$this->firstName = (string)$xml->firstName;
+		{
+			if(isset($xml->firstName->item) && count($xml->firstName->item))
+				$this->multiLingual_firstName = Kaltura_Client_ParseUtils::unmarshalArray($xml->firstName, '');
+			else
+				$this->firstName = (string)$xml->firstName;
+		}
 		if(count($xml->lastName))
-			$this->lastName = (string)$xml->lastName;
+		{
+			if(isset($xml->lastName->item) && count($xml->lastName->item))
+				$this->multiLingual_lastName = Kaltura_Client_ParseUtils::unmarshalArray($xml->lastName, '');
+			else
+				$this->lastName = (string)$xml->lastName;
+		}
 		if(count($xml->senderName))
-			$this->senderName = (string)$xml->senderName;
+		{
+			if(isset($xml->senderName->item) && count($xml->senderName->item))
+				$this->multiLingual_senderName = Kaltura_Client_ParseUtils::unmarshalArray($xml->senderName, '');
+			else
+				$this->senderName = (string)$xml->senderName;
+		}
 		if(count($xml->senderFrom))
-			$this->senderFrom = (string)$xml->senderFrom;
+		{
+			if(isset($xml->senderFrom->item) && count($xml->senderFrom->item))
+				$this->multiLingual_senderFrom = Kaltura_Client_ParseUtils::unmarshalArray($xml->senderFrom, '');
+			else
+				$this->senderFrom = (string)$xml->senderFrom;
+		}
 		if(count($xml->senderTo))
-			$this->senderTo = (string)$xml->senderTo;
+		{
+			if(isset($xml->senderTo->item) && count($xml->senderTo->item))
+				$this->multiLingual_senderTo = Kaltura_Client_ParseUtils::unmarshalArray($xml->senderTo, '');
+			else
+				$this->senderTo = (string)$xml->senderTo;
+		}
 		if(count($xml->bccAddress))
-			$this->bccAddress = (string)$xml->bccAddress;
+		{
+			if(isset($xml->bccAddress->item) && count($xml->bccAddress->item))
+				$this->multiLingual_bccAddress = Kaltura_Client_ParseUtils::unmarshalArray($xml->bccAddress, '');
+			else
+				$this->bccAddress = (string)$xml->bccAddress;
+		}
 		if(count($xml->extraParameters))
 		{
 			if(empty($xml->extraParameters))

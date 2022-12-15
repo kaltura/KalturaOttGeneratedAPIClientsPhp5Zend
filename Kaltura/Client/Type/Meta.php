@@ -46,9 +46,19 @@ class Kaltura_Client_Type_Meta extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->id))
-			$this->id = (string)$xml->id;
+		{
+			if(isset($xml->id->item) && count($xml->id->item))
+				$this->multiLingual_id = Kaltura_Client_ParseUtils::unmarshalArray($xml->id, '');
+			else
+				$this->id = (string)$xml->id;
+		}
 		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		{
+			if(isset($xml->name->item) && count($xml->name->item))
+				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
+			else
+				$this->name = (string)$xml->name;
+		}
 		if(count($xml->multilingualName))
 		{
 			if(empty($xml->multilingualName))
@@ -57,9 +67,19 @@ class Kaltura_Client_Type_Meta extends Kaltura_Client_ObjectBase
 				$this->multilingualName = Kaltura_Client_ParseUtils::unmarshalArray($xml->multilingualName, "KalturaTranslationToken");
 		}
 		if(count($xml->systemName))
-			$this->systemName = (string)$xml->systemName;
+		{
+			if(isset($xml->systemName->item) && count($xml->systemName->item))
+				$this->multiLingual_systemName = Kaltura_Client_ParseUtils::unmarshalArray($xml->systemName, '');
+			else
+				$this->systemName = (string)$xml->systemName;
+		}
 		if(count($xml->dataType))
-			$this->dataType = (string)$xml->dataType;
+		{
+			if(isset($xml->dataType->item) && count($xml->dataType->item))
+				$this->multiLingual_dataType = Kaltura_Client_ParseUtils::unmarshalArray($xml->dataType, '');
+			else
+				$this->dataType = (string)$xml->dataType;
+		}
 		if(count($xml->multipleValue))
 		{
 			if(!empty($xml->multipleValue) && ((int) $xml->multipleValue === 1 || strtolower((string)$xml->multipleValue) === 'true'))
@@ -75,11 +95,26 @@ class Kaltura_Client_Type_Meta extends Kaltura_Client_ObjectBase
 				$this->isProtected = false;
 		}
 		if(count($xml->helpText))
-			$this->helpText = (string)$xml->helpText;
+		{
+			if(isset($xml->helpText->item) && count($xml->helpText->item))
+				$this->multiLingual_helpText = Kaltura_Client_ParseUtils::unmarshalArray($xml->helpText, '');
+			else
+				$this->helpText = (string)$xml->helpText;
+		}
 		if(count($xml->features))
-			$this->features = (string)$xml->features;
+		{
+			if(isset($xml->features->item) && count($xml->features->item))
+				$this->multiLingual_features = Kaltura_Client_ParseUtils::unmarshalArray($xml->features, '');
+			else
+				$this->features = (string)$xml->features;
+		}
 		if(count($xml->parentId))
-			$this->parentId = (string)$xml->parentId;
+		{
+			if(isset($xml->parentId->item) && count($xml->parentId->item))
+				$this->multiLingual_parentId = Kaltura_Client_ParseUtils::unmarshalArray($xml->parentId, '');
+			else
+				$this->parentId = (string)$xml->parentId;
+		}
 		if(count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
 		if(count($xml->updateDate))

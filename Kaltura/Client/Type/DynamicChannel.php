@@ -46,7 +46,12 @@ class Kaltura_Client_Type_DynamicChannel extends Kaltura_Client_Type_Channel
 			return;
 		
 		if(count($xml->kSql))
-			$this->kSql = (string)$xml->kSql;
+		{
+			if(isset($xml->kSql->item) && count($xml->kSql->item))
+				$this->multiLingual_kSql = Kaltura_Client_ParseUtils::unmarshalArray($xml->kSql, '');
+			else
+				$this->kSql = (string)$xml->kSql;
+		}
 		if(count($xml->assetTypes))
 		{
 			if(empty($xml->assetTypes))

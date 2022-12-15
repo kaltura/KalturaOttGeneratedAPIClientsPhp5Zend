@@ -46,7 +46,12 @@ class Kaltura_Client_Type_SearchPriorityGroupOrderedIdsSet extends Kaltura_Clien
 			return;
 		
 		if(count($xml->priorityGroupIds))
-			$this->priorityGroupIds = (string)$xml->priorityGroupIds;
+		{
+			if(isset($xml->priorityGroupIds->item) && count($xml->priorityGroupIds->item))
+				$this->multiLingual_priorityGroupIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->priorityGroupIds, '');
+			else
+				$this->priorityGroupIds = (string)$xml->priorityGroupIds;
+		}
 	}
 	/**
 	 * The order and effectively the priority of each group.

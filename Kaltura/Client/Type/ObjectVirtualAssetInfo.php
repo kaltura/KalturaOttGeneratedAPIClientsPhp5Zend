@@ -50,7 +50,12 @@ class Kaltura_Client_Type_ObjectVirtualAssetInfo extends Kaltura_Client_ObjectBa
 		if(count($xml->metaId))
 			$this->metaId = (int)$xml->metaId;
 		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		{
+			if(isset($xml->type->item) && count($xml->type->item))
+				$this->multiLingual_type = Kaltura_Client_ParseUtils::unmarshalArray($xml->type, '');
+			else
+				$this->type = (string)$xml->type;
+		}
 		if(count($xml->extendedTypes))
 		{
 			if(empty($xml->extendedTypes))

@@ -46,9 +46,19 @@ class Kaltura_Client_Type_PlaybackSource extends Kaltura_Client_Type_MediaFile
 			return;
 		
 		if(count($xml->format))
-			$this->format = (string)$xml->format;
+		{
+			if(isset($xml->format->item) && count($xml->format->item))
+				$this->multiLingual_format = Kaltura_Client_ParseUtils::unmarshalArray($xml->format, '');
+			else
+				$this->format = (string)$xml->format;
+		}
 		if(count($xml->protocols))
-			$this->protocols = (string)$xml->protocols;
+		{
+			if(isset($xml->protocols->item) && count($xml->protocols->item))
+				$this->multiLingual_protocols = Kaltura_Client_ParseUtils::unmarshalArray($xml->protocols, '');
+			else
+				$this->protocols = (string)$xml->protocols;
+		}
 		if(count($xml->drm))
 		{
 			if(empty($xml->drm))
@@ -66,7 +76,12 @@ class Kaltura_Client_Type_PlaybackSource extends Kaltura_Client_Type_MediaFile
 		if(count($xml->businessModuleId))
 			$this->businessModuleId = (int)$xml->businessModuleId;
 		if(count($xml->businessModuleType))
-			$this->businessModuleType = (string)$xml->businessModuleType;
+		{
+			if(isset($xml->businessModuleType->item) && count($xml->businessModuleType->item))
+				$this->multiLingual_businessModuleType = Kaltura_Client_ParseUtils::unmarshalArray($xml->businessModuleType, '');
+			else
+				$this->businessModuleType = (string)$xml->businessModuleType;
+		}
 	}
 	/**
 	 * Source format according to delivery profile streamer type (applehttp, mpegdash etc.)

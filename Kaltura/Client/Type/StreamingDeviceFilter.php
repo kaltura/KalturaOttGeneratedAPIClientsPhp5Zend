@@ -46,7 +46,12 @@ class Kaltura_Client_Type_StreamingDeviceFilter extends Kaltura_Client_Type_Filt
 			return;
 		
 		if(count($xml->assetTypeEqual))
-			$this->assetTypeEqual = (string)$xml->assetTypeEqual;
+		{
+			if(isset($xml->assetTypeEqual->item) && count($xml->assetTypeEqual->item))
+				$this->multiLingual_assetTypeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->assetTypeEqual, '');
+			else
+				$this->assetTypeEqual = (string)$xml->assetTypeEqual;
+		}
 	}
 	/**
 	 * filter by asset type

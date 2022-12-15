@@ -46,7 +46,12 @@ class Kaltura_Client_Type_ExternalRecording extends Kaltura_Client_Type_Recordin
 			return;
 		
 		if(count($xml->externalId))
-			$this->externalId = (string)$xml->externalId;
+		{
+			if(isset($xml->externalId->item) && count($xml->externalId->item))
+				$this->multiLingual_externalId = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalId, '');
+			else
+				$this->externalId = (string)$xml->externalId;
+		}
 		if(count($xml->metaData))
 		{
 			if(empty($xml->metaData))

@@ -50,7 +50,12 @@ class Kaltura_Client_Type_CampaignSearchFilter extends Kaltura_Client_Type_Campa
 		if(count($xml->endDateLessThanOrEqual))
 			$this->endDateLessThanOrEqual = (string)$xml->endDateLessThanOrEqual;
 		if(count($xml->stateEqual))
-			$this->stateEqual = (string)$xml->stateEqual;
+		{
+			if(isset($xml->stateEqual->item) && count($xml->stateEqual->item))
+				$this->multiLingual_stateEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->stateEqual, '');
+			else
+				$this->stateEqual = (string)$xml->stateEqual;
+		}
 		if(count($xml->hasPromotion))
 		{
 			if(!empty($xml->hasPromotion) && ((int) $xml->hasPromotion === 1 || strtolower((string)$xml->hasPromotion) === 'true'))
@@ -59,11 +64,26 @@ class Kaltura_Client_Type_CampaignSearchFilter extends Kaltura_Client_Type_Campa
 				$this->hasPromotion = false;
 		}
 		if(count($xml->nameEqual))
-			$this->nameEqual = (string)$xml->nameEqual;
+		{
+			if(isset($xml->nameEqual->item) && count($xml->nameEqual->item))
+				$this->multiLingual_nameEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->nameEqual, '');
+			else
+				$this->nameEqual = (string)$xml->nameEqual;
+		}
 		if(count($xml->nameContains))
-			$this->nameContains = (string)$xml->nameContains;
+		{
+			if(isset($xml->nameContains->item) && count($xml->nameContains->item))
+				$this->multiLingual_nameContains = Kaltura_Client_ParseUtils::unmarshalArray($xml->nameContains, '');
+			else
+				$this->nameContains = (string)$xml->nameContains;
+		}
 		if(count($xml->stateIn))
-			$this->stateIn = (string)$xml->stateIn;
+		{
+			if(isset($xml->stateIn->item) && count($xml->stateIn->item))
+				$this->multiLingual_stateIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->stateIn, '');
+			else
+				$this->stateIn = (string)$xml->stateIn;
+		}
 	}
 	/**
 	 * start Date Greater Than Or Equal
