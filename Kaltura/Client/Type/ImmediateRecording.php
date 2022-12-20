@@ -56,6 +56,7 @@ class Kaltura_Client_Type_ImmediateRecording extends Kaltura_Client_Type_Recordi
 	 * Household specific end padding of the recording
 	 *
 	 * @var int
+	 * @readonly
 	 */
 	public $endPadding = null;
 
@@ -63,6 +64,7 @@ class Kaltura_Client_Type_ImmediateRecording extends Kaltura_Client_Type_Recordi
 	 * Household absolute start time of the immediate recording
 	 *
 	 * @var bigint
+	 * @readonly
 	 */
 	public $absoluteStart = null;
 
@@ -70,6 +72,7 @@ class Kaltura_Client_Type_ImmediateRecording extends Kaltura_Client_Type_Recordi
 	 * Household absolute end time of the immediate recording, empty if till end of program
 	 *
 	 * @var bigint
+	 * @readonly
 	 */
 	public $absoluteEnd = null;
 
