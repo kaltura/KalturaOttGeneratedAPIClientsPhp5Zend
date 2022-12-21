@@ -46,11 +46,26 @@ class Kaltura_Client_Type_IngestByCompoundFilter extends Kaltura_Client_Type_Fil
 			return;
 		
 		if(count($xml->ingestNameContains))
-			$this->ingestNameContains = (string)$xml->ingestNameContains;
+		{
+			if(isset($xml->ingestNameContains->item) && count($xml->ingestNameContains->item))
+				$this->multiLingual_ingestNameContains = Kaltura_Client_ParseUtils::unmarshalArray($xml->ingestNameContains, '');
+			else
+				$this->ingestNameContains = (string)$xml->ingestNameContains;
+		}
 		if(count($xml->ingestedByUserIdIn))
-			$this->ingestedByUserIdIn = (string)$xml->ingestedByUserIdIn;
+		{
+			if(isset($xml->ingestedByUserIdIn->item) && count($xml->ingestedByUserIdIn->item))
+				$this->multiLingual_ingestedByUserIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->ingestedByUserIdIn, '');
+			else
+				$this->ingestedByUserIdIn = (string)$xml->ingestedByUserIdIn;
+		}
 		if(count($xml->ingestStatusIn))
-			$this->ingestStatusIn = (string)$xml->ingestStatusIn;
+		{
+			if(isset($xml->ingestStatusIn->item) && count($xml->ingestStatusIn->item))
+				$this->multiLingual_ingestStatusIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->ingestStatusIn, '');
+			else
+				$this->ingestStatusIn = (string)$xml->ingestStatusIn;
+		}
 		if(count($xml->createdDateGreaterThan))
 			$this->createdDateGreaterThan = (string)$xml->createdDateGreaterThan;
 		if(count($xml->createdDateSmallerThan))

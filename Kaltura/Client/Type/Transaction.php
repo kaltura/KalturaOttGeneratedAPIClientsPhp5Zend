@@ -46,13 +46,33 @@ class Kaltura_Client_Type_Transaction extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->id))
-			$this->id = (string)$xml->id;
+		{
+			if(isset($xml->id->item) && count($xml->id->item))
+				$this->multiLingual_id = Kaltura_Client_ParseUtils::unmarshalArray($xml->id, '');
+			else
+				$this->id = (string)$xml->id;
+		}
 		if(count($xml->paymentGatewayReferenceId))
-			$this->paymentGatewayReferenceId = (string)$xml->paymentGatewayReferenceId;
+		{
+			if(isset($xml->paymentGatewayReferenceId->item) && count($xml->paymentGatewayReferenceId->item))
+				$this->multiLingual_paymentGatewayReferenceId = Kaltura_Client_ParseUtils::unmarshalArray($xml->paymentGatewayReferenceId, '');
+			else
+				$this->paymentGatewayReferenceId = (string)$xml->paymentGatewayReferenceId;
+		}
 		if(count($xml->paymentGatewayResponseId))
-			$this->paymentGatewayResponseId = (string)$xml->paymentGatewayResponseId;
+		{
+			if(isset($xml->paymentGatewayResponseId->item) && count($xml->paymentGatewayResponseId->item))
+				$this->multiLingual_paymentGatewayResponseId = Kaltura_Client_ParseUtils::unmarshalArray($xml->paymentGatewayResponseId, '');
+			else
+				$this->paymentGatewayResponseId = (string)$xml->paymentGatewayResponseId;
+		}
 		if(count($xml->state))
-			$this->state = (string)$xml->state;
+		{
+			if(isset($xml->state->item) && count($xml->state->item))
+				$this->multiLingual_state = Kaltura_Client_ParseUtils::unmarshalArray($xml->state, '');
+			else
+				$this->state = (string)$xml->state;
+		}
 		if(count($xml->failReasonCode))
 			$this->failReasonCode = (int)$xml->failReasonCode;
 		if(count($xml->createdAt))

@@ -46,9 +46,19 @@ class Kaltura_Client_Type_RecordingAsset extends Kaltura_Client_Type_ProgramAsse
 			return;
 		
 		if(count($xml->recordingId))
-			$this->recordingId = (string)$xml->recordingId;
+		{
+			if(isset($xml->recordingId->item) && count($xml->recordingId->item))
+				$this->multiLingual_recordingId = Kaltura_Client_ParseUtils::unmarshalArray($xml->recordingId, '');
+			else
+				$this->recordingId = (string)$xml->recordingId;
+		}
 		if(count($xml->recordingType))
-			$this->recordingType = (string)$xml->recordingType;
+		{
+			if(isset($xml->recordingType->item) && count($xml->recordingType->item))
+				$this->multiLingual_recordingType = Kaltura_Client_ParseUtils::unmarshalArray($xml->recordingType, '');
+			else
+				$this->recordingType = (string)$xml->recordingType;
+		}
 		if(count($xml->viewableUntilDate))
 			$this->viewableUntilDate = (string)$xml->viewableUntilDate;
 	}

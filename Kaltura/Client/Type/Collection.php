@@ -46,7 +46,12 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 			return;
 		
 		if(count($xml->id))
-			$this->id = (string)$xml->id;
+		{
+			if(isset($xml->id->item) && count($xml->id->item))
+				$this->multiLingual_id = Kaltura_Client_ParseUtils::unmarshalArray($xml->id, '');
+			else
+				$this->id = (string)$xml->id;
+		}
 		if(count($xml->channels))
 		{
 			if(empty($xml->channels))
@@ -55,7 +60,12 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 				$this->channels = Kaltura_Client_ParseUtils::unmarshalArray($xml->channels, "KalturaBaseChannel");
 		}
 		if(count($xml->channelsIds))
-			$this->channelsIds = (string)$xml->channelsIds;
+		{
+			if(isset($xml->channelsIds->item) && count($xml->channelsIds->item))
+				$this->multiLingual_channelsIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->channelsIds, '');
+			else
+				$this->channelsIds = (string)$xml->channelsIds;
+		}
 		if(count($xml->startDate))
 			$this->startDate = (string)$xml->startDate;
 		if(count($xml->endDate))
@@ -65,7 +75,12 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 		if(count($xml->discountModuleId))
 			$this->discountModuleId = (string)$xml->discountModuleId;
 		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		{
+			if(isset($xml->name->item) && count($xml->name->item))
+				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
+			else
+				$this->name = (string)$xml->name;
+		}
 		if(count($xml->multilingualName))
 		{
 			if(empty($xml->multilingualName))
@@ -74,7 +89,12 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 				$this->multilingualName = Kaltura_Client_ParseUtils::unmarshalArray($xml->multilingualName, "KalturaTranslationToken");
 		}
 		if(count($xml->description))
-			$this->description = (string)$xml->description;
+		{
+			if(isset($xml->description->item) && count($xml->description->item))
+				$this->multiLingual_description = Kaltura_Client_ParseUtils::unmarshalArray($xml->description, '');
+			else
+				$this->description = (string)$xml->description;
+		}
 		if(count($xml->multilingualDescription))
 		{
 			if(empty($xml->multilingualDescription))
@@ -101,7 +121,12 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 				$this->collectionCouponGroup = Kaltura_Client_ParseUtils::unmarshalArray($xml->collectionCouponGroup, "KalturaCollectionCouponGroup");
 		}
 		if(count($xml->externalId))
-			$this->externalId = (string)$xml->externalId;
+		{
+			if(isset($xml->externalId->item) && count($xml->externalId->item))
+				$this->multiLingual_externalId = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalId, '');
+			else
+				$this->externalId = (string)$xml->externalId;
+		}
 		if(count($xml->productCodes))
 		{
 			if(empty($xml->productCodes))
@@ -132,7 +157,14 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 				$this->fileTypes = Kaltura_Client_ParseUtils::unmarshalArray($xml->fileTypes, "KalturaIntegerValue");
 		}
 		if(count($xml->fileTypesIds))
-			$this->fileTypesIds = (string)$xml->fileTypesIds;
+		{
+			if(isset($xml->fileTypesIds->item) && count($xml->fileTypesIds->item))
+				$this->multiLingual_fileTypesIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->fileTypesIds, '');
+			else
+				$this->fileTypesIds = (string)$xml->fileTypesIds;
+		}
+		if(count($xml->assetUserRuleId))
+			$this->assetUserRuleId = (string)$xml->assetUserRuleId;
 	}
 	/**
 	 * Collection identifier
@@ -315,6 +347,13 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 	 * @var string
 	 */
 	public $fileTypesIds = null;
+
+	/**
+	 * Asset user rule identifier
+	 *
+	 * @var bigint
+	 */
+	public $assetUserRuleId = null;
 
 
 }

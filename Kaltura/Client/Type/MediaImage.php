@@ -46,17 +46,32 @@ class Kaltura_Client_Type_MediaImage extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->ratio))
-			$this->ratio = (string)$xml->ratio;
+		{
+			if(isset($xml->ratio->item) && count($xml->ratio->item))
+				$this->multiLingual_ratio = Kaltura_Client_ParseUtils::unmarshalArray($xml->ratio, '');
+			else
+				$this->ratio = (string)$xml->ratio;
+		}
 		if(count($xml->width))
 			$this->width = (int)$xml->width;
 		if(count($xml->height))
 			$this->height = (int)$xml->height;
 		if(count($xml->url))
-			$this->url = (string)$xml->url;
+		{
+			if(isset($xml->url->item) && count($xml->url->item))
+				$this->multiLingual_url = Kaltura_Client_ParseUtils::unmarshalArray($xml->url, '');
+			else
+				$this->url = (string)$xml->url;
+		}
 		if(count($xml->version))
 			$this->version = (int)$xml->version;
 		if(count($xml->id))
-			$this->id = (string)$xml->id;
+		{
+			if(isset($xml->id->item) && count($xml->id->item))
+				$this->multiLingual_id = Kaltura_Client_ParseUtils::unmarshalArray($xml->id, '');
+			else
+				$this->id = (string)$xml->id;
+		}
 		if(count($xml->isDefault))
 		{
 			if(!empty($xml->isDefault) && ((int) $xml->isDefault === 1 || strtolower((string)$xml->isDefault) === 'true'))
@@ -67,7 +82,12 @@ class Kaltura_Client_Type_MediaImage extends Kaltura_Client_ObjectBase
 		if(count($xml->imageTypeId))
 			$this->imageTypeId = (string)$xml->imageTypeId;
 		if(count($xml->imageTypeName))
-			$this->imageTypeName = (string)$xml->imageTypeName;
+		{
+			if(isset($xml->imageTypeName->item) && count($xml->imageTypeName->item))
+				$this->multiLingual_imageTypeName = Kaltura_Client_ParseUtils::unmarshalArray($xml->imageTypeName, '');
+			else
+				$this->imageTypeName = (string)$xml->imageTypeName;
+		}
 	}
 	/**
 	 * Image aspect ratio

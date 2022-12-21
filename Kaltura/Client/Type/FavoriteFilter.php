@@ -48,7 +48,12 @@ class Kaltura_Client_Type_FavoriteFilter extends Kaltura_Client_Type_Filter
 		if(count($xml->mediaTypeEqual))
 			$this->mediaTypeEqual = (int)$xml->mediaTypeEqual;
 		if(count($xml->mediaIdIn))
-			$this->mediaIdIn = (string)$xml->mediaIdIn;
+		{
+			if(isset($xml->mediaIdIn->item) && count($xml->mediaIdIn->item))
+				$this->multiLingual_mediaIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->mediaIdIn, '');
+			else
+				$this->mediaIdIn = (string)$xml->mediaIdIn;
+		}
 		if(count($xml->udidEqualCurrent))
 		{
 			if(!empty($xml->udidEqualCurrent) && ((int) $xml->udidEqualCurrent === 1 || strtolower((string)$xml->udidEqualCurrent) === 'true'))

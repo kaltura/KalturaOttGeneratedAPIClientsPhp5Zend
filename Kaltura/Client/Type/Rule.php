@@ -48,11 +48,26 @@ abstract class Kaltura_Client_Type_Rule extends Kaltura_Client_Type_OTTObjectSup
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		{
+			if(isset($xml->name->item) && count($xml->name->item))
+				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
+			else
+				$this->name = (string)$xml->name;
+		}
 		if(count($xml->description))
-			$this->description = (string)$xml->description;
+		{
+			if(isset($xml->description->item) && count($xml->description->item))
+				$this->multiLingual_description = Kaltura_Client_ParseUtils::unmarshalArray($xml->description, '');
+			else
+				$this->description = (string)$xml->description;
+		}
 		if(count($xml->label))
-			$this->label = (string)$xml->label;
+		{
+			if(isset($xml->label->item) && count($xml->label->item))
+				$this->multiLingual_label = Kaltura_Client_ParseUtils::unmarshalArray($xml->label, '');
+			else
+				$this->label = (string)$xml->label;
+		}
 	}
 	/**
 	 * ID

@@ -46,7 +46,12 @@ class Kaltura_Client_Type_PermissionByIdInFilter extends Kaltura_Client_Type_Bas
 			return;
 		
 		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
+		{
+			if(isset($xml->idIn->item) && count($xml->idIn->item))
+				$this->multiLingual_idIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->idIn, '');
+			else
+				$this->idIn = (string)$xml->idIn;
+		}
 	}
 	/**
 	 * Category item identifiers

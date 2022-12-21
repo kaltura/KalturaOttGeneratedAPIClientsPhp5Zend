@@ -46,9 +46,19 @@ class Kaltura_Client_Type_ChannelSearchByKsqlFilter extends Kaltura_Client_Type_
 			return;
 		
 		if(count($xml->kSql))
-			$this->kSql = (string)$xml->kSql;
+		{
+			if(isset($xml->kSql->item) && count($xml->kSql->item))
+				$this->multiLingual_kSql = Kaltura_Client_ParseUtils::unmarshalArray($xml->kSql, '');
+			else
+				$this->kSql = (string)$xml->kSql;
+		}
 		if(count($xml->channelStructEqual))
-			$this->channelStructEqual = (string)$xml->channelStructEqual;
+		{
+			if(isset($xml->channelStructEqual->item) && count($xml->channelStructEqual->item))
+				$this->multiLingual_channelStructEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->channelStructEqual, '');
+			else
+				$this->channelStructEqual = (string)$xml->channelStructEqual;
+		}
 	}
 	/**
 	 * KSQL expression

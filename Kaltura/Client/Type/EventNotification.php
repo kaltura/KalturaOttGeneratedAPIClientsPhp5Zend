@@ -46,17 +46,42 @@ class Kaltura_Client_Type_EventNotification extends Kaltura_Client_Type_OTTObjec
 			return;
 		
 		if(count($xml->id))
-			$this->id = (string)$xml->id;
+		{
+			if(isset($xml->id->item) && count($xml->id->item))
+				$this->multiLingual_id = Kaltura_Client_ParseUtils::unmarshalArray($xml->id, '');
+			else
+				$this->id = (string)$xml->id;
+		}
 		if(count($xml->objectId))
 			$this->objectId = (string)$xml->objectId;
 		if(count($xml->eventObjectType))
-			$this->eventObjectType = (string)$xml->eventObjectType;
+		{
+			if(isset($xml->eventObjectType->item) && count($xml->eventObjectType->item))
+				$this->multiLingual_eventObjectType = Kaltura_Client_ParseUtils::unmarshalArray($xml->eventObjectType, '');
+			else
+				$this->eventObjectType = (string)$xml->eventObjectType;
+		}
 		if(count($xml->message))
-			$this->message = (string)$xml->message;
+		{
+			if(isset($xml->message->item) && count($xml->message->item))
+				$this->multiLingual_message = Kaltura_Client_ParseUtils::unmarshalArray($xml->message, '');
+			else
+				$this->message = (string)$xml->message;
+		}
 		if(count($xml->status))
-			$this->status = (string)$xml->status;
+		{
+			if(isset($xml->status->item) && count($xml->status->item))
+				$this->multiLingual_status = Kaltura_Client_ParseUtils::unmarshalArray($xml->status, '');
+			else
+				$this->status = (string)$xml->status;
+		}
 		if(count($xml->actionType))
-			$this->actionType = (string)$xml->actionType;
+		{
+			if(isset($xml->actionType->item) && count($xml->actionType->item))
+				$this->multiLingual_actionType = Kaltura_Client_ParseUtils::unmarshalArray($xml->actionType, '');
+			else
+				$this->actionType = (string)$xml->actionType;
+		}
 		if(count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
 		if(count($xml->updateDate))

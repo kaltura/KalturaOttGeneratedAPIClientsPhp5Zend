@@ -53,9 +53,19 @@ class Kaltura_Client_Type_AssetUserRuleFilter extends Kaltura_Client_Type_Filter
 				$this->attachedUserIdEqualCurrent = false;
 		}
 		if(count($xml->actionsContainType))
-			$this->actionsContainType = (string)$xml->actionsContainType;
+		{
+			if(isset($xml->actionsContainType->item) && count($xml->actionsContainType->item))
+				$this->multiLingual_actionsContainType = Kaltura_Client_ParseUtils::unmarshalArray($xml->actionsContainType, '');
+			else
+				$this->actionsContainType = (string)$xml->actionsContainType;
+		}
 		if(count($xml->conditionsContainType))
-			$this->conditionsContainType = (string)$xml->conditionsContainType;
+		{
+			if(isset($xml->conditionsContainType->item) && count($xml->conditionsContainType->item))
+				$this->multiLingual_conditionsContainType = Kaltura_Client_ParseUtils::unmarshalArray($xml->conditionsContainType, '');
+			else
+				$this->conditionsContainType = (string)$xml->conditionsContainType;
+		}
 	}
 	/**
 	 * Indicates if to get the asset user rule list for the attached user or for the entire group

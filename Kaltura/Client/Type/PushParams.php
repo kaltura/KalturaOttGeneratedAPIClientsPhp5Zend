@@ -46,9 +46,19 @@ class Kaltura_Client_Type_PushParams extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->token))
-			$this->token = (string)$xml->token;
+		{
+			if(isset($xml->token->item) && count($xml->token->item))
+				$this->multiLingual_token = Kaltura_Client_ParseUtils::unmarshalArray($xml->token, '');
+			else
+				$this->token = (string)$xml->token;
+		}
 		if(count($xml->externalToken))
-			$this->externalToken = (string)$xml->externalToken;
+		{
+			if(isset($xml->externalToken->item) && count($xml->externalToken->item))
+				$this->multiLingual_externalToken = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalToken, '');
+			else
+				$this->externalToken = (string)$xml->externalToken;
+		}
 	}
 	/**
 	 * Device-Application push token

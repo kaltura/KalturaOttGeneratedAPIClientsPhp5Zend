@@ -50,7 +50,12 @@ abstract class Kaltura_Client_Type_Asset extends Kaltura_Client_ObjectBase
 		if(count($xml->type))
 			$this->type = (int)$xml->type;
 		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		{
+			if(isset($xml->name->item) && count($xml->name->item))
+				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
+			else
+				$this->name = (string)$xml->name;
+		}
 		if(count($xml->multilingualName))
 		{
 			if(empty($xml->multilingualName))
@@ -59,7 +64,12 @@ abstract class Kaltura_Client_Type_Asset extends Kaltura_Client_ObjectBase
 				$this->multilingualName = Kaltura_Client_ParseUtils::unmarshalArray($xml->multilingualName, "KalturaTranslationToken");
 		}
 		if(count($xml->description))
-			$this->description = (string)$xml->description;
+		{
+			if(isset($xml->description->item) && count($xml->description->item))
+				$this->multiLingual_description = Kaltura_Client_ParseUtils::unmarshalArray($xml->description, '');
+			else
+				$this->description = (string)$xml->description;
+		}
 		if(count($xml->multilingualDescription))
 		{
 			if(empty($xml->multilingualDescription))
@@ -111,9 +121,19 @@ abstract class Kaltura_Client_Type_Asset extends Kaltura_Client_ObjectBase
 		if(count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
 		if(count($xml->externalId))
-			$this->externalId = (string)$xml->externalId;
+		{
+			if(isset($xml->externalId->item) && count($xml->externalId->item))
+				$this->multiLingual_externalId = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalId, '');
+			else
+				$this->externalId = (string)$xml->externalId;
+		}
 		if(count($xml->indexStatus))
-			$this->indexStatus = (string)$xml->indexStatus;
+		{
+			if(isset($xml->indexStatus->item) && count($xml->indexStatus->item))
+				$this->multiLingual_indexStatus = Kaltura_Client_ParseUtils::unmarshalArray($xml->indexStatus, '');
+			else
+				$this->indexStatus = (string)$xml->indexStatus;
+		}
 	}
 	/**
 	 * Unique identifier for the asset

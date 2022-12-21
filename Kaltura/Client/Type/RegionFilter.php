@@ -46,9 +46,19 @@ class Kaltura_Client_Type_RegionFilter extends Kaltura_Client_Type_BaseRegionFil
 			return;
 		
 		if(count($xml->externalIdIn))
-			$this->externalIdIn = (string)$xml->externalIdIn;
+		{
+			if(isset($xml->externalIdIn->item) && count($xml->externalIdIn->item))
+				$this->multiLingual_externalIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalIdIn, '');
+			else
+				$this->externalIdIn = (string)$xml->externalIdIn;
+		}
 		if(count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
+		{
+			if(isset($xml->idIn->item) && count($xml->idIn->item))
+				$this->multiLingual_idIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->idIn, '');
+			else
+				$this->idIn = (string)$xml->idIn;
+		}
 		if(count($xml->parentIdEqual))
 			$this->parentIdEqual = (int)$xml->parentIdEqual;
 		if(count($xml->liveAssetIdEqual))

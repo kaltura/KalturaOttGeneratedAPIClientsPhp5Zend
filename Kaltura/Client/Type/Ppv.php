@@ -46,9 +46,19 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->id))
-			$this->id = (string)$xml->id;
+		{
+			if(isset($xml->id->item) && count($xml->id->item))
+				$this->multiLingual_id = Kaltura_Client_ParseUtils::unmarshalArray($xml->id, '');
+			else
+				$this->id = (string)$xml->id;
+		}
 		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		{
+			if(isset($xml->name->item) && count($xml->name->item))
+				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
+			else
+				$this->name = (string)$xml->name;
+		}
 		if(count($xml->price) && !empty($xml->price))
 			$this->price = Kaltura_Client_ParseUtils::unmarshalObject($xml->price, "KalturaPriceDetails");
 		if(count($xml->priceDetailsId))
@@ -61,7 +71,12 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 				$this->fileTypes = Kaltura_Client_ParseUtils::unmarshalArray($xml->fileTypes, "KalturaIntegerValue");
 		}
 		if(count($xml->fileTypesIds))
-			$this->fileTypesIds = (string)$xml->fileTypesIds;
+		{
+			if(isset($xml->fileTypesIds->item) && count($xml->fileTypesIds->item))
+				$this->multiLingual_fileTypesIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->fileTypesIds, '');
+			else
+				$this->fileTypesIds = (string)$xml->fileTypesIds;
+		}
 		if(count($xml->discountModule) && !empty($xml->discountModule))
 			$this->discountModule = Kaltura_Client_ParseUtils::unmarshalObject($xml->discountModule, "KalturaDiscountModule");
 		if(count($xml->discountId))
@@ -78,7 +93,12 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 				$this->descriptions = Kaltura_Client_ParseUtils::unmarshalArray($xml->descriptions, "KalturaTranslationToken");
 		}
 		if(count($xml->productCode))
-			$this->productCode = (string)$xml->productCode;
+		{
+			if(isset($xml->productCode->item) && count($xml->productCode->item))
+				$this->multiLingual_productCode = Kaltura_Client_ParseUtils::unmarshalArray($xml->productCode, '');
+			else
+				$this->productCode = (string)$xml->productCode;
+		}
 		if(count($xml->isSubscriptionOnly))
 		{
 			if(!empty($xml->isSubscriptionOnly) && ((int) $xml->isSubscriptionOnly === 1 || strtolower((string)$xml->isSubscriptionOnly) === 'true'))
@@ -98,7 +118,12 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 		if(count($xml->usageModuleId))
 			$this->usageModuleId = (string)$xml->usageModuleId;
 		if(count($xml->adsPolicy))
-			$this->adsPolicy = (string)$xml->adsPolicy;
+		{
+			if(isset($xml->adsPolicy->item) && count($xml->adsPolicy->item))
+				$this->multiLingual_adsPolicy = Kaltura_Client_ParseUtils::unmarshalArray($xml->adsPolicy, '');
+			else
+				$this->adsPolicy = (string)$xml->adsPolicy;
+		}
 		if(count($xml->isActive))
 		{
 			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))
@@ -112,6 +137,8 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 			$this->createDate = (string)$xml->createDate;
 		if(count($xml->virtualAssetId))
 			$this->virtualAssetId = (string)$xml->virtualAssetId;
+		if(count($xml->assetUserRuleId))
+			$this->assetUserRuleId = (string)$xml->assetUserRuleId;
 	}
 	/**
 	 * PPV identifier
@@ -267,6 +294,13 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $virtualAssetId = null;
+
+	/**
+	 * Asset user rule identifier
+	 *
+	 * @var bigint
+	 */
+	public $assetUserRuleId = null;
 
 
 }

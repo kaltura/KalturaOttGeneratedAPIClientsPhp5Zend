@@ -46,11 +46,26 @@ class Kaltura_Client_Type_Pin extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->pin))
-			$this->pin = (string)$xml->pin;
+		{
+			if(isset($xml->pin->item) && count($xml->pin->item))
+				$this->multiLingual_pin = Kaltura_Client_ParseUtils::unmarshalArray($xml->pin, '');
+			else
+				$this->pin = (string)$xml->pin;
+		}
 		if(count($xml->origin))
-			$this->origin = (string)$xml->origin;
+		{
+			if(isset($xml->origin->item) && count($xml->origin->item))
+				$this->multiLingual_origin = Kaltura_Client_ParseUtils::unmarshalArray($xml->origin, '');
+			else
+				$this->origin = (string)$xml->origin;
+		}
 		if(count($xml->type))
-			$this->type = (string)$xml->type;
+		{
+			if(isset($xml->type->item) && count($xml->type->item))
+				$this->multiLingual_type = Kaltura_Client_ParseUtils::unmarshalArray($xml->type, '');
+			else
+				$this->type = (string)$xml->type;
+		}
 	}
 	/**
 	 * PIN code

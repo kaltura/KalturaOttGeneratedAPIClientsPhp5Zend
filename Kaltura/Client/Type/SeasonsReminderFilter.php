@@ -46,9 +46,19 @@ class Kaltura_Client_Type_SeasonsReminderFilter extends Kaltura_Client_Type_Remi
 			return;
 		
 		if(count($xml->seriesIdEqual))
-			$this->seriesIdEqual = (string)$xml->seriesIdEqual;
+		{
+			if(isset($xml->seriesIdEqual->item) && count($xml->seriesIdEqual->item))
+				$this->multiLingual_seriesIdEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->seriesIdEqual, '');
+			else
+				$this->seriesIdEqual = (string)$xml->seriesIdEqual;
+		}
 		if(count($xml->seasonNumberIn))
-			$this->seasonNumberIn = (string)$xml->seasonNumberIn;
+		{
+			if(isset($xml->seasonNumberIn->item) && count($xml->seasonNumberIn->item))
+				$this->multiLingual_seasonNumberIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->seasonNumberIn, '');
+			else
+				$this->seasonNumberIn = (string)$xml->seasonNumberIn;
+		}
 		if(count($xml->epgChannelIdEqual))
 			$this->epgChannelIdEqual = (string)$xml->epgChannelIdEqual;
 	}

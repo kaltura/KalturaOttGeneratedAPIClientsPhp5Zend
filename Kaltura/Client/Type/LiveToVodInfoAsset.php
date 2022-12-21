@@ -48,11 +48,21 @@ class Kaltura_Client_Type_LiveToVodInfoAsset extends Kaltura_Client_ObjectBase
 		if(count($xml->linearAssetId))
 			$this->linearAssetId = (string)$xml->linearAssetId;
 		if(count($xml->epgId))
-			$this->epgId = (string)$xml->epgId;
+		{
+			if(isset($xml->epgId->item) && count($xml->epgId->item))
+				$this->multiLingual_epgId = Kaltura_Client_ParseUtils::unmarshalArray($xml->epgId, '');
+			else
+				$this->epgId = (string)$xml->epgId;
+		}
 		if(count($xml->epgChannelId))
 			$this->epgChannelId = (string)$xml->epgChannelId;
 		if(count($xml->crid))
-			$this->crid = (string)$xml->crid;
+		{
+			if(isset($xml->crid->item) && count($xml->crid->item))
+				$this->multiLingual_crid = Kaltura_Client_ParseUtils::unmarshalArray($xml->crid, '');
+			else
+				$this->crid = (string)$xml->crid;
+		}
 		if(count($xml->originalStartDate))
 			$this->originalStartDate = (string)$xml->originalStartDate;
 		if(count($xml->originalEndDate))

@@ -46,9 +46,19 @@ class Kaltura_Client_Type_EpgIngestErrorMessage extends Kaltura_Client_ObjectBas
 			return;
 		
 		if(count($xml->message))
-			$this->message = (string)$xml->message;
+		{
+			if(isset($xml->message->item) && count($xml->message->item))
+				$this->multiLingual_message = Kaltura_Client_ParseUtils::unmarshalArray($xml->message, '');
+			else
+				$this->message = (string)$xml->message;
+		}
 		if(count($xml->code))
-			$this->code = (string)$xml->code;
+		{
+			if(isset($xml->code->item) && count($xml->code->item))
+				$this->multiLingual_code = Kaltura_Client_ParseUtils::unmarshalArray($xml->code, '');
+			else
+				$this->code = (string)$xml->code;
+		}
 		if(count($xml->args))
 		{
 			if(empty($xml->args))

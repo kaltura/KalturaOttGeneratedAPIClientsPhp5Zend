@@ -46,7 +46,12 @@ class Kaltura_Client_Type_BulkUploadUdidDynamicListResult extends Kaltura_Client
 			return;
 		
 		if(count($xml->udid))
-			$this->udid = (string)$xml->udid;
+		{
+			if(isset($xml->udid->item) && count($xml->udid->item))
+				$this->multiLingual_udid = Kaltura_Client_ParseUtils::unmarshalArray($xml->udid, '');
+			else
+				$this->udid = (string)$xml->udid;
+		}
 	}
 	/**
 	 * The udid from the excel to add to DynamicLis values

@@ -46,7 +46,12 @@ abstract class Kaltura_Client_Type_Filter extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->orderBy))
-			$this->orderBy = (string)$xml->orderBy;
+		{
+			if(isset($xml->orderBy->item) && count($xml->orderBy->item))
+				$this->multiLingual_orderBy = Kaltura_Client_ParseUtils::unmarshalArray($xml->orderBy, '');
+			else
+				$this->orderBy = (string)$xml->orderBy;
+		}
 	}
 	/**
 	 * order by

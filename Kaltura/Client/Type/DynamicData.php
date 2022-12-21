@@ -46,7 +46,12 @@ class Kaltura_Client_Type_DynamicData extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->key))
-			$this->key = (string)$xml->key;
+		{
+			if(isset($xml->key->item) && count($xml->key->item))
+				$this->multiLingual_key = Kaltura_Client_ParseUtils::unmarshalArray($xml->key, '');
+			else
+				$this->key = (string)$xml->key;
+		}
 		if(count($xml->value) && !empty($xml->value))
 			$this->value = Kaltura_Client_ParseUtils::unmarshalObject($xml->value, "KalturaValue");
 	}

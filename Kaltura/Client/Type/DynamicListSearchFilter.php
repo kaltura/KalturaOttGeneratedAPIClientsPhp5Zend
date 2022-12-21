@@ -48,7 +48,12 @@ abstract class Kaltura_Client_Type_DynamicListSearchFilter extends Kaltura_Clien
 		if(count($xml->idEqual))
 			$this->idEqual = (string)$xml->idEqual;
 		if(count($xml->valueEqual))
-			$this->valueEqual = (string)$xml->valueEqual;
+		{
+			if(isset($xml->valueEqual->item) && count($xml->valueEqual->item))
+				$this->multiLingual_valueEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->valueEqual, '');
+			else
+				$this->valueEqual = (string)$xml->valueEqual;
+		}
 	}
 	/**
 	 * DynamicList id to search by

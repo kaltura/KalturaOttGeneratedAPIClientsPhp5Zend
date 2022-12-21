@@ -48,7 +48,12 @@ class Kaltura_Client_Type_UsageModule extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
-			$this->name = (string)$xml->name;
+		{
+			if(isset($xml->name->item) && count($xml->name->item))
+				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
+			else
+				$this->name = (string)$xml->name;
+		}
 		if(count($xml->maxViewsNumber))
 			$this->maxViewsNumber = (int)$xml->maxViewsNumber;
 		if(count($xml->viewLifeCycle))
@@ -101,7 +106,6 @@ class Kaltura_Client_Type_UsageModule extends Kaltura_Client_ObjectBase
 	 * The amount time an item is available for viewing since a user started watching the item
 	 *
 	 * @var int
-	 * @insertonly
 	 */
 	public $viewLifeCycle = null;
 
@@ -109,7 +113,6 @@ class Kaltura_Client_Type_UsageModule extends Kaltura_Client_ObjectBase
 	 * The amount time an item is available for viewing
 	 *
 	 * @var int
-	 * @insertonly
 	 */
 	public $fullLifeCycle = null;
 

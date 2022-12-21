@@ -46,7 +46,12 @@ class Kaltura_Client_Type_AppToken extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->id))
-			$this->id = (string)$xml->id;
+		{
+			if(isset($xml->id->item) && count($xml->id->item))
+				$this->multiLingual_id = Kaltura_Client_ParseUtils::unmarshalArray($xml->id, '');
+			else
+				$this->id = (string)$xml->id;
+		}
 		if(count($xml->expiry))
 			$this->expiry = (int)$xml->expiry;
 		if(count($xml->partnerId))
@@ -54,13 +59,33 @@ class Kaltura_Client_Type_AppToken extends Kaltura_Client_ObjectBase
 		if(count($xml->sessionDuration))
 			$this->sessionDuration = (int)$xml->sessionDuration;
 		if(count($xml->hashType))
-			$this->hashType = (string)$xml->hashType;
+		{
+			if(isset($xml->hashType->item) && count($xml->hashType->item))
+				$this->multiLingual_hashType = Kaltura_Client_ParseUtils::unmarshalArray($xml->hashType, '');
+			else
+				$this->hashType = (string)$xml->hashType;
+		}
 		if(count($xml->sessionPrivileges))
-			$this->sessionPrivileges = (string)$xml->sessionPrivileges;
+		{
+			if(isset($xml->sessionPrivileges->item) && count($xml->sessionPrivileges->item))
+				$this->multiLingual_sessionPrivileges = Kaltura_Client_ParseUtils::unmarshalArray($xml->sessionPrivileges, '');
+			else
+				$this->sessionPrivileges = (string)$xml->sessionPrivileges;
+		}
 		if(count($xml->token))
-			$this->token = (string)$xml->token;
+		{
+			if(isset($xml->token->item) && count($xml->token->item))
+				$this->multiLingual_token = Kaltura_Client_ParseUtils::unmarshalArray($xml->token, '');
+			else
+				$this->token = (string)$xml->token;
+		}
 		if(count($xml->sessionUserId))
-			$this->sessionUserId = (string)$xml->sessionUserId;
+		{
+			if(isset($xml->sessionUserId->item) && count($xml->sessionUserId->item))
+				$this->multiLingual_sessionUserId = Kaltura_Client_ParseUtils::unmarshalArray($xml->sessionUserId, '');
+			else
+				$this->sessionUserId = (string)$xml->sessionUserId;
+		}
 		if(count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
 		if(count($xml->updateDate))

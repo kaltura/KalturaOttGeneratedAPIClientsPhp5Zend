@@ -46,7 +46,12 @@ abstract class Kaltura_Client_Type_FilterFileByLabelAction extends Kaltura_Clien
 			return;
 		
 		if(count($xml->labelIn))
-			$this->labelIn = (string)$xml->labelIn;
+		{
+			if(isset($xml->labelIn->item) && count($xml->labelIn->item))
+				$this->multiLingual_labelIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->labelIn, '');
+			else
+				$this->labelIn = (string)$xml->labelIn;
+		}
 	}
 	/**
 	 * List of comma separated labels

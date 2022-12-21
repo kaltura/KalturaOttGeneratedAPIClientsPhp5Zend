@@ -46,9 +46,19 @@ class Kaltura_Client_Type_DrmPlaybackPluginData extends Kaltura_Client_Type_Plug
 			return;
 		
 		if(count($xml->scheme))
-			$this->scheme = (string)$xml->scheme;
+		{
+			if(isset($xml->scheme->item) && count($xml->scheme->item))
+				$this->multiLingual_scheme = Kaltura_Client_ParseUtils::unmarshalArray($xml->scheme, '');
+			else
+				$this->scheme = (string)$xml->scheme;
+		}
 		if(count($xml->licenseURL))
-			$this->licenseURL = (string)$xml->licenseURL;
+		{
+			if(isset($xml->licenseURL->item) && count($xml->licenseURL->item))
+				$this->multiLingual_licenseURL = Kaltura_Client_ParseUtils::unmarshalArray($xml->licenseURL, '');
+			else
+				$this->licenseURL = (string)$xml->licenseURL;
+		}
 		if(count($xml->dynamicData))
 		{
 			if(empty($xml->dynamicData))

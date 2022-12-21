@@ -46,7 +46,12 @@ abstract class Kaltura_Client_Type_IngestProgramResultsByRefineFilter extends Ka
 			return;
 		
 		if(count($xml->ingestStatusIn))
-			$this->ingestStatusIn = (string)$xml->ingestStatusIn;
+		{
+			if(isset($xml->ingestStatusIn->item) && count($xml->ingestStatusIn->item))
+				$this->multiLingual_ingestStatusIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->ingestStatusIn, '');
+			else
+				$this->ingestStatusIn = (string)$xml->ingestStatusIn;
+		}
 		if(count($xml->startDateGreaterThan))
 			$this->startDateGreaterThan = (string)$xml->startDateGreaterThan;
 		if(count($xml->startDateSmallerThan))

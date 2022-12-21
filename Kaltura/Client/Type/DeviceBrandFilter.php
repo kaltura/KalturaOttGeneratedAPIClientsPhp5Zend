@@ -50,9 +50,19 @@ class Kaltura_Client_Type_DeviceBrandFilter extends Kaltura_Client_Type_Filter
 		if(count($xml->deviceFamilyIdEqual))
 			$this->deviceFamilyIdEqual = (string)$xml->deviceFamilyIdEqual;
 		if(count($xml->nameEqual))
-			$this->nameEqual = (string)$xml->nameEqual;
+		{
+			if(isset($xml->nameEqual->item) && count($xml->nameEqual->item))
+				$this->multiLingual_nameEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->nameEqual, '');
+			else
+				$this->nameEqual = (string)$xml->nameEqual;
+		}
 		if(count($xml->typeEqual))
-			$this->typeEqual = (string)$xml->typeEqual;
+		{
+			if(isset($xml->typeEqual->item) && count($xml->typeEqual->item))
+				$this->multiLingual_typeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->typeEqual, '');
+			else
+				$this->typeEqual = (string)$xml->typeEqual;
+		}
 	}
 	/**
 	 * Filter the device brand with this identifier.
