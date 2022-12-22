@@ -37,5 +37,6 @@ class Kaltura_Client_Enum_GroupByField extends Kaltura_Client_EnumBase
 	const SUPPRESSED = "suppressed";
 	const CRID = "crid";
 	const LINEAR_MEDIA_ID = "linear_media_id";
+	const NAME = "name";
 }
 

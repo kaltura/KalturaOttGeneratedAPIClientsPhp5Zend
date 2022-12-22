@@ -47,6 +47,8 @@ class Kaltura_Client_Type_AssetShopCondition extends Kaltura_Client_Type_AssetCo
 		
 		if(count($xml->value))
 			$this->value = (string)$xml->value;
+		if(count($xml->values) && !empty($xml->values))
+			$this->values = Kaltura_Client_ParseUtils::unmarshalObject($xml->values, "KalturaStringValueArray");
 	}
 	/**
 	 * Shop marker&#39;s value
@@ -54,6 +56,13 @@ class Kaltura_Client_Type_AssetShopCondition extends Kaltura_Client_Type_AssetCo
 	 * @var string
 	 */
 	public $value = null;
+
+	/**
+	 * Shop marker&#39;s values
+	 *
+	 * @var Kaltura_Client_Type_StringValueArray
+	 */
+	public $values;
 
 
 }

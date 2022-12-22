@@ -31,12 +31,51 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_MonetizationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_ImmediateRecording extends Kaltura_Client_Type_Recording
 {
-	const PPV = "ppv";
-	const SUBSCRIPTION = "subscription";
-	const BOXSET = "boxset";
-	const ANY = "any";
-	const PPV_LIVE = "ppv_live";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaImmediateRecording';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null)
+	{
+		parent::__construct($xml);
+		
+		if(is_null($xml))
+			return;
+		
+		if(count($xml->endPadding))
+			$this->endPadding = (int)$xml->endPadding;
+		if(count($xml->absoluteStart))
+			$this->absoluteStart = (string)$xml->absoluteStart;
+		if(count($xml->absoluteEnd))
+			$this->absoluteEnd = (string)$xml->absoluteEnd;
+	}
+	/**
+	 * Household specific end padding of the recording
+	 *
+	 * @var int
+	 * @readonly
+	 */
+	public $endPadding = null;
+
+	/**
+	 * Household absolute start time of the immediate recording
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $absoluteStart = null;
+
+	/**
+	 * Household absolute end time of the immediate recording, empty if till end of program
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $absoluteEnd = null;
+
+
 }
 

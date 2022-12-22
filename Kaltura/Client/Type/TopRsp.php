@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_CouponFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_TopRsp extends Kaltura_Client_Type_RepresentativeSelectionPolicy
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaCouponFilter';
+		return 'KalturaTopRsp';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,15 +45,15 @@ class Kaltura_Client_Type_CouponFilter extends Kaltura_Client_Type_Filter
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->couponCodesIn))
-			$this->couponCodesIn = (string)$xml->couponCodesIn;
+		if(count($xml->orderBy) && !empty($xml->orderBy))
+			$this->orderBy = Kaltura_Client_ParseUtils::unmarshalObject($xml->orderBy, "KalturaBaseAssetOrder");
 	}
 	/**
-	 * Comma separated list of coupon codes.
+	 * order by
 	 *
-	 * @var string
+	 * @var Kaltura_Client_Type_BaseAssetOrder
 	 */
-	public $couponCodesIn = null;
+	public $orderBy;
 
 
 }
