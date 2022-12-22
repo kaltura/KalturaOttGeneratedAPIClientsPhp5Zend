@@ -140,10 +140,10 @@ class Kaltura_Client_RecordingService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_ImmediateRecording
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function immediateRecord($programId, $epgChannelId, $endPadding)
+	function immediateRecord($assetId, $epgChannelId, $endPadding)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "programId", $programId);
+		$this->client->addParam($kparams, "assetId", $assetId);
 		$this->client->addParam($kparams, "epgChannelId", $epgChannelId);
 		$this->client->addParam($kparams, "endPadding", $endPadding);
 		$this->client->queueServiceActionCall("recording", "immediateRecord", "KalturaImmediateRecording", $kparams);
@@ -202,10 +202,10 @@ class Kaltura_Client_RecordingService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_Recording
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function stop($programId, $epgChannelId, $householdRecordingId)
+	function stop($assetId, $epgChannelId, $householdRecordingId)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "programId", $programId);
+		$this->client->addParam($kparams, "assetId", $assetId);
 		$this->client->addParam($kparams, "epgChannelId", $epgChannelId);
 		$this->client->addParam($kparams, "householdRecordingId", $householdRecordingId);
 		$this->client->queueServiceActionCall("recording", "stop", "KalturaRecording", $kparams);
