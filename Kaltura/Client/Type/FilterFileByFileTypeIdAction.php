@@ -46,12 +46,7 @@ abstract class Kaltura_Client_Type_FilterFileByFileTypeIdAction extends Kaltura_
 			return;
 		
 		if(count($xml->fileTypeIdIn))
-		{
-			if(isset($xml->fileTypeIdIn->item) && count($xml->fileTypeIdIn->item))
-				$this->multiLingual_fileTypeIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->fileTypeIdIn, '');
-			else
-				$this->fileTypeIdIn = (string)$xml->fileTypeIdIn;
-		}
+			$this->fileTypeIdIn = (string)$xml->fileTypeIdIn;
 	}
 	/**
 	 * List of comma separated fileTypesIds

@@ -48,12 +48,7 @@ class Kaltura_Client_Type_Message extends Kaltura_Client_ObjectBase
 		if(count($xml->code))
 			$this->code = (int)$xml->code;
 		if(count($xml->message))
-		{
-			if(isset($xml->message->item) && count($xml->message->item))
-				$this->multiLingual_message = Kaltura_Client_ParseUtils::unmarshalArray($xml->message, '');
-			else
-				$this->message = (string)$xml->message;
-		}
+			$this->message = (string)$xml->message;
 		if(count($xml->args))
 		{
 			if(empty($xml->args))

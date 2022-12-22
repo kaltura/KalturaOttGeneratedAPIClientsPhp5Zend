@@ -48,19 +48,9 @@ class Kaltura_Client_Type_TopicNotificationMessage extends Kaltura_Client_Object
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->message))
-		{
-			if(isset($xml->message->item) && count($xml->message->item))
-				$this->multiLingual_message = Kaltura_Client_ParseUtils::unmarshalArray($xml->message, '');
-			else
-				$this->message = (string)$xml->message;
-		}
+			$this->message = (string)$xml->message;
 		if(count($xml->imageUrl))
-		{
-			if(isset($xml->imageUrl->item) && count($xml->imageUrl->item))
-				$this->multiLingual_imageUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->imageUrl, '');
-			else
-				$this->imageUrl = (string)$xml->imageUrl;
-		}
+			$this->imageUrl = (string)$xml->imageUrl;
 		if(count($xml->topicNotificationId))
 			$this->topicNotificationId = (string)$xml->topicNotificationId;
 		if(count($xml->trigger) && !empty($xml->trigger))
@@ -73,12 +63,7 @@ class Kaltura_Client_Type_TopicNotificationMessage extends Kaltura_Client_Object
 				$this->dispatchers = Kaltura_Client_ParseUtils::unmarshalArray($xml->dispatchers, "KalturaDispatcher");
 		}
 		if(count($xml->status))
-		{
-			if(isset($xml->status->item) && count($xml->status->item))
-				$this->multiLingual_status = Kaltura_Client_ParseUtils::unmarshalArray($xml->status, '');
-			else
-				$this->status = (string)$xml->status;
-		}
+			$this->status = (string)$xml->status;
 	}
 	/**
 	 * Topic notification message ID

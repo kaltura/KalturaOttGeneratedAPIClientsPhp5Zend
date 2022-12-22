@@ -46,56 +46,21 @@ class Kaltura_Client_Type_SearchHistory extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->id))
-		{
-			if(isset($xml->id->item) && count($xml->id->item))
-				$this->multiLingual_id = Kaltura_Client_ParseUtils::unmarshalArray($xml->id, '');
-			else
-				$this->id = (string)$xml->id;
-		}
+			$this->id = (string)$xml->id;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->filter))
-		{
-			if(isset($xml->filter->item) && count($xml->filter->item))
-				$this->multiLingual_filter = Kaltura_Client_ParseUtils::unmarshalArray($xml->filter, '');
-			else
-				$this->filter = (string)$xml->filter;
-		}
+			$this->filter = (string)$xml->filter;
 		if(count($xml->language))
-		{
-			if(isset($xml->language->item) && count($xml->language->item))
-				$this->multiLingual_language = Kaltura_Client_ParseUtils::unmarshalArray($xml->language, '');
-			else
-				$this->language = (string)$xml->language;
-		}
+			$this->language = (string)$xml->language;
 		if(count($xml->createdAt))
 			$this->createdAt = (string)$xml->createdAt;
 		if(count($xml->service))
-		{
-			if(isset($xml->service->item) && count($xml->service->item))
-				$this->multiLingual_service = Kaltura_Client_ParseUtils::unmarshalArray($xml->service, '');
-			else
-				$this->service = (string)$xml->service;
-		}
+			$this->service = (string)$xml->service;
 		if(count($xml->action))
-		{
-			if(isset($xml->action->item) && count($xml->action->item))
-				$this->multiLingual_action = Kaltura_Client_ParseUtils::unmarshalArray($xml->action, '');
-			else
-				$this->action = (string)$xml->action;
-		}
+			$this->action = (string)$xml->action;
 		if(count($xml->deviceId))
-		{
-			if(isset($xml->deviceId->item) && count($xml->deviceId->item))
-				$this->multiLingual_deviceId = Kaltura_Client_ParseUtils::unmarshalArray($xml->deviceId, '');
-			else
-				$this->deviceId = (string)$xml->deviceId;
-		}
+			$this->deviceId = (string)$xml->deviceId;
 	}
 	/**
 	 * Search ID

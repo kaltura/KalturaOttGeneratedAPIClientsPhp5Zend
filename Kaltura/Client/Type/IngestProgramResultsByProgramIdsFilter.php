@@ -46,12 +46,7 @@ class Kaltura_Client_Type_IngestProgramResultsByProgramIdsFilter extends Kaltura
 			return;
 		
 		if(count($xml->programIdIn))
-		{
-			if(isset($xml->programIdIn->item) && count($xml->programIdIn->item))
-				$this->multiLingual_programIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->programIdIn, '');
-			else
-				$this->programIdIn = (string)$xml->programIdIn;
-		}
+			$this->programIdIn = (string)$xml->programIdIn;
 	}
 	/**
 	 * Comma seperated program id (the unique ingested program id as it determined by Kaltura BE).

@@ -46,12 +46,7 @@ class Kaltura_Client_Type_AssetCondition extends Kaltura_Client_Type_AssetCondit
 			return;
 		
 		if(count($xml->ksql))
-		{
-			if(isset($xml->ksql->item) && count($xml->ksql->item))
-				$this->multiLingual_ksql = Kaltura_Client_ParseUtils::unmarshalArray($xml->ksql, '');
-			else
-				$this->ksql = (string)$xml->ksql;
-		}
+			$this->ksql = (string)$xml->ksql;
 	}
 	/**
 	 * KSQL

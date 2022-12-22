@@ -48,33 +48,13 @@ class Kaltura_Client_Type_Language extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (int)$xml->id;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->systemName))
-		{
-			if(isset($xml->systemName->item) && count($xml->systemName->item))
-				$this->multiLingual_systemName = Kaltura_Client_ParseUtils::unmarshalArray($xml->systemName, '');
-			else
-				$this->systemName = (string)$xml->systemName;
-		}
+			$this->systemName = (string)$xml->systemName;
 		if(count($xml->code))
-		{
-			if(isset($xml->code->item) && count($xml->code->item))
-				$this->multiLingual_code = Kaltura_Client_ParseUtils::unmarshalArray($xml->code, '');
-			else
-				$this->code = (string)$xml->code;
-		}
+			$this->code = (string)$xml->code;
 		if(count($xml->direction))
-		{
-			if(isset($xml->direction->item) && count($xml->direction->item))
-				$this->multiLingual_direction = Kaltura_Client_ParseUtils::unmarshalArray($xml->direction, '');
-			else
-				$this->direction = (string)$xml->direction;
-		}
+			$this->direction = (string)$xml->direction;
 		if(count($xml->isDefault))
 		{
 			if(!empty($xml->isDefault) && ((int) $xml->isDefault === 1 || strtolower((string)$xml->isDefault) === 'true'))

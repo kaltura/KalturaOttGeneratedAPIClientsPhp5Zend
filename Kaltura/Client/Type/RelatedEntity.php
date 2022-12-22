@@ -46,19 +46,9 @@ class Kaltura_Client_Type_RelatedEntity extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->id))
-		{
-			if(isset($xml->id->item) && count($xml->id->item))
-				$this->multiLingual_id = Kaltura_Client_ParseUtils::unmarshalArray($xml->id, '');
-			else
-				$this->id = (string)$xml->id;
-		}
+			$this->id = (string)$xml->id;
 		if(count($xml->type))
-		{
-			if(isset($xml->type->item) && count($xml->type->item))
-				$this->multiLingual_type = Kaltura_Client_ParseUtils::unmarshalArray($xml->type, '');
-			else
-				$this->type = (string)$xml->type;
-		}
+			$this->type = (string)$xml->type;
 	}
 	/**
 	 * Unique identifier for the related entry

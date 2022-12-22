@@ -46,37 +46,17 @@ class Kaltura_Client_Type_SocialAction extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->id))
-		{
-			if(isset($xml->id->item) && count($xml->id->item))
-				$this->multiLingual_id = Kaltura_Client_ParseUtils::unmarshalArray($xml->id, '');
-			else
-				$this->id = (string)$xml->id;
-		}
+			$this->id = (string)$xml->id;
 		if(count($xml->actionType))
-		{
-			if(isset($xml->actionType->item) && count($xml->actionType->item))
-				$this->multiLingual_actionType = Kaltura_Client_ParseUtils::unmarshalArray($xml->actionType, '');
-			else
-				$this->actionType = (string)$xml->actionType;
-		}
+			$this->actionType = (string)$xml->actionType;
 		if(count($xml->time))
 			$this->time = (string)$xml->time;
 		if(count($xml->assetId))
 			$this->assetId = (string)$xml->assetId;
 		if(count($xml->assetType))
-		{
-			if(isset($xml->assetType->item) && count($xml->assetType->item))
-				$this->multiLingual_assetType = Kaltura_Client_ParseUtils::unmarshalArray($xml->assetType, '');
-			else
-				$this->assetType = (string)$xml->assetType;
-		}
+			$this->assetType = (string)$xml->assetType;
 		if(count($xml->url))
-		{
-			if(isset($xml->url->item) && count($xml->url->item))
-				$this->multiLingual_url = Kaltura_Client_ParseUtils::unmarshalArray($xml->url, '');
-			else
-				$this->url = (string)$xml->url;
-		}
+			$this->url = (string)$xml->url;
 	}
 	/**
 	 * social action document id

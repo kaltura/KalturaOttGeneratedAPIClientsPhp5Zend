@@ -46,12 +46,7 @@ class Kaltura_Client_Type_ConfigurationGroupTagFilter extends Kaltura_Client_Typ
 			return;
 		
 		if(count($xml->configurationGroupIdEqual))
-		{
-			if(isset($xml->configurationGroupIdEqual->item) && count($xml->configurationGroupIdEqual->item))
-				$this->multiLingual_configurationGroupIdEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->configurationGroupIdEqual, '');
-			else
-				$this->configurationGroupIdEqual = (string)$xml->configurationGroupIdEqual;
-		}
+			$this->configurationGroupIdEqual = (string)$xml->configurationGroupIdEqual;
 	}
 	/**
 	 * the ID of the configuration group for which to return related configurations group tags

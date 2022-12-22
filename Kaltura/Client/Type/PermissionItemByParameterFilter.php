@@ -46,19 +46,9 @@ class Kaltura_Client_Type_PermissionItemByParameterFilter extends Kaltura_Client
 			return;
 		
 		if(count($xml->parameterEqual))
-		{
-			if(isset($xml->parameterEqual->item) && count($xml->parameterEqual->item))
-				$this->multiLingual_parameterEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->parameterEqual, '');
-			else
-				$this->parameterEqual = (string)$xml->parameterEqual;
-		}
+			$this->parameterEqual = (string)$xml->parameterEqual;
 		if(count($xml->objectEqual))
-		{
-			if(isset($xml->objectEqual->item) && count($xml->objectEqual->item))
-				$this->multiLingual_objectEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->objectEqual, '');
-			else
-				$this->objectEqual = (string)$xml->objectEqual;
-		}
+			$this->objectEqual = (string)$xml->objectEqual;
 	}
 	/**
 	 * Parameter name

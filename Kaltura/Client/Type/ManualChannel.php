@@ -46,12 +46,7 @@ class Kaltura_Client_Type_ManualChannel extends Kaltura_Client_Type_Channel
 			return;
 		
 		if(count($xml->mediaIds))
-		{
-			if(isset($xml->mediaIds->item) && count($xml->mediaIds->item))
-				$this->multiLingual_mediaIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->mediaIds, '');
-			else
-				$this->mediaIds = (string)$xml->mediaIds;
-		}
+			$this->mediaIds = (string)$xml->mediaIds;
 		if(count($xml->assets))
 		{
 			if(empty($xml->assets))

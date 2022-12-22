@@ -46,19 +46,9 @@ class Kaltura_Client_Type_AssetFileContext extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->viewLifeCycle))
-		{
-			if(isset($xml->viewLifeCycle->item) && count($xml->viewLifeCycle->item))
-				$this->multiLingual_viewLifeCycle = Kaltura_Client_ParseUtils::unmarshalArray($xml->viewLifeCycle, '');
-			else
-				$this->viewLifeCycle = (string)$xml->viewLifeCycle;
-		}
+			$this->viewLifeCycle = (string)$xml->viewLifeCycle;
 		if(count($xml->fullLifeCycle))
-		{
-			if(isset($xml->fullLifeCycle->item) && count($xml->fullLifeCycle->item))
-				$this->multiLingual_fullLifeCycle = Kaltura_Client_ParseUtils::unmarshalArray($xml->fullLifeCycle, '');
-			else
-				$this->fullLifeCycle = (string)$xml->fullLifeCycle;
-		}
+			$this->fullLifeCycle = (string)$xml->fullLifeCycle;
 		if(count($xml->isOfflinePlayBack))
 		{
 			if(!empty($xml->isOfflinePlayBack) && ((int) $xml->isOfflinePlayBack === 1 || strtolower((string)$xml->isOfflinePlayBack) === 'true'))

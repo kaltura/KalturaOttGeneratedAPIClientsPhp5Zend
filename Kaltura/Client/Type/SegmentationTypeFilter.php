@@ -46,26 +46,11 @@ class Kaltura_Client_Type_SegmentationTypeFilter extends Kaltura_Client_Type_Bas
 			return;
 		
 		if(count($xml->idIn))
-		{
-			if(isset($xml->idIn->item) && count($xml->idIn->item))
-				$this->multiLingual_idIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->idIn, '');
-			else
-				$this->idIn = (string)$xml->idIn;
-		}
+			$this->idIn = (string)$xml->idIn;
 		if(count($xml->kSql))
-		{
-			if(isset($xml->kSql->item) && count($xml->kSql->item))
-				$this->multiLingual_kSql = Kaltura_Client_ParseUtils::unmarshalArray($xml->kSql, '');
-			else
-				$this->kSql = (string)$xml->kSql;
-		}
+			$this->kSql = (string)$xml->kSql;
 		if(count($xml->nameContain))
-		{
-			if(isset($xml->nameContain->item) && count($xml->nameContain->item))
-				$this->multiLingual_nameContain = Kaltura_Client_ParseUtils::unmarshalArray($xml->nameContain, '');
-			else
-				$this->nameContain = (string)$xml->nameContain;
-		}
+			$this->nameContain = (string)$xml->nameContain;
 	}
 	/**
 	 * Comma separated segmentation types identifiers

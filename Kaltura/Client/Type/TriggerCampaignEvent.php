@@ -50,12 +50,7 @@ class Kaltura_Client_Type_TriggerCampaignEvent extends Kaltura_Client_Type_Event
 		if(count($xml->campaignId))
 			$this->campaignId = (string)$xml->campaignId;
 		if(count($xml->udid))
-		{
-			if(isset($xml->udid->item) && count($xml->udid->item))
-				$this->multiLingual_udid = Kaltura_Client_ParseUtils::unmarshalArray($xml->udid, '');
-			else
-				$this->udid = (string)$xml->udid;
-		}
+			$this->udid = (string)$xml->udid;
 		if(count($xml->householdId))
 			$this->householdId = (string)$xml->householdId;
 	}

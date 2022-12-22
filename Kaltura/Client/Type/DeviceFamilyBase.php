@@ -48,19 +48,9 @@ class Kaltura_Client_Type_DeviceFamilyBase extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->type))
-		{
-			if(isset($xml->type->item) && count($xml->type->item))
-				$this->multiLingual_type = Kaltura_Client_ParseUtils::unmarshalArray($xml->type, '');
-			else
-				$this->type = (string)$xml->type;
-		}
+			$this->type = (string)$xml->type;
 	}
 	/**
 	 * Device family identifier

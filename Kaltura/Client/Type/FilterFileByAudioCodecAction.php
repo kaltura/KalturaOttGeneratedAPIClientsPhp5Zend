@@ -46,12 +46,7 @@ abstract class Kaltura_Client_Type_FilterFileByAudioCodecAction extends Kaltura_
 			return;
 		
 		if(count($xml->audioCodecIn))
-		{
-			if(isset($xml->audioCodecIn->item) && count($xml->audioCodecIn->item))
-				$this->multiLingual_audioCodecIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->audioCodecIn, '');
-			else
-				$this->audioCodecIn = (string)$xml->audioCodecIn;
-		}
+			$this->audioCodecIn = (string)$xml->audioCodecIn;
 	}
 	/**
 	 * List of comma separated audioCodecs

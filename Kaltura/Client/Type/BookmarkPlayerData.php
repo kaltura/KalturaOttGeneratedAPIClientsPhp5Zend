@@ -46,12 +46,7 @@ class Kaltura_Client_Type_BookmarkPlayerData extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->action))
-		{
-			if(isset($xml->action->item) && count($xml->action->item))
-				$this->multiLingual_action = Kaltura_Client_ParseUtils::unmarshalArray($xml->action, '');
-			else
-				$this->action = (string)$xml->action;
-		}
+			$this->action = (string)$xml->action;
 		if(count($xml->averageBitrate))
 			$this->averageBitrate = (int)$xml->averageBitrate;
 		if(count($xml->totalBitrate))

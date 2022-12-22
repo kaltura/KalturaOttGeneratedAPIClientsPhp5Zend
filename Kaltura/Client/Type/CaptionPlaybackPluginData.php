@@ -46,33 +46,13 @@ class Kaltura_Client_Type_CaptionPlaybackPluginData extends Kaltura_Client_Objec
 			return;
 		
 		if(count($xml->url))
-		{
-			if(isset($xml->url->item) && count($xml->url->item))
-				$this->multiLingual_url = Kaltura_Client_ParseUtils::unmarshalArray($xml->url, '');
-			else
-				$this->url = (string)$xml->url;
-		}
+			$this->url = (string)$xml->url;
 		if(count($xml->language))
-		{
-			if(isset($xml->language->item) && count($xml->language->item))
-				$this->multiLingual_language = Kaltura_Client_ParseUtils::unmarshalArray($xml->language, '');
-			else
-				$this->language = (string)$xml->language;
-		}
+			$this->language = (string)$xml->language;
 		if(count($xml->label))
-		{
-			if(isset($xml->label->item) && count($xml->label->item))
-				$this->multiLingual_label = Kaltura_Client_ParseUtils::unmarshalArray($xml->label, '');
-			else
-				$this->label = (string)$xml->label;
-		}
+			$this->label = (string)$xml->label;
 		if(count($xml->format))
-		{
-			if(isset($xml->format->item) && count($xml->format->item))
-				$this->multiLingual_format = Kaltura_Client_ParseUtils::unmarshalArray($xml->format, '');
-			else
-				$this->format = (string)$xml->format;
-		}
+			$this->format = (string)$xml->format;
 	}
 	/**
 	 * url

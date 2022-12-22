@@ -46,26 +46,11 @@ class Kaltura_Client_Type_ApiParameterPermissionItem extends Kaltura_Client_Type
 			return;
 		
 		if(count($xml->object))
-		{
-			if(isset($xml->object->item) && count($xml->object->item))
-				$this->multiLingual_object = Kaltura_Client_ParseUtils::unmarshalArray($xml->object, '');
-			else
-				$this->object = (string)$xml->object;
-		}
+			$this->object = (string)$xml->object;
 		if(count($xml->parameter))
-		{
-			if(isset($xml->parameter->item) && count($xml->parameter->item))
-				$this->multiLingual_parameter = Kaltura_Client_ParseUtils::unmarshalArray($xml->parameter, '');
-			else
-				$this->parameter = (string)$xml->parameter;
-		}
+			$this->parameter = (string)$xml->parameter;
 		if(count($xml->action))
-		{
-			if(isset($xml->action->item) && count($xml->action->item))
-				$this->multiLingual_action = Kaltura_Client_ParseUtils::unmarshalArray($xml->action, '');
-			else
-				$this->action = (string)$xml->action;
-		}
+			$this->action = (string)$xml->action;
 	}
 	/**
 	 * API object name

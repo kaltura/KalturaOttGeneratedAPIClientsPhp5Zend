@@ -48,26 +48,11 @@ class Kaltura_Client_Type_Household extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->description))
-		{
-			if(isset($xml->description->item) && count($xml->description->item))
-				$this->multiLingual_description = Kaltura_Client_ParseUtils::unmarshalArray($xml->description, '');
-			else
-				$this->description = (string)$xml->description;
-		}
+			$this->description = (string)$xml->description;
 		if(count($xml->externalId))
-		{
-			if(isset($xml->externalId->item) && count($xml->externalId->item))
-				$this->multiLingual_externalId = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalId, '');
-			else
-				$this->externalId = (string)$xml->externalId;
-		}
+			$this->externalId = (string)$xml->externalId;
 		if(count($xml->householdLimitationsId))
 			$this->householdLimitationsId = (int)$xml->householdLimitationsId;
 		if(count($xml->devicesLimit))
@@ -79,12 +64,7 @@ class Kaltura_Client_Type_Household extends Kaltura_Client_ObjectBase
 		if(count($xml->regionId))
 			$this->regionId = (int)$xml->regionId;
 		if(count($xml->state))
-		{
-			if(isset($xml->state->item) && count($xml->state->item))
-				$this->multiLingual_state = Kaltura_Client_ParseUtils::unmarshalArray($xml->state, '');
-			else
-				$this->state = (string)$xml->state;
-		}
+			$this->state = (string)$xml->state;
 		if(count($xml->isFrequencyEnabled))
 		{
 			if(!empty($xml->isFrequencyEnabled) && ((int) $xml->isFrequencyEnabled === 1 || strtolower((string)$xml->isFrequencyEnabled) === 'true'))
@@ -97,12 +77,7 @@ class Kaltura_Client_Type_Household extends Kaltura_Client_ObjectBase
 		if(count($xml->frequencyNextUserAction))
 			$this->frequencyNextUserAction = (string)$xml->frequencyNextUserAction;
 		if(count($xml->restriction))
-		{
-			if(isset($xml->restriction->item) && count($xml->restriction->item))
-				$this->multiLingual_restriction = Kaltura_Client_ParseUtils::unmarshalArray($xml->restriction, '');
-			else
-				$this->restriction = (string)$xml->restriction;
-		}
+			$this->restriction = (string)$xml->restriction;
 		if(count($xml->roleId))
 			$this->roleId = (int)$xml->roleId;
 		if(count($xml->createDate))

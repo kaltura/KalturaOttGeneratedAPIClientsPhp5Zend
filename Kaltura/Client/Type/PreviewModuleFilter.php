@@ -46,12 +46,7 @@ class Kaltura_Client_Type_PreviewModuleFilter extends Kaltura_Client_Type_Filter
 			return;
 		
 		if(count($xml->idIn))
-		{
-			if(isset($xml->idIn->item) && count($xml->idIn->item))
-				$this->multiLingual_idIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->idIn, '');
-			else
-				$this->idIn = (string)$xml->idIn;
-		}
+			$this->idIn = (string)$xml->idIn;
 	}
 	/**
 	 * Comma separated discount codes

@@ -46,12 +46,7 @@ class Kaltura_Client_Type_Encryption extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->encryptionType))
-		{
-			if(isset($xml->encryptionType->item) && count($xml->encryptionType->item))
-				$this->multiLingual_encryptionType = Kaltura_Client_ParseUtils::unmarshalArray($xml->encryptionType, '');
-			else
-				$this->encryptionType = (string)$xml->encryptionType;
-		}
+			$this->encryptionType = (string)$xml->encryptionType;
 	}
 	/**
 	 * Encryption type

@@ -46,12 +46,7 @@ class Kaltura_Client_Type_Channel extends Kaltura_Client_Type_BaseChannel
 			return;
 		
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->multilingualName))
 		{
 			if(empty($xml->multilingualName))
@@ -60,26 +55,11 @@ class Kaltura_Client_Type_Channel extends Kaltura_Client_Type_BaseChannel
 				$this->multilingualName = Kaltura_Client_ParseUtils::unmarshalArray($xml->multilingualName, "KalturaTranslationToken");
 		}
 		if(count($xml->oldName))
-		{
-			if(isset($xml->oldName->item) && count($xml->oldName->item))
-				$this->multiLingual_oldName = Kaltura_Client_ParseUtils::unmarshalArray($xml->oldName, '');
-			else
-				$this->oldName = (string)$xml->oldName;
-		}
+			$this->oldName = (string)$xml->oldName;
 		if(count($xml->systemName))
-		{
-			if(isset($xml->systemName->item) && count($xml->systemName->item))
-				$this->multiLingual_systemName = Kaltura_Client_ParseUtils::unmarshalArray($xml->systemName, '');
-			else
-				$this->systemName = (string)$xml->systemName;
-		}
+			$this->systemName = (string)$xml->systemName;
 		if(count($xml->description))
-		{
-			if(isset($xml->description->item) && count($xml->description->item))
-				$this->multiLingual_description = Kaltura_Client_ParseUtils::unmarshalArray($xml->description, '');
-			else
-				$this->description = (string)$xml->description;
-		}
+			$this->description = (string)$xml->description;
 		if(count($xml->multilingualDescription))
 		{
 			if(empty($xml->multilingualDescription))
@@ -88,12 +68,7 @@ class Kaltura_Client_Type_Channel extends Kaltura_Client_Type_BaseChannel
 				$this->multilingualDescription = Kaltura_Client_ParseUtils::unmarshalArray($xml->multilingualDescription, "KalturaTranslationToken");
 		}
 		if(count($xml->oldDescription))
-		{
-			if(isset($xml->oldDescription->item) && count($xml->oldDescription->item))
-				$this->multiLingual_oldDescription = Kaltura_Client_ParseUtils::unmarshalArray($xml->oldDescription, '');
-			else
-				$this->oldDescription = (string)$xml->oldDescription;
-		}
+			$this->oldDescription = (string)$xml->oldDescription;
 		if(count($xml->isActive))
 		{
 			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))

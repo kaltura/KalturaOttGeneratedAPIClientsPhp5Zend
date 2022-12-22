@@ -46,12 +46,7 @@ class Kaltura_Client_Type_MultilingualStringValue extends Kaltura_Client_Type_Va
 			return;
 		
 		if(count($xml->value))
-		{
-			if(isset($xml->value->item) && count($xml->value->item))
-				$this->multiLingual_value = Kaltura_Client_ParseUtils::unmarshalArray($xml->value, '');
-			else
-				$this->value = (string)$xml->value;
-		}
+			$this->value = (string)$xml->value;
 		if(count($xml->multilingualValue))
 		{
 			if(empty($xml->multilingualValue))

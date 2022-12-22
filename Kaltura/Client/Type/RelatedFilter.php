@@ -48,12 +48,7 @@ class Kaltura_Client_Type_RelatedFilter extends Kaltura_Client_Type_BaseSearchAs
 		if(count($xml->idEqual))
 			$this->idEqual = (int)$xml->idEqual;
 		if(count($xml->typeIn))
-		{
-			if(isset($xml->typeIn->item) && count($xml->typeIn->item))
-				$this->multiLingual_typeIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->typeIn, '');
-			else
-				$this->typeIn = (string)$xml->typeIn;
-		}
+			$this->typeIn = (string)$xml->typeIn;
 		if(count($xml->excludeWatched))
 		{
 			if(!empty($xml->excludeWatched) && ((int) $xml->excludeWatched === 1 || strtolower((string)$xml->excludeWatched) === 'true'))

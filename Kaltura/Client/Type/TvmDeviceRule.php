@@ -46,12 +46,7 @@ class Kaltura_Client_Type_TvmDeviceRule extends Kaltura_Client_Type_TvmRule
 			return;
 		
 		if(count($xml->deviceBrandIds))
-		{
-			if(isset($xml->deviceBrandIds->item) && count($xml->deviceBrandIds->item))
-				$this->multiLingual_deviceBrandIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->deviceBrandIds, '');
-			else
-				$this->deviceBrandIds = (string)$xml->deviceBrandIds;
-		}
+			$this->deviceBrandIds = (string)$xml->deviceBrandIds;
 	}
 	/**
 	 * Comma separated list of country Ids.

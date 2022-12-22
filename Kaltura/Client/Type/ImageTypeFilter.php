@@ -46,19 +46,9 @@ class Kaltura_Client_Type_ImageTypeFilter extends Kaltura_Client_Type_Filter
 			return;
 		
 		if(count($xml->idIn))
-		{
-			if(isset($xml->idIn->item) && count($xml->idIn->item))
-				$this->multiLingual_idIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->idIn, '');
-			else
-				$this->idIn = (string)$xml->idIn;
-		}
+			$this->idIn = (string)$xml->idIn;
 		if(count($xml->ratioIdIn))
-		{
-			if(isset($xml->ratioIdIn->item) && count($xml->ratioIdIn->item))
-				$this->multiLingual_ratioIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->ratioIdIn, '');
-			else
-				$this->ratioIdIn = (string)$xml->ratioIdIn;
-		}
+			$this->ratioIdIn = (string)$xml->ratioIdIn;
 	}
 	/**
 	 * IDs to filter by

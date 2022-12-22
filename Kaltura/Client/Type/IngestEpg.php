@@ -48,19 +48,9 @@ class Kaltura_Client_Type_IngestEpg extends Kaltura_Client_ObjectBase
 		if(count($xml->ingestId))
 			$this->ingestId = (string)$xml->ingestId;
 		if(count($xml->ingestName))
-		{
-			if(isset($xml->ingestName->item) && count($xml->ingestName->item))
-				$this->multiLingual_ingestName = Kaltura_Client_ParseUtils::unmarshalArray($xml->ingestName, '');
-			else
-				$this->ingestName = (string)$xml->ingestName;
-		}
+			$this->ingestName = (string)$xml->ingestName;
 		if(count($xml->ingestFilenameExtension))
-		{
-			if(isset($xml->ingestFilenameExtension->item) && count($xml->ingestFilenameExtension->item))
-				$this->multiLingual_ingestFilenameExtension = Kaltura_Client_ParseUtils::unmarshalArray($xml->ingestFilenameExtension, '');
-			else
-				$this->ingestFilenameExtension = (string)$xml->ingestFilenameExtension;
-		}
+			$this->ingestFilenameExtension = (string)$xml->ingestFilenameExtension;
 		if(count($xml->createdDate))
 			$this->createdDate = (string)$xml->createdDate;
 		if(count($xml->ingestedByUserId))
@@ -70,12 +60,7 @@ class Kaltura_Client_Type_IngestEpg extends Kaltura_Client_ObjectBase
 		if(count($xml->ingestProfileId))
 			$this->ingestProfileId = (string)$xml->ingestProfileId;
 		if(count($xml->status))
-		{
-			if(isset($xml->status->item) && count($xml->status->item))
-				$this->multiLingual_status = Kaltura_Client_ParseUtils::unmarshalArray($xml->status, '');
-			else
-				$this->status = (string)$xml->status;
-		}
+			$this->status = (string)$xml->status;
 	}
 	/**
 	 * Unique id of the ingest job in question

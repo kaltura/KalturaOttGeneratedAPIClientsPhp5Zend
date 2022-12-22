@@ -46,28 +46,13 @@ class Kaltura_Client_Type_SocialComment extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->header))
-		{
-			if(isset($xml->header->item) && count($xml->header->item))
-				$this->multiLingual_header = Kaltura_Client_ParseUtils::unmarshalArray($xml->header, '');
-			else
-				$this->header = (string)$xml->header;
-		}
+			$this->header = (string)$xml->header;
 		if(count($xml->text))
-		{
-			if(isset($xml->text->item) && count($xml->text->item))
-				$this->multiLingual_text = Kaltura_Client_ParseUtils::unmarshalArray($xml->text, '');
-			else
-				$this->text = (string)$xml->text;
-		}
+			$this->text = (string)$xml->text;
 		if(count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
 		if(count($xml->writer))
-		{
-			if(isset($xml->writer->item) && count($xml->writer->item))
-				$this->multiLingual_writer = Kaltura_Client_ParseUtils::unmarshalArray($xml->writer, '');
-			else
-				$this->writer = (string)$xml->writer;
-		}
+			$this->writer = (string)$xml->writer;
 	}
 	/**
 	 * Comment header

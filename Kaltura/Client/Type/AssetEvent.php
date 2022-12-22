@@ -52,12 +52,7 @@ class Kaltura_Client_Type_AssetEvent extends Kaltura_Client_Type_EventObject
 		if(count($xml->type))
 			$this->type = (int)$xml->type;
 		if(count($xml->externalId))
-		{
-			if(isset($xml->externalId->item) && count($xml->externalId->item))
-				$this->multiLingual_externalId = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalId, '');
-			else
-				$this->externalId = (string)$xml->externalId;
-		}
+			$this->externalId = (string)$xml->externalId;
 	}
 	/**
 	 * User Id

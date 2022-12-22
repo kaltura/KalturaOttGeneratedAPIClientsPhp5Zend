@@ -53,12 +53,7 @@ class Kaltura_Client_Type_FacebookPost extends Kaltura_Client_Type_SocialNetwork
 				$this->comments = Kaltura_Client_ParseUtils::unmarshalArray($xml->comments, "KalturaSocialNetworkComment");
 		}
 		if(count($xml->link))
-		{
-			if(isset($xml->link->item) && count($xml->link->item))
-				$this->multiLingual_link = Kaltura_Client_ParseUtils::unmarshalArray($xml->link, '');
-			else
-				$this->link = (string)$xml->link;
-		}
+			$this->link = (string)$xml->link;
 	}
 	/**
 	 * List of comments on the post

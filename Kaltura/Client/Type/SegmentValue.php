@@ -48,26 +48,11 @@ class Kaltura_Client_Type_SegmentValue extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->systematicName))
-		{
-			if(isset($xml->systematicName->item) && count($xml->systematicName->item))
-				$this->multiLingual_systematicName = Kaltura_Client_ParseUtils::unmarshalArray($xml->systematicName, '');
-			else
-				$this->systematicName = (string)$xml->systematicName;
-		}
+			$this->systematicName = (string)$xml->systematicName;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->value))
-		{
-			if(isset($xml->value->item) && count($xml->value->item))
-				$this->multiLingual_value = Kaltura_Client_ParseUtils::unmarshalArray($xml->value, '');
-			else
-				$this->value = (string)$xml->value;
-		}
+			$this->value = (string)$xml->value;
 	}
 	/**
 	 * Id of segment

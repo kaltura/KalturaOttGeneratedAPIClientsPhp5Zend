@@ -46,26 +46,11 @@ class Kaltura_Client_Type_ApiArgumentPermissionItem extends Kaltura_Client_Type_
 			return;
 		
 		if(count($xml->service))
-		{
-			if(isset($xml->service->item) && count($xml->service->item))
-				$this->multiLingual_service = Kaltura_Client_ParseUtils::unmarshalArray($xml->service, '');
-			else
-				$this->service = (string)$xml->service;
-		}
+			$this->service = (string)$xml->service;
 		if(count($xml->action))
-		{
-			if(isset($xml->action->item) && count($xml->action->item))
-				$this->multiLingual_action = Kaltura_Client_ParseUtils::unmarshalArray($xml->action, '');
-			else
-				$this->action = (string)$xml->action;
-		}
+			$this->action = (string)$xml->action;
 		if(count($xml->parameter))
-		{
-			if(isset($xml->parameter->item) && count($xml->parameter->item))
-				$this->multiLingual_parameter = Kaltura_Client_ParseUtils::unmarshalArray($xml->parameter, '');
-			else
-				$this->parameter = (string)$xml->parameter;
-		}
+			$this->parameter = (string)$xml->parameter;
 	}
 	/**
 	 * API service name

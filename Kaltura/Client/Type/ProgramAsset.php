@@ -48,21 +48,11 @@ class Kaltura_Client_Type_ProgramAsset extends Kaltura_Client_Type_Asset
 		if(count($xml->epgChannelId))
 			$this->epgChannelId = (string)$xml->epgChannelId;
 		if(count($xml->epgId))
-		{
-			if(isset($xml->epgId->item) && count($xml->epgId->item))
-				$this->multiLingual_epgId = Kaltura_Client_ParseUtils::unmarshalArray($xml->epgId, '');
-			else
-				$this->epgId = (string)$xml->epgId;
-		}
+			$this->epgId = (string)$xml->epgId;
 		if(count($xml->relatedMediaId))
 			$this->relatedMediaId = (string)$xml->relatedMediaId;
 		if(count($xml->crid))
-		{
-			if(isset($xml->crid->item) && count($xml->crid->item))
-				$this->multiLingual_crid = Kaltura_Client_ParseUtils::unmarshalArray($xml->crid, '');
-			else
-				$this->crid = (string)$xml->crid;
-		}
+			$this->crid = (string)$xml->crid;
 		if(count($xml->linearAssetId))
 			$this->linearAssetId = (string)$xml->linearAssetId;
 		if(count($xml->enableCdvr))
@@ -94,12 +84,7 @@ class Kaltura_Client_Type_ProgramAsset extends Kaltura_Client_Type_Asset
 				$this->enableTrickPlay = false;
 		}
 		if(count($xml->externalOfferIds))
-		{
-			if(isset($xml->externalOfferIds->item) && count($xml->externalOfferIds->item))
-				$this->multiLingual_externalOfferIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalOfferIds, '');
-			else
-				$this->externalOfferIds = (string)$xml->externalOfferIds;
-		}
+			$this->externalOfferIds = (string)$xml->externalOfferIds;
 	}
 	/**
 	 * EPG channel identifier

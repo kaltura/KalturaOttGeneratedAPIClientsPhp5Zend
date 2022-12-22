@@ -48,12 +48,7 @@ class Kaltura_Client_Type_ExternalChannelProfile extends Kaltura_Client_ObjectBa
 		if(count($xml->id))
 			$this->id = (int)$xml->id;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->isActive))
 		{
 			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))
@@ -62,19 +57,9 @@ class Kaltura_Client_Type_ExternalChannelProfile extends Kaltura_Client_ObjectBa
 				$this->isActive = false;
 		}
 		if(count($xml->externalIdentifier))
-		{
-			if(isset($xml->externalIdentifier->item) && count($xml->externalIdentifier->item))
-				$this->multiLingual_externalIdentifier = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalIdentifier, '');
-			else
-				$this->externalIdentifier = (string)$xml->externalIdentifier;
-		}
+			$this->externalIdentifier = (string)$xml->externalIdentifier;
 		if(count($xml->filterExpression))
-		{
-			if(isset($xml->filterExpression->item) && count($xml->filterExpression->item))
-				$this->multiLingual_filterExpression = Kaltura_Client_ParseUtils::unmarshalArray($xml->filterExpression, '');
-			else
-				$this->filterExpression = (string)$xml->filterExpression;
-		}
+			$this->filterExpression = (string)$xml->filterExpression;
 		if(count($xml->recommendationEngineId))
 			$this->recommendationEngineId = (int)$xml->recommendationEngineId;
 		if(count($xml->enrichments))

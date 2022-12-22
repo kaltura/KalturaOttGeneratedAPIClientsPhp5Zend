@@ -46,21 +46,11 @@ class Kaltura_Client_Type_EventNotificationFilter extends Kaltura_Client_Type_Fi
 			return;
 		
 		if(count($xml->idEqual))
-		{
-			if(isset($xml->idEqual->item) && count($xml->idEqual->item))
-				$this->multiLingual_idEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->idEqual, '');
-			else
-				$this->idEqual = (string)$xml->idEqual;
-		}
+			$this->idEqual = (string)$xml->idEqual;
 		if(count($xml->objectIdEqual))
 			$this->objectIdEqual = (string)$xml->objectIdEqual;
 		if(count($xml->eventObjectTypeEqual))
-		{
-			if(isset($xml->eventObjectTypeEqual->item) && count($xml->eventObjectTypeEqual->item))
-				$this->multiLingual_eventObjectTypeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->eventObjectTypeEqual, '');
-			else
-				$this->eventObjectTypeEqual = (string)$xml->eventObjectTypeEqual;
-		}
+			$this->eventObjectTypeEqual = (string)$xml->eventObjectTypeEqual;
 	}
 	/**
 	 * Indicates which event notification to return by their event notifications Id.

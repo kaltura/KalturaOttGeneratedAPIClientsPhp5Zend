@@ -46,12 +46,7 @@ class Kaltura_Client_Type_PublicCouponGenerationOptions extends Kaltura_Client_T
 			return;
 		
 		if(count($xml->code))
-		{
-			if(isset($xml->code->item) && count($xml->code->item))
-				$this->multiLingual_code = Kaltura_Client_ParseUtils::unmarshalArray($xml->code, '');
-			else
-				$this->code = (string)$xml->code;
-		}
+			$this->code = (string)$xml->code;
 	}
 	/**
 	 * Coupon code (name)

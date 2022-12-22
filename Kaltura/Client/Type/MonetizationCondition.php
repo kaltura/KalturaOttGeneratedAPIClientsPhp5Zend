@@ -52,33 +52,13 @@ class Kaltura_Client_Type_MonetizationCondition extends Kaltura_Client_Type_Base
 		if(count($xml->days))
 			$this->days = (int)$xml->days;
 		if(count($xml->type))
-		{
-			if(isset($xml->type->item) && count($xml->type->item))
-				$this->multiLingual_type = Kaltura_Client_ParseUtils::unmarshalArray($xml->type, '');
-			else
-				$this->type = (string)$xml->type;
-		}
+			$this->type = (string)$xml->type;
 		if(count($xml->operator))
-		{
-			if(isset($xml->operator->item) && count($xml->operator->item))
-				$this->multiLingual_operator = Kaltura_Client_ParseUtils::unmarshalArray($xml->operator, '');
-			else
-				$this->operator = (string)$xml->operator;
-		}
+			$this->operator = (string)$xml->operator;
 		if(count($xml->businessModuleIdIn))
-		{
-			if(isset($xml->businessModuleIdIn->item) && count($xml->businessModuleIdIn->item))
-				$this->multiLingual_businessModuleIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->businessModuleIdIn, '');
-			else
-				$this->businessModuleIdIn = (string)$xml->businessModuleIdIn;
-		}
+			$this->businessModuleIdIn = (string)$xml->businessModuleIdIn;
 		if(count($xml->currencyCode))
-		{
-			if(isset($xml->currencyCode->item) && count($xml->currencyCode->item))
-				$this->multiLingual_currencyCode = Kaltura_Client_ParseUtils::unmarshalArray($xml->currencyCode, '');
-			else
-				$this->currencyCode = (string)$xml->currencyCode;
-		}
+			$this->currencyCode = (string)$xml->currencyCode;
 	}
 	/**
 	 * The minimum value to be met

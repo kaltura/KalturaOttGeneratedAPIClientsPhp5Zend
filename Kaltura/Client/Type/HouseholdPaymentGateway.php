@@ -48,12 +48,7 @@ class Kaltura_Client_Type_HouseholdPaymentGateway extends Kaltura_Client_ObjectB
 		if(count($xml->id))
 			$this->id = (int)$xml->id;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->isDefault))
 		{
 			if(!empty($xml->isDefault) && ((int) $xml->isDefault === 1 || strtolower((string)$xml->isDefault) === 'true'))
@@ -62,12 +57,7 @@ class Kaltura_Client_Type_HouseholdPaymentGateway extends Kaltura_Client_ObjectB
 				$this->isDefault = false;
 		}
 		if(count($xml->selectedBy))
-		{
-			if(isset($xml->selectedBy->item) && count($xml->selectedBy->item))
-				$this->multiLingual_selectedBy = Kaltura_Client_ParseUtils::unmarshalArray($xml->selectedBy, '');
-			else
-				$this->selectedBy = (string)$xml->selectedBy;
-		}
+			$this->selectedBy = (string)$xml->selectedBy;
 		if(count($xml->suspendSettings) && !empty($xml->suspendSettings))
 			$this->suspendSettings = Kaltura_Client_ParseUtils::unmarshalObject($xml->suspendSettings, "KalturaSuspendSettings");
 	}

@@ -46,33 +46,13 @@ class Kaltura_Client_Type_BaseOTTUser extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->id))
-		{
-			if(isset($xml->id->item) && count($xml->id->item))
-				$this->multiLingual_id = Kaltura_Client_ParseUtils::unmarshalArray($xml->id, '');
-			else
-				$this->id = (string)$xml->id;
-		}
+			$this->id = (string)$xml->id;
 		if(count($xml->username))
-		{
-			if(isset($xml->username->item) && count($xml->username->item))
-				$this->multiLingual_username = Kaltura_Client_ParseUtils::unmarshalArray($xml->username, '');
-			else
-				$this->username = (string)$xml->username;
-		}
+			$this->username = (string)$xml->username;
 		if(count($xml->firstName))
-		{
-			if(isset($xml->firstName->item) && count($xml->firstName->item))
-				$this->multiLingual_firstName = Kaltura_Client_ParseUtils::unmarshalArray($xml->firstName, '');
-			else
-				$this->firstName = (string)$xml->firstName;
-		}
+			$this->firstName = (string)$xml->firstName;
 		if(count($xml->lastName))
-		{
-			if(isset($xml->lastName->item) && count($xml->lastName->item))
-				$this->multiLingual_lastName = Kaltura_Client_ParseUtils::unmarshalArray($xml->lastName, '');
-			else
-				$this->lastName = (string)$xml->lastName;
-		}
+			$this->lastName = (string)$xml->lastName;
 	}
 	/**
 	 * User identifier

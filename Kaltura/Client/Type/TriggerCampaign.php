@@ -46,19 +46,9 @@ class Kaltura_Client_Type_TriggerCampaign extends Kaltura_Client_Type_Campaign
 			return;
 		
 		if(count($xml->service))
-		{
-			if(isset($xml->service->item) && count($xml->service->item))
-				$this->multiLingual_service = Kaltura_Client_ParseUtils::unmarshalArray($xml->service, '');
-			else
-				$this->service = (string)$xml->service;
-		}
+			$this->service = (string)$xml->service;
 		if(count($xml->action))
-		{
-			if(isset($xml->action->item) && count($xml->action->item))
-				$this->multiLingual_action = Kaltura_Client_ParseUtils::unmarshalArray($xml->action, '');
-			else
-				$this->action = (string)$xml->action;
-		}
+			$this->action = (string)$xml->action;
 		if(count($xml->triggerConditions))
 		{
 			if(empty($xml->triggerConditions))

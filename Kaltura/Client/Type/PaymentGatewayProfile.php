@@ -48,33 +48,13 @@ class Kaltura_Client_Type_PaymentGatewayProfile extends Kaltura_Client_Type_Paym
 		if(count($xml->isActive))
 			$this->isActive = (int)$xml->isActive;
 		if(count($xml->adapterUrl))
-		{
-			if(isset($xml->adapterUrl->item) && count($xml->adapterUrl->item))
-				$this->multiLingual_adapterUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->adapterUrl, '');
-			else
-				$this->adapterUrl = (string)$xml->adapterUrl;
-		}
+			$this->adapterUrl = (string)$xml->adapterUrl;
 		if(count($xml->transactUrl))
-		{
-			if(isset($xml->transactUrl->item) && count($xml->transactUrl->item))
-				$this->multiLingual_transactUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->transactUrl, '');
-			else
-				$this->transactUrl = (string)$xml->transactUrl;
-		}
+			$this->transactUrl = (string)$xml->transactUrl;
 		if(count($xml->statusUrl))
-		{
-			if(isset($xml->statusUrl->item) && count($xml->statusUrl->item))
-				$this->multiLingual_statusUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->statusUrl, '');
-			else
-				$this->statusUrl = (string)$xml->statusUrl;
-		}
+			$this->statusUrl = (string)$xml->statusUrl;
 		if(count($xml->renewUrl))
-		{
-			if(isset($xml->renewUrl->item) && count($xml->renewUrl->item))
-				$this->multiLingual_renewUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->renewUrl, '');
-			else
-				$this->renewUrl = (string)$xml->renewUrl;
-		}
+			$this->renewUrl = (string)$xml->renewUrl;
 		if(count($xml->paymentGatewaySettings))
 		{
 			if(empty($xml->paymentGatewaySettings))
@@ -83,23 +63,13 @@ class Kaltura_Client_Type_PaymentGatewayProfile extends Kaltura_Client_Type_Paym
 				$this->paymentGatewaySettings = Kaltura_Client_ParseUtils::unmarshalMap($xml->paymentGatewaySettings, "KalturaStringValue");
 		}
 		if(count($xml->externalIdentifier))
-		{
-			if(isset($xml->externalIdentifier->item) && count($xml->externalIdentifier->item))
-				$this->multiLingual_externalIdentifier = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalIdentifier, '');
-			else
-				$this->externalIdentifier = (string)$xml->externalIdentifier;
-		}
+			$this->externalIdentifier = (string)$xml->externalIdentifier;
 		if(count($xml->pendingInterval))
 			$this->pendingInterval = (int)$xml->pendingInterval;
 		if(count($xml->pendingRetries))
 			$this->pendingRetries = (int)$xml->pendingRetries;
 		if(count($xml->sharedSecret))
-		{
-			if(isset($xml->sharedSecret->item) && count($xml->sharedSecret->item))
-				$this->multiLingual_sharedSecret = Kaltura_Client_ParseUtils::unmarshalArray($xml->sharedSecret, '');
-			else
-				$this->sharedSecret = (string)$xml->sharedSecret;
-		}
+			$this->sharedSecret = (string)$xml->sharedSecret;
 		if(count($xml->renewIntervalMinutes))
 			$this->renewIntervalMinutes = (int)$xml->renewIntervalMinutes;
 		if(count($xml->renewStartMinutes))

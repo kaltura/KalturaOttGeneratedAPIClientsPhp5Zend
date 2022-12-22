@@ -48,19 +48,9 @@ class Kaltura_Client_Type_PasswordPolicy extends Kaltura_Client_Type_OTTObjectSu
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->userRoleIds))
-		{
-			if(isset($xml->userRoleIds->item) && count($xml->userRoleIds->item))
-				$this->multiLingual_userRoleIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->userRoleIds, '');
-			else
-				$this->userRoleIds = (string)$xml->userRoleIds;
-		}
+			$this->userRoleIds = (string)$xml->userRoleIds;
 		if(count($xml->historyCount))
 			$this->historyCount = (int)$xml->historyCount;
 		if(count($xml->expiration))

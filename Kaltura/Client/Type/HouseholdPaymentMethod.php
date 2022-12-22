@@ -48,21 +48,11 @@ class Kaltura_Client_Type_HouseholdPaymentMethod extends Kaltura_Client_ObjectBa
 		if(count($xml->id))
 			$this->id = (int)$xml->id;
 		if(count($xml->externalId))
-		{
-			if(isset($xml->externalId->item) && count($xml->externalId->item))
-				$this->multiLingual_externalId = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalId, '');
-			else
-				$this->externalId = (string)$xml->externalId;
-		}
+			$this->externalId = (string)$xml->externalId;
 		if(count($xml->paymentGatewayId))
 			$this->paymentGatewayId = (int)$xml->paymentGatewayId;
 		if(count($xml->details))
-		{
-			if(isset($xml->details->item) && count($xml->details->item))
-				$this->multiLingual_details = Kaltura_Client_ParseUtils::unmarshalArray($xml->details, '');
-			else
-				$this->details = (string)$xml->details;
-		}
+			$this->details = (string)$xml->details;
 		if(count($xml->isDefault))
 		{
 			if(!empty($xml->isDefault) && ((int) $xml->isDefault === 1 || strtolower((string)$xml->isDefault) === 'true'))

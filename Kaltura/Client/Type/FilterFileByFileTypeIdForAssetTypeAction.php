@@ -46,12 +46,7 @@ abstract class Kaltura_Client_Type_FilterFileByFileTypeIdForAssetTypeAction exte
 			return;
 		
 		if(count($xml->assetTypeIn))
-		{
-			if(isset($xml->assetTypeIn->item) && count($xml->assetTypeIn->item))
-				$this->multiLingual_assetTypeIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->assetTypeIn, '');
-			else
-				$this->assetTypeIn = (string)$xml->assetTypeIn;
-		}
+			$this->assetTypeIn = (string)$xml->assetTypeIn;
 	}
 	/**
 	 * List of comma separated assetTypes

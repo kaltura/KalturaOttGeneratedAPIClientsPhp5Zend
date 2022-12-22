@@ -48,12 +48,7 @@ class Kaltura_Client_Type_ChannelSlidingWindowOrder extends Kaltura_Client_Type_
 		if(count($xml->period))
 			$this->period = (int)$xml->period;
 		if(count($xml->orderBy))
-		{
-			if(isset($xml->orderBy->item) && count($xml->orderBy->item))
-				$this->multiLingual_orderBy = Kaltura_Client_ParseUtils::unmarshalArray($xml->orderBy, '');
-			else
-				$this->orderBy = (string)$xml->orderBy;
-		}
+			$this->orderBy = (string)$xml->orderBy;
 	}
 	/**
 	 * Sliding window period in minutes

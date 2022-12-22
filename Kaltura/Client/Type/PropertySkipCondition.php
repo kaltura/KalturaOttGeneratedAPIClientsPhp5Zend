@@ -46,26 +46,11 @@ class Kaltura_Client_Type_PropertySkipCondition extends Kaltura_Client_Type_Skip
 			return;
 		
 		if(count($xml->propertyPath))
-		{
-			if(isset($xml->propertyPath->item) && count($xml->propertyPath->item))
-				$this->multiLingual_propertyPath = Kaltura_Client_ParseUtils::unmarshalArray($xml->propertyPath, '');
-			else
-				$this->propertyPath = (string)$xml->propertyPath;
-		}
+			$this->propertyPath = (string)$xml->propertyPath;
 		if(count($xml->operator))
-		{
-			if(isset($xml->operator->item) && count($xml->operator->item))
-				$this->multiLingual_operator = Kaltura_Client_ParseUtils::unmarshalArray($xml->operator, '');
-			else
-				$this->operator = (string)$xml->operator;
-		}
+			$this->operator = (string)$xml->operator;
 		if(count($xml->value))
-		{
-			if(isset($xml->value->item) && count($xml->value->item))
-				$this->multiLingual_value = Kaltura_Client_ParseUtils::unmarshalArray($xml->value, '');
-			else
-				$this->value = (string)$xml->value;
-		}
+			$this->value = (string)$xml->value;
 	}
 	/**
 	 * The property path on which the condition is checked

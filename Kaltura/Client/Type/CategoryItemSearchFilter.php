@@ -46,12 +46,7 @@ class Kaltura_Client_Type_CategoryItemSearchFilter extends Kaltura_Client_Type_C
 			return;
 		
 		if(count($xml->kSql))
-		{
-			if(isset($xml->kSql->item) && count($xml->kSql->item))
-				$this->multiLingual_kSql = Kaltura_Client_ParseUtils::unmarshalArray($xml->kSql, '');
-			else
-				$this->kSql = (string)$xml->kSql;
-		}
+			$this->kSql = (string)$xml->kSql;
 		if(count($xml->rootOnly))
 		{
 			if(!empty($xml->rootOnly) && ((int) $xml->rootOnly === 1 || strtolower((string)$xml->rootOnly) === 'true'))
@@ -60,12 +55,7 @@ class Kaltura_Client_Type_CategoryItemSearchFilter extends Kaltura_Client_Type_C
 				$this->rootOnly = false;
 		}
 		if(count($xml->typeEqual))
-		{
-			if(isset($xml->typeEqual->item) && count($xml->typeEqual->item))
-				$this->multiLingual_typeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->typeEqual, '');
-			else
-				$this->typeEqual = (string)$xml->typeEqual;
-		}
+			$this->typeEqual = (string)$xml->typeEqual;
 	}
 	/**
 	 * KSQL expression

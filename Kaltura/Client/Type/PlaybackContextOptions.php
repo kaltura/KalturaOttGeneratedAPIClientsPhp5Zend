@@ -46,26 +46,11 @@ class Kaltura_Client_Type_PlaybackContextOptions extends Kaltura_Client_ObjectBa
 			return;
 		
 		if(count($xml->mediaProtocol))
-		{
-			if(isset($xml->mediaProtocol->item) && count($xml->mediaProtocol->item))
-				$this->multiLingual_mediaProtocol = Kaltura_Client_ParseUtils::unmarshalArray($xml->mediaProtocol, '');
-			else
-				$this->mediaProtocol = (string)$xml->mediaProtocol;
-		}
+			$this->mediaProtocol = (string)$xml->mediaProtocol;
 		if(count($xml->streamerType))
-		{
-			if(isset($xml->streamerType->item) && count($xml->streamerType->item))
-				$this->multiLingual_streamerType = Kaltura_Client_ParseUtils::unmarshalArray($xml->streamerType, '');
-			else
-				$this->streamerType = (string)$xml->streamerType;
-		}
+			$this->streamerType = (string)$xml->streamerType;
 		if(count($xml->assetFileIds))
-		{
-			if(isset($xml->assetFileIds->item) && count($xml->assetFileIds->item))
-				$this->multiLingual_assetFileIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->assetFileIds, '');
-			else
-				$this->assetFileIds = (string)$xml->assetFileIds;
-		}
+			$this->assetFileIds = (string)$xml->assetFileIds;
 		if(count($xml->adapterData))
 		{
 			if(empty($xml->adapterData))
@@ -74,19 +59,9 @@ class Kaltura_Client_Type_PlaybackContextOptions extends Kaltura_Client_ObjectBa
 				$this->adapterData = Kaltura_Client_ParseUtils::unmarshalMap($xml->adapterData, "KalturaStringValue");
 		}
 		if(count($xml->context))
-		{
-			if(isset($xml->context->item) && count($xml->context->item))
-				$this->multiLingual_context = Kaltura_Client_ParseUtils::unmarshalArray($xml->context, '');
-			else
-				$this->context = (string)$xml->context;
-		}
+			$this->context = (string)$xml->context;
 		if(count($xml->urlType))
-		{
-			if(isset($xml->urlType->item) && count($xml->urlType->item))
-				$this->multiLingual_urlType = Kaltura_Client_ParseUtils::unmarshalArray($xml->urlType, '');
-			else
-				$this->urlType = (string)$xml->urlType;
-		}
+			$this->urlType = (string)$xml->urlType;
 	}
 	/**
 	 * Protocol of the specific media object (http / https).

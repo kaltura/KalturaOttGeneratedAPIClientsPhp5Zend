@@ -46,19 +46,9 @@ class Kaltura_Client_Type_NetworkActionStatus extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->status))
-		{
-			if(isset($xml->status->item) && count($xml->status->item))
-				$this->multiLingual_status = Kaltura_Client_ParseUtils::unmarshalArray($xml->status, '');
-			else
-				$this->status = (string)$xml->status;
-		}
+			$this->status = (string)$xml->status;
 		if(count($xml->network))
-		{
-			if(isset($xml->network->item) && count($xml->network->item))
-				$this->multiLingual_network = Kaltura_Client_ParseUtils::unmarshalArray($xml->network, '');
-			else
-				$this->network = (string)$xml->network;
-		}
+			$this->network = (string)$xml->network;
 	}
 	/**
 	 * Status

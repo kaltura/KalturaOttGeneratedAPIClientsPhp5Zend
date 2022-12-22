@@ -53,30 +53,15 @@ class Kaltura_Client_Type_TvmGeoRule extends Kaltura_Client_Type_TvmRule
 				$this->onlyOrBut = false;
 		}
 		if(count($xml->countryIds))
-		{
-			if(isset($xml->countryIds->item) && count($xml->countryIds->item))
-				$this->multiLingual_countryIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->countryIds, '');
-			else
-				$this->countryIds = (string)$xml->countryIds;
-		}
+			$this->countryIds = (string)$xml->countryIds;
 		if(count($xml->proxyRuleId))
 			$this->proxyRuleId = (int)$xml->proxyRuleId;
 		if(count($xml->proxyRuleName))
-		{
-			if(isset($xml->proxyRuleName->item) && count($xml->proxyRuleName->item))
-				$this->multiLingual_proxyRuleName = Kaltura_Client_ParseUtils::unmarshalArray($xml->proxyRuleName, '');
-			else
-				$this->proxyRuleName = (string)$xml->proxyRuleName;
-		}
+			$this->proxyRuleName = (string)$xml->proxyRuleName;
 		if(count($xml->proxyLevelId))
 			$this->proxyLevelId = (int)$xml->proxyLevelId;
 		if(count($xml->proxyLevelName))
-		{
-			if(isset($xml->proxyLevelName->item) && count($xml->proxyLevelName->item))
-				$this->multiLingual_proxyLevelName = Kaltura_Client_ParseUtils::unmarshalArray($xml->proxyLevelName, '');
-			else
-				$this->proxyLevelName = (string)$xml->proxyLevelName;
-		}
+			$this->proxyLevelName = (string)$xml->proxyLevelName;
 	}
 	/**
 	 * Indicates if the rule is relevent ONLY for the country ids or except country ids here. - is that true?

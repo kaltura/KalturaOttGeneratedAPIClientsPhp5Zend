@@ -46,21 +46,11 @@ class Kaltura_Client_Type_ContentActionCondition extends Kaltura_Client_ObjectBa
 			return;
 		
 		if(count($xml->action))
-		{
-			if(isset($xml->action->item) && count($xml->action->item))
-				$this->multiLingual_action = Kaltura_Client_ParseUtils::unmarshalArray($xml->action, '');
-			else
-				$this->action = (string)$xml->action;
-		}
+			$this->action = (string)$xml->action;
 		if(count($xml->length))
 			$this->length = (int)$xml->length;
 		if(count($xml->lengthType))
-		{
-			if(isset($xml->lengthType->item) && count($xml->lengthType->item))
-				$this->multiLingual_lengthType = Kaltura_Client_ParseUtils::unmarshalArray($xml->lengthType, '');
-			else
-				$this->lengthType = (string)$xml->lengthType;
-		}
+			$this->lengthType = (string)$xml->lengthType;
 		if(count($xml->multiplier))
 			$this->multiplier = (int)$xml->multiplier;
 	}

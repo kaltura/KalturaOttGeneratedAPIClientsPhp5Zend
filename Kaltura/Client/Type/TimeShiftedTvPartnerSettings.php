@@ -127,19 +127,9 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 				$this->nonExistingChannelPlaybackEnabled = false;
 		}
 		if(count($xml->quotaOveragePolicy))
-		{
-			if(isset($xml->quotaOveragePolicy->item) && count($xml->quotaOveragePolicy->item))
-				$this->multiLingual_quotaOveragePolicy = Kaltura_Client_ParseUtils::unmarshalArray($xml->quotaOveragePolicy, '');
-			else
-				$this->quotaOveragePolicy = (string)$xml->quotaOveragePolicy;
-		}
+			$this->quotaOveragePolicy = (string)$xml->quotaOveragePolicy;
 		if(count($xml->protectionPolicy))
-		{
-			if(isset($xml->protectionPolicy->item) && count($xml->protectionPolicy->item))
-				$this->multiLingual_protectionPolicy = Kaltura_Client_ParseUtils::unmarshalArray($xml->protectionPolicy, '');
-			else
-				$this->protectionPolicy = (string)$xml->protectionPolicy;
-		}
+			$this->protectionPolicy = (string)$xml->protectionPolicy;
 		if(count($xml->recoveryGracePeriod))
 			$this->recoveryGracePeriod = (int)$xml->recoveryGracePeriod;
 		if(count($xml->privateCopyEnabled))

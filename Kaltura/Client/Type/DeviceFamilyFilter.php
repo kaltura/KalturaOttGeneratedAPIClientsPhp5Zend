@@ -48,19 +48,9 @@ class Kaltura_Client_Type_DeviceFamilyFilter extends Kaltura_Client_Type_Filter
 		if(count($xml->idEqual))
 			$this->idEqual = (string)$xml->idEqual;
 		if(count($xml->nameEqual))
-		{
-			if(isset($xml->nameEqual->item) && count($xml->nameEqual->item))
-				$this->multiLingual_nameEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->nameEqual, '');
-			else
-				$this->nameEqual = (string)$xml->nameEqual;
-		}
+			$this->nameEqual = (string)$xml->nameEqual;
 		if(count($xml->typeEqual))
-		{
-			if(isset($xml->typeEqual->item) && count($xml->typeEqual->item))
-				$this->multiLingual_typeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->typeEqual, '');
-			else
-				$this->typeEqual = (string)$xml->typeEqual;
-		}
+			$this->typeEqual = (string)$xml->typeEqual;
 	}
 	/**
 	 * Filter the device family with this identifier.

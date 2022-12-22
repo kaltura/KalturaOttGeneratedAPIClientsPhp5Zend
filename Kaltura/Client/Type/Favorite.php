@@ -48,12 +48,7 @@ class Kaltura_Client_Type_Favorite extends Kaltura_Client_ObjectBase
 		if(count($xml->assetId))
 			$this->assetId = (string)$xml->assetId;
 		if(count($xml->extraData))
-		{
-			if(isset($xml->extraData->item) && count($xml->extraData->item))
-				$this->multiLingual_extraData = Kaltura_Client_ParseUtils::unmarshalArray($xml->extraData, '');
-			else
-				$this->extraData = (string)$xml->extraData;
-		}
+			$this->extraData = (string)$xml->extraData;
 		if(count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
 	}

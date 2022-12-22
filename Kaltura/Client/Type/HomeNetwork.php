@@ -46,26 +46,11 @@ class Kaltura_Client_Type_HomeNetwork extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->externalId))
-		{
-			if(isset($xml->externalId->item) && count($xml->externalId->item))
-				$this->multiLingual_externalId = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalId, '');
-			else
-				$this->externalId = (string)$xml->externalId;
-		}
+			$this->externalId = (string)$xml->externalId;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->description))
-		{
-			if(isset($xml->description->item) && count($xml->description->item))
-				$this->multiLingual_description = Kaltura_Client_ParseUtils::unmarshalArray($xml->description, '');
-			else
-				$this->description = (string)$xml->description;
-		}
+			$this->description = (string)$xml->description;
 		if(count($xml->isActive))
 		{
 			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))

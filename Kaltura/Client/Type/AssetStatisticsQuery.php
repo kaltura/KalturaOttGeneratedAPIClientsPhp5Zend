@@ -46,19 +46,9 @@ class Kaltura_Client_Type_AssetStatisticsQuery extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->assetIdIn))
-		{
-			if(isset($xml->assetIdIn->item) && count($xml->assetIdIn->item))
-				$this->multiLingual_assetIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->assetIdIn, '');
-			else
-				$this->assetIdIn = (string)$xml->assetIdIn;
-		}
+			$this->assetIdIn = (string)$xml->assetIdIn;
 		if(count($xml->assetTypeEqual))
-		{
-			if(isset($xml->assetTypeEqual->item) && count($xml->assetTypeEqual->item))
-				$this->multiLingual_assetTypeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->assetTypeEqual, '');
-			else
-				$this->assetTypeEqual = (string)$xml->assetTypeEqual;
-		}
+			$this->assetTypeEqual = (string)$xml->assetTypeEqual;
 		if(count($xml->startDateGreaterThanOrEqual))
 			$this->startDateGreaterThanOrEqual = (string)$xml->startDateGreaterThanOrEqual;
 		if(count($xml->endDateGreaterThanOrEqual))

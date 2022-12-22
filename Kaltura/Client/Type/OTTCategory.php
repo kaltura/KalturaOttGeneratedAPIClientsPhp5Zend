@@ -48,12 +48,7 @@ class Kaltura_Client_Type_OTTCategory extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->parentCategoryId))
 			$this->parentCategoryId = (string)$xml->parentCategoryId;
 		if(count($xml->childCategories))

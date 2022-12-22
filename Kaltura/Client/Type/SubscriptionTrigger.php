@@ -46,12 +46,7 @@ class Kaltura_Client_Type_SubscriptionTrigger extends Kaltura_Client_Type_Trigge
 			return;
 		
 		if(count($xml->type))
-		{
-			if(isset($xml->type->item) && count($xml->type->item))
-				$this->multiLingual_type = Kaltura_Client_ParseUtils::unmarshalArray($xml->type, '');
-			else
-				$this->type = (string)$xml->type;
-		}
+			$this->type = (string)$xml->type;
 		if(count($xml->offset))
 			$this->offset = (string)$xml->offset;
 	}

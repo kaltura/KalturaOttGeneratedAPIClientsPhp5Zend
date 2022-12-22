@@ -46,12 +46,7 @@ class Kaltura_Client_Type_SeriesReminderFilter extends Kaltura_Client_Type_Remin
 			return;
 		
 		if(count($xml->seriesIdIn))
-		{
-			if(isset($xml->seriesIdIn->item) && count($xml->seriesIdIn->item))
-				$this->multiLingual_seriesIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->seriesIdIn, '');
-			else
-				$this->seriesIdIn = (string)$xml->seriesIdIn;
-		}
+			$this->seriesIdIn = (string)$xml->seriesIdIn;
 		if(count($xml->epgChannelIdEqual))
 			$this->epgChannelIdEqual = (string)$xml->epgChannelIdEqual;
 	}

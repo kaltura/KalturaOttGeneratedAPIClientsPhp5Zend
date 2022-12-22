@@ -52,21 +52,11 @@ class Kaltura_Client_Type_SeriesRecording extends Kaltura_Client_ObjectBase
 		if(count($xml->channelId))
 			$this->channelId = (string)$xml->channelId;
 		if(count($xml->seriesId))
-		{
-			if(isset($xml->seriesId->item) && count($xml->seriesId->item))
-				$this->multiLingual_seriesId = Kaltura_Client_ParseUtils::unmarshalArray($xml->seriesId, '');
-			else
-				$this->seriesId = (string)$xml->seriesId;
-		}
+			$this->seriesId = (string)$xml->seriesId;
 		if(count($xml->seasonNumber))
 			$this->seasonNumber = (int)$xml->seasonNumber;
 		if(count($xml->type))
-		{
-			if(isset($xml->type->item) && count($xml->type->item))
-				$this->multiLingual_type = Kaltura_Client_ParseUtils::unmarshalArray($xml->type, '');
-			else
-				$this->type = (string)$xml->type;
-		}
+			$this->type = (string)$xml->type;
 		if(count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
 		if(count($xml->updateDate))

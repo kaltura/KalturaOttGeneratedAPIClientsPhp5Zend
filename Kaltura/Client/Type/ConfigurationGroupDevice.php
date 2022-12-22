@@ -46,21 +46,11 @@ class Kaltura_Client_Type_ConfigurationGroupDevice extends Kaltura_Client_Object
 			return;
 		
 		if(count($xml->configurationGroupId))
-		{
-			if(isset($xml->configurationGroupId->item) && count($xml->configurationGroupId->item))
-				$this->multiLingual_configurationGroupId = Kaltura_Client_ParseUtils::unmarshalArray($xml->configurationGroupId, '');
-			else
-				$this->configurationGroupId = (string)$xml->configurationGroupId;
-		}
+			$this->configurationGroupId = (string)$xml->configurationGroupId;
 		if(count($xml->partnerId))
 			$this->partnerId = (int)$xml->partnerId;
 		if(count($xml->udid))
-		{
-			if(isset($xml->udid->item) && count($xml->udid->item))
-				$this->multiLingual_udid = Kaltura_Client_ParseUtils::unmarshalArray($xml->udid, '');
-			else
-				$this->udid = (string)$xml->udid;
-		}
+			$this->udid = (string)$xml->udid;
 	}
 	/**
 	 * Configuration group id

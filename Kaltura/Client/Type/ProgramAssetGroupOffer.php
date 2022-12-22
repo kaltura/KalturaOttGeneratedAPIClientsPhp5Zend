@@ -48,12 +48,7 @@ class Kaltura_Client_Type_ProgramAssetGroupOffer extends Kaltura_Client_Type_OTT
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->multilingualName))
 		{
 			if(empty($xml->multilingualName))
@@ -64,19 +59,9 @@ class Kaltura_Client_Type_ProgramAssetGroupOffer extends Kaltura_Client_Type_OTT
 		if(count($xml->priceDetailsId))
 			$this->priceDetailsId = (string)$xml->priceDetailsId;
 		if(count($xml->fileTypesIds))
-		{
-			if(isset($xml->fileTypesIds->item) && count($xml->fileTypesIds->item))
-				$this->multiLingual_fileTypesIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->fileTypesIds, '');
-			else
-				$this->fileTypesIds = (string)$xml->fileTypesIds;
-		}
+			$this->fileTypesIds = (string)$xml->fileTypesIds;
 		if(count($xml->description))
-		{
-			if(isset($xml->description->item) && count($xml->description->item))
-				$this->multiLingual_description = Kaltura_Client_ParseUtils::unmarshalArray($xml->description, '');
-			else
-				$this->description = (string)$xml->description;
-		}
+			$this->description = (string)$xml->description;
 		if(count($xml->multilingualDescription))
 		{
 			if(empty($xml->multilingualDescription))
@@ -104,19 +89,9 @@ class Kaltura_Client_Type_ProgramAssetGroupOffer extends Kaltura_Client_Type_OTT
 		if(count($xml->expiryDate))
 			$this->expiryDate = (string)$xml->expiryDate;
 		if(count($xml->externalId))
-		{
-			if(isset($xml->externalId->item) && count($xml->externalId->item))
-				$this->multiLingual_externalId = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalId, '');
-			else
-				$this->externalId = (string)$xml->externalId;
-		}
+			$this->externalId = (string)$xml->externalId;
 		if(count($xml->externalOfferId))
-		{
-			if(isset($xml->externalOfferId->item) && count($xml->externalOfferId->item))
-				$this->multiLingual_externalOfferId = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalOfferId, '');
-			else
-				$this->externalOfferId = (string)$xml->externalOfferId;
-		}
+			$this->externalOfferId = (string)$xml->externalOfferId;
 	}
 	/**
 	 * Unique Kaltura internal identifier for the module

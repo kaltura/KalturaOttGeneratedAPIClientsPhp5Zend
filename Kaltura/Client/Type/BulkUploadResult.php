@@ -52,12 +52,7 @@ abstract class Kaltura_Client_Type_BulkUploadResult extends Kaltura_Client_Objec
 		if(count($xml->bulkUploadId))
 			$this->bulkUploadId = (string)$xml->bulkUploadId;
 		if(count($xml->status))
-		{
-			if(isset($xml->status->item) && count($xml->status->item))
-				$this->multiLingual_status = Kaltura_Client_ParseUtils::unmarshalArray($xml->status, '');
-			else
-				$this->status = (string)$xml->status;
-		}
+			$this->status = (string)$xml->status;
 		if(count($xml->errors))
 		{
 			if(empty($xml->errors))

@@ -46,19 +46,9 @@ abstract class Kaltura_Client_Type_Condition extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->type))
-		{
-			if(isset($xml->type->item) && count($xml->type->item))
-				$this->multiLingual_type = Kaltura_Client_ParseUtils::unmarshalArray($xml->type, '');
-			else
-				$this->type = (string)$xml->type;
-		}
+			$this->type = (string)$xml->type;
 		if(count($xml->description))
-		{
-			if(isset($xml->description->item) && count($xml->description->item))
-				$this->multiLingual_description = Kaltura_Client_ParseUtils::unmarshalArray($xml->description, '');
-			else
-				$this->description = (string)$xml->description;
-		}
+			$this->description = (string)$xml->description;
 	}
 	/**
 	 * The type of the condition

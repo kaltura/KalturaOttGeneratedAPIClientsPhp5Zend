@@ -46,19 +46,9 @@ class Kaltura_Client_Type_MonetizationSource extends Kaltura_Client_Type_Segment
 			return;
 		
 		if(count($xml->type))
-		{
-			if(isset($xml->type->item) && count($xml->type->item))
-				$this->multiLingual_type = Kaltura_Client_ParseUtils::unmarshalArray($xml->type, '');
-			else
-				$this->type = (string)$xml->type;
-		}
+			$this->type = (string)$xml->type;
 		if(count($xml->operator))
-		{
-			if(isset($xml->operator->item) && count($xml->operator->item))
-				$this->multiLingual_operator = Kaltura_Client_ParseUtils::unmarshalArray($xml->operator, '');
-			else
-				$this->operator = (string)$xml->operator;
-		}
+			$this->operator = (string)$xml->operator;
 		if(count($xml->days))
 			$this->days = (int)$xml->days;
 	}

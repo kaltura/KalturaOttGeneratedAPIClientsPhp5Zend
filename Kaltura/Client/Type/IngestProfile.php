@@ -48,28 +48,13 @@ class Kaltura_Client_Type_IngestProfile extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (int)$xml->id;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->externalId))
-		{
-			if(isset($xml->externalId->item) && count($xml->externalId->item))
-				$this->multiLingual_externalId = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalId, '');
-			else
-				$this->externalId = (string)$xml->externalId;
-		}
+			$this->externalId = (string)$xml->externalId;
 		if(count($xml->assetTypeId))
 			$this->assetTypeId = (int)$xml->assetTypeId;
 		if(count($xml->transformationAdapterUrl))
-		{
-			if(isset($xml->transformationAdapterUrl->item) && count($xml->transformationAdapterUrl->item))
-				$this->multiLingual_transformationAdapterUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->transformationAdapterUrl, '');
-			else
-				$this->transformationAdapterUrl = (string)$xml->transformationAdapterUrl;
-		}
+			$this->transformationAdapterUrl = (string)$xml->transformationAdapterUrl;
 		if(count($xml->transformationAdapterSettings))
 		{
 			if(empty($xml->transformationAdapterSettings))
@@ -78,33 +63,13 @@ class Kaltura_Client_Type_IngestProfile extends Kaltura_Client_ObjectBase
 				$this->transformationAdapterSettings = Kaltura_Client_ParseUtils::unmarshalMap($xml->transformationAdapterSettings, "KalturaStringValue");
 		}
 		if(count($xml->transformationAdapterSharedSecret))
-		{
-			if(isset($xml->transformationAdapterSharedSecret->item) && count($xml->transformationAdapterSharedSecret->item))
-				$this->multiLingual_transformationAdapterSharedSecret = Kaltura_Client_ParseUtils::unmarshalArray($xml->transformationAdapterSharedSecret, '');
-			else
-				$this->transformationAdapterSharedSecret = (string)$xml->transformationAdapterSharedSecret;
-		}
+			$this->transformationAdapterSharedSecret = (string)$xml->transformationAdapterSharedSecret;
 		if(count($xml->defaultAutoFillPolicy))
-		{
-			if(isset($xml->defaultAutoFillPolicy->item) && count($xml->defaultAutoFillPolicy->item))
-				$this->multiLingual_defaultAutoFillPolicy = Kaltura_Client_ParseUtils::unmarshalArray($xml->defaultAutoFillPolicy, '');
-			else
-				$this->defaultAutoFillPolicy = (string)$xml->defaultAutoFillPolicy;
-		}
+			$this->defaultAutoFillPolicy = (string)$xml->defaultAutoFillPolicy;
 		if(count($xml->defaultOverlapPolicy))
-		{
-			if(isset($xml->defaultOverlapPolicy->item) && count($xml->defaultOverlapPolicy->item))
-				$this->multiLingual_defaultOverlapPolicy = Kaltura_Client_ParseUtils::unmarshalArray($xml->defaultOverlapPolicy, '');
-			else
-				$this->defaultOverlapPolicy = (string)$xml->defaultOverlapPolicy;
-		}
+			$this->defaultOverlapPolicy = (string)$xml->defaultOverlapPolicy;
 		if(count($xml->overlapChannels))
-		{
-			if(isset($xml->overlapChannels->item) && count($xml->overlapChannels->item))
-				$this->multiLingual_overlapChannels = Kaltura_Client_ParseUtils::unmarshalArray($xml->overlapChannels, '');
-			else
-				$this->overlapChannels = (string)$xml->overlapChannels;
-		}
+			$this->overlapChannels = (string)$xml->overlapChannels;
 	}
 	/**
 	 * Ingest profile identifier

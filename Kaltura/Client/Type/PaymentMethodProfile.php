@@ -50,12 +50,7 @@ class Kaltura_Client_Type_PaymentMethodProfile extends Kaltura_Client_ObjectBase
 		if(count($xml->paymentGatewayId))
 			$this->paymentGatewayId = (int)$xml->paymentGatewayId;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->allowMultiInstance))
 		{
 			if(!empty($xml->allowMultiInstance) && ((int) $xml->allowMultiInstance === 1 || strtolower((string)$xml->allowMultiInstance) === 'true'))

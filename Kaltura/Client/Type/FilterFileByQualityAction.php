@@ -46,12 +46,7 @@ abstract class Kaltura_Client_Type_FilterFileByQualityAction extends Kaltura_Cli
 			return;
 		
 		if(count($xml->qualityIn))
-		{
-			if(isset($xml->qualityIn->item) && count($xml->qualityIn->item))
-				$this->multiLingual_qualityIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->qualityIn, '');
-			else
-				$this->qualityIn = (string)$xml->qualityIn;
-		}
+			$this->qualityIn = (string)$xml->qualityIn;
 	}
 	/**
 	 * List of comma separated qualities

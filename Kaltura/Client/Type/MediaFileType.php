@@ -48,19 +48,9 @@ class Kaltura_Client_Type_MediaFileType extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (int)$xml->id;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->description))
-		{
-			if(isset($xml->description->item) && count($xml->description->item))
-				$this->multiLingual_description = Kaltura_Client_ParseUtils::unmarshalArray($xml->description, '');
-			else
-				$this->description = (string)$xml->description;
-		}
+			$this->description = (string)$xml->description;
 		if(count($xml->status))
 		{
 			if(!empty($xml->status) && ((int) $xml->status === 1 || strtolower((string)$xml->status) === 'true'))
@@ -80,35 +70,15 @@ class Kaltura_Client_Type_MediaFileType extends Kaltura_Client_ObjectBase
 				$this->isTrailer = false;
 		}
 		if(count($xml->streamerType))
-		{
-			if(isset($xml->streamerType->item) && count($xml->streamerType->item))
-				$this->multiLingual_streamerType = Kaltura_Client_ParseUtils::unmarshalArray($xml->streamerType, '');
-			else
-				$this->streamerType = (string)$xml->streamerType;
-		}
+			$this->streamerType = (string)$xml->streamerType;
 		if(count($xml->drmProfileId))
 			$this->drmProfileId = (int)$xml->drmProfileId;
 		if(count($xml->quality))
-		{
-			if(isset($xml->quality->item) && count($xml->quality->item))
-				$this->multiLingual_quality = Kaltura_Client_ParseUtils::unmarshalArray($xml->quality, '');
-			else
-				$this->quality = (string)$xml->quality;
-		}
+			$this->quality = (string)$xml->quality;
 		if(count($xml->videoCodecs))
-		{
-			if(isset($xml->videoCodecs->item) && count($xml->videoCodecs->item))
-				$this->multiLingual_videoCodecs = Kaltura_Client_ParseUtils::unmarshalArray($xml->videoCodecs, '');
-			else
-				$this->videoCodecs = (string)$xml->videoCodecs;
-		}
+			$this->videoCodecs = (string)$xml->videoCodecs;
 		if(count($xml->audioCodecs))
-		{
-			if(isset($xml->audioCodecs->item) && count($xml->audioCodecs->item))
-				$this->multiLingual_audioCodecs = Kaltura_Client_ParseUtils::unmarshalArray($xml->audioCodecs, '');
-			else
-				$this->audioCodecs = (string)$xml->audioCodecs;
-		}
+			$this->audioCodecs = (string)$xml->audioCodecs;
 	}
 	/**
 	 * Unique identifier

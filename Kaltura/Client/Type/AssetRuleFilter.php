@@ -46,21 +46,11 @@ class Kaltura_Client_Type_AssetRuleFilter extends Kaltura_Client_Type_Filter
 			return;
 		
 		if(count($xml->conditionsContainType))
-		{
-			if(isset($xml->conditionsContainType->item) && count($xml->conditionsContainType->item))
-				$this->multiLingual_conditionsContainType = Kaltura_Client_ParseUtils::unmarshalArray($xml->conditionsContainType, '');
-			else
-				$this->conditionsContainType = (string)$xml->conditionsContainType;
-		}
+			$this->conditionsContainType = (string)$xml->conditionsContainType;
 		if(count($xml->assetApplied) && !empty($xml->assetApplied))
 			$this->assetApplied = Kaltura_Client_ParseUtils::unmarshalObject($xml->assetApplied, "KalturaSlimAsset");
 		if(count($xml->actionsContainType))
-		{
-			if(isset($xml->actionsContainType->item) && count($xml->actionsContainType->item))
-				$this->multiLingual_actionsContainType = Kaltura_Client_ParseUtils::unmarshalArray($xml->actionsContainType, '');
-			else
-				$this->actionsContainType = (string)$xml->actionsContainType;
-		}
+			$this->actionsContainType = (string)$xml->actionsContainType;
 		if(count($xml->assetRuleIdEqual))
 			$this->assetRuleIdEqual = (string)$xml->assetRuleIdEqual;
 	}

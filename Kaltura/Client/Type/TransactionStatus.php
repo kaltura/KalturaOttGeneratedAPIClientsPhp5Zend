@@ -46,33 +46,13 @@ class Kaltura_Client_Type_TransactionStatus extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->adapterTransactionStatus))
-		{
-			if(isset($xml->adapterTransactionStatus->item) && count($xml->adapterTransactionStatus->item))
-				$this->multiLingual_adapterTransactionStatus = Kaltura_Client_ParseUtils::unmarshalArray($xml->adapterTransactionStatus, '');
-			else
-				$this->adapterTransactionStatus = (string)$xml->adapterTransactionStatus;
-		}
+			$this->adapterTransactionStatus = (string)$xml->adapterTransactionStatus;
 		if(count($xml->externalId))
-		{
-			if(isset($xml->externalId->item) && count($xml->externalId->item))
-				$this->multiLingual_externalId = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalId, '');
-			else
-				$this->externalId = (string)$xml->externalId;
-		}
+			$this->externalId = (string)$xml->externalId;
 		if(count($xml->externalStatus))
-		{
-			if(isset($xml->externalStatus->item) && count($xml->externalStatus->item))
-				$this->multiLingual_externalStatus = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalStatus, '');
-			else
-				$this->externalStatus = (string)$xml->externalStatus;
-		}
+			$this->externalStatus = (string)$xml->externalStatus;
 		if(count($xml->externalMessage))
-		{
-			if(isset($xml->externalMessage->item) && count($xml->externalMessage->item))
-				$this->multiLingual_externalMessage = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalMessage, '');
-			else
-				$this->externalMessage = (string)$xml->externalMessage;
-		}
+			$this->externalMessage = (string)$xml->externalMessage;
 		if(count($xml->failReason))
 			$this->failReason = (int)$xml->failReason;
 	}

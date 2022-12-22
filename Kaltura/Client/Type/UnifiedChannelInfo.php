@@ -46,12 +46,7 @@ class Kaltura_Client_Type_UnifiedChannelInfo extends Kaltura_Client_Type_Unified
 			return;
 		
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->startDateInSeconds))
 			$this->startDateInSeconds = (string)$xml->startDateInSeconds;
 		if(count($xml->endDateInSeconds))

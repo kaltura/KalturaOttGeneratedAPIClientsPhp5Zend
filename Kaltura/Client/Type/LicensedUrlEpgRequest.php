@@ -46,12 +46,7 @@ class Kaltura_Client_Type_LicensedUrlEpgRequest extends Kaltura_Client_Type_Lice
 			return;
 		
 		if(count($xml->streamType))
-		{
-			if(isset($xml->streamType->item) && count($xml->streamType->item))
-				$this->multiLingual_streamType = Kaltura_Client_ParseUtils::unmarshalArray($xml->streamType, '');
-			else
-				$this->streamType = (string)$xml->streamType;
-		}
+			$this->streamType = (string)$xml->streamType;
 		if(count($xml->startDate))
 			$this->startDate = (string)$xml->startDate;
 	}

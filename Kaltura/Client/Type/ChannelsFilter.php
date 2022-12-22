@@ -50,26 +50,11 @@ class Kaltura_Client_Type_ChannelsFilter extends Kaltura_Client_Type_ChannelsBas
 		if(count($xml->mediaIdEqual))
 			$this->mediaIdEqual = (string)$xml->mediaIdEqual;
 		if(count($xml->nameEqual))
-		{
-			if(isset($xml->nameEqual->item) && count($xml->nameEqual->item))
-				$this->multiLingual_nameEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->nameEqual, '');
-			else
-				$this->nameEqual = (string)$xml->nameEqual;
-		}
+			$this->nameEqual = (string)$xml->nameEqual;
 		if(count($xml->nameStartsWith))
-		{
-			if(isset($xml->nameStartsWith->item) && count($xml->nameStartsWith->item))
-				$this->multiLingual_nameStartsWith = Kaltura_Client_ParseUtils::unmarshalArray($xml->nameStartsWith, '');
-			else
-				$this->nameStartsWith = (string)$xml->nameStartsWith;
-		}
+			$this->nameStartsWith = (string)$xml->nameStartsWith;
 		if(count($xml->idIn))
-		{
-			if(isset($xml->idIn->item) && count($xml->idIn->item))
-				$this->multiLingual_idIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->idIn, '');
-			else
-				$this->idIn = (string)$xml->idIn;
-		}
+			$this->idIn = (string)$xml->idIn;
 	}
 	/**
 	 * channel identifier to filter by

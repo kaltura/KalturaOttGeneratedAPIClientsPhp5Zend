@@ -46,12 +46,7 @@ class Kaltura_Client_Type_IngestProgramResultsByCompoundFilter extends Kaltura_C
 			return;
 		
 		if(count($xml->linearChannelIdIn))
-		{
-			if(isset($xml->linearChannelIdIn->item) && count($xml->linearChannelIdIn->item))
-				$this->multiLingual_linearChannelIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->linearChannelIdIn, '');
-			else
-				$this->linearChannelIdIn = (string)$xml->linearChannelIdIn;
-		}
+			$this->linearChannelIdIn = (string)$xml->linearChannelIdIn;
 	}
 	/**
 	 * Comma seperated channel id (the id of the linear channel asset that the program belongs to).

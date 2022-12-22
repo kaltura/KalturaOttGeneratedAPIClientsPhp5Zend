@@ -48,26 +48,11 @@ class Kaltura_Client_Type_AdsSource extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (int)$xml->id;
 		if(count($xml->type))
-		{
-			if(isset($xml->type->item) && count($xml->type->item))
-				$this->multiLingual_type = Kaltura_Client_ParseUtils::unmarshalArray($xml->type, '');
-			else
-				$this->type = (string)$xml->type;
-		}
+			$this->type = (string)$xml->type;
 		if(count($xml->adsPolicy))
-		{
-			if(isset($xml->adsPolicy->item) && count($xml->adsPolicy->item))
-				$this->multiLingual_adsPolicy = Kaltura_Client_ParseUtils::unmarshalArray($xml->adsPolicy, '');
-			else
-				$this->adsPolicy = (string)$xml->adsPolicy;
-		}
+			$this->adsPolicy = (string)$xml->adsPolicy;
 		if(count($xml->adsParam))
-		{
-			if(isset($xml->adsParam->item) && count($xml->adsParam->item))
-				$this->multiLingual_adsParam = Kaltura_Client_ParseUtils::unmarshalArray($xml->adsParam, '');
-			else
-				$this->adsParam = (string)$xml->adsParam;
-		}
+			$this->adsParam = (string)$xml->adsParam;
 	}
 	/**
 	 * File unique identifier

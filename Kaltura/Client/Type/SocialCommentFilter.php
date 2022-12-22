@@ -48,19 +48,9 @@ class Kaltura_Client_Type_SocialCommentFilter extends Kaltura_Client_Type_Filter
 		if(count($xml->assetIdEqual))
 			$this->assetIdEqual = (string)$xml->assetIdEqual;
 		if(count($xml->assetTypeEqual))
-		{
-			if(isset($xml->assetTypeEqual->item) && count($xml->assetTypeEqual->item))
-				$this->multiLingual_assetTypeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->assetTypeEqual, '');
-			else
-				$this->assetTypeEqual = (string)$xml->assetTypeEqual;
-		}
+			$this->assetTypeEqual = (string)$xml->assetTypeEqual;
 		if(count($xml->socialPlatformEqual))
-		{
-			if(isset($xml->socialPlatformEqual->item) && count($xml->socialPlatformEqual->item))
-				$this->multiLingual_socialPlatformEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->socialPlatformEqual, '');
-			else
-				$this->socialPlatformEqual = (string)$xml->socialPlatformEqual;
-		}
+			$this->socialPlatformEqual = (string)$xml->socialPlatformEqual;
 		if(count($xml->createDateGreaterThan))
 			$this->createDateGreaterThan = (string)$xml->createDateGreaterThan;
 	}

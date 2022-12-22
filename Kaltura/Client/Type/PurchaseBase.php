@@ -50,19 +50,9 @@ class Kaltura_Client_Type_PurchaseBase extends Kaltura_Client_ObjectBase
 		if(count($xml->contentId))
 			$this->contentId = (int)$xml->contentId;
 		if(count($xml->productType))
-		{
-			if(isset($xml->productType->item) && count($xml->productType->item))
-				$this->multiLingual_productType = Kaltura_Client_ParseUtils::unmarshalArray($xml->productType, '');
-			else
-				$this->productType = (string)$xml->productType;
-		}
+			$this->productType = (string)$xml->productType;
 		if(count($xml->adapterData))
-		{
-			if(isset($xml->adapterData->item) && count($xml->adapterData->item))
-				$this->multiLingual_adapterData = Kaltura_Client_ParseUtils::unmarshalArray($xml->adapterData, '');
-			else
-				$this->adapterData = (string)$xml->adapterData;
-		}
+			$this->adapterData = (string)$xml->adapterData;
 	}
 	/**
 	 * Identifier for the package from which this content is offered

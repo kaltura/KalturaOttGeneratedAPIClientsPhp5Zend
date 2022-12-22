@@ -50,12 +50,7 @@ class Kaltura_Client_Type_SeriesRecordingOption extends Kaltura_Client_ObjectBas
 		if(count($xml->minEpisodeNumber))
 			$this->minEpisodeNumber = (int)$xml->minEpisodeNumber;
 		if(count($xml->chronologicalRecordStartTime))
-		{
-			if(isset($xml->chronologicalRecordStartTime->item) && count($xml->chronologicalRecordStartTime->item))
-				$this->multiLingual_chronologicalRecordStartTime = Kaltura_Client_ParseUtils::unmarshalArray($xml->chronologicalRecordStartTime, '');
-			else
-				$this->chronologicalRecordStartTime = (string)$xml->chronologicalRecordStartTime;
-		}
+			$this->chronologicalRecordStartTime = (string)$xml->chronologicalRecordStartTime;
 	}
 	/**
 	 * min Season Number

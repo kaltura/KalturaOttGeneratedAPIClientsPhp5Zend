@@ -46,19 +46,9 @@ class Kaltura_Client_Type_SocialNetworkComment extends Kaltura_Client_Type_Socia
 			return;
 		
 		if(count($xml->likeCounter))
-		{
-			if(isset($xml->likeCounter->item) && count($xml->likeCounter->item))
-				$this->multiLingual_likeCounter = Kaltura_Client_ParseUtils::unmarshalArray($xml->likeCounter, '');
-			else
-				$this->likeCounter = (string)$xml->likeCounter;
-		}
+			$this->likeCounter = (string)$xml->likeCounter;
 		if(count($xml->authorImageUrl))
-		{
-			if(isset($xml->authorImageUrl->item) && count($xml->authorImageUrl->item))
-				$this->multiLingual_authorImageUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->authorImageUrl, '');
-			else
-				$this->authorImageUrl = (string)$xml->authorImageUrl;
-		}
+			$this->authorImageUrl = (string)$xml->authorImageUrl;
 	}
 	/**
 	 * Number of likes

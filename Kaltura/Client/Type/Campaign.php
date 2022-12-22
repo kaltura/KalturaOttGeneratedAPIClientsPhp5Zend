@@ -56,49 +56,19 @@ class Kaltura_Client_Type_Campaign extends Kaltura_Client_Type_OTTObjectSupportN
 		if(count($xml->endDate))
 			$this->endDate = (string)$xml->endDate;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->systemName))
-		{
-			if(isset($xml->systemName->item) && count($xml->systemName->item))
-				$this->multiLingual_systemName = Kaltura_Client_ParseUtils::unmarshalArray($xml->systemName, '');
-			else
-				$this->systemName = (string)$xml->systemName;
-		}
+			$this->systemName = (string)$xml->systemName;
 		if(count($xml->description))
-		{
-			if(isset($xml->description->item) && count($xml->description->item))
-				$this->multiLingual_description = Kaltura_Client_ParseUtils::unmarshalArray($xml->description, '');
-			else
-				$this->description = (string)$xml->description;
-		}
+			$this->description = (string)$xml->description;
 		if(count($xml->state))
-		{
-			if(isset($xml->state->item) && count($xml->state->item))
-				$this->multiLingual_state = Kaltura_Client_ParseUtils::unmarshalArray($xml->state, '');
-			else
-				$this->state = (string)$xml->state;
-		}
+			$this->state = (string)$xml->state;
 		if(count($xml->promotion) && !empty($xml->promotion))
 			$this->promotion = Kaltura_Client_ParseUtils::unmarshalObject($xml->promotion, "KalturaBasePromotion");
 		if(count($xml->message))
-		{
-			if(isset($xml->message->item) && count($xml->message->item))
-				$this->multiLingual_message = Kaltura_Client_ParseUtils::unmarshalArray($xml->message, '');
-			else
-				$this->message = (string)$xml->message;
-		}
+			$this->message = (string)$xml->message;
 		if(count($xml->collectionIdIn))
-		{
-			if(isset($xml->collectionIdIn->item) && count($xml->collectionIdIn->item))
-				$this->multiLingual_collectionIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->collectionIdIn, '');
-			else
-				$this->collectionIdIn = (string)$xml->collectionIdIn;
-		}
+			$this->collectionIdIn = (string)$xml->collectionIdIn;
 	}
 	/**
 	 * ID

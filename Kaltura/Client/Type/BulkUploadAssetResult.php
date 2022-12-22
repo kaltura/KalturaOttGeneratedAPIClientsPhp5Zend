@@ -48,12 +48,7 @@ abstract class Kaltura_Client_Type_BulkUploadAssetResult extends Kaltura_Client_
 		if(count($xml->type))
 			$this->type = (int)$xml->type;
 		if(count($xml->externalId))
-		{
-			if(isset($xml->externalId->item) && count($xml->externalId->item))
-				$this->multiLingual_externalId = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalId, '');
-			else
-				$this->externalId = (string)$xml->externalId;
-		}
+			$this->externalId = (string)$xml->externalId;
 	}
 	/**
 	 * Identifies the asset type (EPG, Recording, Movie, TV Series, etc). 

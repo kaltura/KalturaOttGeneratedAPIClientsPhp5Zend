@@ -46,19 +46,9 @@ class Kaltura_Client_Type_ExternalReceipt extends Kaltura_Client_Type_PurchaseBa
 			return;
 		
 		if(count($xml->receiptId))
-		{
-			if(isset($xml->receiptId->item) && count($xml->receiptId->item))
-				$this->multiLingual_receiptId = Kaltura_Client_ParseUtils::unmarshalArray($xml->receiptId, '');
-			else
-				$this->receiptId = (string)$xml->receiptId;
-		}
+			$this->receiptId = (string)$xml->receiptId;
 		if(count($xml->paymentGatewayName))
-		{
-			if(isset($xml->paymentGatewayName->item) && count($xml->paymentGatewayName->item))
-				$this->multiLingual_paymentGatewayName = Kaltura_Client_ParseUtils::unmarshalArray($xml->paymentGatewayName, '');
-			else
-				$this->paymentGatewayName = (string)$xml->paymentGatewayName;
-		}
+			$this->paymentGatewayName = (string)$xml->paymentGatewayName;
 	}
 	/**
 	 * A unique identifier that was provided by the In-App billing service to validate the purchase

@@ -50,12 +50,7 @@ class Kaltura_Client_Type_Compensation extends Kaltura_Client_ObjectBase
 		if(count($xml->subscriptionId))
 			$this->subscriptionId = (string)$xml->subscriptionId;
 		if(count($xml->compensationType))
-		{
-			if(isset($xml->compensationType->item) && count($xml->compensationType->item))
-				$this->multiLingual_compensationType = Kaltura_Client_ParseUtils::unmarshalArray($xml->compensationType, '');
-			else
-				$this->compensationType = (string)$xml->compensationType;
-		}
+			$this->compensationType = (string)$xml->compensationType;
 		if(count($xml->amount))
 			$this->amount = (float)$xml->amount;
 		if(count($xml->totalRenewalIterations))

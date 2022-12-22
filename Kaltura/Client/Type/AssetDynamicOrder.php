@@ -46,19 +46,9 @@ class Kaltura_Client_Type_AssetDynamicOrder extends Kaltura_Client_Type_BaseAsse
 			return;
 		
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->orderBy))
-		{
-			if(isset($xml->orderBy->item) && count($xml->orderBy->item))
-				$this->multiLingual_orderBy = Kaltura_Client_ParseUtils::unmarshalArray($xml->orderBy, '');
-			else
-				$this->orderBy = (string)$xml->orderBy;
-		}
+			$this->orderBy = (string)$xml->orderBy;
 	}
 	/**
 	 * order by name

@@ -46,19 +46,9 @@ class Kaltura_Client_Type_IpRangeCondition extends Kaltura_Client_Type_Condition
 			return;
 		
 		if(count($xml->fromIP))
-		{
-			if(isset($xml->fromIP->item) && count($xml->fromIP->item))
-				$this->multiLingual_fromIP = Kaltura_Client_ParseUtils::unmarshalArray($xml->fromIP, '');
-			else
-				$this->fromIP = (string)$xml->fromIP;
-		}
+			$this->fromIP = (string)$xml->fromIP;
 		if(count($xml->toIP))
-		{
-			if(isset($xml->toIP->item) && count($xml->toIP->item))
-				$this->multiLingual_toIP = Kaltura_Client_ParseUtils::unmarshalArray($xml->toIP, '');
-			else
-				$this->toIP = (string)$xml->toIP;
-		}
+			$this->toIP = (string)$xml->toIP;
 	}
 	/**
 	 * From IP address range

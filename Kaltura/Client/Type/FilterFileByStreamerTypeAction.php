@@ -46,12 +46,7 @@ abstract class Kaltura_Client_Type_FilterFileByStreamerTypeAction extends Kaltur
 			return;
 		
 		if(count($xml->streamerTypeIn))
-		{
-			if(isset($xml->streamerTypeIn->item) && count($xml->streamerTypeIn->item))
-				$this->multiLingual_streamerTypeIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->streamerTypeIn, '');
-			else
-				$this->streamerTypeIn = (string)$xml->streamerTypeIn;
-		}
+			$this->streamerTypeIn = (string)$xml->streamerTypeIn;
 	}
 	/**
 	 * List of comma separated streamerTypes

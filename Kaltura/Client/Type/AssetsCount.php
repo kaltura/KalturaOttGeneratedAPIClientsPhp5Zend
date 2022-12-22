@@ -46,12 +46,7 @@ class Kaltura_Client_Type_AssetsCount extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->field))
-		{
-			if(isset($xml->field->item) && count($xml->field->item))
-				$this->multiLingual_field = Kaltura_Client_ParseUtils::unmarshalArray($xml->field, '');
-			else
-				$this->field = (string)$xml->field;
-		}
+			$this->field = (string)$xml->field;
 		if(count($xml->objects))
 		{
 			if(empty($xml->objects))

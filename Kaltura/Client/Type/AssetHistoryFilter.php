@@ -46,35 +46,15 @@ class Kaltura_Client_Type_AssetHistoryFilter extends Kaltura_Client_Type_Filter
 			return;
 		
 		if(count($xml->typeIn))
-		{
-			if(isset($xml->typeIn->item) && count($xml->typeIn->item))
-				$this->multiLingual_typeIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->typeIn, '');
-			else
-				$this->typeIn = (string)$xml->typeIn;
-		}
+			$this->typeIn = (string)$xml->typeIn;
 		if(count($xml->assetIdIn))
-		{
-			if(isset($xml->assetIdIn->item) && count($xml->assetIdIn->item))
-				$this->multiLingual_assetIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->assetIdIn, '');
-			else
-				$this->assetIdIn = (string)$xml->assetIdIn;
-		}
+			$this->assetIdIn = (string)$xml->assetIdIn;
 		if(count($xml->statusEqual))
-		{
-			if(isset($xml->statusEqual->item) && count($xml->statusEqual->item))
-				$this->multiLingual_statusEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->statusEqual, '');
-			else
-				$this->statusEqual = (string)$xml->statusEqual;
-		}
+			$this->statusEqual = (string)$xml->statusEqual;
 		if(count($xml->daysLessThanOrEqual))
 			$this->daysLessThanOrEqual = (int)$xml->daysLessThanOrEqual;
 		if(count($xml->kSql))
-		{
-			if(isset($xml->kSql->item) && count($xml->kSql->item))
-				$this->multiLingual_kSql = Kaltura_Client_ParseUtils::unmarshalArray($xml->kSql, '');
-			else
-				$this->kSql = (string)$xml->kSql;
-		}
+			$this->kSql = (string)$xml->kSql;
 	}
 	/**
 	 * Comma separated list of asset types to search within.

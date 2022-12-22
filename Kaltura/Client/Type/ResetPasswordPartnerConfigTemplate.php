@@ -46,19 +46,9 @@ class Kaltura_Client_Type_ResetPasswordPartnerConfigTemplate extends Kaltura_Cli
 			return;
 		
 		if(count($xml->id))
-		{
-			if(isset($xml->id->item) && count($xml->id->item))
-				$this->multiLingual_id = Kaltura_Client_ParseUtils::unmarshalArray($xml->id, '');
-			else
-				$this->id = (string)$xml->id;
-		}
+			$this->id = (string)$xml->id;
 		if(count($xml->label))
-		{
-			if(isset($xml->label->item) && count($xml->label->item))
-				$this->multiLingual_label = Kaltura_Client_ParseUtils::unmarshalArray($xml->label, '');
-			else
-				$this->label = (string)$xml->label;
-		}
+			$this->label = (string)$xml->label;
 		if(count($xml->isDefault))
 		{
 			if(!empty($xml->isDefault) && ((int) $xml->isDefault === 1 || strtolower((string)$xml->isDefault) === 'true'))

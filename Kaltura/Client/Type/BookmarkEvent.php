@@ -56,19 +56,9 @@ class Kaltura_Client_Type_BookmarkEvent extends Kaltura_Client_Type_EventObject
 		if(count($xml->position))
 			$this->position = (int)$xml->position;
 		if(count($xml->action))
-		{
-			if(isset($xml->action->item) && count($xml->action->item))
-				$this->multiLingual_action = Kaltura_Client_ParseUtils::unmarshalArray($xml->action, '');
-			else
-				$this->action = (string)$xml->action;
-		}
+			$this->action = (string)$xml->action;
 		if(count($xml->productType))
-		{
-			if(isset($xml->productType->item) && count($xml->productType->item))
-				$this->multiLingual_productType = Kaltura_Client_ParseUtils::unmarshalArray($xml->productType, '');
-			else
-				$this->productType = (string)$xml->productType;
-		}
+			$this->productType = (string)$xml->productType;
 		if(count($xml->productId))
 			$this->productId = (int)$xml->productId;
 	}

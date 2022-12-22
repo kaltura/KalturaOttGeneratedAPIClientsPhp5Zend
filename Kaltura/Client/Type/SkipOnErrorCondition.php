@@ -46,12 +46,7 @@ class Kaltura_Client_Type_SkipOnErrorCondition extends Kaltura_Client_Type_SkipC
 			return;
 		
 		if(count($xml->condition))
-		{
-			if(isset($xml->condition->item) && count($xml->condition->item))
-				$this->multiLingual_condition = Kaltura_Client_ParseUtils::unmarshalArray($xml->condition, '');
-			else
-				$this->condition = (string)$xml->condition;
-		}
+			$this->condition = (string)$xml->condition;
 	}
 	/**
 	 * Indicates which error should be considered to skip the current request

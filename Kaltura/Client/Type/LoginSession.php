@@ -46,12 +46,7 @@ class Kaltura_Client_Type_LoginSession extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->ks))
-		{
-			if(isset($xml->ks->item) && count($xml->ks->item))
-				$this->multiLingual_ks = Kaltura_Client_ParseUtils::unmarshalArray($xml->ks, '');
-			else
-				$this->ks = (string)$xml->ks;
-		}
+			$this->ks = (string)$xml->ks;
 		if(count($xml->expiry))
 			$this->expiry = (string)$xml->expiry;
 	}

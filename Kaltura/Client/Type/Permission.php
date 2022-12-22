@@ -48,40 +48,15 @@ class Kaltura_Client_Type_Permission extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->friendlyName))
-		{
-			if(isset($xml->friendlyName->item) && count($xml->friendlyName->item))
-				$this->multiLingual_friendlyName = Kaltura_Client_ParseUtils::unmarshalArray($xml->friendlyName, '');
-			else
-				$this->friendlyName = (string)$xml->friendlyName;
-		}
+			$this->friendlyName = (string)$xml->friendlyName;
 		if(count($xml->dependsOnPermissionNames))
-		{
-			if(isset($xml->dependsOnPermissionNames->item) && count($xml->dependsOnPermissionNames->item))
-				$this->multiLingual_dependsOnPermissionNames = Kaltura_Client_ParseUtils::unmarshalArray($xml->dependsOnPermissionNames, '');
-			else
-				$this->dependsOnPermissionNames = (string)$xml->dependsOnPermissionNames;
-		}
+			$this->dependsOnPermissionNames = (string)$xml->dependsOnPermissionNames;
 		if(count($xml->type))
-		{
-			if(isset($xml->type->item) && count($xml->type->item))
-				$this->multiLingual_type = Kaltura_Client_ParseUtils::unmarshalArray($xml->type, '');
-			else
-				$this->type = (string)$xml->type;
-		}
+			$this->type = (string)$xml->type;
 		if(count($xml->permissionItemsIds))
-		{
-			if(isset($xml->permissionItemsIds->item) && count($xml->permissionItemsIds->item))
-				$this->multiLingual_permissionItemsIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->permissionItemsIds, '');
-			else
-				$this->permissionItemsIds = (string)$xml->permissionItemsIds;
-		}
+			$this->permissionItemsIds = (string)$xml->permissionItemsIds;
 	}
 	/**
 	 * Permission identifier

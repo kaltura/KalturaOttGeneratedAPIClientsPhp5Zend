@@ -46,28 +46,13 @@ class Kaltura_Client_Type_BusinessModuleRuleFilter extends Kaltura_Client_Type_F
 			return;
 		
 		if(count($xml->businessModuleTypeApplied))
-		{
-			if(isset($xml->businessModuleTypeApplied->item) && count($xml->businessModuleTypeApplied->item))
-				$this->multiLingual_businessModuleTypeApplied = Kaltura_Client_ParseUtils::unmarshalArray($xml->businessModuleTypeApplied, '');
-			else
-				$this->businessModuleTypeApplied = (string)$xml->businessModuleTypeApplied;
-		}
+			$this->businessModuleTypeApplied = (string)$xml->businessModuleTypeApplied;
 		if(count($xml->businessModuleIdApplied))
 			$this->businessModuleIdApplied = (string)$xml->businessModuleIdApplied;
 		if(count($xml->segmentIdsApplied))
-		{
-			if(isset($xml->segmentIdsApplied->item) && count($xml->segmentIdsApplied->item))
-				$this->multiLingual_segmentIdsApplied = Kaltura_Client_ParseUtils::unmarshalArray($xml->segmentIdsApplied, '');
-			else
-				$this->segmentIdsApplied = (string)$xml->segmentIdsApplied;
-		}
+			$this->segmentIdsApplied = (string)$xml->segmentIdsApplied;
 		if(count($xml->actionsContainType))
-		{
-			if(isset($xml->actionsContainType->item) && count($xml->actionsContainType->item))
-				$this->multiLingual_actionsContainType = Kaltura_Client_ParseUtils::unmarshalArray($xml->actionsContainType, '');
-			else
-				$this->actionsContainType = (string)$xml->actionsContainType;
-		}
+			$this->actionsContainType = (string)$xml->actionsContainType;
 	}
 	/**
 	 * Business module type the rules applied on

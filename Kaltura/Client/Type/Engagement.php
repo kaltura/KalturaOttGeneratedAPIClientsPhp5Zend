@@ -50,30 +50,15 @@ class Kaltura_Client_Type_Engagement extends Kaltura_Client_ObjectBase
 		if(count($xml->totalNumberOfRecipients))
 			$this->totalNumberOfRecipients = (int)$xml->totalNumberOfRecipients;
 		if(count($xml->type))
-		{
-			if(isset($xml->type->item) && count($xml->type->item))
-				$this->multiLingual_type = Kaltura_Client_ParseUtils::unmarshalArray($xml->type, '');
-			else
-				$this->type = (string)$xml->type;
-		}
+			$this->type = (string)$xml->type;
 		if(count($xml->adapterId))
 			$this->adapterId = (int)$xml->adapterId;
 		if(count($xml->adapterDynamicData))
-		{
-			if(isset($xml->adapterDynamicData->item) && count($xml->adapterDynamicData->item))
-				$this->multiLingual_adapterDynamicData = Kaltura_Client_ParseUtils::unmarshalArray($xml->adapterDynamicData, '');
-			else
-				$this->adapterDynamicData = (string)$xml->adapterDynamicData;
-		}
+			$this->adapterDynamicData = (string)$xml->adapterDynamicData;
 		if(count($xml->intervalSeconds))
 			$this->intervalSeconds = (int)$xml->intervalSeconds;
 		if(count($xml->userList))
-		{
-			if(isset($xml->userList->item) && count($xml->userList->item))
-				$this->multiLingual_userList = Kaltura_Client_ParseUtils::unmarshalArray($xml->userList, '');
-			else
-				$this->userList = (string)$xml->userList;
-		}
+			$this->userList = (string)$xml->userList;
 		if(count($xml->sendTimeInSeconds))
 			$this->sendTimeInSeconds = (string)$xml->sendTimeInSeconds;
 		if(count($xml->couponGroupId))

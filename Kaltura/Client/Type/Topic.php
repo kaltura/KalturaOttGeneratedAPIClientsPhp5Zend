@@ -46,33 +46,13 @@ class Kaltura_Client_Type_Topic extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->id))
-		{
-			if(isset($xml->id->item) && count($xml->id->item))
-				$this->multiLingual_id = Kaltura_Client_ParseUtils::unmarshalArray($xml->id, '');
-			else
-				$this->id = (string)$xml->id;
-		}
+			$this->id = (string)$xml->id;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->subscribersAmount))
-		{
-			if(isset($xml->subscribersAmount->item) && count($xml->subscribersAmount->item))
-				$this->multiLingual_subscribersAmount = Kaltura_Client_ParseUtils::unmarshalArray($xml->subscribersAmount, '');
-			else
-				$this->subscribersAmount = (string)$xml->subscribersAmount;
-		}
+			$this->subscribersAmount = (string)$xml->subscribersAmount;
 		if(count($xml->automaticIssueNotification))
-		{
-			if(isset($xml->automaticIssueNotification->item) && count($xml->automaticIssueNotification->item))
-				$this->multiLingual_automaticIssueNotification = Kaltura_Client_ParseUtils::unmarshalArray($xml->automaticIssueNotification, '');
-			else
-				$this->automaticIssueNotification = (string)$xml->automaticIssueNotification;
-		}
+			$this->automaticIssueNotification = (string)$xml->automaticIssueNotification;
 		if(count($xml->lastMessageSentDateSec))
 			$this->lastMessageSentDateSec = (string)$xml->lastMessageSentDateSec;
 	}

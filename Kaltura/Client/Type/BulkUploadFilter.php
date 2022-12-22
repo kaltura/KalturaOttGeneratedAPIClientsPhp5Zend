@@ -46,12 +46,7 @@ class Kaltura_Client_Type_BulkUploadFilter extends Kaltura_Client_Type_Filter
 			return;
 		
 		if(count($xml->bulkObjectTypeEqual))
-		{
-			if(isset($xml->bulkObjectTypeEqual->item) && count($xml->bulkObjectTypeEqual->item))
-				$this->multiLingual_bulkObjectTypeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->bulkObjectTypeEqual, '');
-			else
-				$this->bulkObjectTypeEqual = (string)$xml->bulkObjectTypeEqual;
-		}
+			$this->bulkObjectTypeEqual = (string)$xml->bulkObjectTypeEqual;
 		if(count($xml->createDateGreaterThanOrEqual))
 			$this->createDateGreaterThanOrEqual = (string)$xml->createDateGreaterThanOrEqual;
 		if(count($xml->uploadedByUserIdEqualCurrent))
@@ -62,12 +57,7 @@ class Kaltura_Client_Type_BulkUploadFilter extends Kaltura_Client_Type_Filter
 				$this->uploadedByUserIdEqualCurrent = false;
 		}
 		if(count($xml->statusIn))
-		{
-			if(isset($xml->statusIn->item) && count($xml->statusIn->item))
-				$this->multiLingual_statusIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->statusIn, '');
-			else
-				$this->statusIn = (string)$xml->statusIn;
-		}
+			$this->statusIn = (string)$xml->statusIn;
 	}
 	/**
 	 * bulk objects Type name (must be type of KalturaOTTObject)

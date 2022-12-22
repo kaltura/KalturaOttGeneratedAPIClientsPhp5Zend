@@ -46,12 +46,7 @@ class Kaltura_Client_Type_IngestProgramResultsByCombinedFieldsFilter extends Kal
 			return;
 		
 		if(count($xml->combinedFieldsValue))
-		{
-			if(isset($xml->combinedFieldsValue->item) && count($xml->combinedFieldsValue->item))
-				$this->multiLingual_combinedFieldsValue = Kaltura_Client_ParseUtils::unmarshalArray($xml->combinedFieldsValue, '');
-			else
-				$this->combinedFieldsValue = (string)$xml->combinedFieldsValue;
-		}
+			$this->combinedFieldsValue = (string)$xml->combinedFieldsValue;
 	}
 	/**
 	 * String value to substring search by ProgramID or ExternalProgramID or LinearChannelID.

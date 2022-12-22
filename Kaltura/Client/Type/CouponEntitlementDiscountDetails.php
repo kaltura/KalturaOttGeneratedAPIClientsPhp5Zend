@@ -46,12 +46,7 @@ class Kaltura_Client_Type_CouponEntitlementDiscountDetails extends Kaltura_Clien
 			return;
 		
 		if(count($xml->couponCode))
-		{
-			if(isset($xml->couponCode->item) && count($xml->couponCode->item))
-				$this->multiLingual_couponCode = Kaltura_Client_ParseUtils::unmarshalArray($xml->couponCode, '');
-			else
-				$this->couponCode = (string)$xml->couponCode;
-		}
+			$this->couponCode = (string)$xml->couponCode;
 		if(count($xml->endlessCoupon))
 		{
 			if(!empty($xml->endlessCoupon) && ((int) $xml->endlessCoupon === 1 || strtolower((string)$xml->endlessCoupon) === 'true'))

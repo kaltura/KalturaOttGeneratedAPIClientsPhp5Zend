@@ -46,21 +46,11 @@ class Kaltura_Client_Type_UserLoginPin extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->pinCode))
-		{
-			if(isset($xml->pinCode->item) && count($xml->pinCode->item))
-				$this->multiLingual_pinCode = Kaltura_Client_ParseUtils::unmarshalArray($xml->pinCode, '');
-			else
-				$this->pinCode = (string)$xml->pinCode;
-		}
+			$this->pinCode = (string)$xml->pinCode;
 		if(count($xml->expirationTime))
 			$this->expirationTime = (string)$xml->expirationTime;
 		if(count($xml->userId))
-		{
-			if(isset($xml->userId->item) && count($xml->userId->item))
-				$this->multiLingual_userId = Kaltura_Client_ParseUtils::unmarshalArray($xml->userId, '');
-			else
-				$this->userId = (string)$xml->userId;
-		}
+			$this->userId = (string)$xml->userId;
 	}
 	/**
 	 * Generated login pin code

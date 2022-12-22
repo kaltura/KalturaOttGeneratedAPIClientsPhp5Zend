@@ -50,19 +50,9 @@ class Kaltura_Client_Type_DefaultParentalSettingsPartnerConfig extends Kaltura_C
 		if(count($xml->defaultTvSeriesParentalRuleId))
 			$this->defaultTvSeriesParentalRuleId = (string)$xml->defaultTvSeriesParentalRuleId;
 		if(count($xml->defaultParentalPin))
-		{
-			if(isset($xml->defaultParentalPin->item) && count($xml->defaultParentalPin->item))
-				$this->multiLingual_defaultParentalPin = Kaltura_Client_ParseUtils::unmarshalArray($xml->defaultParentalPin, '');
-			else
-				$this->defaultParentalPin = (string)$xml->defaultParentalPin;
-		}
+			$this->defaultParentalPin = (string)$xml->defaultParentalPin;
 		if(count($xml->defaultPurchasePin))
-		{
-			if(isset($xml->defaultPurchasePin->item) && count($xml->defaultPurchasePin->item))
-				$this->multiLingual_defaultPurchasePin = Kaltura_Client_ParseUtils::unmarshalArray($xml->defaultPurchasePin, '');
-			else
-				$this->defaultPurchasePin = (string)$xml->defaultPurchasePin;
-		}
+			$this->defaultPurchasePin = (string)$xml->defaultPurchasePin;
 		if(count($xml->defaultPurchaseSettings))
 			$this->defaultPurchaseSettings = (string)$xml->defaultPurchaseSettings;
 	}

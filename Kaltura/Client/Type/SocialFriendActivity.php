@@ -46,19 +46,9 @@ class Kaltura_Client_Type_SocialFriendActivity extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->userFullName))
-		{
-			if(isset($xml->userFullName->item) && count($xml->userFullName->item))
-				$this->multiLingual_userFullName = Kaltura_Client_ParseUtils::unmarshalArray($xml->userFullName, '');
-			else
-				$this->userFullName = (string)$xml->userFullName;
-		}
+			$this->userFullName = (string)$xml->userFullName;
 		if(count($xml->userPictureUrl))
-		{
-			if(isset($xml->userPictureUrl->item) && count($xml->userPictureUrl->item))
-				$this->multiLingual_userPictureUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->userPictureUrl, '');
-			else
-				$this->userPictureUrl = (string)$xml->userPictureUrl;
-		}
+			$this->userPictureUrl = (string)$xml->userPictureUrl;
 		if(count($xml->socialAction) && !empty($xml->socialAction))
 			$this->socialAction = Kaltura_Client_ParseUtils::unmarshalObject($xml->socialAction, "KalturaSocialAction");
 	}

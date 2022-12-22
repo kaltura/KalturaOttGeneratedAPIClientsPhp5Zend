@@ -46,12 +46,7 @@ class Kaltura_Client_Type_PurchaseSettings extends Kaltura_Client_Type_Pin
 			return;
 		
 		if(count($xml->permission))
-		{
-			if(isset($xml->permission->item) && count($xml->permission->item))
-				$this->multiLingual_permission = Kaltura_Client_ParseUtils::unmarshalArray($xml->permission, '');
-			else
-				$this->permission = (string)$xml->permission;
-		}
+			$this->permission = (string)$xml->permission;
 	}
 	/**
 	 * Purchase permission - block, ask or allow

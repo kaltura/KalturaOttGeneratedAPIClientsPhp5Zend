@@ -46,42 +46,17 @@ class Kaltura_Client_Type_InboxMessage extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->id))
-		{
-			if(isset($xml->id->item) && count($xml->id->item))
-				$this->multiLingual_id = Kaltura_Client_ParseUtils::unmarshalArray($xml->id, '');
-			else
-				$this->id = (string)$xml->id;
-		}
+			$this->id = (string)$xml->id;
 		if(count($xml->message))
-		{
-			if(isset($xml->message->item) && count($xml->message->item))
-				$this->multiLingual_message = Kaltura_Client_ParseUtils::unmarshalArray($xml->message, '');
-			else
-				$this->message = (string)$xml->message;
-		}
+			$this->message = (string)$xml->message;
 		if(count($xml->status))
-		{
-			if(isset($xml->status->item) && count($xml->status->item))
-				$this->multiLingual_status = Kaltura_Client_ParseUtils::unmarshalArray($xml->status, '');
-			else
-				$this->status = (string)$xml->status;
-		}
+			$this->status = (string)$xml->status;
 		if(count($xml->type))
-		{
-			if(isset($xml->type->item) && count($xml->type->item))
-				$this->multiLingual_type = Kaltura_Client_ParseUtils::unmarshalArray($xml->type, '');
-			else
-				$this->type = (string)$xml->type;
-		}
+			$this->type = (string)$xml->type;
 		if(count($xml->createdAt))
 			$this->createdAt = (string)$xml->createdAt;
 		if(count($xml->url))
-		{
-			if(isset($xml->url->item) && count($xml->url->item))
-				$this->multiLingual_url = Kaltura_Client_ParseUtils::unmarshalArray($xml->url, '');
-			else
-				$this->url = (string)$xml->url;
-		}
+			$this->url = (string)$xml->url;
 		if(count($xml->campaignId))
 			$this->campaignId = (string)$xml->campaignId;
 	}

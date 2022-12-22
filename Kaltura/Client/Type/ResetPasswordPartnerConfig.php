@@ -46,12 +46,7 @@ class Kaltura_Client_Type_ResetPasswordPartnerConfig extends Kaltura_Client_Obje
 			return;
 		
 		if(count($xml->templateListLabel))
-		{
-			if(isset($xml->templateListLabel->item) && count($xml->templateListLabel->item))
-				$this->multiLingual_templateListLabel = Kaltura_Client_ParseUtils::unmarshalArray($xml->templateListLabel, '');
-			else
-				$this->templateListLabel = (string)$xml->templateListLabel;
-		}
+			$this->templateListLabel = (string)$xml->templateListLabel;
 		if(count($xml->templates))
 		{
 			if(empty($xml->templates))

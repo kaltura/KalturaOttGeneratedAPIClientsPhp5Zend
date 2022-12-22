@@ -46,19 +46,9 @@ class Kaltura_Client_Type_Announcement extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->message))
-		{
-			if(isset($xml->message->item) && count($xml->message->item))
-				$this->multiLingual_message = Kaltura_Client_ParseUtils::unmarshalArray($xml->message, '');
-			else
-				$this->message = (string)$xml->message;
-		}
+			$this->message = (string)$xml->message;
 		if(count($xml->enabled))
 		{
 			if(!empty($xml->enabled) && ((int) $xml->enabled === 1 || strtolower((string)$xml->enabled) === 'true'))
@@ -69,35 +59,15 @@ class Kaltura_Client_Type_Announcement extends Kaltura_Client_ObjectBase
 		if(count($xml->startTime))
 			$this->startTime = (string)$xml->startTime;
 		if(count($xml->timezone))
-		{
-			if(isset($xml->timezone->item) && count($xml->timezone->item))
-				$this->multiLingual_timezone = Kaltura_Client_ParseUtils::unmarshalArray($xml->timezone, '');
-			else
-				$this->timezone = (string)$xml->timezone;
-		}
+			$this->timezone = (string)$xml->timezone;
 		if(count($xml->status))
-		{
-			if(isset($xml->status->item) && count($xml->status->item))
-				$this->multiLingual_status = Kaltura_Client_ParseUtils::unmarshalArray($xml->status, '');
-			else
-				$this->status = (string)$xml->status;
-		}
+			$this->status = (string)$xml->status;
 		if(count($xml->recipients))
-		{
-			if(isset($xml->recipients->item) && count($xml->recipients->item))
-				$this->multiLingual_recipients = Kaltura_Client_ParseUtils::unmarshalArray($xml->recipients, '');
-			else
-				$this->recipients = (string)$xml->recipients;
-		}
+			$this->recipients = (string)$xml->recipients;
 		if(count($xml->id))
 			$this->id = (int)$xml->id;
 		if(count($xml->imageUrl))
-		{
-			if(isset($xml->imageUrl->item) && count($xml->imageUrl->item))
-				$this->multiLingual_imageUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->imageUrl, '');
-			else
-				$this->imageUrl = (string)$xml->imageUrl;
-		}
+			$this->imageUrl = (string)$xml->imageUrl;
 		if(count($xml->includeMail))
 		{
 			if(!empty($xml->includeMail) && ((int) $xml->includeMail === 1 || strtolower((string)$xml->includeMail) === 'true'))
@@ -106,19 +76,9 @@ class Kaltura_Client_Type_Announcement extends Kaltura_Client_ObjectBase
 				$this->includeMail = false;
 		}
 		if(count($xml->mailTemplate))
-		{
-			if(isset($xml->mailTemplate->item) && count($xml->mailTemplate->item))
-				$this->multiLingual_mailTemplate = Kaltura_Client_ParseUtils::unmarshalArray($xml->mailTemplate, '');
-			else
-				$this->mailTemplate = (string)$xml->mailTemplate;
-		}
+			$this->mailTemplate = (string)$xml->mailTemplate;
 		if(count($xml->mailSubject))
-		{
-			if(isset($xml->mailSubject->item) && count($xml->mailSubject->item))
-				$this->multiLingual_mailSubject = Kaltura_Client_ParseUtils::unmarshalArray($xml->mailSubject, '');
-			else
-				$this->mailSubject = (string)$xml->mailSubject;
-		}
+			$this->mailSubject = (string)$xml->mailSubject;
 		if(count($xml->includeSms))
 		{
 			if(!empty($xml->includeSms) && ((int) $xml->includeSms === 1 || strtolower((string)$xml->includeSms) === 'true'))

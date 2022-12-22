@@ -46,26 +46,11 @@ class Kaltura_Client_Type_MediaConcurrencyRule extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->id))
-		{
-			if(isset($xml->id->item) && count($xml->id->item))
-				$this->multiLingual_id = Kaltura_Client_ParseUtils::unmarshalArray($xml->id, '');
-			else
-				$this->id = (string)$xml->id;
-		}
+			$this->id = (string)$xml->id;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->concurrencyLimitationType))
-		{
-			if(isset($xml->concurrencyLimitationType->item) && count($xml->concurrencyLimitationType->item))
-				$this->multiLingual_concurrencyLimitationType = Kaltura_Client_ParseUtils::unmarshalArray($xml->concurrencyLimitationType, '');
-			else
-				$this->concurrencyLimitationType = (string)$xml->concurrencyLimitationType;
-		}
+			$this->concurrencyLimitationType = (string)$xml->concurrencyLimitationType;
 		if(count($xml->limitation))
 			$this->limitation = (int)$xml->limitation;
 	}

@@ -46,21 +46,11 @@ class Kaltura_Client_Type_SearchExternalFilter extends Kaltura_Client_Type_Asset
 			return;
 		
 		if(count($xml->query))
-		{
-			if(isset($xml->query->item) && count($xml->query->item))
-				$this->multiLingual_query = Kaltura_Client_ParseUtils::unmarshalArray($xml->query, '');
-			else
-				$this->query = (string)$xml->query;
-		}
+			$this->query = (string)$xml->query;
 		if(count($xml->utcOffsetEqual))
 			$this->utcOffsetEqual = (int)$xml->utcOffsetEqual;
 		if(count($xml->typeIn))
-		{
-			if(isset($xml->typeIn->item) && count($xml->typeIn->item))
-				$this->multiLingual_typeIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->typeIn, '');
-			else
-				$this->typeIn = (string)$xml->typeIn;
-		}
+			$this->typeIn = (string)$xml->typeIn;
 	}
 	/**
 	 * Query

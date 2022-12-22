@@ -46,35 +46,15 @@ class Kaltura_Client_Type_TagFilter extends Kaltura_Client_Type_Filter
 			return;
 		
 		if(count($xml->tagEqual))
-		{
-			if(isset($xml->tagEqual->item) && count($xml->tagEqual->item))
-				$this->multiLingual_tagEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->tagEqual, '');
-			else
-				$this->tagEqual = (string)$xml->tagEqual;
-		}
+			$this->tagEqual = (string)$xml->tagEqual;
 		if(count($xml->tagStartsWith))
-		{
-			if(isset($xml->tagStartsWith->item) && count($xml->tagStartsWith->item))
-				$this->multiLingual_tagStartsWith = Kaltura_Client_ParseUtils::unmarshalArray($xml->tagStartsWith, '');
-			else
-				$this->tagStartsWith = (string)$xml->tagStartsWith;
-		}
+			$this->tagStartsWith = (string)$xml->tagStartsWith;
 		if(count($xml->typeEqual))
 			$this->typeEqual = (int)$xml->typeEqual;
 		if(count($xml->languageEqual))
-		{
-			if(isset($xml->languageEqual->item) && count($xml->languageEqual->item))
-				$this->multiLingual_languageEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->languageEqual, '');
-			else
-				$this->languageEqual = (string)$xml->languageEqual;
-		}
+			$this->languageEqual = (string)$xml->languageEqual;
 		if(count($xml->idIn))
-		{
-			if(isset($xml->idIn->item) && count($xml->idIn->item))
-				$this->multiLingual_idIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->idIn, '');
-			else
-				$this->idIn = (string)$xml->idIn;
-		}
+			$this->idIn = (string)$xml->idIn;
 	}
 	/**
 	 * Tag to filter by

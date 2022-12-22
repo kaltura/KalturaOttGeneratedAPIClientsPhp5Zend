@@ -48,12 +48,7 @@ class Kaltura_Client_Type_IngestEpgProgramResult extends Kaltura_Client_ObjectBa
 		if(count($xml->programId))
 			$this->programId = (string)$xml->programId;
 		if(count($xml->externalProgramId))
-		{
-			if(isset($xml->externalProgramId->item) && count($xml->externalProgramId->item))
-				$this->multiLingual_externalProgramId = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalProgramId, '');
-			else
-				$this->externalProgramId = (string)$xml->externalProgramId;
-		}
+			$this->externalProgramId = (string)$xml->externalProgramId;
 		if(count($xml->linearChannelId))
 			$this->linearChannelId = (string)$xml->linearChannelId;
 		if(count($xml->indexInFile))
@@ -63,12 +58,7 @@ class Kaltura_Client_Type_IngestEpgProgramResult extends Kaltura_Client_ObjectBa
 		if(count($xml->endDate))
 			$this->endDate = (string)$xml->endDate;
 		if(count($xml->status))
-		{
-			if(isset($xml->status->item) && count($xml->status->item))
-				$this->multiLingual_status = Kaltura_Client_ParseUtils::unmarshalArray($xml->status, '');
-			else
-				$this->status = (string)$xml->status;
-		}
+			$this->status = (string)$xml->status;
 		if(count($xml->errors))
 		{
 			if(empty($xml->errors))

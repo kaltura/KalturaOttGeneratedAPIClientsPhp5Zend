@@ -48,12 +48,7 @@ class Kaltura_Client_Type_HouseholdLimitations extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (int)$xml->id;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->concurrentLimit))
 			$this->concurrentLimit = (int)$xml->concurrentLimit;
 		if(count($xml->deviceLimit))
@@ -61,21 +56,11 @@ class Kaltura_Client_Type_HouseholdLimitations extends Kaltura_Client_ObjectBase
 		if(count($xml->deviceFrequency))
 			$this->deviceFrequency = (int)$xml->deviceFrequency;
 		if(count($xml->deviceFrequencyDescription))
-		{
-			if(isset($xml->deviceFrequencyDescription->item) && count($xml->deviceFrequencyDescription->item))
-				$this->multiLingual_deviceFrequencyDescription = Kaltura_Client_ParseUtils::unmarshalArray($xml->deviceFrequencyDescription, '');
-			else
-				$this->deviceFrequencyDescription = (string)$xml->deviceFrequencyDescription;
-		}
+			$this->deviceFrequencyDescription = (string)$xml->deviceFrequencyDescription;
 		if(count($xml->userFrequency))
 			$this->userFrequency = (int)$xml->userFrequency;
 		if(count($xml->userFrequencyDescription))
-		{
-			if(isset($xml->userFrequencyDescription->item) && count($xml->userFrequencyDescription->item))
-				$this->multiLingual_userFrequencyDescription = Kaltura_Client_ParseUtils::unmarshalArray($xml->userFrequencyDescription, '');
-			else
-				$this->userFrequencyDescription = (string)$xml->userFrequencyDescription;
-		}
+			$this->userFrequencyDescription = (string)$xml->userFrequencyDescription;
 		if(count($xml->npvrQuotaInSeconds))
 			$this->npvrQuotaInSeconds = (int)$xml->npvrQuotaInSeconds;
 		if(count($xml->usersLimit))
@@ -88,19 +73,9 @@ class Kaltura_Client_Type_HouseholdLimitations extends Kaltura_Client_ObjectBase
 				$this->deviceFamiliesLimitations = Kaltura_Client_ParseUtils::unmarshalArray($xml->deviceFamiliesLimitations, "KalturaHouseholdDeviceFamilyLimitations");
 		}
 		if(count($xml->description))
-		{
-			if(isset($xml->description->item) && count($xml->description->item))
-				$this->multiLingual_description = Kaltura_Client_ParseUtils::unmarshalArray($xml->description, '');
-			else
-				$this->description = (string)$xml->description;
-		}
+			$this->description = (string)$xml->description;
 		if(count($xml->associatedDeviceFamiliesIdsIn))
-		{
-			if(isset($xml->associatedDeviceFamiliesIdsIn->item) && count($xml->associatedDeviceFamiliesIdsIn->item))
-				$this->multiLingual_associatedDeviceFamiliesIdsIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->associatedDeviceFamiliesIdsIn, '');
-			else
-				$this->associatedDeviceFamiliesIdsIn = (string)$xml->associatedDeviceFamiliesIdsIn;
-		}
+			$this->associatedDeviceFamiliesIdsIn = (string)$xml->associatedDeviceFamiliesIdsIn;
 	}
 	/**
 	 * Household limitation module identifier

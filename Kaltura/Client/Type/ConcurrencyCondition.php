@@ -48,12 +48,7 @@ class Kaltura_Client_Type_ConcurrencyCondition extends Kaltura_Client_Type_Asset
 		if(count($xml->limit))
 			$this->limit = (int)$xml->limit;
 		if(count($xml->concurrencyLimitationType))
-		{
-			if(isset($xml->concurrencyLimitationType->item) && count($xml->concurrencyLimitationType->item))
-				$this->multiLingual_concurrencyLimitationType = Kaltura_Client_ParseUtils::unmarshalArray($xml->concurrencyLimitationType, '');
-			else
-				$this->concurrencyLimitationType = (string)$xml->concurrencyLimitationType;
-		}
+			$this->concurrencyLimitationType = (string)$xml->concurrencyLimitationType;
 	}
 	/**
 	 * Concurrency limitation

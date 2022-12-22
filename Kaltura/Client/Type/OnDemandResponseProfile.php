@@ -46,12 +46,7 @@ class Kaltura_Client_Type_OnDemandResponseProfile extends Kaltura_Client_Type_De
 			return;
 		
 		if(count($xml->retrievedProperties))
-		{
-			if(isset($xml->retrievedProperties->item) && count($xml->retrievedProperties->item))
-				$this->multiLingual_retrievedProperties = Kaltura_Client_ParseUtils::unmarshalArray($xml->retrievedProperties, '');
-			else
-				$this->retrievedProperties = (string)$xml->retrievedProperties;
-		}
+			$this->retrievedProperties = (string)$xml->retrievedProperties;
 	}
 	/**
 	 * Comma seperated properties names

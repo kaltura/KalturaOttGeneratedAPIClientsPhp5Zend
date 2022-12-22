@@ -48,49 +48,19 @@ class Kaltura_Client_Type_ExportTask extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->alias))
-		{
-			if(isset($xml->alias->item) && count($xml->alias->item))
-				$this->multiLingual_alias = Kaltura_Client_ParseUtils::unmarshalArray($xml->alias, '');
-			else
-				$this->alias = (string)$xml->alias;
-		}
+			$this->alias = (string)$xml->alias;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->dataType))
-		{
-			if(isset($xml->dataType->item) && count($xml->dataType->item))
-				$this->multiLingual_dataType = Kaltura_Client_ParseUtils::unmarshalArray($xml->dataType, '');
-			else
-				$this->dataType = (string)$xml->dataType;
-		}
+			$this->dataType = (string)$xml->dataType;
 		if(count($xml->filter))
-		{
-			if(isset($xml->filter->item) && count($xml->filter->item))
-				$this->multiLingual_filter = Kaltura_Client_ParseUtils::unmarshalArray($xml->filter, '');
-			else
-				$this->filter = (string)$xml->filter;
-		}
+			$this->filter = (string)$xml->filter;
 		if(count($xml->exportType))
-		{
-			if(isset($xml->exportType->item) && count($xml->exportType->item))
-				$this->multiLingual_exportType = Kaltura_Client_ParseUtils::unmarshalArray($xml->exportType, '');
-			else
-				$this->exportType = (string)$xml->exportType;
-		}
+			$this->exportType = (string)$xml->exportType;
 		if(count($xml->frequency))
 			$this->frequency = (string)$xml->frequency;
 		if(count($xml->notificationUrl))
-		{
-			if(isset($xml->notificationUrl->item) && count($xml->notificationUrl->item))
-				$this->multiLingual_notificationUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->notificationUrl, '');
-			else
-				$this->notificationUrl = (string)$xml->notificationUrl;
-		}
+			$this->notificationUrl = (string)$xml->notificationUrl;
 		if(count($xml->isActive))
 		{
 			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))

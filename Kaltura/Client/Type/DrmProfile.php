@@ -48,12 +48,7 @@ class Kaltura_Client_Type_DrmProfile extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (int)$xml->id;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->isActive))
 		{
 			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))
@@ -62,33 +57,13 @@ class Kaltura_Client_Type_DrmProfile extends Kaltura_Client_ObjectBase
 				$this->isActive = false;
 		}
 		if(count($xml->adapterUrl))
-		{
-			if(isset($xml->adapterUrl->item) && count($xml->adapterUrl->item))
-				$this->multiLingual_adapterUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->adapterUrl, '');
-			else
-				$this->adapterUrl = (string)$xml->adapterUrl;
-		}
+			$this->adapterUrl = (string)$xml->adapterUrl;
 		if(count($xml->settings))
-		{
-			if(isset($xml->settings->item) && count($xml->settings->item))
-				$this->multiLingual_settings = Kaltura_Client_ParseUtils::unmarshalArray($xml->settings, '');
-			else
-				$this->settings = (string)$xml->settings;
-		}
+			$this->settings = (string)$xml->settings;
 		if(count($xml->systemName))
-		{
-			if(isset($xml->systemName->item) && count($xml->systemName->item))
-				$this->multiLingual_systemName = Kaltura_Client_ParseUtils::unmarshalArray($xml->systemName, '');
-			else
-				$this->systemName = (string)$xml->systemName;
-		}
+			$this->systemName = (string)$xml->systemName;
 		if(count($xml->sharedSecret))
-		{
-			if(isset($xml->sharedSecret->item) && count($xml->sharedSecret->item))
-				$this->multiLingual_sharedSecret = Kaltura_Client_ParseUtils::unmarshalArray($xml->sharedSecret, '');
-			else
-				$this->sharedSecret = (string)$xml->sharedSecret;
-		}
+			$this->sharedSecret = (string)$xml->sharedSecret;
 	}
 	/**
 	 * DRM adapter identifier

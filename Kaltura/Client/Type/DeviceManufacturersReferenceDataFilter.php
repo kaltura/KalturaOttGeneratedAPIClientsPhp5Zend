@@ -46,12 +46,7 @@ class Kaltura_Client_Type_DeviceManufacturersReferenceDataFilter extends Kaltura
 			return;
 		
 		if(count($xml->nameEqual))
-		{
-			if(isset($xml->nameEqual->item) && count($xml->nameEqual->item))
-				$this->multiLingual_nameEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->nameEqual, '');
-			else
-				$this->nameEqual = (string)$xml->nameEqual;
-		}
+			$this->nameEqual = (string)$xml->nameEqual;
 	}
 	/**
 	 * name equal

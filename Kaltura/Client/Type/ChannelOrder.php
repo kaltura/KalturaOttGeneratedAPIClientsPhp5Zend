@@ -48,12 +48,7 @@ class Kaltura_Client_Type_ChannelOrder extends Kaltura_Client_ObjectBase
 		if(count($xml->dynamicOrderBy) && !empty($xml->dynamicOrderBy))
 			$this->dynamicOrderBy = Kaltura_Client_ParseUtils::unmarshalObject($xml->dynamicOrderBy, "KalturaDynamicOrderBy");
 		if(count($xml->orderBy))
-		{
-			if(isset($xml->orderBy->item) && count($xml->orderBy->item))
-				$this->multiLingual_orderBy = Kaltura_Client_ParseUtils::unmarshalArray($xml->orderBy, '');
-			else
-				$this->orderBy = (string)$xml->orderBy;
-		}
+			$this->orderBy = (string)$xml->orderBy;
 		if(count($xml->period))
 			$this->period = (int)$xml->period;
 	}

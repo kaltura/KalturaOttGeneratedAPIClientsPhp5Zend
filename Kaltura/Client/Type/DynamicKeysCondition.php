@@ -46,19 +46,9 @@ class Kaltura_Client_Type_DynamicKeysCondition extends Kaltura_Client_Type_Condi
 			return;
 		
 		if(count($xml->key))
-		{
-			if(isset($xml->key->item) && count($xml->key->item))
-				$this->multiLingual_key = Kaltura_Client_ParseUtils::unmarshalArray($xml->key, '');
-			else
-				$this->key = (string)$xml->key;
-		}
+			$this->key = (string)$xml->key;
 		if(count($xml->values))
-		{
-			if(isset($xml->values->item) && count($xml->values->item))
-				$this->multiLingual_values = Kaltura_Client_ParseUtils::unmarshalArray($xml->values, '');
-			else
-				$this->values = (string)$xml->values;
-		}
+			$this->values = (string)$xml->values;
 	}
 	/**
 	 * key

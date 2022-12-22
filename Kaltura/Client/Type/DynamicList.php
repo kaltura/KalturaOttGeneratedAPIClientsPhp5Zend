@@ -52,12 +52,7 @@ class Kaltura_Client_Type_DynamicList extends Kaltura_Client_Type_OTTObjectSuppo
 		if(count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 	}
 	/**
 	 * ID

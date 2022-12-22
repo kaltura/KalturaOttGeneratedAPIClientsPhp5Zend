@@ -46,12 +46,7 @@ abstract class Kaltura_Client_Type_FilterFileByVideoCodecAction extends Kaltura_
 			return;
 		
 		if(count($xml->videoCodecIn))
-		{
-			if(isset($xml->videoCodecIn->item) && count($xml->videoCodecIn->item))
-				$this->multiLingual_videoCodecIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->videoCodecIn, '');
-			else
-				$this->videoCodecIn = (string)$xml->videoCodecIn;
-		}
+			$this->videoCodecIn = (string)$xml->videoCodecIn;
 	}
 	/**
 	 * List of comma separated videoCodecs

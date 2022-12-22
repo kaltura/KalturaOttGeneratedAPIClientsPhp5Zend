@@ -46,26 +46,11 @@ class Kaltura_Client_Type_SubscriptionSetFilter extends Kaltura_Client_Type_Filt
 			return;
 		
 		if(count($xml->idIn))
-		{
-			if(isset($xml->idIn->item) && count($xml->idIn->item))
-				$this->multiLingual_idIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->idIn, '');
-			else
-				$this->idIn = (string)$xml->idIn;
-		}
+			$this->idIn = (string)$xml->idIn;
 		if(count($xml->subscriptionIdContains))
-		{
-			if(isset($xml->subscriptionIdContains->item) && count($xml->subscriptionIdContains->item))
-				$this->multiLingual_subscriptionIdContains = Kaltura_Client_ParseUtils::unmarshalArray($xml->subscriptionIdContains, '');
-			else
-				$this->subscriptionIdContains = (string)$xml->subscriptionIdContains;
-		}
+			$this->subscriptionIdContains = (string)$xml->subscriptionIdContains;
 		if(count($xml->typeEqual))
-		{
-			if(isset($xml->typeEqual->item) && count($xml->typeEqual->item))
-				$this->multiLingual_typeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->typeEqual, '');
-			else
-				$this->typeEqual = (string)$xml->typeEqual;
-		}
+			$this->typeEqual = (string)$xml->typeEqual;
 	}
 	/**
 	 * Comma separated identifiers

@@ -50,53 +50,23 @@ class Kaltura_Client_Type_MediaFile extends Kaltura_Client_Type_AssetFile
 		if(count($xml->id))
 			$this->id = (int)$xml->id;
 		if(count($xml->type))
-		{
-			if(isset($xml->type->item) && count($xml->type->item))
-				$this->multiLingual_type = Kaltura_Client_ParseUtils::unmarshalArray($xml->type, '');
-			else
-				$this->type = (string)$xml->type;
-		}
+			$this->type = (string)$xml->type;
 		if(count($xml->typeId))
 			$this->typeId = (int)$xml->typeId;
 		if(count($xml->altUrl))
-		{
-			if(isset($xml->altUrl->item) && count($xml->altUrl->item))
-				$this->multiLingual_altUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->altUrl, '');
-			else
-				$this->altUrl = (string)$xml->altUrl;
-		}
+			$this->altUrl = (string)$xml->altUrl;
 		if(count($xml->duration))
 			$this->duration = (string)$xml->duration;
 		if(count($xml->externalId))
-		{
-			if(isset($xml->externalId->item) && count($xml->externalId->item))
-				$this->multiLingual_externalId = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalId, '');
-			else
-				$this->externalId = (string)$xml->externalId;
-		}
+			$this->externalId = (string)$xml->externalId;
 		if(count($xml->altExternalId))
-		{
-			if(isset($xml->altExternalId->item) && count($xml->altExternalId->item))
-				$this->multiLingual_altExternalId = Kaltura_Client_ParseUtils::unmarshalArray($xml->altExternalId, '');
-			else
-				$this->altExternalId = (string)$xml->altExternalId;
-		}
+			$this->altExternalId = (string)$xml->altExternalId;
 		if(count($xml->fileSize))
 			$this->fileSize = (string)$xml->fileSize;
 		if(count($xml->additionalData))
-		{
-			if(isset($xml->additionalData->item) && count($xml->additionalData->item))
-				$this->multiLingual_additionalData = Kaltura_Client_ParseUtils::unmarshalArray($xml->additionalData, '');
-			else
-				$this->additionalData = (string)$xml->additionalData;
-		}
+			$this->additionalData = (string)$xml->additionalData;
 		if(count($xml->altStreamingCode))
-		{
-			if(isset($xml->altStreamingCode->item) && count($xml->altStreamingCode->item))
-				$this->multiLingual_altStreamingCode = Kaltura_Client_ParseUtils::unmarshalArray($xml->altStreamingCode, '');
-			else
-				$this->altStreamingCode = (string)$xml->altStreamingCode;
-		}
+			$this->altStreamingCode = (string)$xml->altStreamingCode;
 		if(count($xml->alternativeCdnAdapaterProfileId))
 			$this->alternativeCdnAdapaterProfileId = (string)$xml->alternativeCdnAdapaterProfileId;
 		if(count($xml->endDate))
@@ -104,12 +74,7 @@ class Kaltura_Client_Type_MediaFile extends Kaltura_Client_Type_AssetFile
 		if(count($xml->startDate))
 			$this->startDate = (string)$xml->startDate;
 		if(count($xml->externalStoreId))
-		{
-			if(isset($xml->externalStoreId->item) && count($xml->externalStoreId->item))
-				$this->multiLingual_externalStoreId = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalStoreId, '');
-			else
-				$this->externalStoreId = (string)$xml->externalStoreId;
-		}
+			$this->externalStoreId = (string)$xml->externalStoreId;
 		if(count($xml->isDefaultLanguage))
 		{
 			if(!empty($xml->isDefaultLanguage) && ((int) $xml->isDefaultLanguage === 1 || strtolower((string)$xml->isDefaultLanguage) === 'true'))
@@ -118,21 +83,11 @@ class Kaltura_Client_Type_MediaFile extends Kaltura_Client_Type_AssetFile
 				$this->isDefaultLanguage = false;
 		}
 		if(count($xml->language))
-		{
-			if(isset($xml->language->item) && count($xml->language->item))
-				$this->multiLingual_language = Kaltura_Client_ParseUtils::unmarshalArray($xml->language, '');
-			else
-				$this->language = (string)$xml->language;
-		}
+			$this->language = (string)$xml->language;
 		if(count($xml->orderNum))
 			$this->orderNum = (int)$xml->orderNum;
 		if(count($xml->outputProtecationLevel))
-		{
-			if(isset($xml->outputProtecationLevel->item) && count($xml->outputProtecationLevel->item))
-				$this->multiLingual_outputProtecationLevel = Kaltura_Client_ParseUtils::unmarshalArray($xml->outputProtecationLevel, '');
-			else
-				$this->outputProtecationLevel = (string)$xml->outputProtecationLevel;
-		}
+			$this->outputProtecationLevel = (string)$xml->outputProtecationLevel;
 		if(count($xml->cdnAdapaterProfileId))
 			$this->cdnAdapaterProfileId = (string)$xml->cdnAdapaterProfileId;
 		if(count($xml->status))
@@ -145,21 +100,11 @@ class Kaltura_Client_Type_MediaFile extends Kaltura_Client_Type_AssetFile
 		if(count($xml->catalogEndDate))
 			$this->catalogEndDate = (string)$xml->catalogEndDate;
 		if(count($xml->opl))
-		{
-			if(isset($xml->opl->item) && count($xml->opl->item))
-				$this->multiLingual_opl = Kaltura_Client_ParseUtils::unmarshalArray($xml->opl, '');
-			else
-				$this->opl = (string)$xml->opl;
-		}
+			$this->opl = (string)$xml->opl;
 		if(count($xml->businessModuleDetails) && !empty($xml->businessModuleDetails))
 			$this->businessModuleDetails = Kaltura_Client_ParseUtils::unmarshalObject($xml->businessModuleDetails, "KalturaBusinessModuleDetails");
 		if(count($xml->labels))
-		{
-			if(isset($xml->labels->item) && count($xml->labels->item))
-				$this->multiLingual_labels = Kaltura_Client_ParseUtils::unmarshalArray($xml->labels, '');
-			else
-				$this->labels = (string)$xml->labels;
-		}
+			$this->labels = (string)$xml->labels;
 	}
 	/**
 	 * Unique identifier for the asset

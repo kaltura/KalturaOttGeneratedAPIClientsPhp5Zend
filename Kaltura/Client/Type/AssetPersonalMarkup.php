@@ -48,12 +48,7 @@ class Kaltura_Client_Type_AssetPersonalMarkup extends Kaltura_Client_ObjectBase
 		if(count($xml->assetId))
 			$this->assetId = (string)$xml->assetId;
 		if(count($xml->assetType))
-		{
-			if(isset($xml->assetType->item) && count($xml->assetType->item))
-				$this->multiLingual_assetType = Kaltura_Client_ParseUtils::unmarshalArray($xml->assetType, '');
-			else
-				$this->assetType = (string)$xml->assetType;
-		}
+			$this->assetType = (string)$xml->assetType;
 		if(count($xml->products))
 		{
 			if(empty($xml->products))

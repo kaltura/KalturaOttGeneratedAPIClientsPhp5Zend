@@ -46,19 +46,9 @@ class Kaltura_Client_Type_DeviceDynamicDataCondition extends Kaltura_Client_Type
 			return;
 		
 		if(count($xml->key))
-		{
-			if(isset($xml->key->item) && count($xml->key->item))
-				$this->multiLingual_key = Kaltura_Client_ParseUtils::unmarshalArray($xml->key, '');
-			else
-				$this->key = (string)$xml->key;
-		}
+			$this->key = (string)$xml->key;
 		if(count($xml->value))
-		{
-			if(isset($xml->value->item) && count($xml->value->item))
-				$this->multiLingual_value = Kaltura_Client_ParseUtils::unmarshalArray($xml->value, '');
-			else
-				$this->value = (string)$xml->value;
-		}
+			$this->value = (string)$xml->value;
 	}
 	/**
 	 * key

@@ -46,21 +46,11 @@ class Kaltura_Client_Type_SubscriptionFilter extends Kaltura_Client_Type_Filter
 			return;
 		
 		if(count($xml->subscriptionIdIn))
-		{
-			if(isset($xml->subscriptionIdIn->item) && count($xml->subscriptionIdIn->item))
-				$this->multiLingual_subscriptionIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->subscriptionIdIn, '');
-			else
-				$this->subscriptionIdIn = (string)$xml->subscriptionIdIn;
-		}
+			$this->subscriptionIdIn = (string)$xml->subscriptionIdIn;
 		if(count($xml->mediaFileIdEqual))
 			$this->mediaFileIdEqual = (int)$xml->mediaFileIdEqual;
 		if(count($xml->externalIdIn))
-		{
-			if(isset($xml->externalIdIn->item) && count($xml->externalIdIn->item))
-				$this->multiLingual_externalIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalIdIn, '');
-			else
-				$this->externalIdIn = (string)$xml->externalIdIn;
-		}
+			$this->externalIdIn = (string)$xml->externalIdIn;
 		if(count($xml->couponGroupIdEqual))
 			$this->couponGroupIdEqual = (int)$xml->couponGroupIdEqual;
 		if(count($xml->previewModuleIdEqual))
@@ -70,12 +60,7 @@ class Kaltura_Client_Type_SubscriptionFilter extends Kaltura_Client_Type_Filter
 		if(count($xml->channelIdEqual))
 			$this->channelIdEqual = (string)$xml->channelIdEqual;
 		if(count($xml->kSql))
-		{
-			if(isset($xml->kSql->item) && count($xml->kSql->item))
-				$this->multiLingual_kSql = Kaltura_Client_ParseUtils::unmarshalArray($xml->kSql, '');
-			else
-				$this->kSql = (string)$xml->kSql;
-		}
+			$this->kSql = (string)$xml->kSql;
 		if(count($xml->alsoInactive))
 		{
 			if(!empty($xml->alsoInactive) && ((int) $xml->alsoInactive === 1 || strtolower((string)$xml->alsoInactive) === 'true'))

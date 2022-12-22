@@ -46,30 +46,15 @@ class Kaltura_Client_Type_ScheduledRecordingProgramFilter extends Kaltura_Client
 			return;
 		
 		if(count($xml->recordingTypeEqual))
-		{
-			if(isset($xml->recordingTypeEqual->item) && count($xml->recordingTypeEqual->item))
-				$this->multiLingual_recordingTypeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->recordingTypeEqual, '');
-			else
-				$this->recordingTypeEqual = (string)$xml->recordingTypeEqual;
-		}
+			$this->recordingTypeEqual = (string)$xml->recordingTypeEqual;
 		if(count($xml->channelsIn))
-		{
-			if(isset($xml->channelsIn->item) && count($xml->channelsIn->item))
-				$this->multiLingual_channelsIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->channelsIn, '');
-			else
-				$this->channelsIn = (string)$xml->channelsIn;
-		}
+			$this->channelsIn = (string)$xml->channelsIn;
 		if(count($xml->startDateGreaterThanOrNull))
 			$this->startDateGreaterThanOrNull = (string)$xml->startDateGreaterThanOrNull;
 		if(count($xml->endDateLessThanOrNull))
 			$this->endDateLessThanOrNull = (string)$xml->endDateLessThanOrNull;
 		if(count($xml->seriesIdsIn))
-		{
-			if(isset($xml->seriesIdsIn->item) && count($xml->seriesIdsIn->item))
-				$this->multiLingual_seriesIdsIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->seriesIdsIn, '');
-			else
-				$this->seriesIdsIn = (string)$xml->seriesIdsIn;
-		}
+			$this->seriesIdsIn = (string)$xml->seriesIdsIn;
 	}
 	/**
 	 * The type of recordings to return

@@ -46,19 +46,9 @@ class Kaltura_Client_Type_SocialFacebookConfig extends Kaltura_Client_Type_Socia
 			return;
 		
 		if(count($xml->appId))
-		{
-			if(isset($xml->appId->item) && count($xml->appId->item))
-				$this->multiLingual_appId = Kaltura_Client_ParseUtils::unmarshalArray($xml->appId, '');
-			else
-				$this->appId = (string)$xml->appId;
-		}
+			$this->appId = (string)$xml->appId;
 		if(count($xml->permissions))
-		{
-			if(isset($xml->permissions->item) && count($xml->permissions->item))
-				$this->multiLingual_permissions = Kaltura_Client_ParseUtils::unmarshalArray($xml->permissions, '');
-			else
-				$this->permissions = (string)$xml->permissions;
-		}
+			$this->permissions = (string)$xml->permissions;
 	}
 	/**
 	 * The application identifier

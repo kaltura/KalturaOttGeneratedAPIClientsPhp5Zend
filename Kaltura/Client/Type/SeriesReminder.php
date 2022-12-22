@@ -46,12 +46,7 @@ class Kaltura_Client_Type_SeriesReminder extends Kaltura_Client_Type_Reminder
 			return;
 		
 		if(count($xml->seriesId))
-		{
-			if(isset($xml->seriesId->item) && count($xml->seriesId->item))
-				$this->multiLingual_seriesId = Kaltura_Client_ParseUtils::unmarshalArray($xml->seriesId, '');
-			else
-				$this->seriesId = (string)$xml->seriesId;
-		}
+			$this->seriesId = (string)$xml->seriesId;
 		if(count($xml->seasonNumber))
 			$this->seasonNumber = (string)$xml->seasonNumber;
 		if(count($xml->epgChannelId))

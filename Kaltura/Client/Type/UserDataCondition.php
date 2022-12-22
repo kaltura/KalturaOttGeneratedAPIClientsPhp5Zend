@@ -46,19 +46,9 @@ class Kaltura_Client_Type_UserDataCondition extends Kaltura_Client_Type_BaseSegm
 			return;
 		
 		if(count($xml->field))
-		{
-			if(isset($xml->field->item) && count($xml->field->item))
-				$this->multiLingual_field = Kaltura_Client_ParseUtils::unmarshalArray($xml->field, '');
-			else
-				$this->field = (string)$xml->field;
-		}
+			$this->field = (string)$xml->field;
 		if(count($xml->value))
-		{
-			if(isset($xml->value->item) && count($xml->value->item))
-				$this->multiLingual_value = Kaltura_Client_ParseUtils::unmarshalArray($xml->value, '');
-			else
-				$this->value = (string)$xml->value;
-		}
+			$this->value = (string)$xml->value;
 	}
 	/**
 	 * Field name

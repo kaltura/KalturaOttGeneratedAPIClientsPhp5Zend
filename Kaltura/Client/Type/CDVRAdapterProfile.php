@@ -48,12 +48,7 @@ class Kaltura_Client_Type_CDVRAdapterProfile extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (int)$xml->id;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->isActive))
 		{
 			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))
@@ -62,12 +57,7 @@ class Kaltura_Client_Type_CDVRAdapterProfile extends Kaltura_Client_ObjectBase
 				$this->isActive = false;
 		}
 		if(count($xml->adapterUrl))
-		{
-			if(isset($xml->adapterUrl->item) && count($xml->adapterUrl->item))
-				$this->multiLingual_adapterUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->adapterUrl, '');
-			else
-				$this->adapterUrl = (string)$xml->adapterUrl;
-		}
+			$this->adapterUrl = (string)$xml->adapterUrl;
 		if(count($xml->settings))
 		{
 			if(empty($xml->settings))
@@ -76,19 +66,9 @@ class Kaltura_Client_Type_CDVRAdapterProfile extends Kaltura_Client_ObjectBase
 				$this->settings = Kaltura_Client_ParseUtils::unmarshalMap($xml->settings, "KalturaStringValue");
 		}
 		if(count($xml->externalIdentifier))
-		{
-			if(isset($xml->externalIdentifier->item) && count($xml->externalIdentifier->item))
-				$this->multiLingual_externalIdentifier = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalIdentifier, '');
-			else
-				$this->externalIdentifier = (string)$xml->externalIdentifier;
-		}
+			$this->externalIdentifier = (string)$xml->externalIdentifier;
 		if(count($xml->sharedSecret))
-		{
-			if(isset($xml->sharedSecret->item) && count($xml->sharedSecret->item))
-				$this->multiLingual_sharedSecret = Kaltura_Client_ParseUtils::unmarshalArray($xml->sharedSecret, '');
-			else
-				$this->sharedSecret = (string)$xml->sharedSecret;
-		}
+			$this->sharedSecret = (string)$xml->sharedSecret;
 		if(count($xml->dynamicLinksSupport))
 		{
 			if(!empty($xml->dynamicLinksSupport) && ((int) $xml->dynamicLinksSupport === 1 || strtolower((string)$xml->dynamicLinksSupport) === 'true'))

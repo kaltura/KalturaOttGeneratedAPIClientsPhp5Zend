@@ -50,12 +50,7 @@ class Kaltura_Client_Type_ChannelExternalFilter extends Kaltura_Client_Type_Asse
 		if(count($xml->utcOffsetEqual))
 			$this->utcOffsetEqual = (float)$xml->utcOffsetEqual;
 		if(count($xml->freeText))
-		{
-			if(isset($xml->freeText->item) && count($xml->freeText->item))
-				$this->multiLingual_freeText = Kaltura_Client_ParseUtils::unmarshalArray($xml->freeText, '');
-			else
-				$this->freeText = (string)$xml->freeText;
-		}
+			$this->freeText = (string)$xml->freeText;
 	}
 	/**
 	 * External Channel Id.

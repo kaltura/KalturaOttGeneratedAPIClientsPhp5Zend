@@ -48,12 +48,7 @@ class Kaltura_Client_Type_AssetStatisticsOrder extends Kaltura_Client_Type_BaseA
 		if(count($xml->trendingDaysEqual))
 			$this->trendingDaysEqual = (int)$xml->trendingDaysEqual;
 		if(count($xml->orderBy))
-		{
-			if(isset($xml->orderBy->item) && count($xml->orderBy->item))
-				$this->multiLingual_orderBy = Kaltura_Client_ParseUtils::unmarshalArray($xml->orderBy, '');
-			else
-				$this->orderBy = (string)$xml->orderBy;
-		}
+			$this->orderBy = (string)$xml->orderBy;
 	}
 	/**
 	 * Trending Days Equal

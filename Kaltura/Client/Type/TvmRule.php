@@ -48,12 +48,7 @@ abstract class Kaltura_Client_Type_TvmRule extends Kaltura_Client_Type_Rule
 		if(count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
 		if(count($xml->ruleType))
-		{
-			if(isset($xml->ruleType->item) && count($xml->ruleType->item))
-				$this->multiLingual_ruleType = Kaltura_Client_ParseUtils::unmarshalArray($xml->ruleType, '');
-			else
-				$this->ruleType = (string)$xml->ruleType;
-		}
+			$this->ruleType = (string)$xml->ruleType;
 	}
 	/**
 	 * Specifies when was the tvm rule was created. Date and time represented as epoch.

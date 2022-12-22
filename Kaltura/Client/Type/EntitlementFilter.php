@@ -46,19 +46,9 @@ class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEnti
 			return;
 		
 		if(count($xml->productTypeEqual))
-		{
-			if(isset($xml->productTypeEqual->item) && count($xml->productTypeEqual->item))
-				$this->multiLingual_productTypeEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->productTypeEqual, '');
-			else
-				$this->productTypeEqual = (string)$xml->productTypeEqual;
-		}
+			$this->productTypeEqual = (string)$xml->productTypeEqual;
 		if(count($xml->entityReferenceEqual))
-		{
-			if(isset($xml->entityReferenceEqual->item) && count($xml->entityReferenceEqual->item))
-				$this->multiLingual_entityReferenceEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->entityReferenceEqual, '');
-			else
-				$this->entityReferenceEqual = (string)$xml->entityReferenceEqual;
-		}
+			$this->entityReferenceEqual = (string)$xml->entityReferenceEqual;
 		if(count($xml->isExpiredEqual))
 		{
 			if(!empty($xml->isExpiredEqual) && ((int) $xml->isExpiredEqual === 1 || strtolower((string)$xml->isExpiredEqual) === 'true'))

@@ -46,12 +46,7 @@ class Kaltura_Client_Type_AssetFile extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->url))
-		{
-			if(isset($xml->url->item) && count($xml->url->item))
-				$this->multiLingual_url = Kaltura_Client_ParseUtils::unmarshalArray($xml->url, '');
-			else
-				$this->url = (string)$xml->url;
-		}
+			$this->url = (string)$xml->url;
 	}
 	/**
 	 * URL of the media file to be played

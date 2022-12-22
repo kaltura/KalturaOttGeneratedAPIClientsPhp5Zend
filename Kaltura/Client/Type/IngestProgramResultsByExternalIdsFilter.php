@@ -46,12 +46,7 @@ class Kaltura_Client_Type_IngestProgramResultsByExternalIdsFilter extends Kaltur
 			return;
 		
 		if(count($xml->externalProgramIdIn))
-		{
-			if(isset($xml->externalProgramIdIn->item) && count($xml->externalProgramIdIn->item))
-				$this->multiLingual_externalProgramIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalProgramIdIn, '');
-			else
-				$this->externalProgramIdIn = (string)$xml->externalProgramIdIn;
-		}
+			$this->externalProgramIdIn = (string)$xml->externalProgramIdIn;
 	}
 	/**
 	 * Comma seperated external program id.

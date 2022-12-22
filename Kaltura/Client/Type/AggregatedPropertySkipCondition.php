@@ -46,12 +46,7 @@ class Kaltura_Client_Type_AggregatedPropertySkipCondition extends Kaltura_Client
 			return;
 		
 		if(count($xml->aggregationType))
-		{
-			if(isset($xml->aggregationType->item) && count($xml->aggregationType->item))
-				$this->multiLingual_aggregationType = Kaltura_Client_ParseUtils::unmarshalArray($xml->aggregationType, '');
-			else
-				$this->aggregationType = (string)$xml->aggregationType;
-		}
+			$this->aggregationType = (string)$xml->aggregationType;
 	}
 	/**
 	 * The aggregation type on which the condition is based on

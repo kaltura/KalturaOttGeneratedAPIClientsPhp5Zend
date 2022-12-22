@@ -46,19 +46,9 @@ class Kaltura_Client_Type_ConcurrencyPartnerConfig extends Kaltura_Client_Type_P
 			return;
 		
 		if(count($xml->deviceFamilyIds))
-		{
-			if(isset($xml->deviceFamilyIds->item) && count($xml->deviceFamilyIds->item))
-				$this->multiLingual_deviceFamilyIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->deviceFamilyIds, '');
-			else
-				$this->deviceFamilyIds = (string)$xml->deviceFamilyIds;
-		}
+			$this->deviceFamilyIds = (string)$xml->deviceFamilyIds;
 		if(count($xml->evictionPolicy))
-		{
-			if(isset($xml->evictionPolicy->item) && count($xml->evictionPolicy->item))
-				$this->multiLingual_evictionPolicy = Kaltura_Client_ParseUtils::unmarshalArray($xml->evictionPolicy, '');
-			else
-				$this->evictionPolicy = (string)$xml->evictionPolicy;
-		}
+			$this->evictionPolicy = (string)$xml->evictionPolicy;
 		if(count($xml->concurrencyThresholdInSeconds))
 			$this->concurrencyThresholdInSeconds = (string)$xml->concurrencyThresholdInSeconds;
 		if(count($xml->revokeOnDeviceDelete))

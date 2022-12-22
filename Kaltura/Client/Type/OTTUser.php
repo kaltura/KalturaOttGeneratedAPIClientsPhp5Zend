@@ -48,56 +48,21 @@ class Kaltura_Client_Type_OTTUser extends Kaltura_Client_Type_BaseOTTUser
 		if(count($xml->householdId))
 			$this->householdId = (int)$xml->householdId;
 		if(count($xml->email))
-		{
-			if(isset($xml->email->item) && count($xml->email->item))
-				$this->multiLingual_email = Kaltura_Client_ParseUtils::unmarshalArray($xml->email, '');
-			else
-				$this->email = (string)$xml->email;
-		}
+			$this->email = (string)$xml->email;
 		if(count($xml->address))
-		{
-			if(isset($xml->address->item) && count($xml->address->item))
-				$this->multiLingual_address = Kaltura_Client_ParseUtils::unmarshalArray($xml->address, '');
-			else
-				$this->address = (string)$xml->address;
-		}
+			$this->address = (string)$xml->address;
 		if(count($xml->city))
-		{
-			if(isset($xml->city->item) && count($xml->city->item))
-				$this->multiLingual_city = Kaltura_Client_ParseUtils::unmarshalArray($xml->city, '');
-			else
-				$this->city = (string)$xml->city;
-		}
+			$this->city = (string)$xml->city;
 		if(count($xml->countryId))
 			$this->countryId = (int)$xml->countryId;
 		if(count($xml->zip))
-		{
-			if(isset($xml->zip->item) && count($xml->zip->item))
-				$this->multiLingual_zip = Kaltura_Client_ParseUtils::unmarshalArray($xml->zip, '');
-			else
-				$this->zip = (string)$xml->zip;
-		}
+			$this->zip = (string)$xml->zip;
 		if(count($xml->phone))
-		{
-			if(isset($xml->phone->item) && count($xml->phone->item))
-				$this->multiLingual_phone = Kaltura_Client_ParseUtils::unmarshalArray($xml->phone, '');
-			else
-				$this->phone = (string)$xml->phone;
-		}
+			$this->phone = (string)$xml->phone;
 		if(count($xml->affiliateCode))
-		{
-			if(isset($xml->affiliateCode->item) && count($xml->affiliateCode->item))
-				$this->multiLingual_affiliateCode = Kaltura_Client_ParseUtils::unmarshalArray($xml->affiliateCode, '');
-			else
-				$this->affiliateCode = (string)$xml->affiliateCode;
-		}
+			$this->affiliateCode = (string)$xml->affiliateCode;
 		if(count($xml->externalId))
-		{
-			if(isset($xml->externalId->item) && count($xml->externalId->item))
-				$this->multiLingual_externalId = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalId, '');
-			else
-				$this->externalId = (string)$xml->externalId;
-		}
+			$this->externalId = (string)$xml->externalId;
 		if(count($xml->userType) && !empty($xml->userType))
 			$this->userType = Kaltura_Client_ParseUtils::unmarshalObject($xml->userType, "KalturaOTTUserType");
 		if(count($xml->dynamicData))
@@ -115,26 +80,11 @@ class Kaltura_Client_Type_OTTUser extends Kaltura_Client_Type_BaseOTTUser
 				$this->isHouseholdMaster = false;
 		}
 		if(count($xml->suspensionState))
-		{
-			if(isset($xml->suspensionState->item) && count($xml->suspensionState->item))
-				$this->multiLingual_suspensionState = Kaltura_Client_ParseUtils::unmarshalArray($xml->suspensionState, '');
-			else
-				$this->suspensionState = (string)$xml->suspensionState;
-		}
+			$this->suspensionState = (string)$xml->suspensionState;
 		if(count($xml->userState))
-		{
-			if(isset($xml->userState->item) && count($xml->userState->item))
-				$this->multiLingual_userState = Kaltura_Client_ParseUtils::unmarshalArray($xml->userState, '');
-			else
-				$this->userState = (string)$xml->userState;
-		}
+			$this->userState = (string)$xml->userState;
 		if(count($xml->roleIds))
-		{
-			if(isset($xml->roleIds->item) && count($xml->roleIds->item))
-				$this->multiLingual_roleIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->roleIds, '');
-			else
-				$this->roleIds = (string)$xml->roleIds;
-		}
+			$this->roleIds = (string)$xml->roleIds;
 		if(count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
 		if(count($xml->updateDate))

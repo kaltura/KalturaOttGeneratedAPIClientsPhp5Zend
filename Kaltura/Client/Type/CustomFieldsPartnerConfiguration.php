@@ -46,12 +46,7 @@ class Kaltura_Client_Type_CustomFieldsPartnerConfiguration extends Kaltura_Clien
 			return;
 		
 		if(count($xml->metaSystemNameInsteadOfAliasList))
-		{
-			if(isset($xml->metaSystemNameInsteadOfAliasList->item) && count($xml->metaSystemNameInsteadOfAliasList->item))
-				$this->multiLingual_metaSystemNameInsteadOfAliasList = Kaltura_Client_ParseUtils::unmarshalArray($xml->metaSystemNameInsteadOfAliasList, '');
-			else
-				$this->metaSystemNameInsteadOfAliasList = (string)$xml->metaSystemNameInsteadOfAliasList;
-		}
+			$this->metaSystemNameInsteadOfAliasList = (string)$xml->metaSystemNameInsteadOfAliasList;
 	}
 	/**
 	 * Array of clientTag values

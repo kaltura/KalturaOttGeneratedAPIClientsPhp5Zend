@@ -46,12 +46,7 @@ class Kaltura_Client_Type_ListGroupsRepresentativesFilter extends Kaltura_Client
 			return;
 		
 		if(count($xml->kSql))
-		{
-			if(isset($xml->kSql->item) && count($xml->kSql->item))
-				$this->multiLingual_kSql = Kaltura_Client_ParseUtils::unmarshalArray($xml->kSql, '');
-			else
-				$this->kSql = (string)$xml->kSql;
-		}
+			$this->kSql = (string)$xml->kSql;
 	}
 	/**
 	 * Search assets using dynamic criteria. Provided collection of nested expressions with key, comparison operators, value, and logical conjunction.

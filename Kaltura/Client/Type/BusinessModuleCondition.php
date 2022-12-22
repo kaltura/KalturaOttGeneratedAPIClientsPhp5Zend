@@ -46,12 +46,7 @@ class Kaltura_Client_Type_BusinessModuleCondition extends Kaltura_Client_Type_Co
 			return;
 		
 		if(count($xml->businessModuleType))
-		{
-			if(isset($xml->businessModuleType->item) && count($xml->businessModuleType->item))
-				$this->multiLingual_businessModuleType = Kaltura_Client_ParseUtils::unmarshalArray($xml->businessModuleType, '');
-			else
-				$this->businessModuleType = (string)$xml->businessModuleType;
-		}
+			$this->businessModuleType = (string)$xml->businessModuleType;
 		if(count($xml->businessModuleId))
 			$this->businessModuleId = (string)$xml->businessModuleId;
 	}

@@ -46,47 +46,17 @@ class Kaltura_Client_Type_PushMessage extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->message))
-		{
-			if(isset($xml->message->item) && count($xml->message->item))
-				$this->multiLingual_message = Kaltura_Client_ParseUtils::unmarshalArray($xml->message, '');
-			else
-				$this->message = (string)$xml->message;
-		}
+			$this->message = (string)$xml->message;
 		if(count($xml->sound))
-		{
-			if(isset($xml->sound->item) && count($xml->sound->item))
-				$this->multiLingual_sound = Kaltura_Client_ParseUtils::unmarshalArray($xml->sound, '');
-			else
-				$this->sound = (string)$xml->sound;
-		}
+			$this->sound = (string)$xml->sound;
 		if(count($xml->action))
-		{
-			if(isset($xml->action->item) && count($xml->action->item))
-				$this->multiLingual_action = Kaltura_Client_ParseUtils::unmarshalArray($xml->action, '');
-			else
-				$this->action = (string)$xml->action;
-		}
+			$this->action = (string)$xml->action;
 		if(count($xml->url))
-		{
-			if(isset($xml->url->item) && count($xml->url->item))
-				$this->multiLingual_url = Kaltura_Client_ParseUtils::unmarshalArray($xml->url, '');
-			else
-				$this->url = (string)$xml->url;
-		}
+			$this->url = (string)$xml->url;
 		if(count($xml->udid))
-		{
-			if(isset($xml->udid->item) && count($xml->udid->item))
-				$this->multiLingual_udid = Kaltura_Client_ParseUtils::unmarshalArray($xml->udid, '');
-			else
-				$this->udid = (string)$xml->udid;
-		}
+			$this->udid = (string)$xml->udid;
 		if(count($xml->pushChannels))
-		{
-			if(isset($xml->pushChannels->item) && count($xml->pushChannels->item))
-				$this->multiLingual_pushChannels = Kaltura_Client_ParseUtils::unmarshalArray($xml->pushChannels, '');
-			else
-				$this->pushChannels = (string)$xml->pushChannels;
-		}
+			$this->pushChannels = (string)$xml->pushChannels;
 	}
 	/**
 	 * The message that will be presented to the user.

@@ -46,12 +46,7 @@ class Kaltura_Client_Type_CollectionFilter extends Kaltura_Client_Type_Filter
 			return;
 		
 		if(count($xml->collectionIdIn))
-		{
-			if(isset($xml->collectionIdIn->item) && count($xml->collectionIdIn->item))
-				$this->multiLingual_collectionIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->collectionIdIn, '');
-			else
-				$this->collectionIdIn = (string)$xml->collectionIdIn;
-		}
+			$this->collectionIdIn = (string)$xml->collectionIdIn;
 		if(count($xml->mediaFileIdEqual))
 			$this->mediaFileIdEqual = (int)$xml->mediaFileIdEqual;
 		if(count($xml->couponGroupIdEqual))

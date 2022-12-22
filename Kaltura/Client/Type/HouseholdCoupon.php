@@ -46,12 +46,7 @@ class Kaltura_Client_Type_HouseholdCoupon extends Kaltura_Client_Type_OTTObjectS
 			return;
 		
 		if(count($xml->code))
-		{
-			if(isset($xml->code->item) && count($xml->code->item))
-				$this->multiLingual_code = Kaltura_Client_ParseUtils::unmarshalArray($xml->code, '');
-			else
-				$this->code = (string)$xml->code;
-		}
+			$this->code = (string)$xml->code;
 		if(count($xml->lastUsageDate))
 			$this->lastUsageDate = (string)$xml->lastUsageDate;
 	}

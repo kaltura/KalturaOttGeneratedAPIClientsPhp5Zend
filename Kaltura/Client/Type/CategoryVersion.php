@@ -48,21 +48,11 @@ class Kaltura_Client_Type_CategoryVersion extends Kaltura_Client_Type_OTTObjectS
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->treeId))
 			$this->treeId = (string)$xml->treeId;
 		if(count($xml->state))
-		{
-			if(isset($xml->state->item) && count($xml->state->item))
-				$this->multiLingual_state = Kaltura_Client_ParseUtils::unmarshalArray($xml->state, '');
-			else
-				$this->state = (string)$xml->state;
-		}
+			$this->state = (string)$xml->state;
 		if(count($xml->baseVersionId))
 			$this->baseVersionId = (string)$xml->baseVersionId;
 		if(count($xml->categoryRootId))
@@ -72,12 +62,7 @@ class Kaltura_Client_Type_CategoryVersion extends Kaltura_Client_Type_OTTObjectS
 		if(count($xml->updaterId))
 			$this->updaterId = (string)$xml->updaterId;
 		if(count($xml->comment))
-		{
-			if(isset($xml->comment->item) && count($xml->comment->item))
-				$this->multiLingual_comment = Kaltura_Client_ParseUtils::unmarshalArray($xml->comment, '');
-			else
-				$this->comment = (string)$xml->comment;
-		}
+			$this->comment = (string)$xml->comment;
 		if(count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
 		if(count($xml->updateDate))

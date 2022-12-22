@@ -48,21 +48,11 @@ class Kaltura_Client_Type_PersonalList extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
 		if(count($xml->ksql))
-		{
-			if(isset($xml->ksql->item) && count($xml->ksql->item))
-				$this->multiLingual_ksql = Kaltura_Client_ParseUtils::unmarshalArray($xml->ksql, '');
-			else
-				$this->ksql = (string)$xml->ksql;
-		}
+			$this->ksql = (string)$xml->ksql;
 		if(count($xml->partnerListType))
 			$this->partnerListType = (int)$xml->partnerListType;
 	}

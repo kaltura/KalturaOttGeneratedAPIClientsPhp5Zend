@@ -46,19 +46,9 @@ class Kaltura_Client_Type_LicensedUrl extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->mainUrl))
-		{
-			if(isset($xml->mainUrl->item) && count($xml->mainUrl->item))
-				$this->multiLingual_mainUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->mainUrl, '');
-			else
-				$this->mainUrl = (string)$xml->mainUrl;
-		}
+			$this->mainUrl = (string)$xml->mainUrl;
 		if(count($xml->altUrl))
-		{
-			if(isset($xml->altUrl->item) && count($xml->altUrl->item))
-				$this->multiLingual_altUrl = Kaltura_Client_ParseUtils::unmarshalArray($xml->altUrl, '');
-			else
-				$this->altUrl = (string)$xml->altUrl;
-		}
+			$this->altUrl = (string)$xml->altUrl;
 	}
 	/**
 	 * Main licensed URL

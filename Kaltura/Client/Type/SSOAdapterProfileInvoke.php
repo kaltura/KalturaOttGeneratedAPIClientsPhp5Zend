@@ -53,19 +53,9 @@ class Kaltura_Client_Type_SSOAdapterProfileInvoke extends Kaltura_Client_ObjectB
 				$this->adapterData = Kaltura_Client_ParseUtils::unmarshalMap($xml->adapterData, "KalturaStringValue");
 		}
 		if(count($xml->code))
-		{
-			if(isset($xml->code->item) && count($xml->code->item))
-				$this->multiLingual_code = Kaltura_Client_ParseUtils::unmarshalArray($xml->code, '');
-			else
-				$this->code = (string)$xml->code;
-		}
+			$this->code = (string)$xml->code;
 		if(count($xml->message))
-		{
-			if(isset($xml->message->item) && count($xml->message->item))
-				$this->multiLingual_message = Kaltura_Client_ParseUtils::unmarshalArray($xml->message, '');
-			else
-				$this->message = (string)$xml->message;
-		}
+			$this->message = (string)$xml->message;
 	}
 	/**
 	 * key/value map field for adapter data

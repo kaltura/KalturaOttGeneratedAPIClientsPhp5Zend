@@ -46,12 +46,7 @@ class Kaltura_Client_Type_UserInterest extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->id))
-		{
-			if(isset($xml->id->item) && count($xml->id->item))
-				$this->multiLingual_id = Kaltura_Client_ParseUtils::unmarshalArray($xml->id, '');
-			else
-				$this->id = (string)$xml->id;
-		}
+			$this->id = (string)$xml->id;
 		if(count($xml->topic) && !empty($xml->topic))
 			$this->topic = Kaltura_Client_ParseUtils::unmarshalObject($xml->topic, "KalturaUserInterestTopic");
 	}

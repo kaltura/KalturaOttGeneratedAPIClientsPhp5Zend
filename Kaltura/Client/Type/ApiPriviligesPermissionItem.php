@@ -46,19 +46,9 @@ class Kaltura_Client_Type_ApiPriviligesPermissionItem extends Kaltura_Client_Typ
 			return;
 		
 		if(count($xml->object))
-		{
-			if(isset($xml->object->item) && count($xml->object->item))
-				$this->multiLingual_object = Kaltura_Client_ParseUtils::unmarshalArray($xml->object, '');
-			else
-				$this->object = (string)$xml->object;
-		}
+			$this->object = (string)$xml->object;
 		if(count($xml->parameter))
-		{
-			if(isset($xml->parameter->item) && count($xml->parameter->item))
-				$this->multiLingual_parameter = Kaltura_Client_ParseUtils::unmarshalArray($xml->parameter, '');
-			else
-				$this->parameter = (string)$xml->parameter;
-		}
+			$this->parameter = (string)$xml->parameter;
 	}
 	/**
 	 * API object name

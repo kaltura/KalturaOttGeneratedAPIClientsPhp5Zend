@@ -48,23 +48,13 @@ class Kaltura_Client_Type_Coupon extends Kaltura_Client_ObjectBase
 		if(count($xml->couponsGroup) && !empty($xml->couponsGroup))
 			$this->couponsGroup = Kaltura_Client_ParseUtils::unmarshalObject($xml->couponsGroup, "KalturaCouponsGroup");
 		if(count($xml->status))
-		{
-			if(isset($xml->status->item) && count($xml->status->item))
-				$this->multiLingual_status = Kaltura_Client_ParseUtils::unmarshalArray($xml->status, '');
-			else
-				$this->status = (string)$xml->status;
-		}
+			$this->status = (string)$xml->status;
 		if(count($xml->totalUses))
 			$this->totalUses = (int)$xml->totalUses;
 		if(count($xml->leftUses))
 			$this->leftUses = (int)$xml->leftUses;
 		if(count($xml->couponCode))
-		{
-			if(isset($xml->couponCode->item) && count($xml->couponCode->item))
-				$this->multiLingual_couponCode = Kaltura_Client_ParseUtils::unmarshalArray($xml->couponCode, '');
-			else
-				$this->couponCode = (string)$xml->couponCode;
-		}
+			$this->couponCode = (string)$xml->couponCode;
 	}
 	/**
 	 * Coupons group details

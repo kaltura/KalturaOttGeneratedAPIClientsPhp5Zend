@@ -52,12 +52,7 @@ class Kaltura_Client_Type_ContentScoreCondition extends Kaltura_Client_Type_Base
 		if(count($xml->days))
 			$this->days = (int)$xml->days;
 		if(count($xml->field))
-		{
-			if(isset($xml->field->item) && count($xml->field->item))
-				$this->multiLingual_field = Kaltura_Client_ParseUtils::unmarshalArray($xml->field, '');
-			else
-				$this->field = (string)$xml->field;
-		}
+			$this->field = (string)$xml->field;
 		if(count($xml->values))
 		{
 			if(empty($xml->values))

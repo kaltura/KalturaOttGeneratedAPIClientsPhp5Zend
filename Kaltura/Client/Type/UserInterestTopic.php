@@ -46,19 +46,9 @@ class Kaltura_Client_Type_UserInterestTopic extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->metaId))
-		{
-			if(isset($xml->metaId->item) && count($xml->metaId->item))
-				$this->multiLingual_metaId = Kaltura_Client_ParseUtils::unmarshalArray($xml->metaId, '');
-			else
-				$this->metaId = (string)$xml->metaId;
-		}
+			$this->metaId = (string)$xml->metaId;
 		if(count($xml->value))
-		{
-			if(isset($xml->value->item) && count($xml->value->item))
-				$this->multiLingual_value = Kaltura_Client_ParseUtils::unmarshalArray($xml->value, '');
-			else
-				$this->value = (string)$xml->value;
-		}
+			$this->value = (string)$xml->value;
 		if(count($xml->parentTopic) && !empty($xml->parentTopic))
 			$this->parentTopic = Kaltura_Client_ParseUtils::unmarshalObject($xml->parentTopic, "KalturaUserInterestTopic");
 	}

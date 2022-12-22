@@ -46,12 +46,7 @@ class Kaltura_Client_Type_DevicePin extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(count($xml->pin))
-		{
-			if(isset($xml->pin->item) && count($xml->pin->item))
-				$this->multiLingual_pin = Kaltura_Client_ParseUtils::unmarshalArray($xml->pin, '');
-			else
-				$this->pin = (string)$xml->pin;
-		}
+			$this->pin = (string)$xml->pin;
 	}
 	/**
 	 * Device pin

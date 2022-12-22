@@ -46,19 +46,9 @@ class Kaltura_Client_Type_BumpersPlaybackPluginData extends Kaltura_Client_Type_
 			return;
 		
 		if(count($xml->url))
-		{
-			if(isset($xml->url->item) && count($xml->url->item))
-				$this->multiLingual_url = Kaltura_Client_ParseUtils::unmarshalArray($xml->url, '');
-			else
-				$this->url = (string)$xml->url;
-		}
+			$this->url = (string)$xml->url;
 		if(count($xml->streamertype))
-		{
-			if(isset($xml->streamertype->item) && count($xml->streamertype->item))
-				$this->multiLingual_streamertype = Kaltura_Client_ParseUtils::unmarshalArray($xml->streamertype, '');
-			else
-				$this->streamertype = (string)$xml->streamertype;
-		}
+			$this->streamertype = (string)$xml->streamertype;
 	}
 	/**
 	 * url

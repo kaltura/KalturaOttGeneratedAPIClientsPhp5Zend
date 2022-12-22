@@ -48,56 +48,21 @@ class Kaltura_Client_Type_Country extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (int)$xml->id;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->code))
-		{
-			if(isset($xml->code->item) && count($xml->code->item))
-				$this->multiLingual_code = Kaltura_Client_ParseUtils::unmarshalArray($xml->code, '');
-			else
-				$this->code = (string)$xml->code;
-		}
+			$this->code = (string)$xml->code;
 		if(count($xml->mainLanguageCode))
-		{
-			if(isset($xml->mainLanguageCode->item) && count($xml->mainLanguageCode->item))
-				$this->multiLingual_mainLanguageCode = Kaltura_Client_ParseUtils::unmarshalArray($xml->mainLanguageCode, '');
-			else
-				$this->mainLanguageCode = (string)$xml->mainLanguageCode;
-		}
+			$this->mainLanguageCode = (string)$xml->mainLanguageCode;
 		if(count($xml->languagesCode))
-		{
-			if(isset($xml->languagesCode->item) && count($xml->languagesCode->item))
-				$this->multiLingual_languagesCode = Kaltura_Client_ParseUtils::unmarshalArray($xml->languagesCode, '');
-			else
-				$this->languagesCode = (string)$xml->languagesCode;
-		}
+			$this->languagesCode = (string)$xml->languagesCode;
 		if(count($xml->currency))
-		{
-			if(isset($xml->currency->item) && count($xml->currency->item))
-				$this->multiLingual_currency = Kaltura_Client_ParseUtils::unmarshalArray($xml->currency, '');
-			else
-				$this->currency = (string)$xml->currency;
-		}
+			$this->currency = (string)$xml->currency;
 		if(count($xml->currencySign))
-		{
-			if(isset($xml->currencySign->item) && count($xml->currencySign->item))
-				$this->multiLingual_currencySign = Kaltura_Client_ParseUtils::unmarshalArray($xml->currencySign, '');
-			else
-				$this->currencySign = (string)$xml->currencySign;
-		}
+			$this->currencySign = (string)$xml->currencySign;
 		if(count($xml->vatPercent))
 			$this->vatPercent = (float)$xml->vatPercent;
 		if(count($xml->timeZoneId))
-		{
-			if(isset($xml->timeZoneId->item) && count($xml->timeZoneId->item))
-				$this->multiLingual_timeZoneId = Kaltura_Client_ParseUtils::unmarshalArray($xml->timeZoneId, '');
-			else
-				$this->timeZoneId = (string)$xml->timeZoneId;
-		}
+			$this->timeZoneId = (string)$xml->timeZoneId;
 	}
 	/**
 	 * Country identifier

@@ -46,12 +46,7 @@ class Kaltura_Client_Type_GroupPermission extends Kaltura_Client_Type_Permission
 			return;
 		
 		if(count($xml->group))
-		{
-			if(isset($xml->group->item) && count($xml->group->item))
-				$this->multiLingual_group = Kaltura_Client_ParseUtils::unmarshalArray($xml->group, '');
-			else
-				$this->group = (string)$xml->group;
-		}
+			$this->group = (string)$xml->group;
 	}
 	/**
 	 * Permission identifier

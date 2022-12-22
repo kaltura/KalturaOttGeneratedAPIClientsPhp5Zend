@@ -46,12 +46,7 @@ class Kaltura_Client_Type_HouseholdFilter extends Kaltura_Client_Type_Filter
 			return;
 		
 		if(count($xml->externalIdEqual))
-		{
-			if(isset($xml->externalIdEqual->item) && count($xml->externalIdEqual->item))
-				$this->multiLingual_externalIdEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->externalIdEqual, '');
-			else
-				$this->externalIdEqual = (string)$xml->externalIdEqual;
-		}
+			$this->externalIdEqual = (string)$xml->externalIdEqual;
 	}
 	/**
 	 * Household external identifier to search by

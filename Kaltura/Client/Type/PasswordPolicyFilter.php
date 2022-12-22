@@ -46,12 +46,7 @@ class Kaltura_Client_Type_PasswordPolicyFilter extends Kaltura_Client_Type_Filte
 			return;
 		
 		if(count($xml->userRoleIdIn))
-		{
-			if(isset($xml->userRoleIdIn->item) && count($xml->userRoleIdIn->item))
-				$this->multiLingual_userRoleIdIn = Kaltura_Client_ParseUtils::unmarshalArray($xml->userRoleIdIn, '');
-			else
-				$this->userRoleIdIn = (string)$xml->userRoleIdIn;
-		}
+			$this->userRoleIdIn = (string)$xml->userRoleIdIn;
 	}
 	/**
 	 * Comma separated list of role Ids.

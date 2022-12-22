@@ -46,19 +46,9 @@ class Kaltura_Client_Type_MailDispatcher extends Kaltura_Client_Type_Dispatcher
 			return;
 		
 		if(count($xml->bodyTemplate))
-		{
-			if(isset($xml->bodyTemplate->item) && count($xml->bodyTemplate->item))
-				$this->multiLingual_bodyTemplate = Kaltura_Client_ParseUtils::unmarshalArray($xml->bodyTemplate, '');
-			else
-				$this->bodyTemplate = (string)$xml->bodyTemplate;
-		}
+			$this->bodyTemplate = (string)$xml->bodyTemplate;
 		if(count($xml->subjectTemplate))
-		{
-			if(isset($xml->subjectTemplate->item) && count($xml->subjectTemplate->item))
-				$this->multiLingual_subjectTemplate = Kaltura_Client_ParseUtils::unmarshalArray($xml->subjectTemplate, '');
-			else
-				$this->subjectTemplate = (string)$xml->subjectTemplate;
-		}
+			$this->subjectTemplate = (string)$xml->subjectTemplate;
 	}
 	/**
 	 * Mail body template

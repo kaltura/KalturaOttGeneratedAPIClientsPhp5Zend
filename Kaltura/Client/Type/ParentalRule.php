@@ -48,19 +48,9 @@ class Kaltura_Client_Type_ParentalRule extends Kaltura_Client_ObjectBase
 		if(count($xml->id))
 			$this->id = (string)$xml->id;
 		if(count($xml->name))
-		{
-			if(isset($xml->name->item) && count($xml->name->item))
-				$this->multiLingual_name = Kaltura_Client_ParseUtils::unmarshalArray($xml->name, '');
-			else
-				$this->name = (string)$xml->name;
-		}
+			$this->name = (string)$xml->name;
 		if(count($xml->description))
-		{
-			if(isset($xml->description->item) && count($xml->description->item))
-				$this->multiLingual_description = Kaltura_Client_ParseUtils::unmarshalArray($xml->description, '');
-			else
-				$this->description = (string)$xml->description;
-		}
+			$this->description = (string)$xml->description;
 		if(count($xml->order))
 			$this->order = (int)$xml->order;
 		if(count($xml->mediaTag))
@@ -75,12 +65,7 @@ class Kaltura_Client_Type_ParentalRule extends Kaltura_Client_ObjectBase
 				$this->blockAnonymousAccess = false;
 		}
 		if(count($xml->ruleType))
-		{
-			if(isset($xml->ruleType->item) && count($xml->ruleType->item))
-				$this->multiLingual_ruleType = Kaltura_Client_ParseUtils::unmarshalArray($xml->ruleType, '');
-			else
-				$this->ruleType = (string)$xml->ruleType;
-		}
+			$this->ruleType = (string)$xml->ruleType;
 		if(count($xml->mediaTagValues))
 		{
 			if(empty($xml->mediaTagValues))
@@ -103,12 +88,7 @@ class Kaltura_Client_Type_ParentalRule extends Kaltura_Client_ObjectBase
 				$this->isDefault = false;
 		}
 		if(count($xml->origin))
-		{
-			if(isset($xml->origin->item) && count($xml->origin->item))
-				$this->multiLingual_origin = Kaltura_Client_ParseUtils::unmarshalArray($xml->origin, '');
-			else
-				$this->origin = (string)$xml->origin;
-		}
+			$this->origin = (string)$xml->origin;
 		if(count($xml->isActive))
 		{
 			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))
