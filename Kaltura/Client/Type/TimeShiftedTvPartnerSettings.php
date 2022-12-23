@@ -141,17 +141,6 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 		}
 		if(count($xml->defaultQuota))
 			$this->defaultQuota = (int)$xml->defaultQuota;
-		if(count($xml->personalizedRecording))
-		{
-			if(!empty($xml->personalizedRecording) && ((int) $xml->personalizedRecording === 1 || strtolower((string)$xml->personalizedRecording) === 'true'))
-				$this->personalizedRecording = true;
-			else
-				$this->personalizedRecording = false;
-		}
-		if(count($xml->maxRecordingConcurrency))
-			$this->maxRecordingConcurrency = (int)$xml->maxRecordingConcurrency;
-		if(count($xml->maxConcurrencyMargin))
-			$this->maxConcurrencyMargin = (int)$xml->maxConcurrencyMargin;
 	}
 	/**
 	 * Is catch-up enabled
@@ -313,27 +302,6 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 	 * @var int
 	 */
 	public $defaultQuota = null;
-
-	/**
-	 * Define whatever the partner enables the Personal Padding and Immediate / Stop recording services to the partner. Default value should be FALSE
-	 *
-	 * @var bool
-	 */
-	public $personalizedRecording = null;
-
-	/**
-	 * Define the max allowed number of parallel recordings. Default NULL unlimited
-	 *
-	 * @var int
-	 */
-	public $maxRecordingConcurrency = null;
-
-	/**
-	 * Define the max grace margin time for overlapping recording. Default NULL 0 margin
-	 *
-	 * @var int
-	 */
-	public $maxConcurrencyMargin = null;
 
 
 }
