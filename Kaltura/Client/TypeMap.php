@@ -708,6 +708,7 @@ class Kaltura_Client_TypeMap
 		'KalturaSegmentationTypeFilter' => 'Kaltura_Client_Type_SegmentationTypeFilter',
 		'KalturaSegmentationTypeListResponse' => 'Kaltura_Client_Type_SegmentationTypeListResponse',
 		'KalturaSegmentsCondition' => 'Kaltura_Client_Type_SegmentsCondition',
+		'KalturaSeriesIdArguments' => 'Kaltura_Client_Type_SeriesIdArguments',
 		'KalturaSeriesRecording' => 'Kaltura_Client_Type_SeriesRecording',
 		'KalturaSeriesRecordingFilter' => 'Kaltura_Client_Type_SeriesRecordingFilter',
 		'KalturaSeriesRecordingListResponse' => 'Kaltura_Client_Type_SeriesRecordingListResponse',
