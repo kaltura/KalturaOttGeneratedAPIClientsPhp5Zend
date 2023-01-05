@@ -49,6 +49,8 @@ class Kaltura_Client_Type_Promotion extends Kaltura_Client_Type_BasePromotion
 			$this->discountModuleId = (string)$xml->discountModuleId;
 		if(count($xml->numberOfRecurring))
 			$this->numberOfRecurring = (int)$xml->numberOfRecurring;
+		if(count($xml->maxDiscountUsages))
+			$this->maxDiscountUsages = (int)$xml->maxDiscountUsages;
 	}
 	/**
 	 * The discount module id that is promoted to the user
@@ -63,6 +65,14 @@ class Kaltura_Client_Type_Promotion extends Kaltura_Client_Type_BasePromotion
 	 * @var int
 	 */
 	public $numberOfRecurring = null;
+
+	/**
+	 * The number of times a household can use the discount module in this campaign.
+	 *             If omitted than no limitation is enforced on the number of usages.
+	 *
+	 * @var int
+	 */
+	public $maxDiscountUsages = null;
 
 
 }
