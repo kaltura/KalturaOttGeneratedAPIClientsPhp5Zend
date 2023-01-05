@@ -256,6 +256,7 @@ class Kaltura_Client_TypeMap
 		'KalturaCountryListResponse' => 'Kaltura_Client_Type_CountryListResponse',
 		'KalturaCoupon' => 'Kaltura_Client_Type_Coupon',
 		'KalturaCouponEntitlementDiscountDetails' => 'Kaltura_Client_Type_CouponEntitlementDiscountDetails',
+		'KalturaCouponFilter' => 'Kaltura_Client_Type_CouponFilter',
 		'KalturaCouponGenerationOptions' => 'Kaltura_Client_Type_CouponGenerationOptions',
 		'KalturaCouponListResponse' => 'Kaltura_Client_Type_CouponListResponse',
 		'KalturaCouponPromotion' => 'Kaltura_Client_Type_CouponPromotion',
