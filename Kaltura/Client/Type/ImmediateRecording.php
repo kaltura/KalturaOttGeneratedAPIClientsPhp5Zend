@@ -56,7 +56,6 @@ class Kaltura_Client_Type_ImmediateRecording extends Kaltura_Client_Type_Recordi
 	 * Household specific end padding of the recording
 	 *
 	 * @var int
-	 * @readonly
 	 */
 	public $endPadding = null;
 

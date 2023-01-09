@@ -140,11 +140,12 @@ class Kaltura_Client_RecordingService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_ImmediateRecording
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function immediateRecord($assetId, $epgChannelId, $endPadding)
+	function immediateRecord($assetId, $epgChannelId, $crid, $endPadding)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "assetId", $assetId);
 		$this->client->addParam($kparams, "epgChannelId", $epgChannelId);
+		$this->client->addParam($kparams, "crid", $crid);
 		$this->client->addParam($kparams, "endPadding", $endPadding);
 		$this->client->queueServiceActionCall("recording", "immediateRecord", "KalturaImmediateRecording", $kparams);
 		if ($this->client->isMultiRequest())
