@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -70,6 +70,10 @@ class Kaltura_Client_Type_SeriesRecording extends Kaltura_Client_ObjectBase
 		}
 		if(count($xml->seriesRecordingOption) && !empty($xml->seriesRecordingOption))
 			$this->seriesRecordingOption = Kaltura_Client_ParseUtils::unmarshalObject($xml->seriesRecordingOption, "KalturaSeriesRecordingOption");
+		if(count($xml->householdSpecificSeriesStartTimeOffset))
+			$this->householdSpecificSeriesStartTimeOffset = (int)$xml->householdSpecificSeriesStartTimeOffset;
+		if(count($xml->householdSpecificSeriesEndTimeOffset))
+			$this->householdSpecificSeriesEndTimeOffset = (int)$xml->householdSpecificSeriesEndTimeOffset;
 	}
 	/**
 	 * Kaltura unique ID representing the series recording identifier
@@ -144,6 +148,20 @@ class Kaltura_Client_Type_SeriesRecording extends Kaltura_Client_ObjectBase
 	 * @var Kaltura_Client_Type_SeriesRecordingOption
 	 */
 	public $seriesRecordingOption;
+
+	/**
+	 * Household specific start time of the recording
+	 *
+	 * @var int
+	 */
+	public $householdSpecificSeriesStartTimeOffset = null;
+
+	/**
+	 * Household specific end time of the recording
+	 *
+	 * @var int
+	 */
+	public $householdSpecificSeriesEndTimeOffset = null;
 
 
 }
