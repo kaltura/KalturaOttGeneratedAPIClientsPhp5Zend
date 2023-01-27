@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -376,6 +376,9 @@ class Kaltura_Client_TypeMap
 		'KalturaFilterFileByAudioCodecAction' => 'Kaltura_Client_Type_FilterFileByAudioCodecAction',
 		'KalturaFilterFileByAudioCodecInDiscoveryAction' => 'Kaltura_Client_Type_FilterFileByAudioCodecInDiscoveryAction',
 		'KalturaFilterFileByAudioCodecInPlaybackAction' => 'Kaltura_Client_Type_FilterFileByAudioCodecInPlaybackAction',
+		'KalturaFilterFileByDynamicDataAction' => 'Kaltura_Client_Type_FilterFileByDynamicDataAction',
+		'KalturaFilterFileByDynamicDataInDiscoveryAction' => 'Kaltura_Client_Type_FilterFileByDynamicDataInDiscoveryAction',
+		'KalturaFilterFileByDynamicDataInPlaybackAction' => 'Kaltura_Client_Type_FilterFileByDynamicDataInPlaybackAction',
 		'KalturaFilterFileByFileTypeIdAction' => 'Kaltura_Client_Type_FilterFileByFileTypeIdAction',
 		'KalturaFilterFileByFileTypeIdForAssetTypeAction' => 'Kaltura_Client_Type_FilterFileByFileTypeIdForAssetTypeAction',
 		'KalturaFilterFileByFileTypeIdForAssetTypeInDiscoveryAction' => 'Kaltura_Client_Type_FilterFileByFileTypeIdForAssetTypeInDiscoveryAction',
@@ -501,6 +504,9 @@ class Kaltura_Client_TypeMap
 		'KalturaMediaConcurrencyRule' => 'Kaltura_Client_Type_MediaConcurrencyRule',
 		'KalturaMediaConcurrencyRuleListResponse' => 'Kaltura_Client_Type_MediaConcurrencyRuleListResponse',
 		'KalturaMediaFile' => 'Kaltura_Client_Type_MediaFile',
+		'KalturaMediaFileDynamicData' => 'Kaltura_Client_Type_MediaFileDynamicData',
+		'KalturaMediaFileDynamicDataFilter' => 'Kaltura_Client_Type_MediaFileDynamicDataFilter',
+		'KalturaMediaFileDynamicDataListResponse' => 'Kaltura_Client_Type_MediaFileDynamicDataListResponse',
 		'KalturaMediaFileFilter' => 'Kaltura_Client_Type_MediaFileFilter',
 		'KalturaMediaFileListResponse' => 'Kaltura_Client_Type_MediaFileListResponse',
 		'KalturaMediaFileType' => 'Kaltura_Client_Type_MediaFileType',
