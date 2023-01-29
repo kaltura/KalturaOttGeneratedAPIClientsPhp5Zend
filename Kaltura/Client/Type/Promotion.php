@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -49,6 +49,8 @@ class Kaltura_Client_Type_Promotion extends Kaltura_Client_Type_BasePromotion
 			$this->discountModuleId = (string)$xml->discountModuleId;
 		if(count($xml->numberOfRecurring))
 			$this->numberOfRecurring = (int)$xml->numberOfRecurring;
+		if(count($xml->maxDiscountUsages))
+			$this->maxDiscountUsages = (int)$xml->maxDiscountUsages;
 	}
 	/**
 	 * The discount module id that is promoted to the user
@@ -63,6 +65,14 @@ class Kaltura_Client_Type_Promotion extends Kaltura_Client_Type_BasePromotion
 	 * @var int
 	 */
 	public $numberOfRecurring = null;
+
+	/**
+	 * The number of times a household can use the discount module in this campaign.
+	 *             If omitted than no limitation is enforced on the number of usages.
+	 *
+	 * @var int
+	 */
+	public $maxDiscountUsages = null;
 
 
 }
