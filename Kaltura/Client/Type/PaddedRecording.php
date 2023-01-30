@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RecordingAsset extends Kaltura_Client_Type_ProgramAsset
+class Kaltura_Client_Type_PaddedRecording extends Kaltura_Client_Type_Recording
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRecordingAsset';
+		return 'KalturaPaddedRecording';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,47 +45,24 @@ class Kaltura_Client_Type_RecordingAsset extends Kaltura_Client_Type_ProgramAsse
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->recordingId))
-			$this->recordingId = (string)$xml->recordingId;
-		if(count($xml->recordingType))
-			$this->recordingType = (string)$xml->recordingType;
-		if(count($xml->viewableUntilDate))
-			$this->viewableUntilDate = (string)$xml->viewableUntilDate;
-		if(count($xml->multiRecord))
-		{
-			if(!empty($xml->multiRecord) && ((int) $xml->multiRecord === 1 || strtolower((string)$xml->multiRecord) === 'true'))
-				$this->multiRecord = true;
-			else
-				$this->multiRecord = false;
-		}
+		if(count($xml->startPadding))
+			$this->startPadding = (int)$xml->startPadding;
+		if(count($xml->endPadding))
+			$this->endPadding = (int)$xml->endPadding;
 	}
 	/**
-	 * Recording identifier
+	 * Household specific start padding of the recording
 	 *
-	 * @var string
+	 * @var int
 	 */
-	public $recordingId = null;
+	public $startPadding = null;
 
 	/**
-	 * Recording Type: single/season/series
+	 * Household specific end padding of the recording
 	 *
-	 * @var Kaltura_Client_Enum_RecordingType
+	 * @var int
 	 */
-	public $recordingType = null;
-
-	/**
-	 * Specifies until when the recording is available for viewing. Date and time represented as epoch.
-	 *
-	 * @var bigint
-	 */
-	public $viewableUntilDate = null;
-
-	/**
-	 * When TRUE indicates that there are multiple KalturaImmediateRecording instances for the event.
-	 *
-	 * @var bool
-	 */
-	public $multiRecord = null;
+	public $endPadding = null;
 
 
 }

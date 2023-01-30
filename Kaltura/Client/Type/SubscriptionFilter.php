@@ -68,8 +68,8 @@ class Kaltura_Client_Type_SubscriptionFilter extends Kaltura_Client_Type_Filter
 			else
 				$this->alsoInactive = false;
 		}
-		if(count($xml->dependencyTypeEqual))
-			$this->dependencyTypeEqual = (string)$xml->dependencyTypeEqual;
+		if(count($xml->dependencyTypeIn))
+			$this->dependencyTypeIn = (string)$xml->dependencyTypeIn;
 	}
 	/**
 	 * Comma separated subscription IDs to get the subscriptions by
@@ -135,11 +135,12 @@ class Kaltura_Client_Type_SubscriptionFilter extends Kaltura_Client_Type_Filter
 	public $alsoInactive = null;
 
 	/**
-	 * return subscriptions associated by their subscription sets dependency Type
+	 * comma separated values of KalturaSubscriptionDependencyType 
+	 *             return subscriptions associated by their subscription sets dependency Type
 	 *
-	 * @var Kaltura_Client_Enum_SubscriptionDependencyType
+	 * @var string
 	 */
-	public $dependencyTypeEqual = null;
+	public $dependencyTypeIn = null;
 
 
 }

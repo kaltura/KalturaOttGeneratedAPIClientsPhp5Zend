@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RecordingAsset extends Kaltura_Client_Type_ProgramAsset
+class Kaltura_Client_Type_ImmediateRecording extends Kaltura_Client_Type_Recording
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRecordingAsset';
+		return 'KalturaImmediateRecording';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,47 +45,35 @@ class Kaltura_Client_Type_RecordingAsset extends Kaltura_Client_Type_ProgramAsse
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->recordingId))
-			$this->recordingId = (string)$xml->recordingId;
-		if(count($xml->recordingType))
-			$this->recordingType = (string)$xml->recordingType;
-		if(count($xml->viewableUntilDate))
-			$this->viewableUntilDate = (string)$xml->viewableUntilDate;
-		if(count($xml->multiRecord))
-		{
-			if(!empty($xml->multiRecord) && ((int) $xml->multiRecord === 1 || strtolower((string)$xml->multiRecord) === 'true'))
-				$this->multiRecord = true;
-			else
-				$this->multiRecord = false;
-		}
+		if(count($xml->endPadding))
+			$this->endPadding = (int)$xml->endPadding;
+		if(count($xml->absoluteStart))
+			$this->absoluteStart = (string)$xml->absoluteStart;
+		if(count($xml->absoluteEnd))
+			$this->absoluteEnd = (string)$xml->absoluteEnd;
 	}
 	/**
-	 * Recording identifier
+	 * Household specific end padding of the recording
 	 *
-	 * @var string
+	 * @var int
 	 */
-	public $recordingId = null;
+	public $endPadding = null;
 
 	/**
-	 * Recording Type: single/season/series
-	 *
-	 * @var Kaltura_Client_Enum_RecordingType
-	 */
-	public $recordingType = null;
-
-	/**
-	 * Specifies until when the recording is available for viewing. Date and time represented as epoch.
+	 * Household absolute start time of the immediate recording
 	 *
 	 * @var bigint
+	 * @readonly
 	 */
-	public $viewableUntilDate = null;
+	public $absoluteStart = null;
 
 	/**
-	 * When TRUE indicates that there are multiple KalturaImmediateRecording instances for the event.
+	 * Household absolute end time of the immediate recording, empty if till end of program
 	 *
-	 * @var bool
+	 * @var bigint
+	 * @readonly
 	 */
-	public $multiRecord = null;
+	public $absoluteEnd = null;
 
 
 }

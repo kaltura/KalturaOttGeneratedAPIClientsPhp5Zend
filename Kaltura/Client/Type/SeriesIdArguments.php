@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RecordingAsset extends Kaltura_Client_Type_ProgramAsset
+class Kaltura_Client_Type_SeriesIdArguments extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRecordingAsset';
+		return 'KalturaSeriesIdArguments';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,47 +45,51 @@ class Kaltura_Client_Type_RecordingAsset extends Kaltura_Client_Type_ProgramAsse
 		if(is_null($xml))
 			return;
 		
-		if(count($xml->recordingId))
-			$this->recordingId = (string)$xml->recordingId;
-		if(count($xml->recordingType))
-			$this->recordingType = (string)$xml->recordingType;
-		if(count($xml->viewableUntilDate))
-			$this->viewableUntilDate = (string)$xml->viewableUntilDate;
-		if(count($xml->multiRecord))
-		{
-			if(!empty($xml->multiRecord) && ((int) $xml->multiRecord === 1 || strtolower((string)$xml->multiRecord) === 'true'))
-				$this->multiRecord = true;
-			else
-				$this->multiRecord = false;
-		}
+		if(count($xml->assetTypeIdIn))
+			$this->assetTypeIdIn = (string)$xml->assetTypeIdIn;
+		if(count($xml->seriesId))
+			$this->seriesId = (string)$xml->seriesId;
+		if(count($xml->seriesIdMetaName))
+			$this->seriesIdMetaName = (string)$xml->seriesIdMetaName;
+		if(count($xml->seasonNumberMetaName))
+			$this->seasonNumberMetaName = (string)$xml->seasonNumberMetaName;
+		if(count($xml->episodeNumberMetaName))
+			$this->episodeNumberMetaName = (string)$xml->episodeNumberMetaName;
 	}
 	/**
-	 * Recording identifier
+	 * Comma separated asset type IDs
 	 *
 	 * @var string
 	 */
-	public $recordingId = null;
+	public $assetTypeIdIn = null;
 
 	/**
-	 * Recording Type: single/season/series
+	 * Series ID
 	 *
-	 * @var Kaltura_Client_Enum_RecordingType
+	 * @var string
 	 */
-	public $recordingType = null;
+	public $seriesId = null;
 
 	/**
-	 * Specifies until when the recording is available for viewing. Date and time represented as epoch.
+	 * Series ID meta name.
 	 *
-	 * @var bigint
+	 * @var string
 	 */
-	public $viewableUntilDate = null;
+	public $seriesIdMetaName = null;
 
 	/**
-	 * When TRUE indicates that there are multiple KalturaImmediateRecording instances for the event.
+	 * Season number meta name
 	 *
-	 * @var bool
+	 * @var string
 	 */
-	public $multiRecord = null;
+	public $seasonNumberMetaName = null;
+
+	/**
+	 * Episode number meta name
+	 *
+	 * @var string
+	 */
+	public $episodeNumberMetaName = null;
 
 
 }

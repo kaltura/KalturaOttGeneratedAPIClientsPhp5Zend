@@ -31,62 +31,9 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RecordingAsset extends Kaltura_Client_Type_ProgramAsset
+class Kaltura_Client_Enum_NotWatchedReturnStrategy extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaRecordingAsset';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-		if(count($xml->recordingId))
-			$this->recordingId = (string)$xml->recordingId;
-		if(count($xml->recordingType))
-			$this->recordingType = (string)$xml->recordingType;
-		if(count($xml->viewableUntilDate))
-			$this->viewableUntilDate = (string)$xml->viewableUntilDate;
-		if(count($xml->multiRecord))
-		{
-			if(!empty($xml->multiRecord) && ((int) $xml->multiRecord === 1 || strtolower((string)$xml->multiRecord) === 'true'))
-				$this->multiRecord = true;
-			else
-				$this->multiRecord = false;
-		}
-	}
-	/**
-	 * Recording identifier
-	 *
-	 * @var string
-	 */
-	public $recordingId = null;
-
-	/**
-	 * Recording Type: single/season/series
-	 *
-	 * @var Kaltura_Client_Enum_RecordingType
-	 */
-	public $recordingType = null;
-
-	/**
-	 * Specifies until when the recording is available for viewing. Date and time represented as epoch.
-	 *
-	 * @var bigint
-	 */
-	public $viewableUntilDate = null;
-
-	/**
-	 * When TRUE indicates that there are multiple KalturaImmediateRecording instances for the event.
-	 *
-	 * @var bool
-	 */
-	public $multiRecord = null;
-
-
+	const RETURN_NO_NEXT_EPISODE = "RETURN_NO_NEXT_EPISODE";
+	const RETURN_FIRST_EPISODE = "RETURN_FIRST_EPISODE";
 }
 
