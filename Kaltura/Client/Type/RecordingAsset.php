@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -51,6 +51,13 @@ class Kaltura_Client_Type_RecordingAsset extends Kaltura_Client_Type_ProgramAsse
 			$this->recordingType = (string)$xml->recordingType;
 		if(count($xml->viewableUntilDate))
 			$this->viewableUntilDate = (string)$xml->viewableUntilDate;
+		if(count($xml->multiRecord))
+		{
+			if(!empty($xml->multiRecord) && ((int) $xml->multiRecord === 1 || strtolower((string)$xml->multiRecord) === 'true'))
+				$this->multiRecord = true;
+			else
+				$this->multiRecord = false;
+		}
 	}
 	/**
 	 * Recording identifier
@@ -72,6 +79,13 @@ class Kaltura_Client_Type_RecordingAsset extends Kaltura_Client_Type_ProgramAsse
 	 * @var bigint
 	 */
 	public $viewableUntilDate = null;
+
+	/**
+	 * When TRUE indicates that there are multiple KalturaImmediateRecording instances for the event.
+	 *
+	 * @var bool
+	 */
+	public $multiRecord = null;
 
 
 }
