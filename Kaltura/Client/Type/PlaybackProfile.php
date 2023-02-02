@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -56,6 +56,8 @@ class Kaltura_Client_Type_PlaybackProfile extends Kaltura_Client_ObjectBase
 			else
 				$this->isActive = false;
 		}
+		if(count($xml->adapterGrpcAddress))
+			$this->adapterGrpcAddress = (string)$xml->adapterGrpcAddress;
 		if(count($xml->adapterUrl))
 			$this->adapterUrl = (string)$xml->adapterUrl;
 		if(count($xml->settings))
@@ -86,6 +88,13 @@ class Kaltura_Client_Type_PlaybackProfile extends Kaltura_Client_ObjectBase
 	 * @var bool
 	 */
 	public $isActive = null;
+
+	/**
+	 * Playback profile Grpc address
+	 *
+	 * @var string
+	 */
+	public $adapterGrpcAddress = null;
 
 	/**
 	 * Playback profile URL
