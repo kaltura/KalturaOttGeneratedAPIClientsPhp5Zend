@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_ProgramAssetGroupOfferEntitlementFilter extends Kaltura_Client_Type_BaseEntitlementFilter
+class Kaltura_Client_Type_ProgramAssetGroupOfferEntitlementFilter extends Kaltura_Client_Type_EntitlementFilter
 {
 	public function getKalturaObjectType()
 	{

@@ -121,7 +121,6 @@ class Kaltura_Client_TypeMap
 		'KalturaBaseAssetStructFilter' => 'Kaltura_Client_Type_BaseAssetStructFilter',
 		'KalturaBaseChannel' => 'Kaltura_Client_Type_BaseChannel',
 		'KalturaBaseChannelOrder' => 'Kaltura_Client_Type_BaseChannelOrder',
-		'KalturaBaseEntitlementFilter' => 'Kaltura_Client_Type_BaseEntitlementFilter',
 		'KalturaBaseOTTUser' => 'Kaltura_Client_Type_BaseOTTUser',
 		'KalturaBasePartnerConfiguration' => 'Kaltura_Client_Type_BasePartnerConfiguration',
 		'KalturaBasePermissionFilter' => 'Kaltura_Client_Type_BasePermissionFilter',
