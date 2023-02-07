@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseEntitlementFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_ImmediateRecording extends Kaltura_Client_Type_Recording
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBaseEntitlementFilter';
+		return 'KalturaImmediateRecording';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,7 +45,36 @@ class Kaltura_Client_Type_BaseEntitlementFilter extends Kaltura_Client_Type_Filt
 		if(is_null($xml))
 			return;
 		
+		if(count($xml->endPadding))
+			$this->endPadding = (int)$xml->endPadding;
+		if(count($xml->absoluteStart))
+			$this->absoluteStart = (string)$xml->absoluteStart;
+		if(count($xml->absoluteEnd))
+			$this->absoluteEnd = (string)$xml->absoluteEnd;
 	}
+	/**
+	 * Household specific end padding of the recording
+	 *
+	 * @var int
+	 */
+	public $endPadding = null;
+
+	/**
+	 * Household absolute start time of the immediate recording
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $absoluteStart = null;
+
+	/**
+	 * Household absolute end time of the immediate recording, empty if till end of program
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $absoluteEnd = null;
+
 
 }
 

@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -121,7 +121,6 @@ class Kaltura_Client_TypeMap
 		'KalturaBaseAssetStructFilter' => 'Kaltura_Client_Type_BaseAssetStructFilter',
 		'KalturaBaseChannel' => 'Kaltura_Client_Type_BaseChannel',
 		'KalturaBaseChannelOrder' => 'Kaltura_Client_Type_BaseChannelOrder',
-		'KalturaBaseEntitlementFilter' => 'Kaltura_Client_Type_BaseEntitlementFilter',
 		'KalturaBaseOTTUser' => 'Kaltura_Client_Type_BaseOTTUser',
 		'KalturaBasePartnerConfiguration' => 'Kaltura_Client_Type_BasePartnerConfiguration',
 		'KalturaBasePermissionFilter' => 'Kaltura_Client_Type_BasePermissionFilter',
@@ -436,6 +435,7 @@ class Kaltura_Client_TypeMap
 		'KalturaImageType' => 'Kaltura_Client_Type_ImageType',
 		'KalturaImageTypeFilter' => 'Kaltura_Client_Type_ImageTypeFilter',
 		'KalturaImageTypeListResponse' => 'Kaltura_Client_Type_ImageTypeListResponse',
+		'KalturaImmediateRecording' => 'Kaltura_Client_Type_ImmediateRecording',
 		'KalturaInboxMessage' => 'Kaltura_Client_Type_InboxMessage',
 		'KalturaInboxMessageFilter' => 'Kaltura_Client_Type_InboxMessageFilter',
 		'KalturaInboxMessageListResponse' => 'Kaltura_Client_Type_InboxMessageListResponse',
@@ -537,6 +537,7 @@ class Kaltura_Client_TypeMap
 		'KalturaOpcPartnerConfiguration' => 'Kaltura_Client_Type_OpcPartnerConfiguration',
 		'KalturaOrCondition' => 'Kaltura_Client_Type_OrCondition',
 		'KalturaPPVItemPriceDetails' => 'Kaltura_Client_Type_PPVItemPriceDetails',
+		'KalturaPaddedRecording' => 'Kaltura_Client_Type_PaddedRecording',
 		'KalturaParentalRule' => 'Kaltura_Client_Type_ParentalRule',
 		'KalturaParentalRuleFilter' => 'Kaltura_Client_Type_ParentalRuleFilter',
 		'KalturaParentalRuleListResponse' => 'Kaltura_Client_Type_ParentalRuleListResponse',
@@ -708,6 +709,7 @@ class Kaltura_Client_TypeMap
 		'KalturaSegmentationTypeFilter' => 'Kaltura_Client_Type_SegmentationTypeFilter',
 		'KalturaSegmentationTypeListResponse' => 'Kaltura_Client_Type_SegmentationTypeListResponse',
 		'KalturaSegmentsCondition' => 'Kaltura_Client_Type_SegmentsCondition',
+		'KalturaSeriesIdArguments' => 'Kaltura_Client_Type_SeriesIdArguments',
 		'KalturaSeriesRecording' => 'Kaltura_Client_Type_SeriesRecording',
 		'KalturaSeriesRecordingFilter' => 'Kaltura_Client_Type_SeriesRecordingFilter',
 		'KalturaSeriesRecordingListResponse' => 'Kaltura_Client_Type_SeriesRecordingListResponse',
