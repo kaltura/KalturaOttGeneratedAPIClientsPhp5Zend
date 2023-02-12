@@ -66,6 +66,8 @@ class Kaltura_Client_Type_Recording extends Kaltura_Client_ObjectBase
 			$this->createDate = (string)$xml->createDate;
 		if(count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
+		if(count($xml->duration))
+			$this->duration = (string)$xml->duration;
 	}
 	/**
 	 * Kaltura unique ID representing the recording identifier
@@ -128,6 +130,14 @@ class Kaltura_Client_Type_Recording extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $updateDate = null;
+
+	/**
+	 * Duration in seconds
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $duration = null;
 
 
 }

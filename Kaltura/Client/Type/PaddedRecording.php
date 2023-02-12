@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_ProgramAssetGroupOfferEntitlementFilter extends Kaltura_Client_Type_EntitlementFilter
+class Kaltura_Client_Type_PaddedRecording extends Kaltura_Client_Type_Recording
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaProgramAssetGroupOfferEntitlementFilter';
+		return 'KalturaPaddedRecording';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,7 +45,25 @@ class Kaltura_Client_Type_ProgramAssetGroupOfferEntitlementFilter extends Kaltur
 		if(is_null($xml))
 			return;
 		
+		if(count($xml->startPadding))
+			$this->startPadding = (int)$xml->startPadding;
+		if(count($xml->endPadding))
+			$this->endPadding = (int)$xml->endPadding;
 	}
+	/**
+	 * Household specific start padding of the recording
+	 *
+	 * @var int
+	 */
+	public $startPadding = null;
+
+	/**
+	 * Household specific end padding of the recording
+	 *
+	 * @var int
+	 */
+	public $endPadding = null;
+
 
 }
 

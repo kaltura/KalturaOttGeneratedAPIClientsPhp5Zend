@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_ProgramAssetGroupOfferEntitlementFilter extends Kaltura_Client_Type_EntitlementFilter
+class Kaltura_Client_Type_SeriesIdArguments extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaProgramAssetGroupOfferEntitlementFilter';
+		return 'KalturaSeriesIdArguments';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,7 +45,52 @@ class Kaltura_Client_Type_ProgramAssetGroupOfferEntitlementFilter extends Kaltur
 		if(is_null($xml))
 			return;
 		
+		if(count($xml->assetTypeIdIn))
+			$this->assetTypeIdIn = (string)$xml->assetTypeIdIn;
+		if(count($xml->seriesId))
+			$this->seriesId = (string)$xml->seriesId;
+		if(count($xml->seriesIdMetaName))
+			$this->seriesIdMetaName = (string)$xml->seriesIdMetaName;
+		if(count($xml->seasonNumberMetaName))
+			$this->seasonNumberMetaName = (string)$xml->seasonNumberMetaName;
+		if(count($xml->episodeNumberMetaName))
+			$this->episodeNumberMetaName = (string)$xml->episodeNumberMetaName;
 	}
+	/**
+	 * Comma separated asset type IDs
+	 *
+	 * @var string
+	 */
+	public $assetTypeIdIn = null;
+
+	/**
+	 * Series ID
+	 *
+	 * @var string
+	 */
+	public $seriesId = null;
+
+	/**
+	 * Series ID meta name.
+	 *
+	 * @var string
+	 */
+	public $seriesIdMetaName = null;
+
+	/**
+	 * Season number meta name
+	 *
+	 * @var string
+	 */
+	public $seasonNumberMetaName = null;
+
+	/**
+	 * Episode number meta name
+	 *
+	 * @var string
+	 */
+	public $episodeNumberMetaName = null;
+
 
 }
 

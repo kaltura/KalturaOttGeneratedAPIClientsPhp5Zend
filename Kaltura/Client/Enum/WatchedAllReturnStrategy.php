@@ -31,21 +31,10 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_ProgramAssetGroupOfferEntitlementFilter extends Kaltura_Client_Type_EntitlementFilter
+class Kaltura_Client_Enum_WatchedAllReturnStrategy extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaProgramAssetGroupOfferEntitlementFilter';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-	}
-
+	const RETURN_NO_NEXT_EPISODE = "RETURN_NO_NEXT_EPISODE";
+	const RETURN_FIRST_EPISODE = "RETURN_FIRST_EPISODE";
+	const RETURN_LAST_EPISODE = "RETURN_LAST_EPISODE";
 }
 
