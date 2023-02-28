@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -58,6 +58,8 @@ class Kaltura_Client_Type_CollectionFilter extends Kaltura_Client_Type_Filter
 			else
 				$this->alsoInactive = false;
 		}
+		if(count($xml->assetUserRuleIdIn))
+			$this->assetUserRuleIdIn = (string)$xml->assetUserRuleIdIn;
 	}
 	/**
 	 * Comma separated collection IDs
@@ -86,6 +88,13 @@ class Kaltura_Client_Type_CollectionFilter extends Kaltura_Client_Type_Filter
 	 * @var bool
 	 */
 	public $alsoInactive = null;
+
+	/**
+	 * comma-separated list of KalturaCollection.assetUserRuleId values.  Matching KalturaCollection objects will be returned by the filter.
+	 *
+	 * @var string
+	 */
+	public $assetUserRuleIdIn = null;
 
 
 }

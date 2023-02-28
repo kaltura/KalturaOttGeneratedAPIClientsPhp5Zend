@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -77,6 +77,8 @@ class Kaltura_Client_Type_SegmentationType extends Kaltura_Client_ObjectBase
 			$this->executeDate = (string)$xml->executeDate;
 		if(count($xml->version))
 			$this->version = (string)$xml->version;
+		if(count($xml->assetUserRuleId))
+			$this->assetUserRuleId = (string)$xml->assetUserRuleId;
 	}
 	/**
 	 * Id of segmentation type
@@ -159,6 +161,13 @@ class Kaltura_Client_Type_SegmentationType extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $version = null;
+
+	/**
+	 * Asset User Rule Id
+	 *
+	 * @var bigint
+	 */
+	public $assetUserRuleId = null;
 
 
 }

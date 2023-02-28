@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -55,6 +55,8 @@ class Kaltura_Client_Type_ChannelsFilter extends Kaltura_Client_Type_ChannelsBas
 			$this->nameStartsWith = (string)$xml->nameStartsWith;
 		if(count($xml->idIn))
 			$this->idIn = (string)$xml->idIn;
+		if(count($xml->assetUserRuleIdIn))
+			$this->assetUserRuleIdIn = (string)$xml->assetUserRuleIdIn;
 	}
 	/**
 	 * channel identifier to filter by
@@ -90,6 +92,13 @@ class Kaltura_Client_Type_ChannelsFilter extends Kaltura_Client_Type_ChannelsBas
 	 * @var string
 	 */
 	public $idIn = null;
+
+	/**
+	 * comma-separated list of KalturaChannel.assetUserRuleId values.  Matching KalturaChannel objects will be returned by the filter.
+	 *
+	 * @var string
+	 */
+	public $assetUserRuleIdIn = null;
 
 
 }

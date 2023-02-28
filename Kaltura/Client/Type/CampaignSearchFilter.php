@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -64,6 +64,8 @@ class Kaltura_Client_Type_CampaignSearchFilter extends Kaltura_Client_Type_Campa
 			$this->nameContains = (string)$xml->nameContains;
 		if(count($xml->stateIn))
 			$this->stateIn = (string)$xml->stateIn;
+		if(count($xml->assetUserRuleIdIn))
+			$this->assetUserRuleIdIn = (string)$xml->assetUserRuleIdIn;
 	}
 	/**
 	 * start Date Greater Than Or Equal
@@ -113,6 +115,13 @@ class Kaltura_Client_Type_CampaignSearchFilter extends Kaltura_Client_Type_Campa
 	 * @var string
 	 */
 	public $stateIn = null;
+
+	/**
+	 * Comma separated AssetUserRule Ids to filter by
+	 *
+	 * @var string
+	 */
+	public $assetUserRuleIdIn = null;
 
 
 }

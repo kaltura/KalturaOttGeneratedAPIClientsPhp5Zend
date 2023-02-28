@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -69,6 +69,8 @@ class Kaltura_Client_Type_Campaign extends Kaltura_Client_Type_OTTObjectSupportN
 			$this->message = (string)$xml->message;
 		if(count($xml->collectionIdIn))
 			$this->collectionIdIn = (string)$xml->collectionIdIn;
+		if(count($xml->assetUserRuleId))
+			$this->assetUserRuleId = (string)$xml->assetUserRuleId;
 	}
 	/**
 	 * ID
@@ -157,6 +159,13 @@ class Kaltura_Client_Type_Campaign extends Kaltura_Client_Type_OTTObjectSupportN
 	 * @var string
 	 */
 	public $collectionIdIn = null;
+
+	/**
+	 * Asset user rule identifier
+	 *
+	 * @var bigint
+	 */
+	public $assetUserRuleId = null;
 
 
 }
