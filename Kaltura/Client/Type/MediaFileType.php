@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -79,6 +79,8 @@ class Kaltura_Client_Type_MediaFileType extends Kaltura_Client_ObjectBase
 			$this->videoCodecs = (string)$xml->videoCodecs;
 		if(count($xml->audioCodecs))
 			$this->audioCodecs = (string)$xml->audioCodecs;
+		if(count($xml->dynamicDataKeys))
+			$this->dynamicDataKeys = (string)$xml->dynamicDataKeys;
 	}
 	/**
 	 * Unique identifier
@@ -169,6 +171,13 @@ class Kaltura_Client_Type_MediaFileType extends Kaltura_Client_ObjectBase
 	 * @var string
 	 */
 	public $audioCodecs = null;
+
+	/**
+	 * List of comma separated keys allowed to be used as KalturaMediaFile&#39;s dynamic data keys
+	 *
+	 * @var string
+	 */
+	public $dynamicDataKeys = null;
 
 
 }

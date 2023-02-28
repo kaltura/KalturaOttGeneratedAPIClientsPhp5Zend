@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -66,6 +66,8 @@ class Kaltura_Client_Type_Recording extends Kaltura_Client_ObjectBase
 			$this->createDate = (string)$xml->createDate;
 		if(count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
+		if(count($xml->duration))
+			$this->duration = (string)$xml->duration;
 	}
 	/**
 	 * Kaltura unique ID representing the recording identifier
@@ -128,6 +130,14 @@ class Kaltura_Client_Type_Recording extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $updateDate = null;
+
+	/**
+	 * Duration in seconds
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $duration = null;
 
 
 }

@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -121,7 +121,6 @@ class Kaltura_Client_TypeMap
 		'KalturaBaseAssetStructFilter' => 'Kaltura_Client_Type_BaseAssetStructFilter',
 		'KalturaBaseChannel' => 'Kaltura_Client_Type_BaseChannel',
 		'KalturaBaseChannelOrder' => 'Kaltura_Client_Type_BaseChannelOrder',
-		'KalturaBaseEntitlementFilter' => 'Kaltura_Client_Type_BaseEntitlementFilter',
 		'KalturaBaseOTTUser' => 'Kaltura_Client_Type_BaseOTTUser',
 		'KalturaBasePartnerConfiguration' => 'Kaltura_Client_Type_BasePartnerConfiguration',
 		'KalturaBasePermissionFilter' => 'Kaltura_Client_Type_BasePermissionFilter',
@@ -376,6 +375,9 @@ class Kaltura_Client_TypeMap
 		'KalturaFilterFileByAudioCodecAction' => 'Kaltura_Client_Type_FilterFileByAudioCodecAction',
 		'KalturaFilterFileByAudioCodecInDiscoveryAction' => 'Kaltura_Client_Type_FilterFileByAudioCodecInDiscoveryAction',
 		'KalturaFilterFileByAudioCodecInPlaybackAction' => 'Kaltura_Client_Type_FilterFileByAudioCodecInPlaybackAction',
+		'KalturaFilterFileByDynamicDataAction' => 'Kaltura_Client_Type_FilterFileByDynamicDataAction',
+		'KalturaFilterFileByDynamicDataInDiscoveryAction' => 'Kaltura_Client_Type_FilterFileByDynamicDataInDiscoveryAction',
+		'KalturaFilterFileByDynamicDataInPlaybackAction' => 'Kaltura_Client_Type_FilterFileByDynamicDataInPlaybackAction',
 		'KalturaFilterFileByFileTypeIdAction' => 'Kaltura_Client_Type_FilterFileByFileTypeIdAction',
 		'KalturaFilterFileByFileTypeIdForAssetTypeAction' => 'Kaltura_Client_Type_FilterFileByFileTypeIdForAssetTypeAction',
 		'KalturaFilterFileByFileTypeIdForAssetTypeInDiscoveryAction' => 'Kaltura_Client_Type_FilterFileByFileTypeIdForAssetTypeInDiscoveryAction',
@@ -436,6 +438,7 @@ class Kaltura_Client_TypeMap
 		'KalturaImageType' => 'Kaltura_Client_Type_ImageType',
 		'KalturaImageTypeFilter' => 'Kaltura_Client_Type_ImageTypeFilter',
 		'KalturaImageTypeListResponse' => 'Kaltura_Client_Type_ImageTypeListResponse',
+		'KalturaImmediateRecording' => 'Kaltura_Client_Type_ImmediateRecording',
 		'KalturaInboxMessage' => 'Kaltura_Client_Type_InboxMessage',
 		'KalturaInboxMessageFilter' => 'Kaltura_Client_Type_InboxMessageFilter',
 		'KalturaInboxMessageListResponse' => 'Kaltura_Client_Type_InboxMessageListResponse',
@@ -484,6 +487,7 @@ class Kaltura_Client_TypeMap
 		'KalturaLineupChannelAsset' => 'Kaltura_Client_Type_LineupChannelAsset',
 		'KalturaLineupChannelAssetListResponse' => 'Kaltura_Client_Type_LineupChannelAssetListResponse',
 		'KalturaLineupNotificationSettings' => 'Kaltura_Client_Type_LineupNotificationSettings',
+		'KalturaLineupRegionalChannelFilter' => 'Kaltura_Client_Type_LineupRegionalChannelFilter',
 		'KalturaListGroupsRepresentativesFilter' => 'Kaltura_Client_Type_ListGroupsRepresentativesFilter',
 		'KalturaListResponse' => 'Kaltura_Client_Type_ListResponse',
 		'KalturaLiveAsset' => 'Kaltura_Client_Type_LiveAsset',
@@ -501,6 +505,9 @@ class Kaltura_Client_TypeMap
 		'KalturaMediaConcurrencyRule' => 'Kaltura_Client_Type_MediaConcurrencyRule',
 		'KalturaMediaConcurrencyRuleListResponse' => 'Kaltura_Client_Type_MediaConcurrencyRuleListResponse',
 		'KalturaMediaFile' => 'Kaltura_Client_Type_MediaFile',
+		'KalturaMediaFileDynamicData' => 'Kaltura_Client_Type_MediaFileDynamicData',
+		'KalturaMediaFileDynamicDataFilter' => 'Kaltura_Client_Type_MediaFileDynamicDataFilter',
+		'KalturaMediaFileDynamicDataListResponse' => 'Kaltura_Client_Type_MediaFileDynamicDataListResponse',
 		'KalturaMediaFileFilter' => 'Kaltura_Client_Type_MediaFileFilter',
 		'KalturaMediaFileListResponse' => 'Kaltura_Client_Type_MediaFileListResponse',
 		'KalturaMediaFileType' => 'Kaltura_Client_Type_MediaFileType',
@@ -537,6 +544,7 @@ class Kaltura_Client_TypeMap
 		'KalturaOpcPartnerConfiguration' => 'Kaltura_Client_Type_OpcPartnerConfiguration',
 		'KalturaOrCondition' => 'Kaltura_Client_Type_OrCondition',
 		'KalturaPPVItemPriceDetails' => 'Kaltura_Client_Type_PPVItemPriceDetails',
+		'KalturaPaddedRecording' => 'Kaltura_Client_Type_PaddedRecording',
 		'KalturaParentalRule' => 'Kaltura_Client_Type_ParentalRule',
 		'KalturaParentalRuleFilter' => 'Kaltura_Client_Type_ParentalRuleFilter',
 		'KalturaParentalRuleListResponse' => 'Kaltura_Client_Type_ParentalRuleListResponse',
@@ -708,6 +716,7 @@ class Kaltura_Client_TypeMap
 		'KalturaSegmentationTypeFilter' => 'Kaltura_Client_Type_SegmentationTypeFilter',
 		'KalturaSegmentationTypeListResponse' => 'Kaltura_Client_Type_SegmentationTypeListResponse',
 		'KalturaSegmentsCondition' => 'Kaltura_Client_Type_SegmentsCondition',
+		'KalturaSeriesIdArguments' => 'Kaltura_Client_Type_SeriesIdArguments',
 		'KalturaSeriesRecording' => 'Kaltura_Client_Type_SeriesRecording',
 		'KalturaSeriesRecordingFilter' => 'Kaltura_Client_Type_SeriesRecordingFilter',
 		'KalturaSeriesRecordingListResponse' => 'Kaltura_Client_Type_SeriesRecordingListResponse',
