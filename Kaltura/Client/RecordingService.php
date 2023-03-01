@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -137,6 +137,27 @@ class Kaltura_Client_RecordingService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
+	 * @return Kaltura_Client_Type_ImmediateRecording
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function immediateRecord($assetId, $epgChannelId, $endPadding = null)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "assetId", $assetId);
+		$this->client->addParam($kparams, "epgChannelId", $epgChannelId);
+		$this->client->addParam($kparams, "endPadding", $endPadding);
+		$this->client->queueServiceActionCall("recording", "immediateRecord", "KalturaImmediateRecording", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaImmediateRecording");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_ImmediateRecording");
+		return $resultObject;
+	}
+
+	/**
 	 * @return Kaltura_Client_Type_RecordingListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -167,6 +188,27 @@ class Kaltura_Client_RecordingService extends Kaltura_Client_ServiceBase
 		$kparams = array();
 		$this->client->addParam($kparams, "id", $id);
 		$this->client->queueServiceActionCall("recording", "protect", "KalturaRecording", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$resultXml = $this->client->doQueue();
+		$resultXmlObject = new \SimpleXMLElement($resultXml);
+		$this->client->checkIfError($resultXmlObject->result);
+		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaRecording");
+		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Recording");
+		return $resultObject;
+	}
+
+	/**
+	 * @return Kaltura_Client_Type_Recording
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function stop($assetId, $epgChannelId, $householdRecordingId)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "assetId", $assetId);
+		$this->client->addParam($kparams, "epgChannelId", $epgChannelId);
+		$this->client->addParam($kparams, "householdRecordingId", $householdRecordingId);
+		$this->client->queueServiceActionCall("recording", "stop", "KalturaRecording", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$resultXml = $this->client->doQueue();

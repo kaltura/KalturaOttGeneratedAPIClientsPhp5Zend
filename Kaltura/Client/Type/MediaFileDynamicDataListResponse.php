@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseEntitlementFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_MediaFileDynamicDataListResponse extends Kaltura_Client_Type_ListResponse
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBaseEntitlementFilter';
+		return 'KalturaMediaFileDynamicDataListResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,7 +45,21 @@ class Kaltura_Client_Type_BaseEntitlementFilter extends Kaltura_Client_Type_Filt
 		if(is_null($xml))
 			return;
 		
+		if(count($xml->objects))
+		{
+			if(empty($xml->objects))
+				$this->objects = array();
+			else
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaMediaFileDynamicData");
+		}
 	}
+	/**
+	 * A list of media-file types
+	 *
+	 * @var array of KalturaMediaFileDynamicData
+	 */
+	public $objects;
+
 
 }
 
