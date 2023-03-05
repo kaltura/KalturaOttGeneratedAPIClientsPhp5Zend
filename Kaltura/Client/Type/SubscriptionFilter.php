@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -68,6 +68,8 @@ class Kaltura_Client_Type_SubscriptionFilter extends Kaltura_Client_Type_Filter
 			else
 				$this->alsoInactive = false;
 		}
+		if(count($xml->dependencyTypeIn))
+			$this->dependencyTypeIn = (string)$xml->dependencyTypeIn;
 	}
 	/**
 	 * Comma separated subscription IDs to get the subscriptions by
@@ -131,6 +133,14 @@ class Kaltura_Client_Type_SubscriptionFilter extends Kaltura_Client_Type_Filter
 	 * @var bool
 	 */
 	public $alsoInactive = null;
+
+	/**
+	 * comma separated values of KalturaSubscriptionDependencyType 
+	 *             return subscriptions associated by their subscription sets dependency Type
+	 *
+	 * @var string
+	 */
+	public $dependencyTypeIn = null;
 
 
 }
