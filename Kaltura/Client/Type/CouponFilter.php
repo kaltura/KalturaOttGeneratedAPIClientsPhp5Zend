@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseEntitlementFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_CouponFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBaseEntitlementFilter';
+		return 'KalturaCouponFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null)
@@ -45,7 +45,16 @@ class Kaltura_Client_Type_BaseEntitlementFilter extends Kaltura_Client_Type_Filt
 		if(is_null($xml))
 			return;
 		
+		if(count($xml->couponCodesIn))
+			$this->couponCodesIn = (string)$xml->couponCodesIn;
 	}
+	/**
+	 * Comma separated list of coupon codes.
+	 *
+	 * @var string
+	 */
+	public $couponCodesIn = null;
+
 
 }
 
