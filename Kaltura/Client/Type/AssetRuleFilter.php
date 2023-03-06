@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -53,6 +53,8 @@ class Kaltura_Client_Type_AssetRuleFilter extends Kaltura_Client_Type_Filter
 			$this->actionsContainType = (string)$xml->actionsContainType;
 		if(count($xml->assetRuleIdEqual))
 			$this->assetRuleIdEqual = (string)$xml->assetRuleIdEqual;
+		if(count($xml->nameContains))
+			$this->nameContains = (string)$xml->nameContains;
 	}
 	/**
 	 * Indicates which asset rule list to return by it KalturaRuleConditionType.
@@ -82,6 +84,13 @@ class Kaltura_Client_Type_AssetRuleFilter extends Kaltura_Client_Type_Filter
 	 * @var bigint
 	 */
 	public $assetRuleIdEqual = null;
+
+	/**
+	 * Name
+	 *
+	 * @var string
+	 */
+	public $nameContains = null;
 
 
 }

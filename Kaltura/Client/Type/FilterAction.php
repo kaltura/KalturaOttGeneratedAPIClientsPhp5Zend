@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -45,7 +45,16 @@ abstract class Kaltura_Client_Type_FilterAction extends Kaltura_Client_Type_Asse
 		if(is_null($xml))
 			return;
 		
+		if(count($xml->preActionCondition) && !empty($xml->preActionCondition))
+			$this->preActionCondition = Kaltura_Client_ParseUtils::unmarshalObject($xml->preActionCondition, "KalturaBasePreActionCondition");
 	}
+	/**
+	 * PreAction condition
+	 *
+	 * @var Kaltura_Client_Type_BasePreActionCondition
+	 */
+	public $preActionCondition;
+
 
 }
 

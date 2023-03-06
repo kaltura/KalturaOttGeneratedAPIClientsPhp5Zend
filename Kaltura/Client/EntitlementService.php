@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -189,7 +189,7 @@ class Kaltura_Client_EntitlementService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_EntitlementListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function listAction(Kaltura_Client_Type_BaseEntitlementFilter $filter, Kaltura_Client_Type_FilterPager $pager = null)
+	function listAction(Kaltura_Client_Type_EntitlementFilter $filter, Kaltura_Client_Type_FilterPager $pager = null)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "filter", $filter->toParams());
