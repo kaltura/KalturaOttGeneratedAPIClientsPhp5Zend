@@ -51,6 +51,8 @@ class Kaltura_Client_Type_SegmentationTypeFilter extends Kaltura_Client_Type_Bas
 			$this->kSql = (string)$xml->kSql;
 		if(count($xml->nameContain))
 			$this->nameContain = (string)$xml->nameContain;
+		if(count($xml->assetUserRuleIdIn))
+			$this->assetUserRuleIdIn = (string)$xml->assetUserRuleIdIn;
 	}
 	/**
 	 * Comma separated segmentation types identifiers
@@ -72,6 +74,13 @@ class Kaltura_Client_Type_SegmentationTypeFilter extends Kaltura_Client_Type_Bas
 	 * @var string
 	 */
 	public $nameContain = null;
+
+	/**
+	 * comma-separated list of KalturaSegmentationType.assetUserRuleId values
+	 *
+	 * @var string
+	 */
+	public $assetUserRuleIdIn = null;
 
 
 }
