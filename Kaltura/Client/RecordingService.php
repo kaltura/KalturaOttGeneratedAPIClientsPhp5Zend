@@ -140,11 +140,10 @@ class Kaltura_Client_RecordingService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_ImmediateRecording
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function immediateRecord($assetId, $epgChannelId, $endPadding = null)
+	function immediateRecord($assetId, $endPadding = null)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "assetId", $assetId);
-		$this->client->addParam($kparams, "epgChannelId", $epgChannelId);
 		$this->client->addParam($kparams, "endPadding", $endPadding);
 		$this->client->queueServiceActionCall("recording", "immediateRecord", "KalturaImmediateRecording", $kparams);
 		if ($this->client->isMultiRequest())
@@ -202,12 +201,11 @@ class Kaltura_Client_RecordingService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_Recording
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function stop($assetId, $epgChannelId, $householdRecordingId)
+	function stop($assetId, $id)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "assetId", $assetId);
-		$this->client->addParam($kparams, "epgChannelId", $epgChannelId);
-		$this->client->addParam($kparams, "householdRecordingId", $householdRecordingId);
+		$this->client->addParam($kparams, "id", $id);
 		$this->client->queueServiceActionCall("recording", "stop", "KalturaRecording", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();

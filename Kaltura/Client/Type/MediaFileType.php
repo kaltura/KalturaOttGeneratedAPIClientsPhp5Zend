@@ -79,6 +79,8 @@ class Kaltura_Client_Type_MediaFileType extends Kaltura_Client_ObjectBase
 			$this->videoCodecs = (string)$xml->videoCodecs;
 		if(count($xml->audioCodecs))
 			$this->audioCodecs = (string)$xml->audioCodecs;
+		if(count($xml->dynamicDataKeys))
+			$this->dynamicDataKeys = (string)$xml->dynamicDataKeys;
 	}
 	/**
 	 * Unique identifier
@@ -169,6 +171,13 @@ class Kaltura_Client_Type_MediaFileType extends Kaltura_Client_ObjectBase
 	 * @var string
 	 */
 	public $audioCodecs = null;
+
+	/**
+	 * List of comma separated keys allowed to be used as KalturaMediaFile&#39;s dynamic data keys
+	 *
+	 * @var string
+	 */
+	public $dynamicDataKeys = null;
 
 
 }

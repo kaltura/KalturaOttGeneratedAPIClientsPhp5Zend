@@ -105,6 +105,13 @@ class Kaltura_Client_Type_MediaFile extends Kaltura_Client_Type_AssetFile
 			$this->businessModuleDetails = Kaltura_Client_ParseUtils::unmarshalObject($xml->businessModuleDetails, "KalturaBusinessModuleDetails");
 		if(count($xml->labels))
 			$this->labels = (string)$xml->labels;
+		if(count($xml->dynamicData))
+		{
+			if(empty($xml->dynamicData))
+				$this->dynamicData = array();
+			else
+				$this->dynamicData = Kaltura_Client_ParseUtils::unmarshalMap($xml->dynamicData, "KalturaStringValueArray");
+		}
 	}
 	/**
 	 * Unique identifier for the asset
@@ -282,6 +289,13 @@ class Kaltura_Client_Type_MediaFile extends Kaltura_Client_Type_AssetFile
 	 * @var string
 	 */
 	public $labels = null;
+
+	/**
+	 * List of KalturaMediaFile&#39;s dynamic data keys
+	 *
+	 * @var map
+	 */
+	public $dynamicData;
 
 
 }
