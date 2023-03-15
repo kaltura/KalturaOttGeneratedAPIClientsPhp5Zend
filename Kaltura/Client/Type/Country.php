@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,31 +38,52 @@ class Kaltura_Client_Type_Country extends Kaltura_Client_ObjectBase
 		return 'KalturaCountry';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (int)$xml->id;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (int)$jsonObject->id;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->code))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->code))
 			$this->code = (string)$xml->code;
-		if(count($xml->mainLanguageCode))
+		if(!is_null($jsonObject) && isset($jsonObject->code))
+			$this->code = (string)$jsonObject->code;
+		if(!is_null($xml) && count($xml->mainLanguageCode))
 			$this->mainLanguageCode = (string)$xml->mainLanguageCode;
-		if(count($xml->languagesCode))
+		if(!is_null($jsonObject) && isset($jsonObject->mainLanguageCode))
+			$this->mainLanguageCode = (string)$jsonObject->mainLanguageCode;
+		if(!is_null($xml) && count($xml->languagesCode))
 			$this->languagesCode = (string)$xml->languagesCode;
-		if(count($xml->currency))
+		if(!is_null($jsonObject) && isset($jsonObject->languagesCode))
+			$this->languagesCode = (string)$jsonObject->languagesCode;
+		if(!is_null($xml) && count($xml->currency))
 			$this->currency = (string)$xml->currency;
-		if(count($xml->currencySign))
+		if(!is_null($jsonObject) && isset($jsonObject->currency))
+			$this->currency = (string)$jsonObject->currency;
+		if(!is_null($xml) && count($xml->currencySign))
 			$this->currencySign = (string)$xml->currencySign;
-		if(count($xml->vatPercent))
+		if(!is_null($jsonObject) && isset($jsonObject->currencySign))
+			$this->currencySign = (string)$jsonObject->currencySign;
+		if(!is_null($xml) && count($xml->vatPercent))
 			$this->vatPercent = (float)$xml->vatPercent;
-		if(count($xml->timeZoneId))
+		if(!is_null($jsonObject) && isset($jsonObject->vatPercent))
+			$this->vatPercent = (float)$jsonObject->vatPercent;
+		if(!is_null($xml) && count($xml->timeZoneId))
 			$this->timeZoneId = (string)$xml->timeZoneId;
+		if(!is_null($jsonObject) && isset($jsonObject->timeZoneId))
+			$this->timeZoneId = (string)$jsonObject->timeZoneId;
 	}
 	/**
 	 * Country identifier

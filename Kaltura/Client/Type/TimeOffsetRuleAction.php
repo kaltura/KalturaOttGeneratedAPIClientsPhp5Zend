@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,18 +38,30 @@ abstract class Kaltura_Client_Type_TimeOffsetRuleAction extends Kaltura_Client_T
 		return 'KalturaTimeOffsetRuleAction';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->offset))
+		if(!is_null($xml) && count($xml->offset))
 			$this->offset = (int)$xml->offset;
-		if(count($xml->timeZone))
+		if(!is_null($jsonObject) && isset($jsonObject->offset))
+			$this->offset = (int)$jsonObject->offset;
+		if(!is_null($xml) && count($xml->timeZone))
 		{
 			if(!empty($xml->timeZone) && ((int) $xml->timeZone === 1 || strtolower((string)$xml->timeZone) === 'true'))
+				$this->timeZone = true;
+			else
+				$this->timeZone = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->timeZone))
+		{
+			if(!empty($jsonObject->timeZone) && ((int) $jsonObject->timeZone === 1 || strtolower((string)$jsonObject->timeZone) === 'true'))
 				$this->timeZone = true;
 			else
 				$this->timeZone = false;

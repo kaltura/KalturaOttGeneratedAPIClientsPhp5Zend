@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,21 +38,33 @@ class Kaltura_Client_Type_AssetOrderSegmentAction extends Kaltura_Client_Type_Ba
 		return 'KalturaAssetOrderSegmentAction';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->name))
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->values))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->values))
 		{
 			if(empty($xml->values))
 				$this->values = array();
 			else
 				$this->values = Kaltura_Client_ParseUtils::unmarshalArray($xml->values, "KalturaStringValue");
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->values))
+		{
+			if(empty($jsonObject->values))
+				$this->values = array();
+			else
+				$this->values = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->values, "KalturaStringValue");
 		}
 	}
 	/**

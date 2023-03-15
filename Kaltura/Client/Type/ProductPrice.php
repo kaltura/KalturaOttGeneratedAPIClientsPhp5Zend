@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,25 +38,40 @@ abstract class Kaltura_Client_Type_ProductPrice extends Kaltura_Client_ObjectBas
 		return 'KalturaProductPrice';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->productId))
+		if(!is_null($xml) && count($xml->productId))
 			$this->productId = (string)$xml->productId;
-		if(count($xml->productType))
+		if(!is_null($jsonObject) && isset($jsonObject->productId))
+			$this->productId = (string)$jsonObject->productId;
+		if(!is_null($xml) && count($xml->productType))
 			$this->productType = (string)$xml->productType;
-		if(count($xml->price) && !empty($xml->price))
+		if(!is_null($jsonObject) && isset($jsonObject->productType))
+			$this->productType = (string)$jsonObject->productType;
+		if(!is_null($xml) && count($xml->price) && !empty($xml->price))
 			$this->price = Kaltura_Client_ParseUtils::unmarshalObject($xml->price, "KalturaPrice");
-		if(count($xml->fullPrice) && !empty($xml->fullPrice))
+		if(!is_null($jsonObject) && isset($jsonObject->price) && !empty($jsonObject->price))
+			$this->price = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->price, "KalturaPrice");
+		if(!is_null($xml) && count($xml->fullPrice) && !empty($xml->fullPrice))
 			$this->fullPrice = Kaltura_Client_ParseUtils::unmarshalObject($xml->fullPrice, "KalturaPrice");
-		if(count($xml->purchaseStatus))
+		if(!is_null($jsonObject) && isset($jsonObject->fullPrice) && !empty($jsonObject->fullPrice))
+			$this->fullPrice = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->fullPrice, "KalturaPrice");
+		if(!is_null($xml) && count($xml->purchaseStatus))
 			$this->purchaseStatus = (string)$xml->purchaseStatus;
-		if(count($xml->promotionInfo) && !empty($xml->promotionInfo))
+		if(!is_null($jsonObject) && isset($jsonObject->purchaseStatus))
+			$this->purchaseStatus = (string)$jsonObject->purchaseStatus;
+		if(!is_null($xml) && count($xml->promotionInfo) && !empty($xml->promotionInfo))
 			$this->promotionInfo = Kaltura_Client_ParseUtils::unmarshalObject($xml->promotionInfo, "KalturaPromotionInfo");
+		if(!is_null($jsonObject) && isset($jsonObject->promotionInfo) && !empty($jsonObject->promotionInfo))
+			$this->promotionInfo = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->promotionInfo, "KalturaPromotionInfo");
 	}
 	/**
 	 * Product identifier

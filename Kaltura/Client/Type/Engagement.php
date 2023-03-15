@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,31 +38,52 @@ class Kaltura_Client_Type_Engagement extends Kaltura_Client_ObjectBase
 		return 'KalturaEngagement';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (int)$xml->id;
-		if(count($xml->totalNumberOfRecipients))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (int)$jsonObject->id;
+		if(!is_null($xml) && count($xml->totalNumberOfRecipients))
 			$this->totalNumberOfRecipients = (int)$xml->totalNumberOfRecipients;
-		if(count($xml->type))
+		if(!is_null($jsonObject) && isset($jsonObject->totalNumberOfRecipients))
+			$this->totalNumberOfRecipients = (int)$jsonObject->totalNumberOfRecipients;
+		if(!is_null($xml) && count($xml->type))
 			$this->type = (string)$xml->type;
-		if(count($xml->adapterId))
+		if(!is_null($jsonObject) && isset($jsonObject->type))
+			$this->type = (string)$jsonObject->type;
+		if(!is_null($xml) && count($xml->adapterId))
 			$this->adapterId = (int)$xml->adapterId;
-		if(count($xml->adapterDynamicData))
+		if(!is_null($jsonObject) && isset($jsonObject->adapterId))
+			$this->adapterId = (int)$jsonObject->adapterId;
+		if(!is_null($xml) && count($xml->adapterDynamicData))
 			$this->adapterDynamicData = (string)$xml->adapterDynamicData;
-		if(count($xml->intervalSeconds))
+		if(!is_null($jsonObject) && isset($jsonObject->adapterDynamicData))
+			$this->adapterDynamicData = (string)$jsonObject->adapterDynamicData;
+		if(!is_null($xml) && count($xml->intervalSeconds))
 			$this->intervalSeconds = (int)$xml->intervalSeconds;
-		if(count($xml->userList))
+		if(!is_null($jsonObject) && isset($jsonObject->intervalSeconds))
+			$this->intervalSeconds = (int)$jsonObject->intervalSeconds;
+		if(!is_null($xml) && count($xml->userList))
 			$this->userList = (string)$xml->userList;
-		if(count($xml->sendTimeInSeconds))
+		if(!is_null($jsonObject) && isset($jsonObject->userList))
+			$this->userList = (string)$jsonObject->userList;
+		if(!is_null($xml) && count($xml->sendTimeInSeconds))
 			$this->sendTimeInSeconds = (string)$xml->sendTimeInSeconds;
-		if(count($xml->couponGroupId))
+		if(!is_null($jsonObject) && isset($jsonObject->sendTimeInSeconds))
+			$this->sendTimeInSeconds = (string)$jsonObject->sendTimeInSeconds;
+		if(!is_null($xml) && count($xml->couponGroupId))
 			$this->couponGroupId = (int)$xml->couponGroupId;
+		if(!is_null($jsonObject) && isset($jsonObject->couponGroupId))
+			$this->couponGroupId = (int)$jsonObject->couponGroupId;
 	}
 	/**
 	 * Engagement id

@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,29 +38,48 @@ class Kaltura_Client_Type_BookmarkEvent extends Kaltura_Client_Type_EventObject
 		return 'KalturaBookmarkEvent';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->userId))
+		if(!is_null($xml) && count($xml->userId))
 			$this->userId = (string)$xml->userId;
-		if(count($xml->householdId))
+		if(!is_null($jsonObject) && isset($jsonObject->userId))
+			$this->userId = (string)$jsonObject->userId;
+		if(!is_null($xml) && count($xml->householdId))
 			$this->householdId = (string)$xml->householdId;
-		if(count($xml->assetId))
+		if(!is_null($jsonObject) && isset($jsonObject->householdId))
+			$this->householdId = (string)$jsonObject->householdId;
+		if(!is_null($xml) && count($xml->assetId))
 			$this->assetId = (string)$xml->assetId;
-		if(count($xml->fileId))
+		if(!is_null($jsonObject) && isset($jsonObject->assetId))
+			$this->assetId = (string)$jsonObject->assetId;
+		if(!is_null($xml) && count($xml->fileId))
 			$this->fileId = (string)$xml->fileId;
-		if(count($xml->position))
+		if(!is_null($jsonObject) && isset($jsonObject->fileId))
+			$this->fileId = (string)$jsonObject->fileId;
+		if(!is_null($xml) && count($xml->position))
 			$this->position = (int)$xml->position;
-		if(count($xml->action))
+		if(!is_null($jsonObject) && isset($jsonObject->position))
+			$this->position = (int)$jsonObject->position;
+		if(!is_null($xml) && count($xml->action))
 			$this->action = (string)$xml->action;
-		if(count($xml->productType))
+		if(!is_null($jsonObject) && isset($jsonObject->action))
+			$this->action = (string)$jsonObject->action;
+		if(!is_null($xml) && count($xml->productType))
 			$this->productType = (string)$xml->productType;
-		if(count($xml->productId))
+		if(!is_null($jsonObject) && isset($jsonObject->productType))
+			$this->productType = (string)$jsonObject->productType;
+		if(!is_null($xml) && count($xml->productId))
 			$this->productId = (int)$xml->productId;
+		if(!is_null($jsonObject) && isset($jsonObject->productId))
+			$this->productId = (int)$jsonObject->productId;
 	}
 	/**
 	 * User Id
