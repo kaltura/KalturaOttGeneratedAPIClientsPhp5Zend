@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,52 +38,94 @@ class Kaltura_Client_Type_BillingTransaction extends Kaltura_Client_ObjectBase
 		return 'KalturaBillingTransaction';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->recieptCode))
+		if(!is_null($xml) && count($xml->recieptCode))
 			$this->recieptCode = (string)$xml->recieptCode;
-		if(count($xml->purchasedItemName))
+		if(!is_null($jsonObject) && isset($jsonObject->recieptCode))
+			$this->recieptCode = (string)$jsonObject->recieptCode;
+		if(!is_null($xml) && count($xml->purchasedItemName))
 			$this->purchasedItemName = (string)$xml->purchasedItemName;
-		if(count($xml->purchasedItemCode))
+		if(!is_null($jsonObject) && isset($jsonObject->purchasedItemName))
+			$this->purchasedItemName = (string)$jsonObject->purchasedItemName;
+		if(!is_null($xml) && count($xml->purchasedItemCode))
 			$this->purchasedItemCode = (string)$xml->purchasedItemCode;
-		if(count($xml->itemType))
+		if(!is_null($jsonObject) && isset($jsonObject->purchasedItemCode))
+			$this->purchasedItemCode = (string)$jsonObject->purchasedItemCode;
+		if(!is_null($xml) && count($xml->itemType))
 			$this->itemType = (string)$xml->itemType;
-		if(count($xml->billingAction))
+		if(!is_null($jsonObject) && isset($jsonObject->itemType))
+			$this->itemType = (string)$jsonObject->itemType;
+		if(!is_null($xml) && count($xml->billingAction))
 			$this->billingAction = (string)$xml->billingAction;
-		if(count($xml->price) && !empty($xml->price))
+		if(!is_null($jsonObject) && isset($jsonObject->billingAction))
+			$this->billingAction = (string)$jsonObject->billingAction;
+		if(!is_null($xml) && count($xml->price) && !empty($xml->price))
 			$this->price = Kaltura_Client_ParseUtils::unmarshalObject($xml->price, "KalturaPrice");
-		if(count($xml->actionDate))
+		if(!is_null($jsonObject) && isset($jsonObject->price) && !empty($jsonObject->price))
+			$this->price = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->price, "KalturaPrice");
+		if(!is_null($xml) && count($xml->actionDate))
 			$this->actionDate = (string)$xml->actionDate;
-		if(count($xml->startDate))
+		if(!is_null($jsonObject) && isset($jsonObject->actionDate))
+			$this->actionDate = (string)$jsonObject->actionDate;
+		if(!is_null($xml) && count($xml->startDate))
 			$this->startDate = (string)$xml->startDate;
-		if(count($xml->endDate))
+		if(!is_null($jsonObject) && isset($jsonObject->startDate))
+			$this->startDate = (string)$jsonObject->startDate;
+		if(!is_null($xml) && count($xml->endDate))
 			$this->endDate = (string)$xml->endDate;
-		if(count($xml->paymentMethod))
+		if(!is_null($jsonObject) && isset($jsonObject->endDate))
+			$this->endDate = (string)$jsonObject->endDate;
+		if(!is_null($xml) && count($xml->paymentMethod))
 			$this->paymentMethod = (string)$xml->paymentMethod;
-		if(count($xml->paymentMethodExtraDetails))
+		if(!is_null($jsonObject) && isset($jsonObject->paymentMethod))
+			$this->paymentMethod = (string)$jsonObject->paymentMethod;
+		if(!is_null($xml) && count($xml->paymentMethodExtraDetails))
 			$this->paymentMethodExtraDetails = (string)$xml->paymentMethodExtraDetails;
-		if(count($xml->isRecurring))
+		if(!is_null($jsonObject) && isset($jsonObject->paymentMethodExtraDetails))
+			$this->paymentMethodExtraDetails = (string)$jsonObject->paymentMethodExtraDetails;
+		if(!is_null($xml) && count($xml->isRecurring))
 		{
 			if(!empty($xml->isRecurring) && ((int) $xml->isRecurring === 1 || strtolower((string)$xml->isRecurring) === 'true'))
 				$this->isRecurring = true;
 			else
 				$this->isRecurring = false;
 		}
-		if(count($xml->billingProviderRef))
+		if(!is_null($jsonObject) && isset($jsonObject->isRecurring))
+		{
+			if(!empty($jsonObject->isRecurring) && ((int) $jsonObject->isRecurring === 1 || strtolower((string)$jsonObject->isRecurring) === 'true'))
+				$this->isRecurring = true;
+			else
+				$this->isRecurring = false;
+		}
+		if(!is_null($xml) && count($xml->billingProviderRef))
 			$this->billingProviderRef = (int)$xml->billingProviderRef;
-		if(count($xml->purchaseId))
+		if(!is_null($jsonObject) && isset($jsonObject->billingProviderRef))
+			$this->billingProviderRef = (int)$jsonObject->billingProviderRef;
+		if(!is_null($xml) && count($xml->purchaseId))
 			$this->purchaseId = (int)$xml->purchaseId;
-		if(count($xml->remarks))
+		if(!is_null($jsonObject) && isset($jsonObject->purchaseId))
+			$this->purchaseId = (int)$jsonObject->purchaseId;
+		if(!is_null($xml) && count($xml->remarks))
 			$this->remarks = (string)$xml->remarks;
-		if(count($xml->billingPriceType))
+		if(!is_null($jsonObject) && isset($jsonObject->remarks))
+			$this->remarks = (string)$jsonObject->remarks;
+		if(!is_null($xml) && count($xml->billingPriceType))
 			$this->billingPriceType = (string)$xml->billingPriceType;
-		if(count($xml->externalTransactionId))
+		if(!is_null($jsonObject) && isset($jsonObject->billingPriceType))
+			$this->billingPriceType = (string)$jsonObject->billingPriceType;
+		if(!is_null($xml) && count($xml->externalTransactionId))
 			$this->externalTransactionId = (string)$xml->externalTransactionId;
+		if(!is_null($jsonObject) && isset($jsonObject->externalTransactionId))
+			$this->externalTransactionId = (string)$jsonObject->externalTransactionId;
 	}
 	/**
 	 * Reciept Code

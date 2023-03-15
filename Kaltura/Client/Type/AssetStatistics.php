@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,25 +38,40 @@ class Kaltura_Client_Type_AssetStatistics extends Kaltura_Client_ObjectBase
 		return 'KalturaAssetStatistics';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->assetId))
+		if(!is_null($xml) && count($xml->assetId))
 			$this->assetId = (int)$xml->assetId;
-		if(count($xml->likes))
+		if(!is_null($jsonObject) && isset($jsonObject->assetId))
+			$this->assetId = (int)$jsonObject->assetId;
+		if(!is_null($xml) && count($xml->likes))
 			$this->likes = (int)$xml->likes;
-		if(count($xml->views))
+		if(!is_null($jsonObject) && isset($jsonObject->likes))
+			$this->likes = (int)$jsonObject->likes;
+		if(!is_null($xml) && count($xml->views))
 			$this->views = (int)$xml->views;
-		if(count($xml->ratingCount))
+		if(!is_null($jsonObject) && isset($jsonObject->views))
+			$this->views = (int)$jsonObject->views;
+		if(!is_null($xml) && count($xml->ratingCount))
 			$this->ratingCount = (int)$xml->ratingCount;
-		if(count($xml->rating))
+		if(!is_null($jsonObject) && isset($jsonObject->ratingCount))
+			$this->ratingCount = (int)$jsonObject->ratingCount;
+		if(!is_null($xml) && count($xml->rating))
 			$this->rating = (float)$xml->rating;
-		if(count($xml->buzzScore) && !empty($xml->buzzScore))
+		if(!is_null($jsonObject) && isset($jsonObject->rating))
+			$this->rating = (float)$jsonObject->rating;
+		if(!is_null($xml) && count($xml->buzzScore) && !empty($xml->buzzScore))
 			$this->buzzScore = Kaltura_Client_ParseUtils::unmarshalObject($xml->buzzScore, "KalturaBuzzScore");
+		if(!is_null($jsonObject) && isset($jsonObject->buzzScore) && !empty($jsonObject->buzzScore))
+			$this->buzzScore = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->buzzScore, "KalturaBuzzScore");
 	}
 	/**
 	 * Unique identifier for the asset

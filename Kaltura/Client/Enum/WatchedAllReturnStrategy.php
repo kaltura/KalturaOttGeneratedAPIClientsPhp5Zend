@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -31,21 +31,10 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseEntitlementFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Enum_WatchedAllReturnStrategy extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaBaseEntitlementFilter';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null)
-	{
-		parent::__construct($xml);
-		
-		if(is_null($xml))
-			return;
-		
-	}
-
+	const RETURN_NO_NEXT_EPISODE = "RETURN_NO_NEXT_EPISODE";
+	const RETURN_FIRST_EPISODE = "RETURN_FIRST_EPISODE";
+	const RETURN_LAST_EPISODE = "RETURN_LAST_EPISODE";
 }
 

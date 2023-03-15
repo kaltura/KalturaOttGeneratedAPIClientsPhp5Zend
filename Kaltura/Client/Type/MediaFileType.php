@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,47 +38,88 @@ class Kaltura_Client_Type_MediaFileType extends Kaltura_Client_ObjectBase
 		return 'KalturaMediaFileType';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (int)$xml->id;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (int)$jsonObject->id;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->description))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->description))
 			$this->description = (string)$xml->description;
-		if(count($xml->status))
+		if(!is_null($jsonObject) && isset($jsonObject->description))
+			$this->description = (string)$jsonObject->description;
+		if(!is_null($xml) && count($xml->status))
 		{
 			if(!empty($xml->status) && ((int) $xml->status === 1 || strtolower((string)$xml->status) === 'true'))
 				$this->status = true;
 			else
 				$this->status = false;
 		}
-		if(count($xml->createDate))
+		if(!is_null($jsonObject) && isset($jsonObject->status))
+		{
+			if(!empty($jsonObject->status) && ((int) $jsonObject->status === 1 || strtolower((string)$jsonObject->status) === 'true'))
+				$this->status = true;
+			else
+				$this->status = false;
+		}
+		if(!is_null($xml) && count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
-		if(count($xml->updateDate))
+		if(!is_null($jsonObject) && isset($jsonObject->createDate))
+			$this->createDate = (string)$jsonObject->createDate;
+		if(!is_null($xml) && count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
-		if(count($xml->isTrailer))
+		if(!is_null($jsonObject) && isset($jsonObject->updateDate))
+			$this->updateDate = (string)$jsonObject->updateDate;
+		if(!is_null($xml) && count($xml->isTrailer))
 		{
 			if(!empty($xml->isTrailer) && ((int) $xml->isTrailer === 1 || strtolower((string)$xml->isTrailer) === 'true'))
 				$this->isTrailer = true;
 			else
 				$this->isTrailer = false;
 		}
-		if(count($xml->streamerType))
+		if(!is_null($jsonObject) && isset($jsonObject->isTrailer))
+		{
+			if(!empty($jsonObject->isTrailer) && ((int) $jsonObject->isTrailer === 1 || strtolower((string)$jsonObject->isTrailer) === 'true'))
+				$this->isTrailer = true;
+			else
+				$this->isTrailer = false;
+		}
+		if(!is_null($xml) && count($xml->streamerType))
 			$this->streamerType = (string)$xml->streamerType;
-		if(count($xml->drmProfileId))
+		if(!is_null($jsonObject) && isset($jsonObject->streamerType))
+			$this->streamerType = (string)$jsonObject->streamerType;
+		if(!is_null($xml) && count($xml->drmProfileId))
 			$this->drmProfileId = (int)$xml->drmProfileId;
-		if(count($xml->quality))
+		if(!is_null($jsonObject) && isset($jsonObject->drmProfileId))
+			$this->drmProfileId = (int)$jsonObject->drmProfileId;
+		if(!is_null($xml) && count($xml->quality))
 			$this->quality = (string)$xml->quality;
-		if(count($xml->videoCodecs))
+		if(!is_null($jsonObject) && isset($jsonObject->quality))
+			$this->quality = (string)$jsonObject->quality;
+		if(!is_null($xml) && count($xml->videoCodecs))
 			$this->videoCodecs = (string)$xml->videoCodecs;
-		if(count($xml->audioCodecs))
+		if(!is_null($jsonObject) && isset($jsonObject->videoCodecs))
+			$this->videoCodecs = (string)$jsonObject->videoCodecs;
+		if(!is_null($xml) && count($xml->audioCodecs))
 			$this->audioCodecs = (string)$xml->audioCodecs;
+		if(!is_null($jsonObject) && isset($jsonObject->audioCodecs))
+			$this->audioCodecs = (string)$jsonObject->audioCodecs;
+		if(!is_null($xml) && count($xml->dynamicDataKeys))
+			$this->dynamicDataKeys = (string)$xml->dynamicDataKeys;
+		if(!is_null($jsonObject) && isset($jsonObject->dynamicDataKeys))
+			$this->dynamicDataKeys = (string)$jsonObject->dynamicDataKeys;
 	}
 	/**
 	 * Unique identifier
@@ -169,6 +210,13 @@ class Kaltura_Client_Type_MediaFileType extends Kaltura_Client_ObjectBase
 	 * @var string
 	 */
 	public $audioCodecs = null;
+
+	/**
+	 * List of comma separated keys allowed to be used as KalturaMediaFile&#39;s dynamic data keys
+	 *
+	 * @var string
+	 */
+	public $dynamicDataKeys = null;
 
 
 }

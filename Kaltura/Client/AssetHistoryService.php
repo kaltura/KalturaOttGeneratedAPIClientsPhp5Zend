@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -51,28 +51,44 @@ class Kaltura_Client_AssetHistoryService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("assethistory", "clean", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+		}
 	}
 
 	/**
 	 * @return Kaltura_Client_Type_AssetHistory
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function getNextEpisode($assetId)
+	function getNextEpisode($assetId = null, Kaltura_Client_Type_SeriesIdArguments $seriesIdArguments = null, $notWatchedReturnStrategy = null, $watchedAllReturnStrategy = null)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "assetId", $assetId);
+		if ($seriesIdArguments !== null)
+			$this->client->addParam($kparams, "seriesIdArguments", $seriesIdArguments->toParams());
+		$this->client->addParam($kparams, "notWatchedReturnStrategy", $notWatchedReturnStrategy);
+		$this->client->addParam($kparams, "watchedAllReturnStrategy", $watchedAllReturnStrategy);
 		$this->client->queueServiceActionCall("assethistory", "getNextEpisode", "KalturaAssetHistory", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaAssetHistory");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_AssetHistory");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaAssetHistory");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_AssetHistory");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -89,11 +105,17 @@ class Kaltura_Client_AssetHistoryService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("assethistory", "list", "KalturaAssetHistoryListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaAssetHistoryListResponse");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_AssetHistoryListResponse");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaAssetHistoryListResponse");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_AssetHistoryListResponse");
+		}
+			return $resultObject;
 	}
 }

@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,26 +38,42 @@ class Kaltura_Client_Type_PricePlan extends Kaltura_Client_Type_UsageModule
 		return 'KalturaPricePlan';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->isRenewable))
+		if(!is_null($xml) && count($xml->isRenewable))
 		{
 			if(!empty($xml->isRenewable) && ((int) $xml->isRenewable === 1 || strtolower((string)$xml->isRenewable) === 'true'))
 				$this->isRenewable = true;
 			else
 				$this->isRenewable = false;
 		}
-		if(count($xml->renewalsNumber))
+		if(!is_null($jsonObject) && isset($jsonObject->isRenewable))
+		{
+			if(!empty($jsonObject->isRenewable) && ((int) $jsonObject->isRenewable === 1 || strtolower((string)$jsonObject->isRenewable) === 'true'))
+				$this->isRenewable = true;
+			else
+				$this->isRenewable = false;
+		}
+		if(!is_null($xml) && count($xml->renewalsNumber))
 			$this->renewalsNumber = (int)$xml->renewalsNumber;
-		if(count($xml->discountId))
+		if(!is_null($jsonObject) && isset($jsonObject->renewalsNumber))
+			$this->renewalsNumber = (int)$jsonObject->renewalsNumber;
+		if(!is_null($xml) && count($xml->discountId))
 			$this->discountId = (string)$xml->discountId;
-		if(count($xml->priceDetailsId))
+		if(!is_null($jsonObject) && isset($jsonObject->discountId))
+			$this->discountId = (string)$jsonObject->discountId;
+		if(!is_null($xml) && count($xml->priceDetailsId))
 			$this->priceDetailsId = (string)$xml->priceDetailsId;
+		if(!is_null($jsonObject) && isset($jsonObject->priceDetailsId))
+			$this->priceDetailsId = (string)$jsonObject->priceDetailsId;
 	}
 	/**
 	 * Denotes whether or not this object can be renewed

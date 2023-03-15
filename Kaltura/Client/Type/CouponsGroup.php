@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,31 +38,52 @@ class Kaltura_Client_Type_CouponsGroup extends Kaltura_Client_ObjectBase
 		return 'KalturaCouponsGroup';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->startDate))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->startDate))
 			$this->startDate = (string)$xml->startDate;
-		if(count($xml->endDate))
+		if(!is_null($jsonObject) && isset($jsonObject->startDate))
+			$this->startDate = (string)$jsonObject->startDate;
+		if(!is_null($xml) && count($xml->endDate))
 			$this->endDate = (string)$xml->endDate;
-		if(count($xml->maxUsesNumber))
+		if(!is_null($jsonObject) && isset($jsonObject->endDate))
+			$this->endDate = (string)$jsonObject->endDate;
+		if(!is_null($xml) && count($xml->maxUsesNumber))
 			$this->maxUsesNumber = (int)$xml->maxUsesNumber;
-		if(count($xml->maxUsesNumberOnRenewableSub))
+		if(!is_null($jsonObject) && isset($jsonObject->maxUsesNumber))
+			$this->maxUsesNumber = (int)$jsonObject->maxUsesNumber;
+		if(!is_null($xml) && count($xml->maxUsesNumberOnRenewableSub))
 			$this->maxUsesNumberOnRenewableSub = (int)$xml->maxUsesNumberOnRenewableSub;
-		if(count($xml->couponGroupType))
+		if(!is_null($jsonObject) && isset($jsonObject->maxUsesNumberOnRenewableSub))
+			$this->maxUsesNumberOnRenewableSub = (int)$jsonObject->maxUsesNumberOnRenewableSub;
+		if(!is_null($xml) && count($xml->couponGroupType))
 			$this->couponGroupType = (string)$xml->couponGroupType;
-		if(count($xml->maxHouseholdUses))
+		if(!is_null($jsonObject) && isset($jsonObject->couponGroupType))
+			$this->couponGroupType = (string)$jsonObject->couponGroupType;
+		if(!is_null($xml) && count($xml->maxHouseholdUses))
 			$this->maxHouseholdUses = (int)$xml->maxHouseholdUses;
-		if(count($xml->discountId))
+		if(!is_null($jsonObject) && isset($jsonObject->maxHouseholdUses))
+			$this->maxHouseholdUses = (int)$jsonObject->maxHouseholdUses;
+		if(!is_null($xml) && count($xml->discountId))
 			$this->discountId = (string)$xml->discountId;
+		if(!is_null($jsonObject) && isset($jsonObject->discountId))
+			$this->discountId = (string)$jsonObject->discountId;
 	}
 	/**
 	 * Coupon group identifier

@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,37 +38,68 @@ class Kaltura_Client_Type_Campaign extends Kaltura_Client_Type_OTTObjectSupportN
 		return 'KalturaCampaign';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->createDate))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
-		if(count($xml->updateDate))
+		if(!is_null($jsonObject) && isset($jsonObject->createDate))
+			$this->createDate = (string)$jsonObject->createDate;
+		if(!is_null($xml) && count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
-		if(count($xml->startDate))
+		if(!is_null($jsonObject) && isset($jsonObject->updateDate))
+			$this->updateDate = (string)$jsonObject->updateDate;
+		if(!is_null($xml) && count($xml->startDate))
 			$this->startDate = (string)$xml->startDate;
-		if(count($xml->endDate))
+		if(!is_null($jsonObject) && isset($jsonObject->startDate))
+			$this->startDate = (string)$jsonObject->startDate;
+		if(!is_null($xml) && count($xml->endDate))
 			$this->endDate = (string)$xml->endDate;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->endDate))
+			$this->endDate = (string)$jsonObject->endDate;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->systemName))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->systemName))
 			$this->systemName = (string)$xml->systemName;
-		if(count($xml->description))
+		if(!is_null($jsonObject) && isset($jsonObject->systemName))
+			$this->systemName = (string)$jsonObject->systemName;
+		if(!is_null($xml) && count($xml->description))
 			$this->description = (string)$xml->description;
-		if(count($xml->state))
+		if(!is_null($jsonObject) && isset($jsonObject->description))
+			$this->description = (string)$jsonObject->description;
+		if(!is_null($xml) && count($xml->state))
 			$this->state = (string)$xml->state;
-		if(count($xml->promotion) && !empty($xml->promotion))
+		if(!is_null($jsonObject) && isset($jsonObject->state))
+			$this->state = (string)$jsonObject->state;
+		if(!is_null($xml) && count($xml->promotion) && !empty($xml->promotion))
 			$this->promotion = Kaltura_Client_ParseUtils::unmarshalObject($xml->promotion, "KalturaBasePromotion");
-		if(count($xml->message))
+		if(!is_null($jsonObject) && isset($jsonObject->promotion) && !empty($jsonObject->promotion))
+			$this->promotion = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->promotion, "KalturaBasePromotion");
+		if(!is_null($xml) && count($xml->message))
 			$this->message = (string)$xml->message;
-		if(count($xml->collectionIdIn))
+		if(!is_null($jsonObject) && isset($jsonObject->message))
+			$this->message = (string)$jsonObject->message;
+		if(!is_null($xml) && count($xml->collectionIdIn))
 			$this->collectionIdIn = (string)$xml->collectionIdIn;
+		if(!is_null($jsonObject) && isset($jsonObject->collectionIdIn))
+			$this->collectionIdIn = (string)$jsonObject->collectionIdIn;
+		if(!is_null($xml) && count($xml->assetUserRuleId))
+			$this->assetUserRuleId = (string)$xml->assetUserRuleId;
+		if(!is_null($jsonObject) && isset($jsonObject->assetUserRuleId))
+			$this->assetUserRuleId = (string)$jsonObject->assetUserRuleId;
 	}
 	/**
 	 * ID
@@ -157,6 +188,13 @@ class Kaltura_Client_Type_Campaign extends Kaltura_Client_Type_OTTObjectSupportN
 	 * @var string
 	 */
 	public $collectionIdIn = null;
+
+	/**
+	 * Asset user rule identifier
+	 *
+	 * @var bigint
+	 */
+	public $assetUserRuleId = null;
 
 
 }

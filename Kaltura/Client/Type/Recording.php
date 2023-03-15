@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,34 +38,62 @@ class Kaltura_Client_Type_Recording extends Kaltura_Client_ObjectBase
 		return 'KalturaRecording';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->status))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->status))
 			$this->status = (string)$xml->status;
-		if(count($xml->assetId))
+		if(!is_null($jsonObject) && isset($jsonObject->status))
+			$this->status = (string)$jsonObject->status;
+		if(!is_null($xml) && count($xml->assetId))
 			$this->assetId = (string)$xml->assetId;
-		if(count($xml->type))
+		if(!is_null($jsonObject) && isset($jsonObject->assetId))
+			$this->assetId = (string)$jsonObject->assetId;
+		if(!is_null($xml) && count($xml->type))
 			$this->type = (string)$xml->type;
-		if(count($xml->viewableUntilDate))
+		if(!is_null($jsonObject) && isset($jsonObject->type))
+			$this->type = (string)$jsonObject->type;
+		if(!is_null($xml) && count($xml->viewableUntilDate))
 			$this->viewableUntilDate = (string)$xml->viewableUntilDate;
-		if(count($xml->isProtected))
+		if(!is_null($jsonObject) && isset($jsonObject->viewableUntilDate))
+			$this->viewableUntilDate = (string)$jsonObject->viewableUntilDate;
+		if(!is_null($xml) && count($xml->isProtected))
 		{
 			if(!empty($xml->isProtected) && ((int) $xml->isProtected === 1 || strtolower((string)$xml->isProtected) === 'true'))
 				$this->isProtected = true;
 			else
 				$this->isProtected = false;
 		}
-		if(count($xml->createDate))
+		if(!is_null($jsonObject) && isset($jsonObject->isProtected))
+		{
+			if(!empty($jsonObject->isProtected) && ((int) $jsonObject->isProtected === 1 || strtolower((string)$jsonObject->isProtected) === 'true'))
+				$this->isProtected = true;
+			else
+				$this->isProtected = false;
+		}
+		if(!is_null($xml) && count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
-		if(count($xml->updateDate))
+		if(!is_null($jsonObject) && isset($jsonObject->createDate))
+			$this->createDate = (string)$jsonObject->createDate;
+		if(!is_null($xml) && count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
+		if(!is_null($jsonObject) && isset($jsonObject->updateDate))
+			$this->updateDate = (string)$jsonObject->updateDate;
+		if(!is_null($xml) && count($xml->duration))
+			$this->duration = (string)$xml->duration;
+		if(!is_null($jsonObject) && isset($jsonObject->duration))
+			$this->duration = (string)$jsonObject->duration;
 	}
 	/**
 	 * Kaltura unique ID representing the recording identifier
@@ -128,6 +156,14 @@ class Kaltura_Client_Type_Recording extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $updateDate = null;
+
+	/**
+	 * Duration in seconds
+	 *
+	 * @var bigint
+	 * @readonly
+	 */
+	public $duration = null;
 
 
 }
