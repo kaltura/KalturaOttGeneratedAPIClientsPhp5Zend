@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,44 +38,78 @@ class Kaltura_Client_Type_HouseholdLimitations extends Kaltura_Client_ObjectBase
 		return 'KalturaHouseholdLimitations';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (int)$xml->id;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (int)$jsonObject->id;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->concurrentLimit))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->concurrentLimit))
 			$this->concurrentLimit = (int)$xml->concurrentLimit;
-		if(count($xml->deviceLimit))
+		if(!is_null($jsonObject) && isset($jsonObject->concurrentLimit))
+			$this->concurrentLimit = (int)$jsonObject->concurrentLimit;
+		if(!is_null($xml) && count($xml->deviceLimit))
 			$this->deviceLimit = (int)$xml->deviceLimit;
-		if(count($xml->deviceFrequency))
+		if(!is_null($jsonObject) && isset($jsonObject->deviceLimit))
+			$this->deviceLimit = (int)$jsonObject->deviceLimit;
+		if(!is_null($xml) && count($xml->deviceFrequency))
 			$this->deviceFrequency = (int)$xml->deviceFrequency;
-		if(count($xml->deviceFrequencyDescription))
+		if(!is_null($jsonObject) && isset($jsonObject->deviceFrequency))
+			$this->deviceFrequency = (int)$jsonObject->deviceFrequency;
+		if(!is_null($xml) && count($xml->deviceFrequencyDescription))
 			$this->deviceFrequencyDescription = (string)$xml->deviceFrequencyDescription;
-		if(count($xml->userFrequency))
+		if(!is_null($jsonObject) && isset($jsonObject->deviceFrequencyDescription))
+			$this->deviceFrequencyDescription = (string)$jsonObject->deviceFrequencyDescription;
+		if(!is_null($xml) && count($xml->userFrequency))
 			$this->userFrequency = (int)$xml->userFrequency;
-		if(count($xml->userFrequencyDescription))
+		if(!is_null($jsonObject) && isset($jsonObject->userFrequency))
+			$this->userFrequency = (int)$jsonObject->userFrequency;
+		if(!is_null($xml) && count($xml->userFrequencyDescription))
 			$this->userFrequencyDescription = (string)$xml->userFrequencyDescription;
-		if(count($xml->npvrQuotaInSeconds))
+		if(!is_null($jsonObject) && isset($jsonObject->userFrequencyDescription))
+			$this->userFrequencyDescription = (string)$jsonObject->userFrequencyDescription;
+		if(!is_null($xml) && count($xml->npvrQuotaInSeconds))
 			$this->npvrQuotaInSeconds = (int)$xml->npvrQuotaInSeconds;
-		if(count($xml->usersLimit))
+		if(!is_null($jsonObject) && isset($jsonObject->npvrQuotaInSeconds))
+			$this->npvrQuotaInSeconds = (int)$jsonObject->npvrQuotaInSeconds;
+		if(!is_null($xml) && count($xml->usersLimit))
 			$this->usersLimit = (int)$xml->usersLimit;
-		if(count($xml->deviceFamiliesLimitations))
+		if(!is_null($jsonObject) && isset($jsonObject->usersLimit))
+			$this->usersLimit = (int)$jsonObject->usersLimit;
+		if(!is_null($xml) && count($xml->deviceFamiliesLimitations))
 		{
 			if(empty($xml->deviceFamiliesLimitations))
 				$this->deviceFamiliesLimitations = array();
 			else
 				$this->deviceFamiliesLimitations = Kaltura_Client_ParseUtils::unmarshalArray($xml->deviceFamiliesLimitations, "KalturaHouseholdDeviceFamilyLimitations");
 		}
-		if(count($xml->description))
+		if(!is_null($jsonObject) && isset($jsonObject->deviceFamiliesLimitations))
+		{
+			if(empty($jsonObject->deviceFamiliesLimitations))
+				$this->deviceFamiliesLimitations = array();
+			else
+				$this->deviceFamiliesLimitations = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->deviceFamiliesLimitations, "KalturaHouseholdDeviceFamilyLimitations");
+		}
+		if(!is_null($xml) && count($xml->description))
 			$this->description = (string)$xml->description;
-		if(count($xml->associatedDeviceFamiliesIdsIn))
+		if(!is_null($jsonObject) && isset($jsonObject->description))
+			$this->description = (string)$jsonObject->description;
+		if(!is_null($xml) && count($xml->associatedDeviceFamiliesIdsIn))
 			$this->associatedDeviceFamiliesIdsIn = (string)$xml->associatedDeviceFamiliesIdsIn;
+		if(!is_null($jsonObject) && isset($jsonObject->associatedDeviceFamiliesIdsIn))
+			$this->associatedDeviceFamiliesIdsIn = (string)$jsonObject->associatedDeviceFamiliesIdsIn;
 	}
 	/**
 	 * Household limitation module identifier

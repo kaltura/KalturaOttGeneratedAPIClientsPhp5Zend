@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,17 +38,24 @@ class Kaltura_Client_Type_LoginResponse extends Kaltura_Client_ObjectBase
 		return 'KalturaLoginResponse';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->user) && !empty($xml->user))
+		if(!is_null($xml) && count($xml->user) && !empty($xml->user))
 			$this->user = Kaltura_Client_ParseUtils::unmarshalObject($xml->user, "KalturaOTTUser");
-		if(count($xml->loginSession) && !empty($xml->loginSession))
+		if(!is_null($jsonObject) && isset($jsonObject->user) && !empty($jsonObject->user))
+			$this->user = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->user, "KalturaOTTUser");
+		if(!is_null($xml) && count($xml->loginSession) && !empty($xml->loginSession))
 			$this->loginSession = Kaltura_Client_ParseUtils::unmarshalObject($xml->loginSession, "KalturaLoginSession");
+		if(!is_null($jsonObject) && isset($jsonObject->loginSession) && !empty($jsonObject->loginSession))
+			$this->loginSession = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->loginSession, "KalturaLoginSession");
 	}
 	/**
 	 * User

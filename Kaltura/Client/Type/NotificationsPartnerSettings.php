@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,88 +38,166 @@ class Kaltura_Client_Type_NotificationsPartnerSettings extends Kaltura_Client_Ob
 		return 'KalturaNotificationsPartnerSettings';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->pushNotificationEnabled))
+		if(!is_null($xml) && count($xml->pushNotificationEnabled))
 		{
 			if(!empty($xml->pushNotificationEnabled) && ((int) $xml->pushNotificationEnabled === 1 || strtolower((string)$xml->pushNotificationEnabled) === 'true'))
 				$this->pushNotificationEnabled = true;
 			else
 				$this->pushNotificationEnabled = false;
 		}
-		if(count($xml->pushSystemAnnouncementsEnabled))
+		if(!is_null($jsonObject) && isset($jsonObject->pushNotificationEnabled))
+		{
+			if(!empty($jsonObject->pushNotificationEnabled) && ((int) $jsonObject->pushNotificationEnabled === 1 || strtolower((string)$jsonObject->pushNotificationEnabled) === 'true'))
+				$this->pushNotificationEnabled = true;
+			else
+				$this->pushNotificationEnabled = false;
+		}
+		if(!is_null($xml) && count($xml->pushSystemAnnouncementsEnabled))
 		{
 			if(!empty($xml->pushSystemAnnouncementsEnabled) && ((int) $xml->pushSystemAnnouncementsEnabled === 1 || strtolower((string)$xml->pushSystemAnnouncementsEnabled) === 'true'))
 				$this->pushSystemAnnouncementsEnabled = true;
 			else
 				$this->pushSystemAnnouncementsEnabled = false;
 		}
-		if(count($xml->pushStartHour))
+		if(!is_null($jsonObject) && isset($jsonObject->pushSystemAnnouncementsEnabled))
+		{
+			if(!empty($jsonObject->pushSystemAnnouncementsEnabled) && ((int) $jsonObject->pushSystemAnnouncementsEnabled === 1 || strtolower((string)$jsonObject->pushSystemAnnouncementsEnabled) === 'true'))
+				$this->pushSystemAnnouncementsEnabled = true;
+			else
+				$this->pushSystemAnnouncementsEnabled = false;
+		}
+		if(!is_null($xml) && count($xml->pushStartHour))
 			$this->pushStartHour = (int)$xml->pushStartHour;
-		if(count($xml->pushEndHour))
+		if(!is_null($jsonObject) && isset($jsonObject->pushStartHour))
+			$this->pushStartHour = (int)$jsonObject->pushStartHour;
+		if(!is_null($xml) && count($xml->pushEndHour))
 			$this->pushEndHour = (int)$xml->pushEndHour;
-		if(count($xml->inboxEnabled))
+		if(!is_null($jsonObject) && isset($jsonObject->pushEndHour))
+			$this->pushEndHour = (int)$jsonObject->pushEndHour;
+		if(!is_null($xml) && count($xml->inboxEnabled))
 		{
 			if(!empty($xml->inboxEnabled) && ((int) $xml->inboxEnabled === 1 || strtolower((string)$xml->inboxEnabled) === 'true'))
 				$this->inboxEnabled = true;
 			else
 				$this->inboxEnabled = false;
 		}
-		if(count($xml->messageTTLDays))
+		if(!is_null($jsonObject) && isset($jsonObject->inboxEnabled))
+		{
+			if(!empty($jsonObject->inboxEnabled) && ((int) $jsonObject->inboxEnabled === 1 || strtolower((string)$jsonObject->inboxEnabled) === 'true'))
+				$this->inboxEnabled = true;
+			else
+				$this->inboxEnabled = false;
+		}
+		if(!is_null($xml) && count($xml->messageTTLDays))
 			$this->messageTTLDays = (int)$xml->messageTTLDays;
-		if(count($xml->automaticIssueFollowNotification))
+		if(!is_null($jsonObject) && isset($jsonObject->messageTTLDays))
+			$this->messageTTLDays = (int)$jsonObject->messageTTLDays;
+		if(!is_null($xml) && count($xml->automaticIssueFollowNotification))
 		{
 			if(!empty($xml->automaticIssueFollowNotification) && ((int) $xml->automaticIssueFollowNotification === 1 || strtolower((string)$xml->automaticIssueFollowNotification) === 'true'))
 				$this->automaticIssueFollowNotification = true;
 			else
 				$this->automaticIssueFollowNotification = false;
 		}
-		if(count($xml->topicExpirationDurationDays))
+		if(!is_null($jsonObject) && isset($jsonObject->automaticIssueFollowNotification))
+		{
+			if(!empty($jsonObject->automaticIssueFollowNotification) && ((int) $jsonObject->automaticIssueFollowNotification === 1 || strtolower((string)$jsonObject->automaticIssueFollowNotification) === 'true'))
+				$this->automaticIssueFollowNotification = true;
+			else
+				$this->automaticIssueFollowNotification = false;
+		}
+		if(!is_null($xml) && count($xml->topicExpirationDurationDays))
 			$this->topicExpirationDurationDays = (int)$xml->topicExpirationDurationDays;
-		if(count($xml->reminderEnabled))
+		if(!is_null($jsonObject) && isset($jsonObject->topicExpirationDurationDays))
+			$this->topicExpirationDurationDays = (int)$jsonObject->topicExpirationDurationDays;
+		if(!is_null($xml) && count($xml->reminderEnabled))
 		{
 			if(!empty($xml->reminderEnabled) && ((int) $xml->reminderEnabled === 1 || strtolower((string)$xml->reminderEnabled) === 'true'))
 				$this->reminderEnabled = true;
 			else
 				$this->reminderEnabled = false;
 		}
-		if(count($xml->reminderOffsetSec))
+		if(!is_null($jsonObject) && isset($jsonObject->reminderEnabled))
+		{
+			if(!empty($jsonObject->reminderEnabled) && ((int) $jsonObject->reminderEnabled === 1 || strtolower((string)$jsonObject->reminderEnabled) === 'true'))
+				$this->reminderEnabled = true;
+			else
+				$this->reminderEnabled = false;
+		}
+		if(!is_null($xml) && count($xml->reminderOffsetSec))
 			$this->reminderOffsetSec = (int)$xml->reminderOffsetSec;
-		if(count($xml->pushAdapterUrl))
+		if(!is_null($jsonObject) && isset($jsonObject->reminderOffsetSec))
+			$this->reminderOffsetSec = (int)$jsonObject->reminderOffsetSec;
+		if(!is_null($xml) && count($xml->pushAdapterUrl))
 			$this->pushAdapterUrl = (string)$xml->pushAdapterUrl;
-		if(count($xml->churnMailTemplateName))
+		if(!is_null($jsonObject) && isset($jsonObject->pushAdapterUrl))
+			$this->pushAdapterUrl = (string)$jsonObject->pushAdapterUrl;
+		if(!is_null($xml) && count($xml->churnMailTemplateName))
 			$this->churnMailTemplateName = (string)$xml->churnMailTemplateName;
-		if(count($xml->churnMailSubject))
+		if(!is_null($jsonObject) && isset($jsonObject->churnMailTemplateName))
+			$this->churnMailTemplateName = (string)$jsonObject->churnMailTemplateName;
+		if(!is_null($xml) && count($xml->churnMailSubject))
 			$this->churnMailSubject = (string)$xml->churnMailSubject;
-		if(count($xml->senderEmail))
+		if(!is_null($jsonObject) && isset($jsonObject->churnMailSubject))
+			$this->churnMailSubject = (string)$jsonObject->churnMailSubject;
+		if(!is_null($xml) && count($xml->senderEmail))
 			$this->senderEmail = (string)$xml->senderEmail;
-		if(count($xml->mailSenderName))
+		if(!is_null($jsonObject) && isset($jsonObject->senderEmail))
+			$this->senderEmail = (string)$jsonObject->senderEmail;
+		if(!is_null($xml) && count($xml->mailSenderName))
 			$this->mailSenderName = (string)$xml->mailSenderName;
-		if(count($xml->mailNotificationAdapterId))
+		if(!is_null($jsonObject) && isset($jsonObject->mailSenderName))
+			$this->mailSenderName = (string)$jsonObject->mailSenderName;
+		if(!is_null($xml) && count($xml->mailNotificationAdapterId))
 			$this->mailNotificationAdapterId = (string)$xml->mailNotificationAdapterId;
-		if(count($xml->smsEnabled))
+		if(!is_null($jsonObject) && isset($jsonObject->mailNotificationAdapterId))
+			$this->mailNotificationAdapterId = (string)$jsonObject->mailNotificationAdapterId;
+		if(!is_null($xml) && count($xml->smsEnabled))
 		{
 			if(!empty($xml->smsEnabled) && ((int) $xml->smsEnabled === 1 || strtolower((string)$xml->smsEnabled) === 'true'))
 				$this->smsEnabled = true;
 			else
 				$this->smsEnabled = false;
 		}
-		if(count($xml->iotEnabled))
+		if(!is_null($jsonObject) && isset($jsonObject->smsEnabled))
+		{
+			if(!empty($jsonObject->smsEnabled) && ((int) $jsonObject->smsEnabled === 1 || strtolower((string)$jsonObject->smsEnabled) === 'true'))
+				$this->smsEnabled = true;
+			else
+				$this->smsEnabled = false;
+		}
+		if(!is_null($xml) && count($xml->iotEnabled))
 		{
 			if(!empty($xml->iotEnabled) && ((int) $xml->iotEnabled === 1 || strtolower((string)$xml->iotEnabled) === 'true'))
 				$this->iotEnabled = true;
 			else
 				$this->iotEnabled = false;
 		}
-		if(count($xml->epgNotification) && !empty($xml->epgNotification))
+		if(!is_null($jsonObject) && isset($jsonObject->iotEnabled))
+		{
+			if(!empty($jsonObject->iotEnabled) && ((int) $jsonObject->iotEnabled === 1 || strtolower((string)$jsonObject->iotEnabled) === 'true'))
+				$this->iotEnabled = true;
+			else
+				$this->iotEnabled = false;
+		}
+		if(!is_null($xml) && count($xml->epgNotification) && !empty($xml->epgNotification))
 			$this->epgNotification = Kaltura_Client_ParseUtils::unmarshalObject($xml->epgNotification, "KalturaEpgNotificationSettings");
-		if(count($xml->lineupNotification) && !empty($xml->lineupNotification))
+		if(!is_null($jsonObject) && isset($jsonObject->epgNotification) && !empty($jsonObject->epgNotification))
+			$this->epgNotification = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->epgNotification, "KalturaEpgNotificationSettings");
+		if(!is_null($xml) && count($xml->lineupNotification) && !empty($xml->lineupNotification))
 			$this->lineupNotification = Kaltura_Client_ParseUtils::unmarshalObject($xml->lineupNotification, "KalturaLineupNotificationSettings");
+		if(!is_null($jsonObject) && isset($jsonObject->lineupNotification) && !empty($jsonObject->lineupNotification))
+			$this->lineupNotification = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->lineupNotification, "KalturaLineupNotificationSettings");
 	}
 	/**
 	 * Push notification capability is enabled for the account

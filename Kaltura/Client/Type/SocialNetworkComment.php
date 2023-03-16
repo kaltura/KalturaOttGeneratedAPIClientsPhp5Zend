@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,17 +38,24 @@ class Kaltura_Client_Type_SocialNetworkComment extends Kaltura_Client_Type_Socia
 		return 'KalturaSocialNetworkComment';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->likeCounter))
+		if(!is_null($xml) && count($xml->likeCounter))
 			$this->likeCounter = (string)$xml->likeCounter;
-		if(count($xml->authorImageUrl))
+		if(!is_null($jsonObject) && isset($jsonObject->likeCounter))
+			$this->likeCounter = (string)$jsonObject->likeCounter;
+		if(!is_null($xml) && count($xml->authorImageUrl))
 			$this->authorImageUrl = (string)$xml->authorImageUrl;
+		if(!is_null($jsonObject) && isset($jsonObject->authorImageUrl))
+			$this->authorImageUrl = (string)$jsonObject->authorImageUrl;
 	}
 	/**
 	 * Number of likes

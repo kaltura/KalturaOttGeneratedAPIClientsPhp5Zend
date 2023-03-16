@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,68 +38,126 @@ class Kaltura_Client_Type_ParentalRule extends Kaltura_Client_ObjectBase
 		return 'KalturaParentalRule';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->description))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->description))
 			$this->description = (string)$xml->description;
-		if(count($xml->order))
+		if(!is_null($jsonObject) && isset($jsonObject->description))
+			$this->description = (string)$jsonObject->description;
+		if(!is_null($xml) && count($xml->order))
 			$this->order = (int)$xml->order;
-		if(count($xml->mediaTag))
+		if(!is_null($jsonObject) && isset($jsonObject->order))
+			$this->order = (int)$jsonObject->order;
+		if(!is_null($xml) && count($xml->mediaTag))
 			$this->mediaTag = (int)$xml->mediaTag;
-		if(count($xml->epgTag))
+		if(!is_null($jsonObject) && isset($jsonObject->mediaTag))
+			$this->mediaTag = (int)$jsonObject->mediaTag;
+		if(!is_null($xml) && count($xml->epgTag))
 			$this->epgTag = (int)$xml->epgTag;
-		if(count($xml->blockAnonymousAccess))
+		if(!is_null($jsonObject) && isset($jsonObject->epgTag))
+			$this->epgTag = (int)$jsonObject->epgTag;
+		if(!is_null($xml) && count($xml->blockAnonymousAccess))
 		{
 			if(!empty($xml->blockAnonymousAccess) && ((int) $xml->blockAnonymousAccess === 1 || strtolower((string)$xml->blockAnonymousAccess) === 'true'))
 				$this->blockAnonymousAccess = true;
 			else
 				$this->blockAnonymousAccess = false;
 		}
-		if(count($xml->ruleType))
+		if(!is_null($jsonObject) && isset($jsonObject->blockAnonymousAccess))
+		{
+			if(!empty($jsonObject->blockAnonymousAccess) && ((int) $jsonObject->blockAnonymousAccess === 1 || strtolower((string)$jsonObject->blockAnonymousAccess) === 'true'))
+				$this->blockAnonymousAccess = true;
+			else
+				$this->blockAnonymousAccess = false;
+		}
+		if(!is_null($xml) && count($xml->ruleType))
 			$this->ruleType = (string)$xml->ruleType;
-		if(count($xml->mediaTagValues))
+		if(!is_null($jsonObject) && isset($jsonObject->ruleType))
+			$this->ruleType = (string)$jsonObject->ruleType;
+		if(!is_null($xml) && count($xml->mediaTagValues))
 		{
 			if(empty($xml->mediaTagValues))
 				$this->mediaTagValues = array();
 			else
 				$this->mediaTagValues = Kaltura_Client_ParseUtils::unmarshalArray($xml->mediaTagValues, "KalturaStringValue");
 		}
-		if(count($xml->epgTagValues))
+		if(!is_null($jsonObject) && isset($jsonObject->mediaTagValues))
+		{
+			if(empty($jsonObject->mediaTagValues))
+				$this->mediaTagValues = array();
+			else
+				$this->mediaTagValues = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->mediaTagValues, "KalturaStringValue");
+		}
+		if(!is_null($xml) && count($xml->epgTagValues))
 		{
 			if(empty($xml->epgTagValues))
 				$this->epgTagValues = array();
 			else
 				$this->epgTagValues = Kaltura_Client_ParseUtils::unmarshalArray($xml->epgTagValues, "KalturaStringValue");
 		}
-		if(count($xml->isDefault))
+		if(!is_null($jsonObject) && isset($jsonObject->epgTagValues))
+		{
+			if(empty($jsonObject->epgTagValues))
+				$this->epgTagValues = array();
+			else
+				$this->epgTagValues = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->epgTagValues, "KalturaStringValue");
+		}
+		if(!is_null($xml) && count($xml->isDefault))
 		{
 			if(!empty($xml->isDefault) && ((int) $xml->isDefault === 1 || strtolower((string)$xml->isDefault) === 'true'))
 				$this->isDefault = true;
 			else
 				$this->isDefault = false;
 		}
-		if(count($xml->origin))
+		if(!is_null($jsonObject) && isset($jsonObject->isDefault))
+		{
+			if(!empty($jsonObject->isDefault) && ((int) $jsonObject->isDefault === 1 || strtolower((string)$jsonObject->isDefault) === 'true'))
+				$this->isDefault = true;
+			else
+				$this->isDefault = false;
+		}
+		if(!is_null($xml) && count($xml->origin))
 			$this->origin = (string)$xml->origin;
-		if(count($xml->isActive))
+		if(!is_null($jsonObject) && isset($jsonObject->origin))
+			$this->origin = (string)$jsonObject->origin;
+		if(!is_null($xml) && count($xml->isActive))
 		{
 			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))
 				$this->isActive = true;
 			else
 				$this->isActive = false;
 		}
-		if(count($xml->createDate))
+		if(!is_null($jsonObject) && isset($jsonObject->isActive))
+		{
+			if(!empty($jsonObject->isActive) && ((int) $jsonObject->isActive === 1 || strtolower((string)$jsonObject->isActive) === 'true'))
+				$this->isActive = true;
+			else
+				$this->isActive = false;
+		}
+		if(!is_null($xml) && count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
-		if(count($xml->updateDate))
+		if(!is_null($jsonObject) && isset($jsonObject->createDate))
+			$this->createDate = (string)$jsonObject->createDate;
+		if(!is_null($xml) && count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
+		if(!is_null($jsonObject) && isset($jsonObject->updateDate))
+			$this->updateDate = (string)$jsonObject->updateDate;
 	}
 	/**
 	 * Unique parental rule identifier
