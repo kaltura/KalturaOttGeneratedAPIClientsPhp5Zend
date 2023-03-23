@@ -134,6 +134,19 @@ class Kaltura_Client_ParseUtils
 				{
 					continue;
 				}
+
+				if($attribute === 'relatedObjects') {
+					$object->relatedObjects = array();
+					if(is_object($attributeValue)) {
+						$objectVars = get_object_vars($attributeValue);
+					} else {
+						$objectVars = $attributeValue;
+					}
+					foreach($objectVars as $key => $relatedObject) {
+						$object->relatedObjects[$key] = self::jsObjectToClientObject($relatedObject);
+					}
+					continue;
+				}
 				
 				$object->$attribute = self::jsObjectToClientObject($attributeValue);
 			}
@@ -146,7 +159,7 @@ class Kaltura_Client_ParseUtils
 
 	private static function exceptionArgsArrayToObject($args)
 	{
-		$objectArgs = [];
+		$objectArgs = array();
 		foreach($args as $argName => $argValue) {
 			$argumentsObject = new stdClass();
 			$argumentsObject->name = $argName;
