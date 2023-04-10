@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,38 +38,66 @@ class Kaltura_Client_Type_CatalogPartnerConfig extends Kaltura_Client_Type_Partn
 		return 'KalturaCatalogPartnerConfig';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->singleMultilingualMode))
+		if(!is_null($xml) && count($xml->singleMultilingualMode))
 		{
 			if(!empty($xml->singleMultilingualMode) && ((int) $xml->singleMultilingualMode === 1 || strtolower((string)$xml->singleMultilingualMode) === 'true'))
 				$this->singleMultilingualMode = true;
 			else
 				$this->singleMultilingualMode = false;
 		}
-		if(count($xml->categoryManagement) && !empty($xml->categoryManagement))
+		if(!is_null($jsonObject) && isset($jsonObject->singleMultilingualMode))
+		{
+			if(!empty($jsonObject->singleMultilingualMode) && ((int) $jsonObject->singleMultilingualMode === 1 || strtolower((string)$jsonObject->singleMultilingualMode) === 'true'))
+				$this->singleMultilingualMode = true;
+			else
+				$this->singleMultilingualMode = false;
+		}
+		if(!is_null($xml) && count($xml->categoryManagement) && !empty($xml->categoryManagement))
 			$this->categoryManagement = Kaltura_Client_ParseUtils::unmarshalObject($xml->categoryManagement, "KalturaCategoryManagement");
-		if(count($xml->epgMultilingualFallbackSupport))
+		if(!is_null($jsonObject) && isset($jsonObject->categoryManagement) && !empty($jsonObject->categoryManagement))
+			$this->categoryManagement = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->categoryManagement, "KalturaCategoryManagement");
+		if(!is_null($xml) && count($xml->epgMultilingualFallbackSupport))
 		{
 			if(!empty($xml->epgMultilingualFallbackSupport) && ((int) $xml->epgMultilingualFallbackSupport === 1 || strtolower((string)$xml->epgMultilingualFallbackSupport) === 'true'))
 				$this->epgMultilingualFallbackSupport = true;
 			else
 				$this->epgMultilingualFallbackSupport = false;
 		}
-		if(count($xml->uploadExportDatalake))
+		if(!is_null($jsonObject) && isset($jsonObject->epgMultilingualFallbackSupport))
+		{
+			if(!empty($jsonObject->epgMultilingualFallbackSupport) && ((int) $jsonObject->epgMultilingualFallbackSupport === 1 || strtolower((string)$jsonObject->epgMultilingualFallbackSupport) === 'true'))
+				$this->epgMultilingualFallbackSupport = true;
+			else
+				$this->epgMultilingualFallbackSupport = false;
+		}
+		if(!is_null($xml) && count($xml->uploadExportDatalake))
 		{
 			if(!empty($xml->uploadExportDatalake) && ((int) $xml->uploadExportDatalake === 1 || strtolower((string)$xml->uploadExportDatalake) === 'true'))
 				$this->uploadExportDatalake = true;
 			else
 				$this->uploadExportDatalake = false;
 		}
-		if(count($xml->shopMarkerMetaId))
+		if(!is_null($jsonObject) && isset($jsonObject->uploadExportDatalake))
+		{
+			if(!empty($jsonObject->uploadExportDatalake) && ((int) $jsonObject->uploadExportDatalake === 1 || strtolower((string)$jsonObject->uploadExportDatalake) === 'true'))
+				$this->uploadExportDatalake = true;
+			else
+				$this->uploadExportDatalake = false;
+		}
+		if(!is_null($xml) && count($xml->shopMarkerMetaId))
 			$this->shopMarkerMetaId = (string)$xml->shopMarkerMetaId;
+		if(!is_null($jsonObject) && isset($jsonObject->shopMarkerMetaId))
+			$this->shopMarkerMetaId = (string)$jsonObject->shopMarkerMetaId;
 	}
 	/**
 	 * Single multilingual mode

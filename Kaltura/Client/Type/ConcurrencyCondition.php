@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,17 +38,24 @@ class Kaltura_Client_Type_ConcurrencyCondition extends Kaltura_Client_Type_Asset
 		return 'KalturaConcurrencyCondition';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->limit))
+		if(!is_null($xml) && count($xml->limit))
 			$this->limit = (int)$xml->limit;
-		if(count($xml->concurrencyLimitationType))
+		if(!is_null($jsonObject) && isset($jsonObject->limit))
+			$this->limit = (int)$jsonObject->limit;
+		if(!is_null($xml) && count($xml->concurrencyLimitationType))
 			$this->concurrencyLimitationType = (string)$xml->concurrencyLimitationType;
+		if(!is_null($jsonObject) && isset($jsonObject->concurrencyLimitationType))
+			$this->concurrencyLimitationType = (string)$jsonObject->concurrencyLimitationType;
 	}
 	/**
 	 * Concurrency limitation

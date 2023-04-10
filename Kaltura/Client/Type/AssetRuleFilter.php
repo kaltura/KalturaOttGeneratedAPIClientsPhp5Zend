@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,21 +38,36 @@ class Kaltura_Client_Type_AssetRuleFilter extends Kaltura_Client_Type_Filter
 		return 'KalturaAssetRuleFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->conditionsContainType))
+		if(!is_null($xml) && count($xml->conditionsContainType))
 			$this->conditionsContainType = (string)$xml->conditionsContainType;
-		if(count($xml->assetApplied) && !empty($xml->assetApplied))
+		if(!is_null($jsonObject) && isset($jsonObject->conditionsContainType))
+			$this->conditionsContainType = (string)$jsonObject->conditionsContainType;
+		if(!is_null($xml) && count($xml->assetApplied) && !empty($xml->assetApplied))
 			$this->assetApplied = Kaltura_Client_ParseUtils::unmarshalObject($xml->assetApplied, "KalturaSlimAsset");
-		if(count($xml->actionsContainType))
+		if(!is_null($jsonObject) && isset($jsonObject->assetApplied) && !empty($jsonObject->assetApplied))
+			$this->assetApplied = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->assetApplied, "KalturaSlimAsset");
+		if(!is_null($xml) && count($xml->actionsContainType))
 			$this->actionsContainType = (string)$xml->actionsContainType;
-		if(count($xml->assetRuleIdEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->actionsContainType))
+			$this->actionsContainType = (string)$jsonObject->actionsContainType;
+		if(!is_null($xml) && count($xml->assetRuleIdEqual))
 			$this->assetRuleIdEqual = (string)$xml->assetRuleIdEqual;
+		if(!is_null($jsonObject) && isset($jsonObject->assetRuleIdEqual))
+			$this->assetRuleIdEqual = (string)$jsonObject->assetRuleIdEqual;
+		if(!is_null($xml) && count($xml->nameContains))
+			$this->nameContains = (string)$xml->nameContains;
+		if(!is_null($jsonObject) && isset($jsonObject->nameContains))
+			$this->nameContains = (string)$jsonObject->nameContains;
 	}
 	/**
 	 * Indicates which asset rule list to return by it KalturaRuleConditionType.
@@ -82,6 +97,13 @@ class Kaltura_Client_Type_AssetRuleFilter extends Kaltura_Client_Type_Filter
 	 * @var bigint
 	 */
 	public $assetRuleIdEqual = null;
+
+	/**
+	 * Name
+	 *
+	 * @var string
+	 */
+	public $nameContains = null;
 
 
 }

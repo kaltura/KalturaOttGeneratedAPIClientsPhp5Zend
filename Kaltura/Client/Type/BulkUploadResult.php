@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,34 +38,59 @@ abstract class Kaltura_Client_Type_BulkUploadResult extends Kaltura_Client_Objec
 		return 'KalturaBulkUploadResult';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->objectId))
+		if(!is_null($xml) && count($xml->objectId))
 			$this->objectId = (string)$xml->objectId;
-		if(count($xml->index))
+		if(!is_null($jsonObject) && isset($jsonObject->objectId))
+			$this->objectId = (string)$jsonObject->objectId;
+		if(!is_null($xml) && count($xml->index))
 			$this->index = (int)$xml->index;
-		if(count($xml->bulkUploadId))
+		if(!is_null($jsonObject) && isset($jsonObject->index))
+			$this->index = (int)$jsonObject->index;
+		if(!is_null($xml) && count($xml->bulkUploadId))
 			$this->bulkUploadId = (string)$xml->bulkUploadId;
-		if(count($xml->status))
+		if(!is_null($jsonObject) && isset($jsonObject->bulkUploadId))
+			$this->bulkUploadId = (string)$jsonObject->bulkUploadId;
+		if(!is_null($xml) && count($xml->status))
 			$this->status = (string)$xml->status;
-		if(count($xml->errors))
+		if(!is_null($jsonObject) && isset($jsonObject->status))
+			$this->status = (string)$jsonObject->status;
+		if(!is_null($xml) && count($xml->errors))
 		{
 			if(empty($xml->errors))
 				$this->errors = array();
 			else
 				$this->errors = Kaltura_Client_ParseUtils::unmarshalArray($xml->errors, "KalturaMessage");
 		}
-		if(count($xml->warnings))
+		if(!is_null($jsonObject) && isset($jsonObject->errors))
+		{
+			if(empty($jsonObject->errors))
+				$this->errors = array();
+			else
+				$this->errors = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->errors, "KalturaMessage");
+		}
+		if(!is_null($xml) && count($xml->warnings))
 		{
 			if(empty($xml->warnings))
 				$this->warnings = array();
 			else
 				$this->warnings = Kaltura_Client_ParseUtils::unmarshalArray($xml->warnings, "KalturaMessage");
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->warnings))
+		{
+			if(empty($jsonObject->warnings))
+				$this->warnings = array();
+			else
+				$this->warnings = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->warnings, "KalturaMessage");
 		}
 	}
 	/**

@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,19 +38,28 @@ class Kaltura_Client_Type_EntitlementRenewalBase extends Kaltura_Client_ObjectBa
 		return 'KalturaEntitlementRenewalBase';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->price))
+		if(!is_null($xml) && count($xml->price))
 			$this->price = (float)$xml->price;
-		if(count($xml->purchaseId))
+		if(!is_null($jsonObject) && isset($jsonObject->price))
+			$this->price = (float)$jsonObject->price;
+		if(!is_null($xml) && count($xml->purchaseId))
 			$this->purchaseId = (string)$xml->purchaseId;
-		if(count($xml->subscriptionId))
+		if(!is_null($jsonObject) && isset($jsonObject->purchaseId))
+			$this->purchaseId = (string)$jsonObject->purchaseId;
+		if(!is_null($xml) && count($xml->subscriptionId))
 			$this->subscriptionId = (string)$xml->subscriptionId;
+		if(!is_null($jsonObject) && isset($jsonObject->subscriptionId))
+			$this->subscriptionId = (string)$jsonObject->subscriptionId;
 	}
 	/**
 	 * Price that is going to be paid on the renewal

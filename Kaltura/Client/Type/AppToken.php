@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,33 +38,56 @@ class Kaltura_Client_Type_AppToken extends Kaltura_Client_ObjectBase
 		return 'KalturaAppToken';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->expiry))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->expiry))
 			$this->expiry = (int)$xml->expiry;
-		if(count($xml->partnerId))
+		if(!is_null($jsonObject) && isset($jsonObject->expiry))
+			$this->expiry = (int)$jsonObject->expiry;
+		if(!is_null($xml) && count($xml->partnerId))
 			$this->partnerId = (int)$xml->partnerId;
-		if(count($xml->sessionDuration))
+		if(!is_null($jsonObject) && isset($jsonObject->partnerId))
+			$this->partnerId = (int)$jsonObject->partnerId;
+		if(!is_null($xml) && count($xml->sessionDuration))
 			$this->sessionDuration = (int)$xml->sessionDuration;
-		if(count($xml->hashType))
+		if(!is_null($jsonObject) && isset($jsonObject->sessionDuration))
+			$this->sessionDuration = (int)$jsonObject->sessionDuration;
+		if(!is_null($xml) && count($xml->hashType))
 			$this->hashType = (string)$xml->hashType;
-		if(count($xml->sessionPrivileges))
+		if(!is_null($jsonObject) && isset($jsonObject->hashType))
+			$this->hashType = (string)$jsonObject->hashType;
+		if(!is_null($xml) && count($xml->sessionPrivileges))
 			$this->sessionPrivileges = (string)$xml->sessionPrivileges;
-		if(count($xml->token))
+		if(!is_null($jsonObject) && isset($jsonObject->sessionPrivileges))
+			$this->sessionPrivileges = (string)$jsonObject->sessionPrivileges;
+		if(!is_null($xml) && count($xml->token))
 			$this->token = (string)$xml->token;
-		if(count($xml->sessionUserId))
+		if(!is_null($jsonObject) && isset($jsonObject->token))
+			$this->token = (string)$jsonObject->token;
+		if(!is_null($xml) && count($xml->sessionUserId))
 			$this->sessionUserId = (string)$xml->sessionUserId;
-		if(count($xml->createDate))
+		if(!is_null($jsonObject) && isset($jsonObject->sessionUserId))
+			$this->sessionUserId = (string)$jsonObject->sessionUserId;
+		if(!is_null($xml) && count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
-		if(count($xml->updateDate))
+		if(!is_null($jsonObject) && isset($jsonObject->createDate))
+			$this->createDate = (string)$jsonObject->createDate;
+		if(!is_null($xml) && count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
+		if(!is_null($jsonObject) && isset($jsonObject->updateDate))
+			$this->updateDate = (string)$jsonObject->updateDate;
 	}
 	/**
 	 * The id of the application token
