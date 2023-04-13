@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,32 +38,54 @@ class Kaltura_Client_Type_DiscountDetails extends Kaltura_Client_ObjectBase
 		return 'KalturaDiscountDetails';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (int)$xml->id;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (int)$jsonObject->id;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->multiCurrencyDiscount))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->multiCurrencyDiscount))
 		{
 			if(empty($xml->multiCurrencyDiscount))
 				$this->multiCurrencyDiscount = array();
 			else
 				$this->multiCurrencyDiscount = Kaltura_Client_ParseUtils::unmarshalArray($xml->multiCurrencyDiscount, "KalturaDiscount");
 		}
-		if(count($xml->startDate))
+		if(!is_null($jsonObject) && isset($jsonObject->multiCurrencyDiscount))
+		{
+			if(empty($jsonObject->multiCurrencyDiscount))
+				$this->multiCurrencyDiscount = array();
+			else
+				$this->multiCurrencyDiscount = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->multiCurrencyDiscount, "KalturaDiscount");
+		}
+		if(!is_null($xml) && count($xml->startDate))
 			$this->startDate = (string)$xml->startDate;
-		if(count($xml->endDate))
+		if(!is_null($jsonObject) && isset($jsonObject->startDate))
+			$this->startDate = (string)$jsonObject->startDate;
+		if(!is_null($xml) && count($xml->endDate))
 			$this->endDate = (string)$xml->endDate;
-		if(count($xml->whenAlgoTimes))
+		if(!is_null($jsonObject) && isset($jsonObject->endDate))
+			$this->endDate = (string)$jsonObject->endDate;
+		if(!is_null($xml) && count($xml->whenAlgoTimes))
 			$this->whenAlgoTimes = (int)$xml->whenAlgoTimes;
-		if(count($xml->whenAlgoType))
+		if(!is_null($jsonObject) && isset($jsonObject->whenAlgoTimes))
+			$this->whenAlgoTimes = (int)$jsonObject->whenAlgoTimes;
+		if(!is_null($xml) && count($xml->whenAlgoType))
 			$this->whenAlgoType = (int)$xml->whenAlgoType;
+		if(!is_null($jsonObject) && isset($jsonObject->whenAlgoType))
+			$this->whenAlgoType = (int)$jsonObject->whenAlgoType;
 	}
 	/**
 	 * The discount ID

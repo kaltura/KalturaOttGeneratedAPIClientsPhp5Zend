@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,15 +38,20 @@ class Kaltura_Client_Type_CampaignSegmentFilter extends Kaltura_Client_Type_Camp
 		return 'KalturaCampaignSegmentFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->segmentIdEqual))
+		if(!is_null($xml) && count($xml->segmentIdEqual))
 			$this->segmentIdEqual = (string)$xml->segmentIdEqual;
+		if(!is_null($jsonObject) && isset($jsonObject->segmentIdEqual))
+			$this->segmentIdEqual = (string)$jsonObject->segmentIdEqual;
 	}
 	/**
 	 * segment id to be searched inside campaigns

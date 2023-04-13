@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,19 +38,28 @@ class Kaltura_Client_Type_Duration extends Kaltura_Client_ObjectBase
 		return 'KalturaDuration';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->unit))
+		if(!is_null($xml) && count($xml->unit))
 			$this->unit = (string)$xml->unit;
-		if(count($xml->value))
+		if(!is_null($jsonObject) && isset($jsonObject->unit))
+			$this->unit = (string)$jsonObject->unit;
+		if(!is_null($xml) && count($xml->value))
 			$this->value = (int)$xml->value;
-		if(count($xml->code))
+		if(!is_null($jsonObject) && isset($jsonObject->value))
+			$this->value = (int)$jsonObject->value;
+		if(!is_null($xml) && count($xml->code))
 			$this->code = (string)$xml->code;
+		if(!is_null($jsonObject) && isset($jsonObject->code))
+			$this->code = (string)$jsonObject->code;
 	}
 	/**
 	 * duration unit

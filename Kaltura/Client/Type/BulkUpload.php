@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,42 +38,75 @@ class Kaltura_Client_Type_BulkUpload extends Kaltura_Client_ObjectBase
 		return 'KalturaBulkUpload';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->fileName))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->fileName))
 			$this->fileName = (string)$xml->fileName;
-		if(count($xml->status))
+		if(!is_null($jsonObject) && isset($jsonObject->fileName))
+			$this->fileName = (string)$jsonObject->fileName;
+		if(!is_null($xml) && count($xml->status))
 			$this->status = (string)$xml->status;
-		if(count($xml->action))
+		if(!is_null($jsonObject) && isset($jsonObject->status))
+			$this->status = (string)$jsonObject->status;
+		if(!is_null($xml) && count($xml->action))
 			$this->action = (string)$xml->action;
-		if(count($xml->numOfObjects))
+		if(!is_null($jsonObject) && isset($jsonObject->action))
+			$this->action = (string)$jsonObject->action;
+		if(!is_null($xml) && count($xml->numOfObjects))
 			$this->numOfObjects = (int)$xml->numOfObjects;
-		if(count($xml->createDate))
+		if(!is_null($jsonObject) && isset($jsonObject->numOfObjects))
+			$this->numOfObjects = (int)$jsonObject->numOfObjects;
+		if(!is_null($xml) && count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
-		if(count($xml->updateDate))
+		if(!is_null($jsonObject) && isset($jsonObject->createDate))
+			$this->createDate = (string)$jsonObject->createDate;
+		if(!is_null($xml) && count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
-		if(count($xml->uploadedByUserId))
+		if(!is_null($jsonObject) && isset($jsonObject->updateDate))
+			$this->updateDate = (string)$jsonObject->updateDate;
+		if(!is_null($xml) && count($xml->uploadedByUserId))
 			$this->uploadedByUserId = (string)$xml->uploadedByUserId;
-		if(count($xml->results))
+		if(!is_null($jsonObject) && isset($jsonObject->uploadedByUserId))
+			$this->uploadedByUserId = (string)$jsonObject->uploadedByUserId;
+		if(!is_null($xml) && count($xml->results))
 		{
 			if(empty($xml->results))
 				$this->results = array();
 			else
 				$this->results = Kaltura_Client_ParseUtils::unmarshalArray($xml->results, "KalturaBulkUploadResult");
 		}
-		if(count($xml->errors))
+		if(!is_null($jsonObject) && isset($jsonObject->results))
+		{
+			if(empty($jsonObject->results))
+				$this->results = array();
+			else
+				$this->results = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->results, "KalturaBulkUploadResult");
+		}
+		if(!is_null($xml) && count($xml->errors))
 		{
 			if(empty($xml->errors))
 				$this->errors = array();
 			else
 				$this->errors = Kaltura_Client_ParseUtils::unmarshalArray($xml->errors, "KalturaMessage");
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->errors))
+		{
+			if(empty($jsonObject->errors))
+				$this->errors = array();
+			else
+				$this->errors = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->errors, "KalturaMessage");
 		}
 	}
 	/**

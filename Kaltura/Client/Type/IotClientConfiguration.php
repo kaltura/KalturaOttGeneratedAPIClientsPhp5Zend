@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,46 +38,82 @@ class Kaltura_Client_Type_IotClientConfiguration extends Kaltura_Client_ObjectBa
 		return 'KalturaIotClientConfiguration';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->identityPoolId))
+		if(!is_null($xml) && count($xml->identityPoolId))
 			$this->identityPoolId = (string)$xml->identityPoolId;
-		if(count($xml->userPoolId))
+		if(!is_null($jsonObject) && isset($jsonObject->identityPoolId))
+			$this->identityPoolId = (string)$jsonObject->identityPoolId;
+		if(!is_null($xml) && count($xml->userPoolId))
 			$this->userPoolId = (string)$xml->userPoolId;
-		if(count($xml->awsRegion))
+		if(!is_null($jsonObject) && isset($jsonObject->userPoolId))
+			$this->userPoolId = (string)$jsonObject->userPoolId;
+		if(!is_null($xml) && count($xml->awsRegion))
 			$this->awsRegion = (string)$xml->awsRegion;
-		if(count($xml->appClientId))
+		if(!is_null($jsonObject) && isset($jsonObject->awsRegion))
+			$this->awsRegion = (string)$jsonObject->awsRegion;
+		if(!is_null($xml) && count($xml->appClientId))
 			$this->appClientId = (string)$xml->appClientId;
-		if(count($xml->legacyEndPoint))
+		if(!is_null($jsonObject) && isset($jsonObject->appClientId))
+			$this->appClientId = (string)$jsonObject->appClientId;
+		if(!is_null($xml) && count($xml->legacyEndPoint))
 			$this->legacyEndPoint = (string)$xml->legacyEndPoint;
-		if(count($xml->endPoint))
+		if(!is_null($jsonObject) && isset($jsonObject->legacyEndPoint))
+			$this->legacyEndPoint = (string)$jsonObject->legacyEndPoint;
+		if(!is_null($xml) && count($xml->endPoint))
 			$this->endPoint = (string)$xml->endPoint;
-		if(count($xml->thingName))
+		if(!is_null($jsonObject) && isset($jsonObject->endPoint))
+			$this->endPoint = (string)$jsonObject->endPoint;
+		if(!is_null($xml) && count($xml->thingName))
 			$this->thingName = (string)$xml->thingName;
-		if(count($xml->thingArn))
+		if(!is_null($jsonObject) && isset($jsonObject->thingName))
+			$this->thingName = (string)$jsonObject->thingName;
+		if(!is_null($xml) && count($xml->thingArn))
 			$this->thingArn = (string)$xml->thingArn;
-		if(count($xml->thingId))
+		if(!is_null($jsonObject) && isset($jsonObject->thingArn))
+			$this->thingArn = (string)$jsonObject->thingArn;
+		if(!is_null($xml) && count($xml->thingId))
 			$this->thingId = (string)$xml->thingId;
-		if(count($xml->username))
+		if(!is_null($jsonObject) && isset($jsonObject->thingId))
+			$this->thingId = (string)$jsonObject->thingId;
+		if(!is_null($xml) && count($xml->username))
 			$this->username = (string)$xml->username;
-		if(count($xml->password))
+		if(!is_null($jsonObject) && isset($jsonObject->username))
+			$this->username = (string)$jsonObject->username;
+		if(!is_null($xml) && count($xml->password))
 			$this->password = (string)$xml->password;
-		if(count($xml->topics))
+		if(!is_null($jsonObject) && isset($jsonObject->password))
+			$this->password = (string)$jsonObject->password;
+		if(!is_null($xml) && count($xml->topics))
 		{
 			if(empty($xml->topics))
 				$this->topics = array();
 			else
 				$this->topics = Kaltura_Client_ParseUtils::unmarshalArray($xml->topics, "KalturaKeyValue");
 		}
-		if(count($xml->status))
+		if(!is_null($jsonObject) && isset($jsonObject->topics))
+		{
+			if(empty($jsonObject->topics))
+				$this->topics = array();
+			else
+				$this->topics = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->topics, "KalturaKeyValue");
+		}
+		if(!is_null($xml) && count($xml->status))
 			$this->status = (string)$xml->status;
-		if(count($xml->message))
+		if(!is_null($jsonObject) && isset($jsonObject->status))
+			$this->status = (string)$jsonObject->status;
+		if(!is_null($xml) && count($xml->message))
 			$this->message = (string)$xml->message;
+		if(!is_null($jsonObject) && isset($jsonObject->message))
+			$this->message = (string)$jsonObject->message;
 	}
 	/**
 	 * IdentityPoolId

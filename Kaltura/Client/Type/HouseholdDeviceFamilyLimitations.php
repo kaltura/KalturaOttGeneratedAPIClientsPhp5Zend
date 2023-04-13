@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,29 +38,52 @@ class Kaltura_Client_Type_HouseholdDeviceFamilyLimitations extends Kaltura_Clien
 		return 'KalturaHouseholdDeviceFamilyLimitations';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->frequency))
+		if(!is_null($xml) && count($xml->frequency))
 			$this->frequency = (int)$xml->frequency;
-		if(count($xml->deviceLimit))
+		if(!is_null($jsonObject) && isset($jsonObject->frequency))
+			$this->frequency = (int)$jsonObject->frequency;
+		if(!is_null($xml) && count($xml->deviceLimit))
 			$this->deviceLimit = (int)$xml->deviceLimit;
-		if(count($xml->concurrentLimit))
+		if(!is_null($jsonObject) && isset($jsonObject->deviceLimit))
+			$this->deviceLimit = (int)$jsonObject->deviceLimit;
+		if(!is_null($xml) && count($xml->concurrentLimit))
 			$this->concurrentLimit = (int)$xml->concurrentLimit;
-		if(count($xml->isDefaultDeviceLimit))
+		if(!is_null($jsonObject) && isset($jsonObject->concurrentLimit))
+			$this->concurrentLimit = (int)$jsonObject->concurrentLimit;
+		if(!is_null($xml) && count($xml->isDefaultDeviceLimit))
 		{
 			if(!empty($xml->isDefaultDeviceLimit) && ((int) $xml->isDefaultDeviceLimit === 1 || strtolower((string)$xml->isDefaultDeviceLimit) === 'true'))
 				$this->isDefaultDeviceLimit = true;
 			else
 				$this->isDefaultDeviceLimit = false;
 		}
-		if(count($xml->isDefaultConcurrentLimit))
+		if(!is_null($jsonObject) && isset($jsonObject->isDefaultDeviceLimit))
+		{
+			if(!empty($jsonObject->isDefaultDeviceLimit) && ((int) $jsonObject->isDefaultDeviceLimit === 1 || strtolower((string)$jsonObject->isDefaultDeviceLimit) === 'true'))
+				$this->isDefaultDeviceLimit = true;
+			else
+				$this->isDefaultDeviceLimit = false;
+		}
+		if(!is_null($xml) && count($xml->isDefaultConcurrentLimit))
 		{
 			if(!empty($xml->isDefaultConcurrentLimit) && ((int) $xml->isDefaultConcurrentLimit === 1 || strtolower((string)$xml->isDefaultConcurrentLimit) === 'true'))
+				$this->isDefaultConcurrentLimit = true;
+			else
+				$this->isDefaultConcurrentLimit = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->isDefaultConcurrentLimit))
+		{
+			if(!empty($jsonObject->isDefaultConcurrentLimit) && ((int) $jsonObject->isDefaultConcurrentLimit === 1 || strtolower((string)$jsonObject->isDefaultConcurrentLimit) === 'true'))
 				$this->isDefaultConcurrentLimit = true;
 			else
 				$this->isDefaultConcurrentLimit = false;

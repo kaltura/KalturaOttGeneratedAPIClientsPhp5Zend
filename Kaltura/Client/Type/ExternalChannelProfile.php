@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,45 +38,81 @@ class Kaltura_Client_Type_ExternalChannelProfile extends Kaltura_Client_ObjectBa
 		return 'KalturaExternalChannelProfile';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (int)$xml->id;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (int)$jsonObject->id;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->isActive))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->isActive))
 		{
 			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))
 				$this->isActive = true;
 			else
 				$this->isActive = false;
 		}
-		if(count($xml->externalIdentifier))
+		if(!is_null($jsonObject) && isset($jsonObject->isActive))
+		{
+			if(!empty($jsonObject->isActive) && ((int) $jsonObject->isActive === 1 || strtolower((string)$jsonObject->isActive) === 'true'))
+				$this->isActive = true;
+			else
+				$this->isActive = false;
+		}
+		if(!is_null($xml) && count($xml->externalIdentifier))
 			$this->externalIdentifier = (string)$xml->externalIdentifier;
-		if(count($xml->filterExpression))
+		if(!is_null($jsonObject) && isset($jsonObject->externalIdentifier))
+			$this->externalIdentifier = (string)$jsonObject->externalIdentifier;
+		if(!is_null($xml) && count($xml->filterExpression))
 			$this->filterExpression = (string)$xml->filterExpression;
-		if(count($xml->recommendationEngineId))
+		if(!is_null($jsonObject) && isset($jsonObject->filterExpression))
+			$this->filterExpression = (string)$jsonObject->filterExpression;
+		if(!is_null($xml) && count($xml->recommendationEngineId))
 			$this->recommendationEngineId = (int)$xml->recommendationEngineId;
-		if(count($xml->enrichments))
+		if(!is_null($jsonObject) && isset($jsonObject->recommendationEngineId))
+			$this->recommendationEngineId = (int)$jsonObject->recommendationEngineId;
+		if(!is_null($xml) && count($xml->enrichments))
 		{
 			if(empty($xml->enrichments))
 				$this->enrichments = array();
 			else
 				$this->enrichments = Kaltura_Client_ParseUtils::unmarshalArray($xml->enrichments, "KalturaChannelEnrichmentHolder");
 		}
-		if(count($xml->assetUserRuleId))
+		if(!is_null($jsonObject) && isset($jsonObject->enrichments))
+		{
+			if(empty($jsonObject->enrichments))
+				$this->enrichments = array();
+			else
+				$this->enrichments = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->enrichments, "KalturaChannelEnrichmentHolder");
+		}
+		if(!is_null($xml) && count($xml->assetUserRuleId))
 			$this->assetUserRuleId = (string)$xml->assetUserRuleId;
-		if(count($xml->metaData))
+		if(!is_null($jsonObject) && isset($jsonObject->assetUserRuleId))
+			$this->assetUserRuleId = (string)$jsonObject->assetUserRuleId;
+		if(!is_null($xml) && count($xml->metaData))
 		{
 			if(empty($xml->metaData))
 				$this->metaData = array();
 			else
 				$this->metaData = Kaltura_Client_ParseUtils::unmarshalMap($xml->metaData, "KalturaStringValue");
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->metaData))
+		{
+			if(empty($jsonObject->metaData))
+				$this->metaData = array();
+			else
+				$this->metaData = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->metaData, "KalturaStringValue");
 		}
 	}
 	/**
