@@ -582,6 +582,7 @@ class Kaltura_Client_TypeMap
 		'KalturaPermissionItemListResponse' => 'Kaltura_Client_Type_PermissionItemListResponse',
 		'KalturaPermissionListResponse' => 'Kaltura_Client_Type_PermissionListResponse',
 		'KalturaPersistedFilter' => 'Kaltura_Client_Type_PersistedFilter',
+		'KalturaPersonalActivityCleanupConfiguration' => 'Kaltura_Client_Type_PersonalActivityCleanupConfiguration',
 		'KalturaPersonalAssetSelectionFilter' => 'Kaltura_Client_Type_PersonalAssetSelectionFilter',
 		'KalturaPersonalFeed' => 'Kaltura_Client_Type_PersonalFeed',
 		'KalturaPersonalFeedFilter' => 'Kaltura_Client_Type_PersonalFeedFilter',
