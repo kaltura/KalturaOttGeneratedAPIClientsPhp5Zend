@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,23 +38,40 @@ class Kaltura_Client_Type_SuspendSettings extends Kaltura_Client_ObjectBase
 		return 'KalturaSuspendSettings';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->revokeEntitlements))
+		if(!is_null($xml) && count($xml->revokeEntitlements))
 		{
 			if(!empty($xml->revokeEntitlements) && ((int) $xml->revokeEntitlements === 1 || strtolower((string)$xml->revokeEntitlements) === 'true'))
 				$this->revokeEntitlements = true;
 			else
 				$this->revokeEntitlements = false;
 		}
-		if(count($xml->stopRenew))
+		if(!is_null($jsonObject) && isset($jsonObject->revokeEntitlements))
+		{
+			if(!empty($jsonObject->revokeEntitlements) && ((int) $jsonObject->revokeEntitlements === 1 || strtolower((string)$jsonObject->revokeEntitlements) === 'true'))
+				$this->revokeEntitlements = true;
+			else
+				$this->revokeEntitlements = false;
+		}
+		if(!is_null($xml) && count($xml->stopRenew))
 		{
 			if(!empty($xml->stopRenew) && ((int) $xml->stopRenew === 1 || strtolower((string)$xml->stopRenew) === 'true'))
+				$this->stopRenew = true;
+			else
+				$this->stopRenew = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->stopRenew))
+		{
+			if(!empty($jsonObject->stopRenew) && ((int) $jsonObject->stopRenew === 1 || strtolower((string)$jsonObject->stopRenew) === 'true'))
 				$this->stopRenew = true;
 			else
 				$this->stopRenew = false;

@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,49 +38,92 @@ class Kaltura_Client_Type_Entitlement extends Kaltura_Client_ObjectBase
 		return 'KalturaEntitlement';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (int)$xml->id;
-		if(count($xml->productId))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (int)$jsonObject->id;
+		if(!is_null($xml) && count($xml->productId))
 			$this->productId = (string)$xml->productId;
-		if(count($xml->currentUses))
+		if(!is_null($jsonObject) && isset($jsonObject->productId))
+			$this->productId = (string)$jsonObject->productId;
+		if(!is_null($xml) && count($xml->currentUses))
 			$this->currentUses = (int)$xml->currentUses;
-		if(count($xml->endDate))
+		if(!is_null($jsonObject) && isset($jsonObject->currentUses))
+			$this->currentUses = (int)$jsonObject->currentUses;
+		if(!is_null($xml) && count($xml->endDate))
 			$this->endDate = (string)$xml->endDate;
-		if(count($xml->currentDate))
+		if(!is_null($jsonObject) && isset($jsonObject->endDate))
+			$this->endDate = (string)$jsonObject->endDate;
+		if(!is_null($xml) && count($xml->currentDate))
 			$this->currentDate = (string)$xml->currentDate;
-		if(count($xml->lastViewDate))
+		if(!is_null($jsonObject) && isset($jsonObject->currentDate))
+			$this->currentDate = (string)$jsonObject->currentDate;
+		if(!is_null($xml) && count($xml->lastViewDate))
 			$this->lastViewDate = (string)$xml->lastViewDate;
-		if(count($xml->purchaseDate))
+		if(!is_null($jsonObject) && isset($jsonObject->lastViewDate))
+			$this->lastViewDate = (string)$jsonObject->lastViewDate;
+		if(!is_null($xml) && count($xml->purchaseDate))
 			$this->purchaseDate = (string)$xml->purchaseDate;
-		if(count($xml->paymentMethod))
+		if(!is_null($jsonObject) && isset($jsonObject->purchaseDate))
+			$this->purchaseDate = (string)$jsonObject->purchaseDate;
+		if(!is_null($xml) && count($xml->paymentMethod))
 			$this->paymentMethod = (string)$xml->paymentMethod;
-		if(count($xml->deviceUdid))
+		if(!is_null($jsonObject) && isset($jsonObject->paymentMethod))
+			$this->paymentMethod = (string)$jsonObject->paymentMethod;
+		if(!is_null($xml) && count($xml->deviceUdid))
 			$this->deviceUdid = (string)$xml->deviceUdid;
-		if(count($xml->deviceName))
+		if(!is_null($jsonObject) && isset($jsonObject->deviceUdid))
+			$this->deviceUdid = (string)$jsonObject->deviceUdid;
+		if(!is_null($xml) && count($xml->deviceName))
 			$this->deviceName = (string)$xml->deviceName;
-		if(count($xml->isCancelationWindowEnabled))
+		if(!is_null($jsonObject) && isset($jsonObject->deviceName))
+			$this->deviceName = (string)$jsonObject->deviceName;
+		if(!is_null($xml) && count($xml->isCancelationWindowEnabled))
 		{
 			if(!empty($xml->isCancelationWindowEnabled) && ((int) $xml->isCancelationWindowEnabled === 1 || strtolower((string)$xml->isCancelationWindowEnabled) === 'true'))
 				$this->isCancelationWindowEnabled = true;
 			else
 				$this->isCancelationWindowEnabled = false;
 		}
-		if(count($xml->maxUses))
+		if(!is_null($jsonObject) && isset($jsonObject->isCancelationWindowEnabled))
+		{
+			if(!empty($jsonObject->isCancelationWindowEnabled) && ((int) $jsonObject->isCancelationWindowEnabled === 1 || strtolower((string)$jsonObject->isCancelationWindowEnabled) === 'true'))
+				$this->isCancelationWindowEnabled = true;
+			else
+				$this->isCancelationWindowEnabled = false;
+		}
+		if(!is_null($xml) && count($xml->maxUses))
 			$this->maxUses = (int)$xml->maxUses;
-		if(count($xml->userId))
+		if(!is_null($jsonObject) && isset($jsonObject->maxUses))
+			$this->maxUses = (int)$jsonObject->maxUses;
+		if(!is_null($xml) && count($xml->userId))
 			$this->userId = (string)$xml->userId;
-		if(count($xml->householdId))
+		if(!is_null($jsonObject) && isset($jsonObject->userId))
+			$this->userId = (string)$jsonObject->userId;
+		if(!is_null($xml) && count($xml->householdId))
 			$this->householdId = (string)$xml->householdId;
-		if(count($xml->isPending))
+		if(!is_null($jsonObject) && isset($jsonObject->householdId))
+			$this->householdId = (string)$jsonObject->householdId;
+		if(!is_null($xml) && count($xml->isPending))
 		{
 			if(!empty($xml->isPending) && ((int) $xml->isPending === 1 || strtolower((string)$xml->isPending) === 'true'))
+				$this->isPending = true;
+			else
+				$this->isPending = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->isPending))
+		{
+			if(!empty($jsonObject->isPending) && ((int) $jsonObject->isPending === 1 || strtolower((string)$jsonObject->isPending) === 'true'))
 				$this->isPending = true;
 			else
 				$this->isPending = false;

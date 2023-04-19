@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,32 +38,55 @@ class Kaltura_Client_Type_PriceDetails extends Kaltura_Client_ObjectBase
 		return 'KalturaPriceDetails';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (int)$xml->id;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (int)$jsonObject->id;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->price) && !empty($xml->price))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->price) && !empty($xml->price))
 			$this->price = Kaltura_Client_ParseUtils::unmarshalObject($xml->price, "KalturaPrice");
-		if(count($xml->multiCurrencyPrice))
+		if(!is_null($jsonObject) && isset($jsonObject->price) && !empty($jsonObject->price))
+			$this->price = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->price, "KalturaPrice");
+		if(!is_null($xml) && count($xml->multiCurrencyPrice))
 		{
 			if(empty($xml->multiCurrencyPrice))
 				$this->multiCurrencyPrice = array();
 			else
 				$this->multiCurrencyPrice = Kaltura_Client_ParseUtils::unmarshalArray($xml->multiCurrencyPrice, "KalturaPrice");
 		}
-		if(count($xml->descriptions))
+		if(!is_null($jsonObject) && isset($jsonObject->multiCurrencyPrice))
+		{
+			if(empty($jsonObject->multiCurrencyPrice))
+				$this->multiCurrencyPrice = array();
+			else
+				$this->multiCurrencyPrice = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->multiCurrencyPrice, "KalturaPrice");
+		}
+		if(!is_null($xml) && count($xml->descriptions))
 		{
 			if(empty($xml->descriptions))
 				$this->descriptions = array();
 			else
 				$this->descriptions = Kaltura_Client_ParseUtils::unmarshalArray($xml->descriptions, "KalturaTranslationToken");
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->descriptions))
+		{
+			if(empty($jsonObject->descriptions))
+				$this->descriptions = array();
+			else
+				$this->descriptions = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->descriptions, "KalturaTranslationToken");
 		}
 	}
 	/**

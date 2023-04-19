@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,23 +38,36 @@ class Kaltura_Client_Type_ScheduledRecordingProgramFilter extends Kaltura_Client
 		return 'KalturaScheduledRecordingProgramFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->recordingTypeEqual))
+		if(!is_null($xml) && count($xml->recordingTypeEqual))
 			$this->recordingTypeEqual = (string)$xml->recordingTypeEqual;
-		if(count($xml->channelsIn))
+		if(!is_null($jsonObject) && isset($jsonObject->recordingTypeEqual))
+			$this->recordingTypeEqual = (string)$jsonObject->recordingTypeEqual;
+		if(!is_null($xml) && count($xml->channelsIn))
 			$this->channelsIn = (string)$xml->channelsIn;
-		if(count($xml->startDateGreaterThanOrNull))
+		if(!is_null($jsonObject) && isset($jsonObject->channelsIn))
+			$this->channelsIn = (string)$jsonObject->channelsIn;
+		if(!is_null($xml) && count($xml->startDateGreaterThanOrNull))
 			$this->startDateGreaterThanOrNull = (string)$xml->startDateGreaterThanOrNull;
-		if(count($xml->endDateLessThanOrNull))
+		if(!is_null($jsonObject) && isset($jsonObject->startDateGreaterThanOrNull))
+			$this->startDateGreaterThanOrNull = (string)$jsonObject->startDateGreaterThanOrNull;
+		if(!is_null($xml) && count($xml->endDateLessThanOrNull))
 			$this->endDateLessThanOrNull = (string)$xml->endDateLessThanOrNull;
-		if(count($xml->seriesIdsIn))
+		if(!is_null($jsonObject) && isset($jsonObject->endDateLessThanOrNull))
+			$this->endDateLessThanOrNull = (string)$jsonObject->endDateLessThanOrNull;
+		if(!is_null($xml) && count($xml->seriesIdsIn))
 			$this->seriesIdsIn = (string)$xml->seriesIdsIn;
+		if(!is_null($jsonObject) && isset($jsonObject->seriesIdsIn))
+			$this->seriesIdsIn = (string)$jsonObject->seriesIdsIn;
 	}
 	/**
 	 * The type of recordings to return

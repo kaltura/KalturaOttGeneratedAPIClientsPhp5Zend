@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,26 +38,42 @@ class Kaltura_Client_Type_AssetStructFilter extends Kaltura_Client_Type_BaseAsse
 		return 'KalturaAssetStructFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->idIn))
+		if(!is_null($xml) && count($xml->idIn))
 			$this->idIn = (string)$xml->idIn;
-		if(count($xml->metaIdEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->idIn))
+			$this->idIn = (string)$jsonObject->idIn;
+		if(!is_null($xml) && count($xml->metaIdEqual))
 			$this->metaIdEqual = (string)$xml->metaIdEqual;
-		if(count($xml->isProtectedEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->metaIdEqual))
+			$this->metaIdEqual = (string)$jsonObject->metaIdEqual;
+		if(!is_null($xml) && count($xml->isProtectedEqual))
 		{
 			if(!empty($xml->isProtectedEqual) && ((int) $xml->isProtectedEqual === 1 || strtolower((string)$xml->isProtectedEqual) === 'true'))
 				$this->isProtectedEqual = true;
 			else
 				$this->isProtectedEqual = false;
 		}
-		if(count($xml->objectVirtualAssetInfoTypeEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->isProtectedEqual))
+		{
+			if(!empty($jsonObject->isProtectedEqual) && ((int) $jsonObject->isProtectedEqual === 1 || strtolower((string)$jsonObject->isProtectedEqual) === 'true'))
+				$this->isProtectedEqual = true;
+			else
+				$this->isProtectedEqual = false;
+		}
+		if(!is_null($xml) && count($xml->objectVirtualAssetInfoTypeEqual))
 			$this->objectVirtualAssetInfoTypeEqual = (string)$xml->objectVirtualAssetInfoTypeEqual;
+		if(!is_null($jsonObject) && isset($jsonObject->objectVirtualAssetInfoTypeEqual))
+			$this->objectVirtualAssetInfoTypeEqual = (string)$jsonObject->objectVirtualAssetInfoTypeEqual;
 	}
 	/**
 	 * Comma separated identifiers, id = 0 is identified as program AssetStruct

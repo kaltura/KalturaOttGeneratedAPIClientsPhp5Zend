@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,23 +38,36 @@ class Kaltura_Client_Type_Coupon extends Kaltura_Client_ObjectBase
 		return 'KalturaCoupon';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->couponsGroup) && !empty($xml->couponsGroup))
+		if(!is_null($xml) && count($xml->couponsGroup) && !empty($xml->couponsGroup))
 			$this->couponsGroup = Kaltura_Client_ParseUtils::unmarshalObject($xml->couponsGroup, "KalturaCouponsGroup");
-		if(count($xml->status))
+		if(!is_null($jsonObject) && isset($jsonObject->couponsGroup) && !empty($jsonObject->couponsGroup))
+			$this->couponsGroup = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->couponsGroup, "KalturaCouponsGroup");
+		if(!is_null($xml) && count($xml->status))
 			$this->status = (string)$xml->status;
-		if(count($xml->totalUses))
+		if(!is_null($jsonObject) && isset($jsonObject->status))
+			$this->status = (string)$jsonObject->status;
+		if(!is_null($xml) && count($xml->totalUses))
 			$this->totalUses = (int)$xml->totalUses;
-		if(count($xml->leftUses))
+		if(!is_null($jsonObject) && isset($jsonObject->totalUses))
+			$this->totalUses = (int)$jsonObject->totalUses;
+		if(!is_null($xml) && count($xml->leftUses))
 			$this->leftUses = (int)$xml->leftUses;
-		if(count($xml->couponCode))
+		if(!is_null($jsonObject) && isset($jsonObject->leftUses))
+			$this->leftUses = (int)$jsonObject->leftUses;
+		if(!is_null($xml) && count($xml->couponCode))
 			$this->couponCode = (string)$xml->couponCode;
+		if(!is_null($jsonObject) && isset($jsonObject->couponCode))
+			$this->couponCode = (string)$jsonObject->couponCode;
 	}
 	/**
 	 * Coupons group details

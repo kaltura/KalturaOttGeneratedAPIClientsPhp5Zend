@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,19 +38,28 @@ class Kaltura_Client_Type_RecordingFilter extends Kaltura_Client_Type_Filter
 		return 'KalturaRecordingFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->statusIn))
+		if(!is_null($xml) && count($xml->statusIn))
 			$this->statusIn = (string)$xml->statusIn;
-		if(count($xml->externalRecordingIdIn))
+		if(!is_null($jsonObject) && isset($jsonObject->statusIn))
+			$this->statusIn = (string)$jsonObject->statusIn;
+		if(!is_null($xml) && count($xml->externalRecordingIdIn))
 			$this->externalRecordingIdIn = (string)$xml->externalRecordingIdIn;
-		if(count($xml->kSql))
+		if(!is_null($jsonObject) && isset($jsonObject->externalRecordingIdIn))
+			$this->externalRecordingIdIn = (string)$jsonObject->externalRecordingIdIn;
+		if(!is_null($xml) && count($xml->kSql))
 			$this->kSql = (string)$xml->kSql;
+		if(!is_null($jsonObject) && isset($jsonObject->kSql))
+			$this->kSql = (string)$jsonObject->kSql;
 	}
 	/**
 	 * Recording Statuses

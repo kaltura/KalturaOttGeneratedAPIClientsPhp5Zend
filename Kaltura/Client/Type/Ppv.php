@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,80 +38,150 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 		return 'KalturaPpv';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->price) && !empty($xml->price))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->price) && !empty($xml->price))
 			$this->price = Kaltura_Client_ParseUtils::unmarshalObject($xml->price, "KalturaPriceDetails");
-		if(count($xml->priceDetailsId))
+		if(!is_null($jsonObject) && isset($jsonObject->price) && !empty($jsonObject->price))
+			$this->price = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->price, "KalturaPriceDetails");
+		if(!is_null($xml) && count($xml->priceDetailsId))
 			$this->priceDetailsId = (int)$xml->priceDetailsId;
-		if(count($xml->fileTypes))
+		if(!is_null($jsonObject) && isset($jsonObject->priceDetailsId))
+			$this->priceDetailsId = (int)$jsonObject->priceDetailsId;
+		if(!is_null($xml) && count($xml->fileTypes))
 		{
 			if(empty($xml->fileTypes))
 				$this->fileTypes = array();
 			else
 				$this->fileTypes = Kaltura_Client_ParseUtils::unmarshalArray($xml->fileTypes, "KalturaIntegerValue");
 		}
-		if(count($xml->fileTypesIds))
+		if(!is_null($jsonObject) && isset($jsonObject->fileTypes))
+		{
+			if(empty($jsonObject->fileTypes))
+				$this->fileTypes = array();
+			else
+				$this->fileTypes = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->fileTypes, "KalturaIntegerValue");
+		}
+		if(!is_null($xml) && count($xml->fileTypesIds))
 			$this->fileTypesIds = (string)$xml->fileTypesIds;
-		if(count($xml->discountModule) && !empty($xml->discountModule))
+		if(!is_null($jsonObject) && isset($jsonObject->fileTypesIds))
+			$this->fileTypesIds = (string)$jsonObject->fileTypesIds;
+		if(!is_null($xml) && count($xml->discountModule) && !empty($xml->discountModule))
 			$this->discountModule = Kaltura_Client_ParseUtils::unmarshalObject($xml->discountModule, "KalturaDiscountModule");
-		if(count($xml->discountId))
+		if(!is_null($jsonObject) && isset($jsonObject->discountModule) && !empty($jsonObject->discountModule))
+			$this->discountModule = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->discountModule, "KalturaDiscountModule");
+		if(!is_null($xml) && count($xml->discountId))
 			$this->discountId = (string)$xml->discountId;
-		if(count($xml->couponsGroup) && !empty($xml->couponsGroup))
+		if(!is_null($jsonObject) && isset($jsonObject->discountId))
+			$this->discountId = (string)$jsonObject->discountId;
+		if(!is_null($xml) && count($xml->couponsGroup) && !empty($xml->couponsGroup))
 			$this->couponsGroup = Kaltura_Client_ParseUtils::unmarshalObject($xml->couponsGroup, "KalturaCouponsGroup");
-		if(count($xml->couponsGroupId))
+		if(!is_null($jsonObject) && isset($jsonObject->couponsGroup) && !empty($jsonObject->couponsGroup))
+			$this->couponsGroup = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->couponsGroup, "KalturaCouponsGroup");
+		if(!is_null($xml) && count($xml->couponsGroupId))
 			$this->couponsGroupId = (string)$xml->couponsGroupId;
-		if(count($xml->descriptions))
+		if(!is_null($jsonObject) && isset($jsonObject->couponsGroupId))
+			$this->couponsGroupId = (string)$jsonObject->couponsGroupId;
+		if(!is_null($xml) && count($xml->descriptions))
 		{
 			if(empty($xml->descriptions))
 				$this->descriptions = array();
 			else
 				$this->descriptions = Kaltura_Client_ParseUtils::unmarshalArray($xml->descriptions, "KalturaTranslationToken");
 		}
-		if(count($xml->productCode))
+		if(!is_null($jsonObject) && isset($jsonObject->descriptions))
+		{
+			if(empty($jsonObject->descriptions))
+				$this->descriptions = array();
+			else
+				$this->descriptions = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->descriptions, "KalturaTranslationToken");
+		}
+		if(!is_null($xml) && count($xml->productCode))
 			$this->productCode = (string)$xml->productCode;
-		if(count($xml->isSubscriptionOnly))
+		if(!is_null($jsonObject) && isset($jsonObject->productCode))
+			$this->productCode = (string)$jsonObject->productCode;
+		if(!is_null($xml) && count($xml->isSubscriptionOnly))
 		{
 			if(!empty($xml->isSubscriptionOnly) && ((int) $xml->isSubscriptionOnly === 1 || strtolower((string)$xml->isSubscriptionOnly) === 'true'))
 				$this->isSubscriptionOnly = true;
 			else
 				$this->isSubscriptionOnly = false;
 		}
-		if(count($xml->firstDeviceLimitation))
+		if(!is_null($jsonObject) && isset($jsonObject->isSubscriptionOnly))
+		{
+			if(!empty($jsonObject->isSubscriptionOnly) && ((int) $jsonObject->isSubscriptionOnly === 1 || strtolower((string)$jsonObject->isSubscriptionOnly) === 'true'))
+				$this->isSubscriptionOnly = true;
+			else
+				$this->isSubscriptionOnly = false;
+		}
+		if(!is_null($xml) && count($xml->firstDeviceLimitation))
 		{
 			if(!empty($xml->firstDeviceLimitation) && ((int) $xml->firstDeviceLimitation === 1 || strtolower((string)$xml->firstDeviceLimitation) === 'true'))
 				$this->firstDeviceLimitation = true;
 			else
 				$this->firstDeviceLimitation = false;
 		}
-		if(count($xml->usageModule) && !empty($xml->usageModule))
+		if(!is_null($jsonObject) && isset($jsonObject->firstDeviceLimitation))
+		{
+			if(!empty($jsonObject->firstDeviceLimitation) && ((int) $jsonObject->firstDeviceLimitation === 1 || strtolower((string)$jsonObject->firstDeviceLimitation) === 'true'))
+				$this->firstDeviceLimitation = true;
+			else
+				$this->firstDeviceLimitation = false;
+		}
+		if(!is_null($xml) && count($xml->usageModule) && !empty($xml->usageModule))
 			$this->usageModule = Kaltura_Client_ParseUtils::unmarshalObject($xml->usageModule, "KalturaUsageModule");
-		if(count($xml->usageModuleId))
+		if(!is_null($jsonObject) && isset($jsonObject->usageModule) && !empty($jsonObject->usageModule))
+			$this->usageModule = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->usageModule, "KalturaUsageModule");
+		if(!is_null($xml) && count($xml->usageModuleId))
 			$this->usageModuleId = (string)$xml->usageModuleId;
-		if(count($xml->adsPolicy))
+		if(!is_null($jsonObject) && isset($jsonObject->usageModuleId))
+			$this->usageModuleId = (string)$jsonObject->usageModuleId;
+		if(!is_null($xml) && count($xml->adsPolicy))
 			$this->adsPolicy = (string)$xml->adsPolicy;
-		if(count($xml->isActive))
+		if(!is_null($jsonObject) && isset($jsonObject->adsPolicy))
+			$this->adsPolicy = (string)$jsonObject->adsPolicy;
+		if(!is_null($xml) && count($xml->isActive))
 		{
 			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))
 				$this->isActive = true;
 			else
 				$this->isActive = false;
 		}
-		if(count($xml->updateDate))
+		if(!is_null($jsonObject) && isset($jsonObject->isActive))
+		{
+			if(!empty($jsonObject->isActive) && ((int) $jsonObject->isActive === 1 || strtolower((string)$jsonObject->isActive) === 'true'))
+				$this->isActive = true;
+			else
+				$this->isActive = false;
+		}
+		if(!is_null($xml) && count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
-		if(count($xml->createDate))
+		if(!is_null($jsonObject) && isset($jsonObject->updateDate))
+			$this->updateDate = (string)$jsonObject->updateDate;
+		if(!is_null($xml) && count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
-		if(count($xml->virtualAssetId))
+		if(!is_null($jsonObject) && isset($jsonObject->createDate))
+			$this->createDate = (string)$jsonObject->createDate;
+		if(!is_null($xml) && count($xml->virtualAssetId))
 			$this->virtualAssetId = (string)$xml->virtualAssetId;
+		if(!is_null($jsonObject) && isset($jsonObject->virtualAssetId))
+			$this->virtualAssetId = (string)$jsonObject->virtualAssetId;
 	}
 	/**
 	 * PPV identifier

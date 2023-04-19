@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,29 +38,48 @@ class Kaltura_Client_Type_LiveToVodInfoAsset extends Kaltura_Client_ObjectBase
 		return 'KalturaLiveToVodInfoAsset';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->linearAssetId))
+		if(!is_null($xml) && count($xml->linearAssetId))
 			$this->linearAssetId = (string)$xml->linearAssetId;
-		if(count($xml->epgId))
+		if(!is_null($jsonObject) && isset($jsonObject->linearAssetId))
+			$this->linearAssetId = (string)$jsonObject->linearAssetId;
+		if(!is_null($xml) && count($xml->epgId))
 			$this->epgId = (string)$xml->epgId;
-		if(count($xml->epgChannelId))
+		if(!is_null($jsonObject) && isset($jsonObject->epgId))
+			$this->epgId = (string)$jsonObject->epgId;
+		if(!is_null($xml) && count($xml->epgChannelId))
 			$this->epgChannelId = (string)$xml->epgChannelId;
-		if(count($xml->crid))
+		if(!is_null($jsonObject) && isset($jsonObject->epgChannelId))
+			$this->epgChannelId = (string)$jsonObject->epgChannelId;
+		if(!is_null($xml) && count($xml->crid))
 			$this->crid = (string)$xml->crid;
-		if(count($xml->originalStartDate))
+		if(!is_null($jsonObject) && isset($jsonObject->crid))
+			$this->crid = (string)$jsonObject->crid;
+		if(!is_null($xml) && count($xml->originalStartDate))
 			$this->originalStartDate = (string)$xml->originalStartDate;
-		if(count($xml->originalEndDate))
+		if(!is_null($jsonObject) && isset($jsonObject->originalStartDate))
+			$this->originalStartDate = (string)$jsonObject->originalStartDate;
+		if(!is_null($xml) && count($xml->originalEndDate))
 			$this->originalEndDate = (string)$xml->originalEndDate;
-		if(count($xml->paddingBeforeProgramStarts))
+		if(!is_null($jsonObject) && isset($jsonObject->originalEndDate))
+			$this->originalEndDate = (string)$jsonObject->originalEndDate;
+		if(!is_null($xml) && count($xml->paddingBeforeProgramStarts))
 			$this->paddingBeforeProgramStarts = (string)$xml->paddingBeforeProgramStarts;
-		if(count($xml->paddingAfterProgramEnds))
+		if(!is_null($jsonObject) && isset($jsonObject->paddingBeforeProgramStarts))
+			$this->paddingBeforeProgramStarts = (string)$jsonObject->paddingBeforeProgramStarts;
+		if(!is_null($xml) && count($xml->paddingAfterProgramEnds))
 			$this->paddingAfterProgramEnds = (string)$xml->paddingAfterProgramEnds;
+		if(!is_null($jsonObject) && isset($jsonObject->paddingAfterProgramEnds))
+			$this->paddingAfterProgramEnds = (string)$jsonObject->paddingAfterProgramEnds;
 	}
 	/**
 	 * Linear Asset Id

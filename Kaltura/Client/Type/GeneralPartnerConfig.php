@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,62 +38,118 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 		return 'KalturaGeneralPartnerConfig';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->partnerName))
+		if(!is_null($xml) && count($xml->partnerName))
 			$this->partnerName = (string)$xml->partnerName;
-		if(count($xml->mainLanguage))
+		if(!is_null($jsonObject) && isset($jsonObject->partnerName))
+			$this->partnerName = (string)$jsonObject->partnerName;
+		if(!is_null($xml) && count($xml->mainLanguage))
 			$this->mainLanguage = (int)$xml->mainLanguage;
-		if(count($xml->secondaryLanguages))
+		if(!is_null($jsonObject) && isset($jsonObject->mainLanguage))
+			$this->mainLanguage = (int)$jsonObject->mainLanguage;
+		if(!is_null($xml) && count($xml->secondaryLanguages))
 			$this->secondaryLanguages = (string)$xml->secondaryLanguages;
-		if(count($xml->deleteMediaPolicy))
+		if(!is_null($jsonObject) && isset($jsonObject->secondaryLanguages))
+			$this->secondaryLanguages = (string)$jsonObject->secondaryLanguages;
+		if(!is_null($xml) && count($xml->deleteMediaPolicy))
 			$this->deleteMediaPolicy = (string)$xml->deleteMediaPolicy;
-		if(count($xml->mainCurrency))
+		if(!is_null($jsonObject) && isset($jsonObject->deleteMediaPolicy))
+			$this->deleteMediaPolicy = (string)$jsonObject->deleteMediaPolicy;
+		if(!is_null($xml) && count($xml->mainCurrency))
 			$this->mainCurrency = (int)$xml->mainCurrency;
-		if(count($xml->secondaryCurrencies))
+		if(!is_null($jsonObject) && isset($jsonObject->mainCurrency))
+			$this->mainCurrency = (int)$jsonObject->mainCurrency;
+		if(!is_null($xml) && count($xml->secondaryCurrencies))
 			$this->secondaryCurrencies = (string)$xml->secondaryCurrencies;
-		if(count($xml->downgradePolicy))
+		if(!is_null($jsonObject) && isset($jsonObject->secondaryCurrencies))
+			$this->secondaryCurrencies = (string)$jsonObject->secondaryCurrencies;
+		if(!is_null($xml) && count($xml->downgradePolicy))
 			$this->downgradePolicy = (string)$xml->downgradePolicy;
-		if(count($xml->downgradePriorityFamilyIds))
+		if(!is_null($jsonObject) && isset($jsonObject->downgradePolicy))
+			$this->downgradePolicy = (string)$jsonObject->downgradePolicy;
+		if(!is_null($xml) && count($xml->downgradePriorityFamilyIds))
 			$this->downgradePriorityFamilyIds = (string)$xml->downgradePriorityFamilyIds;
-		if(count($xml->mailSettings))
+		if(!is_null($jsonObject) && isset($jsonObject->downgradePriorityFamilyIds))
+			$this->downgradePriorityFamilyIds = (string)$jsonObject->downgradePriorityFamilyIds;
+		if(!is_null($xml) && count($xml->mailSettings))
 			$this->mailSettings = (string)$xml->mailSettings;
-		if(count($xml->dateFormat))
+		if(!is_null($jsonObject) && isset($jsonObject->mailSettings))
+			$this->mailSettings = (string)$jsonObject->mailSettings;
+		if(!is_null($xml) && count($xml->dateFormat))
 			$this->dateFormat = (string)$xml->dateFormat;
-		if(count($xml->householdLimitationModule))
+		if(!is_null($jsonObject) && isset($jsonObject->dateFormat))
+			$this->dateFormat = (string)$jsonObject->dateFormat;
+		if(!is_null($xml) && count($xml->householdLimitationModule))
 			$this->householdLimitationModule = (int)$xml->householdLimitationModule;
-		if(count($xml->enableRegionFiltering))
+		if(!is_null($jsonObject) && isset($jsonObject->householdLimitationModule))
+			$this->householdLimitationModule = (int)$jsonObject->householdLimitationModule;
+		if(!is_null($xml) && count($xml->enableRegionFiltering))
 		{
 			if(!empty($xml->enableRegionFiltering) && ((int) $xml->enableRegionFiltering === 1 || strtolower((string)$xml->enableRegionFiltering) === 'true'))
 				$this->enableRegionFiltering = true;
 			else
 				$this->enableRegionFiltering = false;
 		}
-		if(count($xml->defaultRegion))
+		if(!is_null($jsonObject) && isset($jsonObject->enableRegionFiltering))
+		{
+			if(!empty($jsonObject->enableRegionFiltering) && ((int) $jsonObject->enableRegionFiltering === 1 || strtolower((string)$jsonObject->enableRegionFiltering) === 'true'))
+				$this->enableRegionFiltering = true;
+			else
+				$this->enableRegionFiltering = false;
+		}
+		if(!is_null($xml) && count($xml->defaultRegion))
 			$this->defaultRegion = (int)$xml->defaultRegion;
-		if(count($xml->rollingDeviceData) && !empty($xml->rollingDeviceData))
+		if(!is_null($jsonObject) && isset($jsonObject->defaultRegion))
+			$this->defaultRegion = (int)$jsonObject->defaultRegion;
+		if(!is_null($xml) && count($xml->rollingDeviceData) && !empty($xml->rollingDeviceData))
 			$this->rollingDeviceData = Kaltura_Client_ParseUtils::unmarshalObject($xml->rollingDeviceData, "KalturaRollingDeviceRemovalData");
-		if(count($xml->linearWatchHistoryThreshold))
+		if(!is_null($jsonObject) && isset($jsonObject->rollingDeviceData) && !empty($jsonObject->rollingDeviceData))
+			$this->rollingDeviceData = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->rollingDeviceData, "KalturaRollingDeviceRemovalData");
+		if(!is_null($xml) && count($xml->linearWatchHistoryThreshold))
 			$this->linearWatchHistoryThreshold = (int)$xml->linearWatchHistoryThreshold;
-		if(count($xml->finishedPercentThreshold))
+		if(!is_null($jsonObject) && isset($jsonObject->linearWatchHistoryThreshold))
+			$this->linearWatchHistoryThreshold = (int)$jsonObject->linearWatchHistoryThreshold;
+		if(!is_null($xml) && count($xml->finishedPercentThreshold))
 			$this->finishedPercentThreshold = (int)$xml->finishedPercentThreshold;
-		if(count($xml->suspensionProfileInheritanceType))
+		if(!is_null($jsonObject) && isset($jsonObject->finishedPercentThreshold))
+			$this->finishedPercentThreshold = (int)$jsonObject->finishedPercentThreshold;
+		if(!is_null($xml) && count($xml->suspensionProfileInheritanceType))
 			$this->suspensionProfileInheritanceType = (string)$xml->suspensionProfileInheritanceType;
-		if(count($xml->allowDeviceMobility))
+		if(!is_null($jsonObject) && isset($jsonObject->suspensionProfileInheritanceType))
+			$this->suspensionProfileInheritanceType = (string)$jsonObject->suspensionProfileInheritanceType;
+		if(!is_null($xml) && count($xml->allowDeviceMobility))
 		{
 			if(!empty($xml->allowDeviceMobility) && ((int) $xml->allowDeviceMobility === 1 || strtolower((string)$xml->allowDeviceMobility) === 'true'))
 				$this->allowDeviceMobility = true;
 			else
 				$this->allowDeviceMobility = false;
 		}
-		if(count($xml->enableMultiLcns))
+		if(!is_null($jsonObject) && isset($jsonObject->allowDeviceMobility))
+		{
+			if(!empty($jsonObject->allowDeviceMobility) && ((int) $jsonObject->allowDeviceMobility === 1 || strtolower((string)$jsonObject->allowDeviceMobility) === 'true'))
+				$this->allowDeviceMobility = true;
+			else
+				$this->allowDeviceMobility = false;
+		}
+		if(!is_null($xml) && count($xml->enableMultiLcns))
 		{
 			if(!empty($xml->enableMultiLcns) && ((int) $xml->enableMultiLcns === 1 || strtolower((string)$xml->enableMultiLcns) === 'true'))
+				$this->enableMultiLcns = true;
+			else
+				$this->enableMultiLcns = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->enableMultiLcns))
+		{
+			if(!empty($jsonObject->enableMultiLcns) && ((int) $jsonObject->enableMultiLcns === 1 || strtolower((string)$jsonObject->enableMultiLcns) === 'true'))
 				$this->enableMultiLcns = true;
 			else
 				$this->enableMultiLcns = false;
