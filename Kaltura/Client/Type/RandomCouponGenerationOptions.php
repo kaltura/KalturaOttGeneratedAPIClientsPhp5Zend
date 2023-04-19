@@ -38,32 +38,58 @@ class Kaltura_Client_Type_RandomCouponGenerationOptions extends Kaltura_Client_T
 		return 'KalturaRandomCouponGenerationOptions';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->numberOfCoupons))
+		if(!is_null($xml) && count($xml->numberOfCoupons))
 			$this->numberOfCoupons = (int)$xml->numberOfCoupons;
-		if(count($xml->useLetters))
+		if(!is_null($jsonObject) && isset($jsonObject->numberOfCoupons))
+			$this->numberOfCoupons = (int)$jsonObject->numberOfCoupons;
+		if(!is_null($xml) && count($xml->useLetters))
 		{
 			if(!empty($xml->useLetters) && ((int) $xml->useLetters === 1 || strtolower((string)$xml->useLetters) === 'true'))
 				$this->useLetters = true;
 			else
 				$this->useLetters = false;
 		}
-		if(count($xml->useNumbers))
+		if(!is_null($jsonObject) && isset($jsonObject->useLetters))
+		{
+			if(!empty($jsonObject->useLetters) && ((int) $jsonObject->useLetters === 1 || strtolower((string)$jsonObject->useLetters) === 'true'))
+				$this->useLetters = true;
+			else
+				$this->useLetters = false;
+		}
+		if(!is_null($xml) && count($xml->useNumbers))
 		{
 			if(!empty($xml->useNumbers) && ((int) $xml->useNumbers === 1 || strtolower((string)$xml->useNumbers) === 'true'))
 				$this->useNumbers = true;
 			else
 				$this->useNumbers = false;
 		}
-		if(count($xml->useSpecialCharacters))
+		if(!is_null($jsonObject) && isset($jsonObject->useNumbers))
+		{
+			if(!empty($jsonObject->useNumbers) && ((int) $jsonObject->useNumbers === 1 || strtolower((string)$jsonObject->useNumbers) === 'true'))
+				$this->useNumbers = true;
+			else
+				$this->useNumbers = false;
+		}
+		if(!is_null($xml) && count($xml->useSpecialCharacters))
 		{
 			if(!empty($xml->useSpecialCharacters) && ((int) $xml->useSpecialCharacters === 1 || strtolower((string)$xml->useSpecialCharacters) === 'true'))
+				$this->useSpecialCharacters = true;
+			else
+				$this->useSpecialCharacters = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->useSpecialCharacters))
+		{
+			if(!empty($jsonObject->useSpecialCharacters) && ((int) $jsonObject->useSpecialCharacters === 1 || strtolower((string)$jsonObject->useSpecialCharacters) === 'true'))
 				$this->useSpecialCharacters = true;
 			else
 				$this->useSpecialCharacters = false;

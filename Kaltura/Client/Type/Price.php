@@ -38,23 +38,36 @@ class Kaltura_Client_Type_Price extends Kaltura_Client_ObjectBase
 		return 'KalturaPrice';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->currencyId))
+		if(!is_null($xml) && count($xml->currencyId))
 			$this->currencyId = (string)$xml->currencyId;
-		if(count($xml->amount))
+		if(!is_null($jsonObject) && isset($jsonObject->currencyId))
+			$this->currencyId = (string)$jsonObject->currencyId;
+		if(!is_null($xml) && count($xml->amount))
 			$this->amount = (float)$xml->amount;
-		if(count($xml->currency))
+		if(!is_null($jsonObject) && isset($jsonObject->amount))
+			$this->amount = (float)$jsonObject->amount;
+		if(!is_null($xml) && count($xml->currency))
 			$this->currency = (string)$xml->currency;
-		if(count($xml->currencySign))
+		if(!is_null($jsonObject) && isset($jsonObject->currency))
+			$this->currency = (string)$jsonObject->currency;
+		if(!is_null($xml) && count($xml->currencySign))
 			$this->currencySign = (string)$xml->currencySign;
-		if(count($xml->countryId))
+		if(!is_null($jsonObject) && isset($jsonObject->currencySign))
+			$this->currencySign = (string)$jsonObject->currencySign;
+		if(!is_null($xml) && count($xml->countryId))
 			$this->countryId = (string)$xml->countryId;
+		if(!is_null($jsonObject) && isset($jsonObject->countryId))
+			$this->countryId = (string)$jsonObject->countryId;
 	}
 	/**
 	 * Currency ID

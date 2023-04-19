@@ -38,64 +38,122 @@ class Kaltura_Client_Type_Announcement extends Kaltura_Client_ObjectBase
 		return 'KalturaAnnouncement';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->name))
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->message))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->message))
 			$this->message = (string)$xml->message;
-		if(count($xml->enabled))
+		if(!is_null($jsonObject) && isset($jsonObject->message))
+			$this->message = (string)$jsonObject->message;
+		if(!is_null($xml) && count($xml->enabled))
 		{
 			if(!empty($xml->enabled) && ((int) $xml->enabled === 1 || strtolower((string)$xml->enabled) === 'true'))
 				$this->enabled = true;
 			else
 				$this->enabled = false;
 		}
-		if(count($xml->startTime))
+		if(!is_null($jsonObject) && isset($jsonObject->enabled))
+		{
+			if(!empty($jsonObject->enabled) && ((int) $jsonObject->enabled === 1 || strtolower((string)$jsonObject->enabled) === 'true'))
+				$this->enabled = true;
+			else
+				$this->enabled = false;
+		}
+		if(!is_null($xml) && count($xml->startTime))
 			$this->startTime = (string)$xml->startTime;
-		if(count($xml->timezone))
+		if(!is_null($jsonObject) && isset($jsonObject->startTime))
+			$this->startTime = (string)$jsonObject->startTime;
+		if(!is_null($xml) && count($xml->timezone))
 			$this->timezone = (string)$xml->timezone;
-		if(count($xml->status))
+		if(!is_null($jsonObject) && isset($jsonObject->timezone))
+			$this->timezone = (string)$jsonObject->timezone;
+		if(!is_null($xml) && count($xml->status))
 			$this->status = (string)$xml->status;
-		if(count($xml->recipients))
+		if(!is_null($jsonObject) && isset($jsonObject->status))
+			$this->status = (string)$jsonObject->status;
+		if(!is_null($xml) && count($xml->recipients))
 			$this->recipients = (string)$xml->recipients;
-		if(count($xml->id))
+		if(!is_null($jsonObject) && isset($jsonObject->recipients))
+			$this->recipients = (string)$jsonObject->recipients;
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (int)$xml->id;
-		if(count($xml->imageUrl))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (int)$jsonObject->id;
+		if(!is_null($xml) && count($xml->imageUrl))
 			$this->imageUrl = (string)$xml->imageUrl;
-		if(count($xml->includeMail))
+		if(!is_null($jsonObject) && isset($jsonObject->imageUrl))
+			$this->imageUrl = (string)$jsonObject->imageUrl;
+		if(!is_null($xml) && count($xml->includeMail))
 		{
 			if(!empty($xml->includeMail) && ((int) $xml->includeMail === 1 || strtolower((string)$xml->includeMail) === 'true'))
 				$this->includeMail = true;
 			else
 				$this->includeMail = false;
 		}
-		if(count($xml->mailTemplate))
+		if(!is_null($jsonObject) && isset($jsonObject->includeMail))
+		{
+			if(!empty($jsonObject->includeMail) && ((int) $jsonObject->includeMail === 1 || strtolower((string)$jsonObject->includeMail) === 'true'))
+				$this->includeMail = true;
+			else
+				$this->includeMail = false;
+		}
+		if(!is_null($xml) && count($xml->mailTemplate))
 			$this->mailTemplate = (string)$xml->mailTemplate;
-		if(count($xml->mailSubject))
+		if(!is_null($jsonObject) && isset($jsonObject->mailTemplate))
+			$this->mailTemplate = (string)$jsonObject->mailTemplate;
+		if(!is_null($xml) && count($xml->mailSubject))
 			$this->mailSubject = (string)$xml->mailSubject;
-		if(count($xml->includeSms))
+		if(!is_null($jsonObject) && isset($jsonObject->mailSubject))
+			$this->mailSubject = (string)$jsonObject->mailSubject;
+		if(!is_null($xml) && count($xml->includeSms))
 		{
 			if(!empty($xml->includeSms) && ((int) $xml->includeSms === 1 || strtolower((string)$xml->includeSms) === 'true'))
 				$this->includeSms = true;
 			else
 				$this->includeSms = false;
 		}
-		if(count($xml->includeIot))
+		if(!is_null($jsonObject) && isset($jsonObject->includeSms))
+		{
+			if(!empty($jsonObject->includeSms) && ((int) $jsonObject->includeSms === 1 || strtolower((string)$jsonObject->includeSms) === 'true'))
+				$this->includeSms = true;
+			else
+				$this->includeSms = false;
+		}
+		if(!is_null($xml) && count($xml->includeIot))
 		{
 			if(!empty($xml->includeIot) && ((int) $xml->includeIot === 1 || strtolower((string)$xml->includeIot) === 'true'))
 				$this->includeIot = true;
 			else
 				$this->includeIot = false;
 		}
-		if(count($xml->includeUserInbox))
+		if(!is_null($jsonObject) && isset($jsonObject->includeIot))
+		{
+			if(!empty($jsonObject->includeIot) && ((int) $jsonObject->includeIot === 1 || strtolower((string)$jsonObject->includeIot) === 'true'))
+				$this->includeIot = true;
+			else
+				$this->includeIot = false;
+		}
+		if(!is_null($xml) && count($xml->includeUserInbox))
 		{
 			if(!empty($xml->includeUserInbox) && ((int) $xml->includeUserInbox === 1 || strtolower((string)$xml->includeUserInbox) === 'true'))
+				$this->includeUserInbox = true;
+			else
+				$this->includeUserInbox = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->includeUserInbox))
+		{
+			if(!empty($jsonObject->includeUserInbox) && ((int) $jsonObject->includeUserInbox === 1 || strtolower((string)$jsonObject->includeUserInbox) === 'true'))
 				$this->includeUserInbox = true;
 			else
 				$this->includeUserInbox = false;

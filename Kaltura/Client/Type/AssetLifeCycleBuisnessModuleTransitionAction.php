@@ -38,17 +38,24 @@ class Kaltura_Client_Type_AssetLifeCycleBuisnessModuleTransitionAction extends K
 		return 'KalturaAssetLifeCycleBuisnessModuleTransitionAction';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->fileTypeIds))
+		if(!is_null($xml) && count($xml->fileTypeIds))
 			$this->fileTypeIds = (string)$xml->fileTypeIds;
-		if(count($xml->ppvIds))
+		if(!is_null($jsonObject) && isset($jsonObject->fileTypeIds))
+			$this->fileTypeIds = (string)$jsonObject->fileTypeIds;
+		if(!is_null($xml) && count($xml->ppvIds))
 			$this->ppvIds = (string)$xml->ppvIds;
+		if(!is_null($jsonObject) && isset($jsonObject->ppvIds))
+			$this->ppvIds = (string)$jsonObject->ppvIds;
 	}
 	/**
 	 * Comma separated list of fileType Ids.

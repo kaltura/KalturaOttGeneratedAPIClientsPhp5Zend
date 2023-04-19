@@ -38,26 +38,46 @@ class Kaltura_Client_Type_Language extends Kaltura_Client_ObjectBase
 		return 'KalturaLanguage';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (int)$xml->id;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (int)$jsonObject->id;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->systemName))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->systemName))
 			$this->systemName = (string)$xml->systemName;
-		if(count($xml->code))
+		if(!is_null($jsonObject) && isset($jsonObject->systemName))
+			$this->systemName = (string)$jsonObject->systemName;
+		if(!is_null($xml) && count($xml->code))
 			$this->code = (string)$xml->code;
-		if(count($xml->direction))
+		if(!is_null($jsonObject) && isset($jsonObject->code))
+			$this->code = (string)$jsonObject->code;
+		if(!is_null($xml) && count($xml->direction))
 			$this->direction = (string)$xml->direction;
-		if(count($xml->isDefault))
+		if(!is_null($jsonObject) && isset($jsonObject->direction))
+			$this->direction = (string)$jsonObject->direction;
+		if(!is_null($xml) && count($xml->isDefault))
 		{
 			if(!empty($xml->isDefault) && ((int) $xml->isDefault === 1 || strtolower((string)$xml->isDefault) === 'true'))
+				$this->isDefault = true;
+			else
+				$this->isDefault = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->isDefault))
+		{
+			if(!empty($jsonObject->isDefault) && ((int) $jsonObject->isDefault === 1 || strtolower((string)$jsonObject->isDefault) === 'true'))
 				$this->isDefault = true;
 			else
 				$this->isDefault = false;

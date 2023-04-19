@@ -38,19 +38,28 @@ class Kaltura_Client_Type_Pin extends Kaltura_Client_ObjectBase
 		return 'KalturaPin';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->pin))
+		if(!is_null($xml) && count($xml->pin))
 			$this->pin = (string)$xml->pin;
-		if(count($xml->origin))
+		if(!is_null($jsonObject) && isset($jsonObject->pin))
+			$this->pin = (string)$jsonObject->pin;
+		if(!is_null($xml) && count($xml->origin))
 			$this->origin = (string)$xml->origin;
-		if(count($xml->type))
+		if(!is_null($jsonObject) && isset($jsonObject->origin))
+			$this->origin = (string)$jsonObject->origin;
+		if(!is_null($xml) && count($xml->type))
 			$this->type = (string)$xml->type;
+		if(!is_null($jsonObject) && isset($jsonObject->type))
+			$this->type = (string)$jsonObject->type;
 	}
 	/**
 	 * PIN code

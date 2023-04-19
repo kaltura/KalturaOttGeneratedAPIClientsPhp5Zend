@@ -38,34 +38,62 @@ class Kaltura_Client_Type_Image extends Kaltura_Client_ObjectBase
 		return 'KalturaImage';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->version))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->version))
 			$this->version = (string)$xml->version;
-		if(count($xml->imageTypeId))
+		if(!is_null($jsonObject) && isset($jsonObject->version))
+			$this->version = (string)$jsonObject->version;
+		if(!is_null($xml) && count($xml->imageTypeId))
 			$this->imageTypeId = (string)$xml->imageTypeId;
-		if(count($xml->imageTypeName))
+		if(!is_null($jsonObject) && isset($jsonObject->imageTypeId))
+			$this->imageTypeId = (string)$jsonObject->imageTypeId;
+		if(!is_null($xml) && count($xml->imageTypeName))
 			$this->imageTypeName = (string)$xml->imageTypeName;
-		if(count($xml->imageObjectId))
+		if(!is_null($jsonObject) && isset($jsonObject->imageTypeName))
+			$this->imageTypeName = (string)$jsonObject->imageTypeName;
+		if(!is_null($xml) && count($xml->imageObjectId))
 			$this->imageObjectId = (string)$xml->imageObjectId;
-		if(count($xml->imageObjectType))
+		if(!is_null($jsonObject) && isset($jsonObject->imageObjectId))
+			$this->imageObjectId = (string)$jsonObject->imageObjectId;
+		if(!is_null($xml) && count($xml->imageObjectType))
 			$this->imageObjectType = (string)$xml->imageObjectType;
-		if(count($xml->status))
+		if(!is_null($jsonObject) && isset($jsonObject->imageObjectType))
+			$this->imageObjectType = (string)$jsonObject->imageObjectType;
+		if(!is_null($xml) && count($xml->status))
 			$this->status = (string)$xml->status;
-		if(count($xml->url))
+		if(!is_null($jsonObject) && isset($jsonObject->status))
+			$this->status = (string)$jsonObject->status;
+		if(!is_null($xml) && count($xml->url))
 			$this->url = (string)$xml->url;
-		if(count($xml->contentId))
+		if(!is_null($jsonObject) && isset($jsonObject->url))
+			$this->url = (string)$jsonObject->url;
+		if(!is_null($xml) && count($xml->contentId))
 			$this->contentId = (string)$xml->contentId;
-		if(count($xml->isDefault))
+		if(!is_null($jsonObject) && isset($jsonObject->contentId))
+			$this->contentId = (string)$jsonObject->contentId;
+		if(!is_null($xml) && count($xml->isDefault))
 		{
 			if(!empty($xml->isDefault) && ((int) $xml->isDefault === 1 || strtolower((string)$xml->isDefault) === 'true'))
+				$this->isDefault = true;
+			else
+				$this->isDefault = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->isDefault))
+		{
+			if(!empty($jsonObject->isDefault) && ((int) $jsonObject->isDefault === 1 || strtolower((string)$jsonObject->isDefault) === 'true'))
 				$this->isDefault = true;
 			else
 				$this->isDefault = false;

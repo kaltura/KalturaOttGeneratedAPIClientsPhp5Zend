@@ -38,19 +38,28 @@ class Kaltura_Client_Type_SeriesReminder extends Kaltura_Client_Type_Reminder
 		return 'KalturaSeriesReminder';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->seriesId))
+		if(!is_null($xml) && count($xml->seriesId))
 			$this->seriesId = (string)$xml->seriesId;
-		if(count($xml->seasonNumber))
+		if(!is_null($jsonObject) && isset($jsonObject->seriesId))
+			$this->seriesId = (string)$jsonObject->seriesId;
+		if(!is_null($xml) && count($xml->seasonNumber))
 			$this->seasonNumber = (string)$xml->seasonNumber;
-		if(count($xml->epgChannelId))
+		if(!is_null($jsonObject) && isset($jsonObject->seasonNumber))
+			$this->seasonNumber = (string)$jsonObject->seasonNumber;
+		if(!is_null($xml) && count($xml->epgChannelId))
 			$this->epgChannelId = (string)$xml->epgChannelId;
+		if(!is_null($jsonObject) && isset($jsonObject->epgChannelId))
+			$this->epgChannelId = (string)$jsonObject->epgChannelId;
 	}
 	/**
 	 * Series identifier

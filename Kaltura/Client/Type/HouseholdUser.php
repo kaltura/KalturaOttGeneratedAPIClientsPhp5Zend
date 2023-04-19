@@ -38,31 +38,56 @@ class Kaltura_Client_Type_HouseholdUser extends Kaltura_Client_ObjectBase
 		return 'KalturaHouseholdUser';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->householdId))
+		if(!is_null($xml) && count($xml->householdId))
 			$this->householdId = (int)$xml->householdId;
-		if(count($xml->userId))
+		if(!is_null($jsonObject) && isset($jsonObject->householdId))
+			$this->householdId = (int)$jsonObject->householdId;
+		if(!is_null($xml) && count($xml->userId))
 			$this->userId = (string)$xml->userId;
-		if(count($xml->isMaster))
+		if(!is_null($jsonObject) && isset($jsonObject->userId))
+			$this->userId = (string)$jsonObject->userId;
+		if(!is_null($xml) && count($xml->isMaster))
 		{
 			if(!empty($xml->isMaster) && ((int) $xml->isMaster === 1 || strtolower((string)$xml->isMaster) === 'true'))
 				$this->isMaster = true;
 			else
 				$this->isMaster = false;
 		}
-		if(count($xml->householdMasterUsername))
+		if(!is_null($jsonObject) && isset($jsonObject->isMaster))
+		{
+			if(!empty($jsonObject->isMaster) && ((int) $jsonObject->isMaster === 1 || strtolower((string)$jsonObject->isMaster) === 'true'))
+				$this->isMaster = true;
+			else
+				$this->isMaster = false;
+		}
+		if(!is_null($xml) && count($xml->householdMasterUsername))
 			$this->householdMasterUsername = (string)$xml->householdMasterUsername;
-		if(count($xml->status))
+		if(!is_null($jsonObject) && isset($jsonObject->householdMasterUsername))
+			$this->householdMasterUsername = (string)$jsonObject->householdMasterUsername;
+		if(!is_null($xml) && count($xml->status))
 			$this->status = (string)$xml->status;
-		if(count($xml->isDefault))
+		if(!is_null($jsonObject) && isset($jsonObject->status))
+			$this->status = (string)$jsonObject->status;
+		if(!is_null($xml) && count($xml->isDefault))
 		{
 			if(!empty($xml->isDefault) && ((int) $xml->isDefault === 1 || strtolower((string)$xml->isDefault) === 'true'))
+				$this->isDefault = true;
+			else
+				$this->isDefault = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->isDefault))
+		{
+			if(!empty($jsonObject->isDefault) && ((int) $jsonObject->isDefault === 1 || strtolower((string)$jsonObject->isDefault) === 'true'))
 				$this->isDefault = true;
 			else
 				$this->isDefault = false;

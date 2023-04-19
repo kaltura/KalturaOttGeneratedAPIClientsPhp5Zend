@@ -38,29 +38,48 @@ class Kaltura_Client_Type_SegmentRange extends Kaltura_Client_ObjectBase
 		return 'KalturaSegmentRange';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->systematicName))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->systematicName))
 			$this->systematicName = (string)$xml->systematicName;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->systematicName))
+			$this->systematicName = (string)$jsonObject->systematicName;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->gte))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->gte))
 			$this->gte = (float)$xml->gte;
-		if(count($xml->gt))
+		if(!is_null($jsonObject) && isset($jsonObject->gte))
+			$this->gte = (float)$jsonObject->gte;
+		if(!is_null($xml) && count($xml->gt))
 			$this->gt = (float)$xml->gt;
-		if(count($xml->lte))
+		if(!is_null($jsonObject) && isset($jsonObject->gt))
+			$this->gt = (float)$jsonObject->gt;
+		if(!is_null($xml) && count($xml->lte))
 			$this->lte = (float)$xml->lte;
-		if(count($xml->lt))
+		if(!is_null($jsonObject) && isset($jsonObject->lte))
+			$this->lte = (float)$jsonObject->lte;
+		if(!is_null($xml) && count($xml->lt))
 			$this->lt = (float)$xml->lt;
-		if(count($xml->equals))
+		if(!is_null($jsonObject) && isset($jsonObject->lt))
+			$this->lt = (float)$jsonObject->lt;
+		if(!is_null($xml) && count($xml->equals))
 			$this->equals = (float)$xml->equals;
+		if(!is_null($jsonObject) && isset($jsonObject->equals))
+			$this->equals = (float)$jsonObject->equals;
 	}
 	/**
 	 * Id of segment

@@ -38,20 +38,34 @@ class Kaltura_Client_Type_RelatedFilter extends Kaltura_Client_Type_BaseSearchAs
 		return 'KalturaRelatedFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->idEqual))
+		if(!is_null($xml) && count($xml->idEqual))
 			$this->idEqual = (int)$xml->idEqual;
-		if(count($xml->typeIn))
+		if(!is_null($jsonObject) && isset($jsonObject->idEqual))
+			$this->idEqual = (int)$jsonObject->idEqual;
+		if(!is_null($xml) && count($xml->typeIn))
 			$this->typeIn = (string)$xml->typeIn;
-		if(count($xml->excludeWatched))
+		if(!is_null($jsonObject) && isset($jsonObject->typeIn))
+			$this->typeIn = (string)$jsonObject->typeIn;
+		if(!is_null($xml) && count($xml->excludeWatched))
 		{
 			if(!empty($xml->excludeWatched) && ((int) $xml->excludeWatched === 1 || strtolower((string)$xml->excludeWatched) === 'true'))
+				$this->excludeWatched = true;
+			else
+				$this->excludeWatched = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->excludeWatched))
+		{
+			if(!empty($jsonObject->excludeWatched) && ((int) $jsonObject->excludeWatched === 1 || strtolower((string)$jsonObject->excludeWatched) === 'true'))
 				$this->excludeWatched = true;
 			else
 				$this->excludeWatched = false;

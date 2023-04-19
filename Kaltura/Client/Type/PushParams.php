@@ -38,17 +38,24 @@ class Kaltura_Client_Type_PushParams extends Kaltura_Client_ObjectBase
 		return 'KalturaPushParams';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->token))
+		if(!is_null($xml) && count($xml->token))
 			$this->token = (string)$xml->token;
-		if(count($xml->externalToken))
+		if(!is_null($jsonObject) && isset($jsonObject->token))
+			$this->token = (string)$jsonObject->token;
+		if(!is_null($xml) && count($xml->externalToken))
 			$this->externalToken = (string)$xml->externalToken;
+		if(!is_null($jsonObject) && isset($jsonObject->externalToken))
+			$this->externalToken = (string)$jsonObject->externalToken;
 	}
 	/**
 	 * Device-Application push token

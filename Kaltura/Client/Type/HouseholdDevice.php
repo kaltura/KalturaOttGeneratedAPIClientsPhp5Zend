@@ -38,48 +38,86 @@ class Kaltura_Client_Type_HouseholdDevice extends Kaltura_Client_Type_OTTObjectS
 		return 'KalturaHouseholdDevice';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->householdId))
+		if(!is_null($xml) && count($xml->householdId))
 			$this->householdId = (int)$xml->householdId;
-		if(count($xml->udid))
+		if(!is_null($jsonObject) && isset($jsonObject->householdId))
+			$this->householdId = (int)$jsonObject->householdId;
+		if(!is_null($xml) && count($xml->udid))
 			$this->udid = (string)$xml->udid;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->udid))
+			$this->udid = (string)$jsonObject->udid;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->brandId))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->brandId))
 			$this->brandId = (int)$xml->brandId;
-		if(count($xml->activatedOn))
+		if(!is_null($jsonObject) && isset($jsonObject->brandId))
+			$this->brandId = (int)$jsonObject->brandId;
+		if(!is_null($xml) && count($xml->activatedOn))
 			$this->activatedOn = (string)$xml->activatedOn;
-		if(count($xml->status))
+		if(!is_null($jsonObject) && isset($jsonObject->activatedOn))
+			$this->activatedOn = (string)$jsonObject->activatedOn;
+		if(!is_null($xml) && count($xml->status))
 			$this->status = (string)$xml->status;
-		if(count($xml->deviceFamilyId))
+		if(!is_null($jsonObject) && isset($jsonObject->status))
+			$this->status = (string)$jsonObject->status;
+		if(!is_null($xml) && count($xml->deviceFamilyId))
 			$this->deviceFamilyId = (string)$xml->deviceFamilyId;
-		if(count($xml->drm) && !empty($xml->drm))
+		if(!is_null($jsonObject) && isset($jsonObject->deviceFamilyId))
+			$this->deviceFamilyId = (string)$jsonObject->deviceFamilyId;
+		if(!is_null($xml) && count($xml->drm) && !empty($xml->drm))
 			$this->drm = Kaltura_Client_ParseUtils::unmarshalObject($xml->drm, "KalturaCustomDrmPlaybackPluginData");
-		if(count($xml->externalId))
+		if(!is_null($jsonObject) && isset($jsonObject->drm) && !empty($jsonObject->drm))
+			$this->drm = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->drm, "KalturaCustomDrmPlaybackPluginData");
+		if(!is_null($xml) && count($xml->externalId))
 			$this->externalId = (string)$xml->externalId;
-		if(count($xml->macAddress))
+		if(!is_null($jsonObject) && isset($jsonObject->externalId))
+			$this->externalId = (string)$jsonObject->externalId;
+		if(!is_null($xml) && count($xml->macAddress))
 			$this->macAddress = (string)$xml->macAddress;
-		if(count($xml->dynamicData))
+		if(!is_null($jsonObject) && isset($jsonObject->macAddress))
+			$this->macAddress = (string)$jsonObject->macAddress;
+		if(!is_null($xml) && count($xml->dynamicData))
 		{
 			if(empty($xml->dynamicData))
 				$this->dynamicData = array();
 			else
 				$this->dynamicData = Kaltura_Client_ParseUtils::unmarshalMap($xml->dynamicData, "KalturaStringValue");
 		}
-		if(count($xml->model))
+		if(!is_null($jsonObject) && isset($jsonObject->dynamicData))
+		{
+			if(empty($jsonObject->dynamicData))
+				$this->dynamicData = array();
+			else
+				$this->dynamicData = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->dynamicData, "KalturaStringValue");
+		}
+		if(!is_null($xml) && count($xml->model))
 			$this->model = (string)$xml->model;
-		if(count($xml->manufacturer))
+		if(!is_null($jsonObject) && isset($jsonObject->model))
+			$this->model = (string)$jsonObject->model;
+		if(!is_null($xml) && count($xml->manufacturer))
 			$this->manufacturer = (string)$xml->manufacturer;
-		if(count($xml->manufacturerId))
+		if(!is_null($jsonObject) && isset($jsonObject->manufacturer))
+			$this->manufacturer = (string)$jsonObject->manufacturer;
+		if(!is_null($xml) && count($xml->manufacturerId))
 			$this->manufacturerId = (string)$xml->manufacturerId;
-		if(count($xml->lastActivityTime))
+		if(!is_null($jsonObject) && isset($jsonObject->manufacturerId))
+			$this->manufacturerId = (string)$jsonObject->manufacturerId;
+		if(!is_null($xml) && count($xml->lastActivityTime))
 			$this->lastActivityTime = (string)$xml->lastActivityTime;
+		if(!is_null($jsonObject) && isset($jsonObject->lastActivityTime))
+			$this->lastActivityTime = (string)$jsonObject->lastActivityTime;
 	}
 	/**
 	 * Household identifier

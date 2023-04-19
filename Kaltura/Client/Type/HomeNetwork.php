@@ -38,22 +38,38 @@ class Kaltura_Client_Type_HomeNetwork extends Kaltura_Client_ObjectBase
 		return 'KalturaHomeNetwork';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->externalId))
+		if(!is_null($xml) && count($xml->externalId))
 			$this->externalId = (string)$xml->externalId;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->externalId))
+			$this->externalId = (string)$jsonObject->externalId;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->description))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->description))
 			$this->description = (string)$xml->description;
-		if(count($xml->isActive))
+		if(!is_null($jsonObject) && isset($jsonObject->description))
+			$this->description = (string)$jsonObject->description;
+		if(!is_null($xml) && count($xml->isActive))
 		{
 			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))
+				$this->isActive = true;
+			else
+				$this->isActive = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->isActive))
+		{
+			if(!empty($jsonObject->isActive) && ((int) $jsonObject->isActive === 1 || strtolower((string)$jsonObject->isActive) === 'true'))
 				$this->isActive = true;
 			else
 				$this->isActive = false;

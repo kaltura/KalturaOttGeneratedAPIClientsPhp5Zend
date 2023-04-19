@@ -38,35 +38,60 @@ class Kaltura_Client_Type_Region extends Kaltura_Client_ObjectBase
 		return 'KalturaRegion';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (int)$xml->id;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (int)$jsonObject->id;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->externalId))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->externalId))
 			$this->externalId = (string)$xml->externalId;
-		if(count($xml->isDefault))
+		if(!is_null($jsonObject) && isset($jsonObject->externalId))
+			$this->externalId = (string)$jsonObject->externalId;
+		if(!is_null($xml) && count($xml->isDefault))
 		{
 			if(!empty($xml->isDefault) && ((int) $xml->isDefault === 1 || strtolower((string)$xml->isDefault) === 'true'))
 				$this->isDefault = true;
 			else
 				$this->isDefault = false;
 		}
-		if(count($xml->linearChannels))
+		if(!is_null($jsonObject) && isset($jsonObject->isDefault))
+		{
+			if(!empty($jsonObject->isDefault) && ((int) $jsonObject->isDefault === 1 || strtolower((string)$jsonObject->isDefault) === 'true'))
+				$this->isDefault = true;
+			else
+				$this->isDefault = false;
+		}
+		if(!is_null($xml) && count($xml->linearChannels))
 		{
 			if(empty($xml->linearChannels))
 				$this->linearChannels = array();
 			else
 				$this->linearChannels = Kaltura_Client_ParseUtils::unmarshalArray($xml->linearChannels, "KalturaRegionalChannel");
 		}
-		if(count($xml->parentId))
+		if(!is_null($jsonObject) && isset($jsonObject->linearChannels))
+		{
+			if(empty($jsonObject->linearChannels))
+				$this->linearChannels = array();
+			else
+				$this->linearChannels = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->linearChannels, "KalturaRegionalChannel");
+		}
+		if(!is_null($xml) && count($xml->parentId))
 			$this->parentId = (string)$xml->parentId;
+		if(!is_null($jsonObject) && isset($jsonObject->parentId))
+			$this->parentId = (string)$jsonObject->parentId;
 	}
 	/**
 	 * Region identifier

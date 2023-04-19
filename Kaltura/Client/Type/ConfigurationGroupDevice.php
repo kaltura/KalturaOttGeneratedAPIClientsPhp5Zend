@@ -38,19 +38,28 @@ class Kaltura_Client_Type_ConfigurationGroupDevice extends Kaltura_Client_Object
 		return 'KalturaConfigurationGroupDevice';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->configurationGroupId))
+		if(!is_null($xml) && count($xml->configurationGroupId))
 			$this->configurationGroupId = (string)$xml->configurationGroupId;
-		if(count($xml->partnerId))
+		if(!is_null($jsonObject) && isset($jsonObject->configurationGroupId))
+			$this->configurationGroupId = (string)$jsonObject->configurationGroupId;
+		if(!is_null($xml) && count($xml->partnerId))
 			$this->partnerId = (int)$xml->partnerId;
-		if(count($xml->udid))
+		if(!is_null($jsonObject) && isset($jsonObject->partnerId))
+			$this->partnerId = (int)$jsonObject->partnerId;
+		if(!is_null($xml) && count($xml->udid))
 			$this->udid = (string)$xml->udid;
+		if(!is_null($jsonObject) && isset($jsonObject->udid))
+			$this->udid = (string)$jsonObject->udid;
 	}
 	/**
 	 * Configuration group id

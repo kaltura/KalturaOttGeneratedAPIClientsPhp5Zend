@@ -38,17 +38,24 @@ class Kaltura_Client_Type_SegmentationPartnerConfiguration extends Kaltura_Clien
 		return 'KalturaSegmentationPartnerConfiguration';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->maxCalculatedPeriod))
+		if(!is_null($xml) && count($xml->maxCalculatedPeriod))
 			$this->maxCalculatedPeriod = (int)$xml->maxCalculatedPeriod;
-		if(count($xml->maxDynamicSegments))
+		if(!is_null($jsonObject) && isset($jsonObject->maxCalculatedPeriod))
+			$this->maxCalculatedPeriod = (int)$jsonObject->maxCalculatedPeriod;
+		if(!is_null($xml) && count($xml->maxDynamicSegments))
 			$this->maxDynamicSegments = (int)$xml->maxDynamicSegments;
+		if(!is_null($jsonObject) && isset($jsonObject->maxDynamicSegments))
+			$this->maxDynamicSegments = (int)$jsonObject->maxDynamicSegments;
 	}
 	/**
 	 * The maximum number of past days to be calculated for dynamic segments, default=180

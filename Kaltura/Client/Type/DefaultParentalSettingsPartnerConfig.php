@@ -38,23 +38,36 @@ class Kaltura_Client_Type_DefaultParentalSettingsPartnerConfig extends Kaltura_C
 		return 'KalturaDefaultParentalSettingsPartnerConfig';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->defaultMoviesParentalRuleId))
+		if(!is_null($xml) && count($xml->defaultMoviesParentalRuleId))
 			$this->defaultMoviesParentalRuleId = (string)$xml->defaultMoviesParentalRuleId;
-		if(count($xml->defaultTvSeriesParentalRuleId))
+		if(!is_null($jsonObject) && isset($jsonObject->defaultMoviesParentalRuleId))
+			$this->defaultMoviesParentalRuleId = (string)$jsonObject->defaultMoviesParentalRuleId;
+		if(!is_null($xml) && count($xml->defaultTvSeriesParentalRuleId))
 			$this->defaultTvSeriesParentalRuleId = (string)$xml->defaultTvSeriesParentalRuleId;
-		if(count($xml->defaultParentalPin))
+		if(!is_null($jsonObject) && isset($jsonObject->defaultTvSeriesParentalRuleId))
+			$this->defaultTvSeriesParentalRuleId = (string)$jsonObject->defaultTvSeriesParentalRuleId;
+		if(!is_null($xml) && count($xml->defaultParentalPin))
 			$this->defaultParentalPin = (string)$xml->defaultParentalPin;
-		if(count($xml->defaultPurchasePin))
+		if(!is_null($jsonObject) && isset($jsonObject->defaultParentalPin))
+			$this->defaultParentalPin = (string)$jsonObject->defaultParentalPin;
+		if(!is_null($xml) && count($xml->defaultPurchasePin))
 			$this->defaultPurchasePin = (string)$xml->defaultPurchasePin;
-		if(count($xml->defaultPurchaseSettings))
+		if(!is_null($jsonObject) && isset($jsonObject->defaultPurchasePin))
+			$this->defaultPurchasePin = (string)$jsonObject->defaultPurchasePin;
+		if(!is_null($xml) && count($xml->defaultPurchaseSettings))
 			$this->defaultPurchaseSettings = (string)$xml->defaultPurchaseSettings;
+		if(!is_null($jsonObject) && isset($jsonObject->defaultPurchaseSettings))
+			$this->defaultPurchaseSettings = (string)$jsonObject->defaultPurchaseSettings;
 	}
 	/**
 	 * defaultTvSeriesParentalRuleId

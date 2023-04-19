@@ -38,29 +38,48 @@ class Kaltura_Client_Type_IngestEpg extends Kaltura_Client_ObjectBase
 		return 'KalturaIngestEpg';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->ingestId))
+		if(!is_null($xml) && count($xml->ingestId))
 			$this->ingestId = (string)$xml->ingestId;
-		if(count($xml->ingestName))
+		if(!is_null($jsonObject) && isset($jsonObject->ingestId))
+			$this->ingestId = (string)$jsonObject->ingestId;
+		if(!is_null($xml) && count($xml->ingestName))
 			$this->ingestName = (string)$xml->ingestName;
-		if(count($xml->ingestFilenameExtension))
+		if(!is_null($jsonObject) && isset($jsonObject->ingestName))
+			$this->ingestName = (string)$jsonObject->ingestName;
+		if(!is_null($xml) && count($xml->ingestFilenameExtension))
 			$this->ingestFilenameExtension = (string)$xml->ingestFilenameExtension;
-		if(count($xml->createdDate))
+		if(!is_null($jsonObject) && isset($jsonObject->ingestFilenameExtension))
+			$this->ingestFilenameExtension = (string)$jsonObject->ingestFilenameExtension;
+		if(!is_null($xml) && count($xml->createdDate))
 			$this->createdDate = (string)$xml->createdDate;
-		if(count($xml->ingestedByUserId))
+		if(!is_null($jsonObject) && isset($jsonObject->createdDate))
+			$this->createdDate = (string)$jsonObject->createdDate;
+		if(!is_null($xml) && count($xml->ingestedByUserId))
 			$this->ingestedByUserId = (string)$xml->ingestedByUserId;
-		if(count($xml->completedDate))
+		if(!is_null($jsonObject) && isset($jsonObject->ingestedByUserId))
+			$this->ingestedByUserId = (string)$jsonObject->ingestedByUserId;
+		if(!is_null($xml) && count($xml->completedDate))
 			$this->completedDate = (string)$xml->completedDate;
-		if(count($xml->ingestProfileId))
+		if(!is_null($jsonObject) && isset($jsonObject->completedDate))
+			$this->completedDate = (string)$jsonObject->completedDate;
+		if(!is_null($xml) && count($xml->ingestProfileId))
 			$this->ingestProfileId = (string)$xml->ingestProfileId;
-		if(count($xml->status))
+		if(!is_null($jsonObject) && isset($jsonObject->ingestProfileId))
+			$this->ingestProfileId = (string)$jsonObject->ingestProfileId;
+		if(!is_null($xml) && count($xml->status))
 			$this->status = (string)$xml->status;
+		if(!is_null($jsonObject) && isset($jsonObject->status))
+			$this->status = (string)$jsonObject->status;
 	}
 	/**
 	 * Unique id of the ingest job in question

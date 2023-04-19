@@ -38,20 +38,34 @@ class Kaltura_Client_Type_FavoriteFilter extends Kaltura_Client_Type_Filter
 		return 'KalturaFavoriteFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->mediaTypeEqual))
+		if(!is_null($xml) && count($xml->mediaTypeEqual))
 			$this->mediaTypeEqual = (int)$xml->mediaTypeEqual;
-		if(count($xml->mediaIdIn))
+		if(!is_null($jsonObject) && isset($jsonObject->mediaTypeEqual))
+			$this->mediaTypeEqual = (int)$jsonObject->mediaTypeEqual;
+		if(!is_null($xml) && count($xml->mediaIdIn))
 			$this->mediaIdIn = (string)$xml->mediaIdIn;
-		if(count($xml->udidEqualCurrent))
+		if(!is_null($jsonObject) && isset($jsonObject->mediaIdIn))
+			$this->mediaIdIn = (string)$jsonObject->mediaIdIn;
+		if(!is_null($xml) && count($xml->udidEqualCurrent))
 		{
 			if(!empty($xml->udidEqualCurrent) && ((int) $xml->udidEqualCurrent === 1 || strtolower((string)$xml->udidEqualCurrent) === 'true'))
+				$this->udidEqualCurrent = true;
+			else
+				$this->udidEqualCurrent = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->udidEqualCurrent))
+		{
+			if(!empty($jsonObject->udidEqualCurrent) && ((int) $jsonObject->udidEqualCurrent === 1 || strtolower((string)$jsonObject->udidEqualCurrent) === 'true'))
 				$this->udidEqualCurrent = true;
 			else
 				$this->udidEqualCurrent = false;

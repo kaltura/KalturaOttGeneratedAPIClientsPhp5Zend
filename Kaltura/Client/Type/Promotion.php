@@ -38,17 +38,24 @@ class Kaltura_Client_Type_Promotion extends Kaltura_Client_Type_BasePromotion
 		return 'KalturaPromotion';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->discountModuleId))
+		if(!is_null($xml) && count($xml->discountModuleId))
 			$this->discountModuleId = (string)$xml->discountModuleId;
-		if(count($xml->numberOfRecurring))
+		if(!is_null($jsonObject) && isset($jsonObject->discountModuleId))
+			$this->discountModuleId = (string)$jsonObject->discountModuleId;
+		if(!is_null($xml) && count($xml->numberOfRecurring))
 			$this->numberOfRecurring = (int)$xml->numberOfRecurring;
+		if(!is_null($jsonObject) && isset($jsonObject->numberOfRecurring))
+			$this->numberOfRecurring = (int)$jsonObject->numberOfRecurring;
 	}
 	/**
 	 * The discount module id that is promoted to the user

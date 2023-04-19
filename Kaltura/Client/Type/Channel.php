@@ -38,75 +38,140 @@ class Kaltura_Client_Type_Channel extends Kaltura_Client_Type_BaseChannel
 		return 'KalturaChannel';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->name))
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->multilingualName))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->multilingualName))
 		{
 			if(empty($xml->multilingualName))
 				$this->multilingualName = array();
 			else
 				$this->multilingualName = Kaltura_Client_ParseUtils::unmarshalArray($xml->multilingualName, "KalturaTranslationToken");
 		}
-		if(count($xml->oldName))
+		if(!is_null($jsonObject) && isset($jsonObject->multilingualName))
+		{
+			if(empty($jsonObject->multilingualName))
+				$this->multilingualName = array();
+			else
+				$this->multilingualName = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->multilingualName, "KalturaTranslationToken");
+		}
+		if(!is_null($xml) && count($xml->oldName))
 			$this->oldName = (string)$xml->oldName;
-		if(count($xml->systemName))
+		if(!is_null($jsonObject) && isset($jsonObject->oldName))
+			$this->oldName = (string)$jsonObject->oldName;
+		if(!is_null($xml) && count($xml->systemName))
 			$this->systemName = (string)$xml->systemName;
-		if(count($xml->description))
+		if(!is_null($jsonObject) && isset($jsonObject->systemName))
+			$this->systemName = (string)$jsonObject->systemName;
+		if(!is_null($xml) && count($xml->description))
 			$this->description = (string)$xml->description;
-		if(count($xml->multilingualDescription))
+		if(!is_null($jsonObject) && isset($jsonObject->description))
+			$this->description = (string)$jsonObject->description;
+		if(!is_null($xml) && count($xml->multilingualDescription))
 		{
 			if(empty($xml->multilingualDescription))
 				$this->multilingualDescription = array();
 			else
 				$this->multilingualDescription = Kaltura_Client_ParseUtils::unmarshalArray($xml->multilingualDescription, "KalturaTranslationToken");
 		}
-		if(count($xml->oldDescription))
+		if(!is_null($jsonObject) && isset($jsonObject->multilingualDescription))
+		{
+			if(empty($jsonObject->multilingualDescription))
+				$this->multilingualDescription = array();
+			else
+				$this->multilingualDescription = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->multilingualDescription, "KalturaTranslationToken");
+		}
+		if(!is_null($xml) && count($xml->oldDescription))
 			$this->oldDescription = (string)$xml->oldDescription;
-		if(count($xml->isActive))
+		if(!is_null($jsonObject) && isset($jsonObject->oldDescription))
+			$this->oldDescription = (string)$jsonObject->oldDescription;
+		if(!is_null($xml) && count($xml->isActive))
 		{
 			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))
 				$this->isActive = true;
 			else
 				$this->isActive = false;
 		}
-		if(count($xml->orderBy) && !empty($xml->orderBy))
+		if(!is_null($jsonObject) && isset($jsonObject->isActive))
+		{
+			if(!empty($jsonObject->isActive) && ((int) $jsonObject->isActive === 1 || strtolower((string)$jsonObject->isActive) === 'true'))
+				$this->isActive = true;
+			else
+				$this->isActive = false;
+		}
+		if(!is_null($xml) && count($xml->orderBy) && !empty($xml->orderBy))
 			$this->orderBy = Kaltura_Client_ParseUtils::unmarshalObject($xml->orderBy, "KalturaChannelOrder");
-		if(count($xml->orderingParametersEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->orderBy) && !empty($jsonObject->orderBy))
+			$this->orderBy = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->orderBy, "KalturaChannelOrder");
+		if(!is_null($xml) && count($xml->orderingParametersEqual))
 		{
 			if(empty($xml->orderingParametersEqual))
 				$this->orderingParametersEqual = array();
 			else
 				$this->orderingParametersEqual = Kaltura_Client_ParseUtils::unmarshalArray($xml->orderingParametersEqual, "KalturaBaseChannelOrder");
 		}
-		if(count($xml->createDate))
+		if(!is_null($jsonObject) && isset($jsonObject->orderingParametersEqual))
+		{
+			if(empty($jsonObject->orderingParametersEqual))
+				$this->orderingParametersEqual = array();
+			else
+				$this->orderingParametersEqual = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->orderingParametersEqual, "KalturaBaseChannelOrder");
+		}
+		if(!is_null($xml) && count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
-		if(count($xml->updateDate))
+		if(!is_null($jsonObject) && isset($jsonObject->createDate))
+			$this->createDate = (string)$jsonObject->createDate;
+		if(!is_null($xml) && count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
-		if(count($xml->supportSegmentBasedOrdering))
+		if(!is_null($jsonObject) && isset($jsonObject->updateDate))
+			$this->updateDate = (string)$jsonObject->updateDate;
+		if(!is_null($xml) && count($xml->supportSegmentBasedOrdering))
 		{
 			if(!empty($xml->supportSegmentBasedOrdering) && ((int) $xml->supportSegmentBasedOrdering === 1 || strtolower((string)$xml->supportSegmentBasedOrdering) === 'true'))
 				$this->supportSegmentBasedOrdering = true;
 			else
 				$this->supportSegmentBasedOrdering = false;
 		}
-		if(count($xml->assetUserRuleId))
+		if(!is_null($jsonObject) && isset($jsonObject->supportSegmentBasedOrdering))
+		{
+			if(!empty($jsonObject->supportSegmentBasedOrdering) && ((int) $jsonObject->supportSegmentBasedOrdering === 1 || strtolower((string)$jsonObject->supportSegmentBasedOrdering) === 'true'))
+				$this->supportSegmentBasedOrdering = true;
+			else
+				$this->supportSegmentBasedOrdering = false;
+		}
+		if(!is_null($xml) && count($xml->assetUserRuleId))
 			$this->assetUserRuleId = (string)$xml->assetUserRuleId;
-		if(count($xml->metaData))
+		if(!is_null($jsonObject) && isset($jsonObject->assetUserRuleId))
+			$this->assetUserRuleId = (string)$jsonObject->assetUserRuleId;
+		if(!is_null($xml) && count($xml->metaData))
 		{
 			if(empty($xml->metaData))
 				$this->metaData = array();
 			else
 				$this->metaData = Kaltura_Client_ParseUtils::unmarshalMap($xml->metaData, "KalturaStringValue");
 		}
-		if(count($xml->virtualAssetId))
+		if(!is_null($jsonObject) && isset($jsonObject->metaData))
+		{
+			if(empty($jsonObject->metaData))
+				$this->metaData = array();
+			else
+				$this->metaData = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->metaData, "KalturaStringValue");
+		}
+		if(!is_null($xml) && count($xml->virtualAssetId))
 			$this->virtualAssetId = (string)$xml->virtualAssetId;
+		if(!is_null($jsonObject) && isset($jsonObject->virtualAssetId))
+			$this->virtualAssetId = (string)$jsonObject->virtualAssetId;
 	}
 	/**
 	 * Channel name

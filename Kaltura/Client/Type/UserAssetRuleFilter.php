@@ -38,17 +38,24 @@ class Kaltura_Client_Type_UserAssetRuleFilter extends Kaltura_Client_Type_Filter
 		return 'KalturaUserAssetRuleFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->assetIdEqual))
+		if(!is_null($xml) && count($xml->assetIdEqual))
 			$this->assetIdEqual = (string)$xml->assetIdEqual;
-		if(count($xml->assetTypeEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->assetIdEqual))
+			$this->assetIdEqual = (string)$jsonObject->assetIdEqual;
+		if(!is_null($xml) && count($xml->assetTypeEqual))
 			$this->assetTypeEqual = (int)$xml->assetTypeEqual;
+		if(!is_null($jsonObject) && isset($jsonObject->assetTypeEqual))
+			$this->assetTypeEqual = (int)$jsonObject->assetTypeEqual;
 	}
 	/**
 	 * Asset identifier to filter by

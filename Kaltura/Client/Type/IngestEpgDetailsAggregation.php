@@ -38,29 +38,48 @@ class Kaltura_Client_Type_IngestEpgDetailsAggregation extends Kaltura_Client_Obj
 		return 'KalturaIngestEpgDetailsAggregation';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->linearChannels))
+		if(!is_null($xml) && count($xml->linearChannels))
 		{
 			if(empty($xml->linearChannels))
 				$this->linearChannels = array();
 			else
 				$this->linearChannels = Kaltura_Client_ParseUtils::unmarshalArray($xml->linearChannels, "KalturaChannelAggregatedIngestInfo");
 		}
-		if(count($xml->dates))
+		if(!is_null($jsonObject) && isset($jsonObject->linearChannels))
+		{
+			if(empty($jsonObject->linearChannels))
+				$this->linearChannels = array();
+			else
+				$this->linearChannels = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->linearChannels, "KalturaChannelAggregatedIngestInfo");
+		}
+		if(!is_null($xml) && count($xml->dates))
 		{
 			if(empty($xml->dates))
 				$this->dates = array();
 			else
 				$this->dates = Kaltura_Client_ParseUtils::unmarshalArray($xml->dates, "KalturaDateAggregatedIngestInfo");
 		}
-		if(count($xml->all) && !empty($xml->all))
+		if(!is_null($jsonObject) && isset($jsonObject->dates))
+		{
+			if(empty($jsonObject->dates))
+				$this->dates = array();
+			else
+				$this->dates = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->dates, "KalturaDateAggregatedIngestInfo");
+		}
+		if(!is_null($xml) && count($xml->all) && !empty($xml->all))
 			$this->all = Kaltura_Client_ParseUtils::unmarshalObject($xml->all, "KalturaAggregatedIngestInfo");
+		if(!is_null($jsonObject) && isset($jsonObject->all) && !empty($jsonObject->all))
+			$this->all = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->all, "KalturaAggregatedIngestInfo");
 	}
 	/**
 	 * Array of aggregated information per channel that included in the ingest job in question

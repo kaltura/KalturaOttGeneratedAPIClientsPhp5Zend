@@ -38,19 +38,28 @@ class Kaltura_Client_Type_SocialFriendActivity extends Kaltura_Client_ObjectBase
 		return 'KalturaSocialFriendActivity';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->userFullName))
+		if(!is_null($xml) && count($xml->userFullName))
 			$this->userFullName = (string)$xml->userFullName;
-		if(count($xml->userPictureUrl))
+		if(!is_null($jsonObject) && isset($jsonObject->userFullName))
+			$this->userFullName = (string)$jsonObject->userFullName;
+		if(!is_null($xml) && count($xml->userPictureUrl))
 			$this->userPictureUrl = (string)$xml->userPictureUrl;
-		if(count($xml->socialAction) && !empty($xml->socialAction))
+		if(!is_null($jsonObject) && isset($jsonObject->userPictureUrl))
+			$this->userPictureUrl = (string)$jsonObject->userPictureUrl;
+		if(!is_null($xml) && count($xml->socialAction) && !empty($xml->socialAction))
 			$this->socialAction = Kaltura_Client_ParseUtils::unmarshalObject($xml->socialAction, "KalturaSocialAction");
+		if(!is_null($jsonObject) && isset($jsonObject->socialAction) && !empty($jsonObject->socialAction))
+			$this->socialAction = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->socialAction, "KalturaSocialAction");
 	}
 	/**
 	 * The full name of the user who did the social action

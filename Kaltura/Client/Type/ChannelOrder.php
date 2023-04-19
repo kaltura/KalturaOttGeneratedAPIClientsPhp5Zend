@@ -38,19 +38,28 @@ class Kaltura_Client_Type_ChannelOrder extends Kaltura_Client_ObjectBase
 		return 'KalturaChannelOrder';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->dynamicOrderBy) && !empty($xml->dynamicOrderBy))
+		if(!is_null($xml) && count($xml->dynamicOrderBy) && !empty($xml->dynamicOrderBy))
 			$this->dynamicOrderBy = Kaltura_Client_ParseUtils::unmarshalObject($xml->dynamicOrderBy, "KalturaDynamicOrderBy");
-		if(count($xml->orderBy))
+		if(!is_null($jsonObject) && isset($jsonObject->dynamicOrderBy) && !empty($jsonObject->dynamicOrderBy))
+			$this->dynamicOrderBy = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->dynamicOrderBy, "KalturaDynamicOrderBy");
+		if(!is_null($xml) && count($xml->orderBy))
 			$this->orderBy = (string)$xml->orderBy;
-		if(count($xml->period))
+		if(!is_null($jsonObject) && isset($jsonObject->orderBy))
+			$this->orderBy = (string)$jsonObject->orderBy;
+		if(!is_null($xml) && count($xml->period))
 			$this->period = (int)$xml->period;
+		if(!is_null($jsonObject) && isset($jsonObject->period))
+			$this->period = (int)$jsonObject->period;
 	}
 	/**
 	 * Channel dynamic order by (meta)

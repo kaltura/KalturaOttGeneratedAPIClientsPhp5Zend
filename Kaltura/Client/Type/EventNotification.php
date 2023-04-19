@@ -38,29 +38,48 @@ class Kaltura_Client_Type_EventNotification extends Kaltura_Client_Type_OTTObjec
 		return 'KalturaEventNotification';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->objectId))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->objectId))
 			$this->objectId = (string)$xml->objectId;
-		if(count($xml->eventObjectType))
+		if(!is_null($jsonObject) && isset($jsonObject->objectId))
+			$this->objectId = (string)$jsonObject->objectId;
+		if(!is_null($xml) && count($xml->eventObjectType))
 			$this->eventObjectType = (string)$xml->eventObjectType;
-		if(count($xml->message))
+		if(!is_null($jsonObject) && isset($jsonObject->eventObjectType))
+			$this->eventObjectType = (string)$jsonObject->eventObjectType;
+		if(!is_null($xml) && count($xml->message))
 			$this->message = (string)$xml->message;
-		if(count($xml->status))
+		if(!is_null($jsonObject) && isset($jsonObject->message))
+			$this->message = (string)$jsonObject->message;
+		if(!is_null($xml) && count($xml->status))
 			$this->status = (string)$xml->status;
-		if(count($xml->actionType))
+		if(!is_null($jsonObject) && isset($jsonObject->status))
+			$this->status = (string)$jsonObject->status;
+		if(!is_null($xml) && count($xml->actionType))
 			$this->actionType = (string)$xml->actionType;
-		if(count($xml->createDate))
+		if(!is_null($jsonObject) && isset($jsonObject->actionType))
+			$this->actionType = (string)$jsonObject->actionType;
+		if(!is_null($xml) && count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
-		if(count($xml->updateDate))
+		if(!is_null($jsonObject) && isset($jsonObject->createDate))
+			$this->createDate = (string)$jsonObject->createDate;
+		if(!is_null($xml) && count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
+		if(!is_null($jsonObject) && isset($jsonObject->updateDate))
+			$this->updateDate = (string)$jsonObject->updateDate;
 	}
 	/**
 	 * Identifier

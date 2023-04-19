@@ -38,23 +38,36 @@ class Kaltura_Client_Type_TransactionStatus extends Kaltura_Client_ObjectBase
 		return 'KalturaTransactionStatus';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->adapterTransactionStatus))
+		if(!is_null($xml) && count($xml->adapterTransactionStatus))
 			$this->adapterTransactionStatus = (string)$xml->adapterTransactionStatus;
-		if(count($xml->externalId))
+		if(!is_null($jsonObject) && isset($jsonObject->adapterTransactionStatus))
+			$this->adapterTransactionStatus = (string)$jsonObject->adapterTransactionStatus;
+		if(!is_null($xml) && count($xml->externalId))
 			$this->externalId = (string)$xml->externalId;
-		if(count($xml->externalStatus))
+		if(!is_null($jsonObject) && isset($jsonObject->externalId))
+			$this->externalId = (string)$jsonObject->externalId;
+		if(!is_null($xml) && count($xml->externalStatus))
 			$this->externalStatus = (string)$xml->externalStatus;
-		if(count($xml->externalMessage))
+		if(!is_null($jsonObject) && isset($jsonObject->externalStatus))
+			$this->externalStatus = (string)$jsonObject->externalStatus;
+		if(!is_null($xml) && count($xml->externalMessage))
 			$this->externalMessage = (string)$xml->externalMessage;
-		if(count($xml->failReason))
+		if(!is_null($jsonObject) && isset($jsonObject->externalMessage))
+			$this->externalMessage = (string)$jsonObject->externalMessage;
+		if(!is_null($xml) && count($xml->failReason))
 			$this->failReason = (int)$xml->failReason;
+		if(!is_null($jsonObject) && isset($jsonObject->failReason))
+			$this->failReason = (int)$jsonObject->failReason;
 	}
 	/**
 	 * Payment gateway adapter application state for the transaction to update

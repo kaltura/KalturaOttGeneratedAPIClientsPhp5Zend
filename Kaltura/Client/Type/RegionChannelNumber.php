@@ -38,17 +38,24 @@ class Kaltura_Client_Type_RegionChannelNumber extends Kaltura_Client_ObjectBase
 		return 'KalturaRegionChannelNumber';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->regionId))
+		if(!is_null($xml) && count($xml->regionId))
 			$this->regionId = (int)$xml->regionId;
-		if(count($xml->channelNumber))
+		if(!is_null($jsonObject) && isset($jsonObject->regionId))
+			$this->regionId = (int)$jsonObject->regionId;
+		if(!is_null($xml) && count($xml->channelNumber))
 			$this->channelNumber = (int)$xml->channelNumber;
+		if(!is_null($jsonObject) && isset($jsonObject->channelNumber))
+			$this->channelNumber = (int)$jsonObject->channelNumber;
 	}
 	/**
 	 * The identifier of the region

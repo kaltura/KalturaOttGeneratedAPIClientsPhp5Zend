@@ -38,23 +38,36 @@ class Kaltura_Client_Type_AssetHistoryFilter extends Kaltura_Client_Type_Filter
 		return 'KalturaAssetHistoryFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->typeIn))
+		if(!is_null($xml) && count($xml->typeIn))
 			$this->typeIn = (string)$xml->typeIn;
-		if(count($xml->assetIdIn))
+		if(!is_null($jsonObject) && isset($jsonObject->typeIn))
+			$this->typeIn = (string)$jsonObject->typeIn;
+		if(!is_null($xml) && count($xml->assetIdIn))
 			$this->assetIdIn = (string)$xml->assetIdIn;
-		if(count($xml->statusEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->assetIdIn))
+			$this->assetIdIn = (string)$jsonObject->assetIdIn;
+		if(!is_null($xml) && count($xml->statusEqual))
 			$this->statusEqual = (string)$xml->statusEqual;
-		if(count($xml->daysLessThanOrEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->statusEqual))
+			$this->statusEqual = (string)$jsonObject->statusEqual;
+		if(!is_null($xml) && count($xml->daysLessThanOrEqual))
 			$this->daysLessThanOrEqual = (int)$xml->daysLessThanOrEqual;
-		if(count($xml->kSql))
+		if(!is_null($jsonObject) && isset($jsonObject->daysLessThanOrEqual))
+			$this->daysLessThanOrEqual = (int)$jsonObject->daysLessThanOrEqual;
+		if(!is_null($xml) && count($xml->kSql))
 			$this->kSql = (string)$xml->kSql;
+		if(!is_null($jsonObject) && isset($jsonObject->kSql))
+			$this->kSql = (string)$jsonObject->kSql;
 	}
 	/**
 	 * Comma separated list of asset types to search within.

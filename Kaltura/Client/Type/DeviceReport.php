@@ -38,35 +38,60 @@ class Kaltura_Client_Type_DeviceReport extends Kaltura_Client_Type_Report
 		return 'KalturaDeviceReport';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->partnerId))
+		if(!is_null($xml) && count($xml->partnerId))
 			$this->partnerId = (int)$xml->partnerId;
-		if(count($xml->configurationGroupId))
+		if(!is_null($jsonObject) && isset($jsonObject->partnerId))
+			$this->partnerId = (int)$jsonObject->partnerId;
+		if(!is_null($xml) && count($xml->configurationGroupId))
 			$this->configurationGroupId = (string)$xml->configurationGroupId;
-		if(count($xml->udid))
+		if(!is_null($jsonObject) && isset($jsonObject->configurationGroupId))
+			$this->configurationGroupId = (string)$jsonObject->configurationGroupId;
+		if(!is_null($xml) && count($xml->udid))
 			$this->udid = (string)$xml->udid;
-		if(count($xml->pushParameters) && !empty($xml->pushParameters))
+		if(!is_null($jsonObject) && isset($jsonObject->udid))
+			$this->udid = (string)$jsonObject->udid;
+		if(!is_null($xml) && count($xml->pushParameters) && !empty($xml->pushParameters))
 			$this->pushParameters = Kaltura_Client_ParseUtils::unmarshalObject($xml->pushParameters, "KalturaPushParams");
-		if(count($xml->versionNumber))
+		if(!is_null($jsonObject) && isset($jsonObject->pushParameters) && !empty($jsonObject->pushParameters))
+			$this->pushParameters = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->pushParameters, "KalturaPushParams");
+		if(!is_null($xml) && count($xml->versionNumber))
 			$this->versionNumber = (string)$xml->versionNumber;
-		if(count($xml->versionPlatform))
+		if(!is_null($jsonObject) && isset($jsonObject->versionNumber))
+			$this->versionNumber = (string)$jsonObject->versionNumber;
+		if(!is_null($xml) && count($xml->versionPlatform))
 			$this->versionPlatform = (string)$xml->versionPlatform;
-		if(count($xml->versionAppName))
+		if(!is_null($jsonObject) && isset($jsonObject->versionPlatform))
+			$this->versionPlatform = (string)$jsonObject->versionPlatform;
+		if(!is_null($xml) && count($xml->versionAppName))
 			$this->versionAppName = (string)$xml->versionAppName;
-		if(count($xml->lastAccessIP))
+		if(!is_null($jsonObject) && isset($jsonObject->versionAppName))
+			$this->versionAppName = (string)$jsonObject->versionAppName;
+		if(!is_null($xml) && count($xml->lastAccessIP))
 			$this->lastAccessIP = (string)$xml->lastAccessIP;
-		if(count($xml->lastAccessDate))
+		if(!is_null($jsonObject) && isset($jsonObject->lastAccessIP))
+			$this->lastAccessIP = (string)$jsonObject->lastAccessIP;
+		if(!is_null($xml) && count($xml->lastAccessDate))
 			$this->lastAccessDate = (string)$xml->lastAccessDate;
-		if(count($xml->userAgent))
+		if(!is_null($jsonObject) && isset($jsonObject->lastAccessDate))
+			$this->lastAccessDate = (string)$jsonObject->lastAccessDate;
+		if(!is_null($xml) && count($xml->userAgent))
 			$this->userAgent = (string)$xml->userAgent;
-		if(count($xml->operationSystem))
+		if(!is_null($jsonObject) && isset($jsonObject->userAgent))
+			$this->userAgent = (string)$jsonObject->userAgent;
+		if(!is_null($xml) && count($xml->operationSystem))
 			$this->operationSystem = (string)$xml->operationSystem;
+		if(!is_null($jsonObject) && isset($jsonObject->operationSystem))
+			$this->operationSystem = (string)$jsonObject->operationSystem;
 	}
 	/**
 	 * Partner unique identifier

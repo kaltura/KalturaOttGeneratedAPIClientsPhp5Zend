@@ -38,28 +38,46 @@ class Kaltura_Client_Type_EpgNotificationSettings extends Kaltura_Client_ObjectB
 		return 'KalturaEpgNotificationSettings';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->enabled))
+		if(!is_null($xml) && count($xml->enabled))
 		{
 			if(!empty($xml->enabled) && ((int) $xml->enabled === 1 || strtolower((string)$xml->enabled) === 'true'))
 				$this->enabled = true;
 			else
 				$this->enabled = false;
 		}
-		if(count($xml->deviceFamilyIds))
+		if(!is_null($jsonObject) && isset($jsonObject->enabled))
+		{
+			if(!empty($jsonObject->enabled) && ((int) $jsonObject->enabled === 1 || strtolower((string)$jsonObject->enabled) === 'true'))
+				$this->enabled = true;
+			else
+				$this->enabled = false;
+		}
+		if(!is_null($xml) && count($xml->deviceFamilyIds))
 			$this->deviceFamilyIds = (string)$xml->deviceFamilyIds;
-		if(count($xml->liveAssetIds))
+		if(!is_null($jsonObject) && isset($jsonObject->deviceFamilyIds))
+			$this->deviceFamilyIds = (string)$jsonObject->deviceFamilyIds;
+		if(!is_null($xml) && count($xml->liveAssetIds))
 			$this->liveAssetIds = (string)$xml->liveAssetIds;
-		if(count($xml->backwardTimeRange))
+		if(!is_null($jsonObject) && isset($jsonObject->liveAssetIds))
+			$this->liveAssetIds = (string)$jsonObject->liveAssetIds;
+		if(!is_null($xml) && count($xml->backwardTimeRange))
 			$this->backwardTimeRange = (int)$xml->backwardTimeRange;
-		if(count($xml->forwardTimeRange))
+		if(!is_null($jsonObject) && isset($jsonObject->backwardTimeRange))
+			$this->backwardTimeRange = (int)$jsonObject->backwardTimeRange;
+		if(!is_null($xml) && count($xml->forwardTimeRange))
 			$this->forwardTimeRange = (int)$xml->forwardTimeRange;
+		if(!is_null($jsonObject) && isset($jsonObject->forwardTimeRange))
+			$this->forwardTimeRange = (int)$jsonObject->forwardTimeRange;
 	}
 	/**
 	 * EPG notification capability is enabled for the account

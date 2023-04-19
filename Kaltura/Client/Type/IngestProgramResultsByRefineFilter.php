@@ -38,19 +38,28 @@ abstract class Kaltura_Client_Type_IngestProgramResultsByRefineFilter extends Ka
 		return 'KalturaIngestProgramResultsByRefineFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->ingestStatusIn))
+		if(!is_null($xml) && count($xml->ingestStatusIn))
 			$this->ingestStatusIn = (string)$xml->ingestStatusIn;
-		if(count($xml->startDateGreaterThan))
+		if(!is_null($jsonObject) && isset($jsonObject->ingestStatusIn))
+			$this->ingestStatusIn = (string)$jsonObject->ingestStatusIn;
+		if(!is_null($xml) && count($xml->startDateGreaterThan))
 			$this->startDateGreaterThan = (string)$xml->startDateGreaterThan;
-		if(count($xml->startDateSmallerThan))
+		if(!is_null($jsonObject) && isset($jsonObject->startDateGreaterThan))
+			$this->startDateGreaterThan = (string)$jsonObject->startDateGreaterThan;
+		if(!is_null($xml) && count($xml->startDateSmallerThan))
 			$this->startDateSmallerThan = (string)$xml->startDateSmallerThan;
+		if(!is_null($jsonObject) && isset($jsonObject->startDateSmallerThan))
+			$this->startDateSmallerThan = (string)$jsonObject->startDateSmallerThan;
 	}
 	/**
 	 * Comma seperated valid statuses - only &#39;FAILURE&#39;, &#39;WARNING&#39; and &#39;SUCCESS&#39; are valid strings. No repetitions are allowed.

@@ -38,19 +38,29 @@ class Kaltura_Client_Type_BatchCampaign extends Kaltura_Client_Type_Campaign
 		return 'KalturaBatchCampaign';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->populationConditions))
+		if(!is_null($xml) && count($xml->populationConditions))
 		{
 			if(empty($xml->populationConditions))
 				$this->populationConditions = array();
 			else
 				$this->populationConditions = Kaltura_Client_ParseUtils::unmarshalArray($xml->populationConditions, "KalturaCondition");
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->populationConditions))
+		{
+			if(empty($jsonObject->populationConditions))
+				$this->populationConditions = array();
+			else
+				$this->populationConditions = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->populationConditions, "KalturaCondition");
 		}
 	}
 	/**

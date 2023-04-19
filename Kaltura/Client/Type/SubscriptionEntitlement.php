@@ -38,53 +38,96 @@ class Kaltura_Client_Type_SubscriptionEntitlement extends Kaltura_Client_Type_En
 		return 'KalturaSubscriptionEntitlement';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->nextRenewalDate))
+		if(!is_null($xml) && count($xml->nextRenewalDate))
 			$this->nextRenewalDate = (string)$xml->nextRenewalDate;
-		if(count($xml->isRenewableForPurchase))
+		if(!is_null($jsonObject) && isset($jsonObject->nextRenewalDate))
+			$this->nextRenewalDate = (string)$jsonObject->nextRenewalDate;
+		if(!is_null($xml) && count($xml->isRenewableForPurchase))
 		{
 			if(!empty($xml->isRenewableForPurchase) && ((int) $xml->isRenewableForPurchase === 1 || strtolower((string)$xml->isRenewableForPurchase) === 'true'))
 				$this->isRenewableForPurchase = true;
 			else
 				$this->isRenewableForPurchase = false;
 		}
-		if(count($xml->isRenewable))
+		if(!is_null($jsonObject) && isset($jsonObject->isRenewableForPurchase))
+		{
+			if(!empty($jsonObject->isRenewableForPurchase) && ((int) $jsonObject->isRenewableForPurchase === 1 || strtolower((string)$jsonObject->isRenewableForPurchase) === 'true'))
+				$this->isRenewableForPurchase = true;
+			else
+				$this->isRenewableForPurchase = false;
+		}
+		if(!is_null($xml) && count($xml->isRenewable))
 		{
 			if(!empty($xml->isRenewable) && ((int) $xml->isRenewable === 1 || strtolower((string)$xml->isRenewable) === 'true'))
 				$this->isRenewable = true;
 			else
 				$this->isRenewable = false;
 		}
-		if(count($xml->isInGracePeriod))
+		if(!is_null($jsonObject) && isset($jsonObject->isRenewable))
+		{
+			if(!empty($jsonObject->isRenewable) && ((int) $jsonObject->isRenewable === 1 || strtolower((string)$jsonObject->isRenewable) === 'true'))
+				$this->isRenewable = true;
+			else
+				$this->isRenewable = false;
+		}
+		if(!is_null($xml) && count($xml->isInGracePeriod))
 		{
 			if(!empty($xml->isInGracePeriod) && ((int) $xml->isInGracePeriod === 1 || strtolower((string)$xml->isInGracePeriod) === 'true'))
 				$this->isInGracePeriod = true;
 			else
 				$this->isInGracePeriod = false;
 		}
-		if(count($xml->paymentGatewayId))
+		if(!is_null($jsonObject) && isset($jsonObject->isInGracePeriod))
+		{
+			if(!empty($jsonObject->isInGracePeriod) && ((int) $jsonObject->isInGracePeriod === 1 || strtolower((string)$jsonObject->isInGracePeriod) === 'true'))
+				$this->isInGracePeriod = true;
+			else
+				$this->isInGracePeriod = false;
+		}
+		if(!is_null($xml) && count($xml->paymentGatewayId))
 			$this->paymentGatewayId = (int)$xml->paymentGatewayId;
-		if(count($xml->paymentMethodId))
+		if(!is_null($jsonObject) && isset($jsonObject->paymentGatewayId))
+			$this->paymentGatewayId = (int)$jsonObject->paymentGatewayId;
+		if(!is_null($xml) && count($xml->paymentMethodId))
 			$this->paymentMethodId = (int)$xml->paymentMethodId;
-		if(count($xml->scheduledSubscriptionId))
+		if(!is_null($jsonObject) && isset($jsonObject->paymentMethodId))
+			$this->paymentMethodId = (int)$jsonObject->paymentMethodId;
+		if(!is_null($xml) && count($xml->scheduledSubscriptionId))
 			$this->scheduledSubscriptionId = (string)$xml->scheduledSubscriptionId;
-		if(count($xml->unifiedPaymentId))
+		if(!is_null($jsonObject) && isset($jsonObject->scheduledSubscriptionId))
+			$this->scheduledSubscriptionId = (string)$jsonObject->scheduledSubscriptionId;
+		if(!is_null($xml) && count($xml->unifiedPaymentId))
 			$this->unifiedPaymentId = (string)$xml->unifiedPaymentId;
-		if(count($xml->isSuspended))
+		if(!is_null($jsonObject) && isset($jsonObject->unifiedPaymentId))
+			$this->unifiedPaymentId = (string)$jsonObject->unifiedPaymentId;
+		if(!is_null($xml) && count($xml->isSuspended))
 		{
 			if(!empty($xml->isSuspended) && ((int) $xml->isSuspended === 1 || strtolower((string)$xml->isSuspended) === 'true'))
 				$this->isSuspended = true;
 			else
 				$this->isSuspended = false;
 		}
-		if(count($xml->priceDetails) && !empty($xml->priceDetails))
+		if(!is_null($jsonObject) && isset($jsonObject->isSuspended))
+		{
+			if(!empty($jsonObject->isSuspended) && ((int) $jsonObject->isSuspended === 1 || strtolower((string)$jsonObject->isSuspended) === 'true'))
+				$this->isSuspended = true;
+			else
+				$this->isSuspended = false;
+		}
+		if(!is_null($xml) && count($xml->priceDetails) && !empty($xml->priceDetails))
 			$this->priceDetails = Kaltura_Client_ParseUtils::unmarshalObject($xml->priceDetails, "KalturaEntitlementPriceDetails");
+		if(!is_null($jsonObject) && isset($jsonObject->priceDetails) && !empty($jsonObject->priceDetails))
+			$this->priceDetails = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->priceDetails, "KalturaEntitlementPriceDetails");
 	}
 	/**
 	 * The date of the next renewal (only for subscription)

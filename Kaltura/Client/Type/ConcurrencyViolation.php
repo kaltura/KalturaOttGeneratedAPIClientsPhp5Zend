@@ -38,25 +38,40 @@ class Kaltura_Client_Type_ConcurrencyViolation extends Kaltura_Client_Type_Event
 		return 'KalturaConcurrencyViolation';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->timestamp))
+		if(!is_null($xml) && count($xml->timestamp))
 			$this->timestamp = (string)$xml->timestamp;
-		if(count($xml->udid))
+		if(!is_null($jsonObject) && isset($jsonObject->timestamp))
+			$this->timestamp = (string)$jsonObject->timestamp;
+		if(!is_null($xml) && count($xml->udid))
 			$this->udid = (string)$xml->udid;
-		if(count($xml->assetId))
+		if(!is_null($jsonObject) && isset($jsonObject->udid))
+			$this->udid = (string)$jsonObject->udid;
+		if(!is_null($xml) && count($xml->assetId))
 			$this->assetId = (string)$xml->assetId;
-		if(count($xml->violationRule))
+		if(!is_null($jsonObject) && isset($jsonObject->assetId))
+			$this->assetId = (string)$jsonObject->assetId;
+		if(!is_null($xml) && count($xml->violationRule))
 			$this->violationRule = (string)$xml->violationRule;
-		if(count($xml->householdId))
+		if(!is_null($jsonObject) && isset($jsonObject->violationRule))
+			$this->violationRule = (string)$jsonObject->violationRule;
+		if(!is_null($xml) && count($xml->householdId))
 			$this->householdId = (string)$xml->householdId;
-		if(count($xml->userId))
+		if(!is_null($jsonObject) && isset($jsonObject->householdId))
+			$this->householdId = (string)$jsonObject->householdId;
+		if(!is_null($xml) && count($xml->userId))
 			$this->userId = (string)$xml->userId;
+		if(!is_null($jsonObject) && isset($jsonObject->userId))
+			$this->userId = (string)$jsonObject->userId;
 	}
 	/**
 	 * Timestamp

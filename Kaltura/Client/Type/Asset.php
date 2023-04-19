@@ -38,82 +38,154 @@ abstract class Kaltura_Client_Type_Asset extends Kaltura_Client_ObjectBase
 		return 'KalturaAsset';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->type))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->type))
 			$this->type = (int)$xml->type;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->type))
+			$this->type = (int)$jsonObject->type;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->multilingualName))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->multilingualName))
 		{
 			if(empty($xml->multilingualName))
 				$this->multilingualName = array();
 			else
 				$this->multilingualName = Kaltura_Client_ParseUtils::unmarshalArray($xml->multilingualName, "KalturaTranslationToken");
 		}
-		if(count($xml->description))
+		if(!is_null($jsonObject) && isset($jsonObject->multilingualName))
+		{
+			if(empty($jsonObject->multilingualName))
+				$this->multilingualName = array();
+			else
+				$this->multilingualName = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->multilingualName, "KalturaTranslationToken");
+		}
+		if(!is_null($xml) && count($xml->description))
 			$this->description = (string)$xml->description;
-		if(count($xml->multilingualDescription))
+		if(!is_null($jsonObject) && isset($jsonObject->description))
+			$this->description = (string)$jsonObject->description;
+		if(!is_null($xml) && count($xml->multilingualDescription))
 		{
 			if(empty($xml->multilingualDescription))
 				$this->multilingualDescription = array();
 			else
 				$this->multilingualDescription = Kaltura_Client_ParseUtils::unmarshalArray($xml->multilingualDescription, "KalturaTranslationToken");
 		}
-		if(count($xml->images))
+		if(!is_null($jsonObject) && isset($jsonObject->multilingualDescription))
+		{
+			if(empty($jsonObject->multilingualDescription))
+				$this->multilingualDescription = array();
+			else
+				$this->multilingualDescription = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->multilingualDescription, "KalturaTranslationToken");
+		}
+		if(!is_null($xml) && count($xml->images))
 		{
 			if(empty($xml->images))
 				$this->images = array();
 			else
 				$this->images = Kaltura_Client_ParseUtils::unmarshalArray($xml->images, "KalturaMediaImage");
 		}
-		if(count($xml->mediaFiles))
+		if(!is_null($jsonObject) && isset($jsonObject->images))
+		{
+			if(empty($jsonObject->images))
+				$this->images = array();
+			else
+				$this->images = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->images, "KalturaMediaImage");
+		}
+		if(!is_null($xml) && count($xml->mediaFiles))
 		{
 			if(empty($xml->mediaFiles))
 				$this->mediaFiles = array();
 			else
 				$this->mediaFiles = Kaltura_Client_ParseUtils::unmarshalArray($xml->mediaFiles, "KalturaMediaFile");
 		}
-		if(count($xml->metas))
+		if(!is_null($jsonObject) && isset($jsonObject->mediaFiles))
+		{
+			if(empty($jsonObject->mediaFiles))
+				$this->mediaFiles = array();
+			else
+				$this->mediaFiles = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->mediaFiles, "KalturaMediaFile");
+		}
+		if(!is_null($xml) && count($xml->metas))
 		{
 			if(empty($xml->metas))
 				$this->metas = array();
 			else
 				$this->metas = Kaltura_Client_ParseUtils::unmarshalMap($xml->metas, "KalturaValue");
 		}
-		if(count($xml->tags))
+		if(!is_null($jsonObject) && isset($jsonObject->metas))
+		{
+			if(empty($jsonObject->metas))
+				$this->metas = array();
+			else
+				$this->metas = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->metas, "KalturaValue");
+		}
+		if(!is_null($xml) && count($xml->tags))
 		{
 			if(empty($xml->tags))
 				$this->tags = array();
 			else
 				$this->tags = Kaltura_Client_ParseUtils::unmarshalMap($xml->tags, "KalturaMultilingualStringValueArray");
 		}
-		if(count($xml->relatedEntities))
+		if(!is_null($jsonObject) && isset($jsonObject->tags))
+		{
+			if(empty($jsonObject->tags))
+				$this->tags = array();
+			else
+				$this->tags = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->tags, "KalturaMultilingualStringValueArray");
+		}
+		if(!is_null($xml) && count($xml->relatedEntities))
 		{
 			if(empty($xml->relatedEntities))
 				$this->relatedEntities = array();
 			else
 				$this->relatedEntities = Kaltura_Client_ParseUtils::unmarshalMap($xml->relatedEntities, "KalturaRelatedEntityArray");
 		}
-		if(count($xml->startDate))
+		if(!is_null($jsonObject) && isset($jsonObject->relatedEntities))
+		{
+			if(empty($jsonObject->relatedEntities))
+				$this->relatedEntities = array();
+			else
+				$this->relatedEntities = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->relatedEntities, "KalturaRelatedEntityArray");
+		}
+		if(!is_null($xml) && count($xml->startDate))
 			$this->startDate = (string)$xml->startDate;
-		if(count($xml->endDate))
+		if(!is_null($jsonObject) && isset($jsonObject->startDate))
+			$this->startDate = (string)$jsonObject->startDate;
+		if(!is_null($xml) && count($xml->endDate))
 			$this->endDate = (string)$xml->endDate;
-		if(count($xml->createDate))
+		if(!is_null($jsonObject) && isset($jsonObject->endDate))
+			$this->endDate = (string)$jsonObject->endDate;
+		if(!is_null($xml) && count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
-		if(count($xml->updateDate))
+		if(!is_null($jsonObject) && isset($jsonObject->createDate))
+			$this->createDate = (string)$jsonObject->createDate;
+		if(!is_null($xml) && count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
-		if(count($xml->externalId))
+		if(!is_null($jsonObject) && isset($jsonObject->updateDate))
+			$this->updateDate = (string)$jsonObject->updateDate;
+		if(!is_null($xml) && count($xml->externalId))
 			$this->externalId = (string)$xml->externalId;
-		if(count($xml->indexStatus))
+		if(!is_null($jsonObject) && isset($jsonObject->externalId))
+			$this->externalId = (string)$jsonObject->externalId;
+		if(!is_null($xml) && count($xml->indexStatus))
 			$this->indexStatus = (string)$xml->indexStatus;
+		if(!is_null($jsonObject) && isset($jsonObject->indexStatus))
+			$this->indexStatus = (string)$jsonObject->indexStatus;
 	}
 	/**
 	 * Unique identifier for the asset

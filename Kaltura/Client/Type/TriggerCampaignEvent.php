@@ -38,21 +38,32 @@ class Kaltura_Client_Type_TriggerCampaignEvent extends Kaltura_Client_Type_Event
 		return 'KalturaTriggerCampaignEvent';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->userId))
+		if(!is_null($xml) && count($xml->userId))
 			$this->userId = (string)$xml->userId;
-		if(count($xml->campaignId))
+		if(!is_null($jsonObject) && isset($jsonObject->userId))
+			$this->userId = (string)$jsonObject->userId;
+		if(!is_null($xml) && count($xml->campaignId))
 			$this->campaignId = (string)$xml->campaignId;
-		if(count($xml->udid))
+		if(!is_null($jsonObject) && isset($jsonObject->campaignId))
+			$this->campaignId = (string)$jsonObject->campaignId;
+		if(!is_null($xml) && count($xml->udid))
 			$this->udid = (string)$xml->udid;
-		if(count($xml->householdId))
+		if(!is_null($jsonObject) && isset($jsonObject->udid))
+			$this->udid = (string)$jsonObject->udid;
+		if(!is_null($xml) && count($xml->householdId))
 			$this->householdId = (string)$xml->householdId;
+		if(!is_null($jsonObject) && isset($jsonObject->householdId))
+			$this->householdId = (string)$jsonObject->householdId;
 	}
 	/**
 	 * User Id

@@ -38,23 +38,36 @@ class Kaltura_Client_Type_IngestByCompoundFilter extends Kaltura_Client_Type_Fil
 		return 'KalturaIngestByCompoundFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->ingestNameContains))
+		if(!is_null($xml) && count($xml->ingestNameContains))
 			$this->ingestNameContains = (string)$xml->ingestNameContains;
-		if(count($xml->ingestedByUserIdIn))
+		if(!is_null($jsonObject) && isset($jsonObject->ingestNameContains))
+			$this->ingestNameContains = (string)$jsonObject->ingestNameContains;
+		if(!is_null($xml) && count($xml->ingestedByUserIdIn))
 			$this->ingestedByUserIdIn = (string)$xml->ingestedByUserIdIn;
-		if(count($xml->ingestStatusIn))
+		if(!is_null($jsonObject) && isset($jsonObject->ingestedByUserIdIn))
+			$this->ingestedByUserIdIn = (string)$jsonObject->ingestedByUserIdIn;
+		if(!is_null($xml) && count($xml->ingestStatusIn))
 			$this->ingestStatusIn = (string)$xml->ingestStatusIn;
-		if(count($xml->createdDateGreaterThan))
+		if(!is_null($jsonObject) && isset($jsonObject->ingestStatusIn))
+			$this->ingestStatusIn = (string)$jsonObject->ingestStatusIn;
+		if(!is_null($xml) && count($xml->createdDateGreaterThan))
 			$this->createdDateGreaterThan = (string)$xml->createdDateGreaterThan;
-		if(count($xml->createdDateSmallerThan))
+		if(!is_null($jsonObject) && isset($jsonObject->createdDateGreaterThan))
+			$this->createdDateGreaterThan = (string)$jsonObject->createdDateGreaterThan;
+		if(!is_null($xml) && count($xml->createdDateSmallerThan))
 			$this->createdDateSmallerThan = (string)$xml->createdDateSmallerThan;
+		if(!is_null($jsonObject) && isset($jsonObject->createdDateSmallerThan))
+			$this->createdDateSmallerThan = (string)$jsonObject->createdDateSmallerThan;
 	}
 	/**
 	 * A string that is included in the ingest file name

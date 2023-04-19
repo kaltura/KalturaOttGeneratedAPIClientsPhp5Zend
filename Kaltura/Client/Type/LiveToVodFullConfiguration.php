@@ -38,30 +38,51 @@ class Kaltura_Client_Type_LiveToVodFullConfiguration extends Kaltura_Client_Obje
 		return 'KalturaLiveToVodFullConfiguration';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->isL2vEnabled))
+		if(!is_null($xml) && count($xml->isL2vEnabled))
 		{
 			if(!empty($xml->isL2vEnabled) && ((int) $xml->isL2vEnabled === 1 || strtolower((string)$xml->isL2vEnabled) === 'true'))
 				$this->isL2vEnabled = true;
 			else
 				$this->isL2vEnabled = false;
 		}
-		if(count($xml->retentionPeriodDays))
+		if(!is_null($jsonObject) && isset($jsonObject->isL2vEnabled))
+		{
+			if(!empty($jsonObject->isL2vEnabled) && ((int) $jsonObject->isL2vEnabled === 1 || strtolower((string)$jsonObject->isL2vEnabled) === 'true'))
+				$this->isL2vEnabled = true;
+			else
+				$this->isL2vEnabled = false;
+		}
+		if(!is_null($xml) && count($xml->retentionPeriodDays))
 			$this->retentionPeriodDays = (int)$xml->retentionPeriodDays;
-		if(count($xml->metadataClassifier))
+		if(!is_null($jsonObject) && isset($jsonObject->retentionPeriodDays))
+			$this->retentionPeriodDays = (int)$jsonObject->retentionPeriodDays;
+		if(!is_null($xml) && count($xml->metadataClassifier))
 			$this->metadataClassifier = (string)$xml->metadataClassifier;
-		if(count($xml->linearAssets))
+		if(!is_null($jsonObject) && isset($jsonObject->metadataClassifier))
+			$this->metadataClassifier = (string)$jsonObject->metadataClassifier;
+		if(!is_null($xml) && count($xml->linearAssets))
 		{
 			if(empty($xml->linearAssets))
 				$this->linearAssets = array();
 			else
 				$this->linearAssets = Kaltura_Client_ParseUtils::unmarshalArray($xml->linearAssets, "KalturaLiveToVodLinearAssetConfiguration");
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->linearAssets))
+		{
+			if(empty($jsonObject->linearAssets))
+				$this->linearAssets = array();
+			else
+				$this->linearAssets = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->linearAssets, "KalturaLiveToVodLinearAssetConfiguration");
 		}
 	}
 	/**

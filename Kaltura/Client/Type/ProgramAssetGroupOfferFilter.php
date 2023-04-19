@@ -38,16 +38,26 @@ class Kaltura_Client_Type_ProgramAssetGroupOfferFilter extends Kaltura_Client_Ty
 		return 'KalturaProgramAssetGroupOfferFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->alsoInactive))
+		if(!is_null($xml) && count($xml->alsoInactive))
 		{
 			if(!empty($xml->alsoInactive) && ((int) $xml->alsoInactive === 1 || strtolower((string)$xml->alsoInactive) === 'true'))
+				$this->alsoInactive = true;
+			else
+				$this->alsoInactive = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->alsoInactive))
+		{
+			if(!empty($jsonObject->alsoInactive) && ((int) $jsonObject->alsoInactive === 1 || strtolower((string)$jsonObject->alsoInactive) === 'true'))
 				$this->alsoInactive = true;
 			else
 				$this->alsoInactive = false;

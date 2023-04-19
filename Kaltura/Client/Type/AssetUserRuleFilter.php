@@ -38,24 +38,38 @@ class Kaltura_Client_Type_AssetUserRuleFilter extends Kaltura_Client_Type_Filter
 		return 'KalturaAssetUserRuleFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->attachedUserIdEqualCurrent))
+		if(!is_null($xml) && count($xml->attachedUserIdEqualCurrent))
 		{
 			if(!empty($xml->attachedUserIdEqualCurrent) && ((int) $xml->attachedUserIdEqualCurrent === 1 || strtolower((string)$xml->attachedUserIdEqualCurrent) === 'true'))
 				$this->attachedUserIdEqualCurrent = true;
 			else
 				$this->attachedUserIdEqualCurrent = false;
 		}
-		if(count($xml->actionsContainType))
+		if(!is_null($jsonObject) && isset($jsonObject->attachedUserIdEqualCurrent))
+		{
+			if(!empty($jsonObject->attachedUserIdEqualCurrent) && ((int) $jsonObject->attachedUserIdEqualCurrent === 1 || strtolower((string)$jsonObject->attachedUserIdEqualCurrent) === 'true'))
+				$this->attachedUserIdEqualCurrent = true;
+			else
+				$this->attachedUserIdEqualCurrent = false;
+		}
+		if(!is_null($xml) && count($xml->actionsContainType))
 			$this->actionsContainType = (string)$xml->actionsContainType;
-		if(count($xml->conditionsContainType))
+		if(!is_null($jsonObject) && isset($jsonObject->actionsContainType))
+			$this->actionsContainType = (string)$jsonObject->actionsContainType;
+		if(!is_null($xml) && count($xml->conditionsContainType))
 			$this->conditionsContainType = (string)$xml->conditionsContainType;
+		if(!is_null($jsonObject) && isset($jsonObject->conditionsContainType))
+			$this->conditionsContainType = (string)$jsonObject->conditionsContainType;
 	}
 	/**
 	 * Indicates if to get the asset user rule list for the attached user or for the entire group

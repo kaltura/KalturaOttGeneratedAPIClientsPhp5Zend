@@ -38,20 +38,34 @@ class Kaltura_Client_Type_CountryFilter extends Kaltura_Client_Type_Filter
 		return 'KalturaCountryFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->idIn))
+		if(!is_null($xml) && count($xml->idIn))
 			$this->idIn = (string)$xml->idIn;
-		if(count($xml->ipEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->idIn))
+			$this->idIn = (string)$jsonObject->idIn;
+		if(!is_null($xml) && count($xml->ipEqual))
 			$this->ipEqual = (string)$xml->ipEqual;
-		if(count($xml->ipEqualCurrent))
+		if(!is_null($jsonObject) && isset($jsonObject->ipEqual))
+			$this->ipEqual = (string)$jsonObject->ipEqual;
+		if(!is_null($xml) && count($xml->ipEqualCurrent))
 		{
 			if(!empty($xml->ipEqualCurrent) && ((int) $xml->ipEqualCurrent === 1 || strtolower((string)$xml->ipEqualCurrent) === 'true'))
+				$this->ipEqualCurrent = true;
+			else
+				$this->ipEqualCurrent = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->ipEqualCurrent))
+		{
+			if(!empty($jsonObject->ipEqualCurrent) && ((int) $jsonObject->ipEqualCurrent === 1 || strtolower((string)$jsonObject->ipEqualCurrent) === 'true'))
 				$this->ipEqualCurrent = true;
 			else
 				$this->ipEqualCurrent = false;

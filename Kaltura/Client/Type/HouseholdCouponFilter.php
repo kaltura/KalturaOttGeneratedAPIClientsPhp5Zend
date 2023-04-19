@@ -38,21 +38,32 @@ class Kaltura_Client_Type_HouseholdCouponFilter extends Kaltura_Client_Type_Filt
 		return 'KalturaHouseholdCouponFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->businessModuleTypeEqual))
+		if(!is_null($xml) && count($xml->businessModuleTypeEqual))
 			$this->businessModuleTypeEqual = (string)$xml->businessModuleTypeEqual;
-		if(count($xml->businessModuleIdEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->businessModuleTypeEqual))
+			$this->businessModuleTypeEqual = (string)$jsonObject->businessModuleTypeEqual;
+		if(!is_null($xml) && count($xml->businessModuleIdEqual))
 			$this->businessModuleIdEqual = (string)$xml->businessModuleIdEqual;
-		if(count($xml->couponCode))
+		if(!is_null($jsonObject) && isset($jsonObject->businessModuleIdEqual))
+			$this->businessModuleIdEqual = (string)$jsonObject->businessModuleIdEqual;
+		if(!is_null($xml) && count($xml->couponCode))
 			$this->couponCode = (string)$xml->couponCode;
-		if(count($xml->status))
+		if(!is_null($jsonObject) && isset($jsonObject->couponCode))
+			$this->couponCode = (string)$jsonObject->couponCode;
+		if(!is_null($xml) && count($xml->status))
 			$this->status = (string)$xml->status;
+		if(!is_null($jsonObject) && isset($jsonObject->status))
+			$this->status = (string)$jsonObject->status;
 	}
 	/**
 	 * Indicates which household coupons list to return by their business module type.

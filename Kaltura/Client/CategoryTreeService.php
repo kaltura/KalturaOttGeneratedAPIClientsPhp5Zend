@@ -51,12 +51,18 @@ class Kaltura_Client_CategoryTreeService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("categorytree", "duplicate", "KalturaCategoryTree", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCategoryTree");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CategoryTree");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCategoryTree");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CategoryTree");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -71,12 +77,18 @@ class Kaltura_Client_CategoryTreeService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("categorytree", "get", "KalturaCategoryTree", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCategoryTree");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CategoryTree");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCategoryTree");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CategoryTree");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -91,11 +103,17 @@ class Kaltura_Client_CategoryTreeService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("categorytree", "getByVersion", "KalturaCategoryTree", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCategoryTree");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CategoryTree");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCategoryTree");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CategoryTree");
+		}
+			return $resultObject;
 	}
 }

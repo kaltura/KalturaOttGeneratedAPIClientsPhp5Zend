@@ -38,17 +38,24 @@ class Kaltura_Client_Type_LicensedUrlMediaRequest extends Kaltura_Client_Type_Li
 		return 'KalturaLicensedUrlMediaRequest';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->contentId))
+		if(!is_null($xml) && count($xml->contentId))
 			$this->contentId = (int)$xml->contentId;
-		if(count($xml->baseUrl))
+		if(!is_null($jsonObject) && isset($jsonObject->contentId))
+			$this->contentId = (int)$jsonObject->contentId;
+		if(!is_null($xml) && count($xml->baseUrl))
 			$this->baseUrl = (string)$xml->baseUrl;
+		if(!is_null($jsonObject) && isset($jsonObject->baseUrl))
+			$this->baseUrl = (string)$jsonObject->baseUrl;
 	}
 	/**
 	 * Identifier of the content to get the link for (file identifier)

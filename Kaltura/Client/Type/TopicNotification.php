@@ -38,21 +38,32 @@ class Kaltura_Client_Type_TopicNotification extends Kaltura_Client_ObjectBase
 		return 'KalturaTopicNotification';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->description))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->description))
 			$this->description = (string)$xml->description;
-		if(count($xml->subscribeReference) && !empty($xml->subscribeReference))
+		if(!is_null($jsonObject) && isset($jsonObject->description))
+			$this->description = (string)$jsonObject->description;
+		if(!is_null($xml) && count($xml->subscribeReference) && !empty($xml->subscribeReference))
 			$this->subscribeReference = Kaltura_Client_ParseUtils::unmarshalObject($xml->subscribeReference, "KalturaSubscribeReference");
+		if(!is_null($jsonObject) && isset($jsonObject->subscribeReference) && !empty($jsonObject->subscribeReference))
+			$this->subscribeReference = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->subscribeReference, "KalturaSubscribeReference");
 	}
 	/**
 	 * Topic notification ID

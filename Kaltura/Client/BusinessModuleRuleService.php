@@ -50,12 +50,18 @@ class Kaltura_Client_BusinessModuleRuleService extends Kaltura_Client_ServiceBas
 		$this->client->queueServiceActionCall("businessmodulerule", "add", "KalturaBusinessModuleRule", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaBusinessModuleRule");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_BusinessModuleRule");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaBusinessModuleRule");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_BusinessModuleRule");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -69,9 +75,15 @@ class Kaltura_Client_BusinessModuleRuleService extends Kaltura_Client_ServiceBas
 		$this->client->queueServiceActionCall("businessmodulerule", "delete", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+		}
 	}
 
 	/**
@@ -85,12 +97,18 @@ class Kaltura_Client_BusinessModuleRuleService extends Kaltura_Client_ServiceBas
 		$this->client->queueServiceActionCall("businessmodulerule", "get", "KalturaBusinessModuleRule", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaBusinessModuleRule");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_BusinessModuleRule");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaBusinessModuleRule");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_BusinessModuleRule");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -105,12 +123,18 @@ class Kaltura_Client_BusinessModuleRuleService extends Kaltura_Client_ServiceBas
 		$this->client->queueServiceActionCall("businessmodulerule", "list", "KalturaBusinessModuleRuleListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaBusinessModuleRuleListResponse");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_BusinessModuleRuleListResponse");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaBusinessModuleRuleListResponse");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_BusinessModuleRuleListResponse");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -125,11 +149,17 @@ class Kaltura_Client_BusinessModuleRuleService extends Kaltura_Client_ServiceBas
 		$this->client->queueServiceActionCall("businessmodulerule", "update", "KalturaBusinessModuleRule", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaBusinessModuleRule");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_BusinessModuleRule");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaBusinessModuleRule");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_BusinessModuleRule");
+		}
+			return $resultObject;
 	}
 }

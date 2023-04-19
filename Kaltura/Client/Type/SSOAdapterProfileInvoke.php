@@ -38,24 +38,38 @@ class Kaltura_Client_Type_SSOAdapterProfileInvoke extends Kaltura_Client_ObjectB
 		return 'KalturaSSOAdapterProfileInvoke';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->adapterData))
+		if(!is_null($xml) && count($xml->adapterData))
 		{
 			if(empty($xml->adapterData))
 				$this->adapterData = array();
 			else
 				$this->adapterData = Kaltura_Client_ParseUtils::unmarshalMap($xml->adapterData, "KalturaStringValue");
 		}
-		if(count($xml->code))
+		if(!is_null($jsonObject) && isset($jsonObject->adapterData))
+		{
+			if(empty($jsonObject->adapterData))
+				$this->adapterData = array();
+			else
+				$this->adapterData = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->adapterData, "KalturaStringValue");
+		}
+		if(!is_null($xml) && count($xml->code))
 			$this->code = (string)$xml->code;
-		if(count($xml->message))
+		if(!is_null($jsonObject) && isset($jsonObject->code))
+			$this->code = (string)$jsonObject->code;
+		if(!is_null($xml) && count($xml->message))
 			$this->message = (string)$xml->message;
+		if(!is_null($jsonObject) && isset($jsonObject->message))
+			$this->message = (string)$jsonObject->message;
 	}
 	/**
 	 * key/value map field for adapter data

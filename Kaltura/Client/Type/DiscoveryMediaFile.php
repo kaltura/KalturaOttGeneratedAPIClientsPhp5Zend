@@ -38,16 +38,26 @@ class Kaltura_Client_Type_DiscoveryMediaFile extends Kaltura_Client_Type_MediaFi
 		return 'KalturaDiscoveryMediaFile';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->isPlaybackable))
+		if(!is_null($xml) && count($xml->isPlaybackable))
 		{
 			if(!empty($xml->isPlaybackable) && ((int) $xml->isPlaybackable === 1 || strtolower((string)$xml->isPlaybackable) === 'true'))
+				$this->isPlaybackable = true;
+			else
+				$this->isPlaybackable = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->isPlaybackable))
+		{
+			if(!empty($jsonObject->isPlaybackable) && ((int) $jsonObject->isPlaybackable === 1 || strtolower((string)$jsonObject->isPlaybackable) === 'true'))
 				$this->isPlaybackable = true;
 			else
 				$this->isPlaybackable = false;

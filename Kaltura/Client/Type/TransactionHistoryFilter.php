@@ -38,27 +38,44 @@ class Kaltura_Client_Type_TransactionHistoryFilter extends Kaltura_Client_Type_F
 		return 'KalturaTransactionHistoryFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->entityReferenceEqual))
+		if(!is_null($xml) && count($xml->entityReferenceEqual))
 			$this->entityReferenceEqual = (string)$xml->entityReferenceEqual;
-		if(count($xml->startDateGreaterThanOrEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->entityReferenceEqual))
+			$this->entityReferenceEqual = (string)$jsonObject->entityReferenceEqual;
+		if(!is_null($xml) && count($xml->startDateGreaterThanOrEqual))
 			$this->startDateGreaterThanOrEqual = (int)$xml->startDateGreaterThanOrEqual;
-		if(count($xml->endDateLessThanOrEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->startDateGreaterThanOrEqual))
+			$this->startDateGreaterThanOrEqual = (int)$jsonObject->startDateGreaterThanOrEqual;
+		if(!is_null($xml) && count($xml->endDateLessThanOrEqual))
 			$this->endDateLessThanOrEqual = (int)$xml->endDateLessThanOrEqual;
-		if(count($xml->entitlementIdEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->endDateLessThanOrEqual))
+			$this->endDateLessThanOrEqual = (int)$jsonObject->endDateLessThanOrEqual;
+		if(!is_null($xml) && count($xml->entitlementIdEqual))
 			$this->entitlementIdEqual = (string)$xml->entitlementIdEqual;
-		if(count($xml->externalIdEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->entitlementIdEqual))
+			$this->entitlementIdEqual = (string)$jsonObject->entitlementIdEqual;
+		if(!is_null($xml) && count($xml->externalIdEqual))
 			$this->externalIdEqual = (string)$xml->externalIdEqual;
-		if(count($xml->billingItemsTypeEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->externalIdEqual))
+			$this->externalIdEqual = (string)$jsonObject->externalIdEqual;
+		if(!is_null($xml) && count($xml->billingItemsTypeEqual))
 			$this->billingItemsTypeEqual = (string)$xml->billingItemsTypeEqual;
-		if(count($xml->billingActionEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->billingItemsTypeEqual))
+			$this->billingItemsTypeEqual = (string)$jsonObject->billingItemsTypeEqual;
+		if(!is_null($xml) && count($xml->billingActionEqual))
 			$this->billingActionEqual = (string)$xml->billingActionEqual;
+		if(!is_null($jsonObject) && isset($jsonObject->billingActionEqual))
+			$this->billingActionEqual = (string)$jsonObject->billingActionEqual;
 	}
 	/**
 	 * Reference type to filter by

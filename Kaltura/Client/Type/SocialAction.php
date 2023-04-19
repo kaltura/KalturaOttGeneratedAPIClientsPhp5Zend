@@ -38,25 +38,40 @@ class Kaltura_Client_Type_SocialAction extends Kaltura_Client_ObjectBase
 		return 'KalturaSocialAction';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->actionType))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->actionType))
 			$this->actionType = (string)$xml->actionType;
-		if(count($xml->time))
+		if(!is_null($jsonObject) && isset($jsonObject->actionType))
+			$this->actionType = (string)$jsonObject->actionType;
+		if(!is_null($xml) && count($xml->time))
 			$this->time = (string)$xml->time;
-		if(count($xml->assetId))
+		if(!is_null($jsonObject) && isset($jsonObject->time))
+			$this->time = (string)$jsonObject->time;
+		if(!is_null($xml) && count($xml->assetId))
 			$this->assetId = (string)$xml->assetId;
-		if(count($xml->assetType))
+		if(!is_null($jsonObject) && isset($jsonObject->assetId))
+			$this->assetId = (string)$jsonObject->assetId;
+		if(!is_null($xml) && count($xml->assetType))
 			$this->assetType = (string)$xml->assetType;
-		if(count($xml->url))
+		if(!is_null($jsonObject) && isset($jsonObject->assetType))
+			$this->assetType = (string)$jsonObject->assetType;
+		if(!is_null($xml) && count($xml->url))
 			$this->url = (string)$xml->url;
+		if(!is_null($jsonObject) && isset($jsonObject->url))
+			$this->url = (string)$jsonObject->url;
 	}
 	/**
 	 * social action document id

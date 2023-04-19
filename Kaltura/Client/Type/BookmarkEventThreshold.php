@@ -38,17 +38,24 @@ class Kaltura_Client_Type_BookmarkEventThreshold extends Kaltura_Client_ObjectBa
 		return 'KalturaBookmarkEventThreshold';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->transactionType))
+		if(!is_null($xml) && count($xml->transactionType))
 			$this->transactionType = (string)$xml->transactionType;
-		if(count($xml->threshold))
+		if(!is_null($jsonObject) && isset($jsonObject->transactionType))
+			$this->transactionType = (string)$jsonObject->transactionType;
+		if(!is_null($xml) && count($xml->threshold))
 			$this->threshold = (int)$xml->threshold;
+		if(!is_null($jsonObject) && isset($jsonObject->threshold))
+			$this->threshold = (int)$jsonObject->threshold;
 	}
 	/**
 	 * bookmark transaction type

@@ -38,21 +38,33 @@ class Kaltura_Client_Type_ManualChannel extends Kaltura_Client_Type_Channel
 		return 'KalturaManualChannel';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->mediaIds))
+		if(!is_null($xml) && count($xml->mediaIds))
 			$this->mediaIds = (string)$xml->mediaIds;
-		if(count($xml->assets))
+		if(!is_null($jsonObject) && isset($jsonObject->mediaIds))
+			$this->mediaIds = (string)$jsonObject->mediaIds;
+		if(!is_null($xml) && count($xml->assets))
 		{
 			if(empty($xml->assets))
 				$this->assets = array();
 			else
 				$this->assets = Kaltura_Client_ParseUtils::unmarshalArray($xml->assets, "KalturaManualCollectionAsset");
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->assets))
+		{
+			if(empty($jsonObject->assets))
+				$this->assets = array();
+			else
+				$this->assets = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->assets, "KalturaManualCollectionAsset");
 		}
 	}
 	/**

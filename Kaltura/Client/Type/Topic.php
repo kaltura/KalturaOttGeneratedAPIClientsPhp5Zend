@@ -38,23 +38,36 @@ class Kaltura_Client_Type_Topic extends Kaltura_Client_ObjectBase
 		return 'KalturaTopic';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->subscribersAmount))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->subscribersAmount))
 			$this->subscribersAmount = (string)$xml->subscribersAmount;
-		if(count($xml->automaticIssueNotification))
+		if(!is_null($jsonObject) && isset($jsonObject->subscribersAmount))
+			$this->subscribersAmount = (string)$jsonObject->subscribersAmount;
+		if(!is_null($xml) && count($xml->automaticIssueNotification))
 			$this->automaticIssueNotification = (string)$xml->automaticIssueNotification;
-		if(count($xml->lastMessageSentDateSec))
+		if(!is_null($jsonObject) && isset($jsonObject->automaticIssueNotification))
+			$this->automaticIssueNotification = (string)$jsonObject->automaticIssueNotification;
+		if(!is_null($xml) && count($xml->lastMessageSentDateSec))
 			$this->lastMessageSentDateSec = (string)$xml->lastMessageSentDateSec;
+		if(!is_null($jsonObject) && isset($jsonObject->lastMessageSentDateSec))
+			$this->lastMessageSentDateSec = (string)$jsonObject->lastMessageSentDateSec;
 	}
 	/**
 	 * message id

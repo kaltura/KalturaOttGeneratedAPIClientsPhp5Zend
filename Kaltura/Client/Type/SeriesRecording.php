@@ -38,38 +38,66 @@ class Kaltura_Client_Type_SeriesRecording extends Kaltura_Client_ObjectBase
 		return 'KalturaSeriesRecording';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->epgId))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->epgId))
 			$this->epgId = (string)$xml->epgId;
-		if(count($xml->channelId))
+		if(!is_null($jsonObject) && isset($jsonObject->epgId))
+			$this->epgId = (string)$jsonObject->epgId;
+		if(!is_null($xml) && count($xml->channelId))
 			$this->channelId = (string)$xml->channelId;
-		if(count($xml->seriesId))
+		if(!is_null($jsonObject) && isset($jsonObject->channelId))
+			$this->channelId = (string)$jsonObject->channelId;
+		if(!is_null($xml) && count($xml->seriesId))
 			$this->seriesId = (string)$xml->seriesId;
-		if(count($xml->seasonNumber))
+		if(!is_null($jsonObject) && isset($jsonObject->seriesId))
+			$this->seriesId = (string)$jsonObject->seriesId;
+		if(!is_null($xml) && count($xml->seasonNumber))
 			$this->seasonNumber = (int)$xml->seasonNumber;
-		if(count($xml->type))
+		if(!is_null($jsonObject) && isset($jsonObject->seasonNumber))
+			$this->seasonNumber = (int)$jsonObject->seasonNumber;
+		if(!is_null($xml) && count($xml->type))
 			$this->type = (string)$xml->type;
-		if(count($xml->createDate))
+		if(!is_null($jsonObject) && isset($jsonObject->type))
+			$this->type = (string)$jsonObject->type;
+		if(!is_null($xml) && count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
-		if(count($xml->updateDate))
+		if(!is_null($jsonObject) && isset($jsonObject->createDate))
+			$this->createDate = (string)$jsonObject->createDate;
+		if(!is_null($xml) && count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
-		if(count($xml->excludedSeasons))
+		if(!is_null($jsonObject) && isset($jsonObject->updateDate))
+			$this->updateDate = (string)$jsonObject->updateDate;
+		if(!is_null($xml) && count($xml->excludedSeasons))
 		{
 			if(empty($xml->excludedSeasons))
 				$this->excludedSeasons = array();
 			else
 				$this->excludedSeasons = Kaltura_Client_ParseUtils::unmarshalArray($xml->excludedSeasons, "KalturaIntegerValue");
 		}
-		if(count($xml->seriesRecordingOption) && !empty($xml->seriesRecordingOption))
+		if(!is_null($jsonObject) && isset($jsonObject->excludedSeasons))
+		{
+			if(empty($jsonObject->excludedSeasons))
+				$this->excludedSeasons = array();
+			else
+				$this->excludedSeasons = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->excludedSeasons, "KalturaIntegerValue");
+		}
+		if(!is_null($xml) && count($xml->seriesRecordingOption) && !empty($xml->seriesRecordingOption))
 			$this->seriesRecordingOption = Kaltura_Client_ParseUtils::unmarshalObject($xml->seriesRecordingOption, "KalturaSeriesRecordingOption");
+		if(!is_null($jsonObject) && isset($jsonObject->seriesRecordingOption) && !empty($jsonObject->seriesRecordingOption))
+			$this->seriesRecordingOption = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->seriesRecordingOption, "KalturaSeriesRecordingOption");
 	}
 	/**
 	 * Kaltura unique ID representing the series recording identifier

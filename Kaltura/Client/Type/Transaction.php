@@ -38,25 +38,40 @@ class Kaltura_Client_Type_Transaction extends Kaltura_Client_ObjectBase
 		return 'KalturaTransaction';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->paymentGatewayReferenceId))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->paymentGatewayReferenceId))
 			$this->paymentGatewayReferenceId = (string)$xml->paymentGatewayReferenceId;
-		if(count($xml->paymentGatewayResponseId))
+		if(!is_null($jsonObject) && isset($jsonObject->paymentGatewayReferenceId))
+			$this->paymentGatewayReferenceId = (string)$jsonObject->paymentGatewayReferenceId;
+		if(!is_null($xml) && count($xml->paymentGatewayResponseId))
 			$this->paymentGatewayResponseId = (string)$xml->paymentGatewayResponseId;
-		if(count($xml->state))
+		if(!is_null($jsonObject) && isset($jsonObject->paymentGatewayResponseId))
+			$this->paymentGatewayResponseId = (string)$jsonObject->paymentGatewayResponseId;
+		if(!is_null($xml) && count($xml->state))
 			$this->state = (string)$xml->state;
-		if(count($xml->failReasonCode))
+		if(!is_null($jsonObject) && isset($jsonObject->state))
+			$this->state = (string)$jsonObject->state;
+		if(!is_null($xml) && count($xml->failReasonCode))
 			$this->failReasonCode = (int)$xml->failReasonCode;
-		if(count($xml->createdAt))
+		if(!is_null($jsonObject) && isset($jsonObject->failReasonCode))
+			$this->failReasonCode = (int)$jsonObject->failReasonCode;
+		if(!is_null($xml) && count($xml->createdAt))
 			$this->createdAt = (int)$xml->createdAt;
+		if(!is_null($jsonObject) && isset($jsonObject->createdAt))
+			$this->createdAt = (int)$jsonObject->createdAt;
 	}
 	/**
 	 * Kaltura unique ID representing the transaction

@@ -38,17 +38,24 @@ class Kaltura_Client_Type_SearchPriorityCriteria extends Kaltura_Client_ObjectBa
 		return 'KalturaSearchPriorityCriteria';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->type))
+		if(!is_null($xml) && count($xml->type))
 			$this->type = (string)$xml->type;
-		if(count($xml->value))
+		if(!is_null($jsonObject) && isset($jsonObject->type))
+			$this->type = (string)$jsonObject->type;
+		if(!is_null($xml) && count($xml->value))
 			$this->value = (string)$xml->value;
+		if(!is_null($jsonObject) && isset($jsonObject->value))
+			$this->value = (string)$jsonObject->value;
 	}
 	/**
 	 * Criterion type

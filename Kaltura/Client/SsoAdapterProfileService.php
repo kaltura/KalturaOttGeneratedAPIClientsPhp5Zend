@@ -50,12 +50,18 @@ class Kaltura_Client_SsoAdapterProfileService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("ssoadapterprofile", "add", "KalturaSSOAdapterProfile", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSSOAdapterProfile");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SSOAdapterProfile");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSSOAdapterProfile");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SSOAdapterProfile");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -69,11 +75,17 @@ class Kaltura_Client_SsoAdapterProfileService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("ssoadapterprofile", "delete", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -87,12 +99,18 @@ class Kaltura_Client_SsoAdapterProfileService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("ssoadapterprofile", "generateSharedSecret", "KalturaSSOAdapterProfile", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSSOAdapterProfile");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SSOAdapterProfile");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSSOAdapterProfile");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SSOAdapterProfile");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -110,12 +128,18 @@ class Kaltura_Client_SsoAdapterProfileService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("ssoadapterprofile", "invoke", "KalturaSSOAdapterProfileInvoke", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSSOAdapterProfileInvoke");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SSOAdapterProfileInvoke");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSSOAdapterProfileInvoke");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SSOAdapterProfileInvoke");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -128,12 +152,18 @@ class Kaltura_Client_SsoAdapterProfileService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("ssoadapterprofile", "list", "KalturaSSOAdapterProfileListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSSOAdapterProfileListResponse");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SSOAdapterProfileListResponse");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSSOAdapterProfileListResponse");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SSOAdapterProfileListResponse");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -148,11 +178,17 @@ class Kaltura_Client_SsoAdapterProfileService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("ssoadapterprofile", "update", "KalturaSSOAdapterProfile", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSSOAdapterProfile");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SSOAdapterProfile");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSSOAdapterProfile");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SSOAdapterProfile");
+		}
+			return $resultObject;
 	}
 }

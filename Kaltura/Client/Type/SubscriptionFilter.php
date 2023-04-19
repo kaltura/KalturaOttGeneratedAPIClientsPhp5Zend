@@ -38,32 +38,58 @@ class Kaltura_Client_Type_SubscriptionFilter extends Kaltura_Client_Type_Filter
 		return 'KalturaSubscriptionFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->subscriptionIdIn))
+		if(!is_null($xml) && count($xml->subscriptionIdIn))
 			$this->subscriptionIdIn = (string)$xml->subscriptionIdIn;
-		if(count($xml->mediaFileIdEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->subscriptionIdIn))
+			$this->subscriptionIdIn = (string)$jsonObject->subscriptionIdIn;
+		if(!is_null($xml) && count($xml->mediaFileIdEqual))
 			$this->mediaFileIdEqual = (int)$xml->mediaFileIdEqual;
-		if(count($xml->externalIdIn))
+		if(!is_null($jsonObject) && isset($jsonObject->mediaFileIdEqual))
+			$this->mediaFileIdEqual = (int)$jsonObject->mediaFileIdEqual;
+		if(!is_null($xml) && count($xml->externalIdIn))
 			$this->externalIdIn = (string)$xml->externalIdIn;
-		if(count($xml->couponGroupIdEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->externalIdIn))
+			$this->externalIdIn = (string)$jsonObject->externalIdIn;
+		if(!is_null($xml) && count($xml->couponGroupIdEqual))
 			$this->couponGroupIdEqual = (int)$xml->couponGroupIdEqual;
-		if(count($xml->previewModuleIdEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->couponGroupIdEqual))
+			$this->couponGroupIdEqual = (int)$jsonObject->couponGroupIdEqual;
+		if(!is_null($xml) && count($xml->previewModuleIdEqual))
 			$this->previewModuleIdEqual = (string)$xml->previewModuleIdEqual;
-		if(count($xml->pricePlanIdEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->previewModuleIdEqual))
+			$this->previewModuleIdEqual = (string)$jsonObject->previewModuleIdEqual;
+		if(!is_null($xml) && count($xml->pricePlanIdEqual))
 			$this->pricePlanIdEqual = (string)$xml->pricePlanIdEqual;
-		if(count($xml->channelIdEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->pricePlanIdEqual))
+			$this->pricePlanIdEqual = (string)$jsonObject->pricePlanIdEqual;
+		if(!is_null($xml) && count($xml->channelIdEqual))
 			$this->channelIdEqual = (string)$xml->channelIdEqual;
-		if(count($xml->kSql))
+		if(!is_null($jsonObject) && isset($jsonObject->channelIdEqual))
+			$this->channelIdEqual = (string)$jsonObject->channelIdEqual;
+		if(!is_null($xml) && count($xml->kSql))
 			$this->kSql = (string)$xml->kSql;
-		if(count($xml->alsoInactive))
+		if(!is_null($jsonObject) && isset($jsonObject->kSql))
+			$this->kSql = (string)$jsonObject->kSql;
+		if(!is_null($xml) && count($xml->alsoInactive))
 		{
 			if(!empty($xml->alsoInactive) && ((int) $xml->alsoInactive === 1 || strtolower((string)$xml->alsoInactive) === 'true'))
+				$this->alsoInactive = true;
+			else
+				$this->alsoInactive = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->alsoInactive))
+		{
+			if(!empty($jsonObject->alsoInactive) && ((int) $jsonObject->alsoInactive === 1 || strtolower((string)$jsonObject->alsoInactive) === 'true'))
 				$this->alsoInactive = true;
 			else
 				$this->alsoInactive = false;

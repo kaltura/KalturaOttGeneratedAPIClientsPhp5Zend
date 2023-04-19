@@ -38,39 +38,68 @@ class Kaltura_Client_Type_Bookmark extends Kaltura_Client_Type_SlimAsset
 		return 'KalturaBookmark';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->userId))
+		if(!is_null($xml) && count($xml->userId))
 			$this->userId = (string)$xml->userId;
-		if(count($xml->position))
+		if(!is_null($jsonObject) && isset($jsonObject->userId))
+			$this->userId = (string)$jsonObject->userId;
+		if(!is_null($xml) && count($xml->position))
 			$this->position = (int)$xml->position;
-		if(count($xml->positionOwner))
+		if(!is_null($jsonObject) && isset($jsonObject->position))
+			$this->position = (int)$jsonObject->position;
+		if(!is_null($xml) && count($xml->positionOwner))
 			$this->positionOwner = (string)$xml->positionOwner;
-		if(count($xml->finishedWatching))
+		if(!is_null($jsonObject) && isset($jsonObject->positionOwner))
+			$this->positionOwner = (string)$jsonObject->positionOwner;
+		if(!is_null($xml) && count($xml->finishedWatching))
 		{
 			if(!empty($xml->finishedWatching) && ((int) $xml->finishedWatching === 1 || strtolower((string)$xml->finishedWatching) === 'true'))
 				$this->finishedWatching = true;
 			else
 				$this->finishedWatching = false;
 		}
-		if(count($xml->playerData) && !empty($xml->playerData))
+		if(!is_null($jsonObject) && isset($jsonObject->finishedWatching))
+		{
+			if(!empty($jsonObject->finishedWatching) && ((int) $jsonObject->finishedWatching === 1 || strtolower((string)$jsonObject->finishedWatching) === 'true'))
+				$this->finishedWatching = true;
+			else
+				$this->finishedWatching = false;
+		}
+		if(!is_null($xml) && count($xml->playerData) && !empty($xml->playerData))
 			$this->playerData = Kaltura_Client_ParseUtils::unmarshalObject($xml->playerData, "KalturaBookmarkPlayerData");
-		if(count($xml->programId))
+		if(!is_null($jsonObject) && isset($jsonObject->playerData) && !empty($jsonObject->playerData))
+			$this->playerData = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->playerData, "KalturaBookmarkPlayerData");
+		if(!is_null($xml) && count($xml->programId))
 			$this->programId = (string)$xml->programId;
-		if(count($xml->isReportingMode))
+		if(!is_null($jsonObject) && isset($jsonObject->programId))
+			$this->programId = (string)$jsonObject->programId;
+		if(!is_null($xml) && count($xml->isReportingMode))
 		{
 			if(!empty($xml->isReportingMode) && ((int) $xml->isReportingMode === 1 || strtolower((string)$xml->isReportingMode) === 'true'))
 				$this->isReportingMode = true;
 			else
 				$this->isReportingMode = false;
 		}
-		if(count($xml->context))
+		if(!is_null($jsonObject) && isset($jsonObject->isReportingMode))
+		{
+			if(!empty($jsonObject->isReportingMode) && ((int) $jsonObject->isReportingMode === 1 || strtolower((string)$jsonObject->isReportingMode) === 'true'))
+				$this->isReportingMode = true;
+			else
+				$this->isReportingMode = false;
+		}
+		if(!is_null($xml) && count($xml->context))
 			$this->context = (string)$xml->context;
+		if(!is_null($jsonObject) && isset($jsonObject->context))
+			$this->context = (string)$jsonObject->context;
 	}
 	/**
 	 * User identifier

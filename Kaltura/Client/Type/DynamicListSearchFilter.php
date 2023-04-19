@@ -38,17 +38,24 @@ abstract class Kaltura_Client_Type_DynamicListSearchFilter extends Kaltura_Clien
 		return 'KalturaDynamicListSearchFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->idEqual))
+		if(!is_null($xml) && count($xml->idEqual))
 			$this->idEqual = (string)$xml->idEqual;
-		if(count($xml->valueEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->idEqual))
+			$this->idEqual = (string)$jsonObject->idEqual;
+		if(!is_null($xml) && count($xml->valueEqual))
 			$this->valueEqual = (string)$xml->valueEqual;
+		if(!is_null($jsonObject) && isset($jsonObject->valueEqual))
+			$this->valueEqual = (string)$jsonObject->valueEqual;
 	}
 	/**
 	 * DynamicList id to search by

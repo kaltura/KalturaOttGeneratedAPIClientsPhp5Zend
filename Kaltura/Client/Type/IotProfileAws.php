@@ -38,29 +38,48 @@ class Kaltura_Client_Type_IotProfileAws extends Kaltura_Client_Type_OTTObjectSup
 		return 'KalturaIotProfileAws';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->iotEndPoint))
+		if(!is_null($xml) && count($xml->iotEndPoint))
 			$this->iotEndPoint = (string)$xml->iotEndPoint;
-		if(count($xml->accessKeyId))
+		if(!is_null($jsonObject) && isset($jsonObject->iotEndPoint))
+			$this->iotEndPoint = (string)$jsonObject->iotEndPoint;
+		if(!is_null($xml) && count($xml->accessKeyId))
 			$this->accessKeyId = (string)$xml->accessKeyId;
-		if(count($xml->secretAccessKey))
+		if(!is_null($jsonObject) && isset($jsonObject->accessKeyId))
+			$this->accessKeyId = (string)$jsonObject->accessKeyId;
+		if(!is_null($xml) && count($xml->secretAccessKey))
 			$this->secretAccessKey = (string)$xml->secretAccessKey;
-		if(count($xml->userPoolId))
+		if(!is_null($jsonObject) && isset($jsonObject->secretAccessKey))
+			$this->secretAccessKey = (string)$jsonObject->secretAccessKey;
+		if(!is_null($xml) && count($xml->userPoolId))
 			$this->userPoolId = (string)$xml->userPoolId;
-		if(count($xml->clientId))
+		if(!is_null($jsonObject) && isset($jsonObject->userPoolId))
+			$this->userPoolId = (string)$jsonObject->userPoolId;
+		if(!is_null($xml) && count($xml->clientId))
 			$this->clientId = (string)$xml->clientId;
-		if(count($xml->identityPoolId))
+		if(!is_null($jsonObject) && isset($jsonObject->clientId))
+			$this->clientId = (string)$jsonObject->clientId;
+		if(!is_null($xml) && count($xml->identityPoolId))
 			$this->identityPoolId = (string)$xml->identityPoolId;
-		if(count($xml->region))
+		if(!is_null($jsonObject) && isset($jsonObject->identityPoolId))
+			$this->identityPoolId = (string)$jsonObject->identityPoolId;
+		if(!is_null($xml) && count($xml->region))
 			$this->region = (string)$xml->region;
-		if(count($xml->updateDate))
+		if(!is_null($jsonObject) && isset($jsonObject->region))
+			$this->region = (string)$jsonObject->region;
+		if(!is_null($xml) && count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
+		if(!is_null($jsonObject) && isset($jsonObject->updateDate))
+			$this->updateDate = (string)$jsonObject->updateDate;
 	}
 	/**
 	 * iotEndPoint

@@ -38,23 +38,36 @@ class Kaltura_Client_Type_OTTUserFilter extends Kaltura_Client_Type_Filter
 		return 'KalturaOTTUserFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->usernameEqual))
+		if(!is_null($xml) && count($xml->usernameEqual))
 			$this->usernameEqual = (string)$xml->usernameEqual;
-		if(count($xml->externalIdEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->usernameEqual))
+			$this->usernameEqual = (string)$jsonObject->usernameEqual;
+		if(!is_null($xml) && count($xml->externalIdEqual))
 			$this->externalIdEqual = (string)$xml->externalIdEqual;
-		if(count($xml->idIn))
+		if(!is_null($jsonObject) && isset($jsonObject->externalIdEqual))
+			$this->externalIdEqual = (string)$jsonObject->externalIdEqual;
+		if(!is_null($xml) && count($xml->idIn))
 			$this->idIn = (string)$xml->idIn;
-		if(count($xml->roleIdsIn))
+		if(!is_null($jsonObject) && isset($jsonObject->idIn))
+			$this->idIn = (string)$jsonObject->idIn;
+		if(!is_null($xml) && count($xml->roleIdsIn))
 			$this->roleIdsIn = (string)$xml->roleIdsIn;
-		if(count($xml->emailEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->roleIdsIn))
+			$this->roleIdsIn = (string)$jsonObject->roleIdsIn;
+		if(!is_null($xml) && count($xml->emailEqual))
 			$this->emailEqual = (string)$xml->emailEqual;
+		if(!is_null($jsonObject) && isset($jsonObject->emailEqual))
+			$this->emailEqual = (string)$jsonObject->emailEqual;
 	}
 	/**
 	 * Username

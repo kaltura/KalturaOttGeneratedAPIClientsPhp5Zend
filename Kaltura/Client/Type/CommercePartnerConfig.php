@@ -38,31 +38,52 @@ class Kaltura_Client_Type_CommercePartnerConfig extends Kaltura_Client_Type_Part
 		return 'KalturaCommercePartnerConfig';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->bookmarkEventThresholds))
+		if(!is_null($xml) && count($xml->bookmarkEventThresholds))
 		{
 			if(empty($xml->bookmarkEventThresholds))
 				$this->bookmarkEventThresholds = array();
 			else
 				$this->bookmarkEventThresholds = Kaltura_Client_ParseUtils::unmarshalArray($xml->bookmarkEventThresholds, "KalturaBookmarkEventThreshold");
 		}
-		if(count($xml->keepSubscriptionAddOns))
+		if(!is_null($jsonObject) && isset($jsonObject->bookmarkEventThresholds))
+		{
+			if(empty($jsonObject->bookmarkEventThresholds))
+				$this->bookmarkEventThresholds = array();
+			else
+				$this->bookmarkEventThresholds = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->bookmarkEventThresholds, "KalturaBookmarkEventThreshold");
+		}
+		if(!is_null($xml) && count($xml->keepSubscriptionAddOns))
 		{
 			if(!empty($xml->keepSubscriptionAddOns) && ((int) $xml->keepSubscriptionAddOns === 1 || strtolower((string)$xml->keepSubscriptionAddOns) === 'true'))
 				$this->keepSubscriptionAddOns = true;
 			else
 				$this->keepSubscriptionAddOns = false;
 		}
-		if(count($xml->programAssetEntitlementPaddingStart))
+		if(!is_null($jsonObject) && isset($jsonObject->keepSubscriptionAddOns))
+		{
+			if(!empty($jsonObject->keepSubscriptionAddOns) && ((int) $jsonObject->keepSubscriptionAddOns === 1 || strtolower((string)$jsonObject->keepSubscriptionAddOns) === 'true'))
+				$this->keepSubscriptionAddOns = true;
+			else
+				$this->keepSubscriptionAddOns = false;
+		}
+		if(!is_null($xml) && count($xml->programAssetEntitlementPaddingStart))
 			$this->programAssetEntitlementPaddingStart = (int)$xml->programAssetEntitlementPaddingStart;
-		if(count($xml->programAssetEntitlementPaddingEnd))
+		if(!is_null($jsonObject) && isset($jsonObject->programAssetEntitlementPaddingStart))
+			$this->programAssetEntitlementPaddingStart = (int)$jsonObject->programAssetEntitlementPaddingStart;
+		if(!is_null($xml) && count($xml->programAssetEntitlementPaddingEnd))
 			$this->programAssetEntitlementPaddingEnd = (int)$xml->programAssetEntitlementPaddingEnd;
+		if(!is_null($jsonObject) && isset($jsonObject->programAssetEntitlementPaddingEnd))
+			$this->programAssetEntitlementPaddingEnd = (int)$jsonObject->programAssetEntitlementPaddingEnd;
 	}
 	/**
 	 * configuration for bookmark event threshold (when to dispatch the event) in seconds.

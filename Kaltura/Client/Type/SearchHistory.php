@@ -38,29 +38,48 @@ class Kaltura_Client_Type_SearchHistory extends Kaltura_Client_ObjectBase
 		return 'KalturaSearchHistory';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->filter))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->filter))
 			$this->filter = (string)$xml->filter;
-		if(count($xml->language))
+		if(!is_null($jsonObject) && isset($jsonObject->filter))
+			$this->filter = (string)$jsonObject->filter;
+		if(!is_null($xml) && count($xml->language))
 			$this->language = (string)$xml->language;
-		if(count($xml->createdAt))
+		if(!is_null($jsonObject) && isset($jsonObject->language))
+			$this->language = (string)$jsonObject->language;
+		if(!is_null($xml) && count($xml->createdAt))
 			$this->createdAt = (string)$xml->createdAt;
-		if(count($xml->service))
+		if(!is_null($jsonObject) && isset($jsonObject->createdAt))
+			$this->createdAt = (string)$jsonObject->createdAt;
+		if(!is_null($xml) && count($xml->service))
 			$this->service = (string)$xml->service;
-		if(count($xml->action))
+		if(!is_null($jsonObject) && isset($jsonObject->service))
+			$this->service = (string)$jsonObject->service;
+		if(!is_null($xml) && count($xml->action))
 			$this->action = (string)$xml->action;
-		if(count($xml->deviceId))
+		if(!is_null($jsonObject) && isset($jsonObject->action))
+			$this->action = (string)$jsonObject->action;
+		if(!is_null($xml) && count($xml->deviceId))
 			$this->deviceId = (string)$xml->deviceId;
+		if(!is_null($jsonObject) && isset($jsonObject->deviceId))
+			$this->deviceId = (string)$jsonObject->deviceId;
 	}
 	/**
 	 * Search ID

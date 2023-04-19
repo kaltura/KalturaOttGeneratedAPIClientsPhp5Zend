@@ -38,30 +38,50 @@ class Kaltura_Client_Type_TvmGeoRule extends Kaltura_Client_Type_TvmRule
 		return 'KalturaTvmGeoRule';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->onlyOrBut))
+		if(!is_null($xml) && count($xml->onlyOrBut))
 		{
 			if(!empty($xml->onlyOrBut) && ((int) $xml->onlyOrBut === 1 || strtolower((string)$xml->onlyOrBut) === 'true'))
 				$this->onlyOrBut = true;
 			else
 				$this->onlyOrBut = false;
 		}
-		if(count($xml->countryIds))
+		if(!is_null($jsonObject) && isset($jsonObject->onlyOrBut))
+		{
+			if(!empty($jsonObject->onlyOrBut) && ((int) $jsonObject->onlyOrBut === 1 || strtolower((string)$jsonObject->onlyOrBut) === 'true'))
+				$this->onlyOrBut = true;
+			else
+				$this->onlyOrBut = false;
+		}
+		if(!is_null($xml) && count($xml->countryIds))
 			$this->countryIds = (string)$xml->countryIds;
-		if(count($xml->proxyRuleId))
+		if(!is_null($jsonObject) && isset($jsonObject->countryIds))
+			$this->countryIds = (string)$jsonObject->countryIds;
+		if(!is_null($xml) && count($xml->proxyRuleId))
 			$this->proxyRuleId = (int)$xml->proxyRuleId;
-		if(count($xml->proxyRuleName))
+		if(!is_null($jsonObject) && isset($jsonObject->proxyRuleId))
+			$this->proxyRuleId = (int)$jsonObject->proxyRuleId;
+		if(!is_null($xml) && count($xml->proxyRuleName))
 			$this->proxyRuleName = (string)$xml->proxyRuleName;
-		if(count($xml->proxyLevelId))
+		if(!is_null($jsonObject) && isset($jsonObject->proxyRuleName))
+			$this->proxyRuleName = (string)$jsonObject->proxyRuleName;
+		if(!is_null($xml) && count($xml->proxyLevelId))
 			$this->proxyLevelId = (int)$xml->proxyLevelId;
-		if(count($xml->proxyLevelName))
+		if(!is_null($jsonObject) && isset($jsonObject->proxyLevelId))
+			$this->proxyLevelId = (int)$jsonObject->proxyLevelId;
+		if(!is_null($xml) && count($xml->proxyLevelName))
 			$this->proxyLevelName = (string)$xml->proxyLevelName;
+		if(!is_null($jsonObject) && isset($jsonObject->proxyLevelName))
+			$this->proxyLevelName = (string)$jsonObject->proxyLevelName;
 	}
 	/**
 	 * Indicates if the rule is relevent ONLY for the country ids or except country ids here. - is that true?

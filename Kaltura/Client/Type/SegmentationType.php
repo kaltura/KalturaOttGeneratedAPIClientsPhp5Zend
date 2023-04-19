@@ -38,45 +38,80 @@ class Kaltura_Client_Type_SegmentationType extends Kaltura_Client_ObjectBase
 		return 'KalturaSegmentationType';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->description))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->description))
 			$this->description = (string)$xml->description;
-		if(count($xml->conditions))
+		if(!is_null($jsonObject) && isset($jsonObject->description))
+			$this->description = (string)$jsonObject->description;
+		if(!is_null($xml) && count($xml->conditions))
 		{
 			if(empty($xml->conditions))
 				$this->conditions = array();
 			else
 				$this->conditions = Kaltura_Client_ParseUtils::unmarshalArray($xml->conditions, "KalturaBaseSegmentCondition");
 		}
-		if(count($xml->conditionsOperator))
+		if(!is_null($jsonObject) && isset($jsonObject->conditions))
+		{
+			if(empty($jsonObject->conditions))
+				$this->conditions = array();
+			else
+				$this->conditions = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->conditions, "KalturaBaseSegmentCondition");
+		}
+		if(!is_null($xml) && count($xml->conditionsOperator))
 			$this->conditionsOperator = (string)$xml->conditionsOperator;
-		if(count($xml->actions))
+		if(!is_null($jsonObject) && isset($jsonObject->conditionsOperator))
+			$this->conditionsOperator = (string)$jsonObject->conditionsOperator;
+		if(!is_null($xml) && count($xml->actions))
 		{
 			if(empty($xml->actions))
 				$this->actions = array();
 			else
 				$this->actions = Kaltura_Client_ParseUtils::unmarshalArray($xml->actions, "KalturaBaseSegmentAction");
 		}
-		if(count($xml->value) && !empty($xml->value))
+		if(!is_null($jsonObject) && isset($jsonObject->actions))
+		{
+			if(empty($jsonObject->actions))
+				$this->actions = array();
+			else
+				$this->actions = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->actions, "KalturaBaseSegmentAction");
+		}
+		if(!is_null($xml) && count($xml->value) && !empty($xml->value))
 			$this->value = Kaltura_Client_ParseUtils::unmarshalObject($xml->value, "KalturaBaseSegmentValue");
-		if(count($xml->createDate))
+		if(!is_null($jsonObject) && isset($jsonObject->value) && !empty($jsonObject->value))
+			$this->value = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->value, "KalturaBaseSegmentValue");
+		if(!is_null($xml) && count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
-		if(count($xml->updateDate))
+		if(!is_null($jsonObject) && isset($jsonObject->createDate))
+			$this->createDate = (string)$jsonObject->createDate;
+		if(!is_null($xml) && count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
-		if(count($xml->executeDate))
+		if(!is_null($jsonObject) && isset($jsonObject->updateDate))
+			$this->updateDate = (string)$jsonObject->updateDate;
+		if(!is_null($xml) && count($xml->executeDate))
 			$this->executeDate = (string)$xml->executeDate;
-		if(count($xml->version))
+		if(!is_null($jsonObject) && isset($jsonObject->executeDate))
+			$this->executeDate = (string)$jsonObject->executeDate;
+		if(!is_null($xml) && count($xml->version))
 			$this->version = (string)$xml->version;
+		if(!is_null($jsonObject) && isset($jsonObject->version))
+			$this->version = (string)$jsonObject->version;
 	}
 	/**
 	 * Id of segmentation type

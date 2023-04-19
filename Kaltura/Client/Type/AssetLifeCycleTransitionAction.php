@@ -38,17 +38,24 @@ abstract class Kaltura_Client_Type_AssetLifeCycleTransitionAction extends Kaltur
 		return 'KalturaAssetLifeCycleTransitionAction';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->assetLifeCycleRuleActionType))
+		if(!is_null($xml) && count($xml->assetLifeCycleRuleActionType))
 			$this->assetLifeCycleRuleActionType = (string)$xml->assetLifeCycleRuleActionType;
-		if(count($xml->assetLifeCycleRuleTransitionType))
+		if(!is_null($jsonObject) && isset($jsonObject->assetLifeCycleRuleActionType))
+			$this->assetLifeCycleRuleActionType = (string)$jsonObject->assetLifeCycleRuleActionType;
+		if(!is_null($xml) && count($xml->assetLifeCycleRuleTransitionType))
 			$this->assetLifeCycleRuleTransitionType = (string)$xml->assetLifeCycleRuleTransitionType;
+		if(!is_null($jsonObject) && isset($jsonObject->assetLifeCycleRuleTransitionType))
+			$this->assetLifeCycleRuleTransitionType = (string)$jsonObject->assetLifeCycleRuleTransitionType;
 	}
 	/**
 	 * Asset LifeCycle Rule Action Type

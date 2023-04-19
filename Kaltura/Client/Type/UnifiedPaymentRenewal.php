@@ -38,28 +38,46 @@ class Kaltura_Client_Type_UnifiedPaymentRenewal extends Kaltura_Client_ObjectBas
 		return 'KalturaUnifiedPaymentRenewal';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->price) && !empty($xml->price))
+		if(!is_null($xml) && count($xml->price) && !empty($xml->price))
 			$this->price = Kaltura_Client_ParseUtils::unmarshalObject($xml->price, "KalturaPrice");
-		if(count($xml->date))
+		if(!is_null($jsonObject) && isset($jsonObject->price) && !empty($jsonObject->price))
+			$this->price = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->price, "KalturaPrice");
+		if(!is_null($xml) && count($xml->date))
 			$this->date = (string)$xml->date;
-		if(count($xml->unifiedPaymentId))
+		if(!is_null($jsonObject) && isset($jsonObject->date))
+			$this->date = (string)$jsonObject->date;
+		if(!is_null($xml) && count($xml->unifiedPaymentId))
 			$this->unifiedPaymentId = (string)$xml->unifiedPaymentId;
-		if(count($xml->entitlements))
+		if(!is_null($jsonObject) && isset($jsonObject->unifiedPaymentId))
+			$this->unifiedPaymentId = (string)$jsonObject->unifiedPaymentId;
+		if(!is_null($xml) && count($xml->entitlements))
 		{
 			if(empty($xml->entitlements))
 				$this->entitlements = array();
 			else
 				$this->entitlements = Kaltura_Client_ParseUtils::unmarshalArray($xml->entitlements, "KalturaEntitlementRenewalBase");
 		}
-		if(count($xml->userId))
+		if(!is_null($jsonObject) && isset($jsonObject->entitlements))
+		{
+			if(empty($jsonObject->entitlements))
+				$this->entitlements = array();
+			else
+				$this->entitlements = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->entitlements, "KalturaEntitlementRenewalBase");
+		}
+		if(!is_null($xml) && count($xml->userId))
 			$this->userId = (string)$xml->userId;
+		if(!is_null($jsonObject) && isset($jsonObject->userId))
+			$this->userId = (string)$jsonObject->userId;
 	}
 	/**
 	 * Price that is going to be paid on the renewal

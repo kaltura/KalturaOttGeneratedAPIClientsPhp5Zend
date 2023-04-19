@@ -38,26 +38,42 @@ class Kaltura_Client_Type_BulkUploadFilter extends Kaltura_Client_Type_Filter
 		return 'KalturaBulkUploadFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->bulkObjectTypeEqual))
+		if(!is_null($xml) && count($xml->bulkObjectTypeEqual))
 			$this->bulkObjectTypeEqual = (string)$xml->bulkObjectTypeEqual;
-		if(count($xml->createDateGreaterThanOrEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->bulkObjectTypeEqual))
+			$this->bulkObjectTypeEqual = (string)$jsonObject->bulkObjectTypeEqual;
+		if(!is_null($xml) && count($xml->createDateGreaterThanOrEqual))
 			$this->createDateGreaterThanOrEqual = (string)$xml->createDateGreaterThanOrEqual;
-		if(count($xml->uploadedByUserIdEqualCurrent))
+		if(!is_null($jsonObject) && isset($jsonObject->createDateGreaterThanOrEqual))
+			$this->createDateGreaterThanOrEqual = (string)$jsonObject->createDateGreaterThanOrEqual;
+		if(!is_null($xml) && count($xml->uploadedByUserIdEqualCurrent))
 		{
 			if(!empty($xml->uploadedByUserIdEqualCurrent) && ((int) $xml->uploadedByUserIdEqualCurrent === 1 || strtolower((string)$xml->uploadedByUserIdEqualCurrent) === 'true'))
 				$this->uploadedByUserIdEqualCurrent = true;
 			else
 				$this->uploadedByUserIdEqualCurrent = false;
 		}
-		if(count($xml->statusIn))
+		if(!is_null($jsonObject) && isset($jsonObject->uploadedByUserIdEqualCurrent))
+		{
+			if(!empty($jsonObject->uploadedByUserIdEqualCurrent) && ((int) $jsonObject->uploadedByUserIdEqualCurrent === 1 || strtolower((string)$jsonObject->uploadedByUserIdEqualCurrent) === 'true'))
+				$this->uploadedByUserIdEqualCurrent = true;
+			else
+				$this->uploadedByUserIdEqualCurrent = false;
+		}
+		if(!is_null($xml) && count($xml->statusIn))
 			$this->statusIn = (string)$xml->statusIn;
+		if(!is_null($jsonObject) && isset($jsonObject->statusIn))
+			$this->statusIn = (string)$jsonObject->statusIn;
 	}
 	/**
 	 * bulk objects Type name (must be type of KalturaOTTObject)

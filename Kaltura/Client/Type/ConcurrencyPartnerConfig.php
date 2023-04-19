@@ -38,29 +38,52 @@ class Kaltura_Client_Type_ConcurrencyPartnerConfig extends Kaltura_Client_Type_P
 		return 'KalturaConcurrencyPartnerConfig';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->deviceFamilyIds))
+		if(!is_null($xml) && count($xml->deviceFamilyIds))
 			$this->deviceFamilyIds = (string)$xml->deviceFamilyIds;
-		if(count($xml->evictionPolicy))
+		if(!is_null($jsonObject) && isset($jsonObject->deviceFamilyIds))
+			$this->deviceFamilyIds = (string)$jsonObject->deviceFamilyIds;
+		if(!is_null($xml) && count($xml->evictionPolicy))
 			$this->evictionPolicy = (string)$xml->evictionPolicy;
-		if(count($xml->concurrencyThresholdInSeconds))
+		if(!is_null($jsonObject) && isset($jsonObject->evictionPolicy))
+			$this->evictionPolicy = (string)$jsonObject->evictionPolicy;
+		if(!is_null($xml) && count($xml->concurrencyThresholdInSeconds))
 			$this->concurrencyThresholdInSeconds = (string)$xml->concurrencyThresholdInSeconds;
-		if(count($xml->revokeOnDeviceDelete))
+		if(!is_null($jsonObject) && isset($jsonObject->concurrencyThresholdInSeconds))
+			$this->concurrencyThresholdInSeconds = (string)$jsonObject->concurrencyThresholdInSeconds;
+		if(!is_null($xml) && count($xml->revokeOnDeviceDelete))
 		{
 			if(!empty($xml->revokeOnDeviceDelete) && ((int) $xml->revokeOnDeviceDelete === 1 || strtolower((string)$xml->revokeOnDeviceDelete) === 'true'))
 				$this->revokeOnDeviceDelete = true;
 			else
 				$this->revokeOnDeviceDelete = false;
 		}
-		if(count($xml->excludeFreeContentFromConcurrency))
+		if(!is_null($jsonObject) && isset($jsonObject->revokeOnDeviceDelete))
+		{
+			if(!empty($jsonObject->revokeOnDeviceDelete) && ((int) $jsonObject->revokeOnDeviceDelete === 1 || strtolower((string)$jsonObject->revokeOnDeviceDelete) === 'true'))
+				$this->revokeOnDeviceDelete = true;
+			else
+				$this->revokeOnDeviceDelete = false;
+		}
+		if(!is_null($xml) && count($xml->excludeFreeContentFromConcurrency))
 		{
 			if(!empty($xml->excludeFreeContentFromConcurrency) && ((int) $xml->excludeFreeContentFromConcurrency === 1 || strtolower((string)$xml->excludeFreeContentFromConcurrency) === 'true'))
+				$this->excludeFreeContentFromConcurrency = true;
+			else
+				$this->excludeFreeContentFromConcurrency = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->excludeFreeContentFromConcurrency))
+		{
+			if(!empty($jsonObject->excludeFreeContentFromConcurrency) && ((int) $jsonObject->excludeFreeContentFromConcurrency === 1 || strtolower((string)$jsonObject->excludeFreeContentFromConcurrency) === 'true'))
 				$this->excludeFreeContentFromConcurrency = true;
 			else
 				$this->excludeFreeContentFromConcurrency = false;

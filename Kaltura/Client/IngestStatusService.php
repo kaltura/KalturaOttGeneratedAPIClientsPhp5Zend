@@ -50,12 +50,18 @@ class Kaltura_Client_IngestStatusService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("ingeststatus", "getEpgDetails", "KalturaIngestEpgDetails", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaIngestEpgDetails");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_IngestEpgDetails");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaIngestEpgDetails");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_IngestEpgDetails");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -74,12 +80,18 @@ class Kaltura_Client_IngestStatusService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("ingeststatus", "getEpgList", "KalturaIngestStatusEpgListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaIngestStatusEpgListResponse");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_IngestStatusEpgListResponse");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaIngestStatusEpgListResponse");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_IngestStatusEpgListResponse");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -97,12 +109,18 @@ class Kaltura_Client_IngestStatusService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("ingeststatus", "getEpgProgramResultList", "KalturaIngestStatusEpgProgramResultListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaIngestStatusEpgProgramResultListResponse");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_IngestStatusEpgProgramResultListResponse");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaIngestStatusEpgProgramResultListResponse");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_IngestStatusEpgProgramResultListResponse");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -115,12 +133,18 @@ class Kaltura_Client_IngestStatusService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("ingeststatus", "getPartnerConfiguration", "KalturaIngestStatusPartnerConfiguration", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaIngestStatusPartnerConfiguration");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_IngestStatusPartnerConfiguration");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaIngestStatusPartnerConfiguration");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_IngestStatusPartnerConfiguration");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -134,8 +158,14 @@ class Kaltura_Client_IngestStatusService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("ingeststatus", "updatePartnerConfiguration", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+		}
 	}
 }

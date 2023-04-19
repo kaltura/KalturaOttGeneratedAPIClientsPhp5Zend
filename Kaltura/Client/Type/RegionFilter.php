@@ -38,31 +38,56 @@ class Kaltura_Client_Type_RegionFilter extends Kaltura_Client_Type_BaseRegionFil
 		return 'KalturaRegionFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->externalIdIn))
+		if(!is_null($xml) && count($xml->externalIdIn))
 			$this->externalIdIn = (string)$xml->externalIdIn;
-		if(count($xml->idIn))
+		if(!is_null($jsonObject) && isset($jsonObject->externalIdIn))
+			$this->externalIdIn = (string)$jsonObject->externalIdIn;
+		if(!is_null($xml) && count($xml->idIn))
 			$this->idIn = (string)$xml->idIn;
-		if(count($xml->parentIdEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->idIn))
+			$this->idIn = (string)$jsonObject->idIn;
+		if(!is_null($xml) && count($xml->parentIdEqual))
 			$this->parentIdEqual = (int)$xml->parentIdEqual;
-		if(count($xml->liveAssetIdEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->parentIdEqual))
+			$this->parentIdEqual = (int)$jsonObject->parentIdEqual;
+		if(!is_null($xml) && count($xml->liveAssetIdEqual))
 			$this->liveAssetIdEqual = (int)$xml->liveAssetIdEqual;
-		if(count($xml->parentOnly))
+		if(!is_null($jsonObject) && isset($jsonObject->liveAssetIdEqual))
+			$this->liveAssetIdEqual = (int)$jsonObject->liveAssetIdEqual;
+		if(!is_null($xml) && count($xml->parentOnly))
 		{
 			if(!empty($xml->parentOnly) && ((int) $xml->parentOnly === 1 || strtolower((string)$xml->parentOnly) === 'true'))
 				$this->parentOnly = true;
 			else
 				$this->parentOnly = false;
 		}
-		if(count($xml->exclusiveLcn))
+		if(!is_null($jsonObject) && isset($jsonObject->parentOnly))
+		{
+			if(!empty($jsonObject->parentOnly) && ((int) $jsonObject->parentOnly === 1 || strtolower((string)$jsonObject->parentOnly) === 'true'))
+				$this->parentOnly = true;
+			else
+				$this->parentOnly = false;
+		}
+		if(!is_null($xml) && count($xml->exclusiveLcn))
 		{
 			if(!empty($xml->exclusiveLcn) && ((int) $xml->exclusiveLcn === 1 || strtolower((string)$xml->exclusiveLcn) === 'true'))
+				$this->exclusiveLcn = true;
+			else
+				$this->exclusiveLcn = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->exclusiveLcn))
+		{
+			if(!empty($jsonObject->exclusiveLcn) && ((int) $jsonObject->exclusiveLcn === 1 || strtolower((string)$jsonObject->exclusiveLcn) === 'true'))
 				$this->exclusiveLcn = true;
 			else
 				$this->exclusiveLcn = false;

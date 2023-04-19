@@ -38,24 +38,38 @@ class Kaltura_Client_Type_DynamicChannel extends Kaltura_Client_Type_Channel
 		return 'KalturaDynamicChannel';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->kSql))
+		if(!is_null($xml) && count($xml->kSql))
 			$this->kSql = (string)$xml->kSql;
-		if(count($xml->assetTypes))
+		if(!is_null($jsonObject) && isset($jsonObject->kSql))
+			$this->kSql = (string)$jsonObject->kSql;
+		if(!is_null($xml) && count($xml->assetTypes))
 		{
 			if(empty($xml->assetTypes))
 				$this->assetTypes = array();
 			else
 				$this->assetTypes = Kaltura_Client_ParseUtils::unmarshalArray($xml->assetTypes, "KalturaIntegerValue");
 		}
-		if(count($xml->groupBy) && !empty($xml->groupBy))
+		if(!is_null($jsonObject) && isset($jsonObject->assetTypes))
+		{
+			if(empty($jsonObject->assetTypes))
+				$this->assetTypes = array();
+			else
+				$this->assetTypes = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->assetTypes, "KalturaIntegerValue");
+		}
+		if(!is_null($xml) && count($xml->groupBy) && !empty($xml->groupBy))
 			$this->groupBy = Kaltura_Client_ParseUtils::unmarshalObject($xml->groupBy, "KalturaAssetGroupBy");
+		if(!is_null($jsonObject) && isset($jsonObject->groupBy) && !empty($jsonObject->groupBy))
+			$this->groupBy = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->groupBy, "KalturaAssetGroupBy");
 	}
 	/**
 	 * Search assets using dynamic criteria. Provided collection of nested expressions with key, comparison operators, value, and logical conjunction.

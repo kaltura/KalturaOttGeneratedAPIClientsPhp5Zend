@@ -38,61 +38,112 @@ class Kaltura_Client_Type_OTTUser extends Kaltura_Client_Type_BaseOTTUser
 		return 'KalturaOTTUser';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->householdId))
+		if(!is_null($xml) && count($xml->householdId))
 			$this->householdId = (int)$xml->householdId;
-		if(count($xml->email))
+		if(!is_null($jsonObject) && isset($jsonObject->householdId))
+			$this->householdId = (int)$jsonObject->householdId;
+		if(!is_null($xml) && count($xml->email))
 			$this->email = (string)$xml->email;
-		if(count($xml->address))
+		if(!is_null($jsonObject) && isset($jsonObject->email))
+			$this->email = (string)$jsonObject->email;
+		if(!is_null($xml) && count($xml->address))
 			$this->address = (string)$xml->address;
-		if(count($xml->city))
+		if(!is_null($jsonObject) && isset($jsonObject->address))
+			$this->address = (string)$jsonObject->address;
+		if(!is_null($xml) && count($xml->city))
 			$this->city = (string)$xml->city;
-		if(count($xml->countryId))
+		if(!is_null($jsonObject) && isset($jsonObject->city))
+			$this->city = (string)$jsonObject->city;
+		if(!is_null($xml) && count($xml->countryId))
 			$this->countryId = (int)$xml->countryId;
-		if(count($xml->zip))
+		if(!is_null($jsonObject) && isset($jsonObject->countryId))
+			$this->countryId = (int)$jsonObject->countryId;
+		if(!is_null($xml) && count($xml->zip))
 			$this->zip = (string)$xml->zip;
-		if(count($xml->phone))
+		if(!is_null($jsonObject) && isset($jsonObject->zip))
+			$this->zip = (string)$jsonObject->zip;
+		if(!is_null($xml) && count($xml->phone))
 			$this->phone = (string)$xml->phone;
-		if(count($xml->affiliateCode))
+		if(!is_null($jsonObject) && isset($jsonObject->phone))
+			$this->phone = (string)$jsonObject->phone;
+		if(!is_null($xml) && count($xml->affiliateCode))
 			$this->affiliateCode = (string)$xml->affiliateCode;
-		if(count($xml->externalId))
+		if(!is_null($jsonObject) && isset($jsonObject->affiliateCode))
+			$this->affiliateCode = (string)$jsonObject->affiliateCode;
+		if(!is_null($xml) && count($xml->externalId))
 			$this->externalId = (string)$xml->externalId;
-		if(count($xml->userType) && !empty($xml->userType))
+		if(!is_null($jsonObject) && isset($jsonObject->externalId))
+			$this->externalId = (string)$jsonObject->externalId;
+		if(!is_null($xml) && count($xml->userType) && !empty($xml->userType))
 			$this->userType = Kaltura_Client_ParseUtils::unmarshalObject($xml->userType, "KalturaOTTUserType");
-		if(count($xml->dynamicData))
+		if(!is_null($jsonObject) && isset($jsonObject->userType) && !empty($jsonObject->userType))
+			$this->userType = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->userType, "KalturaOTTUserType");
+		if(!is_null($xml) && count($xml->dynamicData))
 		{
 			if(empty($xml->dynamicData))
 				$this->dynamicData = array();
 			else
 				$this->dynamicData = Kaltura_Client_ParseUtils::unmarshalMap($xml->dynamicData, "KalturaStringValue");
 		}
-		if(count($xml->isHouseholdMaster))
+		if(!is_null($jsonObject) && isset($jsonObject->dynamicData))
+		{
+			if(empty($jsonObject->dynamicData))
+				$this->dynamicData = array();
+			else
+				$this->dynamicData = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->dynamicData, "KalturaStringValue");
+		}
+		if(!is_null($xml) && count($xml->isHouseholdMaster))
 		{
 			if(!empty($xml->isHouseholdMaster) && ((int) $xml->isHouseholdMaster === 1 || strtolower((string)$xml->isHouseholdMaster) === 'true'))
 				$this->isHouseholdMaster = true;
 			else
 				$this->isHouseholdMaster = false;
 		}
-		if(count($xml->suspensionState))
+		if(!is_null($jsonObject) && isset($jsonObject->isHouseholdMaster))
+		{
+			if(!empty($jsonObject->isHouseholdMaster) && ((int) $jsonObject->isHouseholdMaster === 1 || strtolower((string)$jsonObject->isHouseholdMaster) === 'true'))
+				$this->isHouseholdMaster = true;
+			else
+				$this->isHouseholdMaster = false;
+		}
+		if(!is_null($xml) && count($xml->suspensionState))
 			$this->suspensionState = (string)$xml->suspensionState;
-		if(count($xml->userState))
+		if(!is_null($jsonObject) && isset($jsonObject->suspensionState))
+			$this->suspensionState = (string)$jsonObject->suspensionState;
+		if(!is_null($xml) && count($xml->userState))
 			$this->userState = (string)$xml->userState;
-		if(count($xml->roleIds))
+		if(!is_null($jsonObject) && isset($jsonObject->userState))
+			$this->userState = (string)$jsonObject->userState;
+		if(!is_null($xml) && count($xml->roleIds))
 			$this->roleIds = (string)$xml->roleIds;
-		if(count($xml->createDate))
+		if(!is_null($jsonObject) && isset($jsonObject->roleIds))
+			$this->roleIds = (string)$jsonObject->roleIds;
+		if(!is_null($xml) && count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
-		if(count($xml->updateDate))
+		if(!is_null($jsonObject) && isset($jsonObject->createDate))
+			$this->createDate = (string)$jsonObject->createDate;
+		if(!is_null($xml) && count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
-		if(count($xml->lastLoginDate))
+		if(!is_null($jsonObject) && isset($jsonObject->updateDate))
+			$this->updateDate = (string)$jsonObject->updateDate;
+		if(!is_null($xml) && count($xml->lastLoginDate))
 			$this->lastLoginDate = (string)$xml->lastLoginDate;
-		if(count($xml->failedLoginCount))
+		if(!is_null($jsonObject) && isset($jsonObject->lastLoginDate))
+			$this->lastLoginDate = (string)$jsonObject->lastLoginDate;
+		if(!is_null($xml) && count($xml->failedLoginCount))
 			$this->failedLoginCount = (int)$xml->failedLoginCount;
+		if(!is_null($jsonObject) && isset($jsonObject->failedLoginCount))
+			$this->failedLoginCount = (int)$jsonObject->failedLoginCount;
 	}
 	/**
 	 * Household identifier

@@ -38,33 +38,56 @@ class Kaltura_Client_Type_EngagementAdapter extends Kaltura_Client_Type_Engageme
 		return 'KalturaEngagementAdapter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->isActive))
+		if(!is_null($xml) && count($xml->isActive))
 		{
 			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))
 				$this->isActive = true;
 			else
 				$this->isActive = false;
 		}
-		if(count($xml->adapterUrl))
+		if(!is_null($jsonObject) && isset($jsonObject->isActive))
+		{
+			if(!empty($jsonObject->isActive) && ((int) $jsonObject->isActive === 1 || strtolower((string)$jsonObject->isActive) === 'true'))
+				$this->isActive = true;
+			else
+				$this->isActive = false;
+		}
+		if(!is_null($xml) && count($xml->adapterUrl))
 			$this->adapterUrl = (string)$xml->adapterUrl;
-		if(count($xml->providerUrl))
+		if(!is_null($jsonObject) && isset($jsonObject->adapterUrl))
+			$this->adapterUrl = (string)$jsonObject->adapterUrl;
+		if(!is_null($xml) && count($xml->providerUrl))
 			$this->providerUrl = (string)$xml->providerUrl;
-		if(count($xml->engagementAdapterSettings))
+		if(!is_null($jsonObject) && isset($jsonObject->providerUrl))
+			$this->providerUrl = (string)$jsonObject->providerUrl;
+		if(!is_null($xml) && count($xml->engagementAdapterSettings))
 		{
 			if(empty($xml->engagementAdapterSettings))
 				$this->engagementAdapterSettings = array();
 			else
 				$this->engagementAdapterSettings = Kaltura_Client_ParseUtils::unmarshalMap($xml->engagementAdapterSettings, "KalturaStringValue");
 		}
-		if(count($xml->sharedSecret))
+		if(!is_null($jsonObject) && isset($jsonObject->engagementAdapterSettings))
+		{
+			if(empty($jsonObject->engagementAdapterSettings))
+				$this->engagementAdapterSettings = array();
+			else
+				$this->engagementAdapterSettings = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->engagementAdapterSettings, "KalturaStringValue");
+		}
+		if(!is_null($xml) && count($xml->sharedSecret))
 			$this->sharedSecret = (string)$xml->sharedSecret;
+		if(!is_null($jsonObject) && isset($jsonObject->sharedSecret))
+			$this->sharedSecret = (string)$jsonObject->sharedSecret;
 	}
 	/**
 	 * Engagement adapter active status

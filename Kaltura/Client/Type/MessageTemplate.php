@@ -38,31 +38,52 @@ class Kaltura_Client_Type_MessageTemplate extends Kaltura_Client_ObjectBase
 		return 'KalturaMessageTemplate';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->message))
+		if(!is_null($xml) && count($xml->message))
 			$this->message = (string)$xml->message;
-		if(count($xml->dateFormat))
+		if(!is_null($jsonObject) && isset($jsonObject->message))
+			$this->message = (string)$jsonObject->message;
+		if(!is_null($xml) && count($xml->dateFormat))
 			$this->dateFormat = (string)$xml->dateFormat;
-		if(count($xml->messageType))
+		if(!is_null($jsonObject) && isset($jsonObject->dateFormat))
+			$this->dateFormat = (string)$jsonObject->dateFormat;
+		if(!is_null($xml) && count($xml->messageType))
 			$this->messageType = (string)$xml->messageType;
-		if(count($xml->sound))
+		if(!is_null($jsonObject) && isset($jsonObject->messageType))
+			$this->messageType = (string)$jsonObject->messageType;
+		if(!is_null($xml) && count($xml->sound))
 			$this->sound = (string)$xml->sound;
-		if(count($xml->action))
+		if(!is_null($jsonObject) && isset($jsonObject->sound))
+			$this->sound = (string)$jsonObject->sound;
+		if(!is_null($xml) && count($xml->action))
 			$this->action = (string)$xml->action;
-		if(count($xml->url))
+		if(!is_null($jsonObject) && isset($jsonObject->action))
+			$this->action = (string)$jsonObject->action;
+		if(!is_null($xml) && count($xml->url))
 			$this->url = (string)$xml->url;
-		if(count($xml->mailTemplate))
+		if(!is_null($jsonObject) && isset($jsonObject->url))
+			$this->url = (string)$jsonObject->url;
+		if(!is_null($xml) && count($xml->mailTemplate))
 			$this->mailTemplate = (string)$xml->mailTemplate;
-		if(count($xml->mailSubject))
+		if(!is_null($jsonObject) && isset($jsonObject->mailTemplate))
+			$this->mailTemplate = (string)$jsonObject->mailTemplate;
+		if(!is_null($xml) && count($xml->mailSubject))
 			$this->mailSubject = (string)$xml->mailSubject;
-		if(count($xml->ratioId))
+		if(!is_null($jsonObject) && isset($jsonObject->mailSubject))
+			$this->mailSubject = (string)$jsonObject->mailSubject;
+		if(!is_null($xml) && count($xml->ratioId))
 			$this->ratioId = (string)$xml->ratioId;
+		if(!is_null($jsonObject) && isset($jsonObject->ratioId))
+			$this->ratioId = (string)$jsonObject->ratioId;
 	}
 	/**
 	 * The message template with placeholders

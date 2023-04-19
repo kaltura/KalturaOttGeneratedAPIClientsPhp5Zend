@@ -38,27 +38,44 @@ class Kaltura_Client_Type_MonetizationCondition extends Kaltura_Client_Type_Base
 		return 'KalturaMonetizationCondition';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->minValue))
+		if(!is_null($xml) && count($xml->minValue))
 			$this->minValue = (int)$xml->minValue;
-		if(count($xml->maxValue))
+		if(!is_null($jsonObject) && isset($jsonObject->minValue))
+			$this->minValue = (int)$jsonObject->minValue;
+		if(!is_null($xml) && count($xml->maxValue))
 			$this->maxValue = (int)$xml->maxValue;
-		if(count($xml->days))
+		if(!is_null($jsonObject) && isset($jsonObject->maxValue))
+			$this->maxValue = (int)$jsonObject->maxValue;
+		if(!is_null($xml) && count($xml->days))
 			$this->days = (int)$xml->days;
-		if(count($xml->type))
+		if(!is_null($jsonObject) && isset($jsonObject->days))
+			$this->days = (int)$jsonObject->days;
+		if(!is_null($xml) && count($xml->type))
 			$this->type = (string)$xml->type;
-		if(count($xml->operator))
+		if(!is_null($jsonObject) && isset($jsonObject->type))
+			$this->type = (string)$jsonObject->type;
+		if(!is_null($xml) && count($xml->operator))
 			$this->operator = (string)$xml->operator;
-		if(count($xml->businessModuleIdIn))
+		if(!is_null($jsonObject) && isset($jsonObject->operator))
+			$this->operator = (string)$jsonObject->operator;
+		if(!is_null($xml) && count($xml->businessModuleIdIn))
 			$this->businessModuleIdIn = (string)$xml->businessModuleIdIn;
-		if(count($xml->currencyCode))
+		if(!is_null($jsonObject) && isset($jsonObject->businessModuleIdIn))
+			$this->businessModuleIdIn = (string)$jsonObject->businessModuleIdIn;
+		if(!is_null($xml) && count($xml->currencyCode))
 			$this->currencyCode = (string)$xml->currencyCode;
+		if(!is_null($jsonObject) && isset($jsonObject->currencyCode))
+			$this->currencyCode = (string)$jsonObject->currencyCode;
 	}
 	/**
 	 * The minimum value to be met

@@ -38,52 +38,98 @@ class Kaltura_Client_Type_PaymentGatewayProfile extends Kaltura_Client_Type_Paym
 		return 'KalturaPaymentGatewayProfile';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->isActive))
+		if(!is_null($xml) && count($xml->isActive))
 			$this->isActive = (int)$xml->isActive;
-		if(count($xml->adapterUrl))
+		if(!is_null($jsonObject) && isset($jsonObject->isActive))
+			$this->isActive = (int)$jsonObject->isActive;
+		if(!is_null($xml) && count($xml->adapterUrl))
 			$this->adapterUrl = (string)$xml->adapterUrl;
-		if(count($xml->transactUrl))
+		if(!is_null($jsonObject) && isset($jsonObject->adapterUrl))
+			$this->adapterUrl = (string)$jsonObject->adapterUrl;
+		if(!is_null($xml) && count($xml->transactUrl))
 			$this->transactUrl = (string)$xml->transactUrl;
-		if(count($xml->statusUrl))
+		if(!is_null($jsonObject) && isset($jsonObject->transactUrl))
+			$this->transactUrl = (string)$jsonObject->transactUrl;
+		if(!is_null($xml) && count($xml->statusUrl))
 			$this->statusUrl = (string)$xml->statusUrl;
-		if(count($xml->renewUrl))
+		if(!is_null($jsonObject) && isset($jsonObject->statusUrl))
+			$this->statusUrl = (string)$jsonObject->statusUrl;
+		if(!is_null($xml) && count($xml->renewUrl))
 			$this->renewUrl = (string)$xml->renewUrl;
-		if(count($xml->paymentGatewaySettings))
+		if(!is_null($jsonObject) && isset($jsonObject->renewUrl))
+			$this->renewUrl = (string)$jsonObject->renewUrl;
+		if(!is_null($xml) && count($xml->paymentGatewaySettings))
 		{
 			if(empty($xml->paymentGatewaySettings))
 				$this->paymentGatewaySettings = array();
 			else
 				$this->paymentGatewaySettings = Kaltura_Client_ParseUtils::unmarshalMap($xml->paymentGatewaySettings, "KalturaStringValue");
 		}
-		if(count($xml->externalIdentifier))
+		if(!is_null($jsonObject) && isset($jsonObject->paymentGatewaySettings))
+		{
+			if(empty($jsonObject->paymentGatewaySettings))
+				$this->paymentGatewaySettings = array();
+			else
+				$this->paymentGatewaySettings = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->paymentGatewaySettings, "KalturaStringValue");
+		}
+		if(!is_null($xml) && count($xml->externalIdentifier))
 			$this->externalIdentifier = (string)$xml->externalIdentifier;
-		if(count($xml->pendingInterval))
+		if(!is_null($jsonObject) && isset($jsonObject->externalIdentifier))
+			$this->externalIdentifier = (string)$jsonObject->externalIdentifier;
+		if(!is_null($xml) && count($xml->pendingInterval))
 			$this->pendingInterval = (int)$xml->pendingInterval;
-		if(count($xml->pendingRetries))
+		if(!is_null($jsonObject) && isset($jsonObject->pendingInterval))
+			$this->pendingInterval = (int)$jsonObject->pendingInterval;
+		if(!is_null($xml) && count($xml->pendingRetries))
 			$this->pendingRetries = (int)$xml->pendingRetries;
-		if(count($xml->sharedSecret))
+		if(!is_null($jsonObject) && isset($jsonObject->pendingRetries))
+			$this->pendingRetries = (int)$jsonObject->pendingRetries;
+		if(!is_null($xml) && count($xml->sharedSecret))
 			$this->sharedSecret = (string)$xml->sharedSecret;
-		if(count($xml->renewIntervalMinutes))
+		if(!is_null($jsonObject) && isset($jsonObject->sharedSecret))
+			$this->sharedSecret = (string)$jsonObject->sharedSecret;
+		if(!is_null($xml) && count($xml->renewIntervalMinutes))
 			$this->renewIntervalMinutes = (int)$xml->renewIntervalMinutes;
-		if(count($xml->renewStartMinutes))
+		if(!is_null($jsonObject) && isset($jsonObject->renewIntervalMinutes))
+			$this->renewIntervalMinutes = (int)$jsonObject->renewIntervalMinutes;
+		if(!is_null($xml) && count($xml->renewStartMinutes))
 			$this->renewStartMinutes = (int)$xml->renewStartMinutes;
-		if(count($xml->externalVerification))
+		if(!is_null($jsonObject) && isset($jsonObject->renewStartMinutes))
+			$this->renewStartMinutes = (int)$jsonObject->renewStartMinutes;
+		if(!is_null($xml) && count($xml->externalVerification))
 		{
 			if(!empty($xml->externalVerification) && ((int) $xml->externalVerification === 1 || strtolower((string)$xml->externalVerification) === 'true'))
 				$this->externalVerification = true;
 			else
 				$this->externalVerification = false;
 		}
-		if(count($xml->isAsyncPolicy))
+		if(!is_null($jsonObject) && isset($jsonObject->externalVerification))
+		{
+			if(!empty($jsonObject->externalVerification) && ((int) $jsonObject->externalVerification === 1 || strtolower((string)$jsonObject->externalVerification) === 'true'))
+				$this->externalVerification = true;
+			else
+				$this->externalVerification = false;
+		}
+		if(!is_null($xml) && count($xml->isAsyncPolicy))
 		{
 			if(!empty($xml->isAsyncPolicy) && ((int) $xml->isAsyncPolicy === 1 || strtolower((string)$xml->isAsyncPolicy) === 'true'))
+				$this->isAsyncPolicy = true;
+			else
+				$this->isAsyncPolicy = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->isAsyncPolicy))
+		{
+			if(!empty($jsonObject->isAsyncPolicy) && ((int) $jsonObject->isAsyncPolicy === 1 || strtolower((string)$jsonObject->isAsyncPolicy) === 'true'))
 				$this->isAsyncPolicy = true;
 			else
 				$this->isAsyncPolicy = false;

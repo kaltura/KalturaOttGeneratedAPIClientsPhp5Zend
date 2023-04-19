@@ -38,17 +38,24 @@ class Kaltura_Client_Type_FilterPager extends Kaltura_Client_ObjectBase
 		return 'KalturaFilterPager';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->pageSize))
+		if(!is_null($xml) && count($xml->pageSize))
 			$this->pageSize = (int)$xml->pageSize;
-		if(count($xml->pageIndex))
+		if(!is_null($jsonObject) && isset($jsonObject->pageSize))
+			$this->pageSize = (int)$jsonObject->pageSize;
+		if(!is_null($xml) && count($xml->pageIndex))
 			$this->pageIndex = (int)$xml->pageIndex;
+		if(!is_null($jsonObject) && isset($jsonObject->pageIndex))
+			$this->pageIndex = (int)$jsonObject->pageIndex;
 	}
 	/**
 	 * The number of objects to retrieve. Possible range 1 ≤ value ≤ 50. If omitted or value &lt; 1 - will be set to 25. If a value &gt; 50 provided – will be set to 50

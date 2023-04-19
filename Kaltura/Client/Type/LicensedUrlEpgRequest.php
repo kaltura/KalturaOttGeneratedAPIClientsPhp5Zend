@@ -38,17 +38,24 @@ class Kaltura_Client_Type_LicensedUrlEpgRequest extends Kaltura_Client_Type_Lice
 		return 'KalturaLicensedUrlEpgRequest';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->streamType))
+		if(!is_null($xml) && count($xml->streamType))
 			$this->streamType = (string)$xml->streamType;
-		if(count($xml->startDate))
+		if(!is_null($jsonObject) && isset($jsonObject->streamType))
+			$this->streamType = (string)$jsonObject->streamType;
+		if(!is_null($xml) && count($xml->startDate))
 			$this->startDate = (string)$xml->startDate;
+		if(!is_null($jsonObject) && isset($jsonObject->startDate))
+			$this->startDate = (string)$jsonObject->startDate;
 	}
 	/**
 	 * The stream type to get the URL for

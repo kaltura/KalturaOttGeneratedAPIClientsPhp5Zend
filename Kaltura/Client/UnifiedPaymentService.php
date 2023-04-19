@@ -50,11 +50,17 @@ class Kaltura_Client_UnifiedPaymentService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("unifiedpayment", "getNextRenewal", "KalturaUnifiedPaymentRenewal", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaUnifiedPaymentRenewal");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_UnifiedPaymentRenewal");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaUnifiedPaymentRenewal");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_UnifiedPaymentRenewal");
+		}
+			return $resultObject;
 	}
 }

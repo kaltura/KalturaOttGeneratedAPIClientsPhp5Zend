@@ -38,21 +38,32 @@ class Kaltura_Client_Type_PurchaseBase extends Kaltura_Client_ObjectBase
 		return 'KalturaPurchaseBase';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->productId))
+		if(!is_null($xml) && count($xml->productId))
 			$this->productId = (int)$xml->productId;
-		if(count($xml->contentId))
+		if(!is_null($jsonObject) && isset($jsonObject->productId))
+			$this->productId = (int)$jsonObject->productId;
+		if(!is_null($xml) && count($xml->contentId))
 			$this->contentId = (int)$xml->contentId;
-		if(count($xml->productType))
+		if(!is_null($jsonObject) && isset($jsonObject->contentId))
+			$this->contentId = (int)$jsonObject->contentId;
+		if(!is_null($xml) && count($xml->productType))
 			$this->productType = (string)$xml->productType;
-		if(count($xml->adapterData))
+		if(!is_null($jsonObject) && isset($jsonObject->productType))
+			$this->productType = (string)$jsonObject->productType;
+		if(!is_null($xml) && count($xml->adapterData))
 			$this->adapterData = (string)$xml->adapterData;
+		if(!is_null($jsonObject) && isset($jsonObject->adapterData))
+			$this->adapterData = (string)$jsonObject->adapterData;
 	}
 	/**
 	 * Identifier for the package from which this content is offered

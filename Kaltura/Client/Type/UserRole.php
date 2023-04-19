@@ -38,25 +38,40 @@ class Kaltura_Client_Type_UserRole extends Kaltura_Client_ObjectBase
 		return 'KalturaUserRole';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->permissionNames))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->permissionNames))
 			$this->permissionNames = (string)$xml->permissionNames;
-		if(count($xml->excludedPermissionNames))
+		if(!is_null($jsonObject) && isset($jsonObject->permissionNames))
+			$this->permissionNames = (string)$jsonObject->permissionNames;
+		if(!is_null($xml) && count($xml->excludedPermissionNames))
 			$this->excludedPermissionNames = (string)$xml->excludedPermissionNames;
-		if(count($xml->type))
+		if(!is_null($jsonObject) && isset($jsonObject->excludedPermissionNames))
+			$this->excludedPermissionNames = (string)$jsonObject->excludedPermissionNames;
+		if(!is_null($xml) && count($xml->type))
 			$this->type = (string)$xml->type;
-		if(count($xml->profile))
+		if(!is_null($jsonObject) && isset($jsonObject->type))
+			$this->type = (string)$jsonObject->type;
+		if(!is_null($xml) && count($xml->profile))
 			$this->profile = (string)$xml->profile;
+		if(!is_null($jsonObject) && isset($jsonObject->profile))
+			$this->profile = (string)$jsonObject->profile;
 	}
 	/**
 	 * User role identifier

@@ -38,76 +38,142 @@ class Kaltura_Client_Type_LiveAsset extends Kaltura_Client_Type_MediaAsset
 		return 'KalturaLiveAsset';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->enableCdvrState))
+		if(!is_null($xml) && count($xml->enableCdvrState))
 			$this->enableCdvrState = (string)$xml->enableCdvrState;
-		if(count($xml->enableCatchUpState))
+		if(!is_null($jsonObject) && isset($jsonObject->enableCdvrState))
+			$this->enableCdvrState = (string)$jsonObject->enableCdvrState;
+		if(!is_null($xml) && count($xml->enableCatchUpState))
 			$this->enableCatchUpState = (string)$xml->enableCatchUpState;
-		if(count($xml->enableStartOverState))
+		if(!is_null($jsonObject) && isset($jsonObject->enableCatchUpState))
+			$this->enableCatchUpState = (string)$jsonObject->enableCatchUpState;
+		if(!is_null($xml) && count($xml->enableStartOverState))
 			$this->enableStartOverState = (string)$xml->enableStartOverState;
-		if(count($xml->bufferCatchUpSetting))
+		if(!is_null($jsonObject) && isset($jsonObject->enableStartOverState))
+			$this->enableStartOverState = (string)$jsonObject->enableStartOverState;
+		if(!is_null($xml) && count($xml->bufferCatchUpSetting))
 			$this->bufferCatchUpSetting = (string)$xml->bufferCatchUpSetting;
-		if(count($xml->paddingBeforeProgramStarts))
+		if(!is_null($jsonObject) && isset($jsonObject->bufferCatchUpSetting))
+			$this->bufferCatchUpSetting = (string)$jsonObject->bufferCatchUpSetting;
+		if(!is_null($xml) && count($xml->paddingBeforeProgramStarts))
 			$this->paddingBeforeProgramStarts = (string)$xml->paddingBeforeProgramStarts;
-		if(count($xml->paddingAfterProgramEnds))
+		if(!is_null($jsonObject) && isset($jsonObject->paddingBeforeProgramStarts))
+			$this->paddingBeforeProgramStarts = (string)$jsonObject->paddingBeforeProgramStarts;
+		if(!is_null($xml) && count($xml->paddingAfterProgramEnds))
 			$this->paddingAfterProgramEnds = (string)$xml->paddingAfterProgramEnds;
-		if(count($xml->bufferTrickPlaySetting))
+		if(!is_null($jsonObject) && isset($jsonObject->paddingAfterProgramEnds))
+			$this->paddingAfterProgramEnds = (string)$jsonObject->paddingAfterProgramEnds;
+		if(!is_null($xml) && count($xml->bufferTrickPlaySetting))
 			$this->bufferTrickPlaySetting = (string)$xml->bufferTrickPlaySetting;
-		if(count($xml->enableRecordingPlaybackNonEntitledChannelState))
+		if(!is_null($jsonObject) && isset($jsonObject->bufferTrickPlaySetting))
+			$this->bufferTrickPlaySetting = (string)$jsonObject->bufferTrickPlaySetting;
+		if(!is_null($xml) && count($xml->enableRecordingPlaybackNonEntitledChannelState))
 			$this->enableRecordingPlaybackNonEntitledChannelState = (string)$xml->enableRecordingPlaybackNonEntitledChannelState;
-		if(count($xml->enableTrickPlayState))
+		if(!is_null($jsonObject) && isset($jsonObject->enableRecordingPlaybackNonEntitledChannelState))
+			$this->enableRecordingPlaybackNonEntitledChannelState = (string)$jsonObject->enableRecordingPlaybackNonEntitledChannelState;
+		if(!is_null($xml) && count($xml->enableTrickPlayState))
 			$this->enableTrickPlayState = (string)$xml->enableTrickPlayState;
-		if(count($xml->externalEpgIngestId))
+		if(!is_null($jsonObject) && isset($jsonObject->enableTrickPlayState))
+			$this->enableTrickPlayState = (string)$jsonObject->enableTrickPlayState;
+		if(!is_null($xml) && count($xml->externalEpgIngestId))
 			$this->externalEpgIngestId = (string)$xml->externalEpgIngestId;
-		if(count($xml->externalCdvrId))
+		if(!is_null($jsonObject) && isset($jsonObject->externalEpgIngestId))
+			$this->externalEpgIngestId = (string)$jsonObject->externalEpgIngestId;
+		if(!is_null($xml) && count($xml->externalCdvrId))
 			$this->externalCdvrId = (string)$xml->externalCdvrId;
-		if(count($xml->enableCdvr))
+		if(!is_null($jsonObject) && isset($jsonObject->externalCdvrId))
+			$this->externalCdvrId = (string)$jsonObject->externalCdvrId;
+		if(!is_null($xml) && count($xml->enableCdvr))
 		{
 			if(!empty($xml->enableCdvr) && ((int) $xml->enableCdvr === 1 || strtolower((string)$xml->enableCdvr) === 'true'))
 				$this->enableCdvr = true;
 			else
 				$this->enableCdvr = false;
 		}
-		if(count($xml->enableCatchUp))
+		if(!is_null($jsonObject) && isset($jsonObject->enableCdvr))
+		{
+			if(!empty($jsonObject->enableCdvr) && ((int) $jsonObject->enableCdvr === 1 || strtolower((string)$jsonObject->enableCdvr) === 'true'))
+				$this->enableCdvr = true;
+			else
+				$this->enableCdvr = false;
+		}
+		if(!is_null($xml) && count($xml->enableCatchUp))
 		{
 			if(!empty($xml->enableCatchUp) && ((int) $xml->enableCatchUp === 1 || strtolower((string)$xml->enableCatchUp) === 'true'))
 				$this->enableCatchUp = true;
 			else
 				$this->enableCatchUp = false;
 		}
-		if(count($xml->enableStartOver))
+		if(!is_null($jsonObject) && isset($jsonObject->enableCatchUp))
+		{
+			if(!empty($jsonObject->enableCatchUp) && ((int) $jsonObject->enableCatchUp === 1 || strtolower((string)$jsonObject->enableCatchUp) === 'true'))
+				$this->enableCatchUp = true;
+			else
+				$this->enableCatchUp = false;
+		}
+		if(!is_null($xml) && count($xml->enableStartOver))
 		{
 			if(!empty($xml->enableStartOver) && ((int) $xml->enableStartOver === 1 || strtolower((string)$xml->enableStartOver) === 'true'))
 				$this->enableStartOver = true;
 			else
 				$this->enableStartOver = false;
 		}
-		if(count($xml->catchUpBuffer))
+		if(!is_null($jsonObject) && isset($jsonObject->enableStartOver))
+		{
+			if(!empty($jsonObject->enableStartOver) && ((int) $jsonObject->enableStartOver === 1 || strtolower((string)$jsonObject->enableStartOver) === 'true'))
+				$this->enableStartOver = true;
+			else
+				$this->enableStartOver = false;
+		}
+		if(!is_null($xml) && count($xml->catchUpBuffer))
 			$this->catchUpBuffer = (string)$xml->catchUpBuffer;
-		if(count($xml->trickPlayBuffer))
+		if(!is_null($jsonObject) && isset($jsonObject->catchUpBuffer))
+			$this->catchUpBuffer = (string)$jsonObject->catchUpBuffer;
+		if(!is_null($xml) && count($xml->trickPlayBuffer))
 			$this->trickPlayBuffer = (string)$xml->trickPlayBuffer;
-		if(count($xml->enableRecordingPlaybackNonEntitledChannel))
+		if(!is_null($jsonObject) && isset($jsonObject->trickPlayBuffer))
+			$this->trickPlayBuffer = (string)$jsonObject->trickPlayBuffer;
+		if(!is_null($xml) && count($xml->enableRecordingPlaybackNonEntitledChannel))
 		{
 			if(!empty($xml->enableRecordingPlaybackNonEntitledChannel) && ((int) $xml->enableRecordingPlaybackNonEntitledChannel === 1 || strtolower((string)$xml->enableRecordingPlaybackNonEntitledChannel) === 'true'))
 				$this->enableRecordingPlaybackNonEntitledChannel = true;
 			else
 				$this->enableRecordingPlaybackNonEntitledChannel = false;
 		}
-		if(count($xml->enableTrickPlay))
+		if(!is_null($jsonObject) && isset($jsonObject->enableRecordingPlaybackNonEntitledChannel))
+		{
+			if(!empty($jsonObject->enableRecordingPlaybackNonEntitledChannel) && ((int) $jsonObject->enableRecordingPlaybackNonEntitledChannel === 1 || strtolower((string)$jsonObject->enableRecordingPlaybackNonEntitledChannel) === 'true'))
+				$this->enableRecordingPlaybackNonEntitledChannel = true;
+			else
+				$this->enableRecordingPlaybackNonEntitledChannel = false;
+		}
+		if(!is_null($xml) && count($xml->enableTrickPlay))
 		{
 			if(!empty($xml->enableTrickPlay) && ((int) $xml->enableTrickPlay === 1 || strtolower((string)$xml->enableTrickPlay) === 'true'))
 				$this->enableTrickPlay = true;
 			else
 				$this->enableTrickPlay = false;
 		}
-		if(count($xml->channelType))
+		if(!is_null($jsonObject) && isset($jsonObject->enableTrickPlay))
+		{
+			if(!empty($jsonObject->enableTrickPlay) && ((int) $jsonObject->enableTrickPlay === 1 || strtolower((string)$jsonObject->enableTrickPlay) === 'true'))
+				$this->enableTrickPlay = true;
+			else
+				$this->enableTrickPlay = false;
+		}
+		if(!is_null($xml) && count($xml->channelType))
 			$this->channelType = (string)$xml->channelType;
+		if(!is_null($jsonObject) && isset($jsonObject->channelType))
+			$this->channelType = (string)$jsonObject->channelType;
 	}
 	/**
 	 * Enable CDVR, configuration only

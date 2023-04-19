@@ -38,19 +38,28 @@ class Kaltura_Client_Type_UserLoginPin extends Kaltura_Client_ObjectBase
 		return 'KalturaUserLoginPin';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->pinCode))
+		if(!is_null($xml) && count($xml->pinCode))
 			$this->pinCode = (string)$xml->pinCode;
-		if(count($xml->expirationTime))
+		if(!is_null($jsonObject) && isset($jsonObject->pinCode))
+			$this->pinCode = (string)$jsonObject->pinCode;
+		if(!is_null($xml) && count($xml->expirationTime))
 			$this->expirationTime = (string)$xml->expirationTime;
-		if(count($xml->userId))
+		if(!is_null($jsonObject) && isset($jsonObject->expirationTime))
+			$this->expirationTime = (string)$jsonObject->expirationTime;
+		if(!is_null($xml) && count($xml->userId))
 			$this->userId = (string)$xml->userId;
+		if(!is_null($jsonObject) && isset($jsonObject->userId))
+			$this->userId = (string)$jsonObject->userId;
 	}
 	/**
 	 * Generated login pin code

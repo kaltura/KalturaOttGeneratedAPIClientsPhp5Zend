@@ -38,73 +38,136 @@ class Kaltura_Client_Type_MediaFile extends Kaltura_Client_Type_AssetFile
 		return 'KalturaMediaFile';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->assetId))
+		if(!is_null($xml) && count($xml->assetId))
 			$this->assetId = (int)$xml->assetId;
-		if(count($xml->id))
+		if(!is_null($jsonObject) && isset($jsonObject->assetId))
+			$this->assetId = (int)$jsonObject->assetId;
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (int)$xml->id;
-		if(count($xml->type))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (int)$jsonObject->id;
+		if(!is_null($xml) && count($xml->type))
 			$this->type = (string)$xml->type;
-		if(count($xml->typeId))
+		if(!is_null($jsonObject) && isset($jsonObject->type))
+			$this->type = (string)$jsonObject->type;
+		if(!is_null($xml) && count($xml->typeId))
 			$this->typeId = (int)$xml->typeId;
-		if(count($xml->altUrl))
+		if(!is_null($jsonObject) && isset($jsonObject->typeId))
+			$this->typeId = (int)$jsonObject->typeId;
+		if(!is_null($xml) && count($xml->altUrl))
 			$this->altUrl = (string)$xml->altUrl;
-		if(count($xml->duration))
+		if(!is_null($jsonObject) && isset($jsonObject->altUrl))
+			$this->altUrl = (string)$jsonObject->altUrl;
+		if(!is_null($xml) && count($xml->duration))
 			$this->duration = (string)$xml->duration;
-		if(count($xml->externalId))
+		if(!is_null($jsonObject) && isset($jsonObject->duration))
+			$this->duration = (string)$jsonObject->duration;
+		if(!is_null($xml) && count($xml->externalId))
 			$this->externalId = (string)$xml->externalId;
-		if(count($xml->altExternalId))
+		if(!is_null($jsonObject) && isset($jsonObject->externalId))
+			$this->externalId = (string)$jsonObject->externalId;
+		if(!is_null($xml) && count($xml->altExternalId))
 			$this->altExternalId = (string)$xml->altExternalId;
-		if(count($xml->fileSize))
+		if(!is_null($jsonObject) && isset($jsonObject->altExternalId))
+			$this->altExternalId = (string)$jsonObject->altExternalId;
+		if(!is_null($xml) && count($xml->fileSize))
 			$this->fileSize = (string)$xml->fileSize;
-		if(count($xml->additionalData))
+		if(!is_null($jsonObject) && isset($jsonObject->fileSize))
+			$this->fileSize = (string)$jsonObject->fileSize;
+		if(!is_null($xml) && count($xml->additionalData))
 			$this->additionalData = (string)$xml->additionalData;
-		if(count($xml->altStreamingCode))
+		if(!is_null($jsonObject) && isset($jsonObject->additionalData))
+			$this->additionalData = (string)$jsonObject->additionalData;
+		if(!is_null($xml) && count($xml->altStreamingCode))
 			$this->altStreamingCode = (string)$xml->altStreamingCode;
-		if(count($xml->alternativeCdnAdapaterProfileId))
+		if(!is_null($jsonObject) && isset($jsonObject->altStreamingCode))
+			$this->altStreamingCode = (string)$jsonObject->altStreamingCode;
+		if(!is_null($xml) && count($xml->alternativeCdnAdapaterProfileId))
 			$this->alternativeCdnAdapaterProfileId = (string)$xml->alternativeCdnAdapaterProfileId;
-		if(count($xml->endDate))
+		if(!is_null($jsonObject) && isset($jsonObject->alternativeCdnAdapaterProfileId))
+			$this->alternativeCdnAdapaterProfileId = (string)$jsonObject->alternativeCdnAdapaterProfileId;
+		if(!is_null($xml) && count($xml->endDate))
 			$this->endDate = (string)$xml->endDate;
-		if(count($xml->startDate))
+		if(!is_null($jsonObject) && isset($jsonObject->endDate))
+			$this->endDate = (string)$jsonObject->endDate;
+		if(!is_null($xml) && count($xml->startDate))
 			$this->startDate = (string)$xml->startDate;
-		if(count($xml->externalStoreId))
+		if(!is_null($jsonObject) && isset($jsonObject->startDate))
+			$this->startDate = (string)$jsonObject->startDate;
+		if(!is_null($xml) && count($xml->externalStoreId))
 			$this->externalStoreId = (string)$xml->externalStoreId;
-		if(count($xml->isDefaultLanguage))
+		if(!is_null($jsonObject) && isset($jsonObject->externalStoreId))
+			$this->externalStoreId = (string)$jsonObject->externalStoreId;
+		if(!is_null($xml) && count($xml->isDefaultLanguage))
 		{
 			if(!empty($xml->isDefaultLanguage) && ((int) $xml->isDefaultLanguage === 1 || strtolower((string)$xml->isDefaultLanguage) === 'true'))
 				$this->isDefaultLanguage = true;
 			else
 				$this->isDefaultLanguage = false;
 		}
-		if(count($xml->language))
+		if(!is_null($jsonObject) && isset($jsonObject->isDefaultLanguage))
+		{
+			if(!empty($jsonObject->isDefaultLanguage) && ((int) $jsonObject->isDefaultLanguage === 1 || strtolower((string)$jsonObject->isDefaultLanguage) === 'true'))
+				$this->isDefaultLanguage = true;
+			else
+				$this->isDefaultLanguage = false;
+		}
+		if(!is_null($xml) && count($xml->language))
 			$this->language = (string)$xml->language;
-		if(count($xml->orderNum))
+		if(!is_null($jsonObject) && isset($jsonObject->language))
+			$this->language = (string)$jsonObject->language;
+		if(!is_null($xml) && count($xml->orderNum))
 			$this->orderNum = (int)$xml->orderNum;
-		if(count($xml->outputProtecationLevel))
+		if(!is_null($jsonObject) && isset($jsonObject->orderNum))
+			$this->orderNum = (int)$jsonObject->orderNum;
+		if(!is_null($xml) && count($xml->outputProtecationLevel))
 			$this->outputProtecationLevel = (string)$xml->outputProtecationLevel;
-		if(count($xml->cdnAdapaterProfileId))
+		if(!is_null($jsonObject) && isset($jsonObject->outputProtecationLevel))
+			$this->outputProtecationLevel = (string)$jsonObject->outputProtecationLevel;
+		if(!is_null($xml) && count($xml->cdnAdapaterProfileId))
 			$this->cdnAdapaterProfileId = (string)$xml->cdnAdapaterProfileId;
-		if(count($xml->status))
+		if(!is_null($jsonObject) && isset($jsonObject->cdnAdapaterProfileId))
+			$this->cdnAdapaterProfileId = (string)$jsonObject->cdnAdapaterProfileId;
+		if(!is_null($xml) && count($xml->status))
 		{
 			if(!empty($xml->status) && ((int) $xml->status === 1 || strtolower((string)$xml->status) === 'true'))
 				$this->status = true;
 			else
 				$this->status = false;
 		}
-		if(count($xml->catalogEndDate))
+		if(!is_null($jsonObject) && isset($jsonObject->status))
+		{
+			if(!empty($jsonObject->status) && ((int) $jsonObject->status === 1 || strtolower((string)$jsonObject->status) === 'true'))
+				$this->status = true;
+			else
+				$this->status = false;
+		}
+		if(!is_null($xml) && count($xml->catalogEndDate))
 			$this->catalogEndDate = (string)$xml->catalogEndDate;
-		if(count($xml->opl))
+		if(!is_null($jsonObject) && isset($jsonObject->catalogEndDate))
+			$this->catalogEndDate = (string)$jsonObject->catalogEndDate;
+		if(!is_null($xml) && count($xml->opl))
 			$this->opl = (string)$xml->opl;
-		if(count($xml->businessModuleDetails) && !empty($xml->businessModuleDetails))
+		if(!is_null($jsonObject) && isset($jsonObject->opl))
+			$this->opl = (string)$jsonObject->opl;
+		if(!is_null($xml) && count($xml->businessModuleDetails) && !empty($xml->businessModuleDetails))
 			$this->businessModuleDetails = Kaltura_Client_ParseUtils::unmarshalObject($xml->businessModuleDetails, "KalturaBusinessModuleDetails");
-		if(count($xml->labels))
+		if(!is_null($jsonObject) && isset($jsonObject->businessModuleDetails) && !empty($jsonObject->businessModuleDetails))
+			$this->businessModuleDetails = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->businessModuleDetails, "KalturaBusinessModuleDetails");
+		if(!is_null($xml) && count($xml->labels))
 			$this->labels = (string)$xml->labels;
+		if(!is_null($jsonObject) && isset($jsonObject->labels))
+			$this->labels = (string)$jsonObject->labels;
 	}
 	/**
 	 * Unique identifier for the asset

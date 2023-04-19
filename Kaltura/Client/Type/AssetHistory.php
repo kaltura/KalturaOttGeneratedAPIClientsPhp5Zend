@@ -38,26 +38,46 @@ class Kaltura_Client_Type_AssetHistory extends Kaltura_Client_ObjectBase
 		return 'KalturaAssetHistory';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->assetId))
+		if(!is_null($xml) && count($xml->assetId))
 			$this->assetId = (string)$xml->assetId;
-		if(count($xml->assetType))
+		if(!is_null($jsonObject) && isset($jsonObject->assetId))
+			$this->assetId = (string)$jsonObject->assetId;
+		if(!is_null($xml) && count($xml->assetType))
 			$this->assetType = (string)$xml->assetType;
-		if(count($xml->position))
+		if(!is_null($jsonObject) && isset($jsonObject->assetType))
+			$this->assetType = (string)$jsonObject->assetType;
+		if(!is_null($xml) && count($xml->position))
 			$this->position = (int)$xml->position;
-		if(count($xml->duration))
+		if(!is_null($jsonObject) && isset($jsonObject->position))
+			$this->position = (int)$jsonObject->position;
+		if(!is_null($xml) && count($xml->duration))
 			$this->duration = (int)$xml->duration;
-		if(count($xml->watchedDate))
+		if(!is_null($jsonObject) && isset($jsonObject->duration))
+			$this->duration = (int)$jsonObject->duration;
+		if(!is_null($xml) && count($xml->watchedDate))
 			$this->watchedDate = (string)$xml->watchedDate;
-		if(count($xml->finishedWatching))
+		if(!is_null($jsonObject) && isset($jsonObject->watchedDate))
+			$this->watchedDate = (string)$jsonObject->watchedDate;
+		if(!is_null($xml) && count($xml->finishedWatching))
 		{
 			if(!empty($xml->finishedWatching) && ((int) $xml->finishedWatching === 1 || strtolower((string)$xml->finishedWatching) === 'true'))
+				$this->finishedWatching = true;
+			else
+				$this->finishedWatching = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->finishedWatching))
+		{
+			if(!empty($jsonObject->finishedWatching) && ((int) $jsonObject->finishedWatching === 1 || strtolower((string)$jsonObject->finishedWatching) === 'true'))
 				$this->finishedWatching = true;
 			else
 				$this->finishedWatching = false;

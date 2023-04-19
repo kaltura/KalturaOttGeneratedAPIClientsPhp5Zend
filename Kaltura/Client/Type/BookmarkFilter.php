@@ -38,17 +38,24 @@ class Kaltura_Client_Type_BookmarkFilter extends Kaltura_Client_Type_Filter
 		return 'KalturaBookmarkFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->assetIdIn))
+		if(!is_null($xml) && count($xml->assetIdIn))
 			$this->assetIdIn = (string)$xml->assetIdIn;
-		if(count($xml->assetTypeEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->assetIdIn))
+			$this->assetIdIn = (string)$jsonObject->assetIdIn;
+		if(!is_null($xml) && count($xml->assetTypeEqual))
 			$this->assetTypeEqual = (string)$xml->assetTypeEqual;
+		if(!is_null($jsonObject) && isset($jsonObject->assetTypeEqual))
+			$this->assetTypeEqual = (string)$jsonObject->assetTypeEqual;
 	}
 	/**
 	 * Comma separated list of assets identifiers

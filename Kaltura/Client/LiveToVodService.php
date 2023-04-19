@@ -49,12 +49,18 @@ class Kaltura_Client_LiveToVodService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("livetovod", "getConfiguration", "KalturaLiveToVodFullConfiguration", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLiveToVodFullConfiguration");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LiveToVodFullConfiguration");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLiveToVodFullConfiguration");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LiveToVodFullConfiguration");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -68,12 +74,18 @@ class Kaltura_Client_LiveToVodService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("livetovod", "getLinearAssetConfiguration", "KalturaLiveToVodLinearAssetConfiguration", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLiveToVodLinearAssetConfiguration");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LiveToVodLinearAssetConfiguration");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLiveToVodLinearAssetConfiguration");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LiveToVodLinearAssetConfiguration");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -86,12 +98,18 @@ class Kaltura_Client_LiveToVodService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("livetovod", "getPartnerConfiguration", "KalturaLiveToVodPartnerConfiguration", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLiveToVodPartnerConfiguration");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LiveToVodPartnerConfiguration");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLiveToVodPartnerConfiguration");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LiveToVodPartnerConfiguration");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -105,12 +123,18 @@ class Kaltura_Client_LiveToVodService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("livetovod", "updateLinearAssetConfiguration", "KalturaLiveToVodLinearAssetConfiguration", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLiveToVodLinearAssetConfiguration");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LiveToVodLinearAssetConfiguration");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLiveToVodLinearAssetConfiguration");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LiveToVodLinearAssetConfiguration");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -124,11 +148,17 @@ class Kaltura_Client_LiveToVodService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("livetovod", "updatePartnerConfiguration", "KalturaLiveToVodPartnerConfiguration", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLiveToVodPartnerConfiguration");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LiveToVodPartnerConfiguration");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLiveToVodPartnerConfiguration");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LiveToVodPartnerConfiguration");
+		}
+			return $resultObject;
 	}
 }

@@ -50,12 +50,18 @@ class Kaltura_Client_SmsAdapterProfileService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("smsadapterprofile", "add", "KalturaSmsAdapterProfile", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSmsAdapterProfile");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SmsAdapterProfile");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSmsAdapterProfile");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SmsAdapterProfile");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -69,9 +75,15 @@ class Kaltura_Client_SmsAdapterProfileService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("smsadapterprofile", "delete", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+		}
 	}
 
 	/**
@@ -85,12 +97,18 @@ class Kaltura_Client_SmsAdapterProfileService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("smsadapterprofile", "generateSharedSecret", "KalturaSmsAdapterProfile", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSmsAdapterProfile");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SmsAdapterProfile");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSmsAdapterProfile");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SmsAdapterProfile");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -104,12 +122,18 @@ class Kaltura_Client_SmsAdapterProfileService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("smsadapterprofile", "get", "KalturaSmsAdapterProfile", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSmsAdapterProfile");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SmsAdapterProfile");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSmsAdapterProfile");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SmsAdapterProfile");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -124,12 +148,18 @@ class Kaltura_Client_SmsAdapterProfileService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("smsadapterprofile", "list", "KalturaSmsAdapterProfileListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSmsAdapterProfileListResponse");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SmsAdapterProfileListResponse");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSmsAdapterProfileListResponse");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SmsAdapterProfileListResponse");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -144,11 +174,17 @@ class Kaltura_Client_SmsAdapterProfileService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("smsadapterprofile", "update", "KalturaSmsAdapterProfile", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSmsAdapterProfile");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SmsAdapterProfile");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSmsAdapterProfile");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SmsAdapterProfile");
+		}
+			return $resultObject;
 	}
 }

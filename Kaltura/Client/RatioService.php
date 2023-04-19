@@ -50,12 +50,18 @@ class Kaltura_Client_RatioService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("ratio", "add", "KalturaRatio", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaRatio");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Ratio");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaRatio");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Ratio");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -68,12 +74,18 @@ class Kaltura_Client_RatioService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("ratio", "list", "KalturaRatioListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaRatioListResponse");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_RatioListResponse");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaRatioListResponse");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_RatioListResponse");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -88,11 +100,17 @@ class Kaltura_Client_RatioService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("ratio", "update", "KalturaRatio", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaRatio");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Ratio");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaRatio");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Ratio");
+		}
+			return $resultObject;
 	}
 }

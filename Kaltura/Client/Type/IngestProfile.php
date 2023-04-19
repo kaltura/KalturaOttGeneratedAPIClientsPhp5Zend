@@ -38,38 +38,66 @@ class Kaltura_Client_Type_IngestProfile extends Kaltura_Client_ObjectBase
 		return 'KalturaIngestProfile';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (int)$xml->id;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (int)$jsonObject->id;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->externalId))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->externalId))
 			$this->externalId = (string)$xml->externalId;
-		if(count($xml->assetTypeId))
+		if(!is_null($jsonObject) && isset($jsonObject->externalId))
+			$this->externalId = (string)$jsonObject->externalId;
+		if(!is_null($xml) && count($xml->assetTypeId))
 			$this->assetTypeId = (int)$xml->assetTypeId;
-		if(count($xml->transformationAdapterUrl))
+		if(!is_null($jsonObject) && isset($jsonObject->assetTypeId))
+			$this->assetTypeId = (int)$jsonObject->assetTypeId;
+		if(!is_null($xml) && count($xml->transformationAdapterUrl))
 			$this->transformationAdapterUrl = (string)$xml->transformationAdapterUrl;
-		if(count($xml->transformationAdapterSettings))
+		if(!is_null($jsonObject) && isset($jsonObject->transformationAdapterUrl))
+			$this->transformationAdapterUrl = (string)$jsonObject->transformationAdapterUrl;
+		if(!is_null($xml) && count($xml->transformationAdapterSettings))
 		{
 			if(empty($xml->transformationAdapterSettings))
 				$this->transformationAdapterSettings = array();
 			else
 				$this->transformationAdapterSettings = Kaltura_Client_ParseUtils::unmarshalMap($xml->transformationAdapterSettings, "KalturaStringValue");
 		}
-		if(count($xml->transformationAdapterSharedSecret))
+		if(!is_null($jsonObject) && isset($jsonObject->transformationAdapterSettings))
+		{
+			if(empty($jsonObject->transformationAdapterSettings))
+				$this->transformationAdapterSettings = array();
+			else
+				$this->transformationAdapterSettings = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->transformationAdapterSettings, "KalturaStringValue");
+		}
+		if(!is_null($xml) && count($xml->transformationAdapterSharedSecret))
 			$this->transformationAdapterSharedSecret = (string)$xml->transformationAdapterSharedSecret;
-		if(count($xml->defaultAutoFillPolicy))
+		if(!is_null($jsonObject) && isset($jsonObject->transformationAdapterSharedSecret))
+			$this->transformationAdapterSharedSecret = (string)$jsonObject->transformationAdapterSharedSecret;
+		if(!is_null($xml) && count($xml->defaultAutoFillPolicy))
 			$this->defaultAutoFillPolicy = (string)$xml->defaultAutoFillPolicy;
-		if(count($xml->defaultOverlapPolicy))
+		if(!is_null($jsonObject) && isset($jsonObject->defaultAutoFillPolicy))
+			$this->defaultAutoFillPolicy = (string)$jsonObject->defaultAutoFillPolicy;
+		if(!is_null($xml) && count($xml->defaultOverlapPolicy))
 			$this->defaultOverlapPolicy = (string)$xml->defaultOverlapPolicy;
-		if(count($xml->overlapChannels))
+		if(!is_null($jsonObject) && isset($jsonObject->defaultOverlapPolicy))
+			$this->defaultOverlapPolicy = (string)$jsonObject->defaultOverlapPolicy;
+		if(!is_null($xml) && count($xml->overlapChannels))
 			$this->overlapChannels = (string)$xml->overlapChannels;
+		if(!is_null($jsonObject) && isset($jsonObject->overlapChannels))
+			$this->overlapChannels = (string)$jsonObject->overlapChannels;
 	}
 	/**
 	 * Ingest profile identifier

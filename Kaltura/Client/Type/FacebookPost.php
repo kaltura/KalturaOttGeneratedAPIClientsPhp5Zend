@@ -38,22 +38,34 @@ class Kaltura_Client_Type_FacebookPost extends Kaltura_Client_Type_SocialNetwork
 		return 'KalturaFacebookPost';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->comments))
+		if(!is_null($xml) && count($xml->comments))
 		{
 			if(empty($xml->comments))
 				$this->comments = array();
 			else
 				$this->comments = Kaltura_Client_ParseUtils::unmarshalArray($xml->comments, "KalturaSocialNetworkComment");
 		}
-		if(count($xml->link))
+		if(!is_null($jsonObject) && isset($jsonObject->comments))
+		{
+			if(empty($jsonObject->comments))
+				$this->comments = array();
+			else
+				$this->comments = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->comments, "KalturaSocialNetworkComment");
+		}
+		if(!is_null($xml) && count($xml->link))
 			$this->link = (string)$xml->link;
+		if(!is_null($jsonObject) && isset($jsonObject->link))
+			$this->link = (string)$jsonObject->link;
 	}
 	/**
 	 * List of comments on the post

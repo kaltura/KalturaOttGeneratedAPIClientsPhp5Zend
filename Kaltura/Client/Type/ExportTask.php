@@ -38,32 +38,58 @@ class Kaltura_Client_Type_ExportTask extends Kaltura_Client_ObjectBase
 		return 'KalturaExportTask';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->alias))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->alias))
 			$this->alias = (string)$xml->alias;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->alias))
+			$this->alias = (string)$jsonObject->alias;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->dataType))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->dataType))
 			$this->dataType = (string)$xml->dataType;
-		if(count($xml->filter))
+		if(!is_null($jsonObject) && isset($jsonObject->dataType))
+			$this->dataType = (string)$jsonObject->dataType;
+		if(!is_null($xml) && count($xml->filter))
 			$this->filter = (string)$xml->filter;
-		if(count($xml->exportType))
+		if(!is_null($jsonObject) && isset($jsonObject->filter))
+			$this->filter = (string)$jsonObject->filter;
+		if(!is_null($xml) && count($xml->exportType))
 			$this->exportType = (string)$xml->exportType;
-		if(count($xml->frequency))
+		if(!is_null($jsonObject) && isset($jsonObject->exportType))
+			$this->exportType = (string)$jsonObject->exportType;
+		if(!is_null($xml) && count($xml->frequency))
 			$this->frequency = (string)$xml->frequency;
-		if(count($xml->notificationUrl))
+		if(!is_null($jsonObject) && isset($jsonObject->frequency))
+			$this->frequency = (string)$jsonObject->frequency;
+		if(!is_null($xml) && count($xml->notificationUrl))
 			$this->notificationUrl = (string)$xml->notificationUrl;
-		if(count($xml->isActive))
+		if(!is_null($jsonObject) && isset($jsonObject->notificationUrl))
+			$this->notificationUrl = (string)$jsonObject->notificationUrl;
+		if(!is_null($xml) && count($xml->isActive))
 		{
 			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))
+				$this->isActive = true;
+			else
+				$this->isActive = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->isActive))
+		{
+			if(!empty($jsonObject->isActive) && ((int) $jsonObject->isActive === 1 || strtolower((string)$jsonObject->isActive) === 'true'))
 				$this->isActive = true;
 			else
 				$this->isActive = false;

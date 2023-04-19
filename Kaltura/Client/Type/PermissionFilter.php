@@ -38,22 +38,34 @@ class Kaltura_Client_Type_PermissionFilter extends Kaltura_Client_Type_BasePermi
 		return 'KalturaPermissionFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->currentUserPermissionsContains))
+		if(!is_null($xml) && count($xml->currentUserPermissionsContains))
 		{
 			if(!empty($xml->currentUserPermissionsContains) && ((int) $xml->currentUserPermissionsContains === 1 || strtolower((string)$xml->currentUserPermissionsContains) === 'true'))
 				$this->currentUserPermissionsContains = true;
 			else
 				$this->currentUserPermissionsContains = false;
 		}
-		if(count($xml->roleIdIn))
+		if(!is_null($jsonObject) && isset($jsonObject->currentUserPermissionsContains))
+		{
+			if(!empty($jsonObject->currentUserPermissionsContains) && ((int) $jsonObject->currentUserPermissionsContains === 1 || strtolower((string)$jsonObject->currentUserPermissionsContains) === 'true'))
+				$this->currentUserPermissionsContains = true;
+			else
+				$this->currentUserPermissionsContains = false;
+		}
+		if(!is_null($xml) && count($xml->roleIdIn))
 			$this->roleIdIn = (string)$xml->roleIdIn;
+		if(!is_null($jsonObject) && isset($jsonObject->roleIdIn))
+			$this->roleIdIn = (string)$jsonObject->roleIdIn;
 	}
 	/**
 	 * Indicates whether the results should be filtered by userId using the current

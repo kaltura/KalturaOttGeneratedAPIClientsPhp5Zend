@@ -38,19 +38,28 @@ class Kaltura_Client_Type_SeriesRecordingOption extends Kaltura_Client_ObjectBas
 		return 'KalturaSeriesRecordingOption';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->minSeasonNumber))
+		if(!is_null($xml) && count($xml->minSeasonNumber))
 			$this->minSeasonNumber = (int)$xml->minSeasonNumber;
-		if(count($xml->minEpisodeNumber))
+		if(!is_null($jsonObject) && isset($jsonObject->minSeasonNumber))
+			$this->minSeasonNumber = (int)$jsonObject->minSeasonNumber;
+		if(!is_null($xml) && count($xml->minEpisodeNumber))
 			$this->minEpisodeNumber = (int)$xml->minEpisodeNumber;
-		if(count($xml->chronologicalRecordStartTime))
+		if(!is_null($jsonObject) && isset($jsonObject->minEpisodeNumber))
+			$this->minEpisodeNumber = (int)$jsonObject->minEpisodeNumber;
+		if(!is_null($xml) && count($xml->chronologicalRecordStartTime))
 			$this->chronologicalRecordStartTime = (string)$xml->chronologicalRecordStartTime;
+		if(!is_null($jsonObject) && isset($jsonObject->chronologicalRecordStartTime))
+			$this->chronologicalRecordStartTime = (string)$jsonObject->chronologicalRecordStartTime;
 	}
 	/**
 	 * min Season Number

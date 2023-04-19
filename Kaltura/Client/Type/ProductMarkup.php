@@ -38,20 +38,34 @@ class Kaltura_Client_Type_ProductMarkup extends Kaltura_Client_ObjectBase
 		return 'KalturaProductMarkup';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->productId))
+		if(!is_null($xml) && count($xml->productId))
 			$this->productId = (string)$xml->productId;
-		if(count($xml->productType))
+		if(!is_null($jsonObject) && isset($jsonObject->productId))
+			$this->productId = (string)$jsonObject->productId;
+		if(!is_null($xml) && count($xml->productType))
 			$this->productType = (string)$xml->productType;
-		if(count($xml->isEntitled))
+		if(!is_null($jsonObject) && isset($jsonObject->productType))
+			$this->productType = (string)$jsonObject->productType;
+		if(!is_null($xml) && count($xml->isEntitled))
 		{
 			if(!empty($xml->isEntitled) && ((int) $xml->isEntitled === 1 || strtolower((string)$xml->isEntitled) === 'true'))
+				$this->isEntitled = true;
+			else
+				$this->isEntitled = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->isEntitled))
+		{
+			if(!empty($jsonObject->isEntitled) && ((int) $jsonObject->isEntitled === 1 || strtolower((string)$jsonObject->isEntitled) === 'true'))
 				$this->isEntitled = true;
 			else
 				$this->isEntitled = false;

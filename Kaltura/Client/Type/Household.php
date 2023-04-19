@@ -38,52 +38,94 @@ class Kaltura_Client_Type_Household extends Kaltura_Client_ObjectBase
 		return 'KalturaHousehold';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->description))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->description))
 			$this->description = (string)$xml->description;
-		if(count($xml->externalId))
+		if(!is_null($jsonObject) && isset($jsonObject->description))
+			$this->description = (string)$jsonObject->description;
+		if(!is_null($xml) && count($xml->externalId))
 			$this->externalId = (string)$xml->externalId;
-		if(count($xml->householdLimitationsId))
+		if(!is_null($jsonObject) && isset($jsonObject->externalId))
+			$this->externalId = (string)$jsonObject->externalId;
+		if(!is_null($xml) && count($xml->householdLimitationsId))
 			$this->householdLimitationsId = (int)$xml->householdLimitationsId;
-		if(count($xml->devicesLimit))
+		if(!is_null($jsonObject) && isset($jsonObject->householdLimitationsId))
+			$this->householdLimitationsId = (int)$jsonObject->householdLimitationsId;
+		if(!is_null($xml) && count($xml->devicesLimit))
 			$this->devicesLimit = (int)$xml->devicesLimit;
-		if(count($xml->usersLimit))
+		if(!is_null($jsonObject) && isset($jsonObject->devicesLimit))
+			$this->devicesLimit = (int)$jsonObject->devicesLimit;
+		if(!is_null($xml) && count($xml->usersLimit))
 			$this->usersLimit = (int)$xml->usersLimit;
-		if(count($xml->concurrentLimit))
+		if(!is_null($jsonObject) && isset($jsonObject->usersLimit))
+			$this->usersLimit = (int)$jsonObject->usersLimit;
+		if(!is_null($xml) && count($xml->concurrentLimit))
 			$this->concurrentLimit = (int)$xml->concurrentLimit;
-		if(count($xml->regionId))
+		if(!is_null($jsonObject) && isset($jsonObject->concurrentLimit))
+			$this->concurrentLimit = (int)$jsonObject->concurrentLimit;
+		if(!is_null($xml) && count($xml->regionId))
 			$this->regionId = (int)$xml->regionId;
-		if(count($xml->state))
+		if(!is_null($jsonObject) && isset($jsonObject->regionId))
+			$this->regionId = (int)$jsonObject->regionId;
+		if(!is_null($xml) && count($xml->state))
 			$this->state = (string)$xml->state;
-		if(count($xml->isFrequencyEnabled))
+		if(!is_null($jsonObject) && isset($jsonObject->state))
+			$this->state = (string)$jsonObject->state;
+		if(!is_null($xml) && count($xml->isFrequencyEnabled))
 		{
 			if(!empty($xml->isFrequencyEnabled) && ((int) $xml->isFrequencyEnabled === 1 || strtolower((string)$xml->isFrequencyEnabled) === 'true'))
 				$this->isFrequencyEnabled = true;
 			else
 				$this->isFrequencyEnabled = false;
 		}
-		if(count($xml->frequencyNextDeviceAction))
+		if(!is_null($jsonObject) && isset($jsonObject->isFrequencyEnabled))
+		{
+			if(!empty($jsonObject->isFrequencyEnabled) && ((int) $jsonObject->isFrequencyEnabled === 1 || strtolower((string)$jsonObject->isFrequencyEnabled) === 'true'))
+				$this->isFrequencyEnabled = true;
+			else
+				$this->isFrequencyEnabled = false;
+		}
+		if(!is_null($xml) && count($xml->frequencyNextDeviceAction))
 			$this->frequencyNextDeviceAction = (string)$xml->frequencyNextDeviceAction;
-		if(count($xml->frequencyNextUserAction))
+		if(!is_null($jsonObject) && isset($jsonObject->frequencyNextDeviceAction))
+			$this->frequencyNextDeviceAction = (string)$jsonObject->frequencyNextDeviceAction;
+		if(!is_null($xml) && count($xml->frequencyNextUserAction))
 			$this->frequencyNextUserAction = (string)$xml->frequencyNextUserAction;
-		if(count($xml->restriction))
+		if(!is_null($jsonObject) && isset($jsonObject->frequencyNextUserAction))
+			$this->frequencyNextUserAction = (string)$jsonObject->frequencyNextUserAction;
+		if(!is_null($xml) && count($xml->restriction))
 			$this->restriction = (string)$xml->restriction;
-		if(count($xml->roleId))
+		if(!is_null($jsonObject) && isset($jsonObject->restriction))
+			$this->restriction = (string)$jsonObject->restriction;
+		if(!is_null($xml) && count($xml->roleId))
 			$this->roleId = (int)$xml->roleId;
-		if(count($xml->createDate))
+		if(!is_null($jsonObject) && isset($jsonObject->roleId))
+			$this->roleId = (int)$jsonObject->roleId;
+		if(!is_null($xml) && count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
-		if(count($xml->updateDate))
+		if(!is_null($jsonObject) && isset($jsonObject->createDate))
+			$this->createDate = (string)$jsonObject->createDate;
+		if(!is_null($xml) && count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
+		if(!is_null($jsonObject) && isset($jsonObject->updateDate))
+			$this->updateDate = (string)$jsonObject->updateDate;
 	}
 	/**
 	 * Household identifier

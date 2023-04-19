@@ -38,21 +38,32 @@ class Kaltura_Client_Type_BusinessModuleRuleFilter extends Kaltura_Client_Type_F
 		return 'KalturaBusinessModuleRuleFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->businessModuleTypeApplied))
+		if(!is_null($xml) && count($xml->businessModuleTypeApplied))
 			$this->businessModuleTypeApplied = (string)$xml->businessModuleTypeApplied;
-		if(count($xml->businessModuleIdApplied))
+		if(!is_null($jsonObject) && isset($jsonObject->businessModuleTypeApplied))
+			$this->businessModuleTypeApplied = (string)$jsonObject->businessModuleTypeApplied;
+		if(!is_null($xml) && count($xml->businessModuleIdApplied))
 			$this->businessModuleIdApplied = (string)$xml->businessModuleIdApplied;
-		if(count($xml->segmentIdsApplied))
+		if(!is_null($jsonObject) && isset($jsonObject->businessModuleIdApplied))
+			$this->businessModuleIdApplied = (string)$jsonObject->businessModuleIdApplied;
+		if(!is_null($xml) && count($xml->segmentIdsApplied))
 			$this->segmentIdsApplied = (string)$xml->segmentIdsApplied;
-		if(count($xml->actionsContainType))
+		if(!is_null($jsonObject) && isset($jsonObject->segmentIdsApplied))
+			$this->segmentIdsApplied = (string)$jsonObject->segmentIdsApplied;
+		if(!is_null($xml) && count($xml->actionsContainType))
 			$this->actionsContainType = (string)$xml->actionsContainType;
+		if(!is_null($jsonObject) && isset($jsonObject->actionsContainType))
+			$this->actionsContainType = (string)$jsonObject->actionsContainType;
 	}
 	/**
 	 * Business module type the rules applied on

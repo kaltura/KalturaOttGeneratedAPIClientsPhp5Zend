@@ -38,32 +38,54 @@ class Kaltura_Client_Type_CampaignSearchFilter extends Kaltura_Client_Type_Campa
 		return 'KalturaCampaignSearchFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->startDateGreaterThanOrEqual))
+		if(!is_null($xml) && count($xml->startDateGreaterThanOrEqual))
 			$this->startDateGreaterThanOrEqual = (string)$xml->startDateGreaterThanOrEqual;
-		if(count($xml->endDateLessThanOrEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->startDateGreaterThanOrEqual))
+			$this->startDateGreaterThanOrEqual = (string)$jsonObject->startDateGreaterThanOrEqual;
+		if(!is_null($xml) && count($xml->endDateLessThanOrEqual))
 			$this->endDateLessThanOrEqual = (string)$xml->endDateLessThanOrEqual;
-		if(count($xml->stateEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->endDateLessThanOrEqual))
+			$this->endDateLessThanOrEqual = (string)$jsonObject->endDateLessThanOrEqual;
+		if(!is_null($xml) && count($xml->stateEqual))
 			$this->stateEqual = (string)$xml->stateEqual;
-		if(count($xml->hasPromotion))
+		if(!is_null($jsonObject) && isset($jsonObject->stateEqual))
+			$this->stateEqual = (string)$jsonObject->stateEqual;
+		if(!is_null($xml) && count($xml->hasPromotion))
 		{
 			if(!empty($xml->hasPromotion) && ((int) $xml->hasPromotion === 1 || strtolower((string)$xml->hasPromotion) === 'true'))
 				$this->hasPromotion = true;
 			else
 				$this->hasPromotion = false;
 		}
-		if(count($xml->nameEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->hasPromotion))
+		{
+			if(!empty($jsonObject->hasPromotion) && ((int) $jsonObject->hasPromotion === 1 || strtolower((string)$jsonObject->hasPromotion) === 'true'))
+				$this->hasPromotion = true;
+			else
+				$this->hasPromotion = false;
+		}
+		if(!is_null($xml) && count($xml->nameEqual))
 			$this->nameEqual = (string)$xml->nameEqual;
-		if(count($xml->nameContains))
+		if(!is_null($jsonObject) && isset($jsonObject->nameEqual))
+			$this->nameEqual = (string)$jsonObject->nameEqual;
+		if(!is_null($xml) && count($xml->nameContains))
 			$this->nameContains = (string)$xml->nameContains;
-		if(count($xml->stateIn))
+		if(!is_null($jsonObject) && isset($jsonObject->nameContains))
+			$this->nameContains = (string)$jsonObject->nameContains;
+		if(!is_null($xml) && count($xml->stateIn))
 			$this->stateIn = (string)$xml->stateIn;
+		if(!is_null($jsonObject) && isset($jsonObject->stateIn))
+			$this->stateIn = (string)$jsonObject->stateIn;
 	}
 	/**
 	 * start Date Greater Than Or Equal

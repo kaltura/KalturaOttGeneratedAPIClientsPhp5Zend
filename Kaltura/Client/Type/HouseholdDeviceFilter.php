@@ -38,19 +38,28 @@ class Kaltura_Client_Type_HouseholdDeviceFilter extends Kaltura_Client_Type_Filt
 		return 'KalturaHouseholdDeviceFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->householdIdEqual))
+		if(!is_null($xml) && count($xml->householdIdEqual))
 			$this->householdIdEqual = (int)$xml->householdIdEqual;
-		if(count($xml->deviceFamilyIdIn))
+		if(!is_null($jsonObject) && isset($jsonObject->householdIdEqual))
+			$this->householdIdEqual = (int)$jsonObject->householdIdEqual;
+		if(!is_null($xml) && count($xml->deviceFamilyIdIn))
 			$this->deviceFamilyIdIn = (string)$xml->deviceFamilyIdIn;
-		if(count($xml->externalIdEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->deviceFamilyIdIn))
+			$this->deviceFamilyIdIn = (string)$jsonObject->deviceFamilyIdIn;
+		if(!is_null($xml) && count($xml->externalIdEqual))
 			$this->externalIdEqual = (string)$xml->externalIdEqual;
+		if(!is_null($jsonObject) && isset($jsonObject->externalIdEqual))
+			$this->externalIdEqual = (string)$jsonObject->externalIdEqual;
 	}
 	/**
 	 * The identifier of the household
