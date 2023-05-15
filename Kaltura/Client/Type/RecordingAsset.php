@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,19 +38,42 @@ class Kaltura_Client_Type_RecordingAsset extends Kaltura_Client_Type_ProgramAsse
 		return 'KalturaRecordingAsset';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->recordingId))
+		if(!is_null($xml) && count($xml->recordingId))
 			$this->recordingId = (string)$xml->recordingId;
-		if(count($xml->recordingType))
+		if(!is_null($jsonObject) && isset($jsonObject->recordingId))
+			$this->recordingId = (string)$jsonObject->recordingId;
+		if(!is_null($xml) && count($xml->recordingType))
 			$this->recordingType = (string)$xml->recordingType;
-		if(count($xml->viewableUntilDate))
+		if(!is_null($jsonObject) && isset($jsonObject->recordingType))
+			$this->recordingType = (string)$jsonObject->recordingType;
+		if(!is_null($xml) && count($xml->viewableUntilDate))
 			$this->viewableUntilDate = (string)$xml->viewableUntilDate;
+		if(!is_null($jsonObject) && isset($jsonObject->viewableUntilDate))
+			$this->viewableUntilDate = (string)$jsonObject->viewableUntilDate;
+		if(!is_null($xml) && count($xml->multiRecord))
+		{
+			if(!empty($xml->multiRecord) && ((int) $xml->multiRecord === 1 || strtolower((string)$xml->multiRecord) === 'true'))
+				$this->multiRecord = true;
+			else
+				$this->multiRecord = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->multiRecord))
+		{
+			if(!empty($jsonObject->multiRecord) && ((int) $jsonObject->multiRecord === 1 || strtolower((string)$jsonObject->multiRecord) === 'true'))
+				$this->multiRecord = true;
+			else
+				$this->multiRecord = false;
+		}
 	}
 	/**
 	 * Recording identifier
@@ -72,6 +95,13 @@ class Kaltura_Client_Type_RecordingAsset extends Kaltura_Client_Type_ProgramAsse
 	 * @var bigint
 	 */
 	public $viewableUntilDate = null;
+
+	/**
+	 * When TRUE indicates that there are multiple KalturaImmediateRecording instances for the event.
+	 *
+	 * @var bool
+	 */
+	public $multiRecord = null;
 
 
 }

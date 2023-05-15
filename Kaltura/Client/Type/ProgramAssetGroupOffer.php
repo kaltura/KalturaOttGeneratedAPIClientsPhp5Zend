@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,60 +38,110 @@ class Kaltura_Client_Type_ProgramAssetGroupOffer extends Kaltura_Client_Type_OTT
 		return 'KalturaProgramAssetGroupOffer';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->multilingualName))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->multilingualName))
 		{
 			if(empty($xml->multilingualName))
 				$this->multilingualName = array();
 			else
 				$this->multilingualName = Kaltura_Client_ParseUtils::unmarshalArray($xml->multilingualName, "KalturaTranslationToken");
 		}
-		if(count($xml->priceDetailsId))
+		if(!is_null($jsonObject) && isset($jsonObject->multilingualName))
+		{
+			if(empty($jsonObject->multilingualName))
+				$this->multilingualName = array();
+			else
+				$this->multilingualName = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->multilingualName, "KalturaTranslationToken");
+		}
+		if(!is_null($xml) && count($xml->priceDetailsId))
 			$this->priceDetailsId = (string)$xml->priceDetailsId;
-		if(count($xml->fileTypesIds))
+		if(!is_null($jsonObject) && isset($jsonObject->priceDetailsId))
+			$this->priceDetailsId = (string)$jsonObject->priceDetailsId;
+		if(!is_null($xml) && count($xml->fileTypesIds))
 			$this->fileTypesIds = (string)$xml->fileTypesIds;
-		if(count($xml->description))
+		if(!is_null($jsonObject) && isset($jsonObject->fileTypesIds))
+			$this->fileTypesIds = (string)$jsonObject->fileTypesIds;
+		if(!is_null($xml) && count($xml->description))
 			$this->description = (string)$xml->description;
-		if(count($xml->multilingualDescription))
+		if(!is_null($jsonObject) && isset($jsonObject->description))
+			$this->description = (string)$jsonObject->description;
+		if(!is_null($xml) && count($xml->multilingualDescription))
 		{
 			if(empty($xml->multilingualDescription))
 				$this->multilingualDescription = array();
 			else
 				$this->multilingualDescription = Kaltura_Client_ParseUtils::unmarshalArray($xml->multilingualDescription, "KalturaTranslationToken");
 		}
-		if(count($xml->virtualAssetId))
+		if(!is_null($jsonObject) && isset($jsonObject->multilingualDescription))
+		{
+			if(empty($jsonObject->multilingualDescription))
+				$this->multilingualDescription = array();
+			else
+				$this->multilingualDescription = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->multilingualDescription, "KalturaTranslationToken");
+		}
+		if(!is_null($xml) && count($xml->virtualAssetId))
 			$this->virtualAssetId = (string)$xml->virtualAssetId;
-		if(count($xml->isActive))
+		if(!is_null($jsonObject) && isset($jsonObject->virtualAssetId))
+			$this->virtualAssetId = (string)$jsonObject->virtualAssetId;
+		if(!is_null($xml) && count($xml->isActive))
 		{
 			if(!empty($xml->isActive) && ((int) $xml->isActive === 1 || strtolower((string)$xml->isActive) === 'true'))
 				$this->isActive = true;
 			else
 				$this->isActive = false;
 		}
-		if(count($xml->createDate))
+		if(!is_null($jsonObject) && isset($jsonObject->isActive))
+		{
+			if(!empty($jsonObject->isActive) && ((int) $jsonObject->isActive === 1 || strtolower((string)$jsonObject->isActive) === 'true'))
+				$this->isActive = true;
+			else
+				$this->isActive = false;
+		}
+		if(!is_null($xml) && count($xml->createDate))
 			$this->createDate = (string)$xml->createDate;
-		if(count($xml->updateDate))
+		if(!is_null($jsonObject) && isset($jsonObject->createDate))
+			$this->createDate = (string)$jsonObject->createDate;
+		if(!is_null($xml) && count($xml->updateDate))
 			$this->updateDate = (string)$xml->updateDate;
-		if(count($xml->startDate))
+		if(!is_null($jsonObject) && isset($jsonObject->updateDate))
+			$this->updateDate = (string)$jsonObject->updateDate;
+		if(!is_null($xml) && count($xml->startDate))
 			$this->startDate = (string)$xml->startDate;
-		if(count($xml->endDate))
+		if(!is_null($jsonObject) && isset($jsonObject->startDate))
+			$this->startDate = (string)$jsonObject->startDate;
+		if(!is_null($xml) && count($xml->endDate))
 			$this->endDate = (string)$xml->endDate;
-		if(count($xml->expiryDate))
+		if(!is_null($jsonObject) && isset($jsonObject->endDate))
+			$this->endDate = (string)$jsonObject->endDate;
+		if(!is_null($xml) && count($xml->expiryDate))
 			$this->expiryDate = (string)$xml->expiryDate;
-		if(count($xml->externalId))
+		if(!is_null($jsonObject) && isset($jsonObject->expiryDate))
+			$this->expiryDate = (string)$jsonObject->expiryDate;
+		if(!is_null($xml) && count($xml->externalId))
 			$this->externalId = (string)$xml->externalId;
-		if(count($xml->externalOfferId))
+		if(!is_null($jsonObject) && isset($jsonObject->externalId))
+			$this->externalId = (string)$jsonObject->externalId;
+		if(!is_null($xml) && count($xml->externalOfferId))
 			$this->externalOfferId = (string)$xml->externalOfferId;
+		if(!is_null($jsonObject) && isset($jsonObject->externalOfferId))
+			$this->externalOfferId = (string)$jsonObject->externalOfferId;
 	}
 	/**
 	 * Unique Kaltura internal identifier for the module

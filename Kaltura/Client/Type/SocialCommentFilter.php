@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,21 +38,32 @@ class Kaltura_Client_Type_SocialCommentFilter extends Kaltura_Client_Type_Filter
 		return 'KalturaSocialCommentFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->assetIdEqual))
+		if(!is_null($xml) && count($xml->assetIdEqual))
 			$this->assetIdEqual = (string)$xml->assetIdEqual;
-		if(count($xml->assetTypeEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->assetIdEqual))
+			$this->assetIdEqual = (string)$jsonObject->assetIdEqual;
+		if(!is_null($xml) && count($xml->assetTypeEqual))
 			$this->assetTypeEqual = (string)$xml->assetTypeEqual;
-		if(count($xml->socialPlatformEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->assetTypeEqual))
+			$this->assetTypeEqual = (string)$jsonObject->assetTypeEqual;
+		if(!is_null($xml) && count($xml->socialPlatformEqual))
 			$this->socialPlatformEqual = (string)$xml->socialPlatformEqual;
-		if(count($xml->createDateGreaterThan))
+		if(!is_null($jsonObject) && isset($jsonObject->socialPlatformEqual))
+			$this->socialPlatformEqual = (string)$jsonObject->socialPlatformEqual;
+		if(!is_null($xml) && count($xml->createDateGreaterThan))
 			$this->createDateGreaterThan = (string)$xml->createDateGreaterThan;
+		if(!is_null($jsonObject) && isset($jsonObject->createDateGreaterThan))
+			$this->createDateGreaterThan = (string)$jsonObject->createDateGreaterThan;
 	}
 	/**
 	 * Asset ID to filter by

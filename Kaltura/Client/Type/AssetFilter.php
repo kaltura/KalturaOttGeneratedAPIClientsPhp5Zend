@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,27 +38,48 @@ class Kaltura_Client_Type_AssetFilter extends Kaltura_Client_Type_PersistedFilte
 		return 'KalturaAssetFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->dynamicOrderBy) && !empty($xml->dynamicOrderBy))
+		if(!is_null($xml) && count($xml->dynamicOrderBy) && !empty($xml->dynamicOrderBy))
 			$this->dynamicOrderBy = Kaltura_Client_ParseUtils::unmarshalObject($xml->dynamicOrderBy, "KalturaDynamicOrderBy");
-		if(count($xml->orderingParameters))
+		if(!is_null($jsonObject) && isset($jsonObject->dynamicOrderBy) && !empty($jsonObject->dynamicOrderBy))
+			$this->dynamicOrderBy = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->dynamicOrderBy, "KalturaDynamicOrderBy");
+		if(!is_null($xml) && count($xml->orderingParameters))
 		{
 			if(empty($xml->orderingParameters))
 				$this->orderingParameters = array();
 			else
 				$this->orderingParameters = Kaltura_Client_ParseUtils::unmarshalArray($xml->orderingParameters, "KalturaBaseAssetOrder");
 		}
-		if(count($xml->trendingDaysEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->orderingParameters))
+		{
+			if(empty($jsonObject->orderingParameters))
+				$this->orderingParameters = array();
+			else
+				$this->orderingParameters = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->orderingParameters, "KalturaBaseAssetOrder");
+		}
+		if(!is_null($xml) && count($xml->trendingDaysEqual))
 			$this->trendingDaysEqual = (int)$xml->trendingDaysEqual;
-		if(count($xml->shouldApplyPriorityGroupsEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->trendingDaysEqual))
+			$this->trendingDaysEqual = (int)$jsonObject->trendingDaysEqual;
+		if(!is_null($xml) && count($xml->shouldApplyPriorityGroupsEqual))
 		{
 			if(!empty($xml->shouldApplyPriorityGroupsEqual) && ((int) $xml->shouldApplyPriorityGroupsEqual === 1 || strtolower((string)$xml->shouldApplyPriorityGroupsEqual) === 'true'))
+				$this->shouldApplyPriorityGroupsEqual = true;
+			else
+				$this->shouldApplyPriorityGroupsEqual = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->shouldApplyPriorityGroupsEqual))
+		{
+			if(!empty($jsonObject->shouldApplyPriorityGroupsEqual) && ((int) $jsonObject->shouldApplyPriorityGroupsEqual === 1 || strtolower((string)$jsonObject->shouldApplyPriorityGroupsEqual) === 'true'))
 				$this->shouldApplyPriorityGroupsEqual = true;
 			else
 				$this->shouldApplyPriorityGroupsEqual = false;

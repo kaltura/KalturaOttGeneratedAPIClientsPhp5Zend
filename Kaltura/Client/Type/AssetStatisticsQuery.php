@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,21 +38,32 @@ class Kaltura_Client_Type_AssetStatisticsQuery extends Kaltura_Client_ObjectBase
 		return 'KalturaAssetStatisticsQuery';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->assetIdIn))
+		if(!is_null($xml) && count($xml->assetIdIn))
 			$this->assetIdIn = (string)$xml->assetIdIn;
-		if(count($xml->assetTypeEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->assetIdIn))
+			$this->assetIdIn = (string)$jsonObject->assetIdIn;
+		if(!is_null($xml) && count($xml->assetTypeEqual))
 			$this->assetTypeEqual = (string)$xml->assetTypeEqual;
-		if(count($xml->startDateGreaterThanOrEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->assetTypeEqual))
+			$this->assetTypeEqual = (string)$jsonObject->assetTypeEqual;
+		if(!is_null($xml) && count($xml->startDateGreaterThanOrEqual))
 			$this->startDateGreaterThanOrEqual = (string)$xml->startDateGreaterThanOrEqual;
-		if(count($xml->endDateGreaterThanOrEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->startDateGreaterThanOrEqual))
+			$this->startDateGreaterThanOrEqual = (string)$jsonObject->startDateGreaterThanOrEqual;
+		if(!is_null($xml) && count($xml->endDateGreaterThanOrEqual))
 			$this->endDateGreaterThanOrEqual = (string)$xml->endDateGreaterThanOrEqual;
+		if(!is_null($jsonObject) && isset($jsonObject->endDateGreaterThanOrEqual))
+			$this->endDateGreaterThanOrEqual = (string)$jsonObject->endDateGreaterThanOrEqual;
 	}
 	/**
 	 * Comma separated list of asset identifiers.

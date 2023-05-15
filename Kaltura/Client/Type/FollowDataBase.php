@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,23 +38,36 @@ abstract class Kaltura_Client_Type_FollowDataBase extends Kaltura_Client_ObjectB
 		return 'KalturaFollowDataBase';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->announcementId))
+		if(!is_null($xml) && count($xml->announcementId))
 			$this->announcementId = (string)$xml->announcementId;
-		if(count($xml->status))
+		if(!is_null($jsonObject) && isset($jsonObject->announcementId))
+			$this->announcementId = (string)$jsonObject->announcementId;
+		if(!is_null($xml) && count($xml->status))
 			$this->status = (int)$xml->status;
-		if(count($xml->title))
+		if(!is_null($jsonObject) && isset($jsonObject->status))
+			$this->status = (int)$jsonObject->status;
+		if(!is_null($xml) && count($xml->title))
 			$this->title = (string)$xml->title;
-		if(count($xml->timestamp))
+		if(!is_null($jsonObject) && isset($jsonObject->title))
+			$this->title = (string)$jsonObject->title;
+		if(!is_null($xml) && count($xml->timestamp))
 			$this->timestamp = (string)$xml->timestamp;
-		if(count($xml->followPhrase))
+		if(!is_null($jsonObject) && isset($jsonObject->timestamp))
+			$this->timestamp = (string)$jsonObject->timestamp;
+		if(!is_null($xml) && count($xml->followPhrase))
 			$this->followPhrase = (string)$xml->followPhrase;
+		if(!is_null($jsonObject) && isset($jsonObject->followPhrase))
+			$this->followPhrase = (string)$jsonObject->followPhrase;
 	}
 	/**
 	 * Announcement Id
