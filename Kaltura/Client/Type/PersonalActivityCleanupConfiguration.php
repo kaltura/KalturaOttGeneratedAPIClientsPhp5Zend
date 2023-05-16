@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-abstract class Kaltura_Client_Type_FilterAction extends Kaltura_Client_Type_AssetRuleAction
+class Kaltura_Client_Type_PersonalActivityCleanupConfiguration extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaFilterAction';
+		return 'KalturaPersonalActivityCleanupConfiguration';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,17 +48,17 @@ abstract class Kaltura_Client_Type_FilterAction extends Kaltura_Client_Type_Asse
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->preActionCondition) && !empty($xml->preActionCondition))
-			$this->preActionCondition = Kaltura_Client_ParseUtils::unmarshalObject($xml->preActionCondition, "KalturaBasePreActionCondition");
-		if(!is_null($jsonObject) && isset($jsonObject->preActionCondition) && !empty($jsonObject->preActionCondition))
-			$this->preActionCondition = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->preActionCondition, "KalturaBasePreActionCondition");
+		if(!is_null($xml) && count($xml->retentionPeriodDays))
+			$this->retentionPeriodDays = (string)$xml->retentionPeriodDays;
+		if(!is_null($jsonObject) && isset($jsonObject->retentionPeriodDays))
+			$this->retentionPeriodDays = (string)$jsonObject->retentionPeriodDays;
 	}
 	/**
-	 * PreAction condition
+	 * Retention Period Days
 	 *
-	 * @var Kaltura_Client_Type_BasePreActionCondition
+	 * @var bigint
 	 */
-	public $preActionCondition;
+	public $retentionPeriodDays = null;
 
 
 }
