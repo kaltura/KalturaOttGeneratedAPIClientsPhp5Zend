@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-abstract class Kaltura_Client_Type_FilterAction extends Kaltura_Client_Type_AssetRuleAction
+class Kaltura_Client_Type_ShopPreActionCondition extends Kaltura_Client_Type_BasePreActionCondition
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaFilterAction';
+		return 'KalturaShopPreActionCondition';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,17 +48,17 @@ abstract class Kaltura_Client_Type_FilterAction extends Kaltura_Client_Type_Asse
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->preActionCondition) && !empty($xml->preActionCondition))
-			$this->preActionCondition = Kaltura_Client_ParseUtils::unmarshalObject($xml->preActionCondition, "KalturaBasePreActionCondition");
-		if(!is_null($jsonObject) && isset($jsonObject->preActionCondition) && !empty($jsonObject->preActionCondition))
-			$this->preActionCondition = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->preActionCondition, "KalturaBasePreActionCondition");
+		if(!is_null($xml) && count($xml->shopAssetUserRuleId))
+			$this->shopAssetUserRuleId = (int)$xml->shopAssetUserRuleId;
+		if(!is_null($jsonObject) && isset($jsonObject->shopAssetUserRuleId))
+			$this->shopAssetUserRuleId = (int)$jsonObject->shopAssetUserRuleId;
 	}
 	/**
-	 * PreAction condition
+	 * Asset user rule ID with shop condition
 	 *
-	 * @var Kaltura_Client_Type_BasePreActionCondition
+	 * @var int
 	 */
-	public $preActionCondition;
+	public $shopAssetUserRuleId = null;
 
 
 }
