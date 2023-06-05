@@ -56,8 +56,8 @@ class Kaltura_Client_Type_SearchAssetFilter extends Kaltura_Client_Type_BaseSear
 	/**
 	 * (Deprecated - use KalturaBaseSearchAssetFilter.kSql)
 	 *             Comma separated list of asset types to search within. 
-	 *             Possible values: 0 – EPG linear programs entries; 1 - Recordings; Any media type ID (according to media type IDs defined dynamically in the system).
-	 *             If omitted – all types should be included.
+	 *             Possible values: 0 - EPG linear programs entries; 1 - Recordings; Any media type ID (according to media type IDs defined dynamically in the system).
+	 *             If omitted - all types should be included.
 	 *
 	 * @var string
 	 */
