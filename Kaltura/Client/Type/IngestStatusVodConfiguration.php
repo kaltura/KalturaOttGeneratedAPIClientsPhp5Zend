@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_IngestStatusPartnerConfiguration extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_IngestStatusVodConfiguration extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaIngestStatusPartnerConfiguration';
+		return 'KalturaIngestStatusVodConfiguration';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,28 +48,38 @@ class Kaltura_Client_Type_IngestStatusPartnerConfiguration extends Kaltura_Clien
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->epg) && !empty($xml->epg))
-			$this->epg = Kaltura_Client_ParseUtils::unmarshalObject($xml->epg, "KalturaIngestStatusEpgConfiguration");
-		if(!is_null($jsonObject) && isset($jsonObject->epg) && !empty($jsonObject->epg))
-			$this->epg = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->epg, "KalturaIngestStatusEpgConfiguration");
-		if(!is_null($xml) && count($xml->vod) && !empty($xml->vod))
-			$this->vod = Kaltura_Client_ParseUtils::unmarshalObject($xml->vod, "KalturaIngestStatusVodConfiguration");
-		if(!is_null($jsonObject) && isset($jsonObject->vod) && !empty($jsonObject->vod))
-			$this->vod = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->vod, "KalturaIngestStatusVodConfiguration");
+		if(!is_null($xml) && count($xml->isSupported))
+		{
+			if(!empty($xml->isSupported) && ((int) $xml->isSupported === 1 || strtolower((string)$xml->isSupported) === 'true'))
+				$this->isSupported = true;
+			else
+				$this->isSupported = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->isSupported))
+		{
+			if(!empty($jsonObject->isSupported) && ((int) $jsonObject->isSupported === 1 || strtolower((string)$jsonObject->isSupported) === 'true'))
+				$this->isSupported = true;
+			else
+				$this->isSupported = false;
+		}
+		if(!is_null($xml) && count($xml->retainingPeriod))
+			$this->retainingPeriod = (string)$xml->retainingPeriod;
+		if(!is_null($jsonObject) && isset($jsonObject->retainingPeriod))
+			$this->retainingPeriod = (string)$jsonObject->retainingPeriod;
 	}
 	/**
-	 * Defines the epg configuration of the partner.
+	 * Defines whether partner in question enabled core ingest status service.
 	 *
-	 * @var Kaltura_Client_Type_IngestStatusEpgConfiguration
+	 * @var bool
 	 */
-	public $epg;
+	public $isSupported = null;
 
 	/**
-	 * Defines the vod configuration of the partner.
+	 * Defines the time in seconds that the service retain information about ingest status.
 	 *
-	 * @var Kaltura_Client_Type_IngestStatusVodConfiguration
+	 * @var bigint
 	 */
-	public $vod;
+	public $retainingPeriod = null;
 
 
 }

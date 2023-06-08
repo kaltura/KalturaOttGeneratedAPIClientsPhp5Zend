@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_IngestStatusPartnerConfiguration extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_PersonalActivityCleanupConfiguration extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaIngestStatusPartnerConfiguration';
+		return 'KalturaPersonalActivityCleanupConfiguration';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,28 +48,17 @@ class Kaltura_Client_Type_IngestStatusPartnerConfiguration extends Kaltura_Clien
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->epg) && !empty($xml->epg))
-			$this->epg = Kaltura_Client_ParseUtils::unmarshalObject($xml->epg, "KalturaIngestStatusEpgConfiguration");
-		if(!is_null($jsonObject) && isset($jsonObject->epg) && !empty($jsonObject->epg))
-			$this->epg = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->epg, "KalturaIngestStatusEpgConfiguration");
-		if(!is_null($xml) && count($xml->vod) && !empty($xml->vod))
-			$this->vod = Kaltura_Client_ParseUtils::unmarshalObject($xml->vod, "KalturaIngestStatusVodConfiguration");
-		if(!is_null($jsonObject) && isset($jsonObject->vod) && !empty($jsonObject->vod))
-			$this->vod = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->vod, "KalturaIngestStatusVodConfiguration");
+		if(!is_null($xml) && count($xml->retentionPeriodDays))
+			$this->retentionPeriodDays = (string)$xml->retentionPeriodDays;
+		if(!is_null($jsonObject) && isset($jsonObject->retentionPeriodDays))
+			$this->retentionPeriodDays = (string)$jsonObject->retentionPeriodDays;
 	}
 	/**
-	 * Defines the epg configuration of the partner.
+	 * Retention Period Days
 	 *
-	 * @var Kaltura_Client_Type_IngestStatusEpgConfiguration
+	 * @var bigint
 	 */
-	public $epg;
-
-	/**
-	 * Defines the vod configuration of the partner.
-	 *
-	 * @var Kaltura_Client_Type_IngestStatusVodConfiguration
-	 */
-	public $vod;
+	public $retentionPeriodDays = null;
 
 
 }

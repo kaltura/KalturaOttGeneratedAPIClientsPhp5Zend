@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_IngestStatusPartnerConfiguration extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_ShopPreActionCondition extends Kaltura_Client_Type_BasePreActionCondition
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaIngestStatusPartnerConfiguration';
+		return 'KalturaShopPreActionCondition';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,28 +48,17 @@ class Kaltura_Client_Type_IngestStatusPartnerConfiguration extends Kaltura_Clien
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->epg) && !empty($xml->epg))
-			$this->epg = Kaltura_Client_ParseUtils::unmarshalObject($xml->epg, "KalturaIngestStatusEpgConfiguration");
-		if(!is_null($jsonObject) && isset($jsonObject->epg) && !empty($jsonObject->epg))
-			$this->epg = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->epg, "KalturaIngestStatusEpgConfiguration");
-		if(!is_null($xml) && count($xml->vod) && !empty($xml->vod))
-			$this->vod = Kaltura_Client_ParseUtils::unmarshalObject($xml->vod, "KalturaIngestStatusVodConfiguration");
-		if(!is_null($jsonObject) && isset($jsonObject->vod) && !empty($jsonObject->vod))
-			$this->vod = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->vod, "KalturaIngestStatusVodConfiguration");
+		if(!is_null($xml) && count($xml->shopAssetUserRuleId))
+			$this->shopAssetUserRuleId = (int)$xml->shopAssetUserRuleId;
+		if(!is_null($jsonObject) && isset($jsonObject->shopAssetUserRuleId))
+			$this->shopAssetUserRuleId = (int)$jsonObject->shopAssetUserRuleId;
 	}
 	/**
-	 * Defines the epg configuration of the partner.
+	 * Asset user rule ID with shop condition
 	 *
-	 * @var Kaltura_Client_Type_IngestStatusEpgConfiguration
+	 * @var int
 	 */
-	public $epg;
-
-	/**
-	 * Defines the vod configuration of the partner.
-	 *
-	 * @var Kaltura_Client_Type_IngestStatusVodConfiguration
-	 */
-	public $vod;
+	public $shopAssetUserRuleId = null;
 
 
 }
