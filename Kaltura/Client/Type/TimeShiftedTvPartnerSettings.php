@@ -262,6 +262,20 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 			$this->maxConcurrencyMargin = (int)$xml->maxConcurrencyMargin;
 		if(!is_null($jsonObject) && isset($jsonObject->maxConcurrencyMargin))
 			$this->maxConcurrencyMargin = (int)$jsonObject->maxConcurrencyMargin;
+		if(!is_null($xml) && count($xml->cDvrMigrationEnabled))
+		{
+			if(!empty($xml->cDvrMigrationEnabled) && ((int) $xml->cDvrMigrationEnabled === 1 || strtolower((string)$xml->cDvrMigrationEnabled) === 'true'))
+				$this->cDvrMigrationEnabled = true;
+			else
+				$this->cDvrMigrationEnabled = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->cDvrMigrationEnabled))
+		{
+			if(!empty($jsonObject->cDvrMigrationEnabled) && ((int) $jsonObject->cDvrMigrationEnabled === 1 || strtolower((string)$jsonObject->cDvrMigrationEnabled) === 'true'))
+				$this->cDvrMigrationEnabled = true;
+			else
+				$this->cDvrMigrationEnabled = false;
+		}
 	}
 	/**
 	 * Is catch-up enabled
@@ -444,6 +458,13 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 	 * @var int
 	 */
 	public $maxConcurrencyMargin = null;
+
+	/**
+	 * Is CDVR Migration Enabled
+	 *
+	 * @var bool
+	 */
+	public $cDvrMigrationEnabled = null;
 
 
 }

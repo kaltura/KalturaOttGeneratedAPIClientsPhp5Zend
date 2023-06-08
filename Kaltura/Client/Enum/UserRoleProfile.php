@@ -37,5 +37,6 @@ class Kaltura_Client_Enum_UserRoleProfile extends Kaltura_Client_EnumBase
 	const PARTNER = "PARTNER";
 	const PROFILE = "PROFILE";
 	const SYSTEM = "SYSTEM";
+	const PERMISSION_EMBEDDED = "PERMISSION_EMBEDDED";
 }
 
