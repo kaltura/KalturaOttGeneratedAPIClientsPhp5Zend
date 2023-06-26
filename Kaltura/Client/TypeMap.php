@@ -461,6 +461,7 @@ class Kaltura_Client_TypeMap
 		'KalturaIngestStatusEpgListResponse' => 'Kaltura_Client_Type_IngestStatusEpgListResponse',
 		'KalturaIngestStatusEpgProgramResultListResponse' => 'Kaltura_Client_Type_IngestStatusEpgProgramResultListResponse',
 		'KalturaIngestStatusPartnerConfiguration' => 'Kaltura_Client_Type_IngestStatusPartnerConfiguration',
+		'KalturaIngestStatusVodConfiguration' => 'Kaltura_Client_Type_IngestStatusVodConfiguration',
 		'KalturaIntegerValue' => 'Kaltura_Client_Type_IntegerValue',
 		'KalturaIntegerValueListResponse' => 'Kaltura_Client_Type_IntegerValueListResponse',
 		'KalturaIot' => 'Kaltura_Client_Type_Iot',
@@ -847,6 +848,12 @@ class Kaltura_Client_TypeMap
 		'KalturaUserSocialActionResponse' => 'Kaltura_Client_Type_UserSocialActionResponse',
 		'KalturaUserSubscriptionCondition' => 'Kaltura_Client_Type_UserSubscriptionCondition',
 		'KalturaValue' => 'Kaltura_Client_Type_Value',
+		'KalturaVodIngestAssetResult' => 'Kaltura_Client_Type_VodIngestAssetResult',
+		'KalturaVodIngestAssetResultAggregation' => 'Kaltura_Client_Type_VodIngestAssetResultAggregation',
+		'KalturaVodIngestAssetResultErrorMessage' => 'Kaltura_Client_Type_VodIngestAssetResultErrorMessage',
+		'KalturaVodIngestAssetResultFilter' => 'Kaltura_Client_Type_VodIngestAssetResultFilter',
+		'KalturaVodIngestAssetResultListResponse' => 'Kaltura_Client_Type_VodIngestAssetResultListResponse',
+		'KalturaVodIngestAssetResultResponse' => 'Kaltura_Client_Type_VodIngestAssetResultResponse',
 	);
 	
 	public static function getZendType($kalturaType)

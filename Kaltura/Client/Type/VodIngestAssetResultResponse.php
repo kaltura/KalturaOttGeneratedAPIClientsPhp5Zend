@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_IngestStatusPartnerConfiguration extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_VodIngestAssetResultResponse extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaIngestStatusPartnerConfiguration';
+		return 'KalturaVodIngestAssetResultResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,28 +48,28 @@ class Kaltura_Client_Type_IngestStatusPartnerConfiguration extends Kaltura_Clien
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->epg) && !empty($xml->epg))
-			$this->epg = Kaltura_Client_ParseUtils::unmarshalObject($xml->epg, "KalturaIngestStatusEpgConfiguration");
-		if(!is_null($jsonObject) && isset($jsonObject->epg) && !empty($jsonObject->epg))
-			$this->epg = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->epg, "KalturaIngestStatusEpgConfiguration");
-		if(!is_null($xml) && count($xml->vod) && !empty($xml->vod))
-			$this->vod = Kaltura_Client_ParseUtils::unmarshalObject($xml->vod, "KalturaIngestStatusVodConfiguration");
-		if(!is_null($jsonObject) && isset($jsonObject->vod) && !empty($jsonObject->vod))
-			$this->vod = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->vod, "KalturaIngestStatusVodConfiguration");
+		if(!is_null($xml) && count($xml->result) && !empty($xml->result))
+			$this->result = Kaltura_Client_ParseUtils::unmarshalObject($xml->result, "KalturaVodIngestAssetResultListResponse");
+		if(!is_null($jsonObject) && isset($jsonObject->result) && !empty($jsonObject->result))
+			$this->result = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->result, "KalturaVodIngestAssetResultListResponse");
+		if(!is_null($xml) && count($xml->aggregations) && !empty($xml->aggregations))
+			$this->aggregations = Kaltura_Client_ParseUtils::unmarshalObject($xml->aggregations, "KalturaVodIngestAssetResultAggregation");
+		if(!is_null($jsonObject) && isset($jsonObject->aggregations) && !empty($jsonObject->aggregations))
+			$this->aggregations = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->aggregations, "KalturaVodIngestAssetResultAggregation");
 	}
 	/**
-	 * Defines the epg configuration of the partner.
+	 * Errors
 	 *
-	 * @var Kaltura_Client_Type_IngestStatusEpgConfiguration
+	 * @var Kaltura_Client_Type_VodIngestAssetResultListResponse
 	 */
-	public $epg;
+	public $result;
 
 	/**
-	 * Defines the vod configuration of the partner.
+	 * Aggregated counters
 	 *
-	 * @var Kaltura_Client_Type_IngestStatusVodConfiguration
+	 * @var Kaltura_Client_Type_VodIngestAssetResultAggregation
 	 */
-	public $vod;
+	public $aggregations;
 
 
 }

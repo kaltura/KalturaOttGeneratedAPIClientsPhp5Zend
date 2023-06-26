@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_IngestStatusPartnerConfiguration extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_VodIngestAssetResultErrorMessage extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaIngestStatusPartnerConfiguration';
+		return 'KalturaVodIngestAssetResultErrorMessage';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,28 +48,28 @@ class Kaltura_Client_Type_IngestStatusPartnerConfiguration extends Kaltura_Clien
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->epg) && !empty($xml->epg))
-			$this->epg = Kaltura_Client_ParseUtils::unmarshalObject($xml->epg, "KalturaIngestStatusEpgConfiguration");
-		if(!is_null($jsonObject) && isset($jsonObject->epg) && !empty($jsonObject->epg))
-			$this->epg = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->epg, "KalturaIngestStatusEpgConfiguration");
-		if(!is_null($xml) && count($xml->vod) && !empty($xml->vod))
-			$this->vod = Kaltura_Client_ParseUtils::unmarshalObject($xml->vod, "KalturaIngestStatusVodConfiguration");
-		if(!is_null($jsonObject) && isset($jsonObject->vod) && !empty($jsonObject->vod))
-			$this->vod = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->vod, "KalturaIngestStatusVodConfiguration");
+		if(!is_null($xml) && count($xml->message))
+			$this->message = (string)$xml->message;
+		if(!is_null($jsonObject) && isset($jsonObject->message))
+			$this->message = (string)$jsonObject->message;
+		if(!is_null($xml) && count($xml->code))
+			$this->code = (string)$xml->code;
+		if(!is_null($jsonObject) && isset($jsonObject->code))
+			$this->code = (string)$jsonObject->code;
 	}
 	/**
-	 * Defines the epg configuration of the partner.
+	 * The message description with arguments place holders
 	 *
-	 * @var Kaltura_Client_Type_IngestStatusEpgConfiguration
+	 * @var string
 	 */
-	public $epg;
+	public $message = null;
 
 	/**
-	 * Defines the vod configuration of the partner.
+	 * The message code
 	 *
-	 * @var Kaltura_Client_Type_IngestStatusVodConfiguration
+	 * @var string
 	 */
-	public $vod;
+	public $code = null;
 
 
 }

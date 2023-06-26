@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_IngestStatusPartnerConfiguration extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_VodIngestAssetResultListResponse extends Kaltura_Client_Type_ListResponse
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaIngestStatusPartnerConfiguration';
+		return 'KalturaVodIngestAssetResultListResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,28 +48,27 @@ class Kaltura_Client_Type_IngestStatusPartnerConfiguration extends Kaltura_Clien
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->epg) && !empty($xml->epg))
-			$this->epg = Kaltura_Client_ParseUtils::unmarshalObject($xml->epg, "KalturaIngestStatusEpgConfiguration");
-		if(!is_null($jsonObject) && isset($jsonObject->epg) && !empty($jsonObject->epg))
-			$this->epg = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->epg, "KalturaIngestStatusEpgConfiguration");
-		if(!is_null($xml) && count($xml->vod) && !empty($xml->vod))
-			$this->vod = Kaltura_Client_ParseUtils::unmarshalObject($xml->vod, "KalturaIngestStatusVodConfiguration");
-		if(!is_null($jsonObject) && isset($jsonObject->vod) && !empty($jsonObject->vod))
-			$this->vod = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->vod, "KalturaIngestStatusVodConfiguration");
+		if(!is_null($xml) && count($xml->objects))
+		{
+			if(empty($xml->objects))
+				$this->objects = array();
+			else
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaVodIngestAssetResult");
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->objects))
+		{
+			if(empty($jsonObject->objects))
+				$this->objects = array();
+			else
+				$this->objects = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->objects, "KalturaVodIngestAssetResult");
+		}
 	}
 	/**
-	 * Defines the epg configuration of the partner.
+	 * list of KalturaVodIngestAssetResult
 	 *
-	 * @var Kaltura_Client_Type_IngestStatusEpgConfiguration
+	 * @var array of KalturaVodIngestAssetResult
 	 */
-	public $epg;
-
-	/**
-	 * Defines the vod configuration of the partner.
-	 *
-	 * @var Kaltura_Client_Type_IngestStatusVodConfiguration
-	 */
-	public $vod;
+	public $objects;
 
 
 }
