@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RelatedFilter extends Kaltura_Client_Type_BaseSearchAssetFilter
+class Kaltura_Client_Type_IngestStatusVodConfiguration extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRelatedFilter';
+		return 'KalturaIngestStatusVodConfiguration';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,51 +48,38 @@ class Kaltura_Client_Type_RelatedFilter extends Kaltura_Client_Type_BaseSearchAs
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->idEqual))
-			$this->idEqual = (int)$xml->idEqual;
-		if(!is_null($jsonObject) && isset($jsonObject->idEqual))
-			$this->idEqual = (int)$jsonObject->idEqual;
-		if(!is_null($xml) && count($xml->typeIn))
-			$this->typeIn = (string)$xml->typeIn;
-		if(!is_null($jsonObject) && isset($jsonObject->typeIn))
-			$this->typeIn = (string)$jsonObject->typeIn;
-		if(!is_null($xml) && count($xml->excludeWatched))
+		if(!is_null($xml) && count($xml->isSupported))
 		{
-			if(!empty($xml->excludeWatched) && ((int) $xml->excludeWatched === 1 || strtolower((string)$xml->excludeWatched) === 'true'))
-				$this->excludeWatched = true;
+			if(!empty($xml->isSupported) && ((int) $xml->isSupported === 1 || strtolower((string)$xml->isSupported) === 'true'))
+				$this->isSupported = true;
 			else
-				$this->excludeWatched = false;
+				$this->isSupported = false;
 		}
-		if(!is_null($jsonObject) && isset($jsonObject->excludeWatched))
+		if(!is_null($jsonObject) && isset($jsonObject->isSupported))
 		{
-			if(!empty($jsonObject->excludeWatched) && ((int) $jsonObject->excludeWatched === 1 || strtolower((string)$jsonObject->excludeWatched) === 'true'))
-				$this->excludeWatched = true;
+			if(!empty($jsonObject->isSupported) && ((int) $jsonObject->isSupported === 1 || strtolower((string)$jsonObject->isSupported) === 'true'))
+				$this->isSupported = true;
 			else
-				$this->excludeWatched = false;
+				$this->isSupported = false;
 		}
+		if(!is_null($xml) && count($xml->retainingPeriod))
+			$this->retainingPeriod = (string)$xml->retainingPeriod;
+		if(!is_null($jsonObject) && isset($jsonObject->retainingPeriod))
+			$this->retainingPeriod = (string)$jsonObject->retainingPeriod;
 	}
 	/**
-	 * the ID of the asset for which to return related assets
-	 *
-	 * @var int
-	 */
-	public $idEqual = null;
-
-	/**
-	 * Comma separated list of asset types to search within. 
-	 *             Possible values: any media type ID (according to media type IDs defined dynamically in the system).
-	 *             If omitted - same type as the provided asset.
-	 *
-	 * @var string
-	 */
-	public $typeIn = null;
-
-	/**
-	 * Exclude watched asset.
+	 * Defines whether partner in question enabled core ingest status service.
 	 *
 	 * @var bool
 	 */
-	public $excludeWatched = null;
+	public $isSupported = null;
+
+	/**
+	 * Defines the time in seconds that the service retain information about ingest status.
+	 *
+	 * @var bigint
+	 */
+	public $retainingPeriod = null;
 
 
 }
