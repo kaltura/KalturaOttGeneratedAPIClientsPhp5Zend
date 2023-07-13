@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,20 +38,34 @@ class Kaltura_Client_Type_EntitlementFilter extends Kaltura_Client_Type_BaseEnti
 		return 'KalturaEntitlementFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->productTypeEqual))
+		if(!is_null($xml) && count($xml->productTypeEqual))
 			$this->productTypeEqual = (string)$xml->productTypeEqual;
-		if(count($xml->entityReferenceEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->productTypeEqual))
+			$this->productTypeEqual = (string)$jsonObject->productTypeEqual;
+		if(!is_null($xml) && count($xml->entityReferenceEqual))
 			$this->entityReferenceEqual = (string)$xml->entityReferenceEqual;
-		if(count($xml->isExpiredEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->entityReferenceEqual))
+			$this->entityReferenceEqual = (string)$jsonObject->entityReferenceEqual;
+		if(!is_null($xml) && count($xml->isExpiredEqual))
 		{
 			if(!empty($xml->isExpiredEqual) && ((int) $xml->isExpiredEqual === 1 || strtolower((string)$xml->isExpiredEqual) === 'true'))
+				$this->isExpiredEqual = true;
+			else
+				$this->isExpiredEqual = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->isExpiredEqual))
+		{
+			if(!empty($jsonObject->isExpiredEqual) && ((int) $jsonObject->isExpiredEqual === 1 || strtolower((string)$jsonObject->isExpiredEqual) === 'true'))
 				$this->isExpiredEqual = true;
 			else
 				$this->isExpiredEqual = false;

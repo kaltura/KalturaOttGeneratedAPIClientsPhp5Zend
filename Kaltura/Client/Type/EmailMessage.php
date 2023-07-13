@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,35 +38,61 @@ class Kaltura_Client_Type_EmailMessage extends Kaltura_Client_ObjectBase
 		return 'KalturaEmailMessage';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->templateName))
+		if(!is_null($xml) && count($xml->templateName))
 			$this->templateName = (string)$xml->templateName;
-		if(count($xml->subject))
+		if(!is_null($jsonObject) && isset($jsonObject->templateName))
+			$this->templateName = (string)$jsonObject->templateName;
+		if(!is_null($xml) && count($xml->subject))
 			$this->subject = (string)$xml->subject;
-		if(count($xml->firstName))
+		if(!is_null($jsonObject) && isset($jsonObject->subject))
+			$this->subject = (string)$jsonObject->subject;
+		if(!is_null($xml) && count($xml->firstName))
 			$this->firstName = (string)$xml->firstName;
-		if(count($xml->lastName))
+		if(!is_null($jsonObject) && isset($jsonObject->firstName))
+			$this->firstName = (string)$jsonObject->firstName;
+		if(!is_null($xml) && count($xml->lastName))
 			$this->lastName = (string)$xml->lastName;
-		if(count($xml->senderName))
+		if(!is_null($jsonObject) && isset($jsonObject->lastName))
+			$this->lastName = (string)$jsonObject->lastName;
+		if(!is_null($xml) && count($xml->senderName))
 			$this->senderName = (string)$xml->senderName;
-		if(count($xml->senderFrom))
+		if(!is_null($jsonObject) && isset($jsonObject->senderName))
+			$this->senderName = (string)$jsonObject->senderName;
+		if(!is_null($xml) && count($xml->senderFrom))
 			$this->senderFrom = (string)$xml->senderFrom;
-		if(count($xml->senderTo))
+		if(!is_null($jsonObject) && isset($jsonObject->senderFrom))
+			$this->senderFrom = (string)$jsonObject->senderFrom;
+		if(!is_null($xml) && count($xml->senderTo))
 			$this->senderTo = (string)$xml->senderTo;
-		if(count($xml->bccAddress))
+		if(!is_null($jsonObject) && isset($jsonObject->senderTo))
+			$this->senderTo = (string)$jsonObject->senderTo;
+		if(!is_null($xml) && count($xml->bccAddress))
 			$this->bccAddress = (string)$xml->bccAddress;
-		if(count($xml->extraParameters))
+		if(!is_null($jsonObject) && isset($jsonObject->bccAddress))
+			$this->bccAddress = (string)$jsonObject->bccAddress;
+		if(!is_null($xml) && count($xml->extraParameters))
 		{
 			if(empty($xml->extraParameters))
 				$this->extraParameters = array();
 			else
 				$this->extraParameters = Kaltura_Client_ParseUtils::unmarshalArray($xml->extraParameters, "KalturaKeyValue");
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->extraParameters))
+		{
+			if(empty($jsonObject->extraParameters))
+				$this->extraParameters = array();
+			else
+				$this->extraParameters = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->extraParameters, "KalturaKeyValue");
 		}
 	}
 	/**

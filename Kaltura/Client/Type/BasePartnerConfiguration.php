@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,35 +38,64 @@ class Kaltura_Client_Type_BasePartnerConfiguration extends Kaltura_Client_Type_P
 		return 'KalturaBasePartnerConfiguration';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->ksExpirationSeconds))
+		if(!is_null($xml) && count($xml->ksExpirationSeconds))
 			$this->ksExpirationSeconds = (string)$xml->ksExpirationSeconds;
-		if(count($xml->appTokenSessionMaxDurationSeconds))
+		if(!is_null($jsonObject) && isset($jsonObject->ksExpirationSeconds))
+			$this->ksExpirationSeconds = (string)$jsonObject->ksExpirationSeconds;
+		if(!is_null($xml) && count($xml->appTokenSessionMaxDurationSeconds))
 			$this->appTokenSessionMaxDurationSeconds = (int)$xml->appTokenSessionMaxDurationSeconds;
-		if(count($xml->anonymousKSExpirationSeconds))
+		if(!is_null($jsonObject) && isset($jsonObject->appTokenSessionMaxDurationSeconds))
+			$this->appTokenSessionMaxDurationSeconds = (int)$jsonObject->appTokenSessionMaxDurationSeconds;
+		if(!is_null($xml) && count($xml->anonymousKSExpirationSeconds))
 			$this->anonymousKSExpirationSeconds = (string)$xml->anonymousKSExpirationSeconds;
-		if(count($xml->refreshExpirationForPinLoginSeconds))
+		if(!is_null($jsonObject) && isset($jsonObject->anonymousKSExpirationSeconds))
+			$this->anonymousKSExpirationSeconds = (string)$jsonObject->anonymousKSExpirationSeconds;
+		if(!is_null($xml) && count($xml->refreshExpirationForPinLoginSeconds))
 			$this->refreshExpirationForPinLoginSeconds = (string)$xml->refreshExpirationForPinLoginSeconds;
-		if(count($xml->appTokenMaxExpirySeconds))
+		if(!is_null($jsonObject) && isset($jsonObject->refreshExpirationForPinLoginSeconds))
+			$this->refreshExpirationForPinLoginSeconds = (string)$jsonObject->refreshExpirationForPinLoginSeconds;
+		if(!is_null($xml) && count($xml->appTokenMaxExpirySeconds))
 			$this->appTokenMaxExpirySeconds = (int)$xml->appTokenMaxExpirySeconds;
-		if(count($xml->autoRefreshAppToken))
+		if(!is_null($jsonObject) && isset($jsonObject->appTokenMaxExpirySeconds))
+			$this->appTokenMaxExpirySeconds = (int)$jsonObject->appTokenMaxExpirySeconds;
+		if(!is_null($xml) && count($xml->autoRefreshAppToken))
 		{
 			if(!empty($xml->autoRefreshAppToken) && ((int) $xml->autoRefreshAppToken === 1 || strtolower((string)$xml->autoRefreshAppToken) === 'true'))
 				$this->autoRefreshAppToken = true;
 			else
 				$this->autoRefreshAppToken = false;
 		}
-		if(count($xml->uploadTokenExpirySeconds))
+		if(!is_null($jsonObject) && isset($jsonObject->autoRefreshAppToken))
+		{
+			if(!empty($jsonObject->autoRefreshAppToken) && ((int) $jsonObject->autoRefreshAppToken === 1 || strtolower((string)$jsonObject->autoRefreshAppToken) === 'true'))
+				$this->autoRefreshAppToken = true;
+			else
+				$this->autoRefreshAppToken = false;
+		}
+		if(!is_null($xml) && count($xml->uploadTokenExpirySeconds))
 			$this->uploadTokenExpirySeconds = (int)$xml->uploadTokenExpirySeconds;
-		if(count($xml->apptokenUserValidationDisabled))
+		if(!is_null($jsonObject) && isset($jsonObject->uploadTokenExpirySeconds))
+			$this->uploadTokenExpirySeconds = (int)$jsonObject->uploadTokenExpirySeconds;
+		if(!is_null($xml) && count($xml->apptokenUserValidationDisabled))
 		{
 			if(!empty($xml->apptokenUserValidationDisabled) && ((int) $xml->apptokenUserValidationDisabled === 1 || strtolower((string)$xml->apptokenUserValidationDisabled) === 'true'))
+				$this->apptokenUserValidationDisabled = true;
+			else
+				$this->apptokenUserValidationDisabled = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->apptokenUserValidationDisabled))
+		{
+			if(!empty($jsonObject->apptokenUserValidationDisabled) && ((int) $jsonObject->apptokenUserValidationDisabled === 1 || strtolower((string)$jsonObject->apptokenUserValidationDisabled) === 'true'))
 				$this->apptokenUserValidationDisabled = true;
 			else
 				$this->apptokenUserValidationDisabled = false;

@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,53 +38,96 @@ class Kaltura_Client_Type_ProgramAsset extends Kaltura_Client_Type_Asset
 		return 'KalturaProgramAsset';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->epgChannelId))
+		if(!is_null($xml) && count($xml->epgChannelId))
 			$this->epgChannelId = (string)$xml->epgChannelId;
-		if(count($xml->epgId))
+		if(!is_null($jsonObject) && isset($jsonObject->epgChannelId))
+			$this->epgChannelId = (string)$jsonObject->epgChannelId;
+		if(!is_null($xml) && count($xml->epgId))
 			$this->epgId = (string)$xml->epgId;
-		if(count($xml->relatedMediaId))
+		if(!is_null($jsonObject) && isset($jsonObject->epgId))
+			$this->epgId = (string)$jsonObject->epgId;
+		if(!is_null($xml) && count($xml->relatedMediaId))
 			$this->relatedMediaId = (string)$xml->relatedMediaId;
-		if(count($xml->crid))
+		if(!is_null($jsonObject) && isset($jsonObject->relatedMediaId))
+			$this->relatedMediaId = (string)$jsonObject->relatedMediaId;
+		if(!is_null($xml) && count($xml->crid))
 			$this->crid = (string)$xml->crid;
-		if(count($xml->linearAssetId))
+		if(!is_null($jsonObject) && isset($jsonObject->crid))
+			$this->crid = (string)$jsonObject->crid;
+		if(!is_null($xml) && count($xml->linearAssetId))
 			$this->linearAssetId = (string)$xml->linearAssetId;
-		if(count($xml->enableCdvr))
+		if(!is_null($jsonObject) && isset($jsonObject->linearAssetId))
+			$this->linearAssetId = (string)$jsonObject->linearAssetId;
+		if(!is_null($xml) && count($xml->enableCdvr))
 		{
 			if(!empty($xml->enableCdvr) && ((int) $xml->enableCdvr === 1 || strtolower((string)$xml->enableCdvr) === 'true'))
 				$this->enableCdvr = true;
 			else
 				$this->enableCdvr = false;
 		}
-		if(count($xml->enableCatchUp))
+		if(!is_null($jsonObject) && isset($jsonObject->enableCdvr))
+		{
+			if(!empty($jsonObject->enableCdvr) && ((int) $jsonObject->enableCdvr === 1 || strtolower((string)$jsonObject->enableCdvr) === 'true'))
+				$this->enableCdvr = true;
+			else
+				$this->enableCdvr = false;
+		}
+		if(!is_null($xml) && count($xml->enableCatchUp))
 		{
 			if(!empty($xml->enableCatchUp) && ((int) $xml->enableCatchUp === 1 || strtolower((string)$xml->enableCatchUp) === 'true'))
 				$this->enableCatchUp = true;
 			else
 				$this->enableCatchUp = false;
 		}
-		if(count($xml->enableStartOver))
+		if(!is_null($jsonObject) && isset($jsonObject->enableCatchUp))
+		{
+			if(!empty($jsonObject->enableCatchUp) && ((int) $jsonObject->enableCatchUp === 1 || strtolower((string)$jsonObject->enableCatchUp) === 'true'))
+				$this->enableCatchUp = true;
+			else
+				$this->enableCatchUp = false;
+		}
+		if(!is_null($xml) && count($xml->enableStartOver))
 		{
 			if(!empty($xml->enableStartOver) && ((int) $xml->enableStartOver === 1 || strtolower((string)$xml->enableStartOver) === 'true'))
 				$this->enableStartOver = true;
 			else
 				$this->enableStartOver = false;
 		}
-		if(count($xml->enableTrickPlay))
+		if(!is_null($jsonObject) && isset($jsonObject->enableStartOver))
+		{
+			if(!empty($jsonObject->enableStartOver) && ((int) $jsonObject->enableStartOver === 1 || strtolower((string)$jsonObject->enableStartOver) === 'true'))
+				$this->enableStartOver = true;
+			else
+				$this->enableStartOver = false;
+		}
+		if(!is_null($xml) && count($xml->enableTrickPlay))
 		{
 			if(!empty($xml->enableTrickPlay) && ((int) $xml->enableTrickPlay === 1 || strtolower((string)$xml->enableTrickPlay) === 'true'))
 				$this->enableTrickPlay = true;
 			else
 				$this->enableTrickPlay = false;
 		}
-		if(count($xml->externalOfferIds))
+		if(!is_null($jsonObject) && isset($jsonObject->enableTrickPlay))
+		{
+			if(!empty($jsonObject->enableTrickPlay) && ((int) $jsonObject->enableTrickPlay === 1 || strtolower((string)$jsonObject->enableTrickPlay) === 'true'))
+				$this->enableTrickPlay = true;
+			else
+				$this->enableTrickPlay = false;
+		}
+		if(!is_null($xml) && count($xml->externalOfferIds))
 			$this->externalOfferIds = (string)$xml->externalOfferIds;
+		if(!is_null($jsonObject) && isset($jsonObject->externalOfferIds))
+			$this->externalOfferIds = (string)$jsonObject->externalOfferIds;
 	}
 	/**
 	 * EPG channel identifier

@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,37 +38,64 @@ class Kaltura_Client_Type_Iot extends Kaltura_Client_Type_OTTObjectSupportNullab
 		return 'KalturaIot';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->udid))
+		if(!is_null($xml) && count($xml->udid))
 			$this->udid = (string)$xml->udid;
-		if(count($xml->accessKey))
+		if(!is_null($jsonObject) && isset($jsonObject->udid))
+			$this->udid = (string)$jsonObject->udid;
+		if(!is_null($xml) && count($xml->accessKey))
 			$this->accessKey = (string)$xml->accessKey;
-		if(count($xml->accessSecretKey))
+		if(!is_null($jsonObject) && isset($jsonObject->accessKey))
+			$this->accessKey = (string)$jsonObject->accessKey;
+		if(!is_null($xml) && count($xml->accessSecretKey))
 			$this->accessSecretKey = (string)$xml->accessSecretKey;
-		if(count($xml->username))
+		if(!is_null($jsonObject) && isset($jsonObject->accessSecretKey))
+			$this->accessSecretKey = (string)$jsonObject->accessSecretKey;
+		if(!is_null($xml) && count($xml->username))
 			$this->username = (string)$xml->username;
-		if(count($xml->userPassword))
+		if(!is_null($jsonObject) && isset($jsonObject->username))
+			$this->username = (string)$jsonObject->username;
+		if(!is_null($xml) && count($xml->userPassword))
 			$this->userPassword = (string)$xml->userPassword;
-		if(count($xml->identityId))
+		if(!is_null($jsonObject) && isset($jsonObject->userPassword))
+			$this->userPassword = (string)$jsonObject->userPassword;
+		if(!is_null($xml) && count($xml->identityId))
 			$this->identityId = (string)$xml->identityId;
-		if(count($xml->thingArn))
+		if(!is_null($jsonObject) && isset($jsonObject->identityId))
+			$this->identityId = (string)$jsonObject->identityId;
+		if(!is_null($xml) && count($xml->thingArn))
 			$this->thingArn = (string)$xml->thingArn;
-		if(count($xml->thingId))
+		if(!is_null($jsonObject) && isset($jsonObject->thingArn))
+			$this->thingArn = (string)$jsonObject->thingArn;
+		if(!is_null($xml) && count($xml->thingId))
 			$this->thingId = (string)$xml->thingId;
-		if(count($xml->principal))
+		if(!is_null($jsonObject) && isset($jsonObject->thingId))
+			$this->thingId = (string)$jsonObject->thingId;
+		if(!is_null($xml) && count($xml->principal))
 			$this->principal = (string)$xml->principal;
-		if(count($xml->endPoint))
+		if(!is_null($jsonObject) && isset($jsonObject->principal))
+			$this->principal = (string)$jsonObject->principal;
+		if(!is_null($xml) && count($xml->endPoint))
 			$this->endPoint = (string)$xml->endPoint;
-		if(count($xml->extendedEndPoint))
+		if(!is_null($jsonObject) && isset($jsonObject->endPoint))
+			$this->endPoint = (string)$jsonObject->endPoint;
+		if(!is_null($xml) && count($xml->extendedEndPoint))
 			$this->extendedEndPoint = (string)$xml->extendedEndPoint;
-		if(count($xml->identityPoolId))
+		if(!is_null($jsonObject) && isset($jsonObject->extendedEndPoint))
+			$this->extendedEndPoint = (string)$jsonObject->extendedEndPoint;
+		if(!is_null($xml) && count($xml->identityPoolId))
 			$this->identityPoolId = (string)$xml->identityPoolId;
+		if(!is_null($jsonObject) && isset($jsonObject->identityPoolId))
+			$this->identityPoolId = (string)$jsonObject->identityPoolId;
 	}
 	/**
 	 * id

@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,36 +38,62 @@ class Kaltura_Client_Type_Configurations extends Kaltura_Client_ObjectBase
 		return 'KalturaConfigurations';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->partnerId))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->partnerId))
 			$this->partnerId = (int)$xml->partnerId;
-		if(count($xml->configurationGroupId))
+		if(!is_null($jsonObject) && isset($jsonObject->partnerId))
+			$this->partnerId = (int)$jsonObject->partnerId;
+		if(!is_null($xml) && count($xml->configurationGroupId))
 			$this->configurationGroupId = (string)$xml->configurationGroupId;
-		if(count($xml->appName))
+		if(!is_null($jsonObject) && isset($jsonObject->configurationGroupId))
+			$this->configurationGroupId = (string)$jsonObject->configurationGroupId;
+		if(!is_null($xml) && count($xml->appName))
 			$this->appName = (string)$xml->appName;
-		if(count($xml->clientVersion))
+		if(!is_null($jsonObject) && isset($jsonObject->appName))
+			$this->appName = (string)$jsonObject->appName;
+		if(!is_null($xml) && count($xml->clientVersion))
 			$this->clientVersion = (string)$xml->clientVersion;
-		if(count($xml->platform))
+		if(!is_null($jsonObject) && isset($jsonObject->clientVersion))
+			$this->clientVersion = (string)$jsonObject->clientVersion;
+		if(!is_null($xml) && count($xml->platform))
 			$this->platform = (string)$xml->platform;
-		if(count($xml->externalPushId))
+		if(!is_null($jsonObject) && isset($jsonObject->platform))
+			$this->platform = (string)$jsonObject->platform;
+		if(!is_null($xml) && count($xml->externalPushId))
 			$this->externalPushId = (string)$xml->externalPushId;
-		if(count($xml->isForceUpdate))
+		if(!is_null($jsonObject) && isset($jsonObject->externalPushId))
+			$this->externalPushId = (string)$jsonObject->externalPushId;
+		if(!is_null($xml) && count($xml->isForceUpdate))
 		{
 			if(!empty($xml->isForceUpdate) && ((int) $xml->isForceUpdate === 1 || strtolower((string)$xml->isForceUpdate) === 'true'))
 				$this->isForceUpdate = true;
 			else
 				$this->isForceUpdate = false;
 		}
-		if(count($xml->content))
+		if(!is_null($jsonObject) && isset($jsonObject->isForceUpdate))
+		{
+			if(!empty($jsonObject->isForceUpdate) && ((int) $jsonObject->isForceUpdate === 1 || strtolower((string)$jsonObject->isForceUpdate) === 'true'))
+				$this->isForceUpdate = true;
+			else
+				$this->isForceUpdate = false;
+		}
+		if(!is_null($xml) && count($xml->content))
 			$this->content = (string)$xml->content;
+		if(!is_null($jsonObject) && isset($jsonObject->content))
+			$this->content = (string)$jsonObject->content;
 	}
 	/**
 	 * Configuration id

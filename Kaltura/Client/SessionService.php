@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -50,12 +50,18 @@ class Kaltura_Client_SessionService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("session", "get", "KalturaSession", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSession");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Session");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSession");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Session");
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -68,11 +74,17 @@ class Kaltura_Client_SessionService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("session", "revoke", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
+		}
+			return $resultObject;
 	}
 
 	/**
@@ -86,11 +98,17 @@ class Kaltura_Client_SessionService extends Kaltura_Client_ServiceBase
 		$this->client->queueServiceActionCall("session", "switchUser", "KalturaLoginSession", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
-		$resultXml = $this->client->doQueue();
-		$resultXmlObject = new \SimpleXMLElement($resultXml);
-		$this->client->checkIfError($resultXmlObject->result);
-		$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLoginSession");
-		$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LoginSession");
-		return $resultObject;
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLoginSession");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LoginSession");
+		}
+			return $resultObject;
 	}
 }

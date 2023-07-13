@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,27 +38,44 @@ class Kaltura_Client_Type_InboxMessage extends Kaltura_Client_ObjectBase
 		return 'KalturaInboxMessage';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->message))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->message))
 			$this->message = (string)$xml->message;
-		if(count($xml->status))
+		if(!is_null($jsonObject) && isset($jsonObject->message))
+			$this->message = (string)$jsonObject->message;
+		if(!is_null($xml) && count($xml->status))
 			$this->status = (string)$xml->status;
-		if(count($xml->type))
+		if(!is_null($jsonObject) && isset($jsonObject->status))
+			$this->status = (string)$jsonObject->status;
+		if(!is_null($xml) && count($xml->type))
 			$this->type = (string)$xml->type;
-		if(count($xml->createdAt))
+		if(!is_null($jsonObject) && isset($jsonObject->type))
+			$this->type = (string)$jsonObject->type;
+		if(!is_null($xml) && count($xml->createdAt))
 			$this->createdAt = (string)$xml->createdAt;
-		if(count($xml->url))
+		if(!is_null($jsonObject) && isset($jsonObject->createdAt))
+			$this->createdAt = (string)$jsonObject->createdAt;
+		if(!is_null($xml) && count($xml->url))
 			$this->url = (string)$xml->url;
-		if(count($xml->campaignId))
+		if(!is_null($jsonObject) && isset($jsonObject->url))
+			$this->url = (string)$jsonObject->url;
+		if(!is_null($xml) && count($xml->campaignId))
 			$this->campaignId = (string)$xml->campaignId;
+		if(!is_null($jsonObject) && isset($jsonObject->campaignId))
+			$this->campaignId = (string)$jsonObject->campaignId;
 	}
 	/**
 	 * message id

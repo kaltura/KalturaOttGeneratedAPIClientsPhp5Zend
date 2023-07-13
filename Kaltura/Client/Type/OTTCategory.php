@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,39 +38,69 @@ class Kaltura_Client_Type_OTTCategory extends Kaltura_Client_ObjectBase
 		return 'KalturaOTTCategory';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->id))
+		if(!is_null($xml) && count($xml->id))
 			$this->id = (string)$xml->id;
-		if(count($xml->name))
+		if(!is_null($jsonObject) && isset($jsonObject->id))
+			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->name))
 			$this->name = (string)$xml->name;
-		if(count($xml->parentCategoryId))
+		if(!is_null($jsonObject) && isset($jsonObject->name))
+			$this->name = (string)$jsonObject->name;
+		if(!is_null($xml) && count($xml->parentCategoryId))
 			$this->parentCategoryId = (string)$xml->parentCategoryId;
-		if(count($xml->childCategories))
+		if(!is_null($jsonObject) && isset($jsonObject->parentCategoryId))
+			$this->parentCategoryId = (string)$jsonObject->parentCategoryId;
+		if(!is_null($xml) && count($xml->childCategories))
 		{
 			if(empty($xml->childCategories))
 				$this->childCategories = array();
 			else
 				$this->childCategories = Kaltura_Client_ParseUtils::unmarshalArray($xml->childCategories, "KalturaOTTCategory");
 		}
-		if(count($xml->channels))
+		if(!is_null($jsonObject) && isset($jsonObject->childCategories))
+		{
+			if(empty($jsonObject->childCategories))
+				$this->childCategories = array();
+			else
+				$this->childCategories = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->childCategories, "KalturaOTTCategory");
+		}
+		if(!is_null($xml) && count($xml->channels))
 		{
 			if(empty($xml->channels))
 				$this->channels = array();
 			else
 				$this->channels = Kaltura_Client_ParseUtils::unmarshalArray($xml->channels, "KalturaChannel");
 		}
-		if(count($xml->images))
+		if(!is_null($jsonObject) && isset($jsonObject->channels))
+		{
+			if(empty($jsonObject->channels))
+				$this->channels = array();
+			else
+				$this->channels = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->channels, "KalturaChannel");
+		}
+		if(!is_null($xml) && count($xml->images))
 		{
 			if(empty($xml->images))
 				$this->images = array();
 			else
 				$this->images = Kaltura_Client_ParseUtils::unmarshalArray($xml->images, "KalturaMediaImage");
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->images))
+		{
+			if(empty($jsonObject->images))
+				$this->images = array();
+			else
+				$this->images = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->images, "KalturaMediaImage");
 		}
 	}
 	/**

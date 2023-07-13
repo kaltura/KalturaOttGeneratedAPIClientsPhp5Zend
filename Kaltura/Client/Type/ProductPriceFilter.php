@@ -9,7 +9,7 @@
 // to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2022  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -38,30 +38,50 @@ class Kaltura_Client_Type_ProductPriceFilter extends Kaltura_Client_Type_Filter
 		return 'KalturaProductPriceFilter';
 	}
 	
-	public function __construct(SimpleXMLElement $xml = null)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		parent::__construct($xml);
+		parent::__construct($xml, $jsonObject);
 		
-		if(is_null($xml))
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(count($xml->subscriptionIdIn))
+		if(!is_null($xml) && count($xml->subscriptionIdIn))
 			$this->subscriptionIdIn = (string)$xml->subscriptionIdIn;
-		if(count($xml->fileIdIn))
+		if(!is_null($jsonObject) && isset($jsonObject->subscriptionIdIn))
+			$this->subscriptionIdIn = (string)$jsonObject->subscriptionIdIn;
+		if(!is_null($xml) && count($xml->fileIdIn))
 			$this->fileIdIn = (string)$xml->fileIdIn;
-		if(count($xml->collectionIdIn))
+		if(!is_null($jsonObject) && isset($jsonObject->fileIdIn))
+			$this->fileIdIn = (string)$jsonObject->fileIdIn;
+		if(!is_null($xml) && count($xml->collectionIdIn))
 			$this->collectionIdIn = (string)$xml->collectionIdIn;
-		if(count($xml->isLowest))
+		if(!is_null($jsonObject) && isset($jsonObject->collectionIdIn))
+			$this->collectionIdIn = (string)$jsonObject->collectionIdIn;
+		if(!is_null($xml) && count($xml->isLowest))
 		{
 			if(!empty($xml->isLowest) && ((int) $xml->isLowest === 1 || strtolower((string)$xml->isLowest) === 'true'))
 				$this->isLowest = true;
 			else
 				$this->isLowest = false;
 		}
-		if(count($xml->couponCodeEqual))
+		if(!is_null($jsonObject) && isset($jsonObject->isLowest))
+		{
+			if(!empty($jsonObject->isLowest) && ((int) $jsonObject->isLowest === 1 || strtolower((string)$jsonObject->isLowest) === 'true'))
+				$this->isLowest = true;
+			else
+				$this->isLowest = false;
+		}
+		if(!is_null($xml) && count($xml->couponCodeEqual))
 			$this->couponCodeEqual = (string)$xml->couponCodeEqual;
-		if(count($xml->programAssetGroupOfferIdIn))
+		if(!is_null($jsonObject) && isset($jsonObject->couponCodeEqual))
+			$this->couponCodeEqual = (string)$jsonObject->couponCodeEqual;
+		if(!is_null($xml) && count($xml->programAssetGroupOfferIdIn))
 			$this->programAssetGroupOfferIdIn = (string)$xml->programAssetGroupOfferIdIn;
+		if(!is_null($jsonObject) && isset($jsonObject->programAssetGroupOfferIdIn))
+			$this->programAssetGroupOfferIdIn = (string)$jsonObject->programAssetGroupOfferIdIn;
 	}
 	/**
 	 * Comma separated subscriptions identifiers
