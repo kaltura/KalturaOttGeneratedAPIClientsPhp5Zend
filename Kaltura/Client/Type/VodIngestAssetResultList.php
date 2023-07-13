@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_VodIngestAssetResultList extends Kaltura_Client_Type_ListResponse
+class Kaltura_Client_Type_VodIngestAssetResultList extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
@@ -62,6 +62,10 @@ class Kaltura_Client_Type_VodIngestAssetResultList extends Kaltura_Client_Type_L
 			else
 				$this->objects = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->objects, "KalturaVodIngestAssetResult");
 		}
+		if(!is_null($xml) && count($xml->totalCount))
+			$this->totalCount = (int)$xml->totalCount;
+		if(!is_null($jsonObject) && isset($jsonObject->totalCount))
+			$this->totalCount = (int)$jsonObject->totalCount;
 	}
 	/**
 	 * list of KalturaVodIngestAssetResult
@@ -69,6 +73,13 @@ class Kaltura_Client_Type_VodIngestAssetResultList extends Kaltura_Client_Type_L
 	 * @var array of KalturaVodIngestAssetResult
 	 */
 	public $objects;
+
+	/**
+	 * Total items
+	 *
+	 * @var int
+	 */
+	public $totalCount = null;
 
 
 }
