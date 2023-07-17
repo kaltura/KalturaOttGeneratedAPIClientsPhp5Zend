@@ -60,6 +60,10 @@ class Kaltura_Client_Type_ChannelExternalFilter extends Kaltura_Client_Type_Asse
 			$this->freeText = (string)$xml->freeText;
 		if(!is_null($jsonObject) && isset($jsonObject->freeText))
 			$this->freeText = (string)$jsonObject->freeText;
+		if(!is_null($xml) && count($xml->alias))
+			$this->alias = (string)$xml->alias;
+		if(!is_null($jsonObject) && isset($jsonObject->alias))
+			$this->alias = (string)$jsonObject->alias;
 	}
 	/**
 	 * External Channel Id.
@@ -81,6 +85,13 @@ class Kaltura_Client_Type_ChannelExternalFilter extends Kaltura_Client_Type_Asse
 	 * @var string
 	 */
 	public $freeText = null;
+
+	/**
+	 * Alias for External Channel Id.
+	 *
+	 * @var string
+	 */
+	public $alias = null;
 
 
 }
