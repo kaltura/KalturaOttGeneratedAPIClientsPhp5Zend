@@ -32,7 +32,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_LineupService extends Kaltura_Client_ServiceBase
+class Kaltura_Client_PersonalActivityCleanupService extends Kaltura_Client_ServiceBase
 {
 	function __construct(Kaltura_Client_Client $client = null)
 	{
@@ -40,15 +40,13 @@ class Kaltura_Client_LineupService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_LineupChannelAssetListResponse
+	 * @return Kaltura_Client_Type_PersonalActivityCleanupConfiguration
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function get($pageIndex, $pageSize)
+	function getPartnerConfiguration()
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "pageIndex", $pageIndex);
-		$this->client->addParam($kparams, "pageSize", $pageSize);
-		$this->client->queueServiceActionCall("lineup", "get", "KalturaLineupChannelAssetListResponse", $kparams);
+		$this->client->queueServiceActionCall("personalactivitycleanup", "getPartnerConfiguration", "KalturaPersonalActivityCleanupConfiguration", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$rawResult = $this->client->doQueue();
@@ -59,23 +57,21 @@ class Kaltura_Client_LineupService extends Kaltura_Client_ServiceBase
 		} else {
 			$resultXmlObject = new \SimpleXMLElement($rawResult);
 			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLineupChannelAssetListResponse");
-			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LineupChannelAssetListResponse");
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaPersonalActivityCleanupConfiguration");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_PersonalActivityCleanupConfiguration");
 		}
 			return $resultObject;
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_LineupChannelAssetListResponse
+	 * @return Kaltura_Client_Type_PersonalActivityCleanupConfiguration
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function listAction(Kaltura_Client_Type_LineupRegionalChannelFilter $filter, Kaltura_Client_Type_FilterPager $pager = null)
+	function updatePartnerConfiguration(Kaltura_Client_Type_PersonalActivityCleanupConfiguration $personalActivityCleanupConfiguration)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "filter", $filter->toParams());
-		if ($pager !== null)
-			$this->client->addParam($kparams, "pager", $pager->toParams());
-		$this->client->queueServiceActionCall("lineup", "list", "KalturaLineupChannelAssetListResponse", $kparams);
+		$this->client->addParam($kparams, "personalActivityCleanupConfiguration", $personalActivityCleanupConfiguration->toParams());
+		$this->client->queueServiceActionCall("personalactivitycleanup", "updatePartnerConfiguration", "KalturaPersonalActivityCleanupConfiguration", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$rawResult = $this->client->doQueue();
@@ -86,32 +82,8 @@ class Kaltura_Client_LineupService extends Kaltura_Client_ServiceBase
 		} else {
 			$resultXmlObject = new \SimpleXMLElement($rawResult);
 			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLineupChannelAssetListResponse");
-			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LineupChannelAssetListResponse");
-		}
-			return $resultObject;
-	}
-
-	/**
-	 * @return bool
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function sendUpdatedNotification($regionIds)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "regionIds", $regionIds);
-		$this->client->queueServiceActionCall("lineup", "sendUpdatedNotification", null, $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$rawResult = $this->client->doQueue();
-		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
-			$jsObject = json_decode($rawResult);
-			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
-			return $resultObject;
-		} else {
-			$resultXmlObject = new \SimpleXMLElement($rawResult);
-			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaPersonalActivityCleanupConfiguration");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_PersonalActivityCleanupConfiguration");
 		}
 			return $resultObject;
 	}
