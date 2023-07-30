@@ -56,6 +56,34 @@ class Kaltura_Client_Type_PaddedRecording extends Kaltura_Client_Type_Recording
 			$this->endPadding = (int)$xml->endPadding;
 		if(!is_null($jsonObject) && isset($jsonObject->endPadding))
 			$this->endPadding = (int)$jsonObject->endPadding;
+		if(!is_null($xml) && count($xml->startPaddingIsPersonal))
+		{
+			if(!empty($xml->startPaddingIsPersonal) && ((int) $xml->startPaddingIsPersonal === 1 || strtolower((string)$xml->startPaddingIsPersonal) === 'true'))
+				$this->startPaddingIsPersonal = true;
+			else
+				$this->startPaddingIsPersonal = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->startPaddingIsPersonal))
+		{
+			if(!empty($jsonObject->startPaddingIsPersonal) && ((int) $jsonObject->startPaddingIsPersonal === 1 || strtolower((string)$jsonObject->startPaddingIsPersonal) === 'true'))
+				$this->startPaddingIsPersonal = true;
+			else
+				$this->startPaddingIsPersonal = false;
+		}
+		if(!is_null($xml) && count($xml->endPaddingIsPersonal))
+		{
+			if(!empty($xml->endPaddingIsPersonal) && ((int) $xml->endPaddingIsPersonal === 1 || strtolower((string)$xml->endPaddingIsPersonal) === 'true'))
+				$this->endPaddingIsPersonal = true;
+			else
+				$this->endPaddingIsPersonal = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->endPaddingIsPersonal))
+		{
+			if(!empty($jsonObject->endPaddingIsPersonal) && ((int) $jsonObject->endPaddingIsPersonal === 1 || strtolower((string)$jsonObject->endPaddingIsPersonal) === 'true'))
+				$this->endPaddingIsPersonal = true;
+			else
+				$this->endPaddingIsPersonal = false;
+		}
 	}
 	/**
 	 * Household specific start padding of the recording
@@ -70,6 +98,22 @@ class Kaltura_Client_Type_PaddedRecording extends Kaltura_Client_Type_Recording
 	 * @var int
 	 */
 	public $endPadding = null;
+
+	/**
+	 * Indicates whether startPadding value is personal padding (counts towards HH quota) or system padding (does not count towards HH quota).
+	 *
+	 * @var bool
+	 * @readonly
+	 */
+	public $startPaddingIsPersonal = null;
+
+	/**
+	 * Indicates whether endPadding value is personal padding (counts towards HH quota) or system padding (does not count towards HH quota).
+	 *
+	 * @var bool
+	 * @readonly
+	 */
+	public $endPaddingIsPersonal = null;
 
 
 }
