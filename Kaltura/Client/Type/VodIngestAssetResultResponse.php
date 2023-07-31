@@ -49,9 +49,9 @@ class Kaltura_Client_Type_VodIngestAssetResultResponse extends Kaltura_Client_Ob
 			return;
 		
 		if(!is_null($xml) && count($xml->result) && !empty($xml->result))
-			$this->result = Kaltura_Client_ParseUtils::unmarshalObject($xml->result, "KalturaVodIngestAssetResultListResponse");
+			$this->result = Kaltura_Client_ParseUtils::unmarshalObject($xml->result, "KalturaVodIngestAssetResultList");
 		if(!is_null($jsonObject) && isset($jsonObject->result) && !empty($jsonObject->result))
-			$this->result = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->result, "KalturaVodIngestAssetResultListResponse");
+			$this->result = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->result, "KalturaVodIngestAssetResultList");
 		if(!is_null($xml) && count($xml->aggregations) && !empty($xml->aggregations))
 			$this->aggregations = Kaltura_Client_ParseUtils::unmarshalObject($xml->aggregations, "KalturaVodIngestAssetResultAggregation");
 		if(!is_null($jsonObject) && isset($jsonObject->aggregations) && !empty($jsonObject->aggregations))
@@ -60,7 +60,7 @@ class Kaltura_Client_Type_VodIngestAssetResultResponse extends Kaltura_Client_Ob
 	/**
 	 * Errors
 	 *
-	 * @var Kaltura_Client_Type_VodIngestAssetResultListResponse
+	 * @var Kaltura_Client_Type_VodIngestAssetResultList
 	 */
 	public $result;
 
