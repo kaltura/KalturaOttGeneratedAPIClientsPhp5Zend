@@ -31,10 +31,35 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_WatchedAllReturnStrategy extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_CouponFilter extends Kaltura_Client_Type_Filter
 {
-	const RETURN_NO_NEXT_EPISODE = "RETURN_NO_NEXT_EPISODE";
-	const RETURN_FIRST_EPISODE = "RETURN_FIRST_EPISODE";
-	const RETURN_LAST_EPISODE = "RETURN_LAST_EPISODE";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaCouponFilter';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
+	{
+		parent::__construct($xml, $jsonObject);
+		
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
+			return;
+		
+		if(!is_null($xml) && count($xml->couponCodesIn))
+			$this->couponCodesIn = (string)$xml->couponCodesIn;
+		if(!is_null($jsonObject) && isset($jsonObject->couponCodesIn))
+			$this->couponCodesIn = (string)$jsonObject->couponCodesIn;
+	}
+	/**
+	 * Comma separated list of coupon codes.
+	 *
+	 * @var string
+	 */
+	public $couponCodesIn = null;
+
+
 }
 

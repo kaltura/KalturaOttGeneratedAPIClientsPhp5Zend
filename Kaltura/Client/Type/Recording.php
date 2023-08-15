@@ -90,10 +90,6 @@ class Kaltura_Client_Type_Recording extends Kaltura_Client_ObjectBase
 			$this->updateDate = (string)$xml->updateDate;
 		if(!is_null($jsonObject) && isset($jsonObject->updateDate))
 			$this->updateDate = (string)$jsonObject->updateDate;
-		if(!is_null($xml) && count($xml->duration))
-			$this->duration = (string)$xml->duration;
-		if(!is_null($jsonObject) && isset($jsonObject->duration))
-			$this->duration = (string)$jsonObject->duration;
 	}
 	/**
 	 * Kaltura unique ID representing the recording identifier
@@ -156,14 +152,6 @@ class Kaltura_Client_Type_Recording extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $updateDate = null;
-
-	/**
-	 * Duration in seconds
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $duration = null;
 
 
 }

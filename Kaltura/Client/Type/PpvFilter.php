@@ -70,10 +70,6 @@ class Kaltura_Client_Type_PpvFilter extends Kaltura_Client_Type_Filter
 			else
 				$this->alsoInactive = false;
 		}
-		if(!is_null($xml) && count($xml->assetUserRuleIdIn))
-			$this->assetUserRuleIdIn = (string)$xml->assetUserRuleIdIn;
-		if(!is_null($jsonObject) && isset($jsonObject->assetUserRuleIdIn))
-			$this->assetUserRuleIdIn = (string)$jsonObject->assetUserRuleIdIn;
 	}
 	/**
 	 * Comma separated identifiers
@@ -95,13 +91,6 @@ class Kaltura_Client_Type_PpvFilter extends Kaltura_Client_Type_Filter
 	 * @var bool
 	 */
 	public $alsoInactive = null;
-
-	/**
-	 * comma-separated list of KalturaPpv.assetUserRuleId values.  Matching KalturaPpv objects will be returned by the filter.
-	 *
-	 * @var string
-	 */
-	public $assetUserRuleIdIn = null;
 
 
 }

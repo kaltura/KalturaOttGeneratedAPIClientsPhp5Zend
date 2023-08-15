@@ -96,10 +96,6 @@ class Kaltura_Client_Type_Campaign extends Kaltura_Client_Type_OTTObjectSupportN
 			$this->collectionIdIn = (string)$xml->collectionIdIn;
 		if(!is_null($jsonObject) && isset($jsonObject->collectionIdIn))
 			$this->collectionIdIn = (string)$jsonObject->collectionIdIn;
-		if(!is_null($xml) && count($xml->assetUserRuleId))
-			$this->assetUserRuleId = (string)$xml->assetUserRuleId;
-		if(!is_null($jsonObject) && isset($jsonObject->assetUserRuleId))
-			$this->assetUserRuleId = (string)$jsonObject->assetUserRuleId;
 	}
 	/**
 	 * ID
@@ -188,13 +184,6 @@ class Kaltura_Client_Type_Campaign extends Kaltura_Client_Type_OTTObjectSupportN
 	 * @var string
 	 */
 	public $collectionIdIn = null;
-
-	/**
-	 * Asset user rule identifier
-	 *
-	 * @var bigint
-	 */
-	public $assetUserRuleId = null;
 
 
 }
