@@ -62,6 +62,10 @@ class Kaltura_Client_Type_ProgramAssetGroupOfferFilter extends Kaltura_Client_Ty
 			else
 				$this->alsoInactive = false;
 		}
+		if(!is_null($xml) && count($xml->nameContains))
+			$this->nameContains = (string)$xml->nameContains;
+		if(!is_null($jsonObject) && isset($jsonObject->nameContains))
+			$this->nameContains = (string)$jsonObject->nameContains;
 	}
 	/**
 	 * return also inactive
@@ -69,6 +73,13 @@ class Kaltura_Client_Type_ProgramAssetGroupOfferFilter extends Kaltura_Client_Ty
 	 * @var bool
 	 */
 	public $alsoInactive = null;
+
+	/**
+	 * A string that is included in the PAGO name
+	 *
+	 * @var string
+	 */
+	public $nameContains = null;
 
 
 }

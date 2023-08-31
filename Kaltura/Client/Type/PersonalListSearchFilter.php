@@ -55,7 +55,7 @@ class Kaltura_Client_Type_PersonalListSearchFilter extends Kaltura_Client_Type_B
 	}
 	/**
 	 * Comma separated list of partner list types to search within. 
-	 *             If omitted – all types should be included.
+	 *             If omitted - all types should be included.
 	 *
 	 * @var string
 	 */
