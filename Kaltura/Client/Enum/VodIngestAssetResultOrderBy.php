@@ -31,35 +31,15 @@
  * @package Kaltura
  * @subpackage Client
  */
-abstract class Kaltura_Client_Type_FilterAction extends Kaltura_Client_Type_AssetRuleAction
+class Kaltura_Client_Enum_VodIngestAssetResultOrderBy extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaFilterAction';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
-	{
-		parent::__construct($xml, $jsonObject);
-		
-		if(!is_null($xml) && !is_null($jsonObject))
-			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
-		
-		if(is_null($xml) && is_null($jsonObject))
-			return;
-		
-		if(!is_null($xml) && count($xml->preActionCondition) && !empty($xml->preActionCondition))
-			$this->preActionCondition = Kaltura_Client_ParseUtils::unmarshalObject($xml->preActionCondition, "KalturaBasePreActionCondition");
-		if(!is_null($jsonObject) && isset($jsonObject->preActionCondition) && !empty($jsonObject->preActionCondition))
-			$this->preActionCondition = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->preActionCondition, "KalturaBasePreActionCondition");
-	}
-	/**
-	 * PreAction condition
-	 *
-	 * @var Kaltura_Client_Type_BasePreActionCondition
-	 */
-	public $preActionCondition;
-
-
+	const FILE_NAME_ASC = "FILE_NAME_ASC";
+	const FILE_NAME_DESC = "FILE_NAME_DESC";
+	const ASSET_NAME_ASC = "ASSET_NAME_ASC";
+	const ASSET_NAME_DESC = "ASSET_NAME_DESC";
+	const INGEST_DATE_ASC = "INGEST_DATE_ASC";
+	const INGEST_DATE_DESC = "INGEST_DATE_DESC";
+	const STATUS_ASC = "STATUS_ASC";
+	const STATUS_DESC = "STATUS_DESC";
 }
 
