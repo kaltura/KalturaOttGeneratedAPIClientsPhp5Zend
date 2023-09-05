@@ -62,6 +62,14 @@ class Kaltura_Client_Type_LineupChannelAssetListResponse extends Kaltura_Client_
 			else
 				$this->objects = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->objects, "KalturaLineupChannelAsset");
 		}
+		if(!is_null($xml) && count($xml->lineupExternalId))
+			$this->lineupExternalId = (string)$xml->lineupExternalId;
+		if(!is_null($jsonObject) && isset($jsonObject->lineupExternalId))
+			$this->lineupExternalId = (string)$jsonObject->lineupExternalId;
+		if(!is_null($xml) && count($xml->parentLineupExternalId))
+			$this->parentLineupExternalId = (string)$xml->parentLineupExternalId;
+		if(!is_null($jsonObject) && isset($jsonObject->parentLineupExternalId))
+			$this->parentLineupExternalId = (string)$jsonObject->parentLineupExternalId;
 	}
 	/**
 	 * A list of objects
@@ -69,6 +77,20 @@ class Kaltura_Client_Type_LineupChannelAssetListResponse extends Kaltura_Client_
 	 * @var array of KalturaLineupChannelAsset
 	 */
 	public $objects;
+
+	/**
+	 * Lineup External Id
+	 *
+	 * @var string
+	 */
+	public $lineupExternalId = null;
+
+	/**
+	 * Parent Lineup External Id
+	 *
+	 * @var string
+	 */
+	public $parentLineupExternalId = null;
 
 
 }

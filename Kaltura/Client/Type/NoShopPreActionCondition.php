@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RelatedFilter extends Kaltura_Client_Type_BaseSearchAssetFilter
+class Kaltura_Client_Type_NoShopPreActionCondition extends Kaltura_Client_Type_BasePreActionCondition
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRelatedFilter';
+		return 'KalturaNoShopPreActionCondition';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,52 +48,7 @@ class Kaltura_Client_Type_RelatedFilter extends Kaltura_Client_Type_BaseSearchAs
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->idEqual))
-			$this->idEqual = (int)$xml->idEqual;
-		if(!is_null($jsonObject) && isset($jsonObject->idEqual))
-			$this->idEqual = (int)$jsonObject->idEqual;
-		if(!is_null($xml) && count($xml->typeIn))
-			$this->typeIn = (string)$xml->typeIn;
-		if(!is_null($jsonObject) && isset($jsonObject->typeIn))
-			$this->typeIn = (string)$jsonObject->typeIn;
-		if(!is_null($xml) && count($xml->excludeWatched))
-		{
-			if(!empty($xml->excludeWatched) && ((int) $xml->excludeWatched === 1 || strtolower((string)$xml->excludeWatched) === 'true'))
-				$this->excludeWatched = true;
-			else
-				$this->excludeWatched = false;
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->excludeWatched))
-		{
-			if(!empty($jsonObject->excludeWatched) && ((int) $jsonObject->excludeWatched === 1 || strtolower((string)$jsonObject->excludeWatched) === 'true'))
-				$this->excludeWatched = true;
-			else
-				$this->excludeWatched = false;
-		}
 	}
-	/**
-	 * the ID of the asset for which to return related assets
-	 *
-	 * @var int
-	 */
-	public $idEqual = null;
-
-	/**
-	 * Comma separated list of asset types to search within. 
-	 *             Possible values: any media type ID (according to media type IDs defined dynamically in the system).
-	 *             If omitted - same type as the provided asset.
-	 *
-	 * @var string
-	 */
-	public $typeIn = null;
-
-	/**
-	 * Exclude watched asset.
-	 *
-	 * @var bool
-	 */
-	public $excludeWatched = null;
-
 
 }
 
