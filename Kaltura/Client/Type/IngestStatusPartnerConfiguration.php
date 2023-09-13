@@ -52,10 +52,6 @@ class Kaltura_Client_Type_IngestStatusPartnerConfiguration extends Kaltura_Clien
 			$this->epg = Kaltura_Client_ParseUtils::unmarshalObject($xml->epg, "KalturaIngestStatusEpgConfiguration");
 		if(!is_null($jsonObject) && isset($jsonObject->epg) && !empty($jsonObject->epg))
 			$this->epg = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->epg, "KalturaIngestStatusEpgConfiguration");
-		if(!is_null($xml) && count($xml->vod) && !empty($xml->vod))
-			$this->vod = Kaltura_Client_ParseUtils::unmarshalObject($xml->vod, "KalturaIngestStatusVodConfiguration");
-		if(!is_null($jsonObject) && isset($jsonObject->vod) && !empty($jsonObject->vod))
-			$this->vod = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->vod, "KalturaIngestStatusVodConfiguration");
 	}
 	/**
 	 * Defines the epg configuration of the partner.
@@ -63,13 +59,6 @@ class Kaltura_Client_Type_IngestStatusPartnerConfiguration extends Kaltura_Clien
 	 * @var Kaltura_Client_Type_IngestStatusEpgConfiguration
 	 */
 	public $epg;
-
-	/**
-	 * Defines the vod configuration of the partner.
-	 *
-	 * @var Kaltura_Client_Type_IngestStatusVodConfiguration
-	 */
-	public $vod;
 
 
 }
