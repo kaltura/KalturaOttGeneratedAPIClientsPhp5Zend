@@ -816,6 +816,7 @@ class Kaltura_Client_TypeMap
 		'KalturaUnifiedChannel' => 'Kaltura_Client_Type_UnifiedChannel',
 		'KalturaUnifiedChannelInfo' => 'Kaltura_Client_Type_UnifiedChannelInfo',
 		'KalturaUnifiedPaymentRenewal' => 'Kaltura_Client_Type_UnifiedPaymentRenewal',
+		'KalturaUploadSettingsConfiguration' => 'Kaltura_Client_Type_UploadSettingsConfiguration',
 		'KalturaUploadToken' => 'Kaltura_Client_Type_UploadToken',
 		'KalturaUploadedFileTokenResource' => 'Kaltura_Client_Type_UploadedFileTokenResource',
 		'KalturaUrlResource' => 'Kaltura_Client_Type_UrlResource',
