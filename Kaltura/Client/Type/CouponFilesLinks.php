@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_CouponFilesLinks extends Kaltura_Client_Type_ListResponse
+class Kaltura_Client_Type_CouponFilesLinks extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
@@ -48,6 +48,10 @@ class Kaltura_Client_Type_CouponFilesLinks extends Kaltura_Client_Type_ListRespo
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
+		if(!is_null($xml) && count($xml->totalCount))
+			$this->totalCount = (int)$xml->totalCount;
+		if(!is_null($jsonObject) && isset($jsonObject->totalCount))
+			$this->totalCount = (int)$jsonObject->totalCount;
 		if(!is_null($xml) && count($xml->objects))
 		{
 			if(empty($xml->objects))
@@ -63,6 +67,13 @@ class Kaltura_Client_Type_CouponFilesLinks extends Kaltura_Client_Type_ListRespo
 				$this->objects = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->objects, "KalturaStringValue");
 		}
 	}
+	/**
+	 * Total count of coupons code files
+	 *
+	 * @var int
+	 */
+	public $totalCount = null;
+
 	/**
 	 * A pre-signed URL pointing to a coupon codes file
 	 *
