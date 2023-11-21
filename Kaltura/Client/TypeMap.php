@@ -852,7 +852,7 @@ class Kaltura_Client_TypeMap
 		'KalturaVodIngestAssetResultAggregation' => 'Kaltura_Client_Type_VodIngestAssetResultAggregation',
 		'KalturaVodIngestAssetResultErrorMessage' => 'Kaltura_Client_Type_VodIngestAssetResultErrorMessage',
 		'KalturaVodIngestAssetResultFilter' => 'Kaltura_Client_Type_VodIngestAssetResultFilter',
-		'KalturaVodIngestAssetResultList' => 'Kaltura_Client_Type_VodIngestAssetResultList',
+		'KalturaVodIngestAssetResultListResponse' => 'Kaltura_Client_Type_VodIngestAssetResultListResponse',
 		'KalturaVodIngestAssetResultResponse' => 'Kaltura_Client_Type_VodIngestAssetResultResponse',
 	);
 	
