@@ -94,14 +94,6 @@ class Kaltura_Client_Type_SubscriptionFilter extends Kaltura_Client_Type_Filter
 			else
 				$this->alsoInactive = false;
 		}
-		if(!is_null($xml) && count($xml->dependencyTypeIn))
-			$this->dependencyTypeIn = (string)$xml->dependencyTypeIn;
-		if(!is_null($jsonObject) && isset($jsonObject->dependencyTypeIn))
-			$this->dependencyTypeIn = (string)$jsonObject->dependencyTypeIn;
-		if(!is_null($xml) && count($xml->nameContains))
-			$this->nameContains = (string)$xml->nameContains;
-		if(!is_null($jsonObject) && isset($jsonObject->nameContains))
-			$this->nameContains = (string)$jsonObject->nameContains;
 	}
 	/**
 	 * Comma separated subscription IDs to get the subscriptions by
@@ -165,21 +157,6 @@ class Kaltura_Client_Type_SubscriptionFilter extends Kaltura_Client_Type_Filter
 	 * @var bool
 	 */
 	public $alsoInactive = null;
-
-	/**
-	 * comma separated values of KalturaSubscriptionDependencyType 
-	 *             return subscriptions associated by their subscription sets dependency Type
-	 *
-	 * @var string
-	 */
-	public $dependencyTypeIn = null;
-
-	/**
-	 * A string that is included in the subscription name
-	 *
-	 * @var string
-	 */
-	public $nameContains = null;
 
 
 }

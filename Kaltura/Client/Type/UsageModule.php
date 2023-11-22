@@ -116,6 +116,7 @@ class Kaltura_Client_Type_UsageModule extends Kaltura_Client_ObjectBase
 	 * Usage module name
 	 *
 	 * @var string
+	 * @insertonly
 	 */
 	public $name = null;
 
@@ -123,6 +124,7 @@ class Kaltura_Client_Type_UsageModule extends Kaltura_Client_ObjectBase
 	 * The maximum number of times an item in this usage module can be viewed
 	 *
 	 * @var int
+	 * @insertonly
 	 */
 	public $maxViewsNumber = null;
 

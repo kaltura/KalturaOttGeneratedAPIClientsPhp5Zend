@@ -60,10 +60,6 @@ class Kaltura_Client_Type_SegmentationTypeFilter extends Kaltura_Client_Type_Bas
 			$this->nameContain = (string)$xml->nameContain;
 		if(!is_null($jsonObject) && isset($jsonObject->nameContain))
 			$this->nameContain = (string)$jsonObject->nameContain;
-		if(!is_null($xml) && count($xml->assetUserRuleIdIn))
-			$this->assetUserRuleIdIn = (string)$xml->assetUserRuleIdIn;
-		if(!is_null($jsonObject) && isset($jsonObject->assetUserRuleIdIn))
-			$this->assetUserRuleIdIn = (string)$jsonObject->assetUserRuleIdIn;
 	}
 	/**
 	 * Comma separated segmentation types identifiers
@@ -85,13 +81,6 @@ class Kaltura_Client_Type_SegmentationTypeFilter extends Kaltura_Client_Type_Bas
 	 * @var string
 	 */
 	public $nameContain = null;
-
-	/**
-	 * comma-separated list of KalturaSegmentationType.assetUserRuleId values
-	 *
-	 * @var string
-	 */
-	public $assetUserRuleIdIn = null;
 
 
 }

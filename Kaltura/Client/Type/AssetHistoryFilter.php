@@ -71,8 +71,8 @@ class Kaltura_Client_Type_AssetHistoryFilter extends Kaltura_Client_Type_Filter
 	}
 	/**
 	 * Comma separated list of asset types to search within.
-	 *             Possible values: 0 - EPG linear programs entries, any media type ID (according to media type IDs defined dynamically in the system).
-	 *             If omitted - all types should be included.
+	 *             Possible values: 0 – EPG linear programs entries, any media type ID (according to media type IDs defined dynamically in the system).
+	 *             If omitted – all types should be included.
 	 *
 	 * @var string
 	 */
@@ -86,9 +86,9 @@ class Kaltura_Client_Type_AssetHistoryFilter extends Kaltura_Client_Type_Filter
 	public $assetIdIn = null;
 
 	/**
-	 * Which type of recently watched media to include in the result - those that finished watching, those that are in progress or both.
-	 *             If omitted or specified filter = all - return all types.
-	 *             Allowed values: progress - return medias that are in-progress, done - return medias that finished watching.
+	 * Which type of recently watched media to include in the result – those that finished watching, those that are in progress or both.
+	 *             If omitted or specified filter = all – return all types.
+	 *             Allowed values: progress – return medias that are in-progress, done – return medias that finished watching.
 	 *
 	 * @var Kaltura_Client_Enum_WatchStatus
 	 */

@@ -60,20 +60,6 @@ class Kaltura_Client_Type_RecordingAsset extends Kaltura_Client_Type_ProgramAsse
 			$this->viewableUntilDate = (string)$xml->viewableUntilDate;
 		if(!is_null($jsonObject) && isset($jsonObject->viewableUntilDate))
 			$this->viewableUntilDate = (string)$jsonObject->viewableUntilDate;
-		if(!is_null($xml) && count($xml->multiRecord))
-		{
-			if(!empty($xml->multiRecord) && ((int) $xml->multiRecord === 1 || strtolower((string)$xml->multiRecord) === 'true'))
-				$this->multiRecord = true;
-			else
-				$this->multiRecord = false;
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->multiRecord))
-		{
-			if(!empty($jsonObject->multiRecord) && ((int) $jsonObject->multiRecord === 1 || strtolower((string)$jsonObject->multiRecord) === 'true'))
-				$this->multiRecord = true;
-			else
-				$this->multiRecord = false;
-		}
 	}
 	/**
 	 * Recording identifier
@@ -95,13 +81,6 @@ class Kaltura_Client_Type_RecordingAsset extends Kaltura_Client_Type_ProgramAsse
 	 * @var bigint
 	 */
 	public $viewableUntilDate = null;
-
-	/**
-	 * When TRUE indicates that there are multiple KalturaImmediateRecording instances for the event.
-	 *
-	 * @var bool
-	 */
-	public $multiRecord = null;
 
 
 }

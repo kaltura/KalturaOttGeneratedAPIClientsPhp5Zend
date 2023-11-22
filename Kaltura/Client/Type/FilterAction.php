@@ -48,18 +48,7 @@ abstract class Kaltura_Client_Type_FilterAction extends Kaltura_Client_Type_Asse
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->preActionCondition) && !empty($xml->preActionCondition))
-			$this->preActionCondition = Kaltura_Client_ParseUtils::unmarshalObject($xml->preActionCondition, "KalturaBasePreActionCondition");
-		if(!is_null($jsonObject) && isset($jsonObject->preActionCondition) && !empty($jsonObject->preActionCondition))
-			$this->preActionCondition = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->preActionCondition, "KalturaBasePreActionCondition");
 	}
-	/**
-	 * PreAction condition
-	 *
-	 * @var Kaltura_Client_Type_BasePreActionCondition
-	 */
-	public $preActionCondition;
-
 
 }
 

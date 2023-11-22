@@ -86,10 +86,6 @@ class Kaltura_Client_Type_CampaignSearchFilter extends Kaltura_Client_Type_Campa
 			$this->stateIn = (string)$xml->stateIn;
 		if(!is_null($jsonObject) && isset($jsonObject->stateIn))
 			$this->stateIn = (string)$jsonObject->stateIn;
-		if(!is_null($xml) && count($xml->assetUserRuleIdIn))
-			$this->assetUserRuleIdIn = (string)$xml->assetUserRuleIdIn;
-		if(!is_null($jsonObject) && isset($jsonObject->assetUserRuleIdIn))
-			$this->assetUserRuleIdIn = (string)$jsonObject->assetUserRuleIdIn;
 	}
 	/**
 	 * start Date Greater Than Or Equal
@@ -139,13 +135,6 @@ class Kaltura_Client_Type_CampaignSearchFilter extends Kaltura_Client_Type_Campa
 	 * @var string
 	 */
 	public $stateIn = null;
-
-	/**
-	 * Comma separated AssetUserRule Ids to filter by
-	 *
-	 * @var string
-	 */
-	public $assetUserRuleIdIn = null;
 
 
 }
