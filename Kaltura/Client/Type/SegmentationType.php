@@ -112,10 +112,6 @@ class Kaltura_Client_Type_SegmentationType extends Kaltura_Client_ObjectBase
 			$this->version = (string)$xml->version;
 		if(!is_null($jsonObject) && isset($jsonObject->version))
 			$this->version = (string)$jsonObject->version;
-		if(!is_null($xml) && count($xml->assetUserRuleId))
-			$this->assetUserRuleId = (string)$xml->assetUserRuleId;
-		if(!is_null($jsonObject) && isset($jsonObject->assetUserRuleId))
-			$this->assetUserRuleId = (string)$jsonObject->assetUserRuleId;
 	}
 	/**
 	 * Id of segmentation type
@@ -198,13 +194,6 @@ class Kaltura_Client_Type_SegmentationType extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $version = null;
-
-	/**
-	 * Asset User Rule Id
-	 *
-	 * @var bigint
-	 */
-	public $assetUserRuleId = null;
 
 
 }

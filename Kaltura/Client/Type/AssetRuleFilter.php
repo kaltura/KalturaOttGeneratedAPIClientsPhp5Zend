@@ -64,10 +64,6 @@ class Kaltura_Client_Type_AssetRuleFilter extends Kaltura_Client_Type_Filter
 			$this->assetRuleIdEqual = (string)$xml->assetRuleIdEqual;
 		if(!is_null($jsonObject) && isset($jsonObject->assetRuleIdEqual))
 			$this->assetRuleIdEqual = (string)$jsonObject->assetRuleIdEqual;
-		if(!is_null($xml) && count($xml->nameContains))
-			$this->nameContains = (string)$xml->nameContains;
-		if(!is_null($jsonObject) && isset($jsonObject->nameContains))
-			$this->nameContains = (string)$jsonObject->nameContains;
 	}
 	/**
 	 * Indicates which asset rule list to return by it KalturaRuleConditionType.
@@ -97,13 +93,6 @@ class Kaltura_Client_Type_AssetRuleFilter extends Kaltura_Client_Type_Filter
 	 * @var bigint
 	 */
 	public $assetRuleIdEqual = null;
-
-	/**
-	 * Name
-	 *
-	 * @var string
-	 */
-	public $nameContains = null;
 
 
 }

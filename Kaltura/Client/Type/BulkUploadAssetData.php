@@ -55,7 +55,7 @@ abstract class Kaltura_Client_Type_BulkUploadAssetData extends Kaltura_Client_Ty
 	}
 	/**
 	 * Identifies the asset type (EPG, Recording, Movie, TV Series, etc). 
-	 *             Possible values: 0 - EPG linear programs, 1 - Recording; or any asset type ID according to the asset types IDs defined in the system.
+	 *             Possible values: 0 – EPG linear programs, 1 - Recording; or any asset type ID according to the asset types IDs defined in the system.
 	 *
 	 * @var bigint
 	 */

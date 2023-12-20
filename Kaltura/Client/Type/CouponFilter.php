@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_IngestStatusVodConfiguration extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_CouponFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaIngestStatusVodConfiguration';
+		return 'KalturaCouponFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,38 +48,17 @@ class Kaltura_Client_Type_IngestStatusVodConfiguration extends Kaltura_Client_Ob
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->isSupported))
-		{
-			if(!empty($xml->isSupported) && ((int) $xml->isSupported === 1 || strtolower((string)$xml->isSupported) === 'true'))
-				$this->isSupported = true;
-			else
-				$this->isSupported = false;
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->isSupported))
-		{
-			if(!empty($jsonObject->isSupported) && ((int) $jsonObject->isSupported === 1 || strtolower((string)$jsonObject->isSupported) === 'true'))
-				$this->isSupported = true;
-			else
-				$this->isSupported = false;
-		}
-		if(!is_null($xml) && count($xml->retainingPeriod))
-			$this->retainingPeriod = (string)$xml->retainingPeriod;
-		if(!is_null($jsonObject) && isset($jsonObject->retainingPeriod))
-			$this->retainingPeriod = (string)$jsonObject->retainingPeriod;
+		if(!is_null($xml) && count($xml->couponCodesIn))
+			$this->couponCodesIn = (string)$xml->couponCodesIn;
+		if(!is_null($jsonObject) && isset($jsonObject->couponCodesIn))
+			$this->couponCodesIn = (string)$jsonObject->couponCodesIn;
 	}
 	/**
-	 * Defines whether partner in question enabled core ingest status service.
+	 * Comma separated list of coupon codes.
 	 *
-	 * @var bool
+	 * @var string
 	 */
-	public $isSupported = null;
-
-	/**
-	 * Defines the time in seconds that the service retain information about ingest status.
-	 *
-	 * @var bigint
-	 */
-	public $retainingPeriod = null;
+	public $couponCodesIn = null;
 
 
 }

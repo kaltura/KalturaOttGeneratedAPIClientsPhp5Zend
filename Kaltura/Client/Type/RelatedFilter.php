@@ -81,7 +81,7 @@ class Kaltura_Client_Type_RelatedFilter extends Kaltura_Client_Type_BaseSearchAs
 	/**
 	 * Comma separated list of asset types to search within. 
 	 *             Possible values: any media type ID (according to media type IDs defined dynamically in the system).
-	 *             If omitted - same type as the provided asset.
+	 *             If omitted – same type as the provided asset.
 	 *
 	 * @var string
 	 */
