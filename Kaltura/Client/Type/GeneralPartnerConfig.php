@@ -226,7 +226,7 @@ class Kaltura_Client_Type_GeneralPartnerConfig extends Kaltura_Client_Type_Partn
 	public $dateFormat = null;
 
 	/**
-	 * Household limitation&#160;module
+	 * Household limitation module
 	 *
 	 * @var int
 	 */
