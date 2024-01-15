@@ -31,23 +31,46 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_PartnerConfigurationType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_RetryDeleteRequest extends Kaltura_Client_ObjectBase
 {
-	const DEFAULTPAYMENTGATEWAY = "DefaultPaymentGateway";
-	const ENABLEPAYMENTGATEWAYSELECTION = "EnablePaymentGatewaySelection";
-	const OSSADAPTER = "OSSAdapter";
-	const CONCURRENCY = "Concurrency";
-	const GENERAL = "General";
-	const OBJECTVIRTUALASSET = "ObjectVirtualAsset";
-	const COMMERCE = "Commerce";
-	const PLAYBACK = "Playback";
-	const PAYMENT = "Payment";
-	const CATALOG = "Catalog";
-	const SECURITY = "Security";
-	const OPC = "Opc";
-	const BASE = "Base";
-	const CUSTOMFIELDS = "CustomFields";
-	const DEFAULTPARENTALSETTINGS = "DefaultParentalSettings";
-	const CLOUDUPLOADSETTINGS = "CloudUploadSettings";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaRetryDeleteRequest';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
+	{
+		parent::__construct($xml, $jsonObject);
+		
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
+			return;
+		
+		if(!is_null($xml) && count($xml->startDate))
+			$this->startDate = (string)$xml->startDate;
+		if(!is_null($jsonObject) && isset($jsonObject->startDate))
+			$this->startDate = (string)$jsonObject->startDate;
+		if(!is_null($xml) && count($xml->endDate))
+			$this->endDate = (string)$xml->endDate;
+		if(!is_null($jsonObject) && isset($jsonObject->endDate))
+			$this->endDate = (string)$jsonObject->endDate;
+	}
+	/**
+	 * The first date (epoch) to start the retryDelete from - by default {now} - {30 days in second}
+	 *
+	 * @var bigint
+	 */
+	public $startDate = null;
+
+	/**
+	 * The last date (epoch) to do the retryDelete - by default {now} (should be greater than startDate)
+	 *
+	 * @var bigint
+	 */
+	public $endDate = null;
+
+
 }
 
