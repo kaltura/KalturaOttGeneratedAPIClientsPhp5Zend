@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_UsageModuleFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_AssociatedShopEntities extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaUsageModuleFilter';
+		return 'KalturaAssociatedShopEntities';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,28 +48,39 @@ class Kaltura_Client_Type_UsageModuleFilter extends Kaltura_Client_Type_Filter
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->idEqual))
-			$this->idEqual = (int)$xml->idEqual;
-		if(!is_null($jsonObject) && isset($jsonObject->idEqual))
-			$this->idEqual = (int)$jsonObject->idEqual;
-		if(!is_null($xml) && count($xml->associatedShopEntities) && !empty($xml->associatedShopEntities))
-			$this->associatedShopEntities = Kaltura_Client_ParseUtils::unmarshalObject($xml->associatedShopEntities, "KalturaAssociatedShopEntities");
-		if(!is_null($jsonObject) && isset($jsonObject->associatedShopEntities) && !empty($jsonObject->associatedShopEntities))
-			$this->associatedShopEntities = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->associatedShopEntities, "KalturaAssociatedShopEntities");
+		if(!is_null($xml) && count($xml->assetUserRuleIdIn))
+			$this->assetUserRuleIdIn = (string)$xml->assetUserRuleIdIn;
+		if(!is_null($jsonObject) && isset($jsonObject->assetUserRuleIdIn))
+			$this->assetUserRuleIdIn = (string)$jsonObject->assetUserRuleIdIn;
+		if(!is_null($xml) && count($xml->includeNullAssetUserRuleId))
+		{
+			if(!empty($xml->includeNullAssetUserRuleId) && ((int) $xml->includeNullAssetUserRuleId === 1 || strtolower((string)$xml->includeNullAssetUserRuleId) === 'true'))
+				$this->includeNullAssetUserRuleId = true;
+			else
+				$this->includeNullAssetUserRuleId = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->includeNullAssetUserRuleId))
+		{
+			if(!empty($jsonObject->includeNullAssetUserRuleId) && ((int) $jsonObject->includeNullAssetUserRuleId === 1 || strtolower((string)$jsonObject->includeNullAssetUserRuleId) === 'true'))
+				$this->includeNullAssetUserRuleId = true;
+			else
+				$this->includeNullAssetUserRuleId = false;
+		}
 	}
 	/**
-	 * usageModule id
+	 * comma-separated list of assetUserRuleId values. Matching entities will be returned by the filter.
 	 *
-	 * @var int
+	 * @var string
 	 */
-	public $idEqual = null;
+	public $assetUserRuleIdIn = null;
 
 	/**
-	 * filter all usageModules by associate shop entities
+	 * If true, filter will return entities with null/empty assetUserRuleId value, in addition to any entities whose assetUserRuleId value matches the assetUserRuleIdIn parameter.
+	 *             If false (or field is not specified) filter will return only entities whose assetUserRuleId value matches the assetUserRuleIdIn parameter.
 	 *
-	 * @var Kaltura_Client_Type_AssociatedShopEntities
+	 * @var bool
 	 */
-	public $associatedShopEntities;
+	public $includeNullAssetUserRuleId = null;
 
 
 }

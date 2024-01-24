@@ -117,6 +117,7 @@ class Kaltura_Client_TypeMap
 		'KalturaAssetUserRuleFilterAction' => 'Kaltura_Client_Type_AssetUserRuleFilterAction',
 		'KalturaAssetUserRuleListResponse' => 'Kaltura_Client_Type_AssetUserRuleListResponse',
 		'KalturaAssetsCount' => 'Kaltura_Client_Type_AssetsCount',
+		'KalturaAssociatedShopEntities' => 'Kaltura_Client_Type_AssociatedShopEntities',
 		'KalturaBaseAssetOrder' => 'Kaltura_Client_Type_BaseAssetOrder',
 		'KalturaBaseAssetStructFilter' => 'Kaltura_Client_Type_BaseAssetStructFilter',
 		'KalturaBaseChannel' => 'Kaltura_Client_Type_BaseChannel',
