@@ -161,10 +161,6 @@ class Kaltura_Client_Type_BillingTransaction extends Kaltura_Client_ObjectBase
 
 	/**
 	 * Billing Action
-	 *             Note: when purchasing subscription that is “ENTITLED_TO_PREVIEW_MODULE”:
-	 *              the first BillingTransaction.billingAction will be “unknown”, 
-	 *              the second BillingTransaction.billingAction will be “purchase”, 
-	 *              and the rest of them will be “renew_payment&quot;.
 	 *
 	 * @var Kaltura_Client_Enum_BillingAction
 	 * @readonly

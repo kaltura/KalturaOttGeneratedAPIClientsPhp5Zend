@@ -114,30 +114,6 @@ class Kaltura_Client_HouseholdService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_HouseholdPartnerConfiguration
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function getPartnerConfiguration()
-	{
-		$kparams = array();
-		$this->client->queueServiceActionCall("household", "getPartnerConfiguration", "KalturaHouseholdPartnerConfiguration", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$rawResult = $this->client->doQueue();
-		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
-			$jsObject = json_decode($rawResult);
-			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
-			return $resultObject;
-		} else {
-			$resultXmlObject = new \SimpleXMLElement($rawResult);
-			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaHouseholdPartnerConfiguration");
-			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_HouseholdPartnerConfiguration");
-		}
-			return $resultObject;
-	}
-
-	/**
 	 * @return Kaltura_Client_Type_HouseholdListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -237,28 +213,6 @@ class Kaltura_Client_HouseholdService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return 
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function retryDelete(Kaltura_Client_Type_RetryDeleteRequest $request)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "request", $request->toParams());
-		$this->client->queueServiceActionCall("household", "retryDelete", null, $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$rawResult = $this->client->doQueue();
-		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
-			$jsObject = json_decode($rawResult);
-			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
-			return $resultObject;
-		} else {
-			$resultXmlObject = new \SimpleXMLElement($rawResult);
-			$this->client->checkIfError($resultXmlObject->result);
-		}
-	}
-
-	/**
 	 * @return bool
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -305,27 +259,5 @@ class Kaltura_Client_HouseholdService extends Kaltura_Client_ServiceBase
 			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Household");
 		}
 			return $resultObject;
-	}
-
-	/**
-	 * @return 
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function updatePartnerConfiguration(Kaltura_Client_Type_HouseholdPartnerConfiguration $configuration)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "configuration", $configuration->toParams());
-		$this->client->queueServiceActionCall("household", "updatePartnerConfiguration", null, $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$rawResult = $this->client->doQueue();
-		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
-			$jsObject = json_decode($rawResult);
-			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
-			return $resultObject;
-		} else {
-			$resultXmlObject = new \SimpleXMLElement($rawResult);
-			$this->client->checkIfError($resultXmlObject->result);
-		}
 	}
 }

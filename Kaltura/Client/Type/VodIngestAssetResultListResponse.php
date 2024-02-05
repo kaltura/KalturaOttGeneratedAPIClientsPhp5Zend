@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_CouponFilesLinks extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_VodIngestAssetResultListResponse extends Kaltura_Client_Type_ListResponse
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaCouponFilesLinks';
+		return 'KalturaVodIngestAssetResultListResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,36 +48,25 @@ class Kaltura_Client_Type_CouponFilesLinks extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->totalCount))
-			$this->totalCount = (int)$xml->totalCount;
-		if(!is_null($jsonObject) && isset($jsonObject->totalCount))
-			$this->totalCount = (int)$jsonObject->totalCount;
 		if(!is_null($xml) && count($xml->objects))
 		{
 			if(empty($xml->objects))
 				$this->objects = array();
 			else
-				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaStringValue");
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaVodIngestAssetResult");
 		}
 		if(!is_null($jsonObject) && isset($jsonObject->objects))
 		{
 			if(empty($jsonObject->objects))
 				$this->objects = array();
 			else
-				$this->objects = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->objects, "KalturaStringValue");
+				$this->objects = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->objects, "KalturaVodIngestAssetResult");
 		}
 	}
 	/**
-	 * Total count of coupons code files
+	 * list of KalturaVodIngestAssetResult
 	 *
-	 * @var int
-	 */
-	public $totalCount = null;
-
-	/**
-	 * A pre-signed URL pointing to a coupon codes file
-	 *
-	 * @var array of KalturaStringValue
+	 * @var array of KalturaVodIngestAssetResult
 	 */
 	public $objects;
 
