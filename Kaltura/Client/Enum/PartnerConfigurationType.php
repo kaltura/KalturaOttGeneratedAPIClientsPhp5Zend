@@ -48,6 +48,5 @@ class Kaltura_Client_Enum_PartnerConfigurationType extends Kaltura_Client_EnumBa
 	const BASE = "Base";
 	const CUSTOMFIELDS = "CustomFields";
 	const DEFAULTPARENTALSETTINGS = "DefaultParentalSettings";
-	const CLOUDUPLOADSETTINGS = "CloudUploadSettings";
 }
 
