@@ -237,7 +237,7 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 	public $id = null;
 
 	/**
-	 * A list of channels associated with this collection 
+	 * A list of channels associated with this collection
 	 *             This property will deprecated soon. Please use ChannelsIds instead of it.
 	 *
 	 * @var array of KalturaBaseChannel
