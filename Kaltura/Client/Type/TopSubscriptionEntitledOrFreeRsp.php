@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DiscountDetailsFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_TopSubscriptionEntitledOrFreeRsp extends Kaltura_Client_Type_RepresentativeSelectionPolicy
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDiscountDetailsFilter';
+		return 'KalturaTopSubscriptionEntitledOrFreeRsp';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,28 +48,17 @@ class Kaltura_Client_Type_DiscountDetailsFilter extends Kaltura_Client_Type_Filt
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
-		if(!is_null($jsonObject) && isset($jsonObject->idIn))
-			$this->idIn = (string)$jsonObject->idIn;
-		if(!is_null($xml) && count($xml->associatedShopEntities) && !empty($xml->associatedShopEntities))
-			$this->associatedShopEntities = Kaltura_Client_ParseUtils::unmarshalObject($xml->associatedShopEntities, "KalturaAssociatedShopEntities");
-		if(!is_null($jsonObject) && isset($jsonObject->associatedShopEntities) && !empty($jsonObject->associatedShopEntities))
-			$this->associatedShopEntities = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->associatedShopEntities, "KalturaAssociatedShopEntities");
+		if(!is_null($xml) && count($xml->orderBy) && !empty($xml->orderBy))
+			$this->orderBy = Kaltura_Client_ParseUtils::unmarshalObject($xml->orderBy, "KalturaBaseAssetOrder");
+		if(!is_null($jsonObject) && isset($jsonObject->orderBy) && !empty($jsonObject->orderBy))
+			$this->orderBy = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->orderBy, "KalturaBaseAssetOrder");
 	}
 	/**
-	 * Comma separated discount codes
+	 * order by
 	 *
-	 * @var string
+	 * @var Kaltura_Client_Type_BaseAssetOrder
 	 */
-	public $idIn = null;
-
-	/**
-	 * filter all discountDetails by associate shop entities
-	 *
-	 * @var Kaltura_Client_Type_AssociatedShopEntities
-	 */
-	public $associatedShopEntities;
+	public $orderBy;
 
 
 }
