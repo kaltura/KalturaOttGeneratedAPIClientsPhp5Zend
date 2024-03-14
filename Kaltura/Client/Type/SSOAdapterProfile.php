@@ -86,10 +86,6 @@ class Kaltura_Client_Type_SSOAdapterProfile extends Kaltura_Client_ObjectBase
 			$this->sharedSecret = (string)$xml->sharedSecret;
 		if(!is_null($jsonObject) && isset($jsonObject->sharedSecret))
 			$this->sharedSecret = (string)$jsonObject->sharedSecret;
-		if(!is_null($xml) && count($xml->adapterGrpcAddress))
-			$this->adapterGrpcAddress = (string)$xml->adapterGrpcAddress;
-		if(!is_null($jsonObject) && isset($jsonObject->adapterGrpcAddress))
-			$this->adapterGrpcAddress = (string)$jsonObject->adapterGrpcAddress;
 	}
 	/**
 	 * SSO Adapter id
@@ -140,13 +136,6 @@ class Kaltura_Client_Type_SSOAdapterProfile extends Kaltura_Client_ObjectBase
 	 * @var string
 	 */
 	public $sharedSecret = null;
-
-	/**
-	 * Adapter GRPC Address, without protocol, i.e: &#39;adapter-hostname:9090&#39;
-	 *
-	 * @var string
-	 */
-	public $adapterGrpcAddress = null;
 
 
 }
