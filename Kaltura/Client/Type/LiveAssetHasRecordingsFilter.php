@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_DiscountDetailsFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_LiveAssetHasRecordingsFilter extends Kaltura_Client_Type_AssetFilter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaDiscountDetailsFilter';
+		return 'KalturaLiveAssetHasRecordingsFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,28 +48,17 @@ class Kaltura_Client_Type_DiscountDetailsFilter extends Kaltura_Client_Type_Filt
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->idIn))
-			$this->idIn = (string)$xml->idIn;
-		if(!is_null($jsonObject) && isset($jsonObject->idIn))
-			$this->idIn = (string)$jsonObject->idIn;
-		if(!is_null($xml) && count($xml->associatedShopEntities) && !empty($xml->associatedShopEntities))
-			$this->associatedShopEntities = Kaltura_Client_ParseUtils::unmarshalObject($xml->associatedShopEntities, "KalturaAssociatedShopEntities");
-		if(!is_null($jsonObject) && isset($jsonObject->associatedShopEntities) && !empty($jsonObject->associatedShopEntities))
-			$this->associatedShopEntities = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->associatedShopEntities, "KalturaAssociatedShopEntities");
+		if(!is_null($xml) && count($xml->liveAssetIdEqual))
+			$this->liveAssetIdEqual = (string)$xml->liveAssetIdEqual;
+		if(!is_null($jsonObject) && isset($jsonObject->liveAssetIdEqual))
+			$this->liveAssetIdEqual = (string)$jsonObject->liveAssetIdEqual;
 	}
 	/**
-	 * Comma separated discount codes
+	 * KalturaLiveAsset.id value of the live linear channel to be examined for associated recordings
 	 *
-	 * @var string
+	 * @var bigint
 	 */
-	public $idIn = null;
-
-	/**
-	 * filter all discountDetails by associate shop entities
-	 *
-	 * @var Kaltura_Client_Type_AssociatedShopEntities
-	 */
-	public $associatedShopEntities;
+	public $liveAssetIdEqual = null;
 
 
 }

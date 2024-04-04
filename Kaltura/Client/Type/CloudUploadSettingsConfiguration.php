@@ -67,14 +67,14 @@ class Kaltura_Client_Type_CloudUploadSettingsConfiguration extends Kaltura_Clien
 
 	/**
 	 * Comma seperated list of file extensions that allowed to partner in question
-	 *             {&quot;jpeg&quot;,&quot;image/jpeg&quot;},
+	 *             {&quot;jpeg&quot;, &quot;image/jpeg&quot; },
 	 *             {&quot;jpg&quot;,&quot;image/jpeg&quot;},
-	 *             {&quot;png&quot;,&quot;image/png&quot;},
-	 *             {&quot;tif&quot;,&quot;image/tiff&quot;},
-	 *             {&quot;tiff&quot;,&quot;image/tiff&quot;},
-	 *             {&quot;gif&quot;,&quot;image/gif&quot;},
-	 *             {&quot;xls&quot;,&quot;application/vnd.ms-excel&quot;},
-	 *             {&quot;xlsx&quot;,&quot;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&quot;},
+	 *             {&quot;jpg&quot;,&quot;image/png&quot;},
+	 *             { &quot;tif&quot;,&quot;image/tiff&quot;},
+	 *             { &quot;tiff&quot;, &quot;image/tiff&quot;},
+	 *             {&quot;gif&quot;,  &quot;image/gif&quot;},
+	 *             {&quot;xls&quot;,  &quot;application/vnd.ms-excel&quot;},
+	 *             {&quot;xlsx&quot;,&quot;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&quot; },
 	 *             {&quot;csv&quot;,&quot;text/csv&quot;},
 	 *             {&quot;xml&quot;,&quot;text/xml&quot;},
 	 *             {&quot;txt&quot;,&quot;text/plain&quot;},
