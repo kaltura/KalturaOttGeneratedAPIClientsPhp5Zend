@@ -86,6 +86,10 @@ class Kaltura_Client_Type_DiscountDetails extends Kaltura_Client_ObjectBase
 			$this->whenAlgoType = (int)$xml->whenAlgoType;
 		if(!is_null($jsonObject) && isset($jsonObject->whenAlgoType))
 			$this->whenAlgoType = (int)$jsonObject->whenAlgoType;
+		if(!is_null($xml) && count($xml->assetUserRuleId))
+			$this->assetUserRuleId = (string)$xml->assetUserRuleId;
+		if(!is_null($jsonObject) && isset($jsonObject->assetUserRuleId))
+			$this->assetUserRuleId = (string)$jsonObject->assetUserRuleId;
 	}
 	/**
 	 * The discount ID
@@ -136,6 +140,14 @@ class Kaltura_Client_Type_DiscountDetails extends Kaltura_Client_ObjectBase
 	 * @var int
 	 */
 	public $whenAlgoType = null;
+
+	/**
+	 * Asset user rule identifier
+	 *
+	 * @var bigint
+	 * @insertonly
+	 */
+	public $assetUserRuleId = null;
 
 
 }
