@@ -168,20 +168,6 @@ class Kaltura_Client_Type_MediaFile extends Kaltura_Client_Type_AssetFile
 			$this->labels = (string)$xml->labels;
 		if(!is_null($jsonObject) && isset($jsonObject->labels))
 			$this->labels = (string)$jsonObject->labels;
-		if(!is_null($xml) && count($xml->dynamicData))
-		{
-			if(empty($xml->dynamicData))
-				$this->dynamicData = array();
-			else
-				$this->dynamicData = Kaltura_Client_ParseUtils::unmarshalMap($xml->dynamicData, "KalturaStringValueArray");
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->dynamicData))
-		{
-			if(empty($jsonObject->dynamicData))
-				$this->dynamicData = array();
-			else
-				$this->dynamicData = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->dynamicData, "KalturaStringValueArray");
-		}
 	}
 	/**
 	 * Unique identifier for the asset
@@ -359,13 +345,6 @@ class Kaltura_Client_Type_MediaFile extends Kaltura_Client_Type_AssetFile
 	 * @var string
 	 */
 	public $labels = null;
-
-	/**
-	 * List of KalturaMediaFile&#39;s dynamic data keys
-	 *
-	 * @var map
-	 */
-	public $dynamicData;
 
 
 }

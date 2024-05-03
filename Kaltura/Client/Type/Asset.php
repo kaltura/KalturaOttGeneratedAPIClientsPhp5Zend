@@ -197,7 +197,7 @@ abstract class Kaltura_Client_Type_Asset extends Kaltura_Client_ObjectBase
 
 	/**
 	 * Identifies the asset type (EPG, Recording, Movie, TV Series, etc). 
-	 *             Possible values: 0 - EPG linear programs, 1 - Recording; or any asset type ID according to the asset types IDs defined in the system.
+	 *             Possible values: 0 – EPG linear programs, 1 - Recording; or any asset type ID according to the asset types IDs defined in the system.
 	 *
 	 * @var int
 	 * @insertonly
@@ -272,14 +272,14 @@ abstract class Kaltura_Client_Type_Asset extends Kaltura_Client_ObjectBase
 	public $relatedEntities;
 
 	/**
-	 * Date and time represented as epoch. For VOD - since when the asset is available in the catalog. For EPG/Linear - when the program is aired (can be in the future).
+	 * Date and time represented as epoch. For VOD – since when the asset is available in the catalog. For EPG/Linear – when the program is aired (can be in the future).
 	 *
 	 * @var bigint
 	 */
 	public $startDate = null;
 
 	/**
-	 * Date and time represented as epoch. For VOD - till when the asset be available in the catalog. For EPG/Linear - program end time and date
+	 * Date and time represented as epoch. For VOD – till when the asset be available in the catalog. For EPG/Linear – program end time and date
 	 *
 	 * @var bigint
 	 */

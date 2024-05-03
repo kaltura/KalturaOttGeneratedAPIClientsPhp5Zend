@@ -66,14 +66,10 @@ class Kaltura_Client_AssetHistoryService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_AssetHistory
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function getNextEpisode($assetId = null, Kaltura_Client_Type_SeriesIdArguments $seriesIdArguments = null, $notWatchedReturnStrategy = null, $watchedAllReturnStrategy = null)
+	function getNextEpisode($assetId)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "assetId", $assetId);
-		if ($seriesIdArguments !== null)
-			$this->client->addParam($kparams, "seriesIdArguments", $seriesIdArguments->toParams());
-		$this->client->addParam($kparams, "notWatchedReturnStrategy", $notWatchedReturnStrategy);
-		$this->client->addParam($kparams, "watchedAllReturnStrategy", $watchedAllReturnStrategy);
 		$this->client->queueServiceActionCall("assethistory", "getNextEpisode", "KalturaAssetHistory", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();

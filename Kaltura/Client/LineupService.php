@@ -66,33 +66,6 @@ class Kaltura_Client_LineupService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_LineupChannelAssetListResponse
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function listAction(Kaltura_Client_Type_LineupRegionalChannelFilter $filter, Kaltura_Client_Type_FilterPager $pager = null)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "filter", $filter->toParams());
-		if ($pager !== null)
-			$this->client->addParam($kparams, "pager", $pager->toParams());
-		$this->client->queueServiceActionCall("lineup", "list", "KalturaLineupChannelAssetListResponse", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$rawResult = $this->client->doQueue();
-		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
-			$jsObject = json_decode($rawResult);
-			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
-			return $resultObject;
-		} else {
-			$resultXmlObject = new \SimpleXMLElement($rawResult);
-			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLineupChannelAssetListResponse");
-			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LineupChannelAssetListResponse");
-		}
-			return $resultObject;
-	}
-
-	/**
 	 * @return bool
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */

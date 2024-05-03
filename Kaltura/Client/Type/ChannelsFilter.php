@@ -68,10 +68,6 @@ class Kaltura_Client_Type_ChannelsFilter extends Kaltura_Client_Type_ChannelsBas
 			$this->idIn = (string)$xml->idIn;
 		if(!is_null($jsonObject) && isset($jsonObject->idIn))
 			$this->idIn = (string)$jsonObject->idIn;
-		if(!is_null($xml) && count($xml->assetUserRuleIdIn))
-			$this->assetUserRuleIdIn = (string)$xml->assetUserRuleIdIn;
-		if(!is_null($jsonObject) && isset($jsonObject->assetUserRuleIdIn))
-			$this->assetUserRuleIdIn = (string)$jsonObject->assetUserRuleIdIn;
 	}
 	/**
 	 * channel identifier to filter by
@@ -107,13 +103,6 @@ class Kaltura_Client_Type_ChannelsFilter extends Kaltura_Client_Type_ChannelsBas
 	 * @var string
 	 */
 	public $idIn = null;
-
-	/**
-	 * comma-separated list of KalturaChannel.assetUserRuleId values.  Matching KalturaChannel objects will be returned by the filter.
-	 *
-	 * @var string
-	 */
-	public $assetUserRuleIdIn = null;
 
 
 }

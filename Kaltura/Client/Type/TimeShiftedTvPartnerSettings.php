@@ -240,28 +240,6 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 			$this->defaultQuota = (int)$xml->defaultQuota;
 		if(!is_null($jsonObject) && isset($jsonObject->defaultQuota))
 			$this->defaultQuota = (int)$jsonObject->defaultQuota;
-		if(!is_null($xml) && count($xml->personalizedRecording))
-		{
-			if(!empty($xml->personalizedRecording) && ((int) $xml->personalizedRecording === 1 || strtolower((string)$xml->personalizedRecording) === 'true'))
-				$this->personalizedRecording = true;
-			else
-				$this->personalizedRecording = false;
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->personalizedRecording))
-		{
-			if(!empty($jsonObject->personalizedRecording) && ((int) $jsonObject->personalizedRecording === 1 || strtolower((string)$jsonObject->personalizedRecording) === 'true'))
-				$this->personalizedRecording = true;
-			else
-				$this->personalizedRecording = false;
-		}
-		if(!is_null($xml) && count($xml->maxRecordingConcurrency))
-			$this->maxRecordingConcurrency = (int)$xml->maxRecordingConcurrency;
-		if(!is_null($jsonObject) && isset($jsonObject->maxRecordingConcurrency))
-			$this->maxRecordingConcurrency = (int)$jsonObject->maxRecordingConcurrency;
-		if(!is_null($xml) && count($xml->maxConcurrencyMargin))
-			$this->maxConcurrencyMargin = (int)$xml->maxConcurrencyMargin;
-		if(!is_null($jsonObject) && isset($jsonObject->maxConcurrencyMargin))
-			$this->maxConcurrencyMargin = (int)$jsonObject->maxConcurrencyMargin;
 	}
 	/**
 	 * Is catch-up enabled
@@ -423,27 +401,6 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 	 * @var int
 	 */
 	public $defaultQuota = null;
-
-	/**
-	 * Define whatever the partner enables the Personal Padding and Immediate / Stop recording services to the partner. Default value should be FALSE
-	 *
-	 * @var bool
-	 */
-	public $personalizedRecording = null;
-
-	/**
-	 * Define the max allowed number of parallel recordings. Default NULL unlimited
-	 *
-	 * @var int
-	 */
-	public $maxRecordingConcurrency = null;
-
-	/**
-	 * Define the max grace margin time for overlapping recording. Default NULL 0 margin
-	 *
-	 * @var int
-	 */
-	public $maxConcurrencyMargin = null;
 
 
 }

@@ -74,14 +74,6 @@ class Kaltura_Client_Type_CollectionFilter extends Kaltura_Client_Type_Filter
 			else
 				$this->alsoInactive = false;
 		}
-		if(!is_null($xml) && count($xml->assetUserRuleIdIn))
-			$this->assetUserRuleIdIn = (string)$xml->assetUserRuleIdIn;
-		if(!is_null($jsonObject) && isset($jsonObject->assetUserRuleIdIn))
-			$this->assetUserRuleIdIn = (string)$jsonObject->assetUserRuleIdIn;
-		if(!is_null($xml) && count($xml->nameContains))
-			$this->nameContains = (string)$xml->nameContains;
-		if(!is_null($jsonObject) && isset($jsonObject->nameContains))
-			$this->nameContains = (string)$jsonObject->nameContains;
 	}
 	/**
 	 * Comma separated collection IDs
@@ -110,20 +102,6 @@ class Kaltura_Client_Type_CollectionFilter extends Kaltura_Client_Type_Filter
 	 * @var bool
 	 */
 	public $alsoInactive = null;
-
-	/**
-	 * comma-separated list of KalturaCollection.assetUserRuleId values.  Matching KalturaCollection objects will be returned by the filter.
-	 *
-	 * @var string
-	 */
-	public $assetUserRuleIdIn = null;
-
-	/**
-	 * A string that is included in the collection name
-	 *
-	 * @var string
-	 */
-	public $nameContains = null;
 
 
 }

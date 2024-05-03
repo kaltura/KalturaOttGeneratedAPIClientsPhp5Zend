@@ -74,8 +74,8 @@ class Kaltura_Client_Type_RelatedExternalFilter extends Kaltura_Client_Type_Asse
 
 	/**
 	 * Comma separated list of asset types to search within. 
-	 *             Possible values: 0 - EPG linear programs entries, any media type ID (according to media type IDs defined dynamically in the system).
-	 *             If omitted - all types should be included.
+	 *             Possible values: 0 – EPG linear programs entries, any media type ID (according to media type IDs defined dynamically in the system).
+	 *             If omitted – all types should be included.
 	 *
 	 * @var string
 	 */

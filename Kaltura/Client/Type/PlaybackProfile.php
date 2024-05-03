@@ -70,10 +70,6 @@ class Kaltura_Client_Type_PlaybackProfile extends Kaltura_Client_ObjectBase
 			else
 				$this->isActive = false;
 		}
-		if(!is_null($xml) && count($xml->adapterGrpcAddress))
-			$this->adapterGrpcAddress = (string)$xml->adapterGrpcAddress;
-		if(!is_null($jsonObject) && isset($jsonObject->adapterGrpcAddress))
-			$this->adapterGrpcAddress = (string)$jsonObject->adapterGrpcAddress;
 		if(!is_null($xml) && count($xml->adapterUrl))
 			$this->adapterUrl = (string)$xml->adapterUrl;
 		if(!is_null($jsonObject) && isset($jsonObject->adapterUrl))
@@ -112,13 +108,6 @@ class Kaltura_Client_Type_PlaybackProfile extends Kaltura_Client_ObjectBase
 	 * @var bool
 	 */
 	public $isActive = null;
-
-	/**
-	 * Playback profile Grpc address
-	 *
-	 * @var string
-	 */
-	public $adapterGrpcAddress = null;
 
 	/**
 	 * Playback profile URL
