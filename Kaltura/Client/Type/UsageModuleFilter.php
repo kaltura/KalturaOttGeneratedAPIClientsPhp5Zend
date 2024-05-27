@@ -52,6 +52,10 @@ class Kaltura_Client_Type_UsageModuleFilter extends Kaltura_Client_Type_Filter
 			$this->idEqual = (int)$xml->idEqual;
 		if(!is_null($jsonObject) && isset($jsonObject->idEqual))
 			$this->idEqual = (int)$jsonObject->idEqual;
+		if(!is_null($xml) && count($xml->associatedShopEntities) && !empty($xml->associatedShopEntities))
+			$this->associatedShopEntities = Kaltura_Client_ParseUtils::unmarshalObject($xml->associatedShopEntities, "KalturaAssociatedShopEntities");
+		if(!is_null($jsonObject) && isset($jsonObject->associatedShopEntities) && !empty($jsonObject->associatedShopEntities))
+			$this->associatedShopEntities = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->associatedShopEntities, "KalturaAssociatedShopEntities");
 	}
 	/**
 	 * usageModule id
@@ -59,6 +63,13 @@ class Kaltura_Client_Type_UsageModuleFilter extends Kaltura_Client_Type_Filter
 	 * @var int
 	 */
 	public $idEqual = null;
+
+	/**
+	 * filter all usageModules by associate shop entities
+	 *
+	 * @var Kaltura_Client_Type_AssociatedShopEntities
+	 */
+	public $associatedShopEntities;
 
 
 }
