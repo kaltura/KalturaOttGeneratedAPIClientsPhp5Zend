@@ -246,28 +246,6 @@ class Kaltura_Client_HouseholdDeviceService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return 
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function retryDelete(Kaltura_Client_Type_RetryDeleteRequest $request)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "request", $request->toParams());
-		$this->client->queueServiceActionCall("householddevice", "retryDelete", null, $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$rawResult = $this->client->doQueue();
-		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
-			$jsObject = json_decode($rawResult);
-			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
-			return $resultObject;
-		} else {
-			$resultXmlObject = new \SimpleXMLElement($rawResult);
-			$this->client->checkIfError($resultXmlObject->result);
-		}
-	}
-
-	/**
 	 * @return Kaltura_Client_Type_HouseholdDevice
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
