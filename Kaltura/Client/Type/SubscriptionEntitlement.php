@@ -48,52 +48,6 @@ class Kaltura_Client_Type_SubscriptionEntitlement extends Kaltura_Client_Type_En
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->nextRenewalDate))
-			$this->nextRenewalDate = (string)$xml->nextRenewalDate;
-		if(!is_null($jsonObject) && isset($jsonObject->nextRenewalDate))
-			$this->nextRenewalDate = (string)$jsonObject->nextRenewalDate;
-		if(!is_null($xml) && count($xml->isRenewableForPurchase))
-		{
-			if(!empty($xml->isRenewableForPurchase) && ((int) $xml->isRenewableForPurchase === 1 || strtolower((string)$xml->isRenewableForPurchase) === 'true'))
-				$this->isRenewableForPurchase = true;
-			else
-				$this->isRenewableForPurchase = false;
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->isRenewableForPurchase))
-		{
-			if(!empty($jsonObject->isRenewableForPurchase) && ((int) $jsonObject->isRenewableForPurchase === 1 || strtolower((string)$jsonObject->isRenewableForPurchase) === 'true'))
-				$this->isRenewableForPurchase = true;
-			else
-				$this->isRenewableForPurchase = false;
-		}
-		if(!is_null($xml) && count($xml->isRenewable))
-		{
-			if(!empty($xml->isRenewable) && ((int) $xml->isRenewable === 1 || strtolower((string)$xml->isRenewable) === 'true'))
-				$this->isRenewable = true;
-			else
-				$this->isRenewable = false;
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->isRenewable))
-		{
-			if(!empty($jsonObject->isRenewable) && ((int) $jsonObject->isRenewable === 1 || strtolower((string)$jsonObject->isRenewable) === 'true'))
-				$this->isRenewable = true;
-			else
-				$this->isRenewable = false;
-		}
-		if(!is_null($xml) && count($xml->isInGracePeriod))
-		{
-			if(!empty($xml->isInGracePeriod) && ((int) $xml->isInGracePeriod === 1 || strtolower((string)$xml->isInGracePeriod) === 'true'))
-				$this->isInGracePeriod = true;
-			else
-				$this->isInGracePeriod = false;
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->isInGracePeriod))
-		{
-			if(!empty($jsonObject->isInGracePeriod) && ((int) $jsonObject->isInGracePeriod === 1 || strtolower((string)$jsonObject->isInGracePeriod) === 'true'))
-				$this->isInGracePeriod = true;
-			else
-				$this->isInGracePeriod = false;
-		}
 		if(!is_null($xml) && count($xml->paymentGatewayId))
 			$this->paymentGatewayId = (int)$xml->paymentGatewayId;
 		if(!is_null($jsonObject) && isset($jsonObject->paymentGatewayId))
@@ -128,39 +82,21 @@ class Kaltura_Client_Type_SubscriptionEntitlement extends Kaltura_Client_Type_En
 			$this->priceDetails = Kaltura_Client_ParseUtils::unmarshalObject($xml->priceDetails, "KalturaEntitlementPriceDetails");
 		if(!is_null($jsonObject) && isset($jsonObject->priceDetails) && !empty($jsonObject->priceDetails))
 			$this->priceDetails = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->priceDetails, "KalturaEntitlementPriceDetails");
+		if(!is_null($xml) && count($xml->isFlexiblePricePlan))
+		{
+			if(!empty($xml->isFlexiblePricePlan) && ((int) $xml->isFlexiblePricePlan === 1 || strtolower((string)$xml->isFlexiblePricePlan) === 'true'))
+				$this->isFlexiblePricePlan = true;
+			else
+				$this->isFlexiblePricePlan = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->isFlexiblePricePlan))
+		{
+			if(!empty($jsonObject->isFlexiblePricePlan) && ((int) $jsonObject->isFlexiblePricePlan === 1 || strtolower((string)$jsonObject->isFlexiblePricePlan) === 'true'))
+				$this->isFlexiblePricePlan = true;
+			else
+				$this->isFlexiblePricePlan = false;
+		}
 	}
-	/**
-	 * The date of the next renewal (only for subscription)
-	 *
-	 * @var bigint
-	 * @readonly
-	 */
-	public $nextRenewalDate = null;
-
-	/**
-	 * Indicates whether the subscription is renewable in this purchase (only for subscription)
-	 *
-	 * @var bool
-	 * @readonly
-	 */
-	public $isRenewableForPurchase = null;
-
-	/**
-	 * Indicates whether a subscription is renewable (only for subscription)
-	 *
-	 * @var bool
-	 * @readonly
-	 */
-	public $isRenewable = null;
-
-	/**
-	 * Indicates whether the user is currently in his grace period entitlement
-	 *
-	 * @var bool
-	 * @readonly
-	 */
-	public $isInGracePeriod = null;
-
 	/**
 	 * Payment Gateway identifier
 	 *
@@ -206,6 +142,14 @@ class Kaltura_Client_Type_SubscriptionEntitlement extends Kaltura_Client_Type_En
 	 * @readonly
 	 */
 	public $priceDetails;
+
+	/**
+	 * Indicates whether the subscription is now within the flexible price plan lifecycle or not
+	 *
+	 * @var bool
+	 * @readonly
+	 */
+	public $isFlexiblePricePlan = null;
 
 
 }
