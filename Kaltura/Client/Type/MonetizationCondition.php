@@ -48,14 +48,6 @@ class Kaltura_Client_Type_MonetizationCondition extends Kaltura_Client_Type_Base
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->minValue))
-			$this->minValue = (int)$xml->minValue;
-		if(!is_null($jsonObject) && isset($jsonObject->minValue))
-			$this->minValue = (int)$jsonObject->minValue;
-		if(!is_null($xml) && count($xml->maxValue))
-			$this->maxValue = (int)$xml->maxValue;
-		if(!is_null($jsonObject) && isset($jsonObject->maxValue))
-			$this->maxValue = (int)$jsonObject->maxValue;
 		if(!is_null($xml) && count($xml->days))
 			$this->days = (int)$xml->days;
 		if(!is_null($jsonObject) && isset($jsonObject->days))
@@ -76,21 +68,15 @@ class Kaltura_Client_Type_MonetizationCondition extends Kaltura_Client_Type_Base
 			$this->currencyCode = (string)$xml->currencyCode;
 		if(!is_null($jsonObject) && isset($jsonObject->currencyCode))
 			$this->currencyCode = (string)$jsonObject->currencyCode;
+		if(!is_null($xml) && count($xml->minValue))
+			$this->minValue = (int)$xml->minValue;
+		if(!is_null($jsonObject) && isset($jsonObject->minValue))
+			$this->minValue = (int)$jsonObject->minValue;
+		if(!is_null($xml) && count($xml->maxValue))
+			$this->maxValue = (int)$xml->maxValue;
+		if(!is_null($jsonObject) && isset($jsonObject->maxValue))
+			$this->maxValue = (int)$jsonObject->maxValue;
 	}
-	/**
-	 * The minimum value to be met
-	 *
-	 * @var int
-	 */
-	public $minValue = null;
-
-	/**
-	 * The maximum value to be met
-	 *
-	 * @var int
-	 */
-	public $maxValue = null;
-
 	/**
 	 * How many days back should the actions be considered
 	 *
@@ -125,6 +111,20 @@ class Kaltura_Client_Type_MonetizationCondition extends Kaltura_Client_Type_Base
 	 * @var string
 	 */
 	public $currencyCode = null;
+
+	/**
+	 * The minimum value to be met
+	 *
+	 * @var int
+	 */
+	public $minValue = null;
+
+	/**
+	 * The maximum value to be met
+	 *
+	 * @var int
+	 */
+	public $maxValue = null;
 
 
 }
