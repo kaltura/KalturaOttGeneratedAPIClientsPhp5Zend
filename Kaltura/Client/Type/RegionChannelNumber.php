@@ -56,6 +56,20 @@ class Kaltura_Client_Type_RegionChannelNumber extends Kaltura_Client_ObjectBase
 			$this->channelNumber = (int)$xml->channelNumber;
 		if(!is_null($jsonObject) && isset($jsonObject->channelNumber))
 			$this->channelNumber = (int)$jsonObject->channelNumber;
+		if(!is_null($xml) && count($xml->dynamicData))
+		{
+			if(empty($xml->dynamicData))
+				$this->dynamicData = array();
+			else
+				$this->dynamicData = Kaltura_Client_ParseUtils::unmarshalMap($xml->dynamicData, "KalturaStringValue");
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->dynamicData))
+		{
+			if(empty($jsonObject->dynamicData))
+				$this->dynamicData = array();
+			else
+				$this->dynamicData = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->dynamicData, "KalturaStringValue");
+		}
 	}
 	/**
 	 * The identifier of the region
@@ -65,11 +79,18 @@ class Kaltura_Client_Type_RegionChannelNumber extends Kaltura_Client_ObjectBase
 	public $regionId = null;
 
 	/**
-	 * The number of the channel
+	 * The LCN of a channel
 	 *
 	 * @var int
 	 */
 	public $channelNumber = null;
+
+	/**
+	 * The dynamic data of a channel
+	 *
+	 * @var map
+	 */
+	public $dynamicData;
 
 
 }

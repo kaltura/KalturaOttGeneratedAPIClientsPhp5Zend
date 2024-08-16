@@ -539,6 +539,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_MfaPartnerConfigurationService
+	 */
+	public $mfaPartnerConfiguration = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_NotificationService
 	 */
 	public $notification = null;
@@ -954,8 +960,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:24-01-15');
-		$this->setApiVersion('9.6.0.0');
+		$this->setClientTag('php5:24-08-16');
+		$this->setApiVersion('10.3.1.1');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -1041,6 +1047,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->mediaFileType = new Kaltura_Client_MediaFileTypeService($this);
 		$this->messageTemplate = new Kaltura_Client_MessageTemplateService($this);
 		$this->meta = new Kaltura_Client_MetaService($this);
+		$this->mfaPartnerConfiguration = new Kaltura_Client_MfaPartnerConfigurationService($this);
 		$this->notification = new Kaltura_Client_NotificationService($this);
 		$this->notificationsPartnerSettings = new Kaltura_Client_NotificationsPartnerSettingsService($this);
 		$this->notificationsSettings = new Kaltura_Client_NotificationsSettingsService($this);
