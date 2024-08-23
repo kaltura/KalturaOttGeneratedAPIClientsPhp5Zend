@@ -88,6 +88,20 @@ class Kaltura_Client_Type_HouseholdDeviceFamilyLimitations extends Kaltura_Clien
 			else
 				$this->isDefaultConcurrentLimit = false;
 		}
+		if(!is_null($xml) && count($xml->isDefaultFrequencyLimit))
+		{
+			if(!empty($xml->isDefaultFrequencyLimit) && ((int) $xml->isDefaultFrequencyLimit === 1 || strtolower((string)$xml->isDefaultFrequencyLimit) === 'true'))
+				$this->isDefaultFrequencyLimit = true;
+			else
+				$this->isDefaultFrequencyLimit = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->isDefaultFrequencyLimit))
+		{
+			if(!empty($jsonObject->isDefaultFrequencyLimit) && ((int) $jsonObject->isDefaultFrequencyLimit === 1 || strtolower((string)$jsonObject->isDefaultFrequencyLimit) === 'true'))
+				$this->isDefaultFrequencyLimit = true;
+			else
+				$this->isDefaultFrequencyLimit = false;
+		}
 	}
 	/**
 	 * Allowed device change frequency code
@@ -125,6 +139,14 @@ class Kaltura_Client_Type_HouseholdDeviceFamilyLimitations extends Kaltura_Clien
 	 * @readonly
 	 */
 	public $isDefaultConcurrentLimit = null;
+
+	/**
+	 * Is the Allowed device change frequency code for this family is default value or not
+	 *
+	 * @var bool
+	 * @readonly
+	 */
+	public $isDefaultFrequencyLimit = null;
 
 
 }
