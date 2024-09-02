@@ -323,6 +323,37 @@ class Kaltura_Client_OttUserService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
+	 * @return Kaltura_Client_Type_LoginResponse
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function mfaLogin($partnerId, $token, $username = null, $password = null, array $extraParams = null, $udid = null)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "partnerId", $partnerId);
+		$this->client->addParam($kparams, "token", $token);
+		$this->client->addParam($kparams, "username", $username);
+		$this->client->addParam($kparams, "password", $password);
+		if ($extraParams !== null)
+			$this->client->addParam($kparams, "extraParams", $extraParams->toParams());
+		$this->client->addParam($kparams, "udid", $udid);
+		$this->client->queueServiceActionCall("ottuser", "mfaLogin", "KalturaLoginResponse", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLoginResponse");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LoginResponse");
+		}
+			return $resultObject;
+	}
+
+	/**
 	 * @return Kaltura_Client_Type_OTTUser
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -370,6 +401,35 @@ class Kaltura_Client_OttUserService extends Kaltura_Client_ServiceBase
 			$resultXmlObject = new \SimpleXMLElement($rawResult);
 			$this->client->checkIfError($resultXmlObject->result);
 			$resultObject = (bool)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
+		}
+			return $resultObject;
+	}
+
+	/**
+	 * @return Kaltura_Client_Type_ResendMfaTokenResponse
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function resendMfaToken($partnerId, $username = null, $password = null, array $extraParams = null)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "partnerId", $partnerId);
+		$this->client->addParam($kparams, "username", $username);
+		$this->client->addParam($kparams, "password", $password);
+		if ($extraParams !== null)
+			$this->client->addParam($kparams, "extraParams", $extraParams->toParams());
+		$this->client->queueServiceActionCall("ottuser", "resendMfaToken", "KalturaResendMfaTokenResponse", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaResendMfaTokenResponse");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_ResendMfaTokenResponse");
 		}
 			return $resultObject;
 	}
