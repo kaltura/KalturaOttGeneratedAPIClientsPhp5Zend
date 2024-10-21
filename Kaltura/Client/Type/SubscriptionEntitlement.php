@@ -128,6 +128,20 @@ class Kaltura_Client_Type_SubscriptionEntitlement extends Kaltura_Client_Type_En
 			$this->priceDetails = Kaltura_Client_ParseUtils::unmarshalObject($xml->priceDetails, "KalturaEntitlementPriceDetails");
 		if(!is_null($jsonObject) && isset($jsonObject->priceDetails) && !empty($jsonObject->priceDetails))
 			$this->priceDetails = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->priceDetails, "KalturaEntitlementPriceDetails");
+		if(!is_null($xml) && count($xml->isFlexiblePricePlan))
+		{
+			if(!empty($xml->isFlexiblePricePlan) && ((int) $xml->isFlexiblePricePlan === 1 || strtolower((string)$xml->isFlexiblePricePlan) === 'true'))
+				$this->isFlexiblePricePlan = true;
+			else
+				$this->isFlexiblePricePlan = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->isFlexiblePricePlan))
+		{
+			if(!empty($jsonObject->isFlexiblePricePlan) && ((int) $jsonObject->isFlexiblePricePlan === 1 || strtolower((string)$jsonObject->isFlexiblePricePlan) === 'true'))
+				$this->isFlexiblePricePlan = true;
+			else
+				$this->isFlexiblePricePlan = false;
+		}
 	}
 	/**
 	 * The date of the next renewal (only for subscription)
@@ -206,6 +220,14 @@ class Kaltura_Client_Type_SubscriptionEntitlement extends Kaltura_Client_Type_En
 	 * @readonly
 	 */
 	public $priceDetails;
+
+	/**
+	 * Indicates whether the subscription is now within the flexible price plan lifecycle or not
+	 *
+	 * @var bool
+	 * @readonly
+	 */
+	public $isFlexiblePricePlan = null;
 
 
 }

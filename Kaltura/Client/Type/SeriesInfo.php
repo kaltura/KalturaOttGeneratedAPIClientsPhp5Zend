@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RegionalChannel extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_SeriesInfo extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRegionalChannel';
+		return 'KalturaSeriesInfo';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,49 +48,39 @@ class Kaltura_Client_Type_RegionalChannel extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->linearChannelId))
-			$this->linearChannelId = (int)$xml->linearChannelId;
-		if(!is_null($jsonObject) && isset($jsonObject->linearChannelId))
-			$this->linearChannelId = (int)$jsonObject->linearChannelId;
-		if(!is_null($xml) && count($xml->channelNumber))
-			$this->channelNumber = (int)$xml->channelNumber;
-		if(!is_null($jsonObject) && isset($jsonObject->channelNumber))
-			$this->channelNumber = (int)$jsonObject->channelNumber;
-		if(!is_null($xml) && count($xml->dynamicData))
-		{
-			if(empty($xml->dynamicData))
-				$this->dynamicData = array();
-			else
-				$this->dynamicData = Kaltura_Client_ParseUtils::unmarshalMap($xml->dynamicData, "KalturaStringValue");
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->dynamicData))
-		{
-			if(empty($jsonObject->dynamicData))
-				$this->dynamicData = array();
-			else
-				$this->dynamicData = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->dynamicData, "KalturaStringValue");
-		}
+		if(!is_null($xml) && count($xml->seriesIdMetadataName))
+			$this->seriesIdMetadataName = (string)$xml->seriesIdMetadataName;
+		if(!is_null($jsonObject) && isset($jsonObject->seriesIdMetadataName))
+			$this->seriesIdMetadataName = (string)$jsonObject->seriesIdMetadataName;
+		if(!is_null($xml) && count($xml->seriesTypeId))
+			$this->seriesTypeId = (string)$xml->seriesTypeId;
+		if(!is_null($jsonObject) && isset($jsonObject->seriesTypeId))
+			$this->seriesTypeId = (string)$jsonObject->seriesTypeId;
+		if(!is_null($xml) && count($xml->episodeTypeId))
+			$this->episodeTypeId = (string)$xml->episodeTypeId;
+		if(!is_null($jsonObject) && isset($jsonObject->episodeTypeId))
+			$this->episodeTypeId = (string)$jsonObject->episodeTypeId;
 	}
 	/**
-	 * The identifier of the linear media representing the channel
+	 * Series ID meta name
 	 *
-	 * @var int
+	 * @var string
 	 */
-	public $linearChannelId = null;
+	public $seriesIdMetadataName = null;
 
 	/**
-	 * The number of the channel
+	 * Series asset type ID
 	 *
-	 * @var int
+	 * @var bigint
 	 */
-	public $channelNumber = null;
+	public $seriesTypeId = null;
 
 	/**
-	 * The dynamic data of a channel
+	 * Episode asset type ID
 	 *
-	 * @var map
+	 * @var bigint
 	 */
-	public $dynamicData;
+	public $episodeTypeId = null;
 
 
 }
