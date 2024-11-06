@@ -104,6 +104,10 @@ class Kaltura_Client_Type_UsageModule extends Kaltura_Client_ObjectBase
 			else
 				$this->isOfflinePlayback = false;
 		}
+		if(!is_null($xml) && count($xml->assetUserRuleId))
+			$this->assetUserRuleId = (string)$xml->assetUserRuleId;
+		if(!is_null($jsonObject) && isset($jsonObject->assetUserRuleId))
+			$this->assetUserRuleId = (string)$jsonObject->assetUserRuleId;
 	}
 	/**
 	 * Usage module identifier
@@ -168,6 +172,14 @@ class Kaltura_Client_Type_UsageModule extends Kaltura_Client_ObjectBase
 	 * @var bool
 	 */
 	public $isOfflinePlayback = null;
+
+	/**
+	 * Asset user rule identifier
+	 *
+	 * @var bigint
+	 * @insertonly
+	 */
+	public $assetUserRuleId = null;
 
 
 }
