@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RegionalChannel extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_AssociatedShopEntities extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRegionalChannel';
+		return 'KalturaAssociatedShopEntities';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,49 +48,39 @@ class Kaltura_Client_Type_RegionalChannel extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->linearChannelId))
-			$this->linearChannelId = (int)$xml->linearChannelId;
-		if(!is_null($jsonObject) && isset($jsonObject->linearChannelId))
-			$this->linearChannelId = (int)$jsonObject->linearChannelId;
-		if(!is_null($xml) && count($xml->channelNumber))
-			$this->channelNumber = (int)$xml->channelNumber;
-		if(!is_null($jsonObject) && isset($jsonObject->channelNumber))
-			$this->channelNumber = (int)$jsonObject->channelNumber;
-		if(!is_null($xml) && count($xml->dynamicData))
+		if(!is_null($xml) && count($xml->assetUserRuleIdIn))
+			$this->assetUserRuleIdIn = (string)$xml->assetUserRuleIdIn;
+		if(!is_null($jsonObject) && isset($jsonObject->assetUserRuleIdIn))
+			$this->assetUserRuleIdIn = (string)$jsonObject->assetUserRuleIdIn;
+		if(!is_null($xml) && count($xml->includeNullAssetUserRuleId))
 		{
-			if(empty($xml->dynamicData))
-				$this->dynamicData = array();
+			if(!empty($xml->includeNullAssetUserRuleId) && ((int) $xml->includeNullAssetUserRuleId === 1 || strtolower((string)$xml->includeNullAssetUserRuleId) === 'true'))
+				$this->includeNullAssetUserRuleId = true;
 			else
-				$this->dynamicData = Kaltura_Client_ParseUtils::unmarshalMap($xml->dynamicData, "KalturaStringValue");
+				$this->includeNullAssetUserRuleId = false;
 		}
-		if(!is_null($jsonObject) && isset($jsonObject->dynamicData))
+		if(!is_null($jsonObject) && isset($jsonObject->includeNullAssetUserRuleId))
 		{
-			if(empty($jsonObject->dynamicData))
-				$this->dynamicData = array();
+			if(!empty($jsonObject->includeNullAssetUserRuleId) && ((int) $jsonObject->includeNullAssetUserRuleId === 1 || strtolower((string)$jsonObject->includeNullAssetUserRuleId) === 'true'))
+				$this->includeNullAssetUserRuleId = true;
 			else
-				$this->dynamicData = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->dynamicData, "KalturaStringValue");
+				$this->includeNullAssetUserRuleId = false;
 		}
 	}
 	/**
-	 * The identifier of the linear media representing the channel
+	 * comma-separated list of assetUserRuleId values. Matching entities will be returned by the filter.
 	 *
-	 * @var int
+	 * @var string
 	 */
-	public $linearChannelId = null;
+	public $assetUserRuleIdIn = null;
 
 	/**
-	 * The number of the channel
+	 * If true, filter will return entities with null/empty assetUserRuleId value, in addition to any entities whose assetUserRuleId value matches the assetUserRuleIdIn parameter.
+	 *             If false (or field is not specified) filter will return only entities whose assetUserRuleId value matches the assetUserRuleIdIn parameter.
 	 *
-	 * @var int
+	 * @var bool
 	 */
-	public $channelNumber = null;
-
-	/**
-	 * The dynamic data of a channel
-	 *
-	 * @var map
-	 */
-	public $dynamicData;
+	public $includeNullAssetUserRuleId = null;
 
 
 }
