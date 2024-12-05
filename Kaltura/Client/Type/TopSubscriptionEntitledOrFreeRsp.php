@@ -6,7 +6,7 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
 // Copyright (C) 2006-2023  Kaltura Inc.
@@ -26,52 +26,40 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_MultiRequestSubResult implements ArrayAccess
+class Kaltura_Client_Type_TopSubscriptionEntitledOrFreeRsp extends Kaltura_Client_Type_RepresentativeSelectionPolicy
 {
-	private $value;
-
-	public function __construct($value)
+	public function getKalturaObjectType()
 	{
-		$this->value = $value;
+		return 'KalturaTopSubscriptionEntitledOrFreeRsp';
 	}
-
-	public function __toString()
+	
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		return '{' . $this->value . '}';
+		parent::__construct($xml, $jsonObject);
+		
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
+			return;
+		
+		if(!is_null($xml) && count($xml->orderBy) && !empty($xml->orderBy))
+			$this->orderBy = Kaltura_Client_ParseUtils::unmarshalObject($xml->orderBy, "KalturaBaseAssetOrder");
+		if(!is_null($jsonObject) && isset($jsonObject->orderBy) && !empty($jsonObject->orderBy))
+			$this->orderBy = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->orderBy, "KalturaBaseAssetOrder");
 	}
+	/**
+	 * order by
+	 *
+	 * @var Kaltura_Client_Type_BaseAssetOrder
+	 */
+	public $orderBy;
 
-	public function __get($name)
-	{
-		if ($name === 'value') {
-			return $this->value;
-		}
 
-		return new Kaltura_Client_MultiRequestSubResult($this->value . ':' . $name);
-	}
-
-	#[\ReturnTypeWillChange]
-	public function offsetExists($offset)
-	{
-		return true;
-	}
-
-	#[\ReturnTypeWillChange]
-	public function offsetGet($offset)
-	{
-		return new Kaltura_Client_MultiRequestSubResult($this->value . ':' . $offset);
-	}
-
-	#[\ReturnTypeWillChange]
-	public function offsetSet($offset, $value)
-	{
-	}
-
-	#[\ReturnTypeWillChange]
-	public function offsetUnset($offset)
-	{
-	}
 }
+
