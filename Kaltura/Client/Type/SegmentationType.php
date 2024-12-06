@@ -203,6 +203,7 @@ class Kaltura_Client_Type_SegmentationType extends Kaltura_Client_ObjectBase
 	 * Asset User Rule Id
 	 *
 	 * @var bigint
+	 * @insertonly
 	 */
 	public $assetUserRuleId = null;
 
