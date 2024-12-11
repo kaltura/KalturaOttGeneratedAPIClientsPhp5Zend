@@ -52,6 +52,10 @@ class Kaltura_Client_Type_DiscountDetailsFilter extends Kaltura_Client_Type_Filt
 			$this->idIn = (string)$xml->idIn;
 		if(!is_null($jsonObject) && isset($jsonObject->idIn))
 			$this->idIn = (string)$jsonObject->idIn;
+		if(!is_null($xml) && count($xml->associatedShopEntities) && !empty($xml->associatedShopEntities))
+			$this->associatedShopEntities = Kaltura_Client_ParseUtils::unmarshalObject($xml->associatedShopEntities, "KalturaAssociatedShopEntities");
+		if(!is_null($jsonObject) && isset($jsonObject->associatedShopEntities) && !empty($jsonObject->associatedShopEntities))
+			$this->associatedShopEntities = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->associatedShopEntities, "KalturaAssociatedShopEntities");
 	}
 	/**
 	 * Comma separated discount codes
@@ -59,6 +63,13 @@ class Kaltura_Client_Type_DiscountDetailsFilter extends Kaltura_Client_Type_Filt
 	 * @var string
 	 */
 	public $idIn = null;
+
+	/**
+	 * filter all discountDetails by associate shop entities
+	 *
+	 * @var Kaltura_Client_Type_AssociatedShopEntities
+	 */
+	public $associatedShopEntities;
 
 
 }

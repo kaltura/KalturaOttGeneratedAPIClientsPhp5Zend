@@ -262,6 +262,20 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 			$this->maxConcurrencyMargin = (int)$xml->maxConcurrencyMargin;
 		if(!is_null($jsonObject) && isset($jsonObject->maxConcurrencyMargin))
 			$this->maxConcurrencyMargin = (int)$jsonObject->maxConcurrencyMargin;
+		if(!is_null($xml) && count($xml->shouldRoundStopRecordingsBySeconds))
+		{
+			if(!empty($xml->shouldRoundStopRecordingsBySeconds) && ((int) $xml->shouldRoundStopRecordingsBySeconds === 1 || strtolower((string)$xml->shouldRoundStopRecordingsBySeconds) === 'true'))
+				$this->shouldRoundStopRecordingsBySeconds = true;
+			else
+				$this->shouldRoundStopRecordingsBySeconds = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->shouldRoundStopRecordingsBySeconds))
+		{
+			if(!empty($jsonObject->shouldRoundStopRecordingsBySeconds) && ((int) $jsonObject->shouldRoundStopRecordingsBySeconds === 1 || strtolower((string)$jsonObject->shouldRoundStopRecordingsBySeconds) === 'true'))
+				$this->shouldRoundStopRecordingsBySeconds = true;
+			else
+				$this->shouldRoundStopRecordingsBySeconds = false;
+		}
 	}
 	/**
 	 * Is catch-up enabled
@@ -444,6 +458,14 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 	 * @var int
 	 */
 	public $maxConcurrencyMargin = null;
+
+	/**
+	 * When using padded and immediate recordings, define if end date of recording should be rounded by the minute or by the second.
+	 *             Default by minutes, FALSE.
+	 *
+	 * @var bool
+	 */
+	public $shouldRoundStopRecordingsBySeconds = null;
 
 
 }
