@@ -346,6 +346,7 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 	 * Asset user rule identifier
 	 *
 	 * @var bigint
+	 * @insertonly
 	 */
 	public $assetUserRuleId = null;
 

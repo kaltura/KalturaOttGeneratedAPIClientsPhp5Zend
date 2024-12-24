@@ -64,6 +64,10 @@ class Kaltura_Client_Type_DiscountModule extends Kaltura_Client_ObjectBase
 			$this->endDate = (string)$xml->endDate;
 		if(!is_null($jsonObject) && isset($jsonObject->endDate))
 			$this->endDate = (string)$jsonObject->endDate;
+		if(!is_null($xml) && count($xml->assetUserRuleId))
+			$this->assetUserRuleId = (string)$xml->assetUserRuleId;
+		if(!is_null($jsonObject) && isset($jsonObject->assetUserRuleId))
+			$this->assetUserRuleId = (string)$jsonObject->assetUserRuleId;
 	}
 	/**
 	 * Discount module identifier
@@ -92,6 +96,13 @@ class Kaltura_Client_Type_DiscountModule extends Kaltura_Client_ObjectBase
 	 * @var bigint
 	 */
 	public $endDate = null;
+
+	/**
+	 * Asset user rule identifier
+	 *
+	 * @var bigint
+	 */
+	public $assetUserRuleId = null;
 
 
 }
