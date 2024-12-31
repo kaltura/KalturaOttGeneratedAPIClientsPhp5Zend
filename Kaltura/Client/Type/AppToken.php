@@ -88,6 +88,10 @@ class Kaltura_Client_Type_AppToken extends Kaltura_Client_ObjectBase
 			$this->updateDate = (string)$xml->updateDate;
 		if(!is_null($jsonObject) && isset($jsonObject->updateDate))
 			$this->updateDate = (string)$jsonObject->updateDate;
+		if(!is_null($xml) && count($xml->regionId))
+			$this->regionId = (int)$xml->regionId;
+		if(!is_null($jsonObject) && isset($jsonObject->regionId))
+			$this->regionId = (int)$jsonObject->regionId;
 	}
 	/**
 	 * The id of the application token
@@ -163,6 +167,14 @@ class Kaltura_Client_Type_AppToken extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $updateDate = null;
+
+	/**
+	 * The region identifier of the KS used to create the appToken. Value is presented only for partners with the enabled feature.
+	 *
+	 * @var int
+	 * @readonly
+	 */
+	public $regionId = null;
 
 
 }

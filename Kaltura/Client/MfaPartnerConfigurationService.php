@@ -32,7 +32,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_CategoryTreeService extends Kaltura_Client_ServiceBase
+class Kaltura_Client_MfaPartnerConfigurationService extends Kaltura_Client_ServiceBase
 {
 	function __construct(Kaltura_Client_Client $client = null)
 	{
@@ -40,15 +40,13 @@ class Kaltura_Client_CategoryTreeService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_CategoryTree
+	 * @return Kaltura_Client_Type_MultifactorAuthenticationPartnerConfiguration
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function duplicate($categoryItemId, $name)
+	function get()
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "categoryItemId", $categoryItemId);
-		$this->client->addParam($kparams, "name", $name);
-		$this->client->queueServiceActionCall("categorytree", "duplicate", "KalturaCategoryTree", $kparams);
+		$this->client->queueServiceActionCall("mfapartnerconfiguration", "get", "KalturaMultifactorAuthenticationPartnerConfiguration", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$rawResult = $this->client->doQueue();
@@ -59,22 +57,21 @@ class Kaltura_Client_CategoryTreeService extends Kaltura_Client_ServiceBase
 		} else {
 			$resultXmlObject = new \SimpleXMLElement($rawResult);
 			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCategoryTree");
-			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CategoryTree");
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaMultifactorAuthenticationPartnerConfiguration");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_MultifactorAuthenticationPartnerConfiguration");
 		}
 			return $resultObject;
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_CategoryTree
+	 * @return Kaltura_Client_Type_MultifactorAuthenticationPartnerConfiguration
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function get($categoryItemId, $filter = false)
+	function update(Kaltura_Client_Type_MultifactorAuthenticationPartnerConfiguration $configuration)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "categoryItemId", $categoryItemId);
-		$this->client->addParam($kparams, "filter", $filter);
-		$this->client->queueServiceActionCall("categorytree", "get", "KalturaCategoryTree", $kparams);
+		$this->client->addParam($kparams, "configuration", $configuration->toParams());
+		$this->client->queueServiceActionCall("mfapartnerconfiguration", "update", "KalturaMultifactorAuthenticationPartnerConfiguration", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$rawResult = $this->client->doQueue();
@@ -85,35 +82,8 @@ class Kaltura_Client_CategoryTreeService extends Kaltura_Client_ServiceBase
 		} else {
 			$resultXmlObject = new \SimpleXMLElement($rawResult);
 			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCategoryTree");
-			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CategoryTree");
-		}
-			return $resultObject;
-	}
-
-	/**
-	 * @return Kaltura_Client_Type_CategoryTree
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function getByVersion($versionId = null, $deviceFamilyId = null, $filter = false)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "versionId", $versionId);
-		$this->client->addParam($kparams, "deviceFamilyId", $deviceFamilyId);
-		$this->client->addParam($kparams, "filter", $filter);
-		$this->client->queueServiceActionCall("categorytree", "getByVersion", "KalturaCategoryTree", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$rawResult = $this->client->doQueue();
-		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
-			$jsObject = json_decode($rawResult);
-			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
-			return $resultObject;
-		} else {
-			$resultXmlObject = new \SimpleXMLElement($rawResult);
-			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaCategoryTree");
-			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_CategoryTree");
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaMultifactorAuthenticationPartnerConfiguration");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_MultifactorAuthenticationPartnerConfiguration");
 		}
 			return $resultObject;
 	}

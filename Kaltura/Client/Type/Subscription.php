@@ -188,6 +188,10 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 			$this->pricePlanIds = (string)$xml->pricePlanIds;
 		if(!is_null($jsonObject) && isset($jsonObject->pricePlanIds))
 			$this->pricePlanIds = (string)$jsonObject->pricePlanIds;
+		if(!is_null($xml) && count($xml->flexiblePricePlanId))
+			$this->flexiblePricePlanId = (string)$xml->flexiblePricePlanId;
+		if(!is_null($jsonObject) && isset($jsonObject->flexiblePricePlanId))
+			$this->flexiblePricePlanId = (string)$jsonObject->flexiblePricePlanId;
 		if(!is_null($xml) && count($xml->previewModule) && !empty($xml->previewModule))
 			$this->previewModule = Kaltura_Client_ParseUtils::unmarshalObject($xml->previewModule, "KalturaPreviewModule");
 		if(!is_null($jsonObject) && isset($jsonObject->previewModule) && !empty($jsonObject->previewModule))
@@ -506,6 +510,13 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 	 * @var string
 	 */
 	public $pricePlanIds = null;
+
+	/**
+	 * Optional: If the subscription has a flexible price plan. Represents an initial none-recurring discounted period which is charged immediately (no unified billing), followed by a recuring price plan which should be aligned with the unified billing cycle
+	 *
+	 * @var bigint
+	 */
+	public $flexiblePricePlanId = null;
 
 	/**
 	 * Subscription preview module
