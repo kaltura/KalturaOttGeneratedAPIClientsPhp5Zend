@@ -539,6 +539,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_MfaPartnerConfigurationService
+	 */
+	public $mfaPartnerConfiguration = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_NotificationService
 	 */
 	public $notification = null;
@@ -946,6 +952,18 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	public $userSessionProfile = null;
 
 	/**
+	 * 
+	 * @var Kaltura_Client_WatchBasedRecommendationsAdminConfigurationService
+	 */
+	public $watchBasedRecommendationsAdminConfiguration = null;
+
+	/**
+	 * 
+	 * @var Kaltura_Client_WatchBasedRecommendationsProfileService
+	 */
+	public $watchBasedRecommendationsProfile = null;
+
+	/**
 	 * Kaltura client constructor
 	 *
 	 * @param Kaltura_Client_Configuration $config
@@ -954,8 +972,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:24-01-15');
-		$this->setApiVersion('9.6.0.0');
+		$this->setClientTag('php5:25-01-01');
+		$this->setApiVersion('10.7.1.4');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
@@ -1041,6 +1059,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->mediaFileType = new Kaltura_Client_MediaFileTypeService($this);
 		$this->messageTemplate = new Kaltura_Client_MessageTemplateService($this);
 		$this->meta = new Kaltura_Client_MetaService($this);
+		$this->mfaPartnerConfiguration = new Kaltura_Client_MfaPartnerConfigurationService($this);
 		$this->notification = new Kaltura_Client_NotificationService($this);
 		$this->notificationsPartnerSettings = new Kaltura_Client_NotificationsPartnerSettingsService($this);
 		$this->notificationsSettings = new Kaltura_Client_NotificationsSettingsService($this);
@@ -1109,6 +1128,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->userRole = new Kaltura_Client_UserRoleService($this);
 		$this->userSegment = new Kaltura_Client_UserSegmentService($this);
 		$this->userSessionProfile = new Kaltura_Client_UserSessionProfileService($this);
+		$this->watchBasedRecommendationsAdminConfiguration = new Kaltura_Client_WatchBasedRecommendationsAdminConfigurationService($this);
+		$this->watchBasedRecommendationsProfile = new Kaltura_Client_WatchBasedRecommendationsProfileService($this);
 	}
 	
 	/**

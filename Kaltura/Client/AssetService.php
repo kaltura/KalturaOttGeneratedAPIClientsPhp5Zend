@@ -390,4 +390,29 @@ class Kaltura_Client_AssetService extends Kaltura_Client_ServiceBase
 		}
 			return $resultObject;
 	}
+
+	/**
+	 * @return Kaltura_Client_Type_AssetListResponse
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function watchBasedRecommendationsList($profileId)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "profileId", $profileId);
+		$this->client->queueServiceActionCall("asset", "watchBasedRecommendationsList", "KalturaAssetListResponse", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaAssetListResponse");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_AssetListResponse");
+		}
+			return $resultObject;
+	}
 }
