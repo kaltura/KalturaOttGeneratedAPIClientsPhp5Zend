@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RegionalChannel extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_MultifactorAuthenticationPartnerConfiguration extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRegionalChannel';
+		return 'KalturaMultifactorAuthenticationPartnerConfiguration';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,49 +48,60 @@ class Kaltura_Client_Type_RegionalChannel extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->linearChannelId))
-			$this->linearChannelId = (int)$xml->linearChannelId;
-		if(!is_null($jsonObject) && isset($jsonObject->linearChannelId))
-			$this->linearChannelId = (int)$jsonObject->linearChannelId;
-		if(!is_null($xml) && count($xml->channelNumber))
-			$this->channelNumber = (int)$xml->channelNumber;
-		if(!is_null($jsonObject) && isset($jsonObject->channelNumber))
-			$this->channelNumber = (int)$jsonObject->channelNumber;
-		if(!is_null($xml) && count($xml->dynamicData))
+		if(!is_null($xml) && count($xml->isEnabled))
 		{
-			if(empty($xml->dynamicData))
-				$this->dynamicData = array();
+			if(!empty($xml->isEnabled) && ((int) $xml->isEnabled === 1 || strtolower((string)$xml->isEnabled) === 'true'))
+				$this->isEnabled = true;
 			else
-				$this->dynamicData = Kaltura_Client_ParseUtils::unmarshalMap($xml->dynamicData, "KalturaStringValue");
+				$this->isEnabled = false;
 		}
-		if(!is_null($jsonObject) && isset($jsonObject->dynamicData))
+		if(!is_null($jsonObject) && isset($jsonObject->isEnabled))
 		{
-			if(empty($jsonObject->dynamicData))
-				$this->dynamicData = array();
+			if(!empty($jsonObject->isEnabled) && ((int) $jsonObject->isEnabled === 1 || strtolower((string)$jsonObject->isEnabled) === 'true'))
+				$this->isEnabled = true;
 			else
-				$this->dynamicData = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->dynamicData, "KalturaStringValue");
+				$this->isEnabled = false;
 		}
+		if(!is_null($xml) && count($xml->roles))
+			$this->roles = (string)$xml->roles;
+		if(!is_null($jsonObject) && isset($jsonObject->roles))
+			$this->roles = (string)$jsonObject->roles;
+		if(!is_null($xml) && count($xml->tokenExpirationInSeconds))
+			$this->tokenExpirationInSeconds = (int)$xml->tokenExpirationInSeconds;
+		if(!is_null($jsonObject) && isset($jsonObject->tokenExpirationInSeconds))
+			$this->tokenExpirationInSeconds = (int)$jsonObject->tokenExpirationInSeconds;
+		if(!is_null($xml) && count($xml->tokenDeliveryMethod))
+			$this->tokenDeliveryMethod = (string)$xml->tokenDeliveryMethod;
+		if(!is_null($jsonObject) && isset($jsonObject->tokenDeliveryMethod))
+			$this->tokenDeliveryMethod = (string)$jsonObject->tokenDeliveryMethod;
 	}
 	/**
-	 * The identifier of the linear media representing the channel
+	 * Is MFA Enabled for partner
+	 *
+	 * @var bool
+	 */
+	public $isEnabled = null;
+
+	/**
+	 * Roles
+	 *
+	 * @var string
+	 */
+	public $roles = null;
+
+	/**
+	 * Token expiration in seconds
 	 *
 	 * @var int
 	 */
-	public $linearChannelId = null;
+	public $tokenExpirationInSeconds = null;
 
 	/**
-	 * The number of the channel
+	 * Token delivery method
 	 *
-	 * @var int
+	 * @var Kaltura_Client_Enum_TokenDeliveryMethod
 	 */
-	public $channelNumber = null;
-
-	/**
-	 * The dynamic data of a channel
-	 *
-	 * @var map
-	 */
-	public $dynamicData;
+	public $tokenDeliveryMethod = null;
 
 
 }

@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RegionalChannel extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_WatchBasedRecommendationsAdminConfiguration extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRegionalChannel';
+		return 'KalturaWatchBasedRecommendationsAdminConfiguration';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,49 +48,39 @@ class Kaltura_Client_Type_RegionalChannel extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->linearChannelId))
-			$this->linearChannelId = (int)$xml->linearChannelId;
-		if(!is_null($jsonObject) && isset($jsonObject->linearChannelId))
-			$this->linearChannelId = (int)$jsonObject->linearChannelId;
-		if(!is_null($xml) && count($xml->channelNumber))
-			$this->channelNumber = (int)$xml->channelNumber;
-		if(!is_null($jsonObject) && isset($jsonObject->channelNumber))
-			$this->channelNumber = (int)$jsonObject->channelNumber;
-		if(!is_null($xml) && count($xml->dynamicData))
-		{
-			if(empty($xml->dynamicData))
-				$this->dynamicData = array();
-			else
-				$this->dynamicData = Kaltura_Client_ParseUtils::unmarshalMap($xml->dynamicData, "KalturaStringValue");
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->dynamicData))
-		{
-			if(empty($jsonObject->dynamicData))
-				$this->dynamicData = array();
-			else
-				$this->dynamicData = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->dynamicData, "KalturaStringValue");
-		}
+		if(!is_null($xml) && count($xml->maxProfiles))
+			$this->maxProfiles = (int)$xml->maxProfiles;
+		if(!is_null($jsonObject) && isset($jsonObject->maxProfiles))
+			$this->maxProfiles = (int)$jsonObject->maxProfiles;
+		if(!is_null($xml) && count($xml->activeUserDurationDays))
+			$this->activeUserDurationDays = (int)$xml->activeUserDurationDays;
+		if(!is_null($jsonObject) && isset($jsonObject->activeUserDurationDays))
+			$this->activeUserDurationDays = (int)$jsonObject->activeUserDurationDays;
+		if(!is_null($xml) && count($xml->recommendationsCachingTimeDays))
+			$this->recommendationsCachingTimeDays = (int)$xml->recommendationsCachingTimeDays;
+		if(!is_null($jsonObject) && isset($jsonObject->recommendationsCachingTimeDays))
+			$this->recommendationsCachingTimeDays = (int)$jsonObject->recommendationsCachingTimeDays;
 	}
 	/**
-	 * The identifier of the linear media representing the channel
+	 * The maximum number of profiles.
 	 *
 	 * @var int
 	 */
-	public $linearChannelId = null;
+	public $maxProfiles = null;
 
 	/**
-	 * The number of the channel
+	 * The duration that a user is considered active after his last playback.
 	 *
 	 * @var int
 	 */
-	public $channelNumber = null;
+	public $activeUserDurationDays = null;
 
 	/**
-	 * The dynamic data of a channel
+	 * The number of days the recommendations will be cached.
 	 *
-	 * @var map
+	 * @var int
 	 */
-	public $dynamicData;
+	public $recommendationsCachingTimeDays = null;
 
 
 }

@@ -35,6 +35,5 @@ class Kaltura_Client_Enum_ImageStatus extends Kaltura_Client_EnumBase
 {
 	const PENDING = "PENDING";
 	const READY = "READY";
-	const FAILED = "FAILED";
 }
 
