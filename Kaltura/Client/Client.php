@@ -59,6 +59,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_AssetEnrichService
+	 */
+	public $assetEnrich = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_AssetFileService
 	 */
 	public $assetFile = null;
@@ -973,12 +979,13 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		parent::__construct($config);
 		
 		$this->setClientTag('php5:25-01-07');
-		$this->setApiVersion('10.7.1.4');
+		$this->setApiVersion('10.8.0.0');
 		
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
 		$this->assetComment = new Kaltura_Client_AssetCommentService($this);
 		$this->asset = new Kaltura_Client_AssetService($this);
+		$this->assetEnrich = new Kaltura_Client_AssetEnrichService($this);
 		$this->assetFile = new Kaltura_Client_AssetFileService($this);
 		$this->assetFilePpv = new Kaltura_Client_AssetFilePpvService($this);
 		$this->assetHistory = new Kaltura_Client_AssetHistoryService($this);
