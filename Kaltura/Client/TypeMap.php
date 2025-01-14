@@ -530,6 +530,7 @@ class Kaltura_Client_TypeMap
 		'KalturaMessageTemplate' => 'Kaltura_Client_Type_MessageTemplate',
 		'KalturaMeta' => 'Kaltura_Client_Type_Meta',
 		'KalturaMetaEnrichConfiguration' => 'Kaltura_Client_Type_MetaEnrichConfiguration',
+		'KalturaMetaFieldNameMap' => 'Kaltura_Client_Type_MetaFieldNameMap',
 		'KalturaMetaFilter' => 'Kaltura_Client_Type_MetaFilter',
 		'KalturaMetaListResponse' => 'Kaltura_Client_Type_MetaListResponse',
 		'KalturaMonetizationCondition' => 'Kaltura_Client_Type_MonetizationCondition',

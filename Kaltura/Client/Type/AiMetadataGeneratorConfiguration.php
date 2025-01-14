@@ -62,19 +62,19 @@ class Kaltura_Client_Type_AiMetadataGeneratorConfiguration extends Kaltura_Clien
 			else
 				$this->isEnabled = false;
 		}
-		if(!is_null($xml) && count($xml->metaFieldNameMap))
+		if(!is_null($xml) && count($xml->assetStructMetaNameMap))
 		{
-			if(empty($xml->metaFieldNameMap))
-				$this->metaFieldNameMap = array();
+			if(empty($xml->assetStructMetaNameMap))
+				$this->assetStructMetaNameMap = array();
 			else
-				$this->metaFieldNameMap = Kaltura_Client_ParseUtils::unmarshalMap($xml->metaFieldNameMap, "KalturaStringValue");
+				$this->assetStructMetaNameMap = Kaltura_Client_ParseUtils::unmarshalMap($xml->assetStructMetaNameMap, "KalturaMetaFieldNameMap");
 		}
-		if(!is_null($jsonObject) && isset($jsonObject->metaFieldNameMap))
+		if(!is_null($jsonObject) && isset($jsonObject->assetStructMetaNameMap))
 		{
-			if(empty($jsonObject->metaFieldNameMap))
-				$this->metaFieldNameMap = array();
+			if(empty($jsonObject->assetStructMetaNameMap))
+				$this->assetStructMetaNameMap = array();
 			else
-				$this->metaFieldNameMap = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->metaFieldNameMap, "KalturaStringValue");
+				$this->assetStructMetaNameMap = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->assetStructMetaNameMap, "KalturaMetaFieldNameMap");
 		}
 		if(!is_null($xml) && count($xml->vectorizedMetaIds))
 			$this->vectorizedMetaIds = (string)$xml->vectorizedMetaIds;
@@ -89,13 +89,13 @@ class Kaltura_Client_Type_AiMetadataGeneratorConfiguration extends Kaltura_Clien
 	public $isEnabled = null;
 
 	/**
-	 * A type of dictionary defined as [KalturaLlmMetadataKeysEnum,Integer]. 
-	 *             This property is used to correlate the newly generated metadata to existing metadata IDs which are available in the asset’s struct. 
-	 *             That is, per each generated metadata key (name), to which metadata ID on the asset it is mapped and stored.
+	 * A type of dictionary defined as [long,KalturaMetaFieldNameMap]. 
+	 *             This property is used to correlate the newly generated metadata to
+	 *             existing metadata IDs which are available in the asset’s struct.
 	 *
 	 * @var map
 	 */
-	public $metaFieldNameMap;
+	public $assetStructMetaNameMap;
 
 	/**
 	 * a String type holding a comma separated list of metadata IDs. 

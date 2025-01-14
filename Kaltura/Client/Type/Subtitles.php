@@ -106,7 +106,6 @@ class Kaltura_Client_Type_Subtitles extends Kaltura_Client_ObjectBase
 	 *             (note that the metadata keys are always in English). It includes a KalturaLanguage systemName.
 	 *
 	 * @var string
-	 * @readonly
 	 */
 	public $subtitlesLanguage = null;
 
