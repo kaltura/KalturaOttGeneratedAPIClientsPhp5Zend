@@ -149,6 +149,7 @@ class Kaltura_Client_TypeMap
 		'KalturaBookmarkListResponse' => 'Kaltura_Client_Type_BookmarkListResponse',
 		'KalturaBookmarkPlayerData' => 'Kaltura_Client_Type_BookmarkPlayerData',
 		'KalturaBooleanValue' => 'Kaltura_Client_Type_BooleanValue',
+		'KalturaBulkPlaybackContext' => 'Kaltura_Client_Type_BulkPlaybackContext',
 		'KalturaBulkUpload' => 'Kaltura_Client_Type_BulkUpload',
 		'KalturaBulkUploadAssetData' => 'Kaltura_Client_Type_BulkUploadAssetData',
 		'KalturaBulkUploadAssetResult' => 'Kaltura_Client_Type_BulkUploadAssetResult',

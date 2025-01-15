@@ -197,6 +197,37 @@ class Kaltura_Client_AssetService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
+	 * @return Kaltura_Client_Type_BulkPlaybackContext
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function getBulkPlaybackContext(array $fileTypes, $streamerType, $context, $urlType)
+	{
+		$kparams = array();
+		foreach($fileTypes as $index => $obj)
+		{
+			$this->client->addParam($kparams, "fileTypes:$index", $obj->toParams());
+		}
+		$this->client->addParam($kparams, "streamerType", $streamerType);
+		$this->client->addParam($kparams, "context", $context);
+		$this->client->addParam($kparams, "urlType", $urlType);
+		$this->client->queueServiceActionCall("asset", "getBulkPlaybackContext", "KalturaBulkPlaybackContext", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaBulkPlaybackContext");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_BulkPlaybackContext");
+		}
+			return $resultObject;
+	}
+
+	/**
 	 * @return Kaltura_Client_Type_PlaybackContext
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
