@@ -120,6 +120,30 @@ class Kaltura_Client_AiMetadataGeneratorService extends Kaltura_Client_ServiceBa
 	}
 
 	/**
+	 * @return Kaltura_Client_Type_MetaFieldNameMap
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function getMetadataFieldDefinitions()
+	{
+		$kparams = array();
+		$this->client->queueServiceActionCall("aimetadatagenerator", "getMetadataFieldDefinitions", "KalturaMetaFieldNameMap", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaMetaFieldNameMap");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_MetaFieldNameMap");
+		}
+			return $resultObject;
+	}
+
+	/**
 	 * @return Kaltura_Client_Type_AiMetadataGeneratorConfiguration
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -147,11 +171,11 @@ class Kaltura_Client_AiMetadataGeneratorService extends Kaltura_Client_ServiceBa
 	 * @return Kaltura_Client_Type_AiMetadataGeneratorConfiguration
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function setPartnerConfiguration(Kaltura_Client_Type_AiMetadataGeneratorConfiguration $configuration)
+	function updatePartnerConfiguration(Kaltura_Client_Type_AiMetadataGeneratorConfiguration $configuration)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "configuration", $configuration->toParams());
-		$this->client->queueServiceActionCall("aimetadatagenerator", "setPartnerConfiguration", "KalturaAiMetadataGeneratorConfiguration", $kparams);
+		$this->client->queueServiceActionCall("aimetadatagenerator", "updatePartnerConfiguration", "KalturaAiMetadataGeneratorConfiguration", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$rawResult = $this->client->doQueue();
