@@ -864,12 +864,6 @@ class Kaltura_Client_TypeMap
 		'KalturaVodIngestAssetResultFilter' => 'Kaltura_Client_Type_VodIngestAssetResultFilter',
 		'KalturaVodIngestAssetResultList' => 'Kaltura_Client_Type_VodIngestAssetResultList',
 		'KalturaVodIngestAssetResultResponse' => 'Kaltura_Client_Type_VodIngestAssetResultResponse',
-		'KalturaWatchBasedRecommendationsAdminConfiguration' => 'Kaltura_Client_Type_WatchBasedRecommendationsAdminConfiguration',
-		'KalturaWatchBasedRecommendationsProfile' => 'Kaltura_Client_Type_WatchBasedRecommendationsProfile',
-		'KalturaWatchBasedRecommendationsProfileByIdsFilter' => 'Kaltura_Client_Type_WatchBasedRecommendationsProfileByIdsFilter',
-		'KalturaWatchBasedRecommendationsProfileByNameFilter' => 'Kaltura_Client_Type_WatchBasedRecommendationsProfileByNameFilter',
-		'KalturaWatchBasedRecommendationsProfileFilter' => 'Kaltura_Client_Type_WatchBasedRecommendationsProfileFilter',
-		'KalturaWatchBasedRecommendationsProfileListResponse' => 'Kaltura_Client_Type_WatchBasedRecommendationsProfileListResponse',
 	);
 	
 	public static function getZendType($kalturaType)
