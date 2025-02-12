@@ -65,12 +65,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_AssetEnrichService
-	 */
-	public $assetEnrich = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_AssetFileService
 	 */
 	public $assetFile = null;
@@ -990,7 +984,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:25-02-05');
+		$this->setClientTag('php5:25-02-12');
 		$this->setApiVersion('10.9.0.0');
 		
 		$this->aiMetadataGenerator = new Kaltura_Client_AiMetadataGeneratorService($this);
@@ -998,7 +992,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
 		$this->assetComment = new Kaltura_Client_AssetCommentService($this);
 		$this->asset = new Kaltura_Client_AssetService($this);
-		$this->assetEnrich = new Kaltura_Client_AssetEnrichService($this);
 		$this->assetFile = new Kaltura_Client_AssetFileService($this);
 		$this->assetFilePpv = new Kaltura_Client_AssetFilePpvService($this);
 		$this->assetHistory = new Kaltura_Client_AssetHistoryService($this);

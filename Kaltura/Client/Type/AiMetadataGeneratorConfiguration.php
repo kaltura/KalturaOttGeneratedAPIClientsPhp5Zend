@@ -76,10 +76,20 @@ class Kaltura_Client_Type_AiMetadataGeneratorConfiguration extends Kaltura_Clien
 			else
 				$this->assetStructMetaNameMap = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->assetStructMetaNameMap, "KalturaMetaFieldNameMap");
 		}
-		if(!is_null($xml) && count($xml->vectorizedMetaIds))
-			$this->vectorizedMetaIds = (string)$xml->vectorizedMetaIds;
-		if(!is_null($jsonObject) && isset($jsonObject->vectorizedMetaIds))
-			$this->vectorizedMetaIds = (string)$jsonObject->vectorizedMetaIds;
+		if(!is_null($xml) && count($xml->supportedLanguages))
+		{
+			if(empty($xml->supportedLanguages))
+				$this->supportedLanguages = array();
+			else
+				$this->supportedLanguages = Kaltura_Client_ParseUtils::unmarshalArray($xml->supportedLanguages, "KalturaStringValue");
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->supportedLanguages))
+		{
+			if(empty($jsonObject->supportedLanguages))
+				$this->supportedLanguages = array();
+			else
+				$this->supportedLanguages = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->supportedLanguages, "KalturaStringValue");
+		}
 	}
 	/**
 	 * Specifies if the feature is enabled or disabled.
@@ -98,12 +108,13 @@ class Kaltura_Client_Type_AiMetadataGeneratorConfiguration extends Kaltura_Clien
 	public $assetStructMetaNameMap;
 
 	/**
-	 * a String type holding a comma separated list of metadata IDs. 
-	 *              It is used to define which metadata fields will be extracted from the asset and sent for embeddings.
+	 * A read only array to list the set of languages which can be used with the service.
+	 *             In practice it is populated with the values set in KalturaMetadataGeneratorLanguages ENUM.
 	 *
-	 * @var string
+	 * @var array of KalturaStringValue
+	 * @readonly
 	 */
-	public $vectorizedMetaIds = null;
+	public $supportedLanguages;
 
 
 }
