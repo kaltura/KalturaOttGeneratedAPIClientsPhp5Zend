@@ -52,18 +52,22 @@ class Kaltura_Client_Type_MetaFieldNameMap extends Kaltura_Client_ObjectBase
 			$this->genre = (string)$xml->genre;
 		if(!is_null($jsonObject) && isset($jsonObject->genre))
 			$this->genre = (string)$jsonObject->genre;
+		if(!is_null($xml) && count($xml->subGenre))
+			$this->subGenre = (string)$xml->subGenre;
+		if(!is_null($jsonObject) && isset($jsonObject->subGenre))
+			$this->subGenre = (string)$jsonObject->subGenre;
 		if(!is_null($xml) && count($xml->sentiment))
 			$this->sentiment = (string)$xml->sentiment;
 		if(!is_null($jsonObject) && isset($jsonObject->sentiment))
 			$this->sentiment = (string)$jsonObject->sentiment;
-		if(!is_null($xml) && count($xml->shortDescription))
-			$this->shortDescription = (string)$xml->shortDescription;
-		if(!is_null($jsonObject) && isset($jsonObject->shortDescription))
-			$this->shortDescription = (string)$jsonObject->shortDescription;
-		if(!is_null($xml) && count($xml->longDescription))
-			$this->longDescription = (string)$xml->longDescription;
-		if(!is_null($jsonObject) && isset($jsonObject->longDescription))
-			$this->longDescription = (string)$jsonObject->longDescription;
+		if(!is_null($xml) && count($xml->suggestedTitle))
+			$this->suggestedTitle = (string)$xml->suggestedTitle;
+		if(!is_null($jsonObject) && isset($jsonObject->suggestedTitle))
+			$this->suggestedTitle = (string)$jsonObject->suggestedTitle;
+		if(!is_null($xml) && count($xml->description))
+			$this->description = (string)$xml->description;
+		if(!is_null($jsonObject) && isset($jsonObject->description))
+			$this->description = (string)$jsonObject->description;
 		if(!is_null($xml) && count($xml->oneLiner))
 			$this->oneLiner = (string)$xml->oneLiner;
 		if(!is_null($jsonObject) && isset($jsonObject->oneLiner))
@@ -72,6 +76,10 @@ class Kaltura_Client_Type_MetaFieldNameMap extends Kaltura_Client_ObjectBase
 			$this->keywords = (string)$xml->keywords;
 		if(!is_null($jsonObject) && isset($jsonObject->keywords))
 			$this->keywords = (string)$jsonObject->keywords;
+		if(!is_null($xml) && count($xml->sensitiveContent))
+			$this->sensitiveContent = (string)$xml->sensitiveContent;
+		if(!is_null($jsonObject) && isset($jsonObject->sensitiveContent))
+			$this->sensitiveContent = (string)$jsonObject->sensitiveContent;
 	}
 	/**
 	 * Genre
@@ -81,6 +89,13 @@ class Kaltura_Client_Type_MetaFieldNameMap extends Kaltura_Client_ObjectBase
 	public $genre = null;
 
 	/**
+	 * Sub-Genre
+	 *
+	 * @var string
+	 */
+	public $subGenre = null;
+
+	/**
 	 * Sentiment
 	 *
 	 * @var string
@@ -88,18 +103,18 @@ class Kaltura_Client_Type_MetaFieldNameMap extends Kaltura_Client_ObjectBase
 	public $sentiment = null;
 
 	/**
-	 * Short Description
+	 * Suggested Title
 	 *
 	 * @var string
 	 */
-	public $shortDescription = null;
+	public $suggestedTitle = null;
 
 	/**
-	 * Long Description
+	 * Description
 	 *
 	 * @var string
 	 */
-	public $longDescription = null;
+	public $description = null;
 
 	/**
 	 * One Liner
@@ -114,6 +129,13 @@ class Kaltura_Client_Type_MetaFieldNameMap extends Kaltura_Client_ObjectBase
 	 * @var string
 	 */
 	public $keywords = null;
+
+	/**
+	 * Sensitive Content
+	 *
+	 * @var string
+	 */
+	public $sensitiveContent = null;
 
 
 }
