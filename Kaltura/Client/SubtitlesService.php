@@ -94,12 +94,12 @@ class Kaltura_Client_SubtitlesService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_Subtitles
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function uploadFile(Kaltura_Client_Type_Subtitles $subtitles, $file)
+	function uploadFile(Kaltura_Client_Type_Subtitles $subtitles, $fileData)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "subtitles", $subtitles->toParams());
 		$kfiles = array();
-		$this->client->addParam($kfiles, "file", $file);
+		$this->client->addParam($kfiles, "fileData", $fileData);
 		$this->client->queueServiceActionCall("subtitles", "uploadFile",  "KalturaSubtitles", $kparams, $kfiles);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();

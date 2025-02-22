@@ -33,8 +33,8 @@
  */
 class Kaltura_Client_Enum_SubtitlesType extends Kaltura_Client_EnumBase
 {
+	const TEXT = "Text";
 	const SRT = "SRT";
-	const WEBTTV = "WebTTV";
-	const TEXT_ONLY = "Text_Only";
+	const WEBVTT = "WebVTT";
 }
 
