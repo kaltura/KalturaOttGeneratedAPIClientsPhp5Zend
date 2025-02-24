@@ -66,7 +66,7 @@ class Kaltura_Client_Type_SearchHistoryListResponse extends Kaltura_Client_Type_
 	/**
 	 * KalturaSearchHistory Models
 	 *
-	 * @var array of KalturaSearchHistory
+	 * @var Kaltura_Client_Type_SearchHistory[]
 	 */
 	public $objects;
 

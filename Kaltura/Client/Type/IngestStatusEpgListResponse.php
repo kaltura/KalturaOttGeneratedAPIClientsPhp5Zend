@@ -66,7 +66,7 @@ class Kaltura_Client_Type_IngestStatusEpgListResponse extends Kaltura_Client_Typ
 	/**
 	 * A list of IngestStatus
 	 *
-	 * @var array of KalturaIngestEpg
+	 * @var Kaltura_Client_Type_IngestEpg[]
 	 */
 	public $objects;
 

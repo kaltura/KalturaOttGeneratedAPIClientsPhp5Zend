@@ -66,7 +66,7 @@ class Kaltura_Client_Type_InboxMessageListResponse extends Kaltura_Client_Type_L
 	/**
 	 * Follow data list
 	 *
-	 * @var array of KalturaInboxMessage
+	 * @var Kaltura_Client_Type_InboxMessage[]
 	 */
 	public $objects;
 

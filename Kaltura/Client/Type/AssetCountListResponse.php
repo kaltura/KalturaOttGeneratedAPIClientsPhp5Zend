@@ -77,7 +77,7 @@ class Kaltura_Client_Type_AssetCountListResponse extends Kaltura_Client_Type_Lis
 	/**
 	 * List of groupings (field name and sub-list of values and their counts)
 	 *
-	 * @var array of KalturaAssetsCount
+	 * @var Kaltura_Client_Type_AssetsCount[]
 	 */
 	public $objects;
 

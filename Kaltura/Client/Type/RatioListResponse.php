@@ -66,7 +66,7 @@ class Kaltura_Client_Type_RatioListResponse extends Kaltura_Client_Type_ListResp
 	/**
 	 * A list of ratios
 	 *
-	 * @var array of KalturaRatio
+	 * @var Kaltura_Client_Type_Ratio[]
 	 */
 	public $objects;
 

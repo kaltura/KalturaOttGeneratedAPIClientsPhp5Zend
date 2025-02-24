@@ -66,7 +66,7 @@ class Kaltura_Client_Type_DeviceReferenceDataListResponse extends Kaltura_Client
 	/**
 	 * A list of KalturaDeviceReferenceData
 	 *
-	 * @var array of KalturaDeviceReferenceData
+	 * @var Kaltura_Client_Type_DeviceReferenceData[]
 	 */
 	public $objects;
 

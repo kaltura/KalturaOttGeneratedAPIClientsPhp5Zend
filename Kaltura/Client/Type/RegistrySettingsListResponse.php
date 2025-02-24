@@ -66,7 +66,7 @@ class Kaltura_Client_Type_RegistrySettingsListResponse extends Kaltura_Client_Ty
 	/**
 	 * Registry settings list
 	 *
-	 * @var array of KalturaRegistrySettings
+	 * @var Kaltura_Client_Type_RegistrySettings[]
 	 */
 	public $objects;
 

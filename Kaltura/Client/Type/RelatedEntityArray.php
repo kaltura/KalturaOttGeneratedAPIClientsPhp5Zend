@@ -66,7 +66,7 @@ class Kaltura_Client_Type_RelatedEntityArray extends Kaltura_Client_ObjectBase
 	/**
 	 * List of related entities
 	 *
-	 * @var array of KalturaRelatedEntity
+	 * @var Kaltura_Client_Type_RelatedEntity[]
 	 */
 	public $objects;
 

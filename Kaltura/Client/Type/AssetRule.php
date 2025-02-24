@@ -84,14 +84,14 @@ class Kaltura_Client_Type_AssetRule extends Kaltura_Client_Type_AssetRuleBase
 	/**
 	 * List of conditions for the rule
 	 *
-	 * @var array of KalturaCondition
+	 * @var Kaltura_Client_Type_Condition[]
 	 */
 	public $conditions;
 
 	/**
 	 * List of actions for the rule
 	 *
-	 * @var array of KalturaAssetRuleAction
+	 * @var Kaltura_Client_Type_AssetRuleAction[]
 	 */
 	public $actions;
 

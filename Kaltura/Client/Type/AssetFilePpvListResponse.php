@@ -66,7 +66,7 @@ class Kaltura_Client_Type_AssetFilePpvListResponse extends Kaltura_Client_Type_L
 	/**
 	 * A list of asset files ppvs
 	 *
-	 * @var array of KalturaAssetFilePpv
+	 * @var Kaltura_Client_Type_AssetFilePpv[]
 	 */
 	public $objects;
 
