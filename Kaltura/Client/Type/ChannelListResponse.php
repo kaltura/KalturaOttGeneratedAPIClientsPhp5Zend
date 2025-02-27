@@ -66,7 +66,7 @@ class Kaltura_Client_Type_ChannelListResponse extends Kaltura_Client_Type_ListRe
 	/**
 	 * A list of channels
 	 *
-	 * @var array of KalturaChannel
+	 * @var Kaltura_Client_Type_Channel[]
 	 */
 	public $objects;
 

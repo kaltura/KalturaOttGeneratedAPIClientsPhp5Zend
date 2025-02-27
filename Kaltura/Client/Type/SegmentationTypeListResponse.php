@@ -66,7 +66,7 @@ class Kaltura_Client_Type_SegmentationTypeListResponse extends Kaltura_Client_Ty
 	/**
 	 * Segmentation Types
 	 *
-	 * @var array of KalturaSegmentationType
+	 * @var Kaltura_Client_Type_SegmentationType[]
 	 */
 	public $objects;
 

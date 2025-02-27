@@ -161,7 +161,7 @@ class Kaltura_Client_Type_ProgramAssetGroupOffer extends Kaltura_Client_Type_OTT
 	/**
 	 * Name of the Program asset group offer
 	 *
-	 * @var array of KalturaTranslationToken
+	 * @var Kaltura_Client_Type_TranslationToken[]
 	 */
 	public $multilingualName;
 
@@ -193,7 +193,7 @@ class Kaltura_Client_Type_ProgramAssetGroupOffer extends Kaltura_Client_Type_OTT
 	/**
 	 * A list of the descriptions of the Program asset group offer on different languages (language code and translation)
 	 *
-	 * @var array of KalturaTranslationToken
+	 * @var Kaltura_Client_Type_TranslationToken[]
 	 */
 	public $multilingualDescription;
 

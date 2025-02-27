@@ -66,7 +66,7 @@ class Kaltura_Client_Type_ConfigurationGroupTagListResponse extends Kaltura_Clie
 	/**
 	 * Configuration group tags
 	 *
-	 * @var array of KalturaConfigurationGroupTag
+	 * @var Kaltura_Client_Type_ConfigurationGroupTag[]
 	 */
 	public $objects;
 
