@@ -168,7 +168,7 @@ class Kaltura_Client_Type_CategoryItem extends Kaltura_Client_Type_OTTObjectSupp
 	/**
 	 * Category name
 	 *
-	 * @var array of KalturaTranslationToken
+	 * @var Kaltura_Client_Type_TranslationToken[]
 	 */
 	public $multilingualName;
 
@@ -190,7 +190,7 @@ class Kaltura_Client_Type_CategoryItem extends Kaltura_Client_Type_OTTObjectSupp
 	/**
 	 * List of unified Channels.
 	 *
-	 * @var array of KalturaUnifiedChannel
+	 * @var Kaltura_Client_Type_UnifiedChannel[]
 	 */
 	public $unifiedChannels;
 

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_EventNotificationListResponse extends Kaltura_Client_T
 	/**
 	 * A list of objects
 	 *
-	 * @var array of KalturaEventNotification
+	 * @var Kaltura_Client_Type_EventNotification[]
 	 */
 	public $objects;
 

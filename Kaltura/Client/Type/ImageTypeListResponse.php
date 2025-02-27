@@ -66,7 +66,7 @@ class Kaltura_Client_Type_ImageTypeListResponse extends Kaltura_Client_Type_List
 	/**
 	 * A list of partner image types
 	 *
-	 * @var array of KalturaImageType
+	 * @var Kaltura_Client_Type_ImageType[]
 	 */
 	public $objects;
 

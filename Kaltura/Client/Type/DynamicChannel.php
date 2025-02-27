@@ -95,7 +95,7 @@ class Kaltura_Client_Type_DynamicChannel extends Kaltura_Client_Type_Channel
 	 * Asset types in the channel.
 	 *             -26 is EPG
 	 *
-	 * @var array of KalturaIntegerValue
+	 * @var Kaltura_Client_Type_IntegerValue[]
 	 */
 	public $assetTypes;
 

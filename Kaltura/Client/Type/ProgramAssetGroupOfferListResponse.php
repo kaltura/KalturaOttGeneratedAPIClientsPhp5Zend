@@ -66,7 +66,7 @@ class Kaltura_Client_Type_ProgramAssetGroupOfferListResponse extends Kaltura_Cli
 	/**
 	 * A list of collections
 	 *
-	 * @var array of KalturaProgramAssetGroupOffer
+	 * @var Kaltura_Client_Type_ProgramAssetGroupOffer[]
 	 */
 	public $objects;
 
