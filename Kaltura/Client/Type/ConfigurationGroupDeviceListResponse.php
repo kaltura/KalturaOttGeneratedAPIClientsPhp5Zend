@@ -66,7 +66,7 @@ class Kaltura_Client_Type_ConfigurationGroupDeviceListResponse extends Kaltura_C
 	/**
 	 * Configuration group devices
 	 *
-	 * @var array of KalturaConfigurationGroupDevice
+	 * @var Kaltura_Client_Type_ConfigurationGroupDevice[]
 	 */
 	public $objects;
 

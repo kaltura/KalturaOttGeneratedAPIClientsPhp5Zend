@@ -70,7 +70,7 @@ class Kaltura_Client_Type_IngestEpgDetails extends Kaltura_Client_Type_IngestEpg
 	/**
 	 * Errors
 	 *
-	 * @var array of KalturaEpgIngestErrorMessage
+	 * @var Kaltura_Client_Type_EpgIngestErrorMessage[]
 	 */
 	public $errors;
 

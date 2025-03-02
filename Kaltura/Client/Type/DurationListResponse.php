@@ -66,7 +66,7 @@ class Kaltura_Client_Type_DurationListResponse extends Kaltura_Client_Type_ListR
 	/**
 	 * Durations
 	 *
-	 * @var array of KalturaDuration
+	 * @var Kaltura_Client_Type_Duration[]
 	 */
 	public $objects;
 

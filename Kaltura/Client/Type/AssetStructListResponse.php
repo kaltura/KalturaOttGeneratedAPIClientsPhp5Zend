@@ -66,7 +66,7 @@ class Kaltura_Client_Type_AssetStructListResponse extends Kaltura_Client_Type_Li
 	/**
 	 * A list of asset structs
 	 *
-	 * @var array of KalturaAssetStruct
+	 * @var Kaltura_Client_Type_AssetStruct[]
 	 */
 	public $objects;
 

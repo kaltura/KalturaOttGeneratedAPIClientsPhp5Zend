@@ -66,7 +66,7 @@ class Kaltura_Client_Type_AssetHistoryListResponse extends Kaltura_Client_Type_L
 	/**
 	 * WatchHistoryAssets Models
 	 *
-	 * @var array of KalturaAssetHistory
+	 * @var Kaltura_Client_Type_AssetHistory[]
 	 */
 	public $objects;
 

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_PaymentGatewayConfiguration extends Kaltura_Client_Obj
 	/**
 	 * Payment gateway configuration
 	 *
-	 * @var array of KalturaKeyValue
+	 * @var Kaltura_Client_Type_KeyValue[]
 	 */
 	public $paymentGatewayConfiguration;
 
