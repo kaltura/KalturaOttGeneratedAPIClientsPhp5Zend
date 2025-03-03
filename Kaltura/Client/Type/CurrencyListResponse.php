@@ -66,7 +66,7 @@ class Kaltura_Client_Type_CurrencyListResponse extends Kaltura_Client_Type_ListR
 	/**
 	 * Currencies
 	 *
-	 * @var array of KalturaCurrency
+	 * @var Kaltura_Client_Type_Currency[]
 	 */
 	public $objects;
 

@@ -78,7 +78,7 @@ class Kaltura_Client_Type_EntitlementPriceDetails extends Kaltura_Client_ObjectB
 	/**
 	 * List of the season numbers to exclude.
 	 *
-	 * @var array of KalturaEntitlementDiscountDetails
+	 * @var Kaltura_Client_Type_EntitlementDiscountDetails[]
 	 * @readonly
 	 */
 	public $discountDetails;

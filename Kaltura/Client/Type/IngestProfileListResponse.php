@@ -66,7 +66,7 @@ class Kaltura_Client_Type_IngestProfileListResponse extends Kaltura_Client_Type_
 	/**
 	 * Adapters
 	 *
-	 * @var array of KalturaIngestProfile
+	 * @var Kaltura_Client_Type_IngestProfile[]
 	 */
 	public $objects;
 

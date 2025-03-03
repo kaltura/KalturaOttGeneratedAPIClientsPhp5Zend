@@ -66,7 +66,7 @@ class Kaltura_Client_Type_PpvListResponse extends Kaltura_Client_Type_ListRespon
 	/**
 	 * A list of PPV
 	 *
-	 * @var array of KalturaPpv
+	 * @var Kaltura_Client_Type_Ppv[]
 	 */
 	public $objects;
 

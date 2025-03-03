@@ -90,7 +90,7 @@ class Kaltura_Client_Type_AssetPersonalMarkup extends Kaltura_Client_ObjectBase
 	/**
 	 * all related asset&#39;s Product Markups
 	 *
-	 * @var array of KalturaProductMarkup
+	 * @var Kaltura_Client_Type_ProductMarkup[]
 	 */
 	public $products;
 

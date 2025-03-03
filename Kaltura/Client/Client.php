@@ -35,6 +35,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 {
 	/**
 	 * 
+	 * @var Kaltura_Client_AiMetadataGeneratorService
+	 */
+	public $aiMetadataGenerator = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_AnnouncementService
 	 */
 	public $announcement = null;
@@ -839,6 +845,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_SubtitlesService
+	 */
+	public $subtitles = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_SystemService
 	 */
 	public $system = null;
@@ -972,9 +984,10 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:25-01-07');
-		$this->setApiVersion('10.7.1.4');
+		$this->setClientTag('php5:25-03-03');
+		$this->setApiVersion('11.0.0.1');
 		
+		$this->aiMetadataGenerator = new Kaltura_Client_AiMetadataGeneratorService($this);
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
 		$this->assetComment = new Kaltura_Client_AssetCommentService($this);
@@ -1109,6 +1122,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->streamingDevice = new Kaltura_Client_StreamingDeviceService($this);
 		$this->subscription = new Kaltura_Client_SubscriptionService($this);
 		$this->subscriptionSet = new Kaltura_Client_SubscriptionSetService($this);
+		$this->subtitles = new Kaltura_Client_SubtitlesService($this);
 		$this->system = new Kaltura_Client_SystemService($this);
 		$this->tag = new Kaltura_Client_TagService($this);
 		$this->timeShiftedTvPartnerSettings = new Kaltura_Client_TimeShiftedTvPartnerSettingsService($this);
