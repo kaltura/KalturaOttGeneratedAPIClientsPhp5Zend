@@ -66,7 +66,7 @@ class Kaltura_Client_Type_SubtitlesListResponse extends Kaltura_Client_Type_List
 	/**
 	 * A list of subtitles files
 	 *
-	 * @var array of KalturaSubtitles
+	 * @var Kaltura_Client_Type_Subtitles[]
 	 */
 	public $objects;
 

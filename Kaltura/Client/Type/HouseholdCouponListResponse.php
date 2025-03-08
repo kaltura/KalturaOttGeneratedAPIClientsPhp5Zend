@@ -66,7 +66,7 @@ class Kaltura_Client_Type_HouseholdCouponListResponse extends Kaltura_Client_Typ
 	/**
 	 * A list of objects
 	 *
-	 * @var array of KalturaHouseholdCoupon
+	 * @var Kaltura_Client_Type_HouseholdCoupon[]
 	 */
 	public $objects;
 

@@ -161,7 +161,7 @@ class Kaltura_Client_Type_SeriesRecording extends Kaltura_Client_ObjectBase
 	/**
 	 * List of the season numbers to exclude.
 	 *
-	 * @var array of KalturaIntegerValue
+	 * @var Kaltura_Client_Type_IntegerValue[]
 	 * @readonly
 	 */
 	public $excludedSeasons;

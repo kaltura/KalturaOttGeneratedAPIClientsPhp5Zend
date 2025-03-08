@@ -66,7 +66,7 @@ class Kaltura_Client_Type_RegionListResponse extends Kaltura_Client_Type_ListRes
 	/**
 	 * A list of regions
 	 *
-	 * @var array of KalturaRegion
+	 * @var Kaltura_Client_Type_Region[]
 	 */
 	public $objects;
 

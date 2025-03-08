@@ -60,10 +60,6 @@ class Kaltura_Client_Type_Subtitles extends Kaltura_Client_ObjectBase
 			$this->fileName = (string)$xml->fileName;
 		if(!is_null($jsonObject) && isset($jsonObject->fileName))
 			$this->fileName = (string)$jsonObject->fileName;
-		if(!is_null($xml) && count($xml->type))
-			$this->type = (string)$xml->type;
-		if(!is_null($jsonObject) && isset($jsonObject->type))
-			$this->type = (string)$jsonObject->type;
 		if(!is_null($xml) && count($xml->language))
 			$this->language = (string)$xml->language;
 		if(!is_null($jsonObject) && isset($jsonObject->language))
@@ -91,13 +87,6 @@ class Kaltura_Client_Type_Subtitles extends Kaltura_Client_ObjectBase
 	 * @var string
 	 */
 	public $fileName = null;
-
-	/**
-	 * Mandatory. The type of the subtitles file. Supported - Text, SRT, WebVTT.
-	 *
-	 * @var Kaltura_Client_Enum_SubtitlesType
-	 */
-	public $type = null;
 
 	/**
 	 * Mandatory. The language in which the subtitles are written.

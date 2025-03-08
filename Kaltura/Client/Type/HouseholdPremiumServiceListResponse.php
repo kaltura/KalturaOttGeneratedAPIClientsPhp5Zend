@@ -66,7 +66,7 @@ class Kaltura_Client_Type_HouseholdPremiumServiceListResponse extends Kaltura_Cl
 	/**
 	 * A list of premium services
 	 *
-	 * @var array of KalturaHouseholdPremiumService
+	 * @var Kaltura_Client_Type_HouseholdPremiumService[]
 	 */
 	public $objects;
 

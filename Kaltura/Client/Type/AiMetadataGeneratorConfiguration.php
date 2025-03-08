@@ -111,7 +111,7 @@ class Kaltura_Client_Type_AiMetadataGeneratorConfiguration extends Kaltura_Clien
 	 * A read only array to list the set of languages which can be used with the service.
 	 *             In practice it is populated with the values set in KalturaMetadataGeneratorLanguages ENUM.
 	 *
-	 * @var array of KalturaStringValue
+	 * @var Kaltura_Client_Type_StringValue[]
 	 * @readonly
 	 */
 	public $supportedLanguages;

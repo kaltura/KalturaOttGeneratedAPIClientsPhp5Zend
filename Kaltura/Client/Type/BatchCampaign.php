@@ -66,7 +66,7 @@ class Kaltura_Client_Type_BatchCampaign extends Kaltura_Client_Type_Campaign
 	/**
 	 * These conditions define the population that apply one the campaign
 	 *
-	 * @var array of KalturaCondition
+	 * @var Kaltura_Client_Type_Condition[]
 	 */
 	public $populationConditions;
 

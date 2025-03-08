@@ -43,14 +43,15 @@ class Kaltura_Client_AiMetadataGeneratorService extends Kaltura_Client_ServiceBa
 	 * @return Kaltura_Client_Type_GenerateMetadataBySubtitlesJob
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function generateMetadataBySubtitles($subtitlesFileId, array $externalAssetIds)
+	function generateMetadataBySubtitles($subtitlesFileId, array $externalAssetIds = null)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "subtitlesFileId", $subtitlesFileId);
-		foreach($externalAssetIds as $index => $obj)
-		{
-			$this->client->addParam($kparams, "externalAssetIds:$index", $obj->toParams());
-		}
+		if ($externalAssetIds !== null)
+			foreach($externalAssetIds as $index => $obj)
+			{
+				$this->client->addParam($kparams, "externalAssetIds:$index", $obj->toParams());
+			}
 		$this->client->queueServiceActionCall("aimetadatagenerator", "generateMetadataBySubtitles", "KalturaGenerateMetadataBySubtitlesJob", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
