@@ -33,6 +33,6 @@
  */
 class Kaltura_Client_Enum_UserLogOrderBy extends Kaltura_Client_EnumBase
 {
-	const NONE = "NONE";
+	const CREATE_DATE_DESC = "CREATE_DATE_DESC";
 }
 

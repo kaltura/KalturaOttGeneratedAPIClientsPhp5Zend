@@ -49,13 +49,13 @@ class Kaltura_Client_Type_UserLog extends Kaltura_Client_ObjectBase
 			return;
 		
 		if(!is_null($xml) && count($xml->id))
-			$this->id = (int)$xml->id;
+			$this->id = (string)$xml->id;
 		if(!is_null($jsonObject) && isset($jsonObject->id))
-			$this->id = (int)$jsonObject->id;
+			$this->id = (string)$jsonObject->id;
 		if(!is_null($xml) && count($xml->createDate))
-			$this->createDate = (int)$xml->createDate;
+			$this->createDate = (string)$xml->createDate;
 		if(!is_null($jsonObject) && isset($jsonObject->createDate))
-			$this->createDate = (int)$jsonObject->createDate;
+			$this->createDate = (string)$jsonObject->createDate;
 		if(!is_null($xml) && count($xml->userId))
 			$this->userId = (int)$xml->userId;
 		if(!is_null($jsonObject) && isset($jsonObject->userId))
@@ -68,7 +68,7 @@ class Kaltura_Client_Type_UserLog extends Kaltura_Client_ObjectBase
 	/**
 	 * UserLog entry unique identifier
 	 *
-	 * @var int
+	 * @var bigint
 	 * @readonly
 	 */
 	public $id = null;
@@ -76,7 +76,7 @@ class Kaltura_Client_Type_UserLog extends Kaltura_Client_ObjectBase
 	/**
 	 * The log created date in epoch
 	 *
-	 * @var int
+	 * @var bigint
 	 * @readonly
 	 */
 	public $createDate = null;
