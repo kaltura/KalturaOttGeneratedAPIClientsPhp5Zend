@@ -66,7 +66,7 @@ class Kaltura_Client_Type_RecommendationProfileListResponse extends Kaltura_Clie
 	/**
 	 * Recommendation profiles list
 	 *
-	 * @var array of KalturaRecommendationProfile
+	 * @var Kaltura_Client_Type_RecommendationProfile[]
 	 */
 	public $objects;
 

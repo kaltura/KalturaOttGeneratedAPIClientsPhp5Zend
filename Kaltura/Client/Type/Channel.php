@@ -184,7 +184,7 @@ class Kaltura_Client_Type_Channel extends Kaltura_Client_Type_BaseChannel
 	/**
 	 * Channel name
 	 *
-	 * @var array of KalturaTranslationToken
+	 * @var Kaltura_Client_Type_TranslationToken[]
 	 */
 	public $multilingualName;
 
@@ -213,7 +213,7 @@ class Kaltura_Client_Type_Channel extends Kaltura_Client_Type_BaseChannel
 	/**
 	 * Cannel description
 	 *
-	 * @var array of KalturaTranslationToken
+	 * @var Kaltura_Client_Type_TranslationToken[]
 	 */
 	public $multilingualDescription;
 
@@ -241,7 +241,7 @@ class Kaltura_Client_Type_Channel extends Kaltura_Client_Type_BaseChannel
 	/**
 	 * Parameters for asset list sorting.
 	 *
-	 * @var array of KalturaBaseChannelOrder
+	 * @var Kaltura_Client_Type_BaseChannelOrder[]
 	 */
 	public $orderingParametersEqual;
 

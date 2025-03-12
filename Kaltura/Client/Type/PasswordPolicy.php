@@ -126,7 +126,7 @@ class Kaltura_Client_Type_PasswordPolicy extends Kaltura_Client_Type_OTTObjectSu
 	/**
 	 * array of  KalturaRegex
 	 *
-	 * @var array of KalturaRegexExpression
+	 * @var Kaltura_Client_Type_RegexExpression[]
 	 */
 	public $complexities;
 

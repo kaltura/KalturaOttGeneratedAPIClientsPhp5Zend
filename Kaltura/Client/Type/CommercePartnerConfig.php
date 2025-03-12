@@ -88,7 +88,7 @@ class Kaltura_Client_Type_CommercePartnerConfig extends Kaltura_Client_Type_Part
 	/**
 	 * configuration for bookmark event threshold (when to dispatch the event) in seconds.
 	 *
-	 * @var array of KalturaBookmarkEventThreshold
+	 * @var Kaltura_Client_Type_BookmarkEventThreshold[]
 	 */
 	public $bookmarkEventThresholds;
 

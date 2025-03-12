@@ -66,7 +66,7 @@ class Kaltura_Client_Type_MediaFileDynamicDataListResponse extends Kaltura_Clien
 	/**
 	 * A list of media-file types
 	 *
-	 * @var array of KalturaMediaFileDynamicData
+	 * @var Kaltura_Client_Type_MediaFileDynamicData[]
 	 */
 	public $objects;
 

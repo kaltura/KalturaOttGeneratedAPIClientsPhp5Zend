@@ -161,7 +161,7 @@ class Kaltura_Client_Type_ExternalChannelProfile extends Kaltura_Client_ObjectBa
 	/**
 	 * Enrichments
 	 *
-	 * @var array of KalturaChannelEnrichmentHolder
+	 * @var Kaltura_Client_Type_ChannelEnrichmentHolder[]
 	 */
 	public $enrichments;
 
