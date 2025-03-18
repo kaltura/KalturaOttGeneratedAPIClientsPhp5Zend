@@ -88,7 +88,7 @@ class Kaltura_Client_Type_TriggerCampaign extends Kaltura_Client_Type_Campaign
 	/**
 	 * List of conditions for the trigger (conditions on the object)
 	 *
-	 * @var array of KalturaCondition
+	 * @var Kaltura_Client_Type_Condition[]
 	 */
 	public $triggerConditions;
 

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_HouseholdPaymentGatewayListResponse extends Kaltura_Cl
 	/**
 	 * Follow data list
 	 *
-	 * @var array of KalturaHouseholdPaymentGateway
+	 * @var Kaltura_Client_Type_HouseholdPaymentGateway[]
 	 */
 	public $objects;
 

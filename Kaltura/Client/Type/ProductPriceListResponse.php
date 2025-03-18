@@ -66,7 +66,7 @@ class Kaltura_Client_Type_ProductPriceListResponse extends Kaltura_Client_Type_L
 	/**
 	 * A list of prices
 	 *
-	 * @var array of KalturaProductPrice
+	 * @var Kaltura_Client_Type_ProductPrice[]
 	 */
 	public $objects;
 

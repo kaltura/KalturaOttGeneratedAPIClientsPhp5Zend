@@ -66,7 +66,7 @@ class Kaltura_Client_Type_PermissionListResponse extends Kaltura_Client_Type_Lis
 	/**
 	 * A list of permissions
 	 *
-	 * @var array of KalturaPermission
+	 * @var Kaltura_Client_Type_Permission[]
 	 */
 	public $objects;
 
