@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_ManualChannel extends Kaltura_Client_Type_Channel
+class Kaltura_Client_Type_SubtitlesFilter extends Kaltura_Client_Type_Filter
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaManualChannel';
+		return 'KalturaSubtitlesFilter';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,27 +48,28 @@ class Kaltura_Client_Type_ManualChannel extends Kaltura_Client_Type_Channel
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->assets))
-		{
-			if(empty($xml->assets))
-				$this->assets = array();
-			else
-				$this->assets = Kaltura_Client_ParseUtils::unmarshalArray($xml->assets, "KalturaManualCollectionAsset");
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->assets))
-		{
-			if(empty($jsonObject->assets))
-				$this->assets = array();
-			else
-				$this->assets = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->assets, "KalturaManualCollectionAsset");
-		}
+		if(!is_null($xml) && count($xml->idIn))
+			$this->idIn = (string)$xml->idIn;
+		if(!is_null($jsonObject) && isset($jsonObject->idIn))
+			$this->idIn = (string)$jsonObject->idIn;
+		if(!is_null($xml) && count($xml->fileNameContains))
+			$this->fileNameContains = (string)$xml->fileNameContains;
+		if(!is_null($jsonObject) && isset($jsonObject->fileNameContains))
+			$this->fileNameContains = (string)$jsonObject->fileNameContains;
 	}
 	/**
-	 * List of assets identifier
+	 * A comma separated list of IDs indicating the KalturaSubtitles objects&#39; IDs.
 	 *
-	 * @var Kaltura_Client_Type_ManualCollectionAsset[]
+	 * @var string
 	 */
-	public $assets;
+	public $idIn = null;
+
+	/**
+	 * Contains a name or a partial name of the subtitles file.
+	 *
+	 * @var string
+	 */
+	public $fileNameContains = null;
 
 
 }

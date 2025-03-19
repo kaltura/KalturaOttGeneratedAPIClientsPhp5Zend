@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_ManualChannel extends Kaltura_Client_Type_Channel
+class Kaltura_Client_Type_UploadSubtitles extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaManualChannel';
+		return 'KalturaUploadSubtitles';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,27 +48,17 @@ class Kaltura_Client_Type_ManualChannel extends Kaltura_Client_Type_Channel
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->assets))
-		{
-			if(empty($xml->assets))
-				$this->assets = array();
-			else
-				$this->assets = Kaltura_Client_ParseUtils::unmarshalArray($xml->assets, "KalturaManualCollectionAsset");
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->assets))
-		{
-			if(empty($jsonObject->assets))
-				$this->assets = array();
-			else
-				$this->assets = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->assets, "KalturaManualCollectionAsset");
-		}
+		if(!is_null($xml) && count($xml->fileName))
+			$this->fileName = (string)$xml->fileName;
+		if(!is_null($jsonObject) && isset($jsonObject->fileName))
+			$this->fileName = (string)$jsonObject->fileName;
 	}
 	/**
-	 * List of assets identifier
+	 * Mandatory. The name that will be associated with the uploaded file.
 	 *
-	 * @var Kaltura_Client_Type_ManualCollectionAsset[]
+	 * @var string
 	 */
-	public $assets;
+	public $fileName = null;
 
 
 }

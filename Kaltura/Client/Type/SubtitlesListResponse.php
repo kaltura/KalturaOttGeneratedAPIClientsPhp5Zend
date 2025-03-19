@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_ManualChannel extends Kaltura_Client_Type_Channel
+class Kaltura_Client_Type_SubtitlesListResponse extends Kaltura_Client_Type_ListResponse
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaManualChannel';
+		return 'KalturaSubtitlesListResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,27 +48,27 @@ class Kaltura_Client_Type_ManualChannel extends Kaltura_Client_Type_Channel
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->assets))
+		if(!is_null($xml) && count($xml->objects))
 		{
-			if(empty($xml->assets))
-				$this->assets = array();
+			if(empty($xml->objects))
+				$this->objects = array();
 			else
-				$this->assets = Kaltura_Client_ParseUtils::unmarshalArray($xml->assets, "KalturaManualCollectionAsset");
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaSubtitles");
 		}
-		if(!is_null($jsonObject) && isset($jsonObject->assets))
+		if(!is_null($jsonObject) && isset($jsonObject->objects))
 		{
-			if(empty($jsonObject->assets))
-				$this->assets = array();
+			if(empty($jsonObject->objects))
+				$this->objects = array();
 			else
-				$this->assets = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->assets, "KalturaManualCollectionAsset");
+				$this->objects = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->objects, "KalturaSubtitles");
 		}
 	}
 	/**
-	 * List of assets identifier
+	 * A list of subtitles files
 	 *
-	 * @var Kaltura_Client_Type_ManualCollectionAsset[]
+	 * @var Kaltura_Client_Type_Subtitles[]
 	 */
-	public $assets;
+	public $objects;
 
 
 }

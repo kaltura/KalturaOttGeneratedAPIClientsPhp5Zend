@@ -31,45 +31,10 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_ManualChannel extends Kaltura_Client_Type_Channel
+class Kaltura_Client_Enum_SubtitlesType extends Kaltura_Client_EnumBase
 {
-	public function getKalturaObjectType()
-	{
-		return 'KalturaManualChannel';
-	}
-	
-	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
-	{
-		parent::__construct($xml, $jsonObject);
-		
-		if(!is_null($xml) && !is_null($jsonObject))
-			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
-		
-		if(is_null($xml) && is_null($jsonObject))
-			return;
-		
-		if(!is_null($xml) && count($xml->assets))
-		{
-			if(empty($xml->assets))
-				$this->assets = array();
-			else
-				$this->assets = Kaltura_Client_ParseUtils::unmarshalArray($xml->assets, "KalturaManualCollectionAsset");
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->assets))
-		{
-			if(empty($jsonObject->assets))
-				$this->assets = array();
-			else
-				$this->assets = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->assets, "KalturaManualCollectionAsset");
-		}
-	}
-	/**
-	 * List of assets identifier
-	 *
-	 * @var Kaltura_Client_Type_ManualCollectionAsset[]
-	 */
-	public $assets;
-
-
+	const TEXT = "Text";
+	const SRT = "SRT";
+	const WEBVTT = "WebVTT";
 }
 

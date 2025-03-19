@@ -27,49 +27,42 @@
 // @ignore
 // ===================================================================================================
 
+
 /**
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_ManualChannel extends Kaltura_Client_Type_Channel
+class Kaltura_Client_SubtitlesService extends Kaltura_Client_ServiceBase
 {
-	public function getKalturaObjectType()
+	function __construct(Kaltura_Client_Client $client = null)
 	{
-		return 'KalturaManualChannel';
+		parent::__construct($client);
 	}
-	
-	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
-	{
-		parent::__construct($xml, $jsonObject);
-		
-		if(!is_null($xml) && !is_null($jsonObject))
-			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
-		
-		if(is_null($xml) && is_null($jsonObject))
-			return;
-		
-		if(!is_null($xml) && count($xml->assets))
-		{
-			if(empty($xml->assets))
-				$this->assets = array();
-			else
-				$this->assets = Kaltura_Client_ParseUtils::unmarshalArray($xml->assets, "KalturaManualCollectionAsset");
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->assets))
-		{
-			if(empty($jsonObject->assets))
-				$this->assets = array();
-			else
-				$this->assets = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->assets, "KalturaManualCollectionAsset");
-		}
-	}
+
 	/**
-	 * List of assets identifier
-	 *
-	 * @var Kaltura_Client_Type_ManualCollectionAsset[]
+	 * @return Kaltura_Client_Type_Subtitles
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	public $assets;
-
-
+	function uploadFile(Kaltura_Client_Type_UploadSubtitles $subtitles, $fileData)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "subtitles", $subtitles->toParams());
+		$kfiles = array();
+		$this->client->addParam($kfiles, "fileData", $fileData);
+		$this->client->queueServiceActionCall("subtitles", "uploadFile",  "KalturaSubtitles", $kparams, $kfiles);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSubtitles");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Subtitles");
+		}
+			return $resultObject;
+	}
 }
-
