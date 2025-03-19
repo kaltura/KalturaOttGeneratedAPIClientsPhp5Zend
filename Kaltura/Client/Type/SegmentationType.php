@@ -142,7 +142,7 @@ class Kaltura_Client_Type_SegmentationType extends Kaltura_Client_ObjectBase
 	/**
 	 * Segmentation conditions - can be empty
 	 *
-	 * @var array of KalturaBaseSegmentCondition
+	 * @var Kaltura_Client_Type_BaseSegmentCondition[]
 	 */
 	public $conditions;
 
@@ -156,7 +156,7 @@ class Kaltura_Client_Type_SegmentationType extends Kaltura_Client_ObjectBase
 	/**
 	 * Segmentation conditions - can be empty
 	 *
-	 * @var array of KalturaBaseSegmentAction
+	 * @var Kaltura_Client_Type_BaseSegmentAction[]
 	 */
 	public $actions;
 

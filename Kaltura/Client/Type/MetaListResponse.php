@@ -66,7 +66,7 @@ class Kaltura_Client_Type_MetaListResponse extends Kaltura_Client_Type_ListRespo
 	/**
 	 * A list asset meta
 	 *
-	 * @var array of KalturaMeta
+	 * @var Kaltura_Client_Type_Meta[]
 	 */
 	public $objects;
 

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_TopicListResponse extends Kaltura_Client_Type_ListResp
 	/**
 	 * List of Topics
 	 *
-	 * @var array of KalturaTopic
+	 * @var Kaltura_Client_Type_Topic[]
 	 */
 	public $objects;
 

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_AssetStructMetaListResponse extends Kaltura_Client_Typ
 	/**
 	 * A list of asset struct metas
 	 *
-	 * @var array of KalturaAssetStructMeta
+	 * @var Kaltura_Client_Type_AssetStructMeta[]
 	 */
 	public $objects;
 

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_HouseholdLimitationsListResponse extends Kaltura_Clien
 	/**
 	 * Household limitations
 	 *
-	 * @var array of KalturaHouseholdLimitations
+	 * @var Kaltura_Client_Type_HouseholdLimitations[]
 	 */
 	public $objects;
 

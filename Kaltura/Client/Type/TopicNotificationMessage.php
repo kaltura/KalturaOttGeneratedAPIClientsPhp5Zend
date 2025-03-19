@@ -126,7 +126,7 @@ class Kaltura_Client_Type_TopicNotificationMessage extends Kaltura_Client_Object
 	/**
 	 * Topic notification message dispatchers
 	 *
-	 * @var array of KalturaDispatcher
+	 * @var Kaltura_Client_Type_Dispatcher[]
 	 */
 	public $dispatchers;
 

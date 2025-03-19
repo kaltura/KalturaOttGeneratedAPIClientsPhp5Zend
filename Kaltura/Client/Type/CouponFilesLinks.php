@@ -77,7 +77,7 @@ class Kaltura_Client_Type_CouponFilesLinks extends Kaltura_Client_ObjectBase
 	/**
 	 * A pre-signed URL pointing to a coupon codes file
 	 *
-	 * @var array of KalturaStringValue
+	 * @var Kaltura_Client_Type_StringValue[]
 	 */
 	public $objects;
 

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_BulkUploadListResponse extends Kaltura_Client_Type_Lis
 	/**
 	 * bulk upload items
 	 *
-	 * @var array of KalturaBulkUpload
+	 * @var Kaltura_Client_Type_BulkUpload[]
 	 */
 	public $objects;
 

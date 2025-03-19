@@ -66,7 +66,7 @@ class Kaltura_Client_Type_WatchBasedRecommendationsProfileListResponse extends K
 	/**
 	 * Assets
 	 *
-	 * @var array of KalturaWatchBasedRecommendationsProfile
+	 * @var Kaltura_Client_Type_WatchBasedRecommendationsProfile[]
 	 */
 	public $objects;
 
