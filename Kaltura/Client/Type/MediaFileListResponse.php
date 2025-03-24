@@ -66,7 +66,7 @@ class Kaltura_Client_Type_MediaFileListResponse extends Kaltura_Client_Type_List
 	/**
 	 * A list of media-file types
 	 *
-	 * @var array of KalturaMediaFile
+	 * @var Kaltura_Client_Type_MediaFile[]
 	 */
 	public $objects;
 

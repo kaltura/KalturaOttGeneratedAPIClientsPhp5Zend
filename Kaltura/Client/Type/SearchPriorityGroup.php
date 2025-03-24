@@ -94,7 +94,7 @@ class Kaltura_Client_Type_SearchPriorityGroup extends Kaltura_Client_ObjectBase
 	/**
 	 * Name
 	 *
-	 * @var array of KalturaTranslationToken
+	 * @var Kaltura_Client_Type_TranslationToken[]
 	 */
 	public $multilingualName;
 
