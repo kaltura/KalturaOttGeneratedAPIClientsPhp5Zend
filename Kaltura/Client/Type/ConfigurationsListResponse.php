@@ -66,7 +66,7 @@ class Kaltura_Client_Type_ConfigurationsListResponse extends Kaltura_Client_Type
 	/**
 	 * Configurations
 	 *
-	 * @var array of KalturaConfigurations
+	 * @var Kaltura_Client_Type_Configurations[]
 	 */
 	public $objects;
 

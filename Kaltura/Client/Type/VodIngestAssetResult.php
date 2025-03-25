@@ -150,14 +150,14 @@ class Kaltura_Client_Type_VodIngestAssetResult extends Kaltura_Client_ObjectBase
 	/**
 	 * Errors which prevent the asset from being ingested
 	 *
-	 * @var array of KalturaVodIngestAssetResultErrorMessage
+	 * @var Kaltura_Client_Type_VodIngestAssetResultErrorMessage[]
 	 */
 	public $errors;
 
 	/**
 	 * Errors which do not prevent the asset from being ingested
 	 *
-	 * @var array of KalturaVodIngestAssetResultErrorMessage
+	 * @var Kaltura_Client_Type_VodIngestAssetResultErrorMessage[]
 	 */
 	public $warnings;
 

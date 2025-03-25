@@ -77,7 +77,7 @@ class Kaltura_Client_Type_ManualChannel extends Kaltura_Client_Type_Channel
 	/**
 	 * List of assets identifier
 	 *
-	 * @var array of KalturaManualCollectionAsset
+	 * @var Kaltura_Client_Type_ManualCollectionAsset[]
 	 */
 	public $assets;
 

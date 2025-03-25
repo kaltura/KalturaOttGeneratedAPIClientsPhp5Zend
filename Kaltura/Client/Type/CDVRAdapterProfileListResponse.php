@@ -66,7 +66,7 @@ class Kaltura_Client_Type_CDVRAdapterProfileListResponse extends Kaltura_Client_
 	/**
 	 * C-DVR adapter profiles
 	 *
-	 * @var array of KalturaCDVRAdapterProfile
+	 * @var Kaltura_Client_Type_CDVRAdapterProfile[]
 	 */
 	public $objects;
 

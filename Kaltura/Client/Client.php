@@ -35,6 +35,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 {
 	/**
 	 * 
+	 * @var Kaltura_Client_AiMetadataGeneratorService
+	 */
+	public $aiMetadataGenerator = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_AnnouncementService
 	 */
 	public $announcement = null;
@@ -773,6 +779,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_SemanticAssetSearchPartnerConfigService
+	 */
+	public $semanticAssetSearchPartnerConfig = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_SeriesRecordingService
 	 */
 	public $seriesRecording = null;
@@ -836,6 +848,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	 * @var Kaltura_Client_SubscriptionSetService
 	 */
 	public $subscriptionSet = null;
+
+	/**
+	 * 
+	 * @var Kaltura_Client_SubtitlesService
+	 */
+	public $subtitles = null;
 
 	/**
 	 * 
@@ -972,9 +990,10 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:25-01-07');
-		$this->setApiVersion('10.7.1.4');
+		$this->setClientTag('php5:25-03-25');
+		$this->setApiVersion('11.1.0.0');
 		
+		$this->aiMetadataGenerator = new Kaltura_Client_AiMetadataGeneratorService($this);
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
 		$this->assetComment = new Kaltura_Client_AssetCommentService($this);
@@ -1098,6 +1117,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->searchPriorityGroup = new Kaltura_Client_SearchPriorityGroupService($this);
 		$this->searchPriorityGroupOrderedIdsSet = new Kaltura_Client_SearchPriorityGroupOrderedIdsSetService($this);
 		$this->segmentationType = new Kaltura_Client_SegmentationTypeService($this);
+		$this->semanticAssetSearchPartnerConfig = new Kaltura_Client_SemanticAssetSearchPartnerConfigService($this);
 		$this->seriesRecording = new Kaltura_Client_SeriesRecordingService($this);
 		$this->session = new Kaltura_Client_SessionService($this);
 		$this->smsAdapterProfile = new Kaltura_Client_SmsAdapterProfileService($this);
@@ -1109,6 +1129,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->streamingDevice = new Kaltura_Client_StreamingDeviceService($this);
 		$this->subscription = new Kaltura_Client_SubscriptionService($this);
 		$this->subscriptionSet = new Kaltura_Client_SubscriptionSetService($this);
+		$this->subtitles = new Kaltura_Client_SubtitlesService($this);
 		$this->system = new Kaltura_Client_SystemService($this);
 		$this->tag = new Kaltura_Client_TagService($this);
 		$this->timeShiftedTvPartnerSettings = new Kaltura_Client_TimeShiftedTvPartnerSettingsService($this);

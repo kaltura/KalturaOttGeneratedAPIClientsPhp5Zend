@@ -66,7 +66,7 @@ class Kaltura_Client_Type_CDNAdapterProfileListResponse extends Kaltura_Client_T
 	/**
 	 * Adapters
 	 *
-	 * @var array of KalturaCDNAdapterProfile
+	 * @var Kaltura_Client_Type_CDNAdapterProfile[]
 	 */
 	public $objects;
 
