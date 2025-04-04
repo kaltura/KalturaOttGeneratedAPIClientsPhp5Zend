@@ -88,14 +88,14 @@ class Kaltura_Client_Type_BusinessModuleRule extends Kaltura_Client_Type_Rule
 	/**
 	 * List of conditions for the rule
 	 *
-	 * @var array of KalturaCondition
+	 * @var Kaltura_Client_Type_Condition[]
 	 */
 	public $conditions;
 
 	/**
 	 * List of actions for the rule
 	 *
-	 * @var array of KalturaBusinessModuleRuleAction
+	 * @var Kaltura_Client_Type_BusinessModuleRuleAction[]
 	 */
 	public $actions;
 

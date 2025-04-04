@@ -66,7 +66,7 @@ class Kaltura_Client_Type_ReminderListResponse extends Kaltura_Client_Type_ListR
 	/**
 	 * Reminders
 	 *
-	 * @var array of KalturaReminder
+	 * @var Kaltura_Client_Type_Reminder[]
 	 */
 	public $objects;
 

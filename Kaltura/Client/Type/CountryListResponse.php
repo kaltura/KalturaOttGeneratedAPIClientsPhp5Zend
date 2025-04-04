@@ -66,7 +66,7 @@ class Kaltura_Client_Type_CountryListResponse extends Kaltura_Client_Type_ListRe
 	/**
 	 * Countries
 	 *
-	 * @var array of KalturaCountry
+	 * @var Kaltura_Client_Type_Country[]
 	 */
 	public $objects;
 

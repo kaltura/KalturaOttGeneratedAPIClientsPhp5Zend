@@ -66,7 +66,7 @@ class Kaltura_Client_Type_ParentalRuleListResponse extends Kaltura_Client_Type_L
 	/**
 	 * A list of parental rules
 	 *
-	 * @var array of KalturaParentalRule
+	 * @var Kaltura_Client_Type_ParentalRule[]
 	 */
 	public $objects;
 
