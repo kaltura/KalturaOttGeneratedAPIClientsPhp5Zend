@@ -48,10 +48,6 @@ class Kaltura_Client_Type_ManualChannel extends Kaltura_Client_Type_Channel
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->mediaIds))
-			$this->mediaIds = (string)$xml->mediaIds;
-		if(!is_null($jsonObject) && isset($jsonObject->mediaIds))
-			$this->mediaIds = (string)$jsonObject->mediaIds;
 		if(!is_null($xml) && count($xml->assets))
 		{
 			if(empty($xml->assets))
@@ -68,16 +64,9 @@ class Kaltura_Client_Type_ManualChannel extends Kaltura_Client_Type_Channel
 		}
 	}
 	/**
-	 * A list of comma separated media ids associated with this channel, according to the order of the medias in the channel.
-	 *
-	 * @var string
-	 */
-	public $mediaIds = null;
-
-	/**
 	 * List of assets identifier
 	 *
-	 * @var array of KalturaManualCollectionAsset
+	 * @var Kaltura_Client_Type_ManualCollectionAsset[]
 	 */
 	public $assets;
 

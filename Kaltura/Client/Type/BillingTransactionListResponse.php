@@ -66,7 +66,7 @@ class Kaltura_Client_Type_BillingTransactionListResponse extends Kaltura_Client_
 	/**
 	 * Transactions
 	 *
-	 * @var array of KalturaBillingTransaction
+	 * @var Kaltura_Client_Type_BillingTransaction[]
 	 */
 	public $objects;
 

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_AnnouncementListResponse extends Kaltura_Client_Type_L
 	/**
 	 * Announcements
 	 *
-	 * @var array of KalturaAnnouncement
+	 * @var Kaltura_Client_Type_Announcement[]
 	 */
 	public $objects;
 

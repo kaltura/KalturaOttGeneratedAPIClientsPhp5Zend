@@ -66,7 +66,7 @@ class Kaltura_Client_Type_PaymentMethodProfileListResponse extends Kaltura_Clien
 	/**
 	 * Payment method profiles list
 	 *
-	 * @var array of KalturaPaymentMethodProfile
+	 * @var Kaltura_Client_Type_PaymentMethodProfile[]
 	 */
 	public $objects;
 

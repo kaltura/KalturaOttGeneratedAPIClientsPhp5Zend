@@ -219,14 +219,14 @@ class Kaltura_Client_Type_ParentalRule extends Kaltura_Client_ObjectBase
 	/**
 	 * Media tag values that trigger rule
 	 *
-	 * @var array of KalturaStringValue
+	 * @var Kaltura_Client_Type_StringValue[]
 	 */
 	public $mediaTagValues;
 
 	/**
 	 * EPG tag values that trigger rule
 	 *
-	 * @var array of KalturaStringValue
+	 * @var Kaltura_Client_Type_StringValue[]
 	 */
 	public $epgTagValues;
 

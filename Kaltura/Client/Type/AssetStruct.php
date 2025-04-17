@@ -154,7 +154,7 @@ class Kaltura_Client_Type_AssetStruct extends Kaltura_Client_ObjectBase
 	/**
 	 * Asset struct name for the partner
 	 *
-	 * @var array of KalturaTranslationToken
+	 * @var Kaltura_Client_Type_TranslationToken[]
 	 */
 	public $multilingualName;
 

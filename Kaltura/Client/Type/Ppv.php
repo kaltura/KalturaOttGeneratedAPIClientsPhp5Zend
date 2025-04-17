@@ -219,7 +219,7 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 	/**
 	 * This property will deprecated soon. Please use fileTypesIds instead of it.
 	 *
-	 * @var array of KalturaIntegerValue
+	 * @var Kaltura_Client_Type_IntegerValue[]
 	 * @readonly
 	 */
 	public $fileTypes;
@@ -264,7 +264,7 @@ class Kaltura_Client_Type_Ppv extends Kaltura_Client_ObjectBase
 	/**
 	 * A list of the descriptions of the ppv on different languages (language code and translation)
 	 *
-	 * @var array of KalturaTranslationToken
+	 * @var Kaltura_Client_Type_TranslationToken[]
 	 */
 	public $descriptions;
 
