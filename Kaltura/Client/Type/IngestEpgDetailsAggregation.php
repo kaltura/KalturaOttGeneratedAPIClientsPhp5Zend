@@ -84,14 +84,14 @@ class Kaltura_Client_Type_IngestEpgDetailsAggregation extends Kaltura_Client_Obj
 	/**
 	 * Array of aggregated information per channel that included in the ingest job in question
 	 *
-	 * @var array of KalturaChannelAggregatedIngestInfo
+	 * @var Kaltura_Client_Type_ChannelAggregatedIngestInfo[]
 	 */
 	public $linearChannels;
 
 	/**
 	 * Array of aggregated information per date that included in the ingest job in question
 	 *
-	 * @var array of KalturaDateAggregatedIngestInfo
+	 * @var Kaltura_Client_Type_DateAggregatedIngestInfo[]
 	 */
 	public $dates;
 

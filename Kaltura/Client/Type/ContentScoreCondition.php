@@ -125,14 +125,14 @@ class Kaltura_Client_Type_ContentScoreCondition extends Kaltura_Client_Type_Base
 	 * If condition should be applied on specific field (and not the one of the segment value) - 
 	 *             list of values to be considered together
 	 *
-	 * @var array of KalturaStringValue
+	 * @var Kaltura_Client_Type_StringValue[]
 	 */
 	public $values;
 
 	/**
 	 * List of the actions that consist the condition
 	 *
-	 * @var array of KalturaContentActionCondition
+	 * @var Kaltura_Client_Type_ContentActionCondition[]
 	 */
 	public $actions;
 
