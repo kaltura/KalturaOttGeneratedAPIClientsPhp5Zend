@@ -141,7 +141,7 @@ class Kaltura_Client_Type_ConfigurationGroup extends Kaltura_Client_ObjectBase
 	/**
 	 * tags
 	 *
-	 * @var array of KalturaStringValue
+	 * @var Kaltura_Client_Type_StringValue[]
 	 * @readonly
 	 */
 	public $tags;
@@ -157,7 +157,7 @@ class Kaltura_Client_Type_ConfigurationGroup extends Kaltura_Client_ObjectBase
 	/**
 	 * Configuration identifiers
 	 *
-	 * @var array of KalturaConfigurationIdentifier
+	 * @var Kaltura_Client_Type_ConfigurationIdentifier[]
 	 * @readonly
 	 */
 	public $configurationIdentifiers;

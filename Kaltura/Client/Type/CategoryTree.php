@@ -184,14 +184,14 @@ class Kaltura_Client_Type_CategoryTree extends Kaltura_Client_ObjectBase
 	/**
 	 * Category name
 	 *
-	 * @var array of KalturaTranslationToken
+	 * @var Kaltura_Client_Type_TranslationToken[]
 	 */
 	public $multilingualName;
 
 	/**
 	 * List of category tree
 	 *
-	 * @var array of KalturaCategoryTree
+	 * @var Kaltura_Client_Type_CategoryTree[]
 	 * @readonly
 	 */
 	public $children;
@@ -199,7 +199,7 @@ class Kaltura_Client_Type_CategoryTree extends Kaltura_Client_ObjectBase
 	/**
 	 * List of unified Channels.
 	 *
-	 * @var array of KalturaUnifiedChannelInfo
+	 * @var Kaltura_Client_Type_UnifiedChannelInfo[]
 	 */
 	public $unifiedChannels;
 
@@ -213,7 +213,7 @@ class Kaltura_Client_Type_CategoryTree extends Kaltura_Client_ObjectBase
 	/**
 	 * Category images
 	 *
-	 * @var array of KalturaImage
+	 * @var Kaltura_Client_Type_Image[]
 	 */
 	public $images;
 

@@ -198,7 +198,7 @@ class Kaltura_Client_Type_PpvPrice extends Kaltura_Client_Type_ProductPrice
 	/**
 	 * A list of the descriptions of the PPV module on different languages (language code and translation)
 	 *
-	 * @var array of KalturaTranslationToken
+	 * @var Kaltura_Client_Type_TranslationToken[]
 	 */
 	public $ppvDescriptions;
 
@@ -219,7 +219,7 @@ class Kaltura_Client_Type_PpvPrice extends Kaltura_Client_Type_ProductPrice
 	/**
 	 * Related media files identifiers (different types)
 	 *
-	 * @var array of KalturaIntegerValue
+	 * @var Kaltura_Client_Type_IntegerValue[]
 	 */
 	public $relatedMediaFileIds;
 

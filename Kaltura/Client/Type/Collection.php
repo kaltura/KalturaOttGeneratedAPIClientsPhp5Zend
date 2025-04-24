@@ -240,7 +240,7 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 	 * A list of channels associated with this collection
 	 *             This property will deprecated soon. Please use ChannelsIds instead of it.
 	 *
-	 * @var array of KalturaBaseChannel
+	 * @var Kaltura_Client_Type_BaseChannel[]
 	 * @readonly
 	 */
 	public $channels;
@@ -293,7 +293,7 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 	/**
 	 * Name of the collection
 	 *
-	 * @var array of KalturaTranslationToken
+	 * @var Kaltura_Client_Type_TranslationToken[]
 	 */
 	public $multilingualName;
 
@@ -308,7 +308,7 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 	/**
 	 * description of the collection
 	 *
-	 * @var array of KalturaTranslationToken
+	 * @var Kaltura_Client_Type_TranslationToken[]
 	 */
 	public $multilingualDescription;
 
@@ -332,7 +332,7 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 	 * List of Coupons group
 	 *             This property will deprecated soon. Please use CollectionCouponGroup instead of it.
 	 *
-	 * @var array of KalturaCouponsGroup
+	 * @var Kaltura_Client_Type_CouponsGroup[]
 	 * @readonly
 	 */
 	public $couponsGroups;
@@ -340,7 +340,7 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 	/**
 	 * List of collection Coupons group
 	 *
-	 * @var array of KalturaCollectionCouponGroup
+	 * @var Kaltura_Client_Type_CollectionCouponGroup[]
 	 */
 	public $collectionCouponGroup;
 
@@ -354,7 +354,7 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 	/**
 	 * List of Collection product codes
 	 *
-	 * @var array of KalturaProductCode
+	 * @var Kaltura_Client_Type_ProductCode[]
 	 */
 	public $productCodes;
 
@@ -399,7 +399,7 @@ class Kaltura_Client_Type_Collection extends Kaltura_Client_Type_OTTObjectSuppor
 	/**
 	 * A list of file types identifiers that are supported in this collection
 	 *
-	 * @var array of KalturaIntegerValue
+	 * @var Kaltura_Client_Type_IntegerValue[]
 	 * @readonly
 	 */
 	public $fileTypes;

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_ExternalChannelProfileListResponse extends Kaltura_Cli
 	/**
 	 * External channel profiles
 	 *
-	 * @var array of KalturaExternalChannelProfile
+	 * @var Kaltura_Client_Type_ExternalChannelProfile[]
 	 */
 	public $objects;
 

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_MultilingualStringValueArray extends Kaltura_Client_Ob
 	/**
 	 * List of string values
 	 *
-	 * @var array of KalturaMultilingualStringValue
+	 * @var Kaltura_Client_Type_MultilingualStringValue[]
 	 */
 	public $objects;
 

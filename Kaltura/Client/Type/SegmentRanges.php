@@ -77,7 +77,7 @@ class Kaltura_Client_Type_SegmentRanges extends Kaltura_Client_Type_BaseSegmentV
 	/**
 	 * List of ranges for segmentation
 	 *
-	 * @var array of KalturaSegmentRange
+	 * @var Kaltura_Client_Type_SegmentRange[]
 	 */
 	public $ranges;
 

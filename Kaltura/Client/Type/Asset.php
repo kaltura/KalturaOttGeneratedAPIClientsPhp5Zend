@@ -215,7 +215,7 @@ abstract class Kaltura_Client_Type_Asset extends Kaltura_Client_ObjectBase
 	/**
 	 * Asset name
 	 *
-	 * @var array of KalturaTranslationToken
+	 * @var Kaltura_Client_Type_TranslationToken[]
 	 */
 	public $multilingualName;
 
@@ -230,14 +230,14 @@ abstract class Kaltura_Client_Type_Asset extends Kaltura_Client_ObjectBase
 	/**
 	 * Asset description
 	 *
-	 * @var array of KalturaTranslationToken
+	 * @var Kaltura_Client_Type_TranslationToken[]
 	 */
 	public $multilingualDescription;
 
 	/**
 	 * Collection of images details that can be used to represent this asset
 	 *
-	 * @var array of KalturaMediaImage
+	 * @var Kaltura_Client_Type_MediaImage[]
 	 * @readonly
 	 */
 	public $images;
@@ -245,7 +245,7 @@ abstract class Kaltura_Client_Type_Asset extends Kaltura_Client_ObjectBase
 	/**
 	 * Files
 	 *
-	 * @var array of KalturaMediaFile
+	 * @var Kaltura_Client_Type_MediaFile[]
 	 * @readonly
 	 */
 	public $mediaFiles;
