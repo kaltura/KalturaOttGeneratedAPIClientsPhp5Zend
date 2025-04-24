@@ -66,7 +66,7 @@ class Kaltura_Client_Type_CategoryVersionListResponse extends Kaltura_Client_Typ
 	/**
 	 * A list of objects
 	 *
-	 * @var array of KalturaCategoryVersion
+	 * @var Kaltura_Client_Type_CategoryVersion[]
 	 */
 	public $objects;
 

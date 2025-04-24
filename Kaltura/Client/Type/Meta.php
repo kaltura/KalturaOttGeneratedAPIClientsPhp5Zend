@@ -160,7 +160,7 @@ class Kaltura_Client_Type_Meta extends Kaltura_Client_ObjectBase
 	/**
 	 * Meta name for the partner
 	 *
-	 * @var array of KalturaTranslationToken
+	 * @var Kaltura_Client_Type_TranslationToken[]
 	 */
 	public $multilingualName;
 

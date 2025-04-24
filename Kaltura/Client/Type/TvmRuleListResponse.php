@@ -66,7 +66,7 @@ class Kaltura_Client_Type_TvmRuleListResponse extends Kaltura_Client_Type_ListRe
 	/**
 	 * tvm rules
 	 *
-	 * @var array of KalturaTvmRule
+	 * @var Kaltura_Client_Type_TvmRule[]
 	 */
 	public $objects;
 
