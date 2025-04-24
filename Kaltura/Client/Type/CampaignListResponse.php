@@ -66,7 +66,7 @@ class Kaltura_Client_Type_CampaignListResponse extends Kaltura_Client_Type_ListR
 	/**
 	 * A list of Campaigns
 	 *
-	 * @var array of KalturaCampaign
+	 * @var Kaltura_Client_Type_Campaign[]
 	 */
 	public $objects;
 

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_DynamicListListResponse extends Kaltura_Client_Type_Li
 	/**
 	 * A list of KalturaDynamicList
 	 *
-	 * @var array of KalturaDynamicList
+	 * @var Kaltura_Client_Type_DynamicList[]
 	 */
 	public $objects;
 

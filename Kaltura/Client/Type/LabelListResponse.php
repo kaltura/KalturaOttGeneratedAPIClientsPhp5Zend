@@ -66,7 +66,7 @@ class Kaltura_Client_Type_LabelListResponse extends Kaltura_Client_Type_ListResp
 	/**
 	 * List of labels
 	 *
-	 * @var array of KalturaLabel
+	 * @var Kaltura_Client_Type_Label[]
 	 */
 	public $objects;
 

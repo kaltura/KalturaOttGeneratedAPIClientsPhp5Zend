@@ -109,7 +109,7 @@ class Kaltura_Client_Type_DiscountDetails extends Kaltura_Client_ObjectBase
 	/**
 	 * Multi currency discounts for all countries and currencies
 	 *
-	 * @var array of KalturaDiscount
+	 * @var Kaltura_Client_Type_Discount[]
 	 */
 	public $multiCurrencyDiscount;
 

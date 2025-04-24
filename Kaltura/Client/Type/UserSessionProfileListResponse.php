@@ -66,7 +66,7 @@ class Kaltura_Client_Type_UserSessionProfileListResponse extends Kaltura_Client_
 	/**
 	 * A list of KalturaUserSessionProfile
 	 *
-	 * @var array of KalturaUserSessionProfile
+	 * @var Kaltura_Client_Type_UserSessionProfile[]
 	 */
 	public $objects;
 

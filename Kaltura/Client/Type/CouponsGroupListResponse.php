@@ -66,7 +66,7 @@ class Kaltura_Client_Type_CouponsGroupListResponse extends Kaltura_Client_Type_L
 	/**
 	 * A list of coupons groups
 	 *
-	 * @var array of KalturaCouponsGroup
+	 * @var Kaltura_Client_Type_CouponsGroup[]
 	 */
 	public $objects;
 
