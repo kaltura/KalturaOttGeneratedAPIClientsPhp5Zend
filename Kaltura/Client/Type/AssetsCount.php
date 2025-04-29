@@ -77,7 +77,7 @@ class Kaltura_Client_Type_AssetsCount extends Kaltura_Client_ObjectBase
 	/**
 	 * Values, their count and sub groups
 	 *
-	 * @var array of KalturaAssetCount
+	 * @var Kaltura_Client_Type_AssetCount[]
 	 */
 	public $objects;
 

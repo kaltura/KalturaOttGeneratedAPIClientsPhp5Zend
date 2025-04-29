@@ -66,7 +66,7 @@ abstract class Kaltura_Client_Type_BasePromotion extends Kaltura_Client_ObjectBa
 	/**
 	 * These conditions define the Promotion that applies on
 	 *
-	 * @var array of KalturaCondition
+	 * @var Kaltura_Client_Type_Condition[]
 	 */
 	public $conditions;
 

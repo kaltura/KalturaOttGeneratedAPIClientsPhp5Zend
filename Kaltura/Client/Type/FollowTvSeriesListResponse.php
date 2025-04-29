@@ -66,7 +66,7 @@ class Kaltura_Client_Type_FollowTvSeriesListResponse extends Kaltura_Client_Type
 	/**
 	 * Follow data list
 	 *
-	 * @var array of KalturaFollowTvSeries
+	 * @var Kaltura_Client_Type_FollowTvSeries[]
 	 */
 	public $objects;
 

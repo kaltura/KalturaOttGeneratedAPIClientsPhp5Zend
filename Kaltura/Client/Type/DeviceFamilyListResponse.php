@@ -66,7 +66,7 @@ class Kaltura_Client_Type_DeviceFamilyListResponse extends Kaltura_Client_Type_L
 	/**
 	 * Device families
 	 *
-	 * @var array of KalturaDeviceFamily
+	 * @var Kaltura_Client_Type_DeviceFamily[]
 	 */
 	public $objects;
 

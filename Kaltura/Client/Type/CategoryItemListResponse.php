@@ -66,7 +66,7 @@ class Kaltura_Client_Type_CategoryItemListResponse extends Kaltura_Client_Type_L
 	/**
 	 * A list of CategoryItem
 	 *
-	 * @var array of KalturaCategoryItem
+	 * @var Kaltura_Client_Type_CategoryItem[]
 	 */
 	public $objects;
 
