@@ -66,7 +66,7 @@ class Kaltura_Client_Type_HouseholdListResponse extends Kaltura_Client_Type_List
 	/**
 	 * A list of objects
 	 *
-	 * @var array of KalturaHousehold
+	 * @var Kaltura_Client_Type_Household[]
 	 */
 	public $objects;
 

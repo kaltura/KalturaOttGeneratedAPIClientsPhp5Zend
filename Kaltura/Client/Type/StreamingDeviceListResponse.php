@@ -66,7 +66,7 @@ class Kaltura_Client_Type_StreamingDeviceListResponse extends Kaltura_Client_Typ
 	/**
 	 * Streaming devices
 	 *
-	 * @var array of KalturaStreamingDevice
+	 * @var Kaltura_Client_Type_StreamingDevice[]
 	 */
 	public $objects;
 

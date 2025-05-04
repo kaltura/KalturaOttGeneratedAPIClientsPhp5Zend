@@ -115,14 +115,14 @@ class Kaltura_Client_Type_PriceDetails extends Kaltura_Client_ObjectBase
 	/**
 	 * Multi currency prices for all countries and currencies
 	 *
-	 * @var array of KalturaPrice
+	 * @var Kaltura_Client_Type_Price[]
 	 */
 	public $multiCurrencyPrice;
 
 	/**
 	 * A list of the descriptions for this price on different languages (language code and translation)
 	 *
-	 * @var array of KalturaTranslationToken
+	 * @var Kaltura_Client_Type_TranslationToken[]
 	 */
 	public $descriptions;
 

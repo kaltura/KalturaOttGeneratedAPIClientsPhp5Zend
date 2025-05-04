@@ -66,7 +66,7 @@ class Kaltura_Client_Type_StringValueArray extends Kaltura_Client_ObjectBase
 	/**
 	 * List of string values
 	 *
-	 * @var array of KalturaStringValue
+	 * @var Kaltura_Client_Type_StringValue[]
 	 */
 	public $objects;
 

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_TopicNotificationMessageListResponse extends Kaltura_C
 	/**
 	 * Topic notification messages
 	 *
-	 * @var array of KalturaTopicNotificationMessage
+	 * @var Kaltura_Client_Type_TopicNotificationMessage[]
 	 */
 	public $objects;
 

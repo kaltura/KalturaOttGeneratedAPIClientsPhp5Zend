@@ -103,7 +103,7 @@ class Kaltura_Client_Type_UnifiedPaymentRenewal extends Kaltura_Client_ObjectBas
 	/**
 	 * List of entitlements in this unified payment renewal
 	 *
-	 * @var array of KalturaEntitlementRenewalBase
+	 * @var Kaltura_Client_Type_EntitlementRenewalBase[]
 	 */
 	public $entitlements;
 

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_IntegerValueListResponse extends Kaltura_Client_Type_L
 	/**
 	 * Interger value items
 	 *
-	 * @var array of KalturaIntegerValue
+	 * @var Kaltura_Client_Type_IntegerValue[]
 	 */
 	public $objects;
 
