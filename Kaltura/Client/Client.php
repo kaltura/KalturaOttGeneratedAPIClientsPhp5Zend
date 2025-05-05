@@ -791,6 +791,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_SemanticQueryPartnerConfigurationService
+	 */
+	public $semanticQueryPartnerConfiguration = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_SeriesRecordingService
 	 */
 	public $seriesRecording = null;
@@ -1002,7 +1008,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:25-04-24');
+		$this->setClientTag('php5:25-05-05');
 		$this->setApiVersion('11.1.0.1');
 		
 		$this->aiMetadataGenerator = new Kaltura_Client_AiMetadataGeneratorService($this);
@@ -1131,6 +1137,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->segmentationType = new Kaltura_Client_SegmentationTypeService($this);
 		$this->semanticAssetSearchPartnerConfig = new Kaltura_Client_SemanticAssetSearchPartnerConfigService($this);
 		$this->semanticQuery = new Kaltura_Client_SemanticQueryService($this);
+		$this->semanticQueryPartnerConfiguration = new Kaltura_Client_SemanticQueryPartnerConfigurationService($this);
 		$this->seriesRecording = new Kaltura_Client_SeriesRecordingService($this);
 		$this->session = new Kaltura_Client_SessionService($this);
 		$this->smsAdapterProfile = new Kaltura_Client_SmsAdapterProfileService($this);

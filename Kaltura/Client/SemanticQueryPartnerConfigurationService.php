@@ -32,7 +32,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_SemanticQueryService extends Kaltura_Client_ServiceBase
+class Kaltura_Client_SemanticQueryPartnerConfigurationService extends Kaltura_Client_ServiceBase
 {
 	function __construct(Kaltura_Client_Client $client = null)
 	{
@@ -40,14 +40,13 @@ class Kaltura_Client_SemanticQueryService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_SemanticQuery
+	 * @return Kaltura_Client_Type_SemanticQueryPartnerConfiguration
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function generate(Kaltura_Client_Type_GenerateSemanticQuery $query)
+	function get()
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "query", $query->toParams());
-		$this->client->queueServiceActionCall("semanticquery", "generate", "KalturaSemanticQuery", $kparams);
+		$this->client->queueServiceActionCall("semanticquerypartnerconfiguration", "get", "KalturaSemanticQueryPartnerConfiguration", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$rawResult = $this->client->doQueue();
@@ -58,8 +57,33 @@ class Kaltura_Client_SemanticQueryService extends Kaltura_Client_ServiceBase
 		} else {
 			$resultXmlObject = new \SimpleXMLElement($rawResult);
 			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSemanticQuery");
-			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SemanticQuery");
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSemanticQueryPartnerConfiguration");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SemanticQueryPartnerConfiguration");
+		}
+			return $resultObject;
+	}
+
+	/**
+	 * @return Kaltura_Client_Type_SemanticQueryPartnerConfiguration
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function update(Kaltura_Client_Type_SemanticQueryPartnerConfiguration $configuration)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "configuration", $configuration->toParams());
+		$this->client->queueServiceActionCall("semanticquerypartnerconfiguration", "update", "KalturaSemanticQueryPartnerConfiguration", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSemanticQueryPartnerConfiguration");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SemanticQueryPartnerConfiguration");
 		}
 			return $resultObject;
 	}
