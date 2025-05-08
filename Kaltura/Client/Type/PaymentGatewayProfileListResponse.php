@@ -66,7 +66,7 @@ class Kaltura_Client_Type_PaymentGatewayProfileListResponse extends Kaltura_Clie
 	/**
 	 * A list of payment-gateway profiles
 	 *
-	 * @var array of KalturaPaymentGatewayProfile
+	 * @var Kaltura_Client_Type_PaymentGatewayProfile[]
 	 */
 	public $objects;
 

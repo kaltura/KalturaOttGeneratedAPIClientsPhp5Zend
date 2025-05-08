@@ -66,7 +66,7 @@ class Kaltura_Client_Type_AssetCommentListResponse extends Kaltura_Client_Type_L
 	/**
 	 * Assets
 	 *
-	 * @var array of KalturaAssetComment
+	 * @var Kaltura_Client_Type_AssetComment[]
 	 */
 	public $objects;
 

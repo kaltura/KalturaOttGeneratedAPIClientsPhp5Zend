@@ -66,7 +66,7 @@ class Kaltura_Client_Type_OTTUserListResponse extends Kaltura_Client_Type_ListRe
 	/**
 	 * A list of users
 	 *
-	 * @var array of KalturaOTTUser
+	 * @var Kaltura_Client_Type_OTTUser[]
 	 */
 	public $objects;
 

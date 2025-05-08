@@ -66,7 +66,7 @@ class Kaltura_Client_Type_IotListResponse extends Kaltura_Client_Type_ListRespon
 	/**
 	 * A list of objects
 	 *
-	 * @var array of KalturaIot
+	 * @var Kaltura_Client_Type_Iot[]
 	 */
 	public $objects;
 

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_SmsAdapterProfileListResponse extends Kaltura_Client_T
 	/**
 	 * A list of objects
 	 *
-	 * @var array of KalturaSmsAdapterProfile
+	 * @var Kaltura_Client_Type_SmsAdapterProfile[]
 	 */
 	public $objects;
 

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_TagListResponse extends Kaltura_Client_Type_ListRespon
 	/**
 	 * A list of partner tags
 	 *
-	 * @var array of KalturaTag
+	 * @var Kaltura_Client_Type_Tag[]
 	 */
 	public $objects;
 

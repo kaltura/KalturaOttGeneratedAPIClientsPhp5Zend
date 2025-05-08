@@ -66,7 +66,7 @@ class Kaltura_Client_Type_ObjectVirtualAssetPartnerConfig extends Kaltura_Client
 	/**
 	 * List of object virtual asset info
 	 *
-	 * @var array of KalturaObjectVirtualAssetInfo
+	 * @var Kaltura_Client_Type_ObjectVirtualAssetInfo[]
 	 */
 	public $objectVirtualAssets;
 
