@@ -48,17 +48,17 @@ class Kaltura_Client_Type_GenerateSemanticQuery extends Kaltura_Client_ObjectBas
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->query))
-			$this->query = (string)$xml->query;
-		if(!is_null($jsonObject) && isset($jsonObject->query))
-			$this->query = (string)$jsonObject->query;
+		if(!is_null($xml) && count($xml->text))
+			$this->text = (string)$xml->text;
+		if(!is_null($jsonObject) && isset($jsonObject->text))
+			$this->text = (string)$jsonObject->text;
 	}
 	/**
 	 * The input query text to generate semantic queries from.
 	 *
 	 * @var string
 	 */
-	public $query = null;
+	public $text = null;
 
 
 }
