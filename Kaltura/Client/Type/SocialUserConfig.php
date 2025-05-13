@@ -66,7 +66,7 @@ class Kaltura_Client_Type_SocialUserConfig extends Kaltura_Client_Type_SocialCon
 	/**
 	 * List of action permission items
 	 *
-	 * @var array of KalturaActionPermissionItem
+	 * @var Kaltura_Client_Type_ActionPermissionItem[]
 	 */
 	public $actionPermissionItems;
 

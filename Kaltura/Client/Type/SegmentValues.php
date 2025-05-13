@@ -77,7 +77,7 @@ class Kaltura_Client_Type_SegmentValues extends Kaltura_Client_Type_BaseSegmentV
 	/**
 	 * List of segment values
 	 *
-	 * @var array of KalturaSegmentValue
+	 * @var Kaltura_Client_Type_SegmentValue[]
 	 */
 	public $values;
 

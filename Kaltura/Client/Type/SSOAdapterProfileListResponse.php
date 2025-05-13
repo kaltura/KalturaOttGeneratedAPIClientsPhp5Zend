@@ -66,7 +66,7 @@ class Kaltura_Client_Type_SSOAdapterProfileListResponse extends Kaltura_Client_T
 	/**
 	 * A list of payment-gateway profiles
 	 *
-	 * @var array of KalturaSSOAdapterProfile
+	 * @var Kaltura_Client_Type_SSOAdapterProfile[]
 	 */
 	public $objects;
 

@@ -74,7 +74,7 @@ class Kaltura_Client_Type_LineupChannelAssetListResponse extends Kaltura_Client_
 	/**
 	 * A list of objects
 	 *
-	 * @var array of KalturaLineupChannelAsset
+	 * @var Kaltura_Client_Type_LineupChannelAsset[]
 	 */
 	public $objects;
 
