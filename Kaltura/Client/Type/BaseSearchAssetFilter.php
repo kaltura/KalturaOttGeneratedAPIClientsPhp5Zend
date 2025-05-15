@@ -98,7 +98,7 @@ abstract class Kaltura_Client_Type_BaseSearchAssetFilter extends Kaltura_Client_
 	/**
 	 * groupBy
 	 *
-	 * @var array of KalturaAssetGroupBy
+	 * @var Kaltura_Client_Type_AssetGroupBy[]
 	 */
 	public $groupBy;
 

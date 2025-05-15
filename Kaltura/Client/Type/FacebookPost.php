@@ -70,7 +70,7 @@ class Kaltura_Client_Type_FacebookPost extends Kaltura_Client_Type_SocialNetwork
 	/**
 	 * List of comments on the post
 	 *
-	 * @var array of KalturaSocialNetworkComment
+	 * @var Kaltura_Client_Type_SocialNetworkComment[]
 	 */
 	public $comments;
 

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_PersonalListListResponse extends Kaltura_Client_Type_L
 	/**
 	 * Follow data list
 	 *
-	 * @var array of KalturaPersonalList
+	 * @var Kaltura_Client_Type_PersonalList[]
 	 */
 	public $objects;
 

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_CollectionListResponse extends Kaltura_Client_Type_Lis
 	/**
 	 * A list of collections
 	 *
-	 * @var array of KalturaCollection
+	 * @var Kaltura_Client_Type_Collection[]
 	 */
 	public $objects;
 
