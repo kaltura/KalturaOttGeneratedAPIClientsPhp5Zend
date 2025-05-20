@@ -66,7 +66,7 @@ class Kaltura_Client_Type_AssetPersonalMarkupSearchFilter extends Kaltura_Client
 	/**
 	 * all assets to search their personal markups
 	 *
-	 * @var array of KalturaSlimAsset
+	 * @var Kaltura_Client_Type_SlimAsset[]
 	 */
 	public $assetsIn;
 

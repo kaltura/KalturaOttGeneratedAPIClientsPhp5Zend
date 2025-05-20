@@ -66,7 +66,7 @@ class Kaltura_Client_Type_PreviewModuleListResponse extends Kaltura_Client_Type_
 	/**
 	 * A list of Preview Module
 	 *
-	 * @var array of KalturaPreviewModule
+	 * @var Kaltura_Client_Type_PreviewModule[]
 	 */
 	public $objects;
 

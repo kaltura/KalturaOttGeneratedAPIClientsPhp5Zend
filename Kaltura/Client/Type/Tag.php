@@ -101,7 +101,7 @@ class Kaltura_Client_Type_Tag extends Kaltura_Client_ObjectBase
 	/**
 	 * Tag
 	 *
-	 * @var array of KalturaTranslationToken
+	 * @var Kaltura_Client_Type_TranslationToken[]
 	 */
 	public $multilingualTag;
 

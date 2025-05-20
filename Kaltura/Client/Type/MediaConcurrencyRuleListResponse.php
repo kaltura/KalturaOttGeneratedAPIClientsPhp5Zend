@@ -66,7 +66,7 @@ class Kaltura_Client_Type_MediaConcurrencyRuleListResponse extends Kaltura_Clien
 	/**
 	 * Media CONCURRENCY RULES
 	 *
-	 * @var array of KalturaMediaConcurrencyRule
+	 * @var Kaltura_Client_Type_MediaConcurrencyRule[]
 	 */
 	public $objects;
 

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_SocialCommentListResponse extends Kaltura_Client_Type_
 	/**
 	 * Social comments list
 	 *
-	 * @var array of KalturaSocialComment
+	 * @var Kaltura_Client_Type_SocialComment[]
 	 */
 	public $objects;
 

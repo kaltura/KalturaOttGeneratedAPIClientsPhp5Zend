@@ -66,7 +66,7 @@ class Kaltura_Client_Type_FavoriteListResponse extends Kaltura_Client_Type_ListR
 	/**
 	 * A list of favorites
 	 *
-	 * @var array of KalturaFavorite
+	 * @var Kaltura_Client_Type_Favorite[]
 	 */
 	public $objects;
 

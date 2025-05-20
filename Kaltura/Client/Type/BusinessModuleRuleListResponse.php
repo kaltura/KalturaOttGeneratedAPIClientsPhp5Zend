@@ -66,7 +66,7 @@ class Kaltura_Client_Type_BusinessModuleRuleListResponse extends Kaltura_Client_
 	/**
 	 * Asset rules
 	 *
-	 * @var array of KalturaBusinessModuleRule
+	 * @var Kaltura_Client_Type_BusinessModuleRule[]
 	 */
 	public $objects;
 

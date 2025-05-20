@@ -66,7 +66,7 @@ class Kaltura_Client_Type_HomeNetworkListResponse extends Kaltura_Client_Type_Li
 	/**
 	 * Home networks
 	 *
-	 * @var array of KalturaHomeNetwork
+	 * @var Kaltura_Client_Type_HomeNetwork[]
 	 */
 	public $objects;
 

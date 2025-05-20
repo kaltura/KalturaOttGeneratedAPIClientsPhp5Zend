@@ -66,7 +66,7 @@ class Kaltura_Client_Type_UsageModuleListResponse extends Kaltura_Client_Type_Li
 	/**
 	 * A list of usage modules
 	 *
-	 * @var array of KalturaUsageModule
+	 * @var Kaltura_Client_Type_UsageModule[]
 	 */
 	public $objects;
 

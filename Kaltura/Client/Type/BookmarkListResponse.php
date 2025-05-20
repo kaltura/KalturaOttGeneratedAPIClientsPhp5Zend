@@ -66,7 +66,7 @@ class Kaltura_Client_Type_BookmarkListResponse extends Kaltura_Client_Type_ListR
 	/**
 	 * Assets
 	 *
-	 * @var array of KalturaBookmark
+	 * @var Kaltura_Client_Type_Bookmark[]
 	 */
 	public $objects;
 

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_EpgListResponse extends Kaltura_Client_Type_ListRespon
 	/**
 	 * Assets
 	 *
-	 * @var array of KalturaEpg
+	 * @var Kaltura_Client_Type_Epg[]
 	 */
 	public $objects;
 

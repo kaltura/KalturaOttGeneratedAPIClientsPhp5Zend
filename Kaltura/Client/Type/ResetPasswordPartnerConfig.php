@@ -77,7 +77,7 @@ class Kaltura_Client_Type_ResetPasswordPartnerConfig extends Kaltura_Client_Obje
 	/**
 	 * templates
 	 *
-	 * @var array of KalturaResetPasswordPartnerConfigTemplate
+	 * @var Kaltura_Client_Type_ResetPasswordPartnerConfigTemplate[]
 	 */
 	public $templates;
 

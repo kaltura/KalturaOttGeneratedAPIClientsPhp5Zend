@@ -77,7 +77,7 @@ class Kaltura_Client_Type_AssetOrderSegmentAction extends Kaltura_Client_Type_Ba
 	/**
 	 * Action values
 	 *
-	 * @var array of KalturaStringValue
+	 * @var Kaltura_Client_Type_StringValue[]
 	 */
 	public $values;
 
