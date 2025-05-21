@@ -66,7 +66,7 @@ class Kaltura_Client_Type_PlaybackProfileListResponse extends Kaltura_Client_Typ
 	/**
 	 * A list of Engagement adapter
 	 *
-	 * @var array of KalturaPlaybackProfile
+	 * @var Kaltura_Client_Type_PlaybackProfile[]
 	 */
 	public $objects;
 

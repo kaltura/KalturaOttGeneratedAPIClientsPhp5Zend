@@ -66,7 +66,7 @@ class Kaltura_Client_Type_EntitlementListResponse extends Kaltura_Client_Type_Li
 	/**
 	 * A list of entitlements
 	 *
-	 * @var array of KalturaEntitlement
+	 * @var Kaltura_Client_Type_Entitlement[]
 	 */
 	public $objects;
 

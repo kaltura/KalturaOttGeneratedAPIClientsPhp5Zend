@@ -66,7 +66,7 @@ class Kaltura_Client_Type_AssetUserRuleListResponse extends Kaltura_Client_Type_
 	/**
 	 * Asset user rules
 	 *
-	 * @var array of KalturaAssetUserRule
+	 * @var Kaltura_Client_Type_AssetUserRule[]
 	 */
 	public $objects;
 

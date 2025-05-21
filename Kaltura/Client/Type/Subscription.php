@@ -371,7 +371,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 	/**
 	 * A list of channels associated with this subscription
 	 *
-	 * @var array of KalturaBaseChannel
+	 * @var Kaltura_Client_Type_BaseChannel[]
 	 * @readonly
 	 */
 	public $channels;
@@ -400,7 +400,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 	/**
 	 * A list of file types identifiers that are supported in this subscription
 	 *
-	 * @var array of KalturaIntegerValue
+	 * @var Kaltura_Client_Type_IntegerValue[]
 	 * @readonly
 	 */
 	public $fileTypes;
@@ -470,7 +470,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 	/**
 	 * Name of the subscription
 	 *
-	 * @var array of KalturaTranslationToken
+	 * @var Kaltura_Client_Type_TranslationToken[]
 	 */
 	public $multilingualName;
 
@@ -485,7 +485,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 	/**
 	 * description of the subscription
 	 *
-	 * @var array of KalturaTranslationToken
+	 * @var Kaltura_Client_Type_TranslationToken[]
 	 */
 	public $multilingualDescription;
 
@@ -550,7 +550,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 	/**
 	 * List of premium services included in the subscription
 	 *
-	 * @var array of KalturaPremiumService
+	 * @var Kaltura_Client_Type_PremiumService[]
 	 */
 	public $premiumServices;
 
@@ -589,7 +589,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 	/**
 	 * List of permitted user types for the subscription
 	 *
-	 * @var array of KalturaOTTUserType
+	 * @var Kaltura_Client_Type_OTTUserType[]
 	 * @readonly
 	 */
 	public $userTypes;
@@ -597,7 +597,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 	/**
 	 * List of Coupons group
 	 *
-	 * @var array of KalturaCouponsGroup
+	 * @var Kaltura_Client_Type_CouponsGroup[]
 	 * @readonly
 	 */
 	public $couponsGroups;
@@ -605,14 +605,14 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 	/**
 	 * List of subscription Coupons group
 	 *
-	 * @var array of KalturaSubscriptionCouponGroup
+	 * @var Kaltura_Client_Type_SubscriptionCouponGroup[]
 	 */
 	public $subscriptionCouponGroup;
 
 	/**
 	 * List of Subscription product codes
 	 *
-	 * @var array of KalturaProductCode
+	 * @var Kaltura_Client_Type_ProductCode[]
 	 */
 	public $productCodes;
 

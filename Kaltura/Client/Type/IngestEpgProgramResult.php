@@ -157,14 +157,14 @@ class Kaltura_Client_Type_IngestEpgProgramResult extends Kaltura_Client_ObjectBa
 	/**
 	 * List of errors. Note: error cause the data in question or the whole ingest to fail
 	 *
-	 * @var array of KalturaEpgIngestErrorMessage
+	 * @var Kaltura_Client_Type_EpgIngestErrorMessage[]
 	 */
 	public $errors;
 
 	/**
 	 * List of warnings. Note: warning cause no failure
 	 *
-	 * @var array of KalturaMessage
+	 * @var Kaltura_Client_Type_Message[]
 	 */
 	public $warnings;
 

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_DeviceBrandListResponse extends Kaltura_Client_Type_Li
 	/**
 	 * Device brands
 	 *
-	 * @var array of KalturaDeviceBrand
+	 * @var Kaltura_Client_Type_DeviceBrand[]
 	 */
 	public $objects;
 

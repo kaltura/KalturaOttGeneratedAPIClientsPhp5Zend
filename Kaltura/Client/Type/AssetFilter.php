@@ -95,7 +95,7 @@ class Kaltura_Client_Type_AssetFilter extends Kaltura_Client_Type_PersistedFilte
 	/**
 	 * Parameters for asset list sorting.
 	 *
-	 * @var array of KalturaBaseAssetOrder
+	 * @var Kaltura_Client_Type_BaseAssetOrder[]
 	 */
 	public $orderingParameters;
 

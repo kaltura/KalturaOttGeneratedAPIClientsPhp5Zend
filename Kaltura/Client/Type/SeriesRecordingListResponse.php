@@ -66,7 +66,7 @@ class Kaltura_Client_Type_SeriesRecordingListResponse extends Kaltura_Client_Typ
 	/**
 	 * Series Recordings
 	 *
-	 * @var array of KalturaSeriesRecording
+	 * @var Kaltura_Client_Type_SeriesRecording[]
 	 */
 	public $objects;
 

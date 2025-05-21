@@ -128,7 +128,7 @@ abstract class Kaltura_Client_Type_BulkUploadResult extends Kaltura_Client_Objec
 	/**
 	 * A list of errors
 	 *
-	 * @var array of KalturaMessage
+	 * @var Kaltura_Client_Type_Message[]
 	 * @readonly
 	 */
 	public $errors;
@@ -136,7 +136,7 @@ abstract class Kaltura_Client_Type_BulkUploadResult extends Kaltura_Client_Objec
 	/**
 	 * A list of warnings
 	 *
-	 * @var array of KalturaMessage
+	 * @var Kaltura_Client_Type_Message[]
 	 * @readonly
 	 */
 	public $warnings;

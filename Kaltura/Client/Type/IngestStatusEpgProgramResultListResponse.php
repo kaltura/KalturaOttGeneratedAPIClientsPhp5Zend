@@ -66,7 +66,7 @@ class Kaltura_Client_Type_IngestStatusEpgProgramResultListResponse extends Kaltu
 	/**
 	 * list of KalturaIngestEpgProgramResult
 	 *
-	 * @var array of KalturaIngestEpgProgramResult
+	 * @var Kaltura_Client_Type_IngestEpgProgramResult[]
 	 */
 	public $objects;
 

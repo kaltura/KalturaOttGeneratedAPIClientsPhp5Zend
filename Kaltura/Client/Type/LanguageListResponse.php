@@ -66,7 +66,7 @@ class Kaltura_Client_Type_LanguageListResponse extends Kaltura_Client_Type_ListR
 	/**
 	 * Languages
 	 *
-	 * @var array of KalturaLanguage
+	 * @var Kaltura_Client_Type_Language[]
 	 */
 	public $objects;
 

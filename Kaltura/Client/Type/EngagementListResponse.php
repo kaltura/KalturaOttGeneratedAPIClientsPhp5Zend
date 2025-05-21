@@ -66,7 +66,7 @@ class Kaltura_Client_Type_EngagementListResponse extends Kaltura_Client_Type_Lis
 	/**
 	 * A list of Engagement
 	 *
-	 * @var array of KalturaEngagement
+	 * @var Kaltura_Client_Type_Engagement[]
 	 */
 	public $objects;
 
