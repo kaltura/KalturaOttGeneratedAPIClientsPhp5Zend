@@ -66,7 +66,7 @@ class Kaltura_Client_Type_SocialActionListResponse extends Kaltura_Client_Type_L
 	/**
 	 * The social actions
 	 *
-	 * @var array of KalturaSocialAction
+	 * @var Kaltura_Client_Type_SocialAction[]
 	 */
 	public $objects;
 

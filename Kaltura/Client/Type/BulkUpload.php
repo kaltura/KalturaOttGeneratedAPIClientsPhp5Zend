@@ -176,7 +176,7 @@ class Kaltura_Client_Type_BulkUpload extends Kaltura_Client_ObjectBase
 	/**
 	 * A list of results
 	 *
-	 * @var array of KalturaBulkUploadResult
+	 * @var Kaltura_Client_Type_BulkUploadResult[]
 	 * @readonly
 	 */
 	public $results;
@@ -184,7 +184,7 @@ class Kaltura_Client_Type_BulkUpload extends Kaltura_Client_ObjectBase
 	/**
 	 * A list of errors
 	 *
-	 * @var array of KalturaMessage
+	 * @var Kaltura_Client_Type_Message[]
 	 * @readonly
 	 */
 	public $errors;

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_AssetStatisticsListResponse extends Kaltura_Client_Typ
 	/**
 	 * Assets
 	 *
-	 * @var array of KalturaAssetStatistics
+	 * @var Kaltura_Client_Type_AssetStatistics[]
 	 */
 	public $objects;
 
