@@ -154,7 +154,7 @@ class Kaltura_Client_Type_EmailMessage extends Kaltura_Client_ObjectBase
 	/**
 	 * extra parameters
 	 *
-	 * @var array of KalturaKeyValue
+	 * @var Kaltura_Client_Type_KeyValue[]
 	 */
 	public $extraParameters;
 

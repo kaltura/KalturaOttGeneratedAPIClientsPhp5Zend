@@ -66,7 +66,7 @@ class Kaltura_Client_Type_PartnerPremiumServices extends Kaltura_Client_ObjectBa
 	/**
 	 * A list of services
 	 *
-	 * @var array of KalturaPartnerPremiumService
+	 * @var Kaltura_Client_Type_PartnerPremiumService[]
 	 */
 	public $objects;
 

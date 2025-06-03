@@ -122,35 +122,35 @@ class Kaltura_Client_Type_PlaybackContext extends Kaltura_Client_ObjectBase
 	/**
 	 * Sources
 	 *
-	 * @var array of KalturaPlaybackSource
+	 * @var Kaltura_Client_Type_PlaybackSource[]
 	 */
 	public $sources;
 
 	/**
 	 * Actions
 	 *
-	 * @var array of KalturaRuleAction
+	 * @var Kaltura_Client_Type_RuleAction[]
 	 */
 	public $actions;
 
 	/**
 	 * Messages
 	 *
-	 * @var array of KalturaAccessControlMessage
+	 * @var Kaltura_Client_Type_AccessControlMessage[]
 	 */
 	public $messages;
 
 	/**
 	 * Playback captions
 	 *
-	 * @var array of KalturaCaptionPlaybackPluginData
+	 * @var Kaltura_Client_Type_CaptionPlaybackPluginData[]
 	 */
 	public $playbackCaptions;
 
 	/**
 	 * Plugins
 	 *
-	 * @var array of KalturaPlaybackPluginData
+	 * @var Kaltura_Client_Type_PlaybackPluginData[]
 	 */
 	public $plugins;
 

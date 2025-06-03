@@ -66,7 +66,7 @@ class Kaltura_Client_Type_AssetPersonalMarkupListResponse extends Kaltura_Client
 	/**
 	 * Adapters
 	 *
-	 * @var array of KalturaAssetPersonalMarkup
+	 * @var Kaltura_Client_Type_AssetPersonalMarkup[]
 	 */
 	public $objects;
 

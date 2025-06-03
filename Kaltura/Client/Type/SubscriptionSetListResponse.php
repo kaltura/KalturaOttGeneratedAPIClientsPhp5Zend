@@ -66,7 +66,7 @@ class Kaltura_Client_Type_SubscriptionSetListResponse extends Kaltura_Client_Typ
 	/**
 	 * A list of subscriptionSets
 	 *
-	 * @var array of KalturaSubscriptionSet
+	 * @var Kaltura_Client_Type_SubscriptionSet[]
 	 */
 	public $objects;
 
