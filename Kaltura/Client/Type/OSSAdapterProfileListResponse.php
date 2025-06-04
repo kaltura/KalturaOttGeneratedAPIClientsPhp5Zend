@@ -66,7 +66,7 @@ class Kaltura_Client_Type_OSSAdapterProfileListResponse extends Kaltura_Client_T
 	/**
 	 * A list of OSS adapter-profiles
 	 *
-	 * @var array of KalturaOSSAdapterProfile
+	 * @var Kaltura_Client_Type_OSSAdapterProfile[]
 	 */
 	public $objects;
 

@@ -128,21 +128,21 @@ class Kaltura_Client_Type_OTTCategory extends Kaltura_Client_ObjectBase
 	/**
 	 * Child categories
 	 *
-	 * @var array of KalturaOTTCategory
+	 * @var Kaltura_Client_Type_OTTCategory[]
 	 */
 	public $childCategories;
 
 	/**
 	 * Category channels
 	 *
-	 * @var array of KalturaChannel
+	 * @var Kaltura_Client_Type_Channel[]
 	 */
 	public $channels;
 
 	/**
 	 * Category images
 	 *
-	 * @var array of KalturaMediaImage
+	 * @var Kaltura_Client_Type_MediaImage[]
 	 */
 	public $images;
 
