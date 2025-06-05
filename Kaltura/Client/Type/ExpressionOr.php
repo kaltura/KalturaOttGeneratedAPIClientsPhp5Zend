@@ -66,7 +66,7 @@ class Kaltura_Client_Type_ExpressionOr extends Kaltura_Client_Type_UserSessionPr
 	/**
 	 * expressions with or relation between them
 	 *
-	 * @var array of KalturaUserSessionProfileExpression
+	 * @var Kaltura_Client_Type_UserSessionProfileExpression[]
 	 */
 	public $expressions;
 

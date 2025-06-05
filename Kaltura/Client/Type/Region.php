@@ -125,7 +125,7 @@ class Kaltura_Client_Type_Region extends Kaltura_Client_ObjectBase
 	/**
 	 * List of associated linear channels
 	 *
-	 * @var array of KalturaRegionalChannel
+	 * @var Kaltura_Client_Type_RegionalChannel[]
 	 */
 	public $linearChannels;
 

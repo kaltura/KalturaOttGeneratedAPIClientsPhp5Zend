@@ -66,7 +66,7 @@ class Kaltura_Client_Type_SearchPriorityGroupListResponse extends Kaltura_Client
 	/**
 	 * List of search priority groups
 	 *
-	 * @var array of KalturaSearchPriorityGroup
+	 * @var Kaltura_Client_Type_SearchPriorityGroup[]
 	 */
 	public $objects;
 

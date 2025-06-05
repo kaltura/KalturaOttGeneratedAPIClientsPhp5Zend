@@ -66,7 +66,7 @@ class Kaltura_Client_Type_ExportTaskListResponse extends Kaltura_Client_Type_Lis
 	/**
 	 * Export task items
 	 *
-	 * @var array of KalturaExportTask
+	 * @var Kaltura_Client_Type_ExportTask[]
 	 */
 	public $objects;
 

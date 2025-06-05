@@ -66,7 +66,7 @@ class Kaltura_Client_Type_AdsContext extends Kaltura_Client_ObjectBase
 	/**
 	 * Sources
 	 *
-	 * @var array of KalturaAdsSource
+	 * @var Kaltura_Client_Type_AdsSource[]
 	 */
 	public $sources;
 

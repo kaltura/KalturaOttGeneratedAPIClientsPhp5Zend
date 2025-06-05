@@ -66,7 +66,7 @@ class Kaltura_Client_Type_EngagementAdapterListResponse extends Kaltura_Client_T
 	/**
 	 * A list of Engagement adapter
 	 *
-	 * @var array of KalturaEngagementAdapter
+	 * @var Kaltura_Client_Type_EngagementAdapter[]
 	 */
 	public $objects;
 

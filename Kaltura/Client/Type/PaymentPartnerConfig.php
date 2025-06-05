@@ -66,7 +66,7 @@ class Kaltura_Client_Type_PaymentPartnerConfig extends Kaltura_Client_Type_Partn
 	/**
 	 * configuration for unified billing cycles.
 	 *
-	 * @var array of KalturaUnifiedBillingCycle
+	 * @var Kaltura_Client_Type_UnifiedBillingCycle[]
 	 */
 	public $unifiedBillingCycles;
 

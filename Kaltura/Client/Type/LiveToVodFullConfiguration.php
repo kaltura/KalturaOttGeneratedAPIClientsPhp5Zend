@@ -109,7 +109,7 @@ class Kaltura_Client_Type_LiveToVodFullConfiguration extends Kaltura_Client_Obje
 	/**
 	 * Configuring isL2vEnabled/retentionPeriodDays per each channel, overriding the defaults set in the global isL2vEnabled and retentionPeriodDays parameters.
 	 *
-	 * @var array of KalturaLiveToVodLinearAssetConfiguration
+	 * @var Kaltura_Client_Type_LiveToVodLinearAssetConfiguration[]
 	 */
 	public $linearAssets;
 
