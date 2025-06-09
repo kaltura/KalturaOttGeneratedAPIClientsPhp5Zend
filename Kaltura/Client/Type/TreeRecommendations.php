@@ -52,24 +52,10 @@ class Kaltura_Client_Type_TreeRecommendations extends Kaltura_Client_ObjectBase
 			$this->title = (string)$xml->title;
 		if(!is_null($jsonObject) && isset($jsonObject->title))
 			$this->title = (string)$jsonObject->title;
-		if(!is_null($xml) && count($xml->searchQuery))
-			$this->searchQuery = (string)$xml->searchQuery;
-		if(!is_null($jsonObject) && isset($jsonObject->searchQuery))
-			$this->searchQuery = (string)$jsonObject->searchQuery;
-		if(!is_null($xml) && count($xml->assetIds))
-		{
-			if(empty($xml->assetIds))
-				$this->assetIds = array();
-			else
-				$this->assetIds = Kaltura_Client_ParseUtils::unmarshalArray($xml->assetIds, "KalturaStringValue");
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->assetIds))
-		{
-			if(empty($jsonObject->assetIds))
-				$this->assetIds = array();
-			else
-				$this->assetIds = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->assetIds, "KalturaStringValue");
-		}
+		if(!is_null($xml) && count($xml->assets) && !empty($xml->assets))
+			$this->assets = Kaltura_Client_ParseUtils::unmarshalObject($xml->assets, "KalturaAssetListResponse");
+		if(!is_null($jsonObject) && isset($jsonObject->assets) && !empty($jsonObject->assets))
+			$this->assets = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->assets, "KalturaAssetListResponse");
 	}
 	/**
 	 * Descriptive title for the recommendation set.
@@ -79,18 +65,11 @@ class Kaltura_Client_Type_TreeRecommendations extends Kaltura_Client_ObjectBase
 	public $title = null;
 
 	/**
-	 * The semantic search query used to find matching assets.
+	 * Array of content assets matching the recommendation criteria.
 	 *
-	 * @var string
+	 * @var Kaltura_Client_Type_AssetListResponse
 	 */
-	public $searchQuery = null;
-
-	/**
-	 * Array of content assets Id&#39;s matching the recommendation criteria.
-	 *
-	 * @var Kaltura_Client_Type_StringValue[]
-	 */
-	public $assetIds;
+	public $assets;
 
 
 }

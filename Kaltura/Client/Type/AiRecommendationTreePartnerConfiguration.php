@@ -53,14 +53,14 @@ class Kaltura_Client_Type_AiRecommendationTreePartnerConfiguration extends Kaltu
 			if(empty($xml->activeMetadataTypes))
 				$this->activeMetadataTypes = array();
 			else
-				$this->activeMetadataTypes = Kaltura_Client_ParseUtils::unmarshalArray($xml->activeMetadataTypes, "KalturaStringValue");
+				$this->activeMetadataTypes = Kaltura_Client_ParseUtils::unmarshalMap($xml->activeMetadataTypes, "KalturaIntegerValue");
 		}
 		if(!is_null($jsonObject) && isset($jsonObject->activeMetadataTypes))
 		{
 			if(empty($jsonObject->activeMetadataTypes))
 				$this->activeMetadataTypes = array();
 			else
-				$this->activeMetadataTypes = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->activeMetadataTypes, "KalturaStringValue");
+				$this->activeMetadataTypes = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->activeMetadataTypes, "KalturaIntegerValue");
 		}
 		if(!is_null($xml) && count($xml->topLevelQuestions))
 			$this->topLevelQuestions = (int)$xml->topLevelQuestions;
@@ -120,9 +120,9 @@ class Kaltura_Client_Type_AiRecommendationTreePartnerConfiguration extends Kaltu
 			$this->activeTreeId = (string)$jsonObject->activeTreeId;
 	}
 	/**
-	 * List of metadata types to base questions on (genre, actor, director, etc.).
+	 * Dictionary of metadata types to base questions on (genre, actor, director, etc.) with their respective counts.
 	 *
-	 * @var Kaltura_Client_Type_StringValue[]
+	 * @var map
 	 */
 	public $activeMetadataTypes;
 

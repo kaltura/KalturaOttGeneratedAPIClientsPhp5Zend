@@ -43,13 +43,13 @@ class Kaltura_Client_AiRecommendationTreeService extends Kaltura_Client_ServiceB
 	 * @return Kaltura_Client_Type_TreeNextNodeResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function getNextNodeAndRecommendation($treeId = null, $previousQuestionId = null, $answerId = null, $topQuestion = null)
+	function getNextNodeAndRecommendation($treeId = null, $previousQuestionId = null, $answerId = null, $topQuestionId = null)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "treeId", $treeId);
 		$this->client->addParam($kparams, "previousQuestionId", $previousQuestionId);
 		$this->client->addParam($kparams, "answerId", $answerId);
-		$this->client->addParam($kparams, "topQuestion", $topQuestion);
+		$this->client->addParam($kparams, "topQuestionId", $topQuestionId);
 		$this->client->queueServiceActionCall("airecommendationtree", "getNextNodeAndRecommendation", "KalturaTreeNextNodeResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
