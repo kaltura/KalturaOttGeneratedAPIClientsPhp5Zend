@@ -77,7 +77,7 @@ class Kaltura_Client_Type_UserSocialActionResponse extends Kaltura_Client_Object
 	/**
 	 * List of action permission items
 	 *
-	 * @var array of KalturaNetworkActionStatus
+	 * @var Kaltura_Client_Type_NetworkActionStatus[]
 	 */
 	public $failStatus;
 

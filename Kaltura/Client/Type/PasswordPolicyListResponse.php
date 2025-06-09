@@ -66,7 +66,7 @@ class Kaltura_Client_Type_PasswordPolicyListResponse extends Kaltura_Client_Type
 	/**
 	 * A list of objects
 	 *
-	 * @var array of KalturaPasswordPolicy
+	 * @var Kaltura_Client_Type_PasswordPolicy[]
 	 */
 	public $objects;
 

@@ -66,7 +66,7 @@ class Kaltura_Client_Type_SocialFriendActivityListResponse extends Kaltura_Clien
 	/**
 	 * Social friends activity
 	 *
-	 * @var array of KalturaSocialFriendActivity
+	 * @var Kaltura_Client_Type_SocialFriendActivity[]
 	 */
 	public $objects;
 

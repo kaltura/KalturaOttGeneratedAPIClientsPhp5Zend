@@ -66,7 +66,7 @@ class Kaltura_Client_Type_UserInterestListResponse extends Kaltura_Client_Type_L
 	/**
 	 * A list of UserInterests
 	 *
-	 * @var array of KalturaUserInterest
+	 * @var Kaltura_Client_Type_UserInterest[]
 	 */
 	public $objects;
 

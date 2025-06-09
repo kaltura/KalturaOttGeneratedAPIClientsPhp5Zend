@@ -369,44 +369,44 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 	public $id = null;
 
 	/**
-	 * A list of channels associated with this subscription
+	 * List of KalturaBaseChannel objects associated with this subscription
 	 *
-	 * @var array of KalturaBaseChannel
+	 * @var Kaltura_Client_Type_BaseChannel[]
 	 * @readonly
 	 */
 	public $channels;
 
 	/**
-	 * Comma separated channels Ids associated with this subscription
+	 * Comma separated list identifying the KalturaBaseChannel objects associated with this subscription. In practice this is a list of KalturaBaseChannel.id values.
 	 *
 	 * @var string
 	 */
 	public $channelsIds = null;
 
 	/**
-	 * The first date the subscription is available for purchasing
+	 * The first date the subscription is available for purchasing (in seconds since the Unix epoch)
 	 *
 	 * @var bigint
 	 */
 	public $startDate = null;
 
 	/**
-	 * The last date the subscription is available for purchasing
+	 * The last date the subscription is available for purchasing (in seconds since the Unix epoch)
 	 *
 	 * @var bigint
 	 */
 	public $endDate = null;
 
 	/**
-	 * A list of file types identifiers that are supported in this subscription
+	 * List of file types (KalturaMediaFileType.id values) that are supported by this subscription
 	 *
-	 * @var array of KalturaIntegerValue
+	 * @var Kaltura_Client_Type_IntegerValue[]
 	 * @readonly
 	 */
 	public $fileTypes;
 
 	/**
-	 * Comma separated file types identifiers that are supported in this subscription
+	 * Comma separated list of file types (KalturaMediaFileType.id values) that are supported by this subscription
 	 *
 	 * @var string
 	 */
@@ -453,7 +453,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 	public $discountModule;
 
 	/**
-	 * The internal discount module identifier for the subscription
+	 * The internal discount module identifier (kalturaDiscountModule.id value) for the subscription
 	 *
 	 * @var bigint
 	 */
@@ -470,7 +470,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 	/**
 	 * Name of the subscription
 	 *
-	 * @var array of KalturaTranslationToken
+	 * @var Kaltura_Client_Type_TranslationToken[]
 	 */
 	public $multilingualName;
 
@@ -485,12 +485,12 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 	/**
 	 * description of the subscription
 	 *
-	 * @var array of KalturaTranslationToken
+	 * @var Kaltura_Client_Type_TranslationToken[]
 	 */
 	public $multilingualDescription;
 
 	/**
-	 * Identifier of the media associated with the subscription
+	 * Identifier of the media (KalturaAsset.id value) associated with the subscription
 	 *
 	 * @var int
 	 * @readonly
@@ -505,14 +505,14 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 	public $prorityInOrder = null;
 
 	/**
-	 * Comma separated subscription price plan IDs
+	 * Comma separated list of subscription price plans (KalturaPricePlan.id values) that are associated to this subscription
 	 *
 	 * @var string
 	 */
 	public $pricePlanIds = null;
 
 	/**
-	 * Optional: If the subscription has a flexible price plan. Represents an initial none-recurring discounted period which is charged immediately (no unified billing), followed by a recuring price plan which should be aligned with the unified billing cycle
+	 * Optional: If the subscription has a flexible price plan. Represents an initial non-recurring discounted period which is charged immediately (no unified billing), followed by a recurring price plan which should be aligned with the unified billing cycle
 	 *
 	 * @var bigint
 	 */
@@ -527,14 +527,14 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 	public $previewModule;
 
 	/**
-	 * Subscription preview module identifier
+	 * Identifier of the KalturaPreviewModule (KalturaPreviewModule.id value) associated with this subscription
 	 *
 	 * @var bigint
 	 */
 	public $previewModuleId = null;
 
 	/**
-	 * The household limitation module identifier associated with this subscription
+	 * Identifier of the KalturaHouseholdLimitationModule (KalturaHouseholdLimitations.id value) associated with this subscription
 	 *
 	 * @var int
 	 */
@@ -550,7 +550,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 	/**
 	 * List of premium services included in the subscription
 	 *
-	 * @var array of KalturaPremiumService
+	 * @var Kaltura_Client_Type_PremiumService[]
 	 */
 	public $premiumServices;
 
@@ -589,30 +589,30 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 	/**
 	 * List of permitted user types for the subscription
 	 *
-	 * @var array of KalturaOTTUserType
+	 * @var Kaltura_Client_Type_OTTUserType[]
 	 * @readonly
 	 */
 	public $userTypes;
 
 	/**
-	 * List of Coupons group
+	 * List of KalturaCouponsGroup objects associated with the subscription
 	 *
-	 * @var array of KalturaCouponsGroup
+	 * @var Kaltura_Client_Type_CouponsGroup[]
 	 * @readonly
 	 */
 	public $couponsGroups;
 
 	/**
-	 * List of subscription Coupons group
+	 * List of KalturaSubscriptionCouponGroup objects associated with the subscription
 	 *
-	 * @var array of KalturaSubscriptionCouponGroup
+	 * @var Kaltura_Client_Type_SubscriptionCouponGroup[]
 	 */
 	public $subscriptionCouponGroup;
 
 	/**
 	 * List of Subscription product codes
 	 *
-	 * @var array of KalturaProductCode
+	 * @var Kaltura_Client_Type_ProductCode[]
 	 */
 	public $productCodes;
 
@@ -624,7 +624,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 	public $dependencyType = null;
 
 	/**
-	 * External ID
+	 * Identifier of the subsription object as assigned by an external system
 	 *
 	 * @var string
 	 */
@@ -638,7 +638,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 	public $isCancellationBlocked = null;
 
 	/**
-	 * The Pre-Sale date the subscription is available for purchasing
+	 * Pre-sale date that subscription is available for purchasing (in seconds since the Unix epoch)
 	 *
 	 * @var bigint
 	 */
@@ -666,7 +666,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 	public $isActive = null;
 
 	/**
-	 * Specifies when was the Subscription created. Date and time represented as epoch.
+	 * Specifies when the subscription was created (in seconds since the Unix epoch)
 	 *
 	 * @var bigint
 	 * @readonly
@@ -674,7 +674,7 @@ class Kaltura_Client_Type_Subscription extends Kaltura_Client_Type_OTTObjectSupp
 	public $createDate = null;
 
 	/**
-	 * Specifies when was the Subscription last updated. Date and time represented as epoch.
+	 * Specifies when the subscription was last updated (in seconds since the Unix epoch)
 	 *
 	 * @var bigint
 	 * @readonly
