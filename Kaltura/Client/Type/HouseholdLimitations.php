@@ -188,7 +188,7 @@ class Kaltura_Client_Type_HouseholdLimitations extends Kaltura_Client_ObjectBase
 	/**
 	 * Device families limitations
 	 *
-	 * @var array of KalturaHouseholdDeviceFamilyLimitations
+	 * @var Kaltura_Client_Type_HouseholdDeviceFamilyLimitations[]
 	 */
 	public $deviceFamiliesLimitations;
 

@@ -70,7 +70,7 @@ class Kaltura_Client_Type_VodIngestAssetResultList extends Kaltura_Client_Object
 	/**
 	 * list of KalturaVodIngestAssetResult
 	 *
-	 * @var array of KalturaVodIngestAssetResult
+	 * @var Kaltura_Client_Type_VodIngestAssetResult[]
 	 */
 	public $objects;
 

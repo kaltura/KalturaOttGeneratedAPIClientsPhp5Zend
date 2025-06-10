@@ -66,7 +66,7 @@ class Kaltura_Client_Type_PricePlanListResponse extends Kaltura_Client_Type_List
 	/**
 	 * A list of price plans
 	 *
-	 * @var array of KalturaPricePlan
+	 * @var Kaltura_Client_Type_PricePlan[]
 	 */
 	public $objects;
 

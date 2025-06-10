@@ -66,7 +66,7 @@ class Kaltura_Client_Type_HouseholdDeviceListResponse extends Kaltura_Client_Typ
 	/**
 	 * Household devices
 	 *
-	 * @var array of KalturaHouseholdDevice
+	 * @var Kaltura_Client_Type_HouseholdDevice[]
 	 */
 	public $objects;
 
