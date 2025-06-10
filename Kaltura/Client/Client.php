@@ -41,12 +41,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_AiRecommendationTreeService
-	 */
-	public $aiRecommendationTree = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_AnnouncementService
 	 */
 	public $announcement = null;
@@ -1015,10 +1009,9 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		parent::__construct($config);
 		
 		$this->setClientTag('php5:25-06-10');
-		$this->setApiVersion('11.3.0.0');
+		$this->setApiVersion('11.2.1.0');
 		
 		$this->aiMetadataGenerator = new Kaltura_Client_AiMetadataGeneratorService($this);
-		$this->aiRecommendationTree = new Kaltura_Client_AiRecommendationTreeService($this);
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
 		$this->assetComment = new Kaltura_Client_AssetCommentService($this);
