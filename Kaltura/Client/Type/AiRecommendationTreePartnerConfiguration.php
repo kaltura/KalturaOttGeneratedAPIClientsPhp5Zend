@@ -74,46 +74,14 @@ class Kaltura_Client_Type_AiRecommendationTreePartnerConfiguration extends Kaltu
 			$this->levels = (int)$xml->levels;
 		if(!is_null($jsonObject) && isset($jsonObject->levels))
 			$this->levels = (int)$jsonObject->levels;
-		if(!is_null($xml) && count($xml->specialAnswers))
-		{
-			if(!empty($xml->specialAnswers) && ((int) $xml->specialAnswers === 1 || strtolower((string)$xml->specialAnswers) === 'true'))
-				$this->specialAnswers = true;
-			else
-				$this->specialAnswers = false;
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->specialAnswers))
-		{
-			if(!empty($jsonObject->specialAnswers) && ((int) $jsonObject->specialAnswers === 1 || strtolower((string)$jsonObject->specialAnswers) === 'true'))
-				$this->specialAnswers = true;
-			else
-				$this->specialAnswers = false;
-		}
 		if(!is_null($xml) && count($xml->numOfRecommendedAssets))
 			$this->numOfRecommendedAssets = (int)$xml->numOfRecommendedAssets;
 		if(!is_null($jsonObject) && isset($jsonObject->numOfRecommendedAssets))
 			$this->numOfRecommendedAssets = (int)$jsonObject->numOfRecommendedAssets;
-		if(!is_null($xml) && count($xml->removeWatchedRecommendations))
-		{
-			if(!empty($xml->removeWatchedRecommendations) && ((int) $xml->removeWatchedRecommendations === 1 || strtolower((string)$xml->removeWatchedRecommendations) === 'true'))
-				$this->removeWatchedRecommendations = true;
-			else
-				$this->removeWatchedRecommendations = false;
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->removeWatchedRecommendations))
-		{
-			if(!empty($jsonObject->removeWatchedRecommendations) && ((int) $jsonObject->removeWatchedRecommendations === 1 || strtolower((string)$jsonObject->removeWatchedRecommendations) === 'true'))
-				$this->removeWatchedRecommendations = true;
-			else
-				$this->removeWatchedRecommendations = false;
-		}
 		if(!is_null($xml) && count($xml->treeGenerationFrequency))
 			$this->treeGenerationFrequency = (string)$xml->treeGenerationFrequency;
 		if(!is_null($jsonObject) && isset($jsonObject->treeGenerationFrequency))
 			$this->treeGenerationFrequency = (string)$jsonObject->treeGenerationFrequency;
-		if(!is_null($xml) && count($xml->modelId))
-			$this->modelId = (string)$xml->modelId;
-		if(!is_null($jsonObject) && isset($jsonObject->modelId))
-			$this->modelId = (string)$jsonObject->modelId;
 		if(!is_null($xml) && count($xml->activeTreeId))
 			$this->activeTreeId = (string)$xml->activeTreeId;
 		if(!is_null($jsonObject) && isset($jsonObject->activeTreeId))
@@ -148,13 +116,6 @@ class Kaltura_Client_Type_AiRecommendationTreePartnerConfiguration extends Kaltu
 	public $levels = null;
 
 	/**
-	 * Whether to include special answers like &quot;I don&#39;t know&quot; or &quot;Surprise Me&quot;.
-	 *
-	 * @var bool
-	 */
-	public $specialAnswers = null;
-
-	/**
 	 * Number of assets to include in each recommendation set.
 	 *
 	 * @var int
@@ -162,25 +123,11 @@ class Kaltura_Client_Type_AiRecommendationTreePartnerConfiguration extends Kaltu
 	public $numOfRecommendedAssets = null;
 
 	/**
-	 * Whether to exclude already watched content.
-	 *
-	 * @var bool
-	 */
-	public $removeWatchedRecommendations = null;
-
-	/**
 	 * Cron expression for scheduling tree regeneration.
 	 *
 	 * @var string
 	 */
 	public $treeGenerationFrequency = null;
-
-	/**
-	 * Identifier for the LLM model used for tree generation.
-	 *
-	 * @var string
-	 */
-	public $modelId = null;
 
 	/**
 	 * Identifier for the tree that is currently marked as Active (can be only one at a time)
