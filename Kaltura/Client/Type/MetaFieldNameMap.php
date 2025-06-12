@@ -82,56 +82,56 @@ class Kaltura_Client_Type_MetaFieldNameMap extends Kaltura_Client_ObjectBase
 			$this->sensitiveContent = (string)$jsonObject->sensitiveContent;
 	}
 	/**
-	 * map &#39;genre&#39; AI generated metadata name to assetStruct&#39;s meta systemName
+	 * Genre
 	 *
 	 * @var string
 	 */
 	public $genre = null;
 
 	/**
-	 * map &#39;subGenre&#39; AI generated metadata name to assetStruct&#39;s meta systemName
+	 * Sub-Genre
 	 *
 	 * @var string
 	 */
 	public $subGenre = null;
 
 	/**
-	 * map &#39;sentiment&#39; AI generated metadata name to assetStruct&#39;s meta systemName
+	 * Sentiment
 	 *
 	 * @var string
 	 */
 	public $sentiment = null;
 
 	/**
-	 * map &#39;suggestedTitle&#39; AI generated metadata name to assetStruct&#39;s meta systemName
+	 * Suggested Title
 	 *
 	 * @var string
 	 */
 	public $suggestedTitle = null;
 
 	/**
-	 * map &#39;Description&#39; AI generated metadata name to assetStruct&#39;s meta systemName
+	 * Description
 	 *
 	 * @var string
 	 */
 	public $description = null;
 
 	/**
-	 * map &#39;oneLiner&#39; AI generated metadata name to assetStruct&#39;s meta systemName
+	 * One Liner
 	 *
 	 * @var string
 	 */
 	public $oneLiner = null;
 
 	/**
-	 * map &#39;Keywords&#39; AI generated metadata name to assetStruct&#39;s meta systemName
+	 * Keywords
 	 *
 	 * @var string
 	 */
 	public $keywords = null;
 
 	/**
-	 * map &#39;sensitiveContent&#39; AI generated metadata name to assetStruct&#39;s meta systemName
+	 * Sensitive Content
 	 *
 	 * @var string
 	 */

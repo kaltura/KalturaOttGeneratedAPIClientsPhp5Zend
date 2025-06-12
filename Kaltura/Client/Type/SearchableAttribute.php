@@ -58,14 +58,14 @@ class Kaltura_Client_Type_SearchableAttribute extends Kaltura_Client_ObjectBase
 			$this->attributes = (string)$jsonObject->attributes;
 	}
 	/**
-	 * The unique identifier of the asset structure.
+	 * The unique identifier for the asset structure associated with the searchable attribute.
 	 *
 	 * @var int
 	 */
 	public $assetStructId = null;
 
 	/**
-	 * Comma-separated list of field names to include in embedding.
+	 * The specific attributes that define the searchable aspect of the asset.
 	 *
 	 * @var string
 	 */

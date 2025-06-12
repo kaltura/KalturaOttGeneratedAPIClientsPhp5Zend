@@ -64,7 +64,7 @@ class Kaltura_Client_Type_SearchableAttributes extends Kaltura_Client_ObjectBase
 		}
 	}
 	/**
-	 * A list of searchable attributes.
+	 * A list of searchable attributes associated with an asset structure.
 	 *
 	 * @var Kaltura_Client_Type_SearchableAttribute[]
 	 */

@@ -58,14 +58,15 @@ class Kaltura_Client_Type_UploadSubtitles extends Kaltura_Client_ObjectBase
 			$this->language = (string)$jsonObject->language;
 	}
 	/**
-	 * Name of the subtitles file.
+	 * Mandatory. The name that will be associated with the uploaded file.
 	 *
 	 * @var string
 	 */
 	public $fileName = null;
 
 	/**
-	 * The language in which the subtitles are written.
+	 * Mandatory. The language in which the subtitles are written.
+	 *             It is used in the LLM prompt to inform it what language it needs to analyze.
 	 *
 	 * @var string
 	 */

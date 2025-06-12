@@ -62,21 +62,21 @@ class Kaltura_Client_Type_FilteringCondition extends Kaltura_Client_ObjectBase
 			$this->value = (string)$jsonObject->value;
 	}
 	/**
-	 * Meta Name (SystemName) to apply the rule to.
+	 * The name of the metadata attribute to apply the filtering condition on.
 	 *
 	 * @var string
 	 */
 	public $metaName = null;
 
 	/**
-	 * Operator to use for the rule.
+	 * The operator defining how the value should be compared (e.g., Equal, NotEqual).
 	 *
 	 * @var Kaltura_Client_Enum_ConditionOperator
 	 */
 	public $operator = null;
 
 	/**
-	 * Single value for the rule condition.
+	 * The value to compare against the metadata attribute using the specified operator.
 	 *
 	 * @var string
 	 */
