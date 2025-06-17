@@ -52,10 +52,20 @@ class Kaltura_Client_Type_TreeRecommendations extends Kaltura_Client_ObjectBase
 			$this->title = (string)$xml->title;
 		if(!is_null($jsonObject) && isset($jsonObject->title))
 			$this->title = (string)$jsonObject->title;
-		if(!is_null($xml) && count($xml->assets) && !empty($xml->assets))
-			$this->assets = Kaltura_Client_ParseUtils::unmarshalObject($xml->assets, "KalturaAssetListResponse");
-		if(!is_null($jsonObject) && isset($jsonObject->assets) && !empty($jsonObject->assets))
-			$this->assets = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->assets, "KalturaAssetListResponse");
+		if(!is_null($xml) && count($xml->assets))
+		{
+			if(empty($xml->assets))
+				$this->assets = array();
+			else
+				$this->assets = Kaltura_Client_ParseUtils::unmarshalArray($xml->assets, "KalturaAsset");
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->assets))
+		{
+			if(empty($jsonObject->assets))
+				$this->assets = array();
+			else
+				$this->assets = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->assets, "KalturaAsset");
+		}
 	}
 	/**
 	 * Descriptive title for the recommendation set.
@@ -67,7 +77,7 @@ class Kaltura_Client_Type_TreeRecommendations extends Kaltura_Client_ObjectBase
 	/**
 	 * Array of content assets matching the recommendation criteria.
 	 *
-	 * @var Kaltura_Client_Type_AssetListResponse
+	 * @var Kaltura_Client_Type_Asset[]
 	 */
 	public $assets;
 
