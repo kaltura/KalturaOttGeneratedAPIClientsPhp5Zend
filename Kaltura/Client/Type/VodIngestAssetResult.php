@@ -100,6 +100,18 @@ class Kaltura_Client_Type_VodIngestAssetResult extends Kaltura_Client_ObjectBase
 			else
 				$this->warnings = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->warnings, "KalturaVodIngestAssetResultErrorMessage");
 		}
+		if(!is_null($xml) && count($xml->fileUploadDate))
+			$this->fileUploadDate = (string)$xml->fileUploadDate;
+		if(!is_null($jsonObject) && isset($jsonObject->fileUploadDate))
+			$this->fileUploadDate = (string)$jsonObject->fileUploadDate;
+		if(!is_null($xml) && count($xml->processingStartDate))
+			$this->processingStartDate = (string)$xml->processingStartDate;
+		if(!is_null($jsonObject) && isset($jsonObject->processingStartDate))
+			$this->processingStartDate = (string)$jsonObject->processingStartDate;
+		if(!is_null($xml) && count($xml->processingCompletionDate))
+			$this->processingCompletionDate = (string)$xml->processingCompletionDate;
+		if(!is_null($jsonObject) && isset($jsonObject->processingCompletionDate))
+			$this->processingCompletionDate = (string)$jsonObject->processingCompletionDate;
 	}
 	/**
 	 * Ingested asset name. Absent only in case of NameRequired error
@@ -160,6 +172,27 @@ class Kaltura_Client_Type_VodIngestAssetResult extends Kaltura_Client_ObjectBase
 	 * @var Kaltura_Client_Type_VodIngestAssetResultErrorMessage[]
 	 */
 	public $warnings;
+
+	/**
+	 * The date and time for which the ingest file was uploaded to the remote file server. Expressed in milliseconds EPOCH time.
+	 *
+	 * @var bigint
+	 */
+	public $fileUploadDate = null;
+
+	/**
+	 * The date and time for which the ingest file moved to in progress folder and started processing. Expressed in milliseconds EPOCH time.
+	 *
+	 * @var bigint
+	 */
+	public $processingStartDate = null;
+
+	/**
+	 * The date and time for which the ingest file completed the ingest process. Expressed in milliseconds EPOCH time.
+	 *
+	 * @var bigint
+	 */
+	public $processingCompletionDate = null;
 
 
 }
