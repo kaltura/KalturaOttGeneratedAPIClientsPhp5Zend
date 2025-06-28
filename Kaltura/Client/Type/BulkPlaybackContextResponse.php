@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BulkPlaybackContextResponse extends Kaltura_Client_Type_ListResponse
+class Kaltura_Client_Type_BulkPlaybackContextResponse extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
@@ -62,6 +62,10 @@ class Kaltura_Client_Type_BulkPlaybackContextResponse extends Kaltura_Client_Typ
 			else
 				$this->objects = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->objects, "KalturaBulkResponseItem");
 		}
+		if(!is_null($xml) && count($xml->totalCount))
+			$this->totalCount = (int)$xml->totalCount;
+		if(!is_null($jsonObject) && isset($jsonObject->totalCount))
+			$this->totalCount = (int)$jsonObject->totalCount;
 	}
 	/**
 	 * Array of playback contexts or errors.
@@ -71,6 +75,13 @@ class Kaltura_Client_Type_BulkPlaybackContextResponse extends Kaltura_Client_Typ
 	 * @var Kaltura_Client_Type_BulkResponseItem[]
 	 */
 	public $objects;
+
+	/**
+	 * Total items
+	 *
+	 * @var int
+	 */
+	public $totalCount = null;
 
 
 }
