@@ -53,14 +53,14 @@ class Kaltura_Client_Type_BulkPlaybackContextResponse extends Kaltura_Client_Typ
 			if(empty($xml->objects))
 				$this->objects = array();
 			else
-				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaBulkResponseObject");
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaBulkResponseItem");
 		}
 		if(!is_null($jsonObject) && isset($jsonObject->objects))
 		{
 			if(empty($jsonObject->objects))
 				$this->objects = array();
 			else
-				$this->objects = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->objects, "KalturaBulkResponseObject");
+				$this->objects = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->objects, "KalturaBulkResponseItem");
 		}
 	}
 	/**
@@ -68,7 +68,7 @@ class Kaltura_Client_Type_BulkPlaybackContextResponse extends Kaltura_Client_Typ
 	 *             Each item corresponds to the request at the same index in the request array.
 	 *             Items can be either KalturaPlaybackContext (success) or KalturaBulkPlaybackContextError (error).
 	 *
-	 * @var Kaltura_Client_Type_BulkResponseObject[]
+	 * @var Kaltura_Client_Type_BulkResponseItem[]
 	 */
 	public $objects;
 

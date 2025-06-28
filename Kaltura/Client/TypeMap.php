@@ -154,7 +154,7 @@ class Kaltura_Client_TypeMap
 		'KalturaBulkPlaybackContextRequest' => 'Kaltura_Client_Type_BulkPlaybackContextRequest',
 		'KalturaBulkPlaybackContextResponse' => 'Kaltura_Client_Type_BulkPlaybackContextResponse',
 		'KalturaBulkPlaybackContextSuccess' => 'Kaltura_Client_Type_BulkPlaybackContextSuccess',
-		'KalturaBulkResponseObject' => 'Kaltura_Client_Type_BulkResponseObject',
+		'KalturaBulkResponseItem' => 'Kaltura_Client_Type_BulkResponseItem',
 		'KalturaBulkUpload' => 'Kaltura_Client_Type_BulkUpload',
 		'KalturaBulkUploadAssetData' => 'Kaltura_Client_Type_BulkUploadAssetData',
 		'KalturaBulkUploadAssetResult' => 'Kaltura_Client_Type_BulkUploadAssetResult',

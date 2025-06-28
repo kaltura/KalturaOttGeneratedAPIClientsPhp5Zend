@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BulkPlaybackContextSuccess extends Kaltura_Client_Type_BulkResponseObject
+class Kaltura_Client_Type_BulkPlaybackContextSuccess extends Kaltura_Client_Type_BulkResponseItem
 {
 	public function getKalturaObjectType()
 	{

@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BulkResponseObject extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_BulkResponseItem extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBulkResponseObject';
+		return 'KalturaBulkResponseItem';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
