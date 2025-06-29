@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BulkResponseItem extends Kaltura_Client_ObjectBase
+abstract class Kaltura_Client_Type_BulkResponseItem extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{

@@ -48,19 +48,19 @@ class Kaltura_Client_Type_BulkPlaybackContextResponse extends Kaltura_Client_Obj
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->objects))
+		if(!is_null($xml) && count($xml->items))
 		{
-			if(empty($xml->objects))
-				$this->objects = array();
+			if(empty($xml->items))
+				$this->items = array();
 			else
-				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaBulkResponseItem");
+				$this->items = Kaltura_Client_ParseUtils::unmarshalArray($xml->items, "KalturaBulkResponseItem");
 		}
-		if(!is_null($jsonObject) && isset($jsonObject->objects))
+		if(!is_null($jsonObject) && isset($jsonObject->items))
 		{
-			if(empty($jsonObject->objects))
-				$this->objects = array();
+			if(empty($jsonObject->items))
+				$this->items = array();
 			else
-				$this->objects = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->objects, "KalturaBulkResponseItem");
+				$this->items = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->items, "KalturaBulkResponseItem");
 		}
 		if(!is_null($xml) && count($xml->totalCount))
 			$this->totalCount = (int)$xml->totalCount;
@@ -74,7 +74,7 @@ class Kaltura_Client_Type_BulkPlaybackContextResponse extends Kaltura_Client_Obj
 	 *
 	 * @var Kaltura_Client_Type_BulkResponseItem[]
 	 */
-	public $objects;
+	public $items;
 
 	/**
 	 * Total items
