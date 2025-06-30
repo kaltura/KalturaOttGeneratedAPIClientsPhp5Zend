@@ -56,38 +56,6 @@ class Kaltura_Client_Type_TreeAnswer extends Kaltura_Client_ObjectBase
 			$this->text = (string)$xml->text;
 		if(!is_null($jsonObject) && isset($jsonObject->text))
 			$this->text = (string)$jsonObject->text;
-		if(!is_null($xml) && count($xml->hasNextQuestion))
-		{
-			if(!empty($xml->hasNextQuestion) && ((int) $xml->hasNextQuestion === 1 || strtolower((string)$xml->hasNextQuestion) === 'true'))
-				$this->hasNextQuestion = true;
-			else
-				$this->hasNextQuestion = false;
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->hasNextQuestion))
-		{
-			if(!empty($jsonObject->hasNextQuestion) && ((int) $jsonObject->hasNextQuestion === 1 || strtolower((string)$jsonObject->hasNextQuestion) === 'true'))
-				$this->hasNextQuestion = true;
-			else
-				$this->hasNextQuestion = false;
-		}
-		if(!is_null($xml) && count($xml->isSpecial))
-		{
-			if(!empty($xml->isSpecial) && ((int) $xml->isSpecial === 1 || strtolower((string)$xml->isSpecial) === 'true'))
-				$this->isSpecial = true;
-			else
-				$this->isSpecial = false;
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->isSpecial))
-		{
-			if(!empty($jsonObject->isSpecial) && ((int) $jsonObject->isSpecial === 1 || strtolower((string)$jsonObject->isSpecial) === 'true'))
-				$this->isSpecial = true;
-			else
-				$this->isSpecial = false;
-		}
-		if(!is_null($xml) && count($xml->specialType))
-			$this->specialType = (string)$xml->specialType;
-		if(!is_null($jsonObject) && isset($jsonObject->specialType))
-			$this->specialType = (string)$jsonObject->specialType;
 	}
 	/**
 	 * Unique identifier for the answer.
@@ -102,27 +70,6 @@ class Kaltura_Client_Type_TreeAnswer extends Kaltura_Client_ObjectBase
 	 * @var string
 	 */
 	public $text = null;
-
-	/**
-	 * Boolean indicating if selecting this answer leads to another question.
-	 *
-	 * @var bool
-	 */
-	public $hasNextQuestion = null;
-
-	/**
-	 * Flag for special answers like &quot;I don&#39;t know&quot; (optional).
-	 *
-	 * @var bool
-	 */
-	public $isSpecial = null;
-
-	/**
-	 * The type of special answer, e.g., &quot;unsure&quot; (optional).
-	 *
-	 * @var string
-	 */
-	public $specialType = null;
 
 
 }

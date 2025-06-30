@@ -60,20 +60,6 @@ class Kaltura_Client_Type_TreeQuestion extends Kaltura_Client_ObjectBase
 			$this->level = (int)$xml->level;
 		if(!is_null($jsonObject) && isset($jsonObject->level))
 			$this->level = (int)$jsonObject->level;
-		if(!is_null($xml) && count($xml->metadataTypes))
-		{
-			if(empty($xml->metadataTypes))
-				$this->metadataTypes = array();
-			else
-				$this->metadataTypes = Kaltura_Client_ParseUtils::unmarshalArray($xml->metadataTypes, "KalturaStringValue");
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->metadataTypes))
-		{
-			if(empty($jsonObject->metadataTypes))
-				$this->metadataTypes = array();
-			else
-				$this->metadataTypes = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->metadataTypes, "KalturaStringValue");
-		}
 	}
 	/**
 	 * Unique identifier for the question.
@@ -95,13 +81,6 @@ class Kaltura_Client_Type_TreeQuestion extends Kaltura_Client_ObjectBase
 	 * @var int
 	 */
 	public $level = null;
-
-	/**
-	 * Array of metadata categories this question focuses on.
-	 *
-	 * @var Kaltura_Client_Type_StringValue[]
-	 */
-	public $metadataTypes;
 
 
 }

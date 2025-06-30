@@ -52,6 +52,10 @@ class Kaltura_Client_Type_TreeNextNodeResponse extends Kaltura_Client_ObjectBase
 			$this->question = Kaltura_Client_ParseUtils::unmarshalObject($xml->question, "KalturaTreeQuestion");
 		if(!is_null($jsonObject) && isset($jsonObject->question) && !empty($jsonObject->question))
 			$this->question = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->question, "KalturaTreeQuestion");
+		if(!is_null($xml) && count($xml->totalLevelQuestions))
+			$this->totalLevelQuestions = (int)$xml->totalLevelQuestions;
+		if(!is_null($jsonObject) && isset($jsonObject->totalLevelQuestions))
+			$this->totalLevelQuestions = (int)$jsonObject->totalLevelQuestions;
 		if(!is_null($xml) && count($xml->answers))
 		{
 			if(empty($xml->answers))
@@ -77,6 +81,13 @@ class Kaltura_Client_Type_TreeNextNodeResponse extends Kaltura_Client_ObjectBase
 	 * @var Kaltura_Client_Type_TreeQuestion
 	 */
 	public $question;
+
+	/**
+	 * Number of total questions in the level.
+	 *
+	 * @var int
+	 */
+	public $totalLevelQuestions = null;
 
 	/**
 	 * Array of possible answer options for the question.

@@ -74,6 +74,20 @@ class Kaltura_Client_Type_AiRecommendationTreePartnerConfiguration extends Kaltu
 			$this->levels = (int)$xml->levels;
 		if(!is_null($jsonObject) && isset($jsonObject->levels))
 			$this->levels = (int)$jsonObject->levels;
+		if(!is_null($xml) && count($xml->specialAnswers))
+		{
+			if(!empty($xml->specialAnswers) && ((int) $xml->specialAnswers === 1 || strtolower((string)$xml->specialAnswers) === 'true'))
+				$this->specialAnswers = true;
+			else
+				$this->specialAnswers = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->specialAnswers))
+		{
+			if(!empty($jsonObject->specialAnswers) && ((int) $jsonObject->specialAnswers === 1 || strtolower((string)$jsonObject->specialAnswers) === 'true'))
+				$this->specialAnswers = true;
+			else
+				$this->specialAnswers = false;
+		}
 		if(!is_null($xml) && count($xml->numOfRecommendedAssets))
 			$this->numOfRecommendedAssets = (int)$xml->numOfRecommendedAssets;
 		if(!is_null($jsonObject) && isset($jsonObject->numOfRecommendedAssets))
@@ -95,28 +109,35 @@ class Kaltura_Client_Type_AiRecommendationTreePartnerConfiguration extends Kaltu
 	public $activeMetadataTypes;
 
 	/**
-	 * Number of top-level questions to generate (range: 5-21).
+	 * Number of top-level questions to generate (range: 5-30).
 	 *
 	 * @var int
 	 */
 	public $topLevelQuestions = null;
 
 	/**
-	 * Number of regular answers per question (range: 2-3).
+	 * Number of regular answers per question (range: 2-5).
 	 *
 	 * @var int
 	 */
 	public $answersPerQuestion = null;
 
 	/**
-	 * Maximum depth of the decision tree (range: 1-5).
+	 * Maximum depth of the decision tree (range: 1-4).
 	 *
 	 * @var int
 	 */
 	public $levels = null;
 
 	/**
-	 * Number of assets to include in each recommendation set.
+	 * Number of assets to include in each recommendation set (max limit is 50).
+	 *
+	 * @var bool
+	 */
+	public $specialAnswers = null;
+
+	/**
+	 * Number of assets to include in each recommendation set (max limit is 50).
 	 *
 	 * @var int
 	 */

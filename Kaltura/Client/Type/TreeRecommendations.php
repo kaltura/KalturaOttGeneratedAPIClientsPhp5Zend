@@ -75,7 +75,7 @@ class Kaltura_Client_Type_TreeRecommendations extends Kaltura_Client_ObjectBase
 	public $title = null;
 
 	/**
-	 * Array of content assets matching the recommendation criteria.
+	 * Array of content assets matching the recommendation criteria, this is essentially a KalturaAssetListResponseObject.
 	 *
 	 * @var Kaltura_Client_Type_Asset[]
 	 */
