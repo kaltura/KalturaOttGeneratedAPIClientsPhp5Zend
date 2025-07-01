@@ -48,6 +48,10 @@ class Kaltura_Client_Type_TreeNextNodeResponse extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
+		if(!is_null($xml) && count($xml->treeId))
+			$this->treeId = (string)$xml->treeId;
+		if(!is_null($jsonObject) && isset($jsonObject->treeId))
+			$this->treeId = (string)$jsonObject->treeId;
 		if(!is_null($xml) && count($xml->question) && !empty($xml->question))
 			$this->question = Kaltura_Client_ParseUtils::unmarshalObject($xml->question, "KalturaTreeQuestion");
 		if(!is_null($jsonObject) && isset($jsonObject->question) && !empty($jsonObject->question))
@@ -75,6 +79,13 @@ class Kaltura_Client_Type_TreeNextNodeResponse extends Kaltura_Client_ObjectBase
 		if(!is_null($jsonObject) && isset($jsonObject->recommendations) && !empty($jsonObject->recommendations))
 			$this->recommendations = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->recommendations, "KalturaTreeRecommendations");
 	}
+	/**
+	 * The tree id whom this node belongs to.
+	 *
+	 * @var string
+	 */
+	public $treeId = null;
+
 	/**
 	 * The next question to present to the user, or null for terminal nodes.
 	 *
