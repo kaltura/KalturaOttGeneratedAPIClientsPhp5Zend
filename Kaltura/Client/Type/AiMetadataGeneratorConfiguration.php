@@ -48,20 +48,6 @@ class Kaltura_Client_Type_AiMetadataGeneratorConfiguration extends Kaltura_Clien
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->isEnabled))
-		{
-			if(!empty($xml->isEnabled) && ((int) $xml->isEnabled === 1 || strtolower((string)$xml->isEnabled) === 'true'))
-				$this->isEnabled = true;
-			else
-				$this->isEnabled = false;
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->isEnabled))
-		{
-			if(!empty($jsonObject->isEnabled) && ((int) $jsonObject->isEnabled === 1 || strtolower((string)$jsonObject->isEnabled) === 'true'))
-				$this->isEnabled = true;
-			else
-				$this->isEnabled = false;
-		}
 		if(!is_null($xml) && count($xml->assetStructMetaNameMap))
 		{
 			if(empty($xml->assetStructMetaNameMap))
@@ -92,14 +78,9 @@ class Kaltura_Client_Type_AiMetadataGeneratorConfiguration extends Kaltura_Clien
 		}
 	}
 	/**
-	 * Specifies if the feature is enabled or disabled.
-	 *
-	 * @var bool
-	 */
-	public $isEnabled = null;
-
-	/**
-	 * A map (dictionary) to indicate to which existing metadata or tag the newly generated metadata value should be pushed, per assetStruct (per &#39;asset type&#39;)
+	 * A type of dictionary defined as [long,KalturaMetaFieldNameMap]. 
+	 *             This property is used to correlate the newly generated metadata to
+	 *             existing metadata IDs which are available in the asset’s struct.
 	 *
 	 * @var map
 	 */
