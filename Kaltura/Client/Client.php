@@ -371,6 +371,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_GeoBlockRuleService
+	 */
+	public $geoBlockRule = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_HomeNetworkService
 	 */
 	public $homeNetwork = null;
@@ -1008,8 +1014,8 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:25-06-11');
-		$this->setApiVersion('11.2.1.0');
+		$this->setClientTag('php5:25-07-08');
+		$this->setApiVersion('11.4.0.1');
 		
 		$this->aiMetadataGenerator = new Kaltura_Client_AiMetadataGeneratorService($this);
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
@@ -1067,6 +1073,7 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->externalChannelProfile = new Kaltura_Client_ExternalChannelProfileService($this);
 		$this->favorite = new Kaltura_Client_FavoriteService($this);
 		$this->followTvSeries = new Kaltura_Client_FollowTvSeriesService($this);
+		$this->geoBlockRule = new Kaltura_Client_GeoBlockRuleService($this);
 		$this->homeNetwork = new Kaltura_Client_HomeNetworkService($this);
 		$this->household = new Kaltura_Client_HouseholdService($this);
 		$this->householdCoupon = new Kaltura_Client_HouseholdCouponService($this);
