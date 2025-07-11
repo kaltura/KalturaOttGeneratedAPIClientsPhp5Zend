@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RecordingFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_GetPlaybackContextParams extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRecordingFilter';
+		return 'KalturaGetPlaybackContextParams';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,50 +48,50 @@ class Kaltura_Client_Type_RecordingFilter extends Kaltura_Client_Type_Filter
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->statusIn))
-			$this->statusIn = (string)$xml->statusIn;
-		if(!is_null($jsonObject) && isset($jsonObject->statusIn))
-			$this->statusIn = (string)$jsonObject->statusIn;
-		if(!is_null($xml) && count($xml->assetIdIn))
-			$this->assetIdIn = (string)$xml->assetIdIn;
-		if(!is_null($jsonObject) && isset($jsonObject->assetIdIn))
-			$this->assetIdIn = (string)$jsonObject->assetIdIn;
-		if(!is_null($xml) && count($xml->externalRecordingIdIn))
-			$this->externalRecordingIdIn = (string)$xml->externalRecordingIdIn;
-		if(!is_null($jsonObject) && isset($jsonObject->externalRecordingIdIn))
-			$this->externalRecordingIdIn = (string)$jsonObject->externalRecordingIdIn;
-		if(!is_null($xml) && count($xml->kSql))
-			$this->kSql = (string)$xml->kSql;
-		if(!is_null($jsonObject) && isset($jsonObject->kSql))
-			$this->kSql = (string)$jsonObject->kSql;
+		if(!is_null($xml) && count($xml->assetId))
+			$this->assetId = (string)$xml->assetId;
+		if(!is_null($jsonObject) && isset($jsonObject->assetId))
+			$this->assetId = (string)$jsonObject->assetId;
+		if(!is_null($xml) && count($xml->assetType))
+			$this->assetType = (string)$xml->assetType;
+		if(!is_null($jsonObject) && isset($jsonObject->assetType))
+			$this->assetType = (string)$jsonObject->assetType;
+		if(!is_null($xml) && count($xml->contextDataParams) && !empty($xml->contextDataParams))
+			$this->contextDataParams = Kaltura_Client_ParseUtils::unmarshalObject($xml->contextDataParams, "KalturaPlaybackContextOptions");
+		if(!is_null($jsonObject) && isset($jsonObject->contextDataParams) && !empty($jsonObject->contextDataParams))
+			$this->contextDataParams = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->contextDataParams, "KalturaPlaybackContextOptions");
+		if(!is_null($xml) && count($xml->sourceType))
+			$this->sourceType = (string)$xml->sourceType;
+		if(!is_null($jsonObject) && isset($jsonObject->sourceType))
+			$this->sourceType = (string)$jsonObject->sourceType;
 	}
 	/**
-	 * Recording Statuses
+	 * Unique identifier of the asset
 	 *
 	 * @var string
 	 */
-	public $statusIn = null;
+	public $assetId = null;
 
 	/**
-	 * Comma separated list of assets identifiers
+	 * Type of the asset
 	 *
-	 * @var string
+	 * @var Kaltura_Client_Enum_AssetType
 	 */
-	public $assetIdIn = null;
+	public $assetType = null;
 
 	/**
-	 * Comma separated external identifiers
+	 * Playback context options
 	 *
-	 * @var string
+	 * @var Kaltura_Client_Type_PlaybackContextOptions
 	 */
-	public $externalRecordingIdIn = null;
+	public $contextDataParams;
 
 	/**
-	 * KSQL expression
+	 * Source type (optional)
 	 *
 	 * @var string
 	 */
-	public $kSql = null;
+	public $sourceType = null;
 
 
 }
