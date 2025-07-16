@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RecordingFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_TreeQuestion extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRecordingFilter';
+		return 'KalturaTreeQuestion';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,50 +48,39 @@ class Kaltura_Client_Type_RecordingFilter extends Kaltura_Client_Type_Filter
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->statusIn))
-			$this->statusIn = (string)$xml->statusIn;
-		if(!is_null($jsonObject) && isset($jsonObject->statusIn))
-			$this->statusIn = (string)$jsonObject->statusIn;
-		if(!is_null($xml) && count($xml->assetIdIn))
-			$this->assetIdIn = (string)$xml->assetIdIn;
-		if(!is_null($jsonObject) && isset($jsonObject->assetIdIn))
-			$this->assetIdIn = (string)$jsonObject->assetIdIn;
-		if(!is_null($xml) && count($xml->externalRecordingIdIn))
-			$this->externalRecordingIdIn = (string)$xml->externalRecordingIdIn;
-		if(!is_null($jsonObject) && isset($jsonObject->externalRecordingIdIn))
-			$this->externalRecordingIdIn = (string)$jsonObject->externalRecordingIdIn;
-		if(!is_null($xml) && count($xml->kSql))
-			$this->kSql = (string)$xml->kSql;
-		if(!is_null($jsonObject) && isset($jsonObject->kSql))
-			$this->kSql = (string)$jsonObject->kSql;
+		if(!is_null($xml) && count($xml->questionId))
+			$this->questionId = (string)$xml->questionId;
+		if(!is_null($jsonObject) && isset($jsonObject->questionId))
+			$this->questionId = (string)$jsonObject->questionId;
+		if(!is_null($xml) && count($xml->text))
+			$this->text = (string)$xml->text;
+		if(!is_null($jsonObject) && isset($jsonObject->text))
+			$this->text = (string)$jsonObject->text;
+		if(!is_null($xml) && count($xml->level))
+			$this->level = (int)$xml->level;
+		if(!is_null($jsonObject) && isset($jsonObject->level))
+			$this->level = (int)$jsonObject->level;
 	}
 	/**
-	 * Recording Statuses
+	 * Unique identifier for the question.
 	 *
 	 * @var string
 	 */
-	public $statusIn = null;
+	public $questionId = null;
 
 	/**
-	 * Comma separated list of assets identifiers
+	 * The question text to display to the user.
 	 *
 	 * @var string
 	 */
-	public $assetIdIn = null;
+	public $text = null;
 
 	/**
-	 * Comma separated external identifiers
+	 * The depth level in the tree (1 for top-level).
 	 *
-	 * @var string
+	 * @var int
 	 */
-	public $externalRecordingIdIn = null;
-
-	/**
-	 * KSQL expression
-	 *
-	 * @var string
-	 */
-	public $kSql = null;
+	public $level = null;
 
 
 }
