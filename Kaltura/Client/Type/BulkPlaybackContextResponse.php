@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_AiMetadataGeneratorConfiguration extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_BulkPlaybackContextResponse extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaAiMetadataGeneratorConfiguration';
+		return 'KalturaBulkPlaybackContextResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,52 +48,40 @@ class Kaltura_Client_Type_AiMetadataGeneratorConfiguration extends Kaltura_Clien
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->assetStructMetaNameMap))
+		if(!is_null($xml) && count($xml->items))
 		{
-			if(empty($xml->assetStructMetaNameMap))
-				$this->assetStructMetaNameMap = array();
+			if(empty($xml->items))
+				$this->items = array();
 			else
-				$this->assetStructMetaNameMap = Kaltura_Client_ParseUtils::unmarshalMap($xml->assetStructMetaNameMap, "KalturaMetaFieldNameMap");
+				$this->items = Kaltura_Client_ParseUtils::unmarshalArray($xml->items, "KalturaBulkResponseItem");
 		}
-		if(!is_null($jsonObject) && isset($jsonObject->assetStructMetaNameMap))
+		if(!is_null($jsonObject) && isset($jsonObject->items))
 		{
-			if(empty($jsonObject->assetStructMetaNameMap))
-				$this->assetStructMetaNameMap = array();
+			if(empty($jsonObject->items))
+				$this->items = array();
 			else
-				$this->assetStructMetaNameMap = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->assetStructMetaNameMap, "KalturaMetaFieldNameMap");
+				$this->items = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->items, "KalturaBulkResponseItem");
 		}
-		if(!is_null($xml) && count($xml->supportedLanguages))
-		{
-			if(empty($xml->supportedLanguages))
-				$this->supportedLanguages = array();
-			else
-				$this->supportedLanguages = Kaltura_Client_ParseUtils::unmarshalArray($xml->supportedLanguages, "KalturaStringValue");
-		}
-		if(!is_null($jsonObject) && isset($jsonObject->supportedLanguages))
-		{
-			if(empty($jsonObject->supportedLanguages))
-				$this->supportedLanguages = array();
-			else
-				$this->supportedLanguages = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->supportedLanguages, "KalturaStringValue");
-		}
+		if(!is_null($xml) && count($xml->totalCount))
+			$this->totalCount = (int)$xml->totalCount;
+		if(!is_null($jsonObject) && isset($jsonObject->totalCount))
+			$this->totalCount = (int)$jsonObject->totalCount;
 	}
 	/**
-	 * A type of dictionary defined as [long,KalturaMetaFieldNameMap]. 
-	 *             This property is used to correlate the newly generated metadata to
-	 *             existing metadata IDs which are available in the asset’s struct.
+	 * Array of playback contexts or errors.
+	 *             Each item corresponds to the request at the same index in the request array.
+	 *             Items can be either KalturaPlaybackContext (success) or KalturaBulkPlaybackContextError (error).
 	 *
-	 * @var map
+	 * @var Kaltura_Client_Type_BulkResponseItem[]
 	 */
-	public $assetStructMetaNameMap;
+	public $items;
 
 	/**
-	 * A read only array to list the set of languages which can be used with the service.
-	 *             In practice it is populated with the values set in KalturaMetadataGeneratorLanguages ENUM.
+	 * Total items
 	 *
-	 * @var Kaltura_Client_Type_StringValue[]
-	 * @readonly
+	 * @var int
 	 */
-	public $supportedLanguages;
+	public $totalCount = null;
 
 
 }
