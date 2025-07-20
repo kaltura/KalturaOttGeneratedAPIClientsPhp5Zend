@@ -48,18 +48,18 @@ class Kaltura_Client_Type_GenerateMetadataByDescription extends Kaltura_Client_O
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->externalAssetId) && !empty($xml->externalAssetId))
-			$this->externalAssetId = Kaltura_Client_ParseUtils::unmarshalObject($xml->externalAssetId, "KalturaStringValue");
-		if(!is_null($jsonObject) && isset($jsonObject->externalAssetId) && !empty($jsonObject->externalAssetId))
-			$this->externalAssetId = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->externalAssetId, "KalturaStringValue");
+		if(!is_null($xml) && count($xml->externalAssetId))
+			$this->externalAssetId = (string)$xml->externalAssetId;
+		if(!is_null($jsonObject) && isset($jsonObject->externalAssetId))
+			$this->externalAssetId = (string)$jsonObject->externalAssetId;
 	}
 	/**
 	 * A string that uniquely identifies the asset which will be enriched and from which the description will be extracted.
 	 *             This is the external asset ID set by the customer (CoGuid) and not the internal Kaltura asset ID.
 	 *
-	 * @var Kaltura_Client_Type_StringValue
+	 * @var string
 	 */
-	public $externalAssetId;
+	public $externalAssetId = null;
 
 
 }
