@@ -48,10 +48,10 @@ class Kaltura_Client_Type_GenerateMetadataBySubtitles extends Kaltura_Client_Obj
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->id))
-			$this->id = (string)$xml->id;
-		if(!is_null($jsonObject) && isset($jsonObject->id))
-			$this->id = (string)$jsonObject->id;
+		if(!is_null($xml) && count($xml->subtitlesFileId))
+			$this->subtitlesFileId = (string)$xml->subtitlesFileId;
+		if(!is_null($jsonObject) && isset($jsonObject->subtitlesFileId))
+			$this->subtitlesFileId = (string)$jsonObject->subtitlesFileId;
 		if(!is_null($xml) && count($xml->externalAssetIds))
 		{
 			if(empty($xml->externalAssetIds))
@@ -73,7 +73,7 @@ class Kaltura_Client_Type_GenerateMetadataBySubtitles extends Kaltura_Client_Obj
 	 *
 	 * @var bigint
 	 */
-	public $id = null;
+	public $subtitlesFileId = null;
 
 	/**
 	 * An optional array of KalturaStringValue specifying the target assets to which the generated metadata will be pushed.
