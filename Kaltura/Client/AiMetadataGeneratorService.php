@@ -40,19 +40,14 @@ class Kaltura_Client_AiMetadataGeneratorService extends Kaltura_Client_ServiceBa
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_GenerateMetadataBySubtitlesJob
+	 * @return Kaltura_Client_Type_GenerateMetadataJob
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function generateMetadataBySubtitles($subtitlesFileId, array $externalAssetIds = null)
+	function generateMetadataByDescription(Kaltura_Client_Type_GenerateMetadataByDescription $generateMetadataByDescription)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "subtitlesFileId", $subtitlesFileId);
-		if ($externalAssetIds !== null)
-			foreach($externalAssetIds as $index => $obj)
-			{
-				$this->client->addParam($kparams, "externalAssetIds:$index", $obj->toParams());
-			}
-		$this->client->queueServiceActionCall("aimetadatagenerator", "generateMetadataBySubtitles", "KalturaGenerateMetadataBySubtitlesJob", $kparams);
+		$this->client->addParam($kparams, "generateMetadataByDescription", $generateMetadataByDescription->toParams());
+		$this->client->queueServiceActionCall("aimetadatagenerator", "generateMetadataByDescription", "KalturaGenerateMetadataJob", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$rawResult = $this->client->doQueue();
@@ -63,8 +58,33 @@ class Kaltura_Client_AiMetadataGeneratorService extends Kaltura_Client_ServiceBa
 		} else {
 			$resultXmlObject = new \SimpleXMLElement($rawResult);
 			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaGenerateMetadataBySubtitlesJob");
-			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_GenerateMetadataBySubtitlesJob");
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaGenerateMetadataJob");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_GenerateMetadataJob");
+		}
+			return $resultObject;
+	}
+
+	/**
+	 * @return Kaltura_Client_Type_GenerateMetadataJob
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function generateMetadataBySubtitles(Kaltura_Client_Type_GenerateMetadataBySubtitles $generateMetadataBySubtitles)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "generateMetadataBySubtitles", $generateMetadataBySubtitles->toParams());
+		$this->client->queueServiceActionCall("aimetadatagenerator", "generateMetadataBySubtitles", "KalturaGenerateMetadataJob", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaGenerateMetadataJob");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_GenerateMetadataJob");
 		}
 			return $resultObject;
 	}
@@ -95,14 +115,14 @@ class Kaltura_Client_AiMetadataGeneratorService extends Kaltura_Client_ServiceBa
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_GenerateMetadataBySubtitlesJob
+	 * @return Kaltura_Client_Type_GenerateMetadataJob
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
 	function getGenerateMetadataJob($id)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "id", $id);
-		$this->client->queueServiceActionCall("aimetadatagenerator", "getGenerateMetadataJob", "KalturaGenerateMetadataBySubtitlesJob", $kparams);
+		$this->client->queueServiceActionCall("aimetadatagenerator", "getGenerateMetadataJob", "KalturaGenerateMetadataJob", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$rawResult = $this->client->doQueue();
@@ -113,8 +133,8 @@ class Kaltura_Client_AiMetadataGeneratorService extends Kaltura_Client_ServiceBa
 		} else {
 			$resultXmlObject = new \SimpleXMLElement($rawResult);
 			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaGenerateMetadataBySubtitlesJob");
-			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_GenerateMetadataBySubtitlesJob");
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaGenerateMetadataJob");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_GenerateMetadataJob");
 		}
 			return $resultObject;
 	}

@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RecordingFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_BulkPlaybackContextSuccess extends Kaltura_Client_Type_BulkResponseItem
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRecordingFilter';
+		return 'KalturaBulkPlaybackContextSuccess';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,50 +48,17 @@ class Kaltura_Client_Type_RecordingFilter extends Kaltura_Client_Type_Filter
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->statusIn))
-			$this->statusIn = (string)$xml->statusIn;
-		if(!is_null($jsonObject) && isset($jsonObject->statusIn))
-			$this->statusIn = (string)$jsonObject->statusIn;
-		if(!is_null($xml) && count($xml->assetIdIn))
-			$this->assetIdIn = (string)$xml->assetIdIn;
-		if(!is_null($jsonObject) && isset($jsonObject->assetIdIn))
-			$this->assetIdIn = (string)$jsonObject->assetIdIn;
-		if(!is_null($xml) && count($xml->externalRecordingIdIn))
-			$this->externalRecordingIdIn = (string)$xml->externalRecordingIdIn;
-		if(!is_null($jsonObject) && isset($jsonObject->externalRecordingIdIn))
-			$this->externalRecordingIdIn = (string)$jsonObject->externalRecordingIdIn;
-		if(!is_null($xml) && count($xml->kSql))
-			$this->kSql = (string)$xml->kSql;
-		if(!is_null($jsonObject) && isset($jsonObject->kSql))
-			$this->kSql = (string)$jsonObject->kSql;
+		if(!is_null($xml) && count($xml->playbackContext) && !empty($xml->playbackContext))
+			$this->playbackContext = Kaltura_Client_ParseUtils::unmarshalObject($xml->playbackContext, "KalturaPlaybackContext");
+		if(!is_null($jsonObject) && isset($jsonObject->playbackContext) && !empty($jsonObject->playbackContext))
+			$this->playbackContext = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->playbackContext, "KalturaPlaybackContext");
 	}
 	/**
-	 * Recording Statuses
+	 * The successful playback context
 	 *
-	 * @var string
+	 * @var Kaltura_Client_Type_PlaybackContext
 	 */
-	public $statusIn = null;
-
-	/**
-	 * Comma separated list of assets identifiers
-	 *
-	 * @var string
-	 */
-	public $assetIdIn = null;
-
-	/**
-	 * Comma separated external identifiers
-	 *
-	 * @var string
-	 */
-	public $externalRecordingIdIn = null;
-
-	/**
-	 * KSQL expression
-	 *
-	 * @var string
-	 */
-	public $kSql = null;
+	public $playbackContext;
 
 
 }
