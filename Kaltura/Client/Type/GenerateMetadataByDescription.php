@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_RecordingFilter extends Kaltura_Client_Type_Filter
+class Kaltura_Client_Type_GenerateMetadataByDescription extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaRecordingFilter';
+		return 'KalturaGenerateMetadataByDescription';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,50 +48,18 @@ class Kaltura_Client_Type_RecordingFilter extends Kaltura_Client_Type_Filter
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->statusIn))
-			$this->statusIn = (string)$xml->statusIn;
-		if(!is_null($jsonObject) && isset($jsonObject->statusIn))
-			$this->statusIn = (string)$jsonObject->statusIn;
-		if(!is_null($xml) && count($xml->assetIdIn))
-			$this->assetIdIn = (string)$xml->assetIdIn;
-		if(!is_null($jsonObject) && isset($jsonObject->assetIdIn))
-			$this->assetIdIn = (string)$jsonObject->assetIdIn;
-		if(!is_null($xml) && count($xml->externalRecordingIdIn))
-			$this->externalRecordingIdIn = (string)$xml->externalRecordingIdIn;
-		if(!is_null($jsonObject) && isset($jsonObject->externalRecordingIdIn))
-			$this->externalRecordingIdIn = (string)$jsonObject->externalRecordingIdIn;
-		if(!is_null($xml) && count($xml->kSql))
-			$this->kSql = (string)$xml->kSql;
-		if(!is_null($jsonObject) && isset($jsonObject->kSql))
-			$this->kSql = (string)$jsonObject->kSql;
+		if(!is_null($xml) && count($xml->externalAssetId))
+			$this->externalAssetId = (string)$xml->externalAssetId;
+		if(!is_null($jsonObject) && isset($jsonObject->externalAssetId))
+			$this->externalAssetId = (string)$jsonObject->externalAssetId;
 	}
 	/**
-	 * Recording Statuses
+	 * A string that uniquely identifies the asset which will be enriched and from which the description will be extracted.
+	 *             This is the external asset ID set by the customer (CoGuid) and not the internal Kaltura asset ID.
 	 *
 	 * @var string
 	 */
-	public $statusIn = null;
-
-	/**
-	 * Comma separated list of assets identifiers
-	 *
-	 * @var string
-	 */
-	public $assetIdIn = null;
-
-	/**
-	 * Comma separated external identifiers
-	 *
-	 * @var string
-	 */
-	public $externalRecordingIdIn = null;
-
-	/**
-	 * KSQL expression
-	 *
-	 * @var string
-	 */
-	public $kSql = null;
+	public $externalAssetId = null;
 
 
 }
