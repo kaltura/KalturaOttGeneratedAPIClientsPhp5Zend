@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_GenerateMetadataJob extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_GenerateMetadataBySubtitlesJob extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaGenerateMetadataJob';
+		return 'KalturaGenerateMetadataBySubtitlesJob';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -60,10 +60,10 @@ class Kaltura_Client_Type_GenerateMetadataJob extends Kaltura_Client_ObjectBase
 			$this->updateDate = (string)$xml->updateDate;
 		if(!is_null($jsonObject) && isset($jsonObject->updateDate))
 			$this->updateDate = (string)$jsonObject->updateDate;
-		if(!is_null($xml) && count($xml->sourceName))
-			$this->sourceName = (string)$xml->sourceName;
-		if(!is_null($jsonObject) && isset($jsonObject->sourceName))
-			$this->sourceName = (string)$jsonObject->sourceName;
+		if(!is_null($xml) && count($xml->fileName))
+			$this->fileName = (string)$xml->fileName;
+		if(!is_null($jsonObject) && isset($jsonObject->fileName))
+			$this->fileName = (string)$jsonObject->fileName;
 		if(!is_null($xml) && count($xml->status))
 			$this->status = (string)$xml->status;
 		if(!is_null($jsonObject) && isset($jsonObject->status))
@@ -98,17 +98,15 @@ class Kaltura_Client_Type_GenerateMetadataJob extends Kaltura_Client_ObjectBase
 	public $updateDate = null;
 
 	/**
-	 * Name of the source job element generating the metadata.
-	 *             For generateMetadataBySubtitles: the uploaded subtitle file name.
-	 *             For generateMetadataByDescription: the asset name from which metadata is generated.
+	 * Name of the uploaded subtitles file from which the metadata is generated.
 	 *
 	 * @var string
 	 * @readonly
 	 */
-	public $sourceName = null;
+	public $fileName = null;
 
 	/**
-	 * can be either Processing/Success/Failed, per the last status updated by the aiMetadataGenerator.
+	 * Service status states.
 	 *
 	 * @var Kaltura_Client_Enum_GenerateMetadataStatus
 	 * @readonly
