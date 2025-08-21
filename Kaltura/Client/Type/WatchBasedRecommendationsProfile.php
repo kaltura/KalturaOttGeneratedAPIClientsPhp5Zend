@@ -92,6 +92,14 @@ class Kaltura_Client_Type_WatchBasedRecommendationsProfile extends Kaltura_Clien
 			$this->playbackInterestsCalculationPeriodDays = (int)$xml->playbackInterestsCalculationPeriodDays;
 		if(!is_null($jsonObject) && isset($jsonObject->playbackInterestsCalculationPeriodDays))
 			$this->playbackInterestsCalculationPeriodDays = (int)$jsonObject->playbackInterestsCalculationPeriodDays;
+		if(!is_null($xml) && count($xml->userInterestPlayThresholdForEventInMinutes))
+			$this->userInterestPlayThresholdForEventInMinutes = (int)$xml->userInterestPlayThresholdForEventInMinutes;
+		if(!is_null($jsonObject) && isset($jsonObject->userInterestPlayThresholdForEventInMinutes))
+			$this->userInterestPlayThresholdForEventInMinutes = (int)$jsonObject->userInterestPlayThresholdForEventInMinutes;
+		if(!is_null($xml) && count($xml->maximumEventsPerSession))
+			$this->maximumEventsPerSession = (int)$xml->maximumEventsPerSession;
+		if(!is_null($jsonObject) && isset($jsonObject->maximumEventsPerSession))
+			$this->maximumEventsPerSession = (int)$jsonObject->maximumEventsPerSession;
 	}
 	/**
 	 * Unique identifier for the profile
@@ -170,6 +178,20 @@ class Kaltura_Client_Type_WatchBasedRecommendationsProfile extends Kaltura_Clien
 	 * @var int
 	 */
 	public $playbackInterestsCalculationPeriodDays = null;
+
+	/**
+	 * Minimum required viewing time per session (in minutes) for live content to be considered in the analysis.
+	 *
+	 * @var int
+	 */
+	public $userInterestPlayThresholdForEventInMinutes = null;
+
+	/**
+	 * Minimum required viewing time per session (in minutes) for live content to be considered in the analysis.
+	 *
+	 * @var int
+	 */
+	public $maximumEventsPerSession = null;
 
 
 }
