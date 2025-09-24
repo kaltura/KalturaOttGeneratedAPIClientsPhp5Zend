@@ -72,22 +72,6 @@ class Kaltura_Client_Type_VodIngestAssetResultAggregation extends Kaltura_Client
 			$this->successWithWarningCount = (int)$xml->successWithWarningCount;
 		if(!is_null($jsonObject) && isset($jsonObject->successWithWarningCount))
 			$this->successWithWarningCount = (int)$jsonObject->successWithWarningCount;
-		if(!is_null($xml) && count($xml->averageTotalProcessingDuration))
-			$this->averageTotalProcessingDuration = (string)$xml->averageTotalProcessingDuration;
-		if(!is_null($jsonObject) && isset($jsonObject->averageTotalProcessingDuration))
-			$this->averageTotalProcessingDuration = (string)$jsonObject->averageTotalProcessingDuration;
-		if(!is_null($xml) && count($xml->averageTotalActiveProcessingDuration))
-			$this->averageTotalActiveProcessingDuration = (string)$xml->averageTotalActiveProcessingDuration;
-		if(!is_null($jsonObject) && isset($jsonObject->averageTotalActiveProcessingDuration))
-			$this->averageTotalActiveProcessingDuration = (string)$jsonObject->averageTotalActiveProcessingDuration;
-		if(!is_null($xml) && count($xml->p95TotalProcessingDuration))
-			$this->p95TotalProcessingDuration = (string)$xml->p95TotalProcessingDuration;
-		if(!is_null($jsonObject) && isset($jsonObject->p95TotalProcessingDuration))
-			$this->p95TotalProcessingDuration = (string)$jsonObject->p95TotalProcessingDuration;
-		if(!is_null($xml) && count($xml->p95TotalActiveProcessingDuration))
-			$this->p95TotalActiveProcessingDuration = (string)$xml->p95TotalActiveProcessingDuration;
-		if(!is_null($jsonObject) && isset($jsonObject->p95TotalActiveProcessingDuration))
-			$this->p95TotalActiveProcessingDuration = (string)$jsonObject->p95TotalActiveProcessingDuration;
 	}
 	/**
 	 * Ingest date of the first asset in the response list. Date and time represented as epoch.
@@ -130,34 +114,6 @@ class Kaltura_Client_Type_VodIngestAssetResultAggregation extends Kaltura_Client
 	 * @var int
 	 */
 	public $successWithWarningCount = null;
-
-	/**
-	 * Average calculated for the total processing duration of the assets returned according to the applied filters.
-	 *
-	 * @var bigint
-	 */
-	public $averageTotalProcessingDuration = null;
-
-	/**
-	 * Average calculated for the active processing duration of the assets returned according to the applied filters.
-	 *
-	 * @var bigint
-	 */
-	public $averageTotalActiveProcessingDuration = null;
-
-	/**
-	 * 0.95 percentile calculated for the total processing duration of the assets returned according to the applied filters.
-	 *
-	 * @var bigint
-	 */
-	public $p95TotalProcessingDuration = null;
-
-	/**
-	 * 0.95 percentile calculated for the active processing duration of the assets returned according to the applied filters.
-	 *
-	 * @var bigint
-	 */
-	public $p95TotalActiveProcessingDuration = null;
 
 
 }

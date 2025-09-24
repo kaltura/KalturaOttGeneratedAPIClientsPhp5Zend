@@ -93,31 +93,6 @@ class Kaltura_Client_AssetService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_BulkPlaybackContextResponse
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function bulkGetPlaybackContext(Kaltura_Client_Type_BulkPlaybackContextRequest $request)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "request", $request->toParams());
-		$this->client->queueServiceActionCall("asset", "bulkGetPlaybackContext", "KalturaBulkPlaybackContextResponse", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$rawResult = $this->client->doQueue();
-		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
-			$jsObject = json_decode($rawResult);
-			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
-			return $resultObject;
-		} else {
-			$resultXmlObject = new \SimpleXMLElement($rawResult);
-			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaBulkPlaybackContextResponse");
-			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_BulkPlaybackContextResponse");
-		}
-			return $resultObject;
-	}
-
-	/**
 	 * @return Kaltura_Client_Type_AssetCount
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -391,33 +366,6 @@ class Kaltura_Client_AssetService extends Kaltura_Client_ServiceBase
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_AssetListResponse
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function semanticSearch($query, $refineQuery = false, $size = 10)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "query", $query);
-		$this->client->addParam($kparams, "refineQuery", $refineQuery);
-		$this->client->addParam($kparams, "size", $size);
-		$this->client->queueServiceActionCall("asset", "semanticSearch", "KalturaAssetListResponse", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$rawResult = $this->client->doQueue();
-		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
-			$jsObject = json_decode($rawResult);
-			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
-			return $resultObject;
-		} else {
-			$resultXmlObject = new \SimpleXMLElement($rawResult);
-			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaAssetListResponse");
-			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_AssetListResponse");
-		}
-			return $resultObject;
-	}
-
-	/**
 	 * @return Kaltura_Client_Type_Asset
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -439,31 +387,6 @@ class Kaltura_Client_AssetService extends Kaltura_Client_ServiceBase
 			$this->client->checkIfError($resultXmlObject->result);
 			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaAsset");
 			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_Asset");
-		}
-			return $resultObject;
-	}
-
-	/**
-	 * @return Kaltura_Client_Type_AssetListResponse
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function watchBasedRecommendationsList($profileId)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "profileId", $profileId);
-		$this->client->queueServiceActionCall("asset", "watchBasedRecommendationsList", "KalturaAssetListResponse", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$rawResult = $this->client->doQueue();
-		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
-			$jsObject = json_decode($rawResult);
-			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
-			return $resultObject;
-		} else {
-			$resultXmlObject = new \SimpleXMLElement($rawResult);
-			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaAssetListResponse");
-			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_AssetListResponse");
 		}
 			return $resultObject;
 	}

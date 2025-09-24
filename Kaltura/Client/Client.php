@@ -35,18 +35,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 {
 	/**
 	 * 
-	 * @var Kaltura_Client_AiMetadataGeneratorService
-	 */
-	public $aiMetadataGenerator = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_AiRecommendationTreeService
-	 */
-	public $aiRecommendationTree = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_AnnouncementService
 	 */
 	public $announcement = null;
@@ -374,12 +362,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	 * @var Kaltura_Client_FollowTvSeriesService
 	 */
 	public $followTvSeries = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_GeoBlockRuleService
-	 */
-	public $geoBlockRule = null;
 
 	/**
 	 * 
@@ -791,24 +773,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_SemanticAssetSearchPartnerConfigService
-	 */
-	public $semanticAssetSearchPartnerConfig = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_SemanticQueryService
-	 */
-	public $semanticQuery = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_SemanticQueryPartnerConfigurationService
-	 */
-	public $semanticQueryPartnerConfiguration = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_SeriesRecordingService
 	 */
 	public $seriesRecording = null;
@@ -872,12 +836,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	 * @var Kaltura_Client_SubscriptionSetService
 	 */
 	public $subscriptionSet = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_SubtitlesService
-	 */
-	public $subtitles = null;
 
 	/**
 	 * 
@@ -971,12 +929,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
-	 * @var Kaltura_Client_UserLogService
-	 */
-	public $userLog = null;
-
-	/**
-	 * 
 	 * @var Kaltura_Client_UserLoginPinService
 	 */
 	public $userLoginPin = null;
@@ -1000,18 +952,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	public $userSessionProfile = null;
 
 	/**
-	 * 
-	 * @var Kaltura_Client_WatchBasedRecommendationsAdminConfigurationService
-	 */
-	public $watchBasedRecommendationsAdminConfiguration = null;
-
-	/**
-	 * 
-	 * @var Kaltura_Client_WatchBasedRecommendationsProfileService
-	 */
-	public $watchBasedRecommendationsProfile = null;
-
-	/**
 	 * Kaltura client constructor
 	 *
 	 * @param Kaltura_Client_Configuration $config
@@ -1020,11 +960,9 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:25-08-06');
-		$this->setApiVersion('11.5.0.0');
+		$this->setClientTag('php5:25-09-24');
+		$this->setApiVersion('10.4.1.5');
 		
-		$this->aiMetadataGenerator = new Kaltura_Client_AiMetadataGeneratorService($this);
-		$this->aiRecommendationTree = new Kaltura_Client_AiRecommendationTreeService($this);
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
 		$this->assetComment = new Kaltura_Client_AssetCommentService($this);
@@ -1080,7 +1018,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->externalChannelProfile = new Kaltura_Client_ExternalChannelProfileService($this);
 		$this->favorite = new Kaltura_Client_FavoriteService($this);
 		$this->followTvSeries = new Kaltura_Client_FollowTvSeriesService($this);
-		$this->geoBlockRule = new Kaltura_Client_GeoBlockRuleService($this);
 		$this->homeNetwork = new Kaltura_Client_HomeNetworkService($this);
 		$this->household = new Kaltura_Client_HouseholdService($this);
 		$this->householdCoupon = new Kaltura_Client_HouseholdCouponService($this);
@@ -1149,9 +1086,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->searchPriorityGroup = new Kaltura_Client_SearchPriorityGroupService($this);
 		$this->searchPriorityGroupOrderedIdsSet = new Kaltura_Client_SearchPriorityGroupOrderedIdsSetService($this);
 		$this->segmentationType = new Kaltura_Client_SegmentationTypeService($this);
-		$this->semanticAssetSearchPartnerConfig = new Kaltura_Client_SemanticAssetSearchPartnerConfigService($this);
-		$this->semanticQuery = new Kaltura_Client_SemanticQueryService($this);
-		$this->semanticQueryPartnerConfiguration = new Kaltura_Client_SemanticQueryPartnerConfigurationService($this);
 		$this->seriesRecording = new Kaltura_Client_SeriesRecordingService($this);
 		$this->session = new Kaltura_Client_SessionService($this);
 		$this->smsAdapterProfile = new Kaltura_Client_SmsAdapterProfileService($this);
@@ -1163,7 +1097,6 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->streamingDevice = new Kaltura_Client_StreamingDeviceService($this);
 		$this->subscription = new Kaltura_Client_SubscriptionService($this);
 		$this->subscriptionSet = new Kaltura_Client_SubscriptionSetService($this);
-		$this->subtitles = new Kaltura_Client_SubtitlesService($this);
 		$this->system = new Kaltura_Client_SystemService($this);
 		$this->tag = new Kaltura_Client_TagService($this);
 		$this->timeShiftedTvPartnerSettings = new Kaltura_Client_TimeShiftedTvPartnerSettingsService($this);
@@ -1179,13 +1112,10 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->userAssetRule = new Kaltura_Client_UserAssetRuleService($this);
 		$this->userAssetsListItem = new Kaltura_Client_UserAssetsListItemService($this);
 		$this->userInterest = new Kaltura_Client_UserInterestService($this);
-		$this->userLog = new Kaltura_Client_UserLogService($this);
 		$this->userLoginPin = new Kaltura_Client_UserLoginPinService($this);
 		$this->userRole = new Kaltura_Client_UserRoleService($this);
 		$this->userSegment = new Kaltura_Client_UserSegmentService($this);
 		$this->userSessionProfile = new Kaltura_Client_UserSessionProfileService($this);
-		$this->watchBasedRecommendationsAdminConfiguration = new Kaltura_Client_WatchBasedRecommendationsAdminConfigurationService($this);
-		$this->watchBasedRecommendationsProfile = new Kaltura_Client_WatchBasedRecommendationsProfileService($this);
 	}
 	
 	/**
