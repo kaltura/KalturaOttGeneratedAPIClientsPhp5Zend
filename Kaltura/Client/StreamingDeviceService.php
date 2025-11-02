@@ -43,12 +43,13 @@ class Kaltura_Client_StreamingDeviceService extends Kaltura_Client_ServiceBase
 	 * @return bool
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function bookPlaybackSession($fileId, $assetId, $assetType)
+	function bookPlaybackSession($fileId, $assetId, $assetType, $programId = null)
 	{
 		$kparams = array();
 		$this->client->addParam($kparams, "fileId", $fileId);
 		$this->client->addParam($kparams, "assetId", $assetId);
 		$this->client->addParam($kparams, "assetType", $assetType);
+		$this->client->addParam($kparams, "programId", $programId);
 		$this->client->queueServiceActionCall("streamingdevice", "bookPlaybackSession", null, $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
