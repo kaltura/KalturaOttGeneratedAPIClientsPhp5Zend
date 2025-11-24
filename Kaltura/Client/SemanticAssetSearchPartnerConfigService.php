@@ -64,6 +64,53 @@ class Kaltura_Client_SemanticAssetSearchPartnerConfigService extends Kaltura_Cli
 	}
 
 	/**
+	 * @return Kaltura_Client_Type_FilteringCondition
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function getProgramFilteringCondition()
+	{
+		$kparams = array();
+		$this->client->queueServiceActionCall("semanticassetsearchpartnerconfig", "getProgramFilteringCondition", "KalturaFilteringCondition", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaFilteringCondition");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_FilteringCondition");
+		}
+			return $resultObject;
+	}
+
+	/**
+	 * @return string
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function getProgramSearchableAttributes()
+	{
+		$kparams = array();
+		$this->client->queueServiceActionCall("semanticassetsearchpartnerconfig", "getProgramSearchableAttributes", null, $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = (string)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
+		}
+			return $resultObject;
+	}
+
+	/**
 	 * @return Kaltura_Client_Type_SearchableAttributes
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
@@ -109,6 +156,55 @@ class Kaltura_Client_SemanticAssetSearchPartnerConfigService extends Kaltura_Cli
 			$this->client->checkIfError($resultXmlObject->result);
 			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaFilteringCondition");
 			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_FilteringCondition");
+		}
+			return $resultObject;
+	}
+
+	/**
+	 * @return Kaltura_Client_Type_FilteringCondition
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function upsertProgramFilteringCondition(Kaltura_Client_Type_FilteringCondition $filteringCondition)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "filteringCondition", $filteringCondition->toParams());
+		$this->client->queueServiceActionCall("semanticassetsearchpartnerconfig", "upsertProgramFilteringCondition", "KalturaFilteringCondition", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaFilteringCondition");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_FilteringCondition");
+		}
+			return $resultObject;
+	}
+
+	/**
+	 * @return string
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function upsertProgramSearchableAttributes($programAttributes)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "programAttributes", $programAttributes);
+		$this->client->queueServiceActionCall("semanticassetsearchpartnerconfig", "upsertProgramSearchableAttributes", null, $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = (string)Kaltura_Client_ParseUtils::unmarshalSimpleType($resultXmlObject->result);
 		}
 			return $resultObject;
 	}

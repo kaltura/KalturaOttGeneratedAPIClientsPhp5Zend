@@ -31,14 +31,46 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_ConditionOperator extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_MetadataFieldConfig extends Kaltura_Client_ObjectBase
 {
-	const UNKNOWN = "Unknown";
-	const EQUAL = "Equal";
-	const NOTEQUAL = "NotEqual";
-	const GREATERTHAN = "GreaterThan";
-	const LESSTHAN = "LessThan";
-	const GREATERTHANOREQUAL = "GreaterThanOrEqual";
-	const LESSTHANOREQUAL = "LessThanOrEqual";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaMetadataFieldConfig';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
+	{
+		parent::__construct($xml, $jsonObject);
+		
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
+			return;
+		
+		if(!is_null($xml) && count($xml->systemName))
+			$this->systemName = (string)$xml->systemName;
+		if(!is_null($jsonObject) && isset($jsonObject->systemName))
+			$this->systemName = (string)$jsonObject->systemName;
+		if(!is_null($xml) && count($xml->operation))
+			$this->operation = (string)$xml->operation;
+		if(!is_null($jsonObject) && isset($jsonObject->operation))
+			$this->operation = (string)$jsonObject->operation;
+	}
+	/**
+	 * The system name of the metadata field in the asset struct.
+	 *
+	 * @var string
+	 */
+	public $systemName = null;
+
+	/**
+	 * The update operation to be performed on this metadata field.
+	 *
+	 * @var Kaltura_Client_Enum_MetadataUpdateOperation
+	 */
+	public $operation = null;
+
+
 }
 
