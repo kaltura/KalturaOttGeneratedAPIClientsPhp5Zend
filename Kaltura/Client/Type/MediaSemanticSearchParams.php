@@ -31,10 +31,24 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_SearchType extends Kaltura_Client_EnumBase
+class Kaltura_Client_Type_MediaSemanticSearchParams extends Kaltura_Client_ObjectBase
 {
-	const UNKNOWN = "Unknown";
-	const ASSET = "Asset";
-	const PROGRAM = "Program";
+	public function getKalturaObjectType()
+	{
+		return 'KalturaMediaSemanticSearchParams';
+	}
+	
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
+	{
+		parent::__construct($xml, $jsonObject);
+		
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
+			return;
+		
+	}
+
 }
 

@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_SearchCondition extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_ProgramSemanticSearchParams extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaSearchCondition';
+		return 'KalturaProgramSemanticSearchParams';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,39 +48,30 @@ class Kaltura_Client_Type_SearchCondition extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->field))
-			$this->field = (string)$xml->field;
-		if(!is_null($jsonObject) && isset($jsonObject->field))
-			$this->field = (string)$jsonObject->field;
-		if(!is_null($xml) && count($xml->operator))
-			$this->operator = (string)$xml->operator;
-		if(!is_null($jsonObject) && isset($jsonObject->operator))
-			$this->operator = (string)$jsonObject->operator;
-		if(!is_null($xml) && count($xml->value))
-			$this->value = (string)$xml->value;
-		if(!is_null($jsonObject) && isset($jsonObject->value))
-			$this->value = (string)$jsonObject->value;
+		if(!is_null($xml) && count($xml->endsAfter))
+			$this->endsAfter = (string)$xml->endsAfter;
+		if(!is_null($jsonObject) && isset($jsonObject->endsAfter))
+			$this->endsAfter = (string)$jsonObject->endsAfter;
+		if(!is_null($xml) && count($xml->expiresAfter))
+			$this->expiresAfter = (string)$xml->expiresAfter;
+		if(!is_null($jsonObject) && isset($jsonObject->expiresAfter))
+			$this->expiresAfter = (string)$jsonObject->expiresAfter;
 	}
 	/**
-	 * Field name to filter by.
+	 * Only include programs that end after this timestamp (Unix epoch seconds).
+	 *             Optional filter.
 	 *
-	 * @var string
+	 * @var bigint
 	 */
-	public $field = null;
+	public $endsAfter = null;
 
 	/**
-	 * Operator to use for filtering.
+	 * Only include programs that expire after this timestamp (Unix epoch seconds).
+	 *             Optional filter.
 	 *
-	 * @var Kaltura_Client_Enum_ConditionOperator
+	 * @var bigint
 	 */
-	public $operator = null;
-
-	/**
-	 * Value to filter by.
-	 *
-	 * @var string
-	 */
-	public $value = null;
+	public $expiresAfter = null;
 
 
 }
