@@ -664,6 +664,7 @@ class Kaltura_Client_TypeMap
 		'KalturaProgramAssetGroupOfferIdInFilter' => 'Kaltura_Client_Type_ProgramAssetGroupOfferIdInFilter',
 		'KalturaProgramAssetGroupOfferListResponse' => 'Kaltura_Client_Type_ProgramAssetGroupOfferListResponse',
 		'KalturaProgramAssetGroupOfferPrice' => 'Kaltura_Client_Type_ProgramAssetGroupOfferPrice',
+		'KalturaProgramSearchableAttributes' => 'Kaltura_Client_Type_ProgramSearchableAttributes',
 		'KalturaProgramSemanticSearchParams' => 'Kaltura_Client_Type_ProgramSemanticSearchParams',
 		'KalturaPromotion' => 'Kaltura_Client_Type_Promotion',
 		'KalturaPromotionInfo' => 'Kaltura_Client_Type_PromotionInfo',
