@@ -33,12 +33,7 @@
  */
 class Kaltura_Client_Enum_ConditionOperator extends Kaltura_Client_EnumBase
 {
-	const UNKNOWN = "Unknown";
 	const EQUAL = "Equal";
 	const NOTEQUAL = "NotEqual";
-	const GREATERTHAN = "GreaterThan";
-	const LESSTHAN = "LessThan";
-	const GREATERTHANOREQUAL = "GreaterThanOrEqual";
-	const LESSTHANOREQUAL = "LessThanOrEqual";
 }
 

@@ -48,22 +48,22 @@ class Kaltura_Client_Type_ProgramSemanticSearchParams extends Kaltura_Client_Obj
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->endsAfter))
-			$this->endsAfter = (string)$xml->endsAfter;
-		if(!is_null($jsonObject) && isset($jsonObject->endsAfter))
-			$this->endsAfter = (string)$jsonObject->endsAfter;
+		if(!is_null($xml) && count($xml->endsBefore))
+			$this->endsBefore = (string)$xml->endsBefore;
+		if(!is_null($jsonObject) && isset($jsonObject->endsBefore))
+			$this->endsBefore = (string)$jsonObject->endsBefore;
 		if(!is_null($xml) && count($xml->expiresAfter))
 			$this->expiresAfter = (string)$xml->expiresAfter;
 		if(!is_null($jsonObject) && isset($jsonObject->expiresAfter))
 			$this->expiresAfter = (string)$jsonObject->expiresAfter;
 	}
 	/**
-	 * Only include programs that end after this timestamp (Unix epoch seconds).
+	 * Only include programs that end before this timestamp (Unix epoch seconds).
 	 *             Optional filter.
 	 *
 	 * @var bigint
 	 */
-	public $endsAfter = null;
+	public $endsBefore = null;
 
 	/**
 	 * Only include programs that expire after this timestamp (Unix epoch seconds).
