@@ -763,6 +763,7 @@ class Kaltura_Client_TypeMap
 		'KalturaSeriesReminderFilter' => 'Kaltura_Client_Type_SeriesReminderFilter',
 		'KalturaSession' => 'Kaltura_Client_Type_Session',
 		'KalturaSessionInfo' => 'Kaltura_Client_Type_SessionInfo',
+		'KalturaSetPlaybackContextUrlTypeAction' => 'Kaltura_Client_Type_SetPlaybackContextUrlTypeAction',
 		'KalturaShopPreActionCondition' => 'Kaltura_Client_Type_ShopPreActionCondition',
 		'KalturaSingleSegmentValue' => 'Kaltura_Client_Type_SingleSegmentValue',
 		'KalturaSkipCondition' => 'Kaltura_Client_Type_SkipCondition',
