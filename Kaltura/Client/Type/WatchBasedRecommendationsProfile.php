@@ -92,6 +92,42 @@ class Kaltura_Client_Type_WatchBasedRecommendationsProfile extends Kaltura_Clien
 			$this->playbackInterestsCalculationPeriodDays = (int)$xml->playbackInterestsCalculationPeriodDays;
 		if(!is_null($jsonObject) && isset($jsonObject->playbackInterestsCalculationPeriodDays))
 			$this->playbackInterestsCalculationPeriodDays = (int)$jsonObject->playbackInterestsCalculationPeriodDays;
+		if(!is_null($xml) && count($xml->analyzeCatchUps))
+		{
+			if(!empty($xml->analyzeCatchUps) && ((int) $xml->analyzeCatchUps === 1 || strtolower((string)$xml->analyzeCatchUps) === 'true'))
+				$this->analyzeCatchUps = true;
+			else
+				$this->analyzeCatchUps = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->analyzeCatchUps))
+		{
+			if(!empty($jsonObject->analyzeCatchUps) && ((int) $jsonObject->analyzeCatchUps === 1 || strtolower((string)$jsonObject->analyzeCatchUps) === 'true'))
+				$this->analyzeCatchUps = true;
+			else
+				$this->analyzeCatchUps = false;
+		}
+		if(!is_null($xml) && count($xml->analyzeLinearEvents))
+		{
+			if(!empty($xml->analyzeLinearEvents) && ((int) $xml->analyzeLinearEvents === 1 || strtolower((string)$xml->analyzeLinearEvents) === 'true'))
+				$this->analyzeLinearEvents = true;
+			else
+				$this->analyzeLinearEvents = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->analyzeLinearEvents))
+		{
+			if(!empty($jsonObject->analyzeLinearEvents) && ((int) $jsonObject->analyzeLinearEvents === 1 || strtolower((string)$jsonObject->analyzeLinearEvents) === 'true'))
+				$this->analyzeLinearEvents = true;
+			else
+				$this->analyzeLinearEvents = false;
+		}
+		if(!is_null($xml) && count($xml->userInterestPlayThresholdForEventInMinutes))
+			$this->userInterestPlayThresholdForEventInMinutes = (int)$xml->userInterestPlayThresholdForEventInMinutes;
+		if(!is_null($jsonObject) && isset($jsonObject->userInterestPlayThresholdForEventInMinutes))
+			$this->userInterestPlayThresholdForEventInMinutes = (int)$jsonObject->userInterestPlayThresholdForEventInMinutes;
+		if(!is_null($xml) && count($xml->maximumEventsPerSession))
+			$this->maximumEventsPerSession = (int)$xml->maximumEventsPerSession;
+		if(!is_null($jsonObject) && isset($jsonObject->maximumEventsPerSession))
+			$this->maximumEventsPerSession = (int)$jsonObject->maximumEventsPerSession;
 	}
 	/**
 	 * Unique identifier for the profile
@@ -170,6 +206,34 @@ class Kaltura_Client_Type_WatchBasedRecommendationsProfile extends Kaltura_Clien
 	 * @var int
 	 */
 	public $playbackInterestsCalculationPeriodDays = null;
+
+	/**
+	 * Determines whether catch-up viewing data should be included in the user&#39;s interest analysis.
+	 *
+	 * @var bool
+	 */
+	public $analyzeCatchUps = null;
+
+	/**
+	 * Determines whether linear events viewing data should be included in the user&#39;s interest analysis.
+	 *
+	 * @var bool
+	 */
+	public $analyzeLinearEvents = null;
+
+	/**
+	 * Minimum required viewing time per session (in minutes) for live content to be considered in the analysis.
+	 *
+	 * @var int
+	 */
+	public $userInterestPlayThresholdForEventInMinutes = null;
+
+	/**
+	 * Minimum required viewing time per session (in minutes) for live content to be considered in the analysis.
+	 *
+	 * @var int
+	 */
+	public $maximumEventsPerSession = null;
 
 
 }
