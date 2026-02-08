@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_SetPlaybackContextUrlTypeAction extends Kaltura_Client_Type_AssetRuleAction
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBaseSegmentCondition';
+		return 'KalturaSetPlaybackContextUrlTypeAction';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,17 +48,17 @@ class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->scope))
-			$this->scope = (string)$xml->scope;
-		if(!is_null($jsonObject) && isset($jsonObject->scope))
-			$this->scope = (string)$jsonObject->scope;
+		if(!is_null($xml) && count($xml->urlType))
+			$this->urlType = (string)$xml->urlType;
+		if(!is_null($jsonObject) && isset($jsonObject->urlType))
+			$this->urlType = (string)$jsonObject->urlType;
 	}
 	/**
-	 * Defines the scope of the condition evaluation.
+	 * URL Type to override (DIRECT or PLAYMANIFEST)
 	 *
-	 * @var Kaltura_Client_Enum_ConditionLevel
+	 * @var Kaltura_Client_Enum_UrlType
 	 */
-	public $scope = null;
+	public $urlType = null;
 
 
 }

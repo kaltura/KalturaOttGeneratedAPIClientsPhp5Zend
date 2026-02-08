@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_EnumMetaConstraint extends Kaltura_Client_Type_BaseAttributeConstraint
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBaseSegmentCondition';
+		return 'KalturaEnumMetaConstraint';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,17 +48,17 @@ class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->scope))
-			$this->scope = (string)$xml->scope;
-		if(!is_null($jsonObject) && isset($jsonObject->scope))
-			$this->scope = (string)$jsonObject->scope;
+		if(!is_null($xml) && count($xml->oneOf))
+			$this->oneOf = (string)$xml->oneOf;
+		if(!is_null($jsonObject) && isset($jsonObject->oneOf))
+			$this->oneOf = (string)$jsonObject->oneOf;
 	}
 	/**
-	 * Defines the scope of the condition evaluation.
+	 * A comma-separated list of values. The metadata field enum&#39;s values must match at least one of these items.
 	 *
-	 * @var Kaltura_Client_Enum_ConditionLevel
+	 * @var string
 	 */
-	public $scope = null;
+	public $oneOf = null;
 
 
 }

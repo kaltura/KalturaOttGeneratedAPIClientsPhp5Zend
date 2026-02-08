@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_WatchDurationCondition extends Kaltura_Client_Type_BaseWatchCondition
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBaseSegmentCondition';
+		return 'KalturaWatchDurationCondition';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,17 +48,30 @@ class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->scope))
-			$this->scope = (string)$xml->scope;
-		if(!is_null($jsonObject) && isset($jsonObject->scope))
-			$this->scope = (string)$jsonObject->scope;
+		if(!is_null($xml) && count($xml->minDurationHours))
+			$this->minDurationHours = (int)$xml->minDurationHours;
+		if(!is_null($jsonObject) && isset($jsonObject->minDurationHours))
+			$this->minDurationHours = (int)$jsonObject->minDurationHours;
+		if(!is_null($xml) && count($xml->maxDurationHours))
+			$this->maxDurationHours = (int)$xml->maxDurationHours;
+		if(!is_null($jsonObject) && isset($jsonObject->maxDurationHours))
+			$this->maxDurationHours = (int)$jsonObject->maxDurationHours;
 	}
 	/**
-	 * Defines the scope of the condition evaluation.
+	 * The minimum duration in hours to be met.
+	 *             Constraint: Must be less than or equal to maxDurationHours.
 	 *
-	 * @var Kaltura_Client_Enum_ConditionLevel
+	 * @var int
 	 */
-	public $scope = null;
+	public $minDurationHours = null;
+
+	/**
+	 * The maximum duration in hours to be met.
+	 *             Constraint: Must be greater than or equal to minDurationHours.
+	 *
+	 * @var int
+	 */
+	public $maxDurationHours = null;
 
 
 }

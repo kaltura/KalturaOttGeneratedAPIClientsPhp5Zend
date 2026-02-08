@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_EntitlementConstraint extends Kaltura_Client_Type_BaseAttributeConstraint
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBaseSegmentCondition';
+		return 'KalturaEntitlementConstraint';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,17 +48,17 @@ class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->scope))
-			$this->scope = (string)$xml->scope;
-		if(!is_null($jsonObject) && isset($jsonObject->scope))
-			$this->scope = (string)$jsonObject->scope;
+		if(!is_null($xml) && count($xml->productIds))
+			$this->productIds = (string)$xml->productIds;
+		if(!is_null($jsonObject) && isset($jsonObject->productIds))
+			$this->productIds = (string)$jsonObject->productIds;
 	}
 	/**
-	 * Defines the scope of the condition evaluation.
+	 * A comma-separated list of entitlement product IDs.
 	 *
-	 * @var Kaltura_Client_Enum_ConditionLevel
+	 * @var string
 	 */
-	public $scope = null;
+	public $productIds = null;
 
 
 }

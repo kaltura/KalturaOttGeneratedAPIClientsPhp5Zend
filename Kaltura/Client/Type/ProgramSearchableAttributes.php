@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_ProgramSearchableAttributes extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBaseSegmentCondition';
+		return 'KalturaProgramSearchableAttributes';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,17 +48,18 @@ class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->scope))
-			$this->scope = (string)$xml->scope;
-		if(!is_null($jsonObject) && isset($jsonObject->scope))
-			$this->scope = (string)$jsonObject->scope;
+		if(!is_null($xml) && count($xml->attributes))
+			$this->attributes = (string)$xml->attributes;
+		if(!is_null($jsonObject) && isset($jsonObject->attributes))
+			$this->attributes = (string)$jsonObject->attributes;
 	}
 	/**
-	 * Defines the scope of the condition evaluation.
+	 * Comma-separated list of Program metadata field names that should be searchable.
+	 *             Examples: &quot;name,description,genre,tags,meta_cast,meta_director&quot;
 	 *
-	 * @var Kaltura_Client_Enum_ConditionLevel
+	 * @var string
 	 */
-	public $scope = null;
+	public $attributes = null;
 
 
 }

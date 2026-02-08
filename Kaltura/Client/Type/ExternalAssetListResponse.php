@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_ExternalAssetListResponse extends Kaltura_Client_Type_AssetListResponse
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBaseSegmentCondition';
+		return 'KalturaExternalAssetListResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,17 +48,38 @@ class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->scope))
-			$this->scope = (string)$xml->scope;
-		if(!is_null($jsonObject) && isset($jsonObject->scope))
-			$this->scope = (string)$jsonObject->scope;
+		if(!is_null($xml) && count($xml->externalQueryId))
+			$this->externalQueryId = (string)$xml->externalQueryId;
+		if(!is_null($jsonObject) && isset($jsonObject->externalQueryId))
+			$this->externalQueryId = (string)$jsonObject->externalQueryId;
+		if(!is_null($xml) && count($xml->objects))
+		{
+			if(empty($xml->objects))
+				$this->objects = array();
+			else
+				$this->objects = Kaltura_Client_ParseUtils::unmarshalArray($xml->objects, "KalturaAsset");
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->objects))
+		{
+			if(empty($jsonObject->objects))
+				$this->objects = array();
+			else
+				$this->objects = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->objects, "KalturaAsset");
+		}
 	}
 	/**
-	 * Defines the scope of the condition evaluation.
+	 * Identify the query that sent to the external subsystem to retrieve the response
 	 *
-	 * @var Kaltura_Client_Enum_ConditionLevel
+	 * @var string
 	 */
-	public $scope = null;
+	public $externalQueryId = null;
+
+	/**
+	 * Assets
+	 *
+	 * @var Kaltura_Client_Type_Asset[]
+	 */
+	public $objects;
 
 
 }

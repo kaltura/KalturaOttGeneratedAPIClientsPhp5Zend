@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_ViewTimeConstraint extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBaseSegmentCondition';
+		return 'KalturaViewTimeConstraint';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,17 +48,28 @@ class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->scope))
-			$this->scope = (string)$xml->scope;
-		if(!is_null($jsonObject) && isset($jsonObject->scope))
-			$this->scope = (string)$jsonObject->scope;
+		if(!is_null($xml) && count($xml->startTime))
+			$this->startTime = (string)$xml->startTime;
+		if(!is_null($jsonObject) && isset($jsonObject->startTime))
+			$this->startTime = (string)$jsonObject->startTime;
+		if(!is_null($xml) && count($xml->endTime))
+			$this->endTime = (string)$xml->endTime;
+		if(!is_null($jsonObject) && isset($jsonObject->endTime))
+			$this->endTime = (string)$jsonObject->endTime;
 	}
 	/**
-	 * Defines the scope of the condition evaluation.
+	 * The starting time of the viewing window.
 	 *
-	 * @var Kaltura_Client_Enum_ConditionLevel
+	 * @var string
 	 */
-	public $scope = null;
+	public $startTime = null;
+
+	/**
+	 * The ending time of the viewing window.
+	 *
+	 * @var string
+	 */
+	public $endTime = null;
 
 
 }
