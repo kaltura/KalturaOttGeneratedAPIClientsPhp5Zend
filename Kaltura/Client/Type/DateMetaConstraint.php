@@ -64,21 +64,21 @@ class Kaltura_Client_Type_DateMetaConstraint extends Kaltura_Client_Type_BaseAtt
 	/**
 	 * The exact epoch timestamp the field must equal.
 	 *
-	 * @var string
+	 * @var bigint
 	 */
 	public $equals = null;
 
 	/**
 	 * The epoch timestamp the field must be greater than.
 	 *
-	 * @var string
+	 * @var bigint
 	 */
 	public $greaterThan = null;
 
 	/**
 	 * The epoch timestamp the field must be smaller than.
 	 *
-	 * @var string
+	 * @var bigint
 	 */
 	public $smallerThan = null;
 

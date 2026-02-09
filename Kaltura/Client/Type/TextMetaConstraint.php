@@ -56,6 +56,10 @@ class Kaltura_Client_Type_TextMetaConstraint extends Kaltura_Client_Type_BaseAtt
 			$this->equals = (string)$xml->equals;
 		if(!is_null($jsonObject) && isset($jsonObject->equals))
 			$this->equals = (string)$jsonObject->equals;
+		if(!is_null($xml) && count($xml->attributeType))
+			$this->attributeType = (string)$xml->attributeType;
+		if(!is_null($jsonObject) && isset($jsonObject->attributeType))
+			$this->attributeType = (string)$jsonObject->attributeType;
 	}
 	/**
 	 * The substring that the metadata field value must contain.
@@ -70,6 +74,13 @@ class Kaltura_Client_Type_TextMetaConstraint extends Kaltura_Client_Type_BaseAtt
 	 * @var string
 	 */
 	public $equals = null;
+
+	/**
+	 * Discriminator field to identify the specific attribute constraint type.
+	 *
+	 * @var string
+	 */
+	public $attributeType = null;
 
 
 }

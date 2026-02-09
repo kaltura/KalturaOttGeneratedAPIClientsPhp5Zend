@@ -125,7 +125,7 @@ abstract class Kaltura_Client_Type_BaseWatchCondition extends Kaltura_Client_Typ
 	/**
 	 * Defines whether to use AND or OR between the items in constraintAttributes.
 	 *
-	 * @var Kaltura_Client_Enum_LogicalOperator
+	 * @var Kaltura_Client_Enum_BooleanOperator
 	 */
 	public $constraintsOperator = null;
 

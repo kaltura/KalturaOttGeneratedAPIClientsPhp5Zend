@@ -48,22 +48,11 @@ class Kaltura_Client_Type_BaseAttributeConstraint extends Kaltura_Client_ObjectB
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->attributeType))
-			$this->attributeType = (string)$xml->attributeType;
-		if(!is_null($jsonObject) && isset($jsonObject->attributeType))
-			$this->attributeType = (string)$jsonObject->attributeType;
 		if(!is_null($xml) && count($xml->key))
 			$this->key = (string)$xml->key;
 		if(!is_null($jsonObject) && isset($jsonObject->key))
 			$this->key = (string)$jsonObject->key;
 	}
-	/**
-	 * Discriminator field to identify the specific attribute constraint type.
-	 *
-	 * @var string
-	 */
-	public $attributeType = null;
-
 	/**
 	 * The system name of the metadata field to query.
 	 *

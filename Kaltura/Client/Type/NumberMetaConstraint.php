@@ -64,21 +64,21 @@ class Kaltura_Client_Type_NumberMetaConstraint extends Kaltura_Client_Type_BaseA
 	/**
 	 * The exact numeric value the field must equal.
 	 *
-	 * @var string
+	 * @var bigint
 	 */
 	public $equals = null;
 
 	/**
 	 * The numeric value the field must be greater than.
 	 *
-	 * @var string
+	 * @var bigint
 	 */
 	public $greaterThan = null;
 
 	/**
 	 * The numeric value the field must be smaller than.
 	 *
-	 * @var string
+	 * @var bigint
 	 */
 	public $smallerThan = null;
 
