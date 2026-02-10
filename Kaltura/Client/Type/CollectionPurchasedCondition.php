@@ -48,10 +48,6 @@ class Kaltura_Client_Type_CollectionPurchasedCondition extends Kaltura_Client_Ty
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->level))
-			$this->level = (string)$xml->level;
-		if(!is_null($jsonObject) && isset($jsonObject->level))
-			$this->level = (string)$jsonObject->level;
 		if(!is_null($xml) && count($xml->collectionIdEquals))
 			$this->collectionIdEquals = (string)$xml->collectionIdEquals;
 		if(!is_null($jsonObject) && isset($jsonObject->collectionIdEquals))
@@ -61,13 +57,6 @@ class Kaltura_Client_Type_CollectionPurchasedCondition extends Kaltura_Client_Ty
 		if(!is_null($jsonObject) && isset($jsonObject->days))
 			$this->days = (int)$jsonObject->days;
 	}
-	/**
-	 * Collection purchase conditions are always evaluated at the Household level.
-	 *
-	 * @var Kaltura_Client_Enum_ConditionLevel
-	 */
-	public $level = null;
-
 	/**
 	 * The specific purchased collection product identifier to check.
 	 *

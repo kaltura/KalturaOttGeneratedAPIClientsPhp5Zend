@@ -48,10 +48,6 @@ abstract class Kaltura_Client_Type_BaseWatchCondition extends Kaltura_Client_Typ
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->level))
-			$this->level = (string)$xml->level;
-		if(!is_null($jsonObject) && isset($jsonObject->level))
-			$this->level = (string)$jsonObject->level;
 		if(!is_null($xml) && count($xml->contentFilter) && !empty($xml->contentFilter))
 			$this->contentFilter = Kaltura_Client_ParseUtils::unmarshalObject($xml->contentFilter, "KalturaContentTypeSelector");
 		if(!is_null($jsonObject) && isset($jsonObject->contentFilter) && !empty($jsonObject->contentFilter))
@@ -87,13 +83,6 @@ abstract class Kaltura_Client_Type_BaseWatchCondition extends Kaltura_Client_Typ
 				$this->constraintAttributes = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->constraintAttributes, "KalturaBaseAttributeConstraint");
 		}
 	}
-	/**
-	 * Defines the scope of the condition evaluation.
-	 *
-	 * @var Kaltura_Client_Enum_ConditionLevel
-	 */
-	public $level = null;
-
 	/**
 	 * Specifies criteria to include or exclude specific content types (recordings, programs, media types) from the evaluation.
 	 *

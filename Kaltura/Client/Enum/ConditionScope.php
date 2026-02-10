@@ -31,7 +31,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Enum_ConditionLevel extends Kaltura_Client_EnumBase
+class Kaltura_Client_Enum_ConditionScope extends Kaltura_Client_EnumBase
 {
 	const USER = "USER";
 	const HOUSEHOLD = "HOUSEHOLD";

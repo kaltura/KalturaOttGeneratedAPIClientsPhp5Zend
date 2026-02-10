@@ -48,22 +48,11 @@ class Kaltura_Client_Type_SubscriptionEntitledCondition extends Kaltura_Client_T
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->level))
-			$this->level = (string)$xml->level;
-		if(!is_null($jsonObject) && isset($jsonObject->level))
-			$this->level = (string)$jsonObject->level;
 		if(!is_null($xml) && count($xml->subscriptionIdEquals))
 			$this->subscriptionIdEquals = (string)$xml->subscriptionIdEquals;
 		if(!is_null($jsonObject) && isset($jsonObject->subscriptionIdEquals))
 			$this->subscriptionIdEquals = (string)$jsonObject->subscriptionIdEquals;
 	}
-	/**
-	 * Entitlement conditions are always evaluated at the Household level.
-	 *
-	 * @var Kaltura_Client_Enum_ConditionLevel
-	 */
-	public $level = null;
-
 	/**
 	 * The specific subscription product identifier to check.
 	 *

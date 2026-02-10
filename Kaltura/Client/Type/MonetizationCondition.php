@@ -48,10 +48,6 @@ class Kaltura_Client_Type_MonetizationCondition extends Kaltura_Client_Type_Base
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->level))
-			$this->level = (string)$xml->level;
-		if(!is_null($jsonObject) && isset($jsonObject->level))
-			$this->level = (string)$jsonObject->level;
 		if(!is_null($xml) && count($xml->businessModuleIdIn))
 			$this->businessModuleIdIn = (string)$xml->businessModuleIdIn;
 		if(!is_null($jsonObject) && isset($jsonObject->businessModuleIdIn))
@@ -81,13 +77,6 @@ class Kaltura_Client_Type_MonetizationCondition extends Kaltura_Client_Type_Base
 		if(!is_null($jsonObject) && isset($jsonObject->type))
 			$this->type = (string)$jsonObject->type;
 	}
-	/**
-	 * Monetization conditions are always evaluated at the Household level.
-	 *
-	 * @var Kaltura_Client_Enum_ConditionLevel
-	 */
-	public $level = null;
-
 	/**
 	 * A comma-separated list of business module IDs to include in the filter.
 	 *

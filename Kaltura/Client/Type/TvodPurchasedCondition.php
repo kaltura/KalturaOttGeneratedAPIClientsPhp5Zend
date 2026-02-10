@@ -48,10 +48,6 @@ class Kaltura_Client_Type_TvodPurchasedCondition extends Kaltura_Client_Type_Bas
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->level))
-			$this->level = (string)$xml->level;
-		if(!is_null($jsonObject) && isset($jsonObject->level))
-			$this->level = (string)$jsonObject->level;
 		if(!is_null($xml) && count($xml->ppvIdEquals))
 			$this->ppvIdEquals = (string)$xml->ppvIdEquals;
 		if(!is_null($jsonObject) && isset($jsonObject->ppvIdEquals))
@@ -65,13 +61,6 @@ class Kaltura_Client_Type_TvodPurchasedCondition extends Kaltura_Client_Type_Bas
 		if(!is_null($jsonObject) && isset($jsonObject->days))
 			$this->days = (int)$jsonObject->days;
 	}
-	/**
-	 * TVOD purchase conditions are always evaluated at the Household level.
-	 *
-	 * @var Kaltura_Client_Enum_ConditionLevel
-	 */
-	public $level = null;
-
 	/**
 	 * The specific purchased ppv product identifier to check.
 	 *

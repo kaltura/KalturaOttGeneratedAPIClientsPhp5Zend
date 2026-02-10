@@ -56,7 +56,7 @@ class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
 	/**
 	 * Defines the scope of the condition evaluation.
 	 *
-	 * @var Kaltura_Client_Enum_ConditionLevel
+	 * @var Kaltura_Client_Enum_ConditionScope
 	 */
 	public $scope = null;
 

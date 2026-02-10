@@ -213,7 +213,7 @@ class Kaltura_Client_Type_SegmentationType extends Kaltura_Client_ObjectBase
 	/**
 	 * Defines whether segments are applied to users or households
 	 *
-	 * @var Kaltura_Client_Enum_ConditionLevel
+	 * @var Kaltura_Client_Enum_ConditionScope
 	 */
 	public $scope = null;
 
