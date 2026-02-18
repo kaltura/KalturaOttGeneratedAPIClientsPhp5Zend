@@ -90,6 +90,31 @@ class Kaltura_Client_AiMetadataGeneratorService extends Kaltura_Client_ServiceBa
 	}
 
 	/**
+	 * @return Kaltura_Client_Type_GenerateMetadataJob
+	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
+	 */
+	function generateProgramMetadataByDescription(Kaltura_Client_Type_GenerateProgramMetadatasByDescription $generateProgramMetadataByDescription)
+	{
+		$kparams = array();
+		$this->client->addParam($kparams, "generateProgramMetadataByDescription", $generateProgramMetadataByDescription->toParams());
+		$this->client->queueServiceActionCall("aimetadatagenerator", "generateProgramMetadataByDescription", "KalturaGenerateMetadataJob", $kparams);
+		if ($this->client->isMultiRequest())
+			return $this->client->getMultiRequestResult();
+		$rawResult = $this->client->doQueue();
+		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
+			$jsObject = json_decode($rawResult);
+			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
+			return $resultObject;
+		} else {
+			$resultXmlObject = new \SimpleXMLElement($rawResult);
+			$this->client->checkIfError($resultXmlObject->result);
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaGenerateMetadataJob");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_GenerateMetadataJob");
+		}
+			return $resultObject;
+	}
+
+	/**
 	 * @return Kaltura_Client_Type_GenerateMetadataResult
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
