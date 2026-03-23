@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_SubscriptionEntitledCondition extends Kaltura_Client_Type_BaseSegmentCondition
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBaseSegmentCondition';
+		return 'KalturaSubscriptionEntitledCondition';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,17 +48,17 @@ class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->scope))
-			$this->scope = (string)$xml->scope;
-		if(!is_null($jsonObject) && isset($jsonObject->scope))
-			$this->scope = (string)$jsonObject->scope;
+		if(!is_null($xml) && count($xml->subscriptionIdEquals))
+			$this->subscriptionIdEquals = (string)$xml->subscriptionIdEquals;
+		if(!is_null($jsonObject) && isset($jsonObject->subscriptionIdEquals))
+			$this->subscriptionIdEquals = (string)$jsonObject->subscriptionIdEquals;
 	}
 	/**
-	 * Defines the scope of the condition evaluation.
+	 * The specific subscription product identifier to check.
 	 *
-	 * @var Kaltura_Client_Enum_ConditionScope
+	 * @var bigint
 	 */
-	public $scope = null;
+	public $subscriptionIdEquals = null;
 
 
 }

@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_WatchCountCondition extends Kaltura_Client_Type_BaseWatchCondition
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBaseSegmentCondition';
+		return 'KalturaWatchCountCondition';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,17 +48,30 @@ class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->scope))
-			$this->scope = (string)$xml->scope;
-		if(!is_null($jsonObject) && isset($jsonObject->scope))
-			$this->scope = (string)$jsonObject->scope;
+		if(!is_null($xml) && count($xml->minCount))
+			$this->minCount = (int)$xml->minCount;
+		if(!is_null($jsonObject) && isset($jsonObject->minCount))
+			$this->minCount = (int)$jsonObject->minCount;
+		if(!is_null($xml) && count($xml->maxCount))
+			$this->maxCount = (int)$xml->maxCount;
+		if(!is_null($jsonObject) && isset($jsonObject->maxCount))
+			$this->maxCount = (int)$jsonObject->maxCount;
 	}
 	/**
-	 * Defines the scope of the condition evaluation.
+	 * The minimum count to be met.
+	 *             Constraint: Must be less than or equal to maxCount.
 	 *
-	 * @var Kaltura_Client_Enum_ConditionScope
+	 * @var int
 	 */
-	public $scope = null;
+	public $minCount = null;
+
+	/**
+	 * The maximum count to be met.
+	 *             Constraint: Must be greater than or equal to minCount.
+	 *
+	 * @var int
+	 */
+	public $maxCount = null;
 
 
 }

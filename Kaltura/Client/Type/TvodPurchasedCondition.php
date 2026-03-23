@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_TvodPurchasedCondition extends Kaltura_Client_Type_BaseSegmentCondition
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBaseSegmentCondition';
+		return 'KalturaTvodPurchasedCondition';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,17 +48,39 @@ class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->scope))
-			$this->scope = (string)$xml->scope;
-		if(!is_null($jsonObject) && isset($jsonObject->scope))
-			$this->scope = (string)$jsonObject->scope;
+		if(!is_null($xml) && count($xml->ppvIdEquals))
+			$this->ppvIdEquals = (string)$xml->ppvIdEquals;
+		if(!is_null($jsonObject) && isset($jsonObject->ppvIdEquals))
+			$this->ppvIdEquals = (string)$jsonObject->ppvIdEquals;
+		if(!is_null($xml) && count($xml->mediaIdEquals))
+			$this->mediaIdEquals = (string)$xml->mediaIdEquals;
+		if(!is_null($jsonObject) && isset($jsonObject->mediaIdEquals))
+			$this->mediaIdEquals = (string)$jsonObject->mediaIdEquals;
+		if(!is_null($xml) && count($xml->days))
+			$this->days = (int)$xml->days;
+		if(!is_null($jsonObject) && isset($jsonObject->days))
+			$this->days = (int)$jsonObject->days;
 	}
 	/**
-	 * Defines the scope of the condition evaluation.
+	 * The specific purchased ppv product identifier to check.
 	 *
-	 * @var Kaltura_Client_Enum_ConditionScope
+	 * @var bigint
 	 */
-	public $scope = null;
+	public $ppvIdEquals = null;
+
+	/**
+	 * The specific purchased media entry identifier to check.
+	 *
+	 * @var bigint
+	 */
+	public $mediaIdEquals = null;
+
+	/**
+	 * The number of days to look back for the purchase.
+	 *
+	 * @var int
+	 */
+	public $days = null;
 
 
 }

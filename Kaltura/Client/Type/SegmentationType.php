@@ -116,6 +116,10 @@ class Kaltura_Client_Type_SegmentationType extends Kaltura_Client_ObjectBase
 			$this->assetUserRuleId = (string)$xml->assetUserRuleId;
 		if(!is_null($jsonObject) && isset($jsonObject->assetUserRuleId))
 			$this->assetUserRuleId = (string)$jsonObject->assetUserRuleId;
+		if(!is_null($xml) && count($xml->scope))
+			$this->scope = (string)$xml->scope;
+		if(!is_null($jsonObject) && isset($jsonObject->scope))
+			$this->scope = (string)$jsonObject->scope;
 	}
 	/**
 	 * Id of segmentation type
@@ -206,6 +210,13 @@ class Kaltura_Client_Type_SegmentationType extends Kaltura_Client_ObjectBase
 	 * @insertonly
 	 */
 	public $assetUserRuleId = null;
+
+	/**
+	 * Defines whether segments are applied to users or households
+	 *
+	 * @var Kaltura_Client_Enum_ConditionScope
+	 */
+	public $scope = null;
 
 
 }
