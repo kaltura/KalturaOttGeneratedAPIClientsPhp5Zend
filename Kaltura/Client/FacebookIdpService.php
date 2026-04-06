@@ -32,7 +32,7 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_AiMetadataGeneratorService extends Kaltura_Client_ServiceBase
+class Kaltura_Client_FacebookIdpService extends Kaltura_Client_ServiceBase
 {
 	function __construct(Kaltura_Client_Client $client = null)
 	{
@@ -40,14 +40,14 @@ class Kaltura_Client_AiMetadataGeneratorService extends Kaltura_Client_ServiceBa
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_GenerateMetadataJob
+	 * @return Kaltura_Client_Type_SocialAttachStatus
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function generateMetadataByDescription(Kaltura_Client_Type_GenerateMetadataByDescription $generateMetadataByDescription)
+	function attach($accessToken)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "generateMetadataByDescription", $generateMetadataByDescription->toParams());
-		$this->client->queueServiceActionCall("aimetadatagenerator", "generateMetadataByDescription", "KalturaGenerateMetadataJob", $kparams);
+		$this->client->addParam($kparams, "accessToken", $accessToken);
+		$this->client->queueServiceActionCall("facebookidp", "attach", "KalturaSocialAttachStatus", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$rawResult = $this->client->doQueue();
@@ -58,21 +58,20 @@ class Kaltura_Client_AiMetadataGeneratorService extends Kaltura_Client_ServiceBa
 		} else {
 			$resultXmlObject = new \SimpleXMLElement($rawResult);
 			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaGenerateMetadataJob");
-			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_GenerateMetadataJob");
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSocialAttachStatus");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SocialAttachStatus");
 		}
 			return $resultObject;
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_GenerateMetadataJob
+	 * @return Kaltura_Client_Type_SocialAttachStatus
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function generateMetadataBySubtitles(Kaltura_Client_Type_GenerateMetadataBySubtitles $generateMetadataBySubtitles)
+	function detach()
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "generateMetadataBySubtitles", $generateMetadataBySubtitles->toParams());
-		$this->client->queueServiceActionCall("aimetadatagenerator", "generateMetadataBySubtitles", "KalturaGenerateMetadataJob", $kparams);
+		$this->client->queueServiceActionCall("facebookidp", "detach", "KalturaSocialAttachStatus", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$rawResult = $this->client->doQueue();
@@ -83,21 +82,20 @@ class Kaltura_Client_AiMetadataGeneratorService extends Kaltura_Client_ServiceBa
 		} else {
 			$resultXmlObject = new \SimpleXMLElement($rawResult);
 			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaGenerateMetadataJob");
-			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_GenerateMetadataJob");
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSocialAttachStatus");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SocialAttachStatus");
 		}
 			return $resultObject;
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_GenerateMetadataJob
+	 * @return Kaltura_Client_Type_SocialServiceId
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function generateProgramMetadataByDescription(Kaltura_Client_Type_GenerateProgramMetadatasByDescription $generateProgramMetadataByDescription)
+	function getServiceId()
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "generateProgramMetadataByDescription", $generateProgramMetadataByDescription->toParams());
-		$this->client->queueServiceActionCall("aimetadatagenerator", "generateProgramMetadataByDescription", "KalturaGenerateMetadataJob", $kparams);
+		$this->client->queueServiceActionCall("facebookidp", "getServiceId", "KalturaSocialServiceId", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$rawResult = $this->client->doQueue();
@@ -108,21 +106,20 @@ class Kaltura_Client_AiMetadataGeneratorService extends Kaltura_Client_ServiceBa
 		} else {
 			$resultXmlObject = new \SimpleXMLElement($rawResult);
 			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaGenerateMetadataJob");
-			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_GenerateMetadataJob");
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSocialServiceId");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SocialServiceId");
 		}
 			return $resultObject;
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_GenerateMetadataResult
+	 * @return Kaltura_Client_Type_SocialAttachStatus
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function getGeneratedMetadata($jobId)
+	function isAttached()
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "jobId", $jobId);
-		$this->client->queueServiceActionCall("aimetadatagenerator", "getGeneratedMetadata", "KalturaGenerateMetadataResult", $kparams);
+		$this->client->queueServiceActionCall("facebookidp", "isAttached", "KalturaSocialAttachStatus", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$rawResult = $this->client->doQueue();
@@ -133,21 +130,25 @@ class Kaltura_Client_AiMetadataGeneratorService extends Kaltura_Client_ServiceBa
 		} else {
 			$resultXmlObject = new \SimpleXMLElement($rawResult);
 			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaGenerateMetadataResult");
-			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_GenerateMetadataResult");
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSocialAttachStatus");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SocialAttachStatus");
 		}
 			return $resultObject;
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_GenerateMetadataJob
+	 * @return Kaltura_Client_Type_LoginResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function getGenerateMetadataJob($id)
+	function login($partnerId, $accessToken, array $extraParams = null, $udid = null)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "id", $id);
-		$this->client->queueServiceActionCall("aimetadatagenerator", "getGenerateMetadataJob", "KalturaGenerateMetadataJob", $kparams);
+		$this->client->addParam($kparams, "partnerId", $partnerId);
+		$this->client->addParam($kparams, "accessToken", $accessToken);
+		if ($extraParams !== null)
+			$this->client->addParam($kparams, "extraParams", $extraParams->toParams());
+		$this->client->addParam($kparams, "udid", $udid);
+		$this->client->queueServiceActionCall("facebookidp", "login", "KalturaLoginResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$rawResult = $this->client->doQueue();
@@ -158,20 +159,21 @@ class Kaltura_Client_AiMetadataGeneratorService extends Kaltura_Client_ServiceBa
 		} else {
 			$resultXmlObject = new \SimpleXMLElement($rawResult);
 			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaGenerateMetadataJob");
-			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_GenerateMetadataJob");
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaLoginResponse");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_LoginResponse");
 		}
 			return $resultObject;
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_MetaFieldNameMap
+	 * @return Kaltura_Client_Type_SocialSetSecretResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function getMetadataFieldDefinitions()
+	function setSecret($secret)
 	{
 		$kparams = array();
-		$this->client->queueServiceActionCall("aimetadatagenerator", "getMetadataFieldDefinitions", "KalturaMetaFieldNameMap", $kparams);
+		$this->client->addParam($kparams, "secret", $secret);
+		$this->client->queueServiceActionCall("facebookidp", "setSecret", "KalturaSocialSetSecretResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$rawResult = $this->client->doQueue();
@@ -182,20 +184,21 @@ class Kaltura_Client_AiMetadataGeneratorService extends Kaltura_Client_ServiceBa
 		} else {
 			$resultXmlObject = new \SimpleXMLElement($rawResult);
 			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaMetaFieldNameMap");
-			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_MetaFieldNameMap");
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSocialSetSecretResponse");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SocialSetSecretResponse");
 		}
 			return $resultObject;
 	}
 
 	/**
-	 * @return Kaltura_Client_Type_AiMetadataGeneratorConfiguration
+	 * @return Kaltura_Client_Type_SocialServiceId
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function getPartnerConfiguration()
+	function setServiceId($serviceId)
 	{
 		$kparams = array();
-		$this->client->queueServiceActionCall("aimetadatagenerator", "getPartnerConfiguration", "KalturaAiMetadataGeneratorConfiguration", $kparams);
+		$this->client->addParam($kparams, "serviceId", $serviceId);
+		$this->client->queueServiceActionCall("facebookidp", "setServiceId", "KalturaSocialServiceId", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();
 		$rawResult = $this->client->doQueue();
@@ -206,33 +209,8 @@ class Kaltura_Client_AiMetadataGeneratorService extends Kaltura_Client_ServiceBa
 		} else {
 			$resultXmlObject = new \SimpleXMLElement($rawResult);
 			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaAiMetadataGeneratorConfiguration");
-			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_AiMetadataGeneratorConfiguration");
-		}
-			return $resultObject;
-	}
-
-	/**
-	 * @return Kaltura_Client_Type_AiMetadataGeneratorConfiguration
-	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
-	 */
-	function updatePartnerConfiguration(Kaltura_Client_Type_AiMetadataGeneratorConfiguration $configuration)
-	{
-		$kparams = array();
-		$this->client->addParam($kparams, "configuration", $configuration->toParams());
-		$this->client->queueServiceActionCall("aimetadatagenerator", "updatePartnerConfiguration", "KalturaAiMetadataGeneratorConfiguration", $kparams);
-		if ($this->client->isMultiRequest())
-			return $this->client->getMultiRequestResult();
-		$rawResult = $this->client->doQueue();
-		if ($this->client->getConfig()->format === Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_JSON) {
-			$jsObject = json_decode($rawResult);
-			$resultObject = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsObject);
-			return $resultObject;
-		} else {
-			$resultXmlObject = new \SimpleXMLElement($rawResult);
-			$this->client->checkIfError($resultXmlObject->result);
-			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaAiMetadataGeneratorConfiguration");
-			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_AiMetadataGeneratorConfiguration");
+			$resultObject = Kaltura_Client_ParseUtils::unmarshalObject($resultXmlObject->result, "KalturaSocialServiceId");
+			$this->client->validateObjectType($resultObject, "Kaltura_Client_Type_SocialServiceId");
 		}
 			return $resultObject;
 	}

@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_MetadataFieldConfig extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBaseSegmentCondition';
+		return 'KalturaMetadataFieldConfig';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,17 +48,28 @@ class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->scope))
-			$this->scope = (string)$xml->scope;
-		if(!is_null($jsonObject) && isset($jsonObject->scope))
-			$this->scope = (string)$jsonObject->scope;
+		if(!is_null($xml) && count($xml->systemName))
+			$this->systemName = (string)$xml->systemName;
+		if(!is_null($jsonObject) && isset($jsonObject->systemName))
+			$this->systemName = (string)$jsonObject->systemName;
+		if(!is_null($xml) && count($xml->operation))
+			$this->operation = (string)$xml->operation;
+		if(!is_null($jsonObject) && isset($jsonObject->operation))
+			$this->operation = (string)$jsonObject->operation;
 	}
 	/**
-	 * Defines the scope of the condition evaluation.
+	 * The system name of the metadata field in the asset struct.
 	 *
-	 * @var Kaltura_Client_Enum_ConditionScope
+	 * @var string
 	 */
-	public $scope = null;
+	public $systemName = null;
+
+	/**
+	 * The update operation to be performed on this metadata field.
+	 *
+	 * @var Kaltura_Client_Enum_MetadataUpdateOperation
+	 */
+	public $operation = null;
 
 
 }

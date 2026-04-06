@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_GenerateProgramMetadatasByDescription extends Kaltura_Client_Type_GenerateMetadataByDescription
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBaseSegmentCondition';
+		return 'KalturaGenerateProgramMetadatasByDescription';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,17 +48,29 @@ class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->scope))
-			$this->scope = (string)$xml->scope;
-		if(!is_null($jsonObject) && isset($jsonObject->scope))
-			$this->scope = (string)$jsonObject->scope;
+		if(!is_null($xml) && count($xml->regenerate))
+		{
+			if(!empty($xml->regenerate) && ((int) $xml->regenerate === 1 || strtolower((string)$xml->regenerate) === 'true'))
+				$this->regenerate = true;
+			else
+				$this->regenerate = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->regenerate))
+		{
+			if(!empty($jsonObject->regenerate) && ((int) $jsonObject->regenerate === 1 || strtolower((string)$jsonObject->regenerate) === 'true'))
+				$this->regenerate = true;
+			else
+				$this->regenerate = false;
+		}
 	}
 	/**
-	 * Defines the scope of the condition evaluation.
+	 * A boolean flag that allows the API user to force the regeneration of metadata.
+	 *             If true, the service will run a new analysis even if enriched metadata already exists for the program&#39;s CRID.
+	 *             If false (default), the service will reuse existing metadata if available for the CRID.
 	 *
-	 * @var Kaltura_Client_Enum_ConditionScope
+	 * @var bool
 	 */
-	public $scope = null;
+	public $regenerate = null;
 
 
 }

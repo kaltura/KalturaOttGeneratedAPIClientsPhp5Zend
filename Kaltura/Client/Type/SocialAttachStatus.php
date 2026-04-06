@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_SocialAttachStatus extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBaseSegmentCondition';
+		return 'KalturaSocialAttachStatus';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,17 +48,28 @@ class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->scope))
-			$this->scope = (string)$xml->scope;
-		if(!is_null($jsonObject) && isset($jsonObject->scope))
-			$this->scope = (string)$jsonObject->scope;
+		if(!is_null($xml) && count($xml->attached))
+		{
+			if(!empty($xml->attached) && ((int) $xml->attached === 1 || strtolower((string)$xml->attached) === 'true'))
+				$this->attached = true;
+			else
+				$this->attached = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->attached))
+		{
+			if(!empty($jsonObject->attached) && ((int) $jsonObject->attached === 1 || strtolower((string)$jsonObject->attached) === 'true'))
+				$this->attached = true;
+			else
+				$this->attached = false;
+		}
 	}
 	/**
-	 * Defines the scope of the condition evaluation.
+	 * Indicates the attachment status of the user to the IDP.
 	 *
-	 * @var Kaltura_Client_Enum_ConditionScope
+	 * @var bool
+	 * @readonly
 	 */
-	public $scope = null;
+	public $attached = null;
 
 
 }

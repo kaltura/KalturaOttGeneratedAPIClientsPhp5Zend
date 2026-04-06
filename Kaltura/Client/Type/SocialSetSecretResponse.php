@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_SocialSetSecretResponse extends Kaltura_Client_ObjectBase
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBaseSegmentCondition';
+		return 'KalturaSocialSetSecretResponse';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,17 +48,28 @@ class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->scope))
-			$this->scope = (string)$xml->scope;
-		if(!is_null($jsonObject) && isset($jsonObject->scope))
-			$this->scope = (string)$jsonObject->scope;
+		if(!is_null($xml) && count($xml->secretSet))
+		{
+			if(!empty($xml->secretSet) && ((int) $xml->secretSet === 1 || strtolower((string)$xml->secretSet) === 'true'))
+				$this->secretSet = true;
+			else
+				$this->secretSet = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->secretSet))
+		{
+			if(!empty($jsonObject->secretSet) && ((int) $jsonObject->secretSet === 1 || strtolower((string)$jsonObject->secretSet) === 'true'))
+				$this->secretSet = true;
+			else
+				$this->secretSet = false;
+		}
 	}
 	/**
-	 * Defines the scope of the condition evaluation.
+	 * Indicates whether the secret was set.
 	 *
-	 * @var Kaltura_Client_Enum_ConditionScope
+	 * @var bool
+	 * @readonly
 	 */
-	public $scope = null;
+	public $secretSet = null;
 
 
 }

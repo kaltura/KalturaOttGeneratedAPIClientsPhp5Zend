@@ -31,11 +31,11 @@
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
+class Kaltura_Client_Type_NumberMetaConstraint extends Kaltura_Client_Type_BaseAttributeConstraint
 {
 	public function getKalturaObjectType()
 	{
-		return 'KalturaBaseSegmentCondition';
+		return 'KalturaNumberMetaConstraint';
 	}
 	
 	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
@@ -48,17 +48,39 @@ class Kaltura_Client_Type_BaseSegmentCondition extends Kaltura_Client_ObjectBase
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->scope))
-			$this->scope = (string)$xml->scope;
-		if(!is_null($jsonObject) && isset($jsonObject->scope))
-			$this->scope = (string)$jsonObject->scope;
+		if(!is_null($xml) && count($xml->equals))
+			$this->equals = (string)$xml->equals;
+		if(!is_null($jsonObject) && isset($jsonObject->equals))
+			$this->equals = (string)$jsonObject->equals;
+		if(!is_null($xml) && count($xml->greaterThan))
+			$this->greaterThan = (string)$xml->greaterThan;
+		if(!is_null($jsonObject) && isset($jsonObject->greaterThan))
+			$this->greaterThan = (string)$jsonObject->greaterThan;
+		if(!is_null($xml) && count($xml->smallerThan))
+			$this->smallerThan = (string)$xml->smallerThan;
+		if(!is_null($jsonObject) && isset($jsonObject->smallerThan))
+			$this->smallerThan = (string)$jsonObject->smallerThan;
 	}
 	/**
-	 * Defines the scope of the condition evaluation.
+	 * The exact numeric value the field must equal.
 	 *
-	 * @var Kaltura_Client_Enum_ConditionScope
+	 * @var bigint
 	 */
-	public $scope = null;
+	public $equals = null;
+
+	/**
+	 * The numeric value the field must be greater than.
+	 *
+	 * @var bigint
+	 */
+	public $greaterThan = null;
+
+	/**
+	 * The numeric value the field must be smaller than.
+	 *
+	 * @var bigint
+	 */
+	public $smallerThan = null;
 
 
 }
