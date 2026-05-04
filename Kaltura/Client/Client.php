@@ -53,6 +53,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_AppleIdpService
+	 */
+	public $appleIdp = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_AppTokenService
 	 */
 	public $appToken = null;
@@ -365,6 +371,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 
 	/**
 	 * 
+	 * @var Kaltura_Client_FacebookIdpService
+	 */
+	public $facebookIdp = null;
+
+	/**
+	 * 
 	 * @var Kaltura_Client_FavoriteService
 	 */
 	public $favorite = null;
@@ -380,6 +392,12 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	 * @var Kaltura_Client_GeoBlockRuleService
 	 */
 	public $geoBlockRule = null;
+
+	/**
+	 * 
+	 * @var Kaltura_Client_GoogleIdpService
+	 */
+	public $googleIdp = null;
 
 	/**
 	 * 
@@ -1020,12 +1038,13 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 	{
 		parent::__construct($config);
 		
-		$this->setClientTag('php5:25-08-06');
-		$this->setApiVersion('11.5.0.0');
+		$this->setClientTag('php5:26-05-04');
+		$this->setApiVersion('12.4.0.0');
 		
 		$this->aiMetadataGenerator = new Kaltura_Client_AiMetadataGeneratorService($this);
 		$this->aiRecommendationTree = new Kaltura_Client_AiRecommendationTreeService($this);
 		$this->announcement = new Kaltura_Client_AnnouncementService($this);
+		$this->appleIdp = new Kaltura_Client_AppleIdpService($this);
 		$this->appToken = new Kaltura_Client_AppTokenService($this);
 		$this->assetComment = new Kaltura_Client_AssetCommentService($this);
 		$this->asset = new Kaltura_Client_AssetService($this);
@@ -1078,9 +1097,11 @@ class Kaltura_Client_Client extends Kaltura_Client_ClientBase
 		$this->eventNotification = new Kaltura_Client_EventNotificationService($this);
 		$this->exportTask = new Kaltura_Client_ExportTaskService($this);
 		$this->externalChannelProfile = new Kaltura_Client_ExternalChannelProfileService($this);
+		$this->facebookIdp = new Kaltura_Client_FacebookIdpService($this);
 		$this->favorite = new Kaltura_Client_FavoriteService($this);
 		$this->followTvSeries = new Kaltura_Client_FollowTvSeriesService($this);
 		$this->geoBlockRule = new Kaltura_Client_GeoBlockRuleService($this);
+		$this->googleIdp = new Kaltura_Client_GoogleIdpService($this);
 		$this->homeNetwork = new Kaltura_Client_HomeNetworkService($this);
 		$this->household = new Kaltura_Client_HouseholdService($this);
 		$this->householdCoupon = new Kaltura_Client_HouseholdCouponService($this);
