@@ -100,6 +100,10 @@ class Kaltura_Client_Type_AiRecommendationTreePartnerConfiguration extends Kaltu
 			$this->activeTreeId = (string)$xml->activeTreeId;
 		if(!is_null($jsonObject) && isset($jsonObject->activeTreeId))
 			$this->activeTreeId = (string)$jsonObject->activeTreeId;
+		if(!is_null($xml) && count($xml->featureType))
+			$this->featureType = (string)$xml->featureType;
+		if(!is_null($jsonObject) && isset($jsonObject->featureType))
+			$this->featureType = (string)$jsonObject->featureType;
 	}
 	/**
 	 * Dictionary of metadata types to base questions on (genre, actor, director, etc.) with their respective counts.
@@ -116,7 +120,7 @@ class Kaltura_Client_Type_AiRecommendationTreePartnerConfiguration extends Kaltu
 	public $topLevelQuestions = null;
 
 	/**
-	 * Number of regular answers per question (range: 2-5).
+	 * Number of regular answers per question (range: 2-4).
 	 *
 	 * @var int
 	 */
@@ -157,6 +161,14 @@ class Kaltura_Client_Type_AiRecommendationTreePartnerConfiguration extends Kaltu
 	 * @readonly
 	 */
 	public $activeTreeId = null;
+
+	/**
+	 * Feature level of the recommendation tree (e.g., Basic, Premium).
+	 *
+	 * @var Kaltura_Client_Enum_AiRecommendationTreeFeatureLevel
+	 * @readonly
+	 */
+	public $featureType = null;
 
 
 }
