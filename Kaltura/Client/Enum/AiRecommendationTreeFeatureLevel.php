@@ -6,10 +6,10 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -26,47 +26,14 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Configuration
+class Kaltura_Client_Enum_AiRecommendationTreeFeatureLevel extends Kaltura_Client_EnumBase
 {
-	private $logger;
-
-	public $serviceUrl    				= "https://www.kaltura.com/";
-	public $format        				= Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_XML;
-	public $curlTimeout   				= 120;
-	public $startZendDebuggerSession 	= false;
-	public $userAgent					= '';
-	public $proxyHost                   = null;
-	public $proxyPort                   = null;
-	public $proxyType                   = 'HTTP';
-	public $proxyTunnel                 = true;
-	public $proxyUser                   = null;
-	public $proxyPassword               = '';
-	public $verifySSL 					= true;
-	public $sslCertificatePath			= null;
-	public $requestHeaders				= array();
-	public $internalServiceUrl			= null;
-	
-	/**
-	 * Set logger to get kaltura client debug logs
-	 *
-	 * @param Kaltura_Client_ILogger $log
-	 */
-	public function setLogger(Kaltura_Client_ILogger $log)
-	{
-		$this->logger = $log;
-	}
-
-	/**
-	 * Gets the logger (Internal client use)
-	 *
-	 * @return Kaltura_Client_ILogger
-	 */
-	public function getLogger()
-	{
-		return $this->logger;
-	}
+	const BASIC = "Basic";
+	const PREMIUM = "Premium";
 }
+

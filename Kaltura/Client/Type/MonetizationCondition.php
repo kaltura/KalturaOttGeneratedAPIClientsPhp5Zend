@@ -48,18 +48,6 @@ class Kaltura_Client_Type_MonetizationCondition extends Kaltura_Client_Type_Base
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->days))
-			$this->days = (int)$xml->days;
-		if(!is_null($jsonObject) && isset($jsonObject->days))
-			$this->days = (int)$jsonObject->days;
-		if(!is_null($xml) && count($xml->type))
-			$this->type = (string)$xml->type;
-		if(!is_null($jsonObject) && isset($jsonObject->type))
-			$this->type = (string)$jsonObject->type;
-		if(!is_null($xml) && count($xml->operator))
-			$this->operator = (string)$xml->operator;
-		if(!is_null($jsonObject) && isset($jsonObject->operator))
-			$this->operator = (string)$jsonObject->operator;
 		if(!is_null($xml) && count($xml->businessModuleIdIn))
 			$this->businessModuleIdIn = (string)$xml->businessModuleIdIn;
 		if(!is_null($jsonObject) && isset($jsonObject->businessModuleIdIn))
@@ -68,63 +56,77 @@ class Kaltura_Client_Type_MonetizationCondition extends Kaltura_Client_Type_Base
 			$this->currencyCode = (string)$xml->currencyCode;
 		if(!is_null($jsonObject) && isset($jsonObject->currencyCode))
 			$this->currencyCode = (string)$jsonObject->currencyCode;
-		if(!is_null($xml) && count($xml->minValue))
-			$this->minValue = (int)$xml->minValue;
-		if(!is_null($jsonObject) && isset($jsonObject->minValue))
-			$this->minValue = (int)$jsonObject->minValue;
+		if(!is_null($xml) && count($xml->days))
+			$this->days = (int)$xml->days;
+		if(!is_null($jsonObject) && isset($jsonObject->days))
+			$this->days = (int)$jsonObject->days;
 		if(!is_null($xml) && count($xml->maxValue))
 			$this->maxValue = (int)$xml->maxValue;
 		if(!is_null($jsonObject) && isset($jsonObject->maxValue))
 			$this->maxValue = (int)$jsonObject->maxValue;
+		if(!is_null($xml) && count($xml->minValue))
+			$this->minValue = (int)$xml->minValue;
+		if(!is_null($jsonObject) && isset($jsonObject->minValue))
+			$this->minValue = (int)$jsonObject->minValue;
+		if(!is_null($xml) && count($xml->operator))
+			$this->operator = (string)$xml->operator;
+		if(!is_null($jsonObject) && isset($jsonObject->operator))
+			$this->operator = (string)$jsonObject->operator;
+		if(!is_null($xml) && count($xml->type))
+			$this->type = (string)$xml->type;
+		if(!is_null($jsonObject) && isset($jsonObject->type))
+			$this->type = (string)$jsonObject->type;
 	}
 	/**
-	 * How many days back should the actions be considered
-	 *
-	 * @var int
-	 */
-	public $days = null;
-
-	/**
-	 * Purchase type
-	 *
-	 * @var Kaltura_Client_Enum_MonetizationType
-	 */
-	public $type = null;
-
-	/**
-	 * Mathermtical operator to calculate
-	 *
-	 * @var Kaltura_Client_Enum_MathemticalOperatorType
-	 */
-	public $operator = null;
-
-	/**
-	 * Comma saperated list of business module IDs
+	 * A comma-separated list of business module IDs to include in the filter.
 	 *
 	 * @var string
 	 */
 	public $businessModuleIdIn = null;
 
 	/**
-	 * Which currency code should be taken into consideration
+	 * The ISO 4217 currency code to filter by.
 	 *
 	 * @var string
 	 */
 	public $currencyCode = null;
 
 	/**
-	 * The minimum value to be met
+	 * The number of days to look back for monetization actions.
+	 *
+	 * @var int
+	 */
+	public $days = null;
+
+	/**
+	 * The maximum allowable value for the calculated metric.
+	 *             MinValue must be greater than or equal to MaxValue.
+	 *
+	 * @var int
+	 */
+	public $maxValue = null;
+
+	/**
+	 * The minimum required value for the calculated metric.
+	 *             MinValue must be less than or equal to MaxValue.
 	 *
 	 * @var int
 	 */
 	public $minValue = null;
 
 	/**
-	 * The maximum value to be met
+	 * The aggregation method used to calculate the value (e.g., counting transactions, summing amounts).
 	 *
-	 * @var int
+	 * @var Kaltura_Client_Enum_MathemticalOperatorType
 	 */
-	public $maxValue = null;
+	public $operator = null;
+
+	/**
+	 * The specific monetization type to filter by.
+	 *
+	 * @var Kaltura_Client_Enum_MonetizationType
+	 */
+	public $type = null;
 
 
 }
