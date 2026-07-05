@@ -64,6 +64,20 @@ class Kaltura_Client_Type_RecordingFilter extends Kaltura_Client_Type_Filter
 			$this->kSql = (string)$xml->kSql;
 		if(!is_null($jsonObject) && isset($jsonObject->kSql))
 			$this->kSql = (string)$jsonObject->kSql;
+		if(!is_null($xml) && count($xml->contentFilteringEnforced))
+		{
+			if(!empty($xml->contentFilteringEnforced) && ((int) $xml->contentFilteringEnforced === 1 || strtolower((string)$xml->contentFilteringEnforced) === 'true'))
+				$this->contentFilteringEnforced = true;
+			else
+				$this->contentFilteringEnforced = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->contentFilteringEnforced))
+		{
+			if(!empty($jsonObject->contentFilteringEnforced) && ((int) $jsonObject->contentFilteringEnforced === 1 || strtolower((string)$jsonObject->contentFilteringEnforced) === 'true'))
+				$this->contentFilteringEnforced = true;
+			else
+				$this->contentFilteringEnforced = false;
+		}
 	}
 	/**
 	 * Recording Statuses
@@ -92,6 +106,13 @@ class Kaltura_Client_Type_RecordingFilter extends Kaltura_Client_Type_Filter
 	 * @var string
 	 */
 	public $kSql = null;
+
+	/**
+	 * Enforce content filtering
+	 *
+	 * @var bool
+	 */
+	public $contentFilteringEnforced = null;
 
 
 }
