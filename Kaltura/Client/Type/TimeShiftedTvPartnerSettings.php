@@ -276,6 +276,20 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 			else
 				$this->shouldRoundStopRecordingsBySeconds = false;
 		}
+		if(!is_null($xml) && count($xml->recordingsV2Enabled))
+		{
+			if(!empty($xml->recordingsV2Enabled) && ((int) $xml->recordingsV2Enabled === 1 || strtolower((string)$xml->recordingsV2Enabled) === 'true'))
+				$this->recordingsV2Enabled = true;
+			else
+				$this->recordingsV2Enabled = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->recordingsV2Enabled))
+		{
+			if(!empty($jsonObject->recordingsV2Enabled) && ((int) $jsonObject->recordingsV2Enabled === 1 || strtolower((string)$jsonObject->recordingsV2Enabled) === 'true'))
+				$this->recordingsV2Enabled = true;
+			else
+				$this->recordingsV2Enabled = false;
+		}
 	}
 	/**
 	 * Is catch-up enabled
@@ -466,6 +480,15 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 	 * @var bool
 	 */
 	public $shouldRoundStopRecordingsBySeconds = null;
+
+	/**
+	 * Enable V2 recordings mode. When enabled, recordings are handled internally as padded recordings
+	 *             using MongoDB storage and async handlers, while maintaining backward compatibility with the existing
+	 *             KalturaRecording API. Uses partner default padding. Default value should be FALSE
+	 *
+	 * @var bool
+	 */
+	public $recordingsV2Enabled = null;
 
 
 }
