@@ -276,19 +276,19 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 			else
 				$this->shouldRoundStopRecordingsBySeconds = false;
 		}
-		if(!is_null($xml) && count($xml->recordingsV2Enabled))
+		if(!is_null($xml) && count($xml->isRecordingsV2Enabled))
 		{
-			if(!empty($xml->recordingsV2Enabled) && ((int) $xml->recordingsV2Enabled === 1 || strtolower((string)$xml->recordingsV2Enabled) === 'true'))
-				$this->recordingsV2Enabled = true;
+			if(!empty($xml->isRecordingsV2Enabled) && ((int) $xml->isRecordingsV2Enabled === 1 || strtolower((string)$xml->isRecordingsV2Enabled) === 'true'))
+				$this->isRecordingsV2Enabled = true;
 			else
-				$this->recordingsV2Enabled = false;
+				$this->isRecordingsV2Enabled = false;
 		}
-		if(!is_null($jsonObject) && isset($jsonObject->recordingsV2Enabled))
+		if(!is_null($jsonObject) && isset($jsonObject->isRecordingsV2Enabled))
 		{
-			if(!empty($jsonObject->recordingsV2Enabled) && ((int) $jsonObject->recordingsV2Enabled === 1 || strtolower((string)$jsonObject->recordingsV2Enabled) === 'true'))
-				$this->recordingsV2Enabled = true;
+			if(!empty($jsonObject->isRecordingsV2Enabled) && ((int) $jsonObject->isRecordingsV2Enabled === 1 || strtolower((string)$jsonObject->isRecordingsV2Enabled) === 'true'))
+				$this->isRecordingsV2Enabled = true;
 			else
-				$this->recordingsV2Enabled = false;
+				$this->isRecordingsV2Enabled = false;
 		}
 	}
 	/**
@@ -488,7 +488,7 @@ class Kaltura_Client_Type_TimeShiftedTvPartnerSettings extends Kaltura_Client_Ob
 	 *
 	 * @var bool
 	 */
-	public $recordingsV2Enabled = null;
+	public $isRecordingsV2Enabled = null;
 
 
 }
