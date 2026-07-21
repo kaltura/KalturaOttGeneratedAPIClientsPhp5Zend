@@ -6,10 +6,10 @@
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
 // This file is part of the Kaltura Collaborative Media Suite which allows users
-// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// to do with audio, video, and animation what Wiki platforms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2023  Kaltura Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -26,47 +26,40 @@
 //
 // @ignore
 // ===================================================================================================
+
 /**
  * @package Kaltura
  * @subpackage Client
  */
-class Kaltura_Client_Configuration
+class Kaltura_Client_Type_SubscriptionEntitledCondition extends Kaltura_Client_Type_BaseSegmentCondition
 {
-	private $logger;
-
-	public $serviceUrl    				= "https://www.kaltura.com/";
-	public $format        				= Kaltura_Client_ClientBase::KALTURA_SERVICE_FORMAT_XML;
-	public $curlTimeout   				= 120;
-	public $startZendDebuggerSession 	= false;
-	public $userAgent					= '';
-	public $proxyHost                   = null;
-	public $proxyPort                   = null;
-	public $proxyType                   = 'HTTP';
-	public $proxyTunnel                 = true;
-	public $proxyUser                   = null;
-	public $proxyPassword               = '';
-	public $verifySSL 					= true;
-	public $sslCertificatePath			= null;
-	public $requestHeaders				= array();
-	public $internalServiceUrl			= null;
+	public function getKalturaObjectType()
+	{
+		return 'KalturaSubscriptionEntitledCondition';
+	}
 	
-	/**
-	 * Set logger to get kaltura client debug logs
-	 *
-	 * @param Kaltura_Client_ILogger $log
-	 */
-	public function setLogger(Kaltura_Client_ILogger $log)
+	public function __construct(SimpleXMLElement $xml = null, $jsonObject = null)
 	{
-		$this->logger = $log;
+		parent::__construct($xml, $jsonObject);
+		
+		if(!is_null($xml) && !is_null($jsonObject))
+			throw new Kaltura_Client_ClientException("construct with either XML or JSON object, not both", Kaltura_Client_ClientException::ERROR_CONSTRUCT_ARGS_CONFLICT);
+		
+		if(is_null($xml) && is_null($jsonObject))
+			return;
+		
+		if(!is_null($xml) && count($xml->subscriptionIdEquals))
+			$this->subscriptionIdEquals = (string)$xml->subscriptionIdEquals;
+		if(!is_null($jsonObject) && isset($jsonObject->subscriptionIdEquals))
+			$this->subscriptionIdEquals = (string)$jsonObject->subscriptionIdEquals;
 	}
+	/**
+	 * The specific subscription product identifier to check.
+	 *
+	 * @var bigint
+	 */
+	public $subscriptionIdEquals = null;
 
-	/**
-	 * Gets the logger (Internal client use)
-	 *
-	 * @return Kaltura_Client_ILogger
-	 */
-	public function getLogger()
-	{
-		return $this->logger;
-	}
+
 }
+
