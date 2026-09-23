@@ -74,6 +74,20 @@ class Kaltura_Client_Type_BulkUploadFilter extends Kaltura_Client_Type_Filter
 			$this->statusIn = (string)$xml->statusIn;
 		if(!is_null($jsonObject) && isset($jsonObject->statusIn))
 			$this->statusIn = (string)$jsonObject->statusIn;
+		if(!is_null($xml) && count($xml->includeResultsEqual))
+		{
+			if(!empty($xml->includeResultsEqual) && ((int) $xml->includeResultsEqual === 1 || strtolower((string)$xml->includeResultsEqual) === 'true'))
+				$this->includeResultsEqual = true;
+			else
+				$this->includeResultsEqual = false;
+		}
+		if(!is_null($jsonObject) && isset($jsonObject->includeResultsEqual))
+		{
+			if(!empty($jsonObject->includeResultsEqual) && ((int) $jsonObject->includeResultsEqual === 1 || strtolower((string)$jsonObject->includeResultsEqual) === 'true'))
+				$this->includeResultsEqual = true;
+			else
+				$this->includeResultsEqual = false;
+		}
 	}
 	/**
 	 * bulk objects Type name (must be type of KalturaOTTObject)
@@ -102,6 +116,15 @@ class Kaltura_Client_Type_BulkUploadFilter extends Kaltura_Client_Type_Filter
 	 * @var string
 	 */
 	public $statusIn = null;
+
+	/**
+	 * Indicates whether to include detailed results data (from Couchbase) in the response.
+	 *             When false, only lightweight metadata (status, fileName, dates, etc.) is returned.
+	 *             Default is true for backward compatibility.
+	 *
+	 * @var bool
+	 */
+	public $includeResultsEqual = null;
 
 
 }

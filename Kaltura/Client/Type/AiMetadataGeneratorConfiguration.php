@@ -48,19 +48,19 @@ class Kaltura_Client_Type_AiMetadataGeneratorConfiguration extends Kaltura_Clien
 		if(is_null($xml) && is_null($jsonObject))
 			return;
 		
-		if(!is_null($xml) && count($xml->assetStructMetaNameMap))
+		if(!is_null($xml) && count($xml->assetStructConfigMap))
 		{
-			if(empty($xml->assetStructMetaNameMap))
-				$this->assetStructMetaNameMap = array();
+			if(empty($xml->assetStructConfigMap))
+				$this->assetStructConfigMap = array();
 			else
-				$this->assetStructMetaNameMap = Kaltura_Client_ParseUtils::unmarshalMap($xml->assetStructMetaNameMap, "KalturaMetaFieldNameMap");
+				$this->assetStructConfigMap = Kaltura_Client_ParseUtils::unmarshalMap($xml->assetStructConfigMap, "KalturaMetadataFieldConfigurationMap");
 		}
-		if(!is_null($jsonObject) && isset($jsonObject->assetStructMetaNameMap))
+		if(!is_null($jsonObject) && isset($jsonObject->assetStructConfigMap))
 		{
-			if(empty($jsonObject->assetStructMetaNameMap))
-				$this->assetStructMetaNameMap = array();
+			if(empty($jsonObject->assetStructConfigMap))
+				$this->assetStructConfigMap = array();
 			else
-				$this->assetStructMetaNameMap = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->assetStructMetaNameMap, "KalturaMetaFieldNameMap");
+				$this->assetStructConfigMap = Kaltura_Client_ParseUtils::jsObjectToClientObject($jsonObject->assetStructConfigMap, "KalturaMetadataFieldConfigurationMap");
 		}
 		if(!is_null($xml) && count($xml->supportedLanguages))
 		{
@@ -78,13 +78,13 @@ class Kaltura_Client_Type_AiMetadataGeneratorConfiguration extends Kaltura_Clien
 		}
 	}
 	/**
-	 * A type of dictionary defined as [long,KalturaMetaFieldNameMap]. 
+	 * A type of dictionary defined as [string,KalturaMetadataFieldConfigurationMap].
 	 *             This property is used to correlate the newly generated metadata to
-	 *             existing metadata IDs which are available in the asset’s struct.
+	 *             existing metadata IDs which are available in the asset&#39;s struct with configuration.
 	 *
 	 * @var map
 	 */
-	public $assetStructMetaNameMap;
+	public $assetStructConfigMap;
 
 	/**
 	 * A read only array to list the set of languages which can be used with the service.

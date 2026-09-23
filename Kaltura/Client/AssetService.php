@@ -394,12 +394,10 @@ class Kaltura_Client_AssetService extends Kaltura_Client_ServiceBase
 	 * @return Kaltura_Client_Type_AssetListResponse
 	 * @throws Kaltura_Client_Exception|Kaltura_Client_ClientException
 	 */
-	function semanticSearch($query, $refineQuery = false, $size = 10)
+	function semanticSearch(Kaltura_Client_Type_SemanticSearchParams $searchParams)
 	{
 		$kparams = array();
-		$this->client->addParam($kparams, "query", $query);
-		$this->client->addParam($kparams, "refineQuery", $refineQuery);
-		$this->client->addParam($kparams, "size", $size);
+		$this->client->addParam($kparams, "searchParams", $searchParams->toParams());
 		$this->client->queueServiceActionCall("asset", "semanticSearch", "KalturaAssetListResponse", $kparams);
 		if ($this->client->isMultiRequest())
 			return $this->client->getMultiRequestResult();

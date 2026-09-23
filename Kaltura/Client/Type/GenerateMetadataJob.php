@@ -72,6 +72,10 @@ class Kaltura_Client_Type_GenerateMetadataJob extends Kaltura_Client_ObjectBase
 			$this->errorMessage = (string)$xml->errorMessage;
 		if(!is_null($jsonObject) && isset($jsonObject->errorMessage))
 			$this->errorMessage = (string)$jsonObject->errorMessage;
+		if(!is_null($xml) && count($xml->type))
+			$this->type = (string)$xml->type;
+		if(!is_null($jsonObject) && isset($jsonObject->type))
+			$this->type = (string)$jsonObject->type;
 	}
 	/**
 	 * Unique identifier for the generation job
@@ -122,6 +126,14 @@ class Kaltura_Client_Type_GenerateMetadataJob extends Kaltura_Client_ObjectBase
 	 * @readonly
 	 */
 	public $errorMessage = null;
+
+	/**
+	 * Type of the metadata generation job (vodByDescription, vodBySubtitles, programByDescription)
+	 *
+	 * @var Kaltura_Client_Enum_GenerateMetadataJobType
+	 * @readonly
+	 */
+	public $type = null;
 
 
 }

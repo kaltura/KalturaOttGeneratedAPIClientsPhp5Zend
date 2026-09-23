@@ -64,6 +64,14 @@ class Kaltura_Client_Type_AssetFilePpv extends Kaltura_Client_Type_OTTObjectSupp
 			$this->endDate = (string)$xml->endDate;
 		if(!is_null($jsonObject) && isset($jsonObject->endDate))
 			$this->endDate = (string)$jsonObject->endDate;
+		if(!is_null($xml) && count($xml->purchaseStartDate))
+			$this->purchaseStartDate = (string)$xml->purchaseStartDate;
+		if(!is_null($jsonObject) && isset($jsonObject->purchaseStartDate))
+			$this->purchaseStartDate = (string)$jsonObject->purchaseStartDate;
+		if(!is_null($xml) && count($xml->purchaseEndDate))
+			$this->purchaseEndDate = (string)$xml->purchaseEndDate;
+		if(!is_null($jsonObject) && isset($jsonObject->purchaseEndDate))
+			$this->purchaseEndDate = (string)$jsonObject->purchaseEndDate;
 	}
 	/**
 	 * Asset file identifier
@@ -92,6 +100,20 @@ class Kaltura_Client_Type_AssetFilePpv extends Kaltura_Client_Type_OTTObjectSupp
 	 * @var bigint
 	 */
 	public $endDate = null;
+
+	/**
+	 * First date and time an KalturaAssetFilePpv.AssetFileId can be purchased with the given KalturaAssetFilePpv.PpvModuleId. Represented as epoch
+	 *
+	 * @var bigint
+	 */
+	public $purchaseStartDate = null;
+
+	/**
+	 * Final date and time an KalturaAssetFilePpv.AssetFileId can be purchased with the given KalturaAssetFilePpv.PpvModuleId. Represented as epoch
+	 *
+	 * @var bigint
+	 */
+	public $purchaseEndDate = null;
 
 
 }
